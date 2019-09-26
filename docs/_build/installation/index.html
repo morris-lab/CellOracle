@@ -221,19 +221,19 @@
 </style>
 <div class="section" id="installation">
 <span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> use several python libraries and R library. Please follow this guide below to install dependent software of celloracle.</p>
+<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> uses several python libraries and R library. Please follow this guide below to install the dependent software of celloracle.</p>
 <div class="section" id="python-requirements">
 <span id="require"></span><h2>Python Requirements<a class="headerlink" href="#python-requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> was developed with python 3.6. We do not support python 2.7x or python &lt;=3.5.</li>
-<li><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> was depeloped in Linux and MacOS. We do not guarantee that <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> works in in Windows OS.</li>
+<li><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> was developed in Linux and macOS. We do not guarantee that <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> works in Windows OS.</li>
 <li>We highly recommend using <a class="reference external" href="https://www.continuum.io/downloads">anaconda</a> to setup python environment.</li>
 <li>Please install all dependent libraries before installing <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> according to the instructions below.</li>
-<li><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> itself is still beta version and it is not available through pypi or anaconda distribution yet. Please install <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> from github repository according to the instruction below.</li>
+<li><code class="docutils literal notranslate"><span class="pre">celloracle</span></code>  is still beta version and it is not available through PyPI or anaconda distribution yet. Please install <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> from GitHub repository according to the instruction below.</li>
 </ul>
 <div class="section" id="optional-make-a-new-environment">
 <h3>0. (Optional) Make a new environment<a class="headerlink" href="#optional-make-a-new-environment" title="Permalink to this headline">¶</a></h3>
-<p>This step is optional. Please make a new virtual environment for celloracle and install dependent libraries in it if you get some software conflicts.</p>
+<p>This step is optional. Please make a new python environment for celloracle and install dependent libraries in it if you get some software conflicts.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">make</span> <span class="o">-</span><span class="n">n</span> <span class="n">celloracle_env</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.6</span>
 <span class="n">conda</span> <span class="n">activate</span> <span class="n">celloracle_env</span>
 </pre></div>
@@ -241,7 +241,7 @@
 </div>
 <div class="section" id="add-conda-channels">
 <h3>1. Add conda channels<a class="headerlink" href="#add-conda-channels" title="Permalink to this headline">¶</a></h3>
-<p>Some libraries below require non-default anaconda channels. Please add the channels below. Instead, you can explicitly enter the channel when you install a library.</p>
+<p>Installation of some libraries below requires non-default anaconda channels. Please add the channels below. Instead, you can explicitly enter the channel when you install a library.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">defaults</span>
 <span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">bioconda</span>
 <span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
@@ -274,7 +274,7 @@ On Mac OS, you may have a compile error during velocyto installation. I recommen
 <div class="section" id="install-gimmemotifs">
 <h3>4. Install <a class="reference external" href="https://gimmemotifs.readthedocs.io/en/master/installation.html">gimmemotifs</a><a class="headerlink" href="#install-gimmemotifs" title="Permalink to this headline">¶</a></h3>
 <p>Please install gimmemotifs with the following commands or <a class="reference external" href="https://gimmemotifs.readthedocs.io/en/master/installation.html">the author’s instruction</a> .</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">gimmemotifs</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">gimmemotifs</span> <span class="n">genomepy</span><span class="o">=</span><span class="mf">0.5</span><span class="o">.</span><span class="mi">5</span>
 </pre></div>
 </div>
 </div>
@@ -298,9 +298,9 @@ On Mac OS, you may have a compile error during velocyto installation. I recommen
 Please install <a class="reference external" href="https://www.r-project.org">R</a> (&gt;=3.5) and R libraries below according to the author’s instruction.</p>
 <div class="section" id="id3">
 <h3><a class="reference external" href="https://satijalab.org/seurat/install.html">Seurat</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>Please install seurat with the following r-script or <a class="reference external" href="https://satijalab.org/seurat/install.html">the author’s instruction</a> .
+<p>Please install <code class="docutils literal notranslate"><span class="pre">Seurat</span></code> with the following r-script or <a class="reference external" href="https://satijalab.org/seurat/install.html">the author’s instruction</a> .
 <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> is compatible with both Seurat V2 and V3.
-If you use only scanpy for the scRNA-seq preprocessing and do not use Seurat, you can skip installation of Seurat.</p>
+If you use only <code class="docutils literal notranslate"><span class="pre">scanpy</span></code> for the scRNA-seq preprocessing and do not use <code class="docutils literal notranslate"><span class="pre">Seurat</span></code> , you can skip installation of <code class="docutils literal notranslate"><span class="pre">Seurat</span></code>.</p>
 <p>in R console,</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;Seurat&#39;</span><span class="p">)</span>
 </pre></div>
@@ -308,8 +308,8 @@ If you use only scanpy for the scRNA-seq preprocessing and do not use Seurat, yo
 </div>
 <div class="section" id="id5">
 <h3><a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero">Cicero</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>Please install Cicero with the following r-script or <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero">the author’s instruction</a> .
-If you will not do scATAC-seq analysis and plan to run <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> with default TF information which was builtin celloracle, you can skip installation of Cicero.</p>
+<p>Please install <code class="docutils literal notranslate"><span class="pre">Cicero</span></code> with the following r-script or <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero">the author’s instruction</a> .
+If you have no plan for scATAC-seq analysis and just want to use  <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> with a default TF information which was supplied with celloracle, you can skip installation of <code class="docutils literal notranslate"><span class="pre">Cicero</span></code>.</p>
 <p>in R console,</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
 <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
@@ -319,7 +319,7 @@ If you will not do scATAC-seq analysis and plan to run <code class="docutils lit
 </div>
 <div class="section" id="id7">
 <h3><a class="reference external" href="https://igraph.org/r/">igraph</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<p>Please install igraph with the following r-script or <a class="reference external" href="https://igraph.org/r/">the author’s instruction</a> .</p>
+<p>Please install <code class="docutils literal notranslate"><span class="pre">igraph</span></code> with the following r-script or <a class="reference external" href="https://igraph.org/r/">the author’s instruction</a> .</p>
 <p>in R console,</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;igraph&quot;</span><span class="p">)</span>
 </pre></div>
@@ -327,7 +327,7 @@ If you will not do scATAC-seq analysis and plan to run <code class="docutils lit
 </div>
 <div class="section" id="id9">
 <h3><a class="reference external" href="https://cran.r-project.org/web/packages/linkcomm/index.html">linkcomm</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-<p>Please install linkcomm with the following r-script or <a class="reference external" href="https://cran.r-project.org/web/packages/linkcomm/index.html">the author’s instruction</a> .</p>
+<p>Please install <code class="docutils literal notranslate"><span class="pre">linkcomm</span></code> with the following r-script or <a class="reference external" href="https://cran.r-project.org/web/packages/linkcomm/index.html">the author’s instruction</a> .</p>
 <p>in R console,</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;linkcomm&quot;</span><span class="p">)</span>
 </pre></div>
@@ -335,8 +335,8 @@ If you will not do scATAC-seq analysis and plan to run <code class="docutils lit
 </div>
 <div class="section" id="id11">
 <h3><a class="reference external" href="https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md">rnetcarto</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-<p>rnetcarto installation is little bit complicated. Please install rnetcarto with <a class="reference external" href="https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md">the author’s instruction</a> .
-You also need to install <a class="reference external" href="https://www.gnu.org/software/gsl/">the GNU Scientific Libraries</a> before installing rnetcarto. Detailed instruction can be found <a class="reference external" href="https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md">here</a> .</p>
+<p><code class="docutils literal notranslate"><span class="pre">rnetcarto</span></code> installation has to be done with several steps. Please install rnetcarto with <a class="reference external" href="https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md">the author’s instruction</a> .
+You need to install <a class="reference external" href="https://www.gnu.org/software/gsl/">the GNU Scientific Libraries</a> before installing rnetcarto. Detailed instruction can be found <a class="reference external" href="https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md">here</a> .</p>
 </div>
 <div class="section" id="check-installation">
 <h3>Check installation<a class="headerlink" href="#check-installation" title="Permalink to this headline">¶</a></h3>

@@ -3,7 +3,7 @@
 Installation
 ============
 
-``celloracle`` use several python libraries and R library. Please follow this guide below to install dependent software of celloracle.
+``celloracle`` uses several python libraries and R library. Please follow this guide below to install the dependent software of celloracle.
 
 .. _require:
 
@@ -11,14 +11,15 @@ Python Requirements
 -------------------
 
 - ``celloracle`` was developed with python 3.6. We do not support python 2.7x or python <=3.5.
-- ``celloracle`` was depeloped in Linux and MacOS. We do not guarantee that ``celloracle`` works in in Windows OS.
+- ``celloracle`` was developed in Linux and macOS. We do not guarantee that ``celloracle`` works in Windows OS.
 - We highly recommend using `anaconda <https://www.continuum.io/downloads>`_ to setup python environment.
 - Please install all dependent libraries before installing ``celloracle`` according to the instructions below.
-- ``celloracle`` itself is still beta version and it is not available through pypi or anaconda distribution yet. Please install ``celloracle`` from github repository according to the instruction below.
+- ``celloracle``  is still beta version and it is not available through PyPI or anaconda distribution yet. Please install ``celloracle`` from GitHub repository according to the instruction below.
+
 
 0. (Optional) Make a new environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This step is optional. Please make a new virtual environment for celloracle and install dependent libraries in it if you get some software conflicts.
+This step is optional. Please make a new python environment for celloracle and install dependent libraries in it if you get some software conflicts.
 
 ::
 
@@ -29,7 +30,8 @@ This step is optional. Please make a new virtual environment for celloracle and 
 
 1. Add conda channels
 ^^^^^^^^^^^^^^^^^^^^^
-Some libraries below require non-default anaconda channels. Please add the channels below. Instead, you can explicitly enter the channel when you install a library.
+Installation of some libraries below requires non-default anaconda channels. Please add the channels below. Instead, you can explicitly enter the channel when you install a library.
+
 ::
 
     conda config --add channels defaults
@@ -74,7 +76,7 @@ Please install gimmemotifs with the following commands or `the author's instruct
 
 ::
 
-    conda install gimmemotifs
+    conda install gimmemotifs genomepy=0.5.5
 
 
 5. Install other python libraries
@@ -89,7 +91,7 @@ Please install other python libraries below with the following commands.
 6. install celloracle from github
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ::
-    
+
     pip install git+https://github.com/KenjiKamimoto-wustl122/CellOracle
 
 
@@ -102,9 +104,9 @@ Please install `R <https://www.r-project.org>`_ (>=3.5) and R libraries below ac
 
 `Seurat <https://satijalab.org/seurat/install.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please install seurat with the following r-script or `the author's instruction <https://satijalab.org/seurat/install.html>`_ .
+Please install ``Seurat`` with the following r-script or `the author's instruction <https://satijalab.org/seurat/install.html>`_ .
 ``celloracle`` is compatible with both Seurat V2 and V3.
-If you use only scanpy for the scRNA-seq preprocessing and do not use Seurat, you can skip installation of Seurat.
+If you use only ``scanpy`` for the scRNA-seq preprocessing and do not use ``Seurat`` , you can skip installation of ``Seurat``.
 
 in R console,
 
@@ -114,8 +116,8 @@ in R console,
 
 `Cicero <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please install Cicero with the following r-script or `the author's instruction <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_ .
-If you will not do scATAC-seq analysis and plan to run ``celloracle`` with default TF information which was builtin celloracle, you can skip installation of Cicero.
+Please install ``Cicero`` with the following r-script or `the author's instruction <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_ .
+If you have no plan for scATAC-seq analysis and just want to use  ``celloracle`` with a default TF information which was supplied with celloracle, you can skip installation of ``Cicero``.
 
 in R console,
 
@@ -127,7 +129,7 @@ in R console,
 
 `igraph <https://igraph.org/r/>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please install igraph with the following r-script or `the author's instruction <https://igraph.org/r/>`_ .
+Please install ``igraph`` with the following r-script or `the author's instruction <https://igraph.org/r/>`_ .
 
 in R console,
 
@@ -138,7 +140,7 @@ in R console,
 
 `linkcomm <https://cran.r-project.org/web/packages/linkcomm/index.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please install linkcomm with the following r-script or `the author's instruction <https://cran.r-project.org/web/packages/linkcomm/index.html>`_ .
+Please install ``linkcomm`` with the following r-script or `the author's instruction <https://cran.r-project.org/web/packages/linkcomm/index.html>`_ .
 
 in R console,
 
@@ -148,8 +150,9 @@ in R console,
 
 `rnetcarto <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-rnetcarto installation is little bit complicated. Please install rnetcarto with `the author's instruction <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_ .
-You also need to install `the GNU Scientific Libraries <https://www.gnu.org/software/gsl/>`_ before installing rnetcarto. Detailed instruction can be found `here <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_ .
+``rnetcarto`` installation has to be done with several steps. Please install rnetcarto with `the author's instruction <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_ .
+You need to install `the GNU Scientific Libraries <https://www.gnu.org/software/gsl/>`_ before installing rnetcarto. Detailed instruction can be found `here <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_ .
+
 
 Check installation
 ^^^^^^^^^^^^^^^^^^

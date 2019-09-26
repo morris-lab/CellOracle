@@ -199,15 +199,32 @@ CellOracle is a python library for the analysis of Gene Regulatory Network with 
 
 Source code and tutorials are available at \sphinxhref{https://github.com/KenjiKamimoto-wustl122/CellOracle}{celloracle  git hub repository}
 
-For colleagues. Thank you for your kind help!!
-Documentation is also available as word file and pdf file.
+\begin{sphinxadmonition}{note}{Note:}
+\begin{DUlineblock}{0em}
+\item[] \sphinxstylestrong{For colleagues in Morris Lab}
+\item[] \sphinxstylestrong{Thank you for your kind help!!}
+\end{DUlineblock}
 
-Could you please add comments on the files and send back it to Kenji?
-I appreciate your help!
+\begin{DUlineblock}{0em}
+\item[] Documentation is also available as a word and pdf file.
+\end{DUlineblock}
 
 \sphinxcode{\sphinxupquote{pdf version}}
 
 \sphinxcode{\sphinxupquote{microsoft word version}}
+
+\begin{DUlineblock}{0em}
+\item[] \sphinxstylestrong{Could you please add comments on the file and send it back to Kenji?}
+\item[] I really appreciate your support!
+\item[] 
+\item[] Thanks,
+\item[] Kenji
+\end{DUlineblock}
+\begin{quote}
+
+(This message will be deleted when we launch celloracle.)
+\end{quote}
+\end{sphinxadmonition}
 
 \begin{sphinxadmonition}{warning}{Warning:}
 CellOracle is still under development. It is alpha version and functions in this package may change in the future release.
@@ -219,7 +236,7 @@ CellOracle is still under development. It is alpha version and functions in this
 
 \section{Installation}
 \label{\detokenize{installation/index:installation}}\label{\detokenize{installation/index:install}}\label{\detokenize{installation/index::doc}}
-\sphinxcode{\sphinxupquote{celloracle}} use several python libraries and R library. Please follow this guide below to install dependent software of celloracle.
+\sphinxcode{\sphinxupquote{celloracle}} uses several python libraries and R library. Please follow this guide below to install the dependent software of celloracle.
 
 
 \subsection{Python Requirements}
@@ -228,7 +245,7 @@ CellOracle is still under development. It is alpha version and functions in this
 \sphinxcode{\sphinxupquote{celloracle}} was developed with python 3.6. We do not support python 2.7x or python \textless{}=3.5.
 
 \item {} 
-\sphinxcode{\sphinxupquote{celloracle}} was depeloped in Linux and MacOS. We do not guarantee that \sphinxcode{\sphinxupquote{celloracle}} works in in Windows OS.
+\sphinxcode{\sphinxupquote{celloracle}} was developed in Linux and macOS. We do not guarantee that \sphinxcode{\sphinxupquote{celloracle}} works in Windows OS.
 
 \item {} 
 We highly recommend using \sphinxhref{https://www.continuum.io/downloads}{anaconda} to setup python environment.
@@ -237,14 +254,14 @@ We highly recommend using \sphinxhref{https://www.continuum.io/downloads}{anacon
 Please install all dependent libraries before installing \sphinxcode{\sphinxupquote{celloracle}} according to the instructions below.
 
 \item {} 
-\sphinxcode{\sphinxupquote{celloracle}} itself is still beta version and it is not available through pypi or anaconda distribution yet. Please install \sphinxcode{\sphinxupquote{celloracle}} from github repository according to the instruction below.
+\sphinxcode{\sphinxupquote{celloracle}}  is still beta version and it is not available through PyPI or anaconda distribution yet. Please install \sphinxcode{\sphinxupquote{celloracle}} from GitHub repository according to the instruction below.
 
 \end{itemize}
 
 
 \subsubsection{0. (Optional) Make a new environment}
 \label{\detokenize{installation/index:optional-make-a-new-environment}}
-This step is optional. Please make a new virtual environment for celloracle and install dependent libraries in it if you get some software conflicts.
+This step is optional. Please make a new python environment for celloracle and install dependent libraries in it if you get some software conflicts.
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -255,7 +272,7 @@ This step is optional. Please make a new virtual environment for celloracle and 
 
 \subsubsection{1. Add conda channels}
 \label{\detokenize{installation/index:add-conda-channels}}
-Some libraries below require non-default anaconda channels. Please add the channels below. Instead, you can explicitly enter the channel when you install a library.
+Installation of some libraries below requires non-default anaconda channels. Please add the channels below. Instead, you can explicitly enter the channel when you install a library.
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -306,7 +323,7 @@ Please install gimmemotifs with the following commands or \sphinxhref{https://gi
 
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{conda} \PYG{n}{install} \PYG{n}{gimmemotifs}
+\PYG{n}{conda} \PYG{n}{install} \PYG{n}{gimmemotifs} \PYG{n}{genomepy}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{o}{.}\PYG{l+m+mi}{5}
 \end{sphinxVerbatim}
 
 
@@ -336,9 +353,9 @@ Please install \sphinxhref{https://www.r-project.org}{R} (\textgreater{}=3.5) an
 
 \subsubsection{Seurat}
 \label{\detokenize{installation/index:id3}}
-Please install seurat with the following r-script or \sphinxhref{https://satijalab.org/seurat/install.html}{the author’s instruction} .
+Please install \sphinxcode{\sphinxupquote{Seurat}} with the following r-script or \sphinxhref{https://satijalab.org/seurat/install.html}{the author’s instruction} .
 \sphinxcode{\sphinxupquote{celloracle}} is compatible with both Seurat V2 and V3.
-If you use only scanpy for the scRNA-seq preprocessing and do not use Seurat, you can skip installation of Seurat.
+If you use only \sphinxcode{\sphinxupquote{scanpy}} for the scRNA-seq preprocessing and do not use \sphinxcode{\sphinxupquote{Seurat}} , you can skip installation of \sphinxcode{\sphinxupquote{Seurat}}.
 
 in R console,
 
@@ -350,8 +367,8 @@ in R console,
 
 \subsubsection{Cicero}
 \label{\detokenize{installation/index:id5}}
-Please install Cicero with the following r-script or \sphinxhref{https://cole-trapnell-lab.github.io/cicero-release/docs/\#installing-cicero}{the author’s instruction} .
-If you will not do scATAC-seq analysis and plan to run \sphinxcode{\sphinxupquote{celloracle}} with default TF information which was builtin celloracle, you can skip installation of Cicero.
+Please install \sphinxcode{\sphinxupquote{Cicero}} with the following r-script or \sphinxhref{https://cole-trapnell-lab.github.io/cicero-release/docs/\#installing-cicero}{the author’s instruction} .
+If you have no plan for scATAC-seq analysis and just want to use  \sphinxcode{\sphinxupquote{celloracle}} with a default TF information which was supplied with celloracle, you can skip installation of \sphinxcode{\sphinxupquote{Cicero}}.
 
 in R console,
 
@@ -365,7 +382,7 @@ in R console,
 
 \subsubsection{igraph}
 \label{\detokenize{installation/index:id7}}
-Please install igraph with the following r-script or \sphinxhref{https://igraph.org/r/}{the author’s instruction} .
+Please install \sphinxcode{\sphinxupquote{igraph}} with the following r-script or \sphinxhref{https://igraph.org/r/}{the author’s instruction} .
 
 in R console,
 
@@ -377,7 +394,7 @@ in R console,
 
 \subsubsection{linkcomm}
 \label{\detokenize{installation/index:id9}}
-Please install linkcomm with the following r-script or \sphinxhref{https://cran.r-project.org/web/packages/linkcomm/index.html}{the author’s instruction} .
+Please install \sphinxcode{\sphinxupquote{linkcomm}} with the following r-script or \sphinxhref{https://cran.r-project.org/web/packages/linkcomm/index.html}{the author’s instruction} .
 
 in R console,
 
@@ -389,8 +406,8 @@ in R console,
 
 \subsubsection{rnetcarto}
 \label{\detokenize{installation/index:id11}}
-rnetcarto installation is little bit complicated. Please install rnetcarto with \sphinxhref{https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md}{the author’s instruction} .
-You also need to install \sphinxhref{https://www.gnu.org/software/gsl/}{the GNU Scientific Libraries} before installing rnetcarto. Detailed instruction can be found \sphinxhref{https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md}{here} .
+\sphinxcode{\sphinxupquote{rnetcarto}} installation has to be done with several steps. Please install rnetcarto with \sphinxhref{https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md}{the author’s instruction} .
+You need to install \sphinxhref{https://www.gnu.org/software/gsl/}{the GNU Scientific Libraries} before installing rnetcarto. Detailed instruction can be found \sphinxhref{https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md}{here} .
 
 
 \subsubsection{Check installation}
