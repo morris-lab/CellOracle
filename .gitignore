@@ -1,3 +1,7 @@
 *.DS_Store
 *.go-basic.obo
 *.gene2go.txt
+celloracle/__pycache__
+celloracle/__pycache__/*
+celloracle/*/__pycache__
+celloracle/chip_analysis
