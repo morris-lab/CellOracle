@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>celloracle.go_analysis.goatools_wrapper &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/index.html">Installation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorial</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html">API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>celloracle.go_analysis.goatools_wrapper</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for celloracle.go_analysis.goatools_wrapper</h1><div class="highlight"><pre>
+<span></span> <span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="kn">from</span> <span class="nn">goatools.go_enrichment</span> <span class="k">import</span> <span class="n">GOEnrichmentStudy</span>
+<span class="kn">from</span> <span class="nn">goatools.obo_parser</span> <span class="k">import</span> <span class="n">GODag</span>
+<span class="kn">from</span> <span class="nn">goatools.associations</span> <span class="k">import</span> <span class="n">read_ncbi_gene2go</span>
+
+<span class="n">go_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">Xtable_human</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s1">&#39;hg19_xref.txt&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">Xtable_mouse</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s1">&#39;biomart_xref.mm10.txt&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="geneSymbol2ID"><a class="viewcode-back" href="../../../modules/celloracle.go_analysis.html#celloracle.go_analysis.geneSymbol2ID">[docs]</a><span class="k">def</span> <span class="nf">geneSymbol2ID</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">species</span><span class="o">=</span><span class="s2">&quot;mouse&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert gene symbol into Entrez gene id.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        symbols (array of str): gene symbol</span>
+
+<span class="sd">        species (str): Select species. Either &quot;mouse&quot; or &quot;human&quot;</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list of str: Entrez gene id</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">species</span><span class="o">==</span><span class="s1">&#39;human&#39;</span><span class="p">):</span>
+        <span class="n">Xtable</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s1">&#39;hg19_xref.txt&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">elif</span><span class="p">(</span><span class="n">species</span><span class="o">==</span><span class="s1">&#39;mouse&#39;</span><span class="p">):</span>
+        <span class="n">Xtable</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s1">&#39;biomart_xref.mm10.txt&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">Xtable</span><span class="o">=</span><span class="n">Xtable</span><span class="p">[[</span><span class="s1">&#39;Associated Gene Name&#39;</span><span class="p">,</span><span class="s1">&#39;EntrezGene ID&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">Xtable</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">Xtable</span><span class="p">[</span><span class="s1">&#39;Associated Gene Name&#39;</span><span class="p">]</span>
+    <span class="n">GOIs_entrez</span><span class="o">=</span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Xtable</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">symbols</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()[</span><span class="s1">&#39;EntrezGene ID&#39;</span><span class="p">])]</span>
+
+    <span class="k">return</span> <span class="n">GOIs_entrez</span></div>
+
+
+<div class="viewcode-block" id="geneID2Symbol"><a class="viewcode-back" href="../../../modules/celloracle.go_analysis.html#celloracle.go_analysis.geneID2Symbol">[docs]</a><span class="k">def</span> <span class="nf">geneID2Symbol</span><span class="p">(</span><span class="n">IDs</span><span class="p">,</span> <span class="n">species</span><span class="o">=</span><span class="s2">&quot;mouse&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert Entrez gene id into gene symbol.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        IDs (array of str): Entrez gene id.</span>
+
+<span class="sd">        species (str): Select species. Either &quot;mouse&quot; or &quot;human&quot;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list of str: Gene symbol</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">species</span><span class="o">==</span><span class="s1">&#39;human&#39;</span><span class="p">):</span>
+        <span class="n">Xtable</span><span class="o">=</span><span class="n">Xtable_human</span>
+
+    <span class="k">elif</span><span class="p">(</span><span class="n">species</span><span class="o">==</span><span class="s1">&#39;mouse&#39;</span><span class="p">):</span>
+        <span class="n">Xtable</span><span class="o">=</span><span class="n">Xtable_mouse</span>
+
+    <span class="n">Xtable</span><span class="o">=</span><span class="n">Xtable</span><span class="p">[[</span><span class="s1">&#39;Associated Gene Name&#39;</span><span class="p">,</span><span class="s1">&#39;EntrezGene ID&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">Xtable</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">Xtable</span><span class="p">[</span><span class="s1">&#39;EntrezGene ID&#39;</span><span class="p">]</span>
+    <span class="n">symbols</span><span class="o">=</span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Xtable</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">IDs</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()[</span><span class="s1">&#39;Associated Gene Name&#39;</span><span class="p">])]</span>
+
+    <span class="k">return</span> <span class="n">symbols</span></div>
+
+<span class="k">def</span> <span class="nf">_ids2symbols</span><span class="p">(</span><span class="n">study_ids</span><span class="p">,</span> <span class="n">species</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">study_ids</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="n">study_ids</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">]</span>
+    <span class="n">genes</span> <span class="o">=</span> <span class="n">geneID2Symbol</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">species</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">genes</span>
+
+
+<div class="viewcode-block" id="get_GO"><a class="viewcode-back" href="../../../modules/celloracle.go_analysis.html#celloracle.go_analysis.get_GO">[docs]</a><span class="k">def</span> <span class="nf">get_GO</span><span class="p">(</span><span class="n">gene_query</span><span class="p">,</span> <span class="n">species</span><span class="o">=</span><span class="s1">&#39;mouse&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get Gene Ontologies (GOs).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        gene_query (array of str): gene list.</span>
+
+<span class="sd">        species (str): Select species. Either &quot;mouse&quot; or &quot;human&quot;</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pandas.dataframe: GO analysis results as dataframe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sig_thresh</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">num_genes</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">GOIs</span> <span class="o">=</span> <span class="n">gene_query</span>
+    <span class="c1"># prepare files</span>
+
+    <span class="n">obodag</span> <span class="o">=</span> <span class="n">GODag</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span> <span class="s2">&quot;go-basic.obo&quot;</span><span class="p">))</span>
+
+    <span class="c1">#go analysis</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">species</span><span class="o">==</span><span class="s1">&#39;human&#39;</span><span class="p">):</span>
+
+        <span class="n">geneid2gos</span> <span class="o">=</span> <span class="n">read_ncbi_gene2go</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s2">&quot;gene2go.txt&quot;</span><span class="p">),</span> <span class="n">taxids</span><span class="o">=</span><span class="p">[</span><span class="mi">9606</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{N:,}</span><span class="s2"> annotated genes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">geneid2gos</span><span class="p">)))</span>
+
+        <span class="n">Xtable</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s1">&#39;hg19_xref.txt&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">Xtable</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">Xtable</span><span class="p">[</span><span class="s1">&#39;Approved Symbol&#39;</span><span class="p">]</span>
+        <span class="n">GOIs_entrez</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Xtable</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">GOIs</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()[</span><span class="s1">&#39;EntrezGene ID&#39;</span><span class="p">])]</span>
+
+    <span class="k">elif</span> <span class="p">(</span><span class="n">species</span><span class="o">==</span><span class="s1">&#39;mouse&#39;</span><span class="p">):</span>
+
+        <span class="n">geneid2gos</span> <span class="o">=</span> <span class="n">read_ncbi_gene2go</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s2">&quot;gene2go&quot;</span><span class="p">),</span> <span class="n">taxids</span><span class="o">=</span><span class="p">[</span><span class="mi">10090</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{N:,}</span><span class="s2"> annotated genes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">geneid2gos</span><span class="p">)))</span>
+
+        <span class="kn">from</span> <span class="nn">goatools.test_data.genes_NCBI_10090_ProteinCoding</span> <span class="k">import</span> <span class="n">GENEID2NT</span> <span class="k">as</span> <span class="n">GeneID2nt_mus</span>
+
+        <span class="n">Xtable</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s1">&#39;biomart_xref.mm10.txt&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">Xtable</span><span class="o">=</span><span class="n">Xtable</span><span class="p">[[</span><span class="s1">&#39;Associated Gene Name&#39;</span><span class="p">,</span><span class="s1">&#39;EntrezGene ID&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+        <span class="n">Xtable</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">Xtable</span><span class="p">[</span><span class="s1">&#39;Associated Gene Name&#39;</span><span class="p">]</span>
+        <span class="n">GOIs_entrez</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Xtable</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">GOIs</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()[</span><span class="s1">&#39;EntrezGene ID&#39;</span><span class="p">])]</span>
+
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;processing &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">GOIs</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; genes ...&quot;</span><span class="p">)</span>
+
+
+    <span class="n">goeaobj</span> <span class="o">=</span> <span class="n">GOEnrichmentStudy</span><span class="p">(</span>
+        <span class="n">GeneID2nt_mus</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="c1"># List of mouse protein-coding genes</span>
+        <span class="n">geneid2gos</span><span class="p">,</span> <span class="c1"># geneid/GO associations</span>
+        <span class="n">obodag</span><span class="p">,</span> <span class="c1"># Ontologies</span>
+        <span class="n">propagate_counts</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="c1"># default significance cut-off</span>
+        <span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;fdr_bh&#39;</span><span class="p">])</span> <span class="c1"># defult multipletest correction method</span>
+
+
+    <span class="n">goea_results</span> <span class="o">=</span> <span class="n">goeaobj</span><span class="o">.</span><span class="n">run_study</span><span class="p">(</span><span class="n">GOIs_entrez</span><span class="p">)</span>
+
+    <span class="n">li</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">names</span><span class="o">=</span><span class="p">[]</span>
+
+    <span class="n">go_default_output</span> <span class="o">=</span> <span class="n">goea_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_prtflds_default</span><span class="p">()</span>
+
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">goea_results</span><span class="p">:</span>
+        <span class="n">li</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">get_field_values</span><span class="p">(</span><span class="n">go_default_output</span><span class="p">))</span>
+        <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">df_GO</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">li</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">df_GO</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">go_default_output</span>
+        <span class="n">df_GO</span><span class="p">[</span><span class="s2">&quot;genes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_GO</span><span class="o">.</span><span class="n">study_items</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">ids2symbols</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">species</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found No GO with significant p-value&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_GO</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

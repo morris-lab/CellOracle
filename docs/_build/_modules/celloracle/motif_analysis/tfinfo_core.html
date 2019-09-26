@@ -1,0 +1,817 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>celloracle.motif_analysis.tfinfo_core &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/index.html">Installation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorial</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html">API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>celloracle.motif_analysis.tfinfo_core</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for celloracle.motif_analysis.tfinfo_core</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">This file contains custom functions for the analysis of ATAC-seq data.</span>
+<span class="sd">Genomic activity information (peak of ATAC-seq) will be extracted first.</span>
+<span class="sd">Then the peak DNA sequence will be subjected to TF motif scan.</span>
+<span class="sd">Finally we will get list of TFs that potentially binds to a specific gene.</span>
+
+<span class="sd">Codes were written by Kenji Kamimoto.</span>
+
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1">###########################</span>
+<span class="c1">### 0. Import libralies ###</span>
+<span class="c1">###########################</span>
+
+
+<span class="c1"># 0.1. libraries for fundamental data science and data processing</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1">#import matplotlib.pyplot as plt</span>
+<span class="c1">#import seaborn as sns</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">genomepy</span> <span class="k">import</span> <span class="n">Genome</span>
+
+<span class="kn">from</span> <span class="nn">gimmemotifs.motif</span> <span class="k">import</span> <span class="n">default_motifs</span>
+<span class="kn">from</span> <span class="nn">gimmemotifs.scanner</span> <span class="k">import</span> <span class="n">Scanner</span>
+
+<span class="kn">from</span> <span class="nn">..utility.hdf5_processing</span> <span class="k">import</span> <span class="n">dump_hdf5</span><span class="p">,</span> <span class="n">load_hdf5</span>
+<span class="kn">from</span> <span class="nn">..utility</span> <span class="k">import</span> <span class="n">save_as_pickled_object</span><span class="p">,</span> <span class="n">load_pickled_object</span><span class="p">,</span> <span class="n">intersect</span><span class="p">,</span>\
+                      <span class="n">makelog</span><span class="p">,</span> <span class="n">inverse_dictionary</span>
+<span class="c1">#</span>
+<span class="kn">from</span> <span class="nn">.motif_analysis_utility</span> <span class="k">import</span> <span class="n">scan_dna_for_motifs</span><span class="p">,</span> <span class="n">is_genome_installed</span>
+<span class="kn">from</span> <span class="nn">.process_bed_file</span> <span class="k">import</span> <span class="n">read_bed</span><span class="p">,</span> <span class="n">peak2fasta</span>
+
+<span class="n">SUPPORTED_REF_GENOME</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Human&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;hg38&#39;</span><span class="p">,</span> <span class="s1">&#39;hg19&#39;</span><span class="p">,</span> <span class="s1">&#39;hg18&#39;</span><span class="p">,</span> <span class="s1">&#39;hg17&#39;</span><span class="p">,</span> <span class="s1">&#39;hg16&#39;</span><span class="p">],</span>
+                        <span class="s2">&quot;Mouse&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mm10&#39;</span><span class="p">,</span> <span class="s1">&#39;mm9&#39;</span><span class="p">,</span> <span class="s1">&#39;mm8&#39;</span><span class="p">,</span> <span class="s1">&#39;mm7&#39;</span><span class="p">,</span> <span class="s1">&#39;micMur2&#39;</span><span class="p">,</span> <span class="s1">&#39;micMur1&#39;</span><span class="p">]}</span>
+
+
+<span class="k">def</span> <span class="nf">load_TFinfo</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load TFinfo object which was saved as hdf5 file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_path (str): file path.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        TFinfo: Loaded TFinfo object.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">load_hdf5</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="n">obj_class</span><span class="o">=</span><span class="n">TFinfo</span><span class="p">)</span>
+
+<div class="viewcode-block" id="load_TFinfo_from_parquets"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.load_TFinfo_from_parquets">[docs]</a><span class="k">def</span> <span class="nf">load_TFinfo_from_parquets</span><span class="p">(</span><span class="n">folder_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load TFinfo object which was saved with the function; &quot;save_as_parquet&quot;.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        folder_path (str): folder path</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        TFinfo: Loaded TFinfo object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">folder_path_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s2">&quot;TFinfo_comp&quot;</span><span class="p">))</span>
+    <span class="n">tfi</span> <span class="o">=</span> <span class="n">load_pickled_object</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path_</span><span class="p">,</span> <span class="s2">&quot;tfi.pickle&quot;</span><span class="p">))</span>
+
+    <span class="n">compressed_files_path</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path_</span><span class="p">,</span> <span class="s2">&quot;*.parquet&quot;</span><span class="p">))</span>
+    <span class="n">compressed_file_name</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>  <span class="n">compressed_files_path</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">compressed_file_name</span><span class="p">,</span> <span class="n">compressed_files_path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;scanned_df.parquet&quot;</span><span class="p">:</span>
+            <span class="n">tfi</span><span class="o">.</span><span class="n">scanned_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;peak_df.parquet&quot;</span><span class="p">:</span>
+            <span class="n">tfi</span><span class="o">.</span><span class="n">peak_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;TF_onehot.parquet&quot;</span><span class="p">:</span>
+            <span class="n">tfi</span><span class="o">.</span><span class="n">TF_onehot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tfi</span></div>
+
+<div class="viewcode-block" id="make_TFinfo_from_scanned_file"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.make_TFinfo_from_scanned_file">[docs]</a><span class="k">def</span> <span class="nf">make_TFinfo_from_scanned_file</span><span class="p">(</span><span class="n">path_to_raw_bed</span><span class="p">,</span> <span class="n">path_to_scanned_result_bed</span><span class="p">,</span> <span class="n">ref_genome</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function is currently an available.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">peak_df</span> <span class="o">=</span> <span class="n">read_bed</span><span class="p">(</span><span class="n">path_to_raw_bed</span><span class="p">)</span>
+    <span class="n">peak_df</span> <span class="o">=</span> <span class="n">peak_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;chrom&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">peak_df</span> <span class="o">=</span> <span class="n">peak_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;gene_short_name&quot;</span><span class="p">,</span>
+                                      <span class="s2">&quot;seqname&quot;</span><span class="p">:</span><span class="s2">&quot;peak_id&quot;</span><span class="p">})</span>
+
+    <span class="n">tfinfo</span> <span class="o">=</span> <span class="n">TFinfo</span><span class="p">(</span><span class="n">peak_data_frame</span><span class="o">=</span><span class="n">peak_df</span><span class="p">,</span> <span class="n">ref_genome</span><span class="o">=</span><span class="n">ref_genome</span><span class="p">)</span>
+
+
+    <span class="n">tfinfo</span><span class="o">.</span><span class="n">all_target_gene</span> <span class="o">=</span> <span class="n">tfinfo</span><span class="o">.</span><span class="n">peak_df</span><span class="o">.</span><span class="n">gene_short_name</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <span class="n">tfinfo</span><span class="o">.</span><span class="n">all_peaks</span> <span class="o">=</span> <span class="n">tfinfo</span><span class="o">.</span><span class="n">peak_df</span><span class="o">.</span><span class="n">peak_id</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+    <span class="n">tfinfo</span><span class="o">.</span><span class="n">scanned_df</span> <span class="o">=</span> <span class="n">read_bed</span><span class="p">(</span><span class="n">path_to_scanned_result_bed</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;motif_id&quot;</span><span class="p">})</span>
+
+
+    <span class="k">return</span> <span class="n">tfinfo</span></div>
+
+
+
+<div class="viewcode-block" id="TFinfo"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo">[docs]</a><span class="k">class</span> <span class="nc">TFinfo</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a custom class for motif analysis in celloracle.</span>
+<span class="sd">    TFinfo object performs motif scan using the TF motif database in gimmemotifs and several functions of genomepy.</span>
+<span class="sd">    Analysis results can be exported as a python dictionary or dataframe.</span>
+<span class="sd">    These files; python dictionary of dataframe of TF binding information, are needed in GRN inference.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        peak_df (pandas.dataframe): dataframe about DNA peak and target gene data.</span>
+<span class="sd">        all_target_gene (array of str): target genes.</span>
+<span class="sd">        ref_genome (str): reference genome name that was used in DNA peak generation.</span>
+<span class="sd">        scanned_df (dictionary): Results of motif scan. Key is a peak name. Value is a dataframe of motif scan.</span>
+<span class="sd">        dic_targetgene2TFs (dictionary): Final product of Motif scan. Key is a target gene. Value is a list of regulatory candidate genes.</span>
+<span class="sd">        dic_peak2Targetgene (dictionary): Dictionary. Key is a peak name. Value is a list of the target gene.</span>
+<span class="sd">        dic_TF2targetgenes (dictionary): Final product of Motif scan. Key is a TF. Value is a list of potential target genes of the TF.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peak_data_frame</span><span class="p">,</span> <span class="n">ref_genome</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Instantiate TFinfo object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">           peak_data_frame (pandas.dataframe): dataframe about DNA peak and target gene data.</span>
+
+<span class="sd">           ref_genome (str): reference genome name that was used in DNA peak generation.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">easy_log</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__addLog</span><span class="p">(</span><span class="s2">&quot;initiation&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span> <span class="o">=</span> <span class="n">peak_data_frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="c1"># remove redundant information and check column name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;peak_id&quot;</span><span class="p">,</span><span class="s2">&quot;gene_short_name&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_target_gene</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span><span class="o">.</span><span class="n">gene_short_name</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_peaks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span><span class="o">.</span><span class="n">peak_id</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ref_genome</span> <span class="o">=</span> <span class="n">ref_genome</span>
+
+        <span class="c1"># check ref_genome is supported or not</span>
+        <span class="k">if</span> <span class="n">ref_genome</span> <span class="ow">in</span> <span class="n">SUPPORTED_REF_GENOME</span><span class="p">[</span><span class="s2">&quot;Mouse&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Mouse&quot;</span>
+        <span class="k">elif</span> <span class="n">ref_genome</span> <span class="ow">in</span> <span class="n">SUPPORTED_REF_GENOME</span><span class="p">[</span><span class="s2">&quot;Human&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;Human&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;ref_genome: </span><span class="si">{ref_genome}</span><span class="s2"> is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># check  genome installation</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_genome_installed</span><span class="p">(</span><span class="n">ref_genome</span><span class="o">=</span><span class="n">ref_genome</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;ref_genome: </span><span class="si">{ref_genome}</span><span class="s2"> is not installed. TFinfo initiation failed.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dic_motif2TFs</span> <span class="o">=</span> <span class="n">_get_dic_motif2TFs</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scanned_df</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index_to_be_used</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thresholding_comment</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+    <span class="k">def</span> <span class="nf">__addLog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
+
+        <span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">ctime</span><span class="p">()],</span> <span class="s2">&quot;info&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">info</span><span class="p">]})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">easy_log</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">easy_log</span><span class="p">,</span> <span class="n">new_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TFinfo.copy"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deepcoty itself.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TFinfo.save_as_parquet"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.save_as_parquet">[docs]</a>    <span class="k">def</span> <span class="nf">save_as_parquet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save itself. Some attributes are saved as parquet file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            folder_path (str): folder path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">tmp_self</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">tmp_self</span><span class="o">.</span><span class="n">peak_df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s2">&quot;peak_df.parquet&quot;</span><span class="p">))</span>
+        <span class="n">tmp_self</span><span class="o">.</span><span class="n">peak_df</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tmp_self</span><span class="o">.</span><span class="n">scanned_df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s2">&quot;scanned_df.parquet&quot;</span><span class="p">))</span>
+            <span class="n">tmp_self</span><span class="o">.</span><span class="n">scanned_df</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tmp_self</span><span class="o">.</span><span class="n">TF_onehot</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s2">&quot;TF_onehot.parquet&quot;</span><span class="p">))</span>
+            <span class="n">tmp_self</span><span class="o">.</span><span class="n">TF_onehot</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__addLog</span><span class="p">(</span><span class="s2">&quot;save_as_compressed&quot;</span><span class="p">)</span>
+
+        <span class="n">save_as_pickled_object</span><span class="p">(</span><span class="n">tmp_self</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="s2">&quot;tfi.pickle&quot;</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;file saved in: </span><span class="si">{folder_path}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TFinfo.to_hdf5"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.to_hdf5">[docs]</a>    <span class="k">def</span> <span class="nf">to_hdf5</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save object as hdf5.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            file_path (str): file path to save file. Filename needs to end with &#39;.celloracle.tfinfo&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.celloracle.tfinfo&quot;</span><span class="p">):</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Filename needs to end with &#39;.celloracle.tfinfo&#39;&quot;</span><span class="p">)</span>
+
+        <span class="n">compression_opts</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="n">dump_hdf5</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span>
+                  <span class="n">data_compression</span><span class="o">=</span><span class="n">compression_opts</span><span class="p">,</span>  <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">2048</span><span class="p">),</span>
+                  <span class="n">noarray_compression</span><span class="o">=</span><span class="n">compression_opts</span><span class="p">,</span> <span class="n">pickle_protocol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="TFinfo.scan"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.scan">[docs]</a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">background_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">fpr</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">n_cpus</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Scan DNA sequences searching for TF binding motifs.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">           background_length (int): background length. This is used for the calculation of the binding score.</span>
+
+<span class="sd">           fpr (float): False positive rate for motif identification.</span>
+
+<span class="sd">           n_cpus (int): number of CPUs for parallel calculation.</span>
+
+<span class="sd">           verbose (bool): Whether to show a progress bar.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fpr</span> <span class="o">=</span> <span class="n">fpr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">background_length</span> <span class="o">=</span> <span class="n">background_length</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;initiating scanner ...&quot;</span><span class="p">)</span>
+        <span class="c1">## 1. initialilze scanner  ##</span>
+        <span class="c1"># load motif</span>
+        <span class="n">motifs</span> <span class="o">=</span> <span class="n">default_motifs</span><span class="p">()</span>
+
+        <span class="c1"># initialize scanner</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">ncpus</span><span class="o">=</span><span class="n">n_cpus</span><span class="p">)</span>
+
+        <span class="c1"># set parameters</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">set_motifs</span><span class="p">(</span><span class="n">motifs</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">set_background</span><span class="p">(</span><span class="n">genome</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ref_genome</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">background_length</span><span class="p">)</span>
+        <span class="c1">#s.set_background(genome=&quot;mm9&quot;, length=400)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">set_threshold</span><span class="p">(</span><span class="n">fpr</span><span class="o">=</span><span class="n">fpr</span><span class="p">)</span>
+
+        <span class="c1">## 2. motif scan ##</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;getting DNA sequences ...&quot;</span><span class="p">)</span>
+        <span class="n">target_sequences</span> <span class="o">=</span> <span class="n">peak2fasta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_peaks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_genome</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;scanning motifs ...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scanned_df</span> <span class="o">=</span> <span class="n">scan_dna_for_motifs</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">motifs</span><span class="p">,</span> <span class="n">target_sequences</span><span class="p">,</span> <span class="n">verbose</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__addLog</span><span class="p">(</span><span class="s2">&quot;scanMotifs&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TFinfo.reset_dictionary_and_df"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.reset_dictionary_and_df">[docs]</a>    <span class="k">def</span> <span class="nf">reset_dictionary_and_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reset TF dictionary and TF dataframe.</span>
+<span class="sd">        The following attributes will be erased; TF_onehot, dic_targetgene2TFs, dic_peak2Targetgene, dic_TF2targetgenes.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dic_targetgene2TFs</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dic_peak2Targetgene</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dic_TF2targetgenes</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="TFinfo.reset_filtering"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.reset_filtering">[docs]</a>    <span class="k">def</span> <span class="nf">reset_filtering</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reset filtering information.</span>
+<span class="sd">        You can use this function to stat over the filtering step with new conditions.</span>
+<span class="sd">        The following attributes will be erased; TF_onehot, dic_targetgene2TFs, dic_peak2Targetgene, dic_TF2targetgenes.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_dictionary_and_df</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TFinfo.filter_peaks"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.filter_peaks">[docs]</a>    <span class="k">def</span> <span class="nf">filter_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peaks_to_be_remained</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Filter peaks.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            peaks_to_be_remained (array of str): list of peaks. Peaks that are NOT in the list will be removed.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Motif Scan is not done.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_df</span><span class="p">[[</span><span class="s2">&quot;seqname&quot;</span><span class="p">,</span> <span class="s2">&quot;motif_id&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">before</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="o">.</span><span class="n">seqname</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">peaks</span><span class="p">)]</span>
+        <span class="n">after</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;peaks were filtered: </span><span class="si">{before}</span><span class="s2"> -&gt; </span><span class="si">{after}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_dictionary_and_df</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">thresholding_comment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;threshold peaks&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__addLog</span><span class="p">(</span><span class="s2">&quot;setThresholding_byBindScore&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TFinfo.filter_motifs_by_score"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.filter_motifs_by_score">[docs]</a>    <span class="k">def</span> <span class="nf">filter_motifs_by_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cumlative_score&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove motifs with low binding scores.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            method (str): thresholding method. Select either of [&quot;indivisual_score&quot;, &quot;cumlative_score&quot;]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;cumlative_score&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_thresholding_by_cumlative_bind_score</span><span class="p">(</span><span class="n">threshold_score</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;indivisual_score&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_thresholding_by_bind_score</span><span class="p">(</span><span class="n">threshold_score</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Method is wrong. Select from [&#39;indivisual_score&#39;, &#39;cumlative_score&#39;] &quot;</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">_thresholding_by_bind_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold_score</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Motif Scan is not done.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_df</span><span class="p">[[</span><span class="s2">&quot;seqname&quot;</span><span class="p">,</span> <span class="s2">&quot;motif_id&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">before</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="o">.</span><span class="n">score</span><span class="o">&gt;=</span><span class="n">threshold_score</span><span class="p">]</span>
+        <span class="n">after</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;peaks were filtered: </span><span class="si">{before}</span><span class="s2"> -&gt; </span><span class="si">{after}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_dictionary_and_df</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">thresholding_comment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;score_threshold:_</span><span class="si">{threshold_score}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__addLog</span><span class="p">(</span><span class="s2">&quot;thresholdingByBindScore&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_thresholding_by_cumlative_bind_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold_score</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Motif Scan is not done.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_df</span><span class="p">[[</span><span class="s2">&quot;seqname&quot;</span><span class="p">,</span> <span class="s2">&quot;motif_id&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">before</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="p">)</span>
+
+        <span class="n">tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;seqname&quot;</span><span class="p">,</span> <span class="s2">&quot;motif_id&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">[</span><span class="n">tmp</span><span class="o">.</span><span class="n">score</span> <span class="o">&gt;=</span> <span class="n">threshold_score</span><span class="p">]</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="o">=</span> <span class="n">tmp</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">reset_dictionary_and_df</span><span class="p">()</span>
+
+        <span class="n">after</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;peaks were filtered: </span><span class="si">{before}</span><span class="s2"> -&gt; </span><span class="si">{after}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__addLog</span><span class="p">(</span><span class="s2">&quot;thresholdingByAcumulatedBindScore&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TFinfo.make_TFinfo_dataframe_and_dictionary"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.make_TFinfo_dataframe_and_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">make_TFinfo_dataframe_and_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This is the final step of motif_analysis.</span>
+<span class="sd">        Convert scanned results into a data frame and dictionaries.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            verbose (bool): Whether to show a progress bar.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_df</span><span class="p">[[</span><span class="s2">&quot;seqname&quot;</span><span class="p">,</span> <span class="s2">&quot;motif_id&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. converting scanned results into one-hot encoded dataframe.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_make_TFinfo_dataframe</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. converting results into dictionaries.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_make_dictionaries</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_make_TFinfo_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert scanned results into one-hot encoded dataframe.</span>
+<span class="sd">        rows are peak index, columns are TFs.</span>
+<span class="sd">        The value is 1 If TF have binding motif in the peak.</span>
+<span class="sd">        The result will stored in self.TF_onehot</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            verbose (bool): Whether to show progressbar.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">_motifs_to_TFs_as_onehot_series</span><span class="p">(</span><span class="n">motifs</span><span class="p">):</span>
+
+            <span class="n">tfs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="n">motifs</span><span class="p">:</span>
+                <span class="n">tfs</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic_motif2TFs</span><span class="p">[</span><span class="n">motif</span><span class="p">]</span>
+
+            <span class="n">tfs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">tfs</span><span class="p">)</span>
+
+            <span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tfs</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">tfs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">series</span>
+
+
+        <span class="c1"># preprocess</span>
+        <span class="n">peak_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="o">.</span><span class="n">seqname</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="n">multi_index_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scanned_filtered</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;seqname&quot;</span><span class="p">,</span> <span class="s2">&quot;motif_id&quot;</span><span class="p">])</span>
+
+        <span class="c1"># process data</span>
+        <span class="n">li</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">loop</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">peak_list</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">loop</span> <span class="o">=</span> <span class="n">peak_list</span>
+        <span class="k">for</span> <span class="n">peak</span> <span class="ow">in</span> <span class="n">loop</span><span class="p">:</span>
+            <span class="n">motifs</span> <span class="o">=</span> <span class="n">multi_index_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">peak</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">series</span> <span class="o">=</span> <span class="n">_motifs_to_TFs_as_onehot_series</span><span class="p">(</span><span class="n">motifs</span><span class="p">)</span>
+            <span class="n">li</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+
+        <span class="c1"># get hot encoded Data frame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">li</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="k">del</span> <span class="n">li</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">peak_list</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__addLog</span><span class="p">(</span><span class="s2">&quot;makeOnehotDataframe&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_make_dictionaries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert scanned results into dictionaries.</span>
+
+<span class="sd">        The result will stored in self.dic_targetgene2TFs and self.dic_TF2targetgenes</span>
+
+<span class="sd">        self.dic_TF2targetgene</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            verbose (bool): Whether to show progressbar.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Process has not complete yet.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;converting scan results into dictionaries...&quot;</span><span class="p">)</span>
+
+        <span class="n">dic_targetgene2TFs</span> <span class="o">=</span><span class="p">{}</span>
+        <span class="n">dic_peak2Targetgene</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="n">loop</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_target_gene</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">loop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_target_gene</span>
+        <span class="k">for</span> <span class="n">tg</span> <span class="ow">in</span> <span class="n">loop</span><span class="p">:</span>
+            <span class="n">peaks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span><span class="o">.</span><span class="n">gene_short_name</span><span class="o">==</span><span class="n">tg</span><span class="p">]</span><span class="o">.</span><span class="n">peak_id</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">intersect</span><span class="p">(</span><span class="n">peaks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+            <span class="c1">#print(peaks)</span>
+
+            <span class="n">tmp_series</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">peaks</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">tfs</span> <span class="o">=</span> <span class="n">tmp_series</span><span class="p">[</span><span class="n">tmp_series</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">dic_targetgene2TFs</span><span class="p">[</span><span class="n">tg</span><span class="p">]</span> <span class="o">=</span> <span class="n">tfs</span>
+
+            <span class="k">for</span> <span class="n">peak</span> <span class="ow">in</span> <span class="n">peaks</span><span class="p">:</span>
+                <span class="n">dic_peak2Targetgene</span><span class="p">[</span><span class="n">peak</span><span class="p">]</span> <span class="o">=</span> <span class="n">tg</span>
+
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dic_targetgene2TFs</span> <span class="o">=</span> <span class="n">dic_targetgene2TFs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dic_peak2Targetgene</span> <span class="o">=</span> <span class="n">dic_peak2Targetgene</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dic_TF2targetgenes</span> <span class="o">=</span> <span class="n">inverse_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="o">=</span><span class="n">dic_targetgene2TFs</span><span class="p">,</span>
+                                                     <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+                                                     <span class="n">return_value_as_numpy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__addLog</span><span class="p">(</span><span class="s2">&quot;make_dictionaries&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="TFinfo.to_dataframe"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.to_dataframe">[docs]</a>    <span class="k">def</span> <span class="nf">to_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return results as a dataframe.</span>
+<span class="sd">        Rows are peak_id, and columns are TFs.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            verbose (bool): Whether to show a progress bar.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            pandas.dataframe: TFinfo matrix.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Converting scanned results into one-hot encoded dataframe ...&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_make_TFinfo_dataframe</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+        <span class="n">tmp_peak_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span><span class="o">.</span><span class="n">peak_id</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">tmp_peak_df</span> <span class="o">=</span> <span class="n">tmp_peak_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">peak_df</span><span class="p">,</span> <span class="n">tmp_peak_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+        <span class="k">return</span> <span class="n">tmp</span></div>
+
+
+
+<div class="viewcode-block" id="TFinfo.to_dictionary"><a class="viewcode-back" href="../../../modules/celloracle.motif_analysis.html#celloracle.motif_analysis.TFinfo.to_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">to_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dictionary_type</span><span class="o">=</span><span class="s2">&quot;targetgene2TFs&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return TF information as a python dictionary.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dictionary_type (str): Type of dictionary. Select from [&quot;targetgene2TFs&quot;, &quot;TF2targetgenes&quot;].</span>
+<span class="sd">                If you chose &quot;targetgene2TFs&quot;, it returns a dictionary in which a key is a target gene, and a value is a list of regulatory candidate genes (TFs) of the target.</span>
+<span class="sd">                If you chose &quot;TF2targetgenes&quot;, it returns a dictionary in which a key is a TF and a value is a list of potential target genes of the TF.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            dictionary: dictionary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">TF_onehot</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">make_TFinfo_dataframe_and_dictionary</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic_targetgene2TFs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic_TF2targetgenes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Converting results into dictionaries.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">make_dictionaries</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dictionary_type</span> <span class="o">==</span> <span class="s2">&quot;targetgene2TFs&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic_targetgene2TFs</span>
+
+        <span class="k">elif</span> <span class="n">dictionary_type</span> <span class="o">==</span> <span class="s2">&quot;TF2targetgenes&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic_TF2targetgenes</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{dictionary_type}</span><span class="s1"> is not available for dictionary_type.</span><span class="se">\n</span><span class="s1">Select from [&quot;targetgene2TFs&quot;, &quot;TF2targetgenes&quot;]&#39;</span><span class="p">)</span></div></div>
+
+
+
+
+<span class="c1">######################################################</span>
+<span class="c1">### 4.2. Make TFinfo dataFrame for GRN inference  ###</span>
+<span class="c1">######################################################</span>
+
+
+
+<span class="k">def</span> <span class="nf">_get_dic_motif2TFs</span><span class="p">(</span><span class="n">species</span><span class="p">):</span>
+
+    <span class="n">motifs</span>  <span class="o">=</span> <span class="n">default_motifs</span><span class="p">()</span>
+    <span class="n">motif_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">motifs</span><span class="p">]</span>
+    <span class="n">factors_direct</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">factors</span><span class="p">[</span><span class="s2">&quot;direct&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">motifs</span><span class="p">]</span>
+    <span class="n">factors_indirect</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">factors</span><span class="p">[</span><span class="s2">&quot;indirect&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">motifs</span><span class="p">]</span>
+
+    <span class="n">dic_motif2TFs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">if</span> <span class="n">species</span> <span class="o">==</span> <span class="s2">&quot;Mouse&quot;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">motifs</span><span class="p">:</span>
+            <span class="n">fcs</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">factors</span><span class="p">[</span><span class="s2">&quot;direct&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">factors</span><span class="p">[</span><span class="s2">&quot;indirect&quot;</span><span class="p">]</span>
+            <span class="n">dic_motif2TFs</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">fa</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="k">for</span> <span class="n">fa</span> <span class="ow">in</span> <span class="n">fcs</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">species</span> <span class="o">==</span> <span class="s2">&quot;Human&quot;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">motifs</span><span class="p">:</span>
+            <span class="n">fcs</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">factors</span><span class="p">[</span><span class="s2">&quot;direct&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">factors</span><span class="p">[</span><span class="s2">&quot;indirect&quot;</span><span class="p">]</span>
+            <span class="n">dic_motif2TFs</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">fa</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">fa</span> <span class="ow">in</span> <span class="n">fcs</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">dic_motif2TFs</span>
+
+
+
+
+<span class="c1">#########################################################</span>
+<span class="c1">### 4.2. Calculate P-values; Multi processing version ###</span>
+<span class="c1">#########################################################</span>
+
+
+
+<span class="c1">#########################</span>
+<span class="c1">### 5.1 Visualization ###</span>
+<span class="c1">#########################</span>
+
+
+
+
+<span class="c1">######################</span>
+<span class="c1">### 6. GO analysis ###</span>
+<span class="c1">######################</span>
+
+
+<span class="c1">#############################</span>
+<span class="c1">### Scoring with ML model ###</span>
+<span class="c1">#############################</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>celloracle.network_analysis.network_construction &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/index.html">Installation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorial</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html">API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>celloracle.network_analysis.network_construction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for celloracle.network_analysis.network_construction</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">This is a series of custom functions for the inferring of GRN from single cell RNA-seq data.</span>
+
+<span class="sd">Codes were written by Kenji Kamimoto.</span>
+
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1">###########################</span>
+<span class="c1">### 0. Import libralies ###</span>
+<span class="c1">###########################</span>
+
+
+<span class="c1"># 0.1. libraries for fundamental data science and data processing</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
+
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">..network.net_core</span> <span class="k">import</span> <span class="n">Net</span>
+<span class="kn">from</span> <span class="nn">..utility</span> <span class="k">import</span> <span class="n">standard</span>
+<span class="kn">from</span> <span class="nn">.links_object</span> <span class="k">import</span> <span class="n">Links</span>
+<span class="kn">from</span> <span class="nn">..trajectory.oracle_utility</span> <span class="k">import</span> <span class="n">_adata_to_df</span>
+
+<span class="n">RIDGE_SOLVER</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
+
+
+<span class="c1">########################################</span>
+<span class="c1">### Construct cluster specific GRNs  ###</span>
+<span class="c1">########################################</span>
+
+<div class="viewcode-block" id="get_links"><a class="viewcode-back" href="../../../modules/celloracle.network_analysis.html#celloracle.network_analysis.get_links">[docs]</a><span class="k">def</span> <span class="nf">get_links</span><span class="p">(</span><span class="n">oracle_object</span><span class="p">,</span> <span class="n">cluster_name_for_GRN_unit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bagging_number</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">verbose_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">test_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make GRN for each cluster and returns results as a Links object.</span>
+<span class="sd">    Several preprocessing should be done before using this function.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        oracle_object (Oracle): See Oracle module for detail.</span>
+
+<span class="sd">        cluster_name_for_GRN_unit (str): Cluster name for GRN calculation. The cluster information should be stored in Oracle.adata.obs.</span>
+
+<span class="sd">        alpha (float or int): the strength of regularization.</span>
+<span class="sd">            If you set a lower value, the sensitivity increase, and you can detect a weak network connection, but it might get more noize.</span>
+<span class="sd">            With a higher value of alpha may reduce the chance of overfitting.</span>
+
+<span class="sd">        bagging_number (int): The number for bagging calculation.</span>
+
+
+<span class="sd">        verbose_level (int): if [verbose_level&gt;1], most detailed progress information will be shown.</span>
+<span class="sd">            if [verbose_level &gt; 0], one progress bar will be shown.</span>
+<span class="sd">            if [verbose_level == 0], no progress bar will be shown.</span>
+
+<span class="sd">        test_mode (bool): If test_mode is True, GRN calculation will be done for only one cluster rather than all clusters.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cluster_name_for_GRN_unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cluster_name_for_GRN_unit</span> <span class="o">=</span> <span class="n">oracle_object</span><span class="o">.</span><span class="n">cluster_column_name</span>
+
+
+    <span class="c1"># calculate GRN for each cluster</span>
+    <span class="n">linkLists</span> <span class="o">=</span> <span class="n">_fit_GRN_for_network_analysis</span><span class="p">(</span><span class="n">oracle_object</span><span class="p">,</span> <span class="n">cluster_name_for_GRN_unit</span><span class="o">=</span><span class="n">cluster_name_for_GRN_unit</span><span class="p">,</span>
+                                  <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">bagging_number</span><span class="o">=</span><span class="n">bagging_number</span><span class="p">,</span>  <span class="n">verbose_level</span><span class="o">=</span><span class="n">verbose_level</span><span class="p">,</span> <span class="n">test_mode</span><span class="o">=</span><span class="n">test_mode</span><span class="p">)</span>
+
+    <span class="c1"># initiate links object</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="n">Links</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">cluster_name_for_GRN_unit</span><span class="p">,</span>
+                 <span class="n">links_dict</span><span class="o">=</span><span class="n">linkLists</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">test_mode</span><span class="p">:</span>
+        <span class="c1"># extract color infomation</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">oracle_object</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{cluster_name_for_GRN_unit}</span><span class="s2">_colors&quot;</span><span class="p">]]</span>
+        <span class="n">cnames</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">oracle_object</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">cluster_name_for_GRN_unit</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        <span class="n">cnames</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">links</span><span class="o">.</span><span class="n">add_palette</span><span class="p">(</span><span class="n">cnames</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+    <span class="c1">#links.merge_links()</span>
+    <span class="n">links</span><span class="o">.</span><span class="n">ALPHA_used</span> <span class="o">=</span> <span class="n">alpha</span>
+
+    <span class="k">return</span> <span class="n">links</span></div>
+
+
+<span class="k">def</span> <span class="nf">_fit_GRN_for_network_analysis</span><span class="p">(</span><span class="n">oracle_object</span><span class="p">,</span> <span class="n">cluster_name_for_GRN_unit</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bagging_number</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                                  <span class="n">verbose_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">test_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="c1"># extract information from oracle_object</span>
+    <span class="n">gem_imputed</span> <span class="o">=</span> <span class="n">_adata_to_df</span><span class="p">(</span><span class="n">oracle_object</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span> <span class="s2">&quot;imputed_count&quot;</span><span class="p">)</span>
+    <span class="n">gem_imputed_std</span> <span class="o">=</span> <span class="n">standard</span><span class="p">(</span><span class="n">gem_imputed</span><span class="p">)</span>
+    <span class="n">cluster_info</span> <span class="o">=</span> <span class="n">oracle_object</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">cluster_name_for_GRN_unit</span><span class="p">]</span>
+    <span class="n">linkLists</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># setting about verbose</span>
+    <span class="k">if</span> <span class="n">verbose_level</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;varbose_level should be positive number.&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">verbose_level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cluster_info</span><span class="p">)</span>
+        <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cluster_info</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">verbose_level</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">First</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">loop</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">test_mode</span><span class="p">)</span> <span class="o">|</span> <span class="n">First</span><span class="p">:</span>
+            <span class="n">First</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;inferring GRN for </span><span class="si">{cluster}</span><span class="s2">...&quot;</span><span class="p">)</span>
+
+            <span class="n">cells_in_the_cluster_bool</span> <span class="o">=</span> <span class="p">(</span><span class="n">cluster_info</span> <span class="o">==</span> <span class="n">cluster</span><span class="p">)</span>
+            <span class="n">gem_</span> <span class="o">=</span> <span class="n">gem_imputed</span><span class="p">[</span><span class="n">cells_in_the_cluster_bool</span><span class="p">]</span>
+            <span class="n">gem_std</span> <span class="o">=</span> <span class="n">gem_imputed_std</span><span class="p">[</span><span class="n">cells_in_the_cluster_bool</span><span class="p">]</span>
+
+
+            <span class="n">tn_</span> <span class="o">=</span> <span class="n">Net</span><span class="p">(</span><span class="n">gene_expression_matrix</span><span class="o">=</span><span class="n">gem_</span><span class="p">,</span>
+                         <span class="n">gem_standerdized</span><span class="o">=</span><span class="n">gem_std</span><span class="p">,</span>
+                         <span class="n">TFinfo_dic</span><span class="o">=</span><span class="n">oracle_object</span><span class="o">.</span><span class="n">TFdict</span><span class="p">,</span>
+                         <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">tn_</span><span class="o">.</span><span class="n">fit_All_genes</span><span class="p">(</span><span class="n">bagging_number</span><span class="o">=</span><span class="n">bagging_number</span><span class="p">,</span>
+                              <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+
+            <span class="c1">#oracle_object.linkMat[cluster] = tn_.returnResultAs_TGxTFs(&quot;coef_abs&quot;)</span>
+            <span class="n">tn_</span><span class="o">.</span><span class="n">updateLinkList</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">linkLists</span><span class="p">[</span><span class="n">cluster</span><span class="p">]</span> <span class="o">=</span> <span class="n">tn_</span><span class="o">.</span><span class="n">linkList</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">linkLists</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

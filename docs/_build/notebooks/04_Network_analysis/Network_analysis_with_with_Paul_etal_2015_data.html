@@ -1,0 +1,2948 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>0. Import libraries &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5. Simulation with GRNs" href="../../tutorials/simulation.html" />
+    <link rel="prev" title="4. Network analysis" href="../../tutorials/networkanalysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">Installation</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../tutorials/index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/atac.html">1. ATAC-seq data preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/motifscan.html">2. Transcription factor binding motif scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/scrnaprocess.html">3. Single-cell RNA-seq data preprocessing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../tutorials/networkanalysis.html">4. Network analysis</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">0. Import libraries</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#0.1.-Check-installation">0.1. Check installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#0.2.-Make-a-folder-to-save-graph">0.2. Make a folder to save graph</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#1.-Load-data">1. Load data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#1.1.-Load-processed-gene-expression-data-(anndata)">1.1. Load processed gene expression data (anndata)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#1.2.-Load-TF-data.">1.2. Load TF data.</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2.-Initiate-Oracle-object">2. Initiate Oracle object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#2.1.-load-gene-expression-data-into-oracle-object.">2.1. load gene expression data into oracle object.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2.2.-load-TFinfo-into-oracle-object">2.2. load TFinfo into oracle object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2.3.-(Optional)-Add-TF-info-manually">2.3. (Optional) Add TF info manually</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3.-Knn-imputation">3. Knn imputation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#3.1.-PCA">3.1. PCA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#3.2.-Knn-imputation">3.2. Knn imputation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4.-Save-and-Load.">4. Save and Load.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#4.-GRN-calculation">4. GRN calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#5.-Network-preprocessing">5. Network preprocessing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#5.1.-Filter-network-edges">5.1. Filter network edges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#5.2.-Degree-distribution">5.2. Degree distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#5.3.-Calculate-netowrk-score">5.3. Calculate netowrk score</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#5.4.-Save">5.4. Save</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#6.-Network-analysis;-Network-score-for-each-gene">6. Network analysis; Network score for each gene</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#6.1.-Network-score-in-each-cluster">6.1. Network score in each cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6.2.-Network-score-comparison-between-two-clusters">6.2. Network score comparison between two clusters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6.3.-Network-score-dynamics">6.3. Network score dynamics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6.4.-Gene-cartography-analysis">6.4. Gene cartography analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#7.-Network-analysis;-Network-score-distribution">7. Network analysis; Network score distribution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#7.1.-Distribution-of-network-degree">7.1. Distribution of network degree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#7.2.-Distribution-of-netowrk-entolopy">7.2. Distribution of netowrk entolopy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/simulation.html">5. Simulation with GRNs</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html">API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../tutorials/index.html">Tutorial</a> &raquo;</li>
+        
+          <li><a href="../../tutorials/networkanalysis.html">4. Network analysis</a> &raquo;</li>
+        
+      <li>0. Import libraries</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 5ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="0.-Import-libraries">
+<h1>0. Import libraries<a class="headerlink" href="#0.-Import-libraries" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># 0. Import</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">celloracle</span> <span class="k">as</span> <span class="nn">co</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># visualization settings</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;savefig.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">600</span>
+
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="0.1.-Check-installation">
+<h2>0.1. Check installation<a class="headerlink" href="#0.1.-Check-installation" title="Permalink to this headline">¶</a></h2>
+<p>Celloracle use some R libraries in network analysis. Check installation.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">co</span><span class="o">.</span><span class="n">network_analysis</span><span class="o">.</span><span class="n">test_R_libraries_installation</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+checking R library installation: igraph -&gt; OK
+checking R library installation: linkcomm -&gt; OK
+checking R library installation: rnetcarto -&gt; OK
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="0.2.-Make-a-folder-to-save-graph">
+<h2>0.2. Make a folder to save graph<a class="headerlink" href="#0.2.-Make-a-folder-to-save-graph" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">save_folder</span> <span class="o">=</span> <span class="s2">&quot;figures&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">save_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="1.-Load-data">
+<h1>1. Load data<a class="headerlink" href="#1.-Load-data" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="1.1.-Load-processed-gene-expression-data-(anndata)">
+<h2>1.1. Load processed gene expression data (anndata)<a class="headerlink" href="#1.1.-Load-processed-gene-expression-data-(anndata)" title="Permalink to this headline">¶</a></h2>
+<p>Please refer to the previous notebook in the tutorial for an example of how to process scRNA-seq data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># load data. !!Replace the data path below when you use another data.</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s2">&quot;../03_scRNA-seq_data_preprocessing/data/Paul_etal_15.h5ad&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="1.2.-Load-TF-data.">
+<h2>1.2. Load TF data.<a class="headerlink" href="#1.2.-Load-TF-data." title="Permalink to this headline">¶</a></h2>
+<p>celloracle need TF information, which contains lists of regulatory candidata gene. There are several way to make such TF information. TF information can be made from scATAC-seq data or Bulk ATAC-seq data. Please refer to the first step of the tutorial.</p>
+<p>If you do not have your scATAC-seq data, you can use some builtin data in celloracle. For example, celloracle have a TFinfo which was made with various kind of tissue/cell-types in mouse ATAC-seq atlas dataset (<a class="reference external" href="http://atlas.gs.washington.edu/mouse-atac/">http://atlas.gs.washington.edu/mouse-atac/</a>).</p>
+<p>This TFinfo is ready. You can load and use it with following command.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Load TF info which was made from mouse cell atlas dataset.</span>
+<span class="n">TFinfo_df</span> <span class="o">=</span> <span class="n">co</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load_TFinfo_df_mm9_mouse_atac_atlas</span><span class="p">()</span>
+
+<span class="c1"># check data</span>
+<span class="n">TFinfo_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>peak_id</th>
+      <th>gene_short_name</th>
+      <th>9430076c15rik</th>
+      <th>Ac002126.6</th>
+      <th>Ac012531.1</th>
+      <th>Ac226150.2</th>
+      <th>Afp</th>
+      <th>Ahr</th>
+      <th>Ahrr</th>
+      <th>Aire</th>
+      <th>...</th>
+      <th>Znf784</th>
+      <th>Znf8</th>
+      <th>Znf816</th>
+      <th>Znf85</th>
+      <th>Zscan10</th>
+      <th>Zscan16</th>
+      <th>Zscan22</th>
+      <th>Zscan26</th>
+      <th>Zscan31</th>
+      <th>Zscan4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>chr10_100050979_100052296</td>
+      <td>4930430F08Rik</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>chr10_101006922_101007748</td>
+      <td>SNORA17</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>chr10_101144061_101145000</td>
+      <td>Mgat4c</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>chr10_10148873_10149183</td>
+      <td>9130014G24Rik</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>chr10_10149425_10149815</td>
+      <td>9130014G24Rik</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 1095 columns</p>
+</div></div>
+</div>
+</div>
+</div>
+<div class="section" id="2.-Initiate-Oracle-object">
+<h1>2. Initiate Oracle object<a class="headerlink" href="#2.-Initiate-Oracle-object" title="Permalink to this headline">¶</a></h1>
+<p>Basically all information will be stored and proccessed inside Oracle object. Processed gene expression data (anndata) and TFinfo are necessary to initiate Oracle object.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># make Oracle object</span>
+<span class="n">oracle</span> <span class="o">=</span> <span class="n">co</span><span class="o">.</span><span class="n">Oracle</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="2.1.-load-gene-expression-data-into-oracle-object.">
+<h2>2.1. load gene expression data into oracle object.<a class="headerlink" href="#2.1.-load-gene-expression-data-into-oracle-object." title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># The anndata shoud include (1) gene expression count, (2) clustering information, (3) trajectory (dimensional reduction embeddings) data.</span>
+<span class="c1"># Please refer to another notebook for the detail of anndata preprocessing.</span>
+
+<span class="c1"># In this notebook, we use raw mRNA count as an input of Oracle object.</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">raw</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Instantiate Oracle object. All calculation will be done in this object.</span>
+<span class="n">oracle</span><span class="o">.</span><span class="n">import_anndata_as_raw_count</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span>
+                                   <span class="n">cluster_column_name</span><span class="o">=</span><span class="s2">&quot;louvain_annot&quot;</span><span class="p">,</span>
+                                   <span class="n">embedding_name</span><span class="o">=</span><span class="s2">&quot;X_draw_graph_fa&quot;</span><span class="p">,</span>
+                                   <span class="n">transform</span><span class="o">=</span><span class="s2">&quot;natural_log&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="2.2.-load-TFinfo-into-oracle-object">
+<h2>2.2. load TFinfo into oracle object<a class="headerlink" href="#2.2.-load-TFinfo-into-oracle-object" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># If you can load TF info dataframe with the following code.</span>
+<span class="n">oracle</span><span class="o">.</span><span class="n">import_TF_data</span><span class="p">(</span><span class="n">TF_info_matrix</span><span class="o">=</span><span class="n">TFinfo_df</span><span class="p">)</span>
+
+<span class="c1"># Instead of the way avove, you can use TF &quot;dictionary&quot; with the following code.</span>
+<span class="c1"># oracle.import_TF_data(TFdict=TFinfo_dictionary)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="2.3.-(Optional)-Add-TF-info-manually">
+<h2>2.3. (Optional) Add TF info manually<a class="headerlink" href="#2.3.-(Optional)-Add-TF-info-manually" title="Permalink to this headline">¶</a></h2>
+<p>We mainly use TF info data made from scATAC-seq data. Besides we can also add any information about TF-target gene pair manually.</p>
+<p>For example if there is a study or database about TF-target pair, you can use such information by the following way.</p>
+<div class="section" id="2.3.1.-Make-TF-info-dictionary-manually">
+<h3>2.3.1. Make TF info dictionary manually<a class="headerlink" href="#2.3.1.-Make-TF-info-dictionary-manually" title="Permalink to this headline">¶</a></h3>
+<p>Here, we introduce most simple way to add TF binding information using TF binding data in the supplemental table 4 in (<a class="reference external" href="http://doi.org/10.1016/j.cell.2015.11.013">http://doi.org/10.1016/j.cell.2015.11.013</a>).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># We have TF and its target gene information. This is from a supplemental Fig of Paul et. al, (2015).</span>
+<span class="n">Paul_15_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;TF_data_in_Paul15.csv&quot;</span><span class="p">)</span>
+<span class="n">Paul_15_data</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TF</th>
+      <th>Target_genes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Cebpa</td>
+      <td>Abcb1b, Acot1, C3, Cnpy3, Dhrs7, Dtx4, Edem2, ...</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Irf8</td>
+      <td>Abcd1, Aif1, BC017643, Cbl, Ccdc109b, Ccl6, d6...</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Irf8</td>
+      <td>1100001G20Rik, 4732418C07Rik, 9230105E10Rik, A...</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Klf1</td>
+      <td>2010011I20Rik, 5730469M10Rik, Acsl6, Add2, Ank...</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Sfpi1</td>
+      <td>0910001L09Rik, 2310014H01Rik, 4632428N05Rik, A...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Make dictionary: Key is TF, Value is list of Target gene</span>
+<span class="n">TF_to_TG_dictionary</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">TF</span><span class="p">,</span> <span class="n">TGs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Paul_15_data</span><span class="o">.</span><span class="n">TF</span><span class="p">,</span> <span class="n">Paul_15_data</span><span class="o">.</span><span class="n">Target_genes</span><span class="p">):</span>
+    <span class="c1"># convert target gene to list</span>
+    <span class="n">TG_list</span> <span class="o">=</span> <span class="n">TGs</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+    <span class="c1"># store target gene list in a dictionary</span>
+    <span class="n">TF_to_TG_dictionary</span><span class="p">[</span><span class="n">TF</span><span class="p">]</span> <span class="o">=</span> <span class="n">TG_list</span>
+
+<span class="c1"># We have to make a dictionary, in which a Key is Target gene and value is TF.</span>
+<span class="c1"># We inverse the dictionary above using a utility function in celloracle.</span>
+<span class="n">TG_to_TF_dictionary</span> <span class="o">=</span> <span class="n">co</span><span class="o">.</span><span class="n">utility</span><span class="o">.</span><span class="n">inverse_dictionary</span><span class="p">(</span><span class="n">TF_to_TG_dictionary</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a023326c9c024b6ebd459c70269b6afe", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="2.3.2.-Add-TF-informatio-dictionary-into-the-oracle-object">
+<h3>2.3.2. Add TF informatio dictionary into the oracle object<a class="headerlink" href="#2.3.2.-Add-TF-informatio-dictionary-into-the-oracle-object" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Add TF information</span>
+<span class="n">oracle</span><span class="o">.</span><span class="n">addTFinfo_dictionary</span><span class="p">(</span><span class="n">TG_to_TF_dictionary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="3.-Knn-imputation">
+<h1>3. Knn imputation<a class="headerlink" href="#3.-Knn-imputation" title="Permalink to this headline">¶</a></h1>
+<p>Celloracle uses almost the same strategy as velocyto for visualization of trajectory, which requires knn imputation to improves the accuracy of cell transition calculation. Besides, PCA and PC selection are required for knn imputation.</p>
+<div class="section" id="3.1.-PCA">
+<h2>3.1. PCA<a class="headerlink" href="#3.1.-PCA" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># perform PCA</span>
+<span class="n">oracle</span><span class="o">.</span><span class="n">perform_PCA</span><span class="p">()</span>
+
+<span class="c1"># select important PCs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">oracle</span><span class="o">.</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)[:</span><span class="mi">100</span><span class="p">])</span>
+<span class="n">n_comps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">oracle</span><span class="o">.</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">))</span><span class="o">&gt;</span><span class="mf">0.002</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">n_comps</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n_comps</span><span class="p">)</span>
+<span class="n">n_comps</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_comps</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+45
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_25_1.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_25_1.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_25_1.png" style="width: 547px; height: 360px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="3.2.-Knn-imputation">
+<h2>3.2. Knn imputation<a class="headerlink" href="#3.2.-Knn-imputation" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">n_cell</span> <span class="o">=</span> <span class="n">oracle</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;cell number is :</span><span class="si">{n_cell}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+cell number is :2671
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.025</span><span class="o">*</span><span class="n">n_cell</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Auto-selected k is :</span><span class="si">{k}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Auto-selected k is :66
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">oracle</span><span class="o">.</span><span class="n">knn_imputation</span><span class="p">(</span><span class="n">n_pca_dims</span><span class="o">=</span><span class="n">n_comps</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">balanced</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">b_sight</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span>
+                      <span class="n">b_maxl</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="4.-Save-and-Load.">
+<h1>4. Save and Load.<a class="headerlink" href="#4.-Save-and-Load." title="Permalink to this headline">¶</a></h1>
+<p>Celloracle has some custom-class; Links, Oracle, TFinfo, etc., You can save such object using “to_hdf5”. The file will be saved as a hdf5 file.</p>
+<p>To load saved file, pleasae use “load_hdf5” function.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># save oracle object.</span>
+<span class="n">oracle</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="s2">&quot;Paul_15_data.celloracle.oracle&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># load file.</span>
+<span class="c1"># oracle = co.load_hdf5(&quot;Paul_15_data.celloracle.oracle&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="4.-GRN-calculation">
+<h1>4. GRN calculation<a class="headerlink" href="#4.-GRN-calculation" title="Permalink to this headline">¶</a></h1>
+<p>Next step is constructing a cluster-specific GRN for all clusters.</p>
+<p>GRN can be calculated at any arbitrary unit.</p>
+<p>With “get_links” function, you can calculate cluster-specific GRNs at any unit, and the function returns GRNs as Links object. Links object stores inferred GRNs and its metadata. You can do network analysis with Links object.</p>
+<p>In the example below, we will make GRNs based on “louvain_annot” clustering unit.</p>
+<p>You can use any clustering unit for GRN calculation as long as clustering information is saved in anndata.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># check data</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">oracle</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;louvain_annot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_35_0.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_35_0.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_35_0.png" style="width: 683px; height: 369px;" /></a>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># calculate GRN for each population in &quot;louvain_annot&quot; clustering unit.</span>
+<span class="c1"># This step may take long time.</span>
+<span class="n">links</span> <span class="o">=</span> <span class="n">oracle</span><span class="o">.</span><span class="n">get_links</span><span class="p">(</span><span class="n">cluster_name_for_GRN_unit</span><span class="o">=</span><span class="s2">&quot;louvain_annot&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                         <span class="n">verbose_level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">test_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "362e1273b3b84cf79d50613bbf467d60", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+inferring GRN for Ery_0...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d0ece9e3ab72419f83481d238ca2947b", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Ery_1...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "41484a6db6fd4bc49d17a27fd0b7697e", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Ery_2...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7afb8e0c7cf049d2b19ad654229cf4a8", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Ery_3...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5e85f43705754c8eba9941a34d2d02ab", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Ery_4...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c8053b749beb468da7e86ab193a57e8d", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Ery_5...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "47360980e849429a8c25039ac7d9c209", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Ery_6...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "8a7b7018fd3c4a61aa4b78231bc6e665", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Ery_7...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "fc9bd6862a0b4f7a9e8ff085590cfccd", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Ery_8...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "9dac5d8dd3ef40f2ab82622c359a3b68", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Ery_9...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "4334aea238b04a0db3cfa55b55e09433", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for GMP_0...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "1de9fb3dae394349b614156b2766b86b", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for GMP_1...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c26593bca9714d6e9743f3903d837768", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for GMPl_0...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f45bda7e9c3349a2a0cedc661c416731", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Gran_0...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "adbdfde5e6a34407899ec129e356be5a", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Gran_1...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a2aa7f5e52734c2784b62927c337986d", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Gran_2...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5742657e64824d89ba89ded01ea620ca", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for MEP_0...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5e8c644639694cb6a96889ae26310e20", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Mk_0...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "236d2ac06c90488db844a0cf0ba53b4d", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Mo_0...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5fa9229a59b74b708b490f9186e5cec1", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+inferring GRN for Mo_1...
+method: bagging_ridge
+alpha: 10
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "9f85c4a46d5c408a8bc7b17cd534ec75", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+
+</pre></div></div>
+</div>
+<p>Links object have some metadata.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">links</span><span class="o">.</span><span class="n">palette</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>palette</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ery_0</td>
+      <td>#7D87B9</td>
+    </tr>
+    <tr>
+      <td>Ery_1</td>
+      <td>#BEC1D4</td>
+    </tr>
+    <tr>
+      <td>Ery_2</td>
+      <td>#D6BCC0</td>
+    </tr>
+    <tr>
+      <td>Ery_3</td>
+      <td>#BB7784</td>
+    </tr>
+    <tr>
+      <td>Ery_4</td>
+      <td>#8E063B</td>
+    </tr>
+    <tr>
+      <td>Ery_5</td>
+      <td>#4A6FE3</td>
+    </tr>
+    <tr>
+      <td>Ery_6</td>
+      <td>#8595E1</td>
+    </tr>
+    <tr>
+      <td>Ery_7</td>
+      <td>#B5BBE3</td>
+    </tr>
+    <tr>
+      <td>Ery_8</td>
+      <td>#E6AFB9</td>
+    </tr>
+    <tr>
+      <td>Ery_9</td>
+      <td>#E07B91</td>
+    </tr>
+    <tr>
+      <td>GMP_0</td>
+      <td>#D33F6A</td>
+    </tr>
+    <tr>
+      <td>GMP_1</td>
+      <td>#11C638</td>
+    </tr>
+    <tr>
+      <td>GMPl_0</td>
+      <td>#8DD593</td>
+    </tr>
+    <tr>
+      <td>Gran_0</td>
+      <td>#C6DEC7</td>
+    </tr>
+    <tr>
+      <td>Gran_1</td>
+      <td>#EAD3C6</td>
+    </tr>
+    <tr>
+      <td>Gran_2</td>
+      <td>#F0B98D</td>
+    </tr>
+    <tr>
+      <td>MEP_0</td>
+      <td>#0FCFC0</td>
+    </tr>
+    <tr>
+      <td>Mk_0</td>
+      <td>#9CDED6</td>
+    </tr>
+    <tr>
+      <td>Mo_0</td>
+      <td>#D5EAE7</td>
+    </tr>
+    <tr>
+      <td>Mo_1</td>
+      <td>#F3E1EB</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>For the visualization below, we change the order of clusters.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+
+<span></span><span class="c1"># For the visualization below, we define and save order of clusters.</span>
+<span class="n">order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MEP_0&#39;</span><span class="p">,</span> <span class="s1">&#39;Mk_0&#39;</span><span class="p">,</span><span class="s1">&#39;Ery_0&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_1&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_2&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_3&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_4&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_5&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;Ery_6&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_7&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_8&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_9&#39;</span><span class="p">,</span><span class="s1">&#39;GMP_0&#39;</span><span class="p">,</span> <span class="s1">&#39;GMP_1&#39;</span><span class="p">,</span>
+         <span class="s1">&#39;GMPl_0&#39;</span><span class="p">,</span> <span class="s1">&#39;Mo_0&#39;</span><span class="p">,</span> <span class="s1">&#39;Mo_1&#39;</span><span class="p">,</span> <span class="s1">&#39;Gran_0&#39;</span><span class="p">,</span> <span class="s1">&#39;Gran_1&#39;</span><span class="p">,</span> <span class="s1">&#39;Gran_2&#39;</span><span class="p">]</span>
+<span class="n">links_louvain</span><span class="o">.</span><span class="n">palette</span> <span class="o">=</span> <span class="n">links_louvain</span><span class="o">.</span><span class="n">palette</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="n">links_louvain</span><span class="o">.</span><span class="n">palette</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>palette</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MEP_0</td>
+      <td>#0FCFC0</td>
+    </tr>
+    <tr>
+      <td>Mk_0</td>
+      <td>#9CDED6</td>
+    </tr>
+    <tr>
+      <td>Ery_0</td>
+      <td>#7D87B9</td>
+    </tr>
+    <tr>
+      <td>Ery_1</td>
+      <td>#BEC1D4</td>
+    </tr>
+    <tr>
+      <td>Ery_2</td>
+      <td>#D6BCC0</td>
+    </tr>
+    <tr>
+      <td>Ery_3</td>
+      <td>#BB7784</td>
+    </tr>
+    <tr>
+      <td>Ery_4</td>
+      <td>#8E063B</td>
+    </tr>
+    <tr>
+      <td>Ery_5</td>
+      <td>#4A6FE3</td>
+    </tr>
+    <tr>
+      <td>Ery_6</td>
+      <td>#8595E1</td>
+    </tr>
+    <tr>
+      <td>Ery_7</td>
+      <td>#B5BBE3</td>
+    </tr>
+    <tr>
+      <td>Ery_8</td>
+      <td>#E6AFB9</td>
+    </tr>
+    <tr>
+      <td>Ery_9</td>
+      <td>#E07B91</td>
+    </tr>
+    <tr>
+      <td>GMP_0</td>
+      <td>#D33F6A</td>
+    </tr>
+    <tr>
+      <td>GMP_1</td>
+      <td>#11C638</td>
+    </tr>
+    <tr>
+      <td>GMPl_0</td>
+      <td>#8DD593</td>
+    </tr>
+    <tr>
+      <td>Mo_0</td>
+      <td>#D5EAE7</td>
+    </tr>
+    <tr>
+      <td>Mo_1</td>
+      <td>#F3E1EB</td>
+    </tr>
+    <tr>
+      <td>Gran_0</td>
+      <td>#C6DEC7</td>
+    </tr>
+    <tr>
+      <td>Gran_1</td>
+      <td>#EAD3C6</td>
+    </tr>
+    <tr>
+      <td>Gran_2</td>
+      <td>#F0B98D</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="5.-Network-preprocessing">
+<h1>5. Network preprocessing<a class="headerlink" href="#5.-Network-preprocessing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="5.1.-Filter-network-edges">
+<h2>5.1. Filter network edges<a class="headerlink" href="#5.1.-Filter-network-edges" title="Permalink to this headline">¶</a></h2>
+<p>Celloracle leverages bagging ridge or Bayesian ridge regression for network inference. These methods provide a network edge strength as a distribution rather than point value. We can use the distribution of the network edge strength to know the certainness of the connection.</p>
+<p>We will do filtering of network edge before starting network analysis.</p>
+<ol class="arabic simple">
+<li>Remove uncertain network edge based on the p-value.</li>
+<li>Remove weak network edge. In this tutorial, we pick up top 2000 edges in terms of network strength.</li>
+</ol>
+<p>The raw network data is stored as an attribute, “links_dict,” while filtered network data will be stored in “filtered_links.” So the raw network data will not be erased after the filtering. You can come back to the filtering process and do the filtering again if you do not like filtering results.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">links</span><span class="o">.</span><span class="n">filter_links</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;coef_abs&quot;</span><span class="p">,</span> <span class="n">thread_number</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="5.2.-Degree-distribution">
+<h2>5.2. Degree distribution<a class="headerlink" href="#5.2.-Degree-distribution" title="Permalink to this headline">¶</a></h2>
+<p>Network degree, which means the number of edges for each gene, is one of the important metrics to know the network analysis. The degree distribution may change depending on the filtering threshold.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">links</span><span class="o">.</span><span class="n">plot_degree_distributions</span><span class="p">(</span><span class="n">plot_model</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">/degree_distribution/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_1.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_1.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_1.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_1
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_3.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_3.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_3.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_2
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_5.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_5.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_5.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_3
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_7.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_7.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_7.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_4
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_9.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_9.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_9.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_5
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_11.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_11.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_11.png" style="width: 562px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_6
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_13.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_13.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_13.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_7
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_15.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_15.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_15.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_8
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_17.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_17.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_17.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_9
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_19.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_19.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_19.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+GMP_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_21.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_21.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_21.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+GMP_1
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_23.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_23.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_23.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+GMPl_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_25.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_25.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_25.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gran_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_27.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_27.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_27.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gran_1
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_29.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_29.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_29.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gran_2
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_31.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_31.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_31.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MEP_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_33.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_33.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_33.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Mk_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_35.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_35.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_35.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Mo_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_37.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_37.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_37.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Mo_1
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_39.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_39.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_39.png" style="width: 561px; height: 399px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="5.3.-Calculate-netowrk-score">
+<h2>5.3. Calculate netowrk score<a class="headerlink" href="#5.3.-Calculate-netowrk-score" title="Permalink to this headline">¶</a></h2>
+<p>Next, we calculate several network score using some R libraries. Please make sure that R libraries are installed in your PC before running the command below.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># calculate network scores. It takes several minuts.</span>
+<span class="n">links</span><span class="o">.</span><span class="n">get_score</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+processing... batch 1/5
+Ery_0: finished.
+Ery_1: finished.
+Ery_2: finished.
+Ery_3: finished.
+processing... batch 2/5
+Ery_4: finished.
+Ery_5: finished.
+Ery_6: finished.
+Ery_7: finished.
+processing... batch 3/5
+Ery_8: finished.
+Ery_9: finished.
+GMP_0: finished.
+GMP_1: finished.
+processing... batch 4/5
+GMPl_0: finished.
+Gran_0: finished.
+Gran_1: finished.
+Gran_2: finished.
+processing... batch 5/5
+MEP_0: finished.
+Mk_0: finished.
+Mo_0: finished.
+Mo_1: finished.
+the scores are saved in ./louvain_annot/
+</pre></div></div>
+</div>
+<p>The score is stored as a attribute “merged_score”, and score will also be saved in a folder.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">links</span><span class="o">.</span><span class="n">merged_score</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>degree_all</th>
+      <th>degree_in</th>
+      <th>degree_out</th>
+      <th>clustering_coefficient</th>
+      <th>clustering_coefficient_weighted</th>
+      <th>degree_centrality_all</th>
+      <th>degree_centrality_in</th>
+      <th>degree_centrality_out</th>
+      <th>betweenness_centrality</th>
+      <th>closeness_centrality</th>
+      <th>...</th>
+      <th>assortative_coefficient</th>
+      <th>average_path_length</th>
+      <th>community_edge_betweenness</th>
+      <th>community_random_walk</th>
+      <th>community_eigenvector</th>
+      <th>module</th>
+      <th>connectivity</th>
+      <th>participation</th>
+      <th>role</th>
+      <th>cluster</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Stat3</td>
+      <td>91</td>
+      <td>0</td>
+      <td>91</td>
+      <td>0.019780</td>
+      <td>0.020122</td>
+      <td>0.167279</td>
+      <td>0.000000</td>
+      <td>0.167279</td>
+      <td>0</td>
+      <td>0.000013</td>
+      <td>...</td>
+      <td>-0.172207</td>
+      <td>2.475244</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>4.052023</td>
+      <td>0.632291</td>
+      <td>Connector Hub</td>
+      <td>Ery_0</td>
+    </tr>
+    <tr>
+      <td>Mycn</td>
+      <td>28</td>
+      <td>0</td>
+      <td>28</td>
+      <td>0.002646</td>
+      <td>0.001828</td>
+      <td>0.051471</td>
+      <td>0.000000</td>
+      <td>0.051471</td>
+      <td>0</td>
+      <td>0.000004</td>
+      <td>...</td>
+      <td>-0.172207</td>
+      <td>2.475244</td>
+      <td>2</td>
+      <td>1</td>
+      <td>5</td>
+      <td>2</td>
+      <td>2.347146</td>
+      <td>0.625000</td>
+      <td>Connector</td>
+      <td>Ery_0</td>
+    </tr>
+    <tr>
+      <td>Zbtb1</td>
+      <td>27</td>
+      <td>0</td>
+      <td>27</td>
+      <td>0.005698</td>
+      <td>0.008576</td>
+      <td>0.049632</td>
+      <td>0.000000</td>
+      <td>0.049632</td>
+      <td>0</td>
+      <td>0.000011</td>
+      <td>...</td>
+      <td>-0.172207</td>
+      <td>2.475244</td>
+      <td>3</td>
+      <td>1</td>
+      <td>5</td>
+      <td>1</td>
+      <td>2.275431</td>
+      <td>0.666667</td>
+      <td>Connector</td>
+      <td>Ery_0</td>
+    </tr>
+    <tr>
+      <td>E2f4</td>
+      <td>186</td>
+      <td>3</td>
+      <td>183</td>
+      <td>0.009474</td>
+      <td>0.011623</td>
+      <td>0.341912</td>
+      <td>0.005515</td>
+      <td>0.336397</td>
+      <td>2788</td>
+      <td>0.000010</td>
+      <td>...</td>
+      <td>-0.172207</td>
+      <td>2.475244</td>
+      <td>4</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>8.496354</td>
+      <td>0.637760</td>
+      <td>Connector Hub</td>
+      <td>Ery_0</td>
+    </tr>
+    <tr>
+      <td>Ybx1</td>
+      <td>71</td>
+      <td>9</td>
+      <td>62</td>
+      <td>0.027364</td>
+      <td>0.027485</td>
+      <td>0.130515</td>
+      <td>0.016544</td>
+      <td>0.113971</td>
+      <td>1153</td>
+      <td>0.000004</td>
+      <td>...</td>
+      <td>-0.172207</td>
+      <td>2.475244</td>
+      <td>5</td>
+      <td>11</td>
+      <td>4</td>
+      <td>3</td>
+      <td>5.433857</td>
+      <td>0.564967</td>
+      <td>Connector Hub</td>
+      <td>Ery_0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 22 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="5.4.-Save">
+<h2>5.4. Save<a class="headerlink" href="#5.4.-Save" title="Permalink to this headline">¶</a></h2>
+<p>Save processed GRN. The Links file will also be used in the next notebook; “in silico simulation with GRNs”.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Save Links object.</span>
+<span class="n">links</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;links.celloracle.links&quot;</span><span class="p">)</span>
+
+<span class="c1"># You can load files with the following command.</span>
+<span class="c1">#links = co.load_hdf5(file_path=&quot;links.celloracle.links&quot;)</span>
+
+</pre></div>
+</div>
+</div>
+<p>If you are not interested in the network score analysis and just want to do simulation, you can skip the analysis below and go to the next notebook.</p>
+</div>
+</div>
+<div class="section" id="6.-Network-analysis;-Network-score-for-each-gene">
+<h1>6. Network analysis; Network score for each gene<a class="headerlink" href="#6.-Network-analysis;-Network-score-for-each-gene" title="Permalink to this headline">¶</a></h1>
+<p>Links class has many functions to visualize network score. See the documentation for the details of the functions.</p>
+<div class="section" id="6.1.-Network-score-in-each-cluster">
+<h2>6.1. Network score in each cluster<a class="headerlink" href="#6.1.-Network-score-in-each-cluster" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># check cluster</span>
+<span class="n">links</span><span class="o">.</span><span class="n">cluster</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&#39;Ery_0&#39;,
+ &#39;Ery_1&#39;,
+ &#39;Ery_2&#39;,
+ &#39;Ery_3&#39;,
+ &#39;Ery_4&#39;,
+ &#39;Ery_5&#39;,
+ &#39;Ery_6&#39;,
+ &#39;Ery_7&#39;,
+ &#39;Ery_8&#39;,
+ &#39;Ery_9&#39;,
+ &#39;GMP_0&#39;,
+ &#39;GMP_1&#39;,
+ &#39;GMPl_0&#39;,
+ &#39;Gran_0&#39;,
+ &#39;Gran_1&#39;,
+ &#39;Gran_2&#39;,
+ &#39;MEP_0&#39;,
+ &#39;Mk_0&#39;,
+ &#39;Mo_0&#39;,
+ &#39;Mo_1&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Visualize top n-th genes that have high scores.</span>
+<span class="n">links</span><span class="o">.</span><span class="n">plot_scores_as_rank</span><span class="p">(</span><span class="n">cluster</span><span class="o">=</span><span class="s2">&quot;MEP_0&quot;</span><span class="p">,</span> <span class="n">n_gene</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">/ranked_score&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_0.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_0.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_0.png" style="width: 423px; height: 400px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1.png" style="width: 460px; height: 400px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_2.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_2.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_2.png" style="width: 423px; height: 400px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3.png" style="width: 424px; height: 400px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_4.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_4.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_4.png" style="width: 415px; height: 400px;" /></a>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5.png" style="width: 468px; height: 399px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="6.2.-Network-score-comparison-between-two-clusters">
+<h2>6.2. Network score comparison between two clusters<a class="headerlink" href="#6.2.-Network-score-comparison-between-two-clusters" title="Permalink to this headline">¶</a></h2>
+<p>By comparing network scores between two clusters, we can analyze the difference of GRN structure.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;sci&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="n">scilimits</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">links</span><span class="o">.</span><span class="n">plot_score_comparison_2D</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;eigenvector_centrality&quot;</span><span class="p">,</span>
+                               <span class="n">cluster1</span><span class="o">=</span><span class="s2">&quot;MEP_0&quot;</span><span class="p">,</span> <span class="n">cluster2</span><span class="o">=</span><span class="s2">&quot;GMPl_0&quot;</span><span class="p">,</span>
+                               <span class="n">percentile</span><span class="o">=</span><span class="mi">98</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">/score_comparison&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_57_0.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_57_0.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_57_0.png" style="width: 572px; height: 386px;" /></a>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;sci&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="n">scilimits</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">links</span><span class="o">.</span><span class="n">plot_score_comparison_2D</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;betweenness_centrality&quot;</span><span class="p">,</span>
+                               <span class="n">cluster1</span><span class="o">=</span><span class="s2">&quot;MEP_0&quot;</span><span class="p">,</span> <span class="n">cluster2</span><span class="o">=</span><span class="s2">&quot;GMPl_0&quot;</span><span class="p">,</span>
+                               <span class="n">percentile</span><span class="o">=</span><span class="mi">98</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">/score_comparison&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_58_0.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_58_0.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_58_0.png" style="width: 580px; height: 386px;" /></a>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;sci&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="n">scilimits</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">links</span><span class="o">.</span><span class="n">plot_score_comparison_2D</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;degree_centrality_all&quot;</span><span class="p">,</span>
+                               <span class="n">cluster1</span><span class="o">=</span><span class="s2">&quot;MEP_0&quot;</span><span class="p">,</span> <span class="n">cluster2</span><span class="o">=</span><span class="s2">&quot;GMPl_0&quot;</span><span class="p">,</span>
+                               <span class="n">percentile</span><span class="o">=</span><span class="mi">98</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">/score_comparison&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_59_0.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_59_0.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_59_0.png" style="width: 556px; height: 386px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="6.3.-Network-score-dynamics">
+<h2>6.3. Network score dynamics<a class="headerlink" href="#6.3.-Network-score-dynamics" title="Permalink to this headline">¶</a></h2>
+<p>We can analyze how gene function/importance change over the differentiation by the following analysis.</p>
+<p>Gata2 is known to play an important role in the early progenitor population; MEP, GMP. The following results can recapitulate the Gata2 feature.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Visualize Gata2 network score dynamics</span>
+<span class="n">links</span><span class="o">.</span><span class="n">plot_score_per_cluster</span><span class="p">(</span><span class="n">goi</span><span class="o">=</span><span class="s2">&quot;Gata2&quot;</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">/network_score_per_gene/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gata2
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_61_1.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_61_1.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_61_1.png" style="width: 575px; height: 383px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="6.4.-Gene-cartography-analysis">
+<h2>6.4. Gene cartography analysis<a class="headerlink" href="#6.4.-Gene-cartography-analysis" title="Permalink to this headline">¶</a></h2>
+<p>Gene cartography is a method for gene network analysis. The method classifies the gene into several groups using the network module structure and gene connections. It provides us an insight about the regulatory mechanism per each gene. Please read the paper for the details of gene cartography (<a class="reference external" href="https://www.nature.com/articles/nature03288">https://www.nature.com/articles/nature03288</a>)</p>
+<p>The calculations of gene cartography will be performed for the GRN in each cluster. Thus we can know how gene role change by comparing the cartography in each cluster.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># plot cartography as a scatter plot</span>
+<span class="n">links</span><span class="o">.</span><span class="n">plot_cartography_scatter_per_cluster</span><span class="p">(</span><span class="n">scatter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                           <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                           <span class="n">gois</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Gata1&quot;</span><span class="p">,</span> <span class="s2">&quot;Gata2&quot;</span><span class="p">,</span> <span class="s2">&quot;Sfpi1&quot;</span><span class="p">],</span>
+                                           <span class="n">auto_gene_annot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                           <span class="n">percentile</span><span class="o">=</span><span class="mf">99.5</span><span class="p">,</span>
+                                           <span class="n">args_dot</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_levels&quot;</span><span class="p">:</span> <span class="mi">105</span><span class="p">},</span>
+                                           <span class="n">args_line</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;c&quot;</span><span class="p">:</span><span class="s2">&quot;gray&quot;</span><span class="p">},</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">/cartography&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_1.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_1.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_1.png" style="width: 507px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_1
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_3.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_3.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_3.png" style="width: 514px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_2
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_5.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_5.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_5.png" style="width: 507px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_3
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_7.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_7.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_7.png" style="width: 514px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_4
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_9.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_9.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_9.png" style="width: 507px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_5
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_11.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_11.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_11.png" style="width: 507px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_6
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_13.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_13.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_13.png" style="width: 507px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_7
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_15.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_15.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_15.png" style="width: 514px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_8
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_17.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_17.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_17.png" style="width: 507px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ery_9
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_19.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_19.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_19.png" style="width: 514px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+GMP_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_21.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_21.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_21.png" style="width: 514px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+GMP_1
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_23.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_23.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_23.png" style="width: 507px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+GMPl_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_25.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_25.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_25.png" style="width: 514px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gran_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_27.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_27.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_27.png" style="width: 507px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gran_1
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_29.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_29.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_29.png" style="width: 514px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gran_2
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_31.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_31.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_31.png" style="width: 514px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+MEP_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_33.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_33.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_33.png" style="width: 514px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Mk_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_35.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_35.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_35.png" style="width: 507px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Mo_0
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_37.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_37.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_37.png" style="width: 507px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Mo_1
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_39.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_39.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_39.png" style="width: 514px; height: 332px;" /></a>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># plot the results of cartography analysis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">links</span><span class="o">.</span><span class="n">plot_cartography_term</span><span class="p">(</span><span class="n">goi</span><span class="o">=</span><span class="s2">&quot;Gata2&quot;</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">/cartography&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gata2
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/k/anaconda3/envs/test/lib/python3.6/site-packages/pandas/core/indexing.py:1418: FutureWarning:
+Passing list-likes to .loc or [] with any missing label will raise
+KeyError in the future, you can use .reindex() as an alternative.
+
+See the documentation here:
+https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#deprecate-loc-reindex-listlike
+  return self._getitem_tuple(key)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_2.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_2.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_2.png" style="width: 240px; height: 428px;" /></a>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="7.-Network-analysis;-Network-score-distribution">
+<h1>7. Network analysis; Network score distribution<a class="headerlink" href="#7.-Network-analysis;-Network-score-distribution" title="Permalink to this headline">¶</a></h1>
+<p>Next, we visualize the distribution of network score to get insight into the global trend about the structure of GRNs.</p>
+<div class="section" id="7.1.-Distribution-of-network-degree">
+<h2>7.1. Distribution of network degree<a class="headerlink" href="#7.1.-Distribution-of-network-degree" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[95]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.040</span><span class="p">])</span>
+<span class="n">links</span><span class="o">.</span><span class="n">plot_score_discributions</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;degree_centrality_all&quot;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;boxplot&quot;</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+degree_centrality_all
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_67_1.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_67_1.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_67_1.png" style="width: 552px; height: 325px;" /></a>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.40</span><span class="p">])</span>
+<span class="n">links</span><span class="o">.</span><span class="n">plot_score_discributions</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;eigenvector_centrality&quot;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;boxplot&quot;</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+eigenvector_centrality
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_1.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_1.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_1.png" style="width: 545px; height: 325px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="7.2.-Distribution-of-netowrk-entolopy">
+<h2>7.2. Distribution of netowrk entolopy<a class="headerlink" href="#7.2.-Distribution-of-netowrk-entolopy" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">links</span><span class="o">.</span><span class="n">plot_network_entropy_distributions</span><span class="p">(</span><span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0.png"><img alt="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0.png" src="../../_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0.png" style="width: 555px; height: 325px;" /></a>
+</div>
+</div>
+<p>In the example below, we did several network analysis and showed that several TFs have high network scores. The TFs, for example “Gata2”, “Gata1”, “Klf1”, “E2f1”, are known to play an important role in MEP. Using the network score, we may pick up cluster-specific key TFs.</p>
+<p>In this step, however, we cannot know the specific function or relationship between cell fate. We just pick up several candidate genes for Key TFs here, and in the next analysis, we investigate their function and relationship between cell fate by the simulation with GRNs.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../tutorials/simulation.html" class="btn btn-neutral float-right" title="5. Simulation with GRNs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../tutorials/networkanalysis.html" class="btn btn-neutral float-left" title="4. Network analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

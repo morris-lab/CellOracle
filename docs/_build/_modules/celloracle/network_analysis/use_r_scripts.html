@@ -1,0 +1,323 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>celloracle.network_analysis.use_r_scripts &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/index.html">Installation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorial</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html">API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>celloracle.network_analysis.use_r_scripts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for celloracle.network_analysis.use_r_scripts</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">This is a series of custom functions for the inferring of GRN from single cell RNA-seq data.</span>
+
+<span class="sd">Codes were written by Kenji Kamimoto.</span>
+
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1">###########################</span>
+<span class="c1">### 0. Import libralies ###</span>
+<span class="c1">###########################</span>
+
+
+<span class="c1"># 0.1. libraries for fundamental data science and data processing</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="k">import</span> <span class="n">dump</span><span class="p">,</span> <span class="n">load</span>
+
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="k">import</span> <span class="n">cpu_count</span>
+
+<span class="n">N_CPU</span> <span class="o">=</span> <span class="n">cpu_count</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">..utility</span> <span class="k">import</span> <span class="n">exec_process</span>
+<span class="kn">from</span> <span class="nn">..network_analysis</span> <span class="k">import</span> <span class="n">__path__</span> <span class="k">as</span> <span class="n">parent_path</span>
+<span class="c1">#import seaborn as sns</span>
+
+
+<div class="viewcode-block" id="test_R_libraries_installation"><a class="viewcode-back" href="../../../modules/celloracle.network_analysis.html#celloracle.network_analysis.test_R_libraries_installation">[docs]</a><span class="k">def</span> <span class="nf">test_R_libraries_installation</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CellOracle.network_analysis use some R libraries for network analysis.</span>
+<span class="sd">    This is a test function to check instalation of necessary R libraries.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">r_libraries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;igraph&quot;</span><span class="p">,</span> <span class="s2">&quot;linkcomm&quot;</span><span class="p">,</span> <span class="s2">&quot;rnetcarto&quot;</span><span class="p">]</span><span class="c1">#,&quot;gProfileR&quot;]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">r_libraries</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">exec_process</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Rscript </span><span class="si">{parent_path[0]}</span><span class="s2">/rscripts_for_network_analysis/test_</span><span class="si">{i}</span><span class="s2">.R&quot;</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;checking R library installation: </span><span class="si">{i}</span><span class="s2"> -&gt; OK&quot;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;checking_installation: </span><span class="si">{i}</span><span class="s2"> -&gt; NG&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot; R library, </span><span class="si">{i}</span><span class="s2"> is unavailable. Please check installation.&quot;</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_get_network_score_by_Rscripts</span><span class="p">(</span><span class="n">linkList</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s2">&quot;network_analysis&quot;</span><span class="p">,</span>
+             <span class="n">GO</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">link_path</span> <span class="o">=</span><span class="n">folder</span> <span class="o">+</span> <span class="s2">&quot;/linkList.csv&quot;</span>
+    <span class="n">linkList</span><span class="p">[[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;coef_abs&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">link_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">GO</span><span class="p">:</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Rscript </span><span class="si">{parent_path[0]}</span><span class="s2">/rscripts_for_network_analysis/get_newtork_scores.R </span><span class="si">{folder}</span><span class="s2">&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Rscript </span><span class="si">{parent_path[0]}</span><span class="s2">/rscripts_for_network_analysis/get_newtork_scores.R </span><span class="si">{folder}</span><span class="s2"> FALSE&quot;</span>
+
+    <span class="n">exec_process</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_get_network_score_by_Rscripts_inparallel</span><span class="p">(</span><span class="n">dict_links</span><span class="p">,</span> <span class="n">output_folder</span><span class="o">=</span><span class="s2">&quot;network_analysis&quot;</span><span class="p">,</span>
+                      <span class="n">GO</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_parallel</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">n_parallel</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">n_parallel</span> <span class="o">=</span> <span class="n">N_CPU</span>
+    <span class="n">li</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dict_links</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">internal</span><span class="p">(</span><span class="n">li_</span><span class="p">):</span>
+        <span class="n">process_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">li_</span><span class="p">:</span>
+            <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">link_path</span> <span class="o">=</span><span class="n">folder</span> <span class="o">+</span> <span class="s2">&quot;/linkList.csv&quot;</span>
+            <span class="n">dict_links</span><span class="p">[</span><span class="n">i</span><span class="p">][[</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;coef_abs&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">link_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">GO</span><span class="p">:</span>
+                <span class="n">command</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Rscript </span><span class="si">{parent_path[0]}</span><span class="s2">/rscripts_for_network_analysis/get_newtork_scores.R </span><span class="si">{folder}</span><span class="s2">&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">command</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Rscript </span><span class="si">{parent_path[0]}</span><span class="s2">/rscripts_for_network_analysis/get_newtork_scores.R </span><span class="si">{folder}</span><span class="s2"> FALSE&quot;</span>
+            <span class="n">process_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exec_process</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
+                                             <span class="n">wait_finished</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_process</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">process</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">process_list</span><span class="p">,</span> <span class="n">li_</span><span class="p">):</span>
+
+            <span class="n">process</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">process</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: Build process aborts.&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">: finished.&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">N</span><span class="o">%</span><span class="n">n_parallel</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">//</span><span class="n">n_parallel</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;processing... batch {k+1}/{N//n_parallel}&quot;</span><span class="p">)</span>
+            <span class="n">sub_list</span> <span class="o">=</span> <span class="n">li</span><span class="p">[</span><span class="n">n_parallel</span><span class="o">*</span><span class="n">k</span><span class="p">:</span><span class="n">n_parallel</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+            <span class="n">internal</span><span class="p">(</span><span class="n">sub_list</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">//</span><span class="n">n_parallel</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;processing... batch {k+1}/{(N//n_parallel)+1}&quot;</span><span class="p">)</span>
+            <span class="n">sub_list</span> <span class="o">=</span> <span class="n">li</span><span class="p">[</span><span class="n">n_parallel</span><span class="o">*</span><span class="n">k</span><span class="p">:</span><span class="n">n_parallel</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+            <span class="n">internal</span><span class="p">(</span><span class="n">sub_list</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;processing... batch {(N//n_parallel)+1}/{(N//n_parallel)+1}&quot;</span><span class="p">)</span>
+        <span class="n">sub_list</span> <span class="o">=</span> <span class="n">li</span><span class="p">[(</span><span class="n">N</span><span class="o">//</span><span class="n">n_parallel</span><span class="p">)</span><span class="o">*</span><span class="n">n_parallel</span><span class="p">:</span> <span class="n">N</span><span class="p">]</span>
+        <span class="n">internal</span><span class="p">(</span><span class="n">sub_list</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
