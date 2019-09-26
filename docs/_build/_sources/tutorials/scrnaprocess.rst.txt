@@ -31,7 +31,3 @@ B. scRNA-seq data preprocessing with Seurat
 -------------------------------------------
 
 R notebook ... comming soon
-
-.. toctree::
-
-  ../notebooks/03_scRNA-seq_data_preprocessing/
