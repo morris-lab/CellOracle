@@ -89,8 +89,8 @@ Please install other python libraries below with the following commands.
 6. install celloracle from github
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ::
-
-    pip install git+https://github.com/trsqxyz/pig
+    
+    pip install git+https://github.com/KenjiKamimoto-wustl122/CellOracle
 
 
 

@@ -201,137 +201,14 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-celloracle.chip_analysis.integrate_chip_data_with_grn_results">
-<span id="celloracle-chip-analysis-integrate-chip-data-with-grn-results-module"></span><h2>celloracle.chip_analysis.integrate_chip_data_with_grn_results module<a class="headerlink" href="#module-celloracle.chip_analysis.integrate_chip_data_with_grn_results" title="Permalink to this headline">¶</a></h2>
-<p>This file contains custom functions for the analysis of ATAC-seq data.
-Genomic activity information (peak of ATAC-seq) will be extracted first.
-Then the peak DNA sequence will be subjected to TF motif scan.
-Finally we will get list of TFs that potentially binds to a specific gene.</p>
-<p>Codes were written by Kenji Kamimoto.</p>
-<dl class="function">
-<dt id="celloracle.chip_analysis.integrate_chip_data_with_grn_results.integrate_Chip_and_TN">
-<code class="descclassname">celloracle.chip_analysis.integrate_chip_data_with_grn_results.</code><code class="descname">integrate_Chip_and_TN</code><span class="sig-paren">(</span><em>tn_object</em>, <em>Chip_data</em>, <em>TF_of_interest</em>, <em>mode='gene_mode'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/integrate_chip_data_with_grn_results.html#integrate_Chip_and_TN"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.integrate_chip_data_with_grn_results.integrate_Chip_and_TN" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.integrate_chip_data_with_grn_results.integrate_Chip_and_TN_for_HM_analysus">
-<code class="descclassname">celloracle.chip_analysis.integrate_chip_data_with_grn_results.</code><code class="descname">integrate_Chip_and_TN_for_HM_analysus</code><span class="sig-paren">(</span><em>tn_object</em>, <em>Chip_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/integrate_chip_data_with_grn_results.html#integrate_Chip_and_TN_for_HM_analysus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.integrate_chip_data_with_grn_results.integrate_Chip_and_TN_for_HM_analysus" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.integrate_chip_data_with_grn_results.loadAndProcessData">
-<code class="descclassname">celloracle.chip_analysis.integrate_chip_data_with_grn_results.</code><code class="descname">loadAndProcessData</code><span class="sig-paren">(</span><em>save_dir</em>, <em>TF_of_interest</em>, <em>chip_data</em>, <em>tn_paths</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/integrate_chip_data_with_grn_results.html#loadAndProcessData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.integrate_chip_data_with_grn_results.loadAndProcessData" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.integrate_chip_data_with_grn_results.loadAndProcessData_for_HM_analysis">
-<code class="descclassname">celloracle.chip_analysis.integrate_chip_data_with_grn_results.</code><code class="descname">loadAndProcessData_for_HM_analysis</code><span class="sig-paren">(</span><em>save_dir</em>, <em>chip_data</em>, <em>tn_paths</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/integrate_chip_data_with_grn_results.html#loadAndProcessData_for_HM_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.integrate_chip_data_with_grn_results.loadAndProcessData_for_HM_analysis" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.integrate_chip_data_with_grn_results.load_and_merge_chip_bed_files">
-<code class="descclassname">celloracle.chip_analysis.integrate_chip_data_with_grn_results.</code><code class="descname">load_and_merge_chip_bed_files</code><span class="sig-paren">(</span><em>base_bed_file_path</em>, <em>chip_bed_file_paths</em>, <em>chip_type</em>, <em>save_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/integrate_chip_data_with_grn_results.html#load_and_merge_chip_bed_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.integrate_chip_data_with_grn_results.load_and_merge_chip_bed_files" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="celloracle-chip-analysis-integrate-chip-data-with-grn-results-module">
+<h2>celloracle.chip_analysis.integrate_chip_data_with_grn_results module<a class="headerlink" href="#celloracle-chip-analysis-integrate-chip-data-with-grn-results-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-celloracle.chip_analysis.make_plots">
-<span id="celloracle-chip-analysis-make-plots-module"></span><h2>celloracle.chip_analysis.make_plots module<a class="headerlink" href="#module-celloracle.chip_analysis.make_plots" title="Permalink to this headline">¶</a></h2>
-<p>This file contains custom functions for the analysis of ATAC-seq data.
-Genomic activity information (peak of ATAC-seq) will be extracted first.
-Then the peak DNA sequence will be subjected to TF motif scan.
-Finally we will get list of TFs that potentially binds to a specific gene.</p>
-<p>Codes were written by Kenji Kamimoto.</p>
-<dl class="function">
-<dt id="celloracle.chip_analysis.make_plots.binarizeChip">
-<code class="descclassname">celloracle.chip_analysis.make_plots.</code><code class="descname">binarizeChip</code><span class="sig-paren">(</span><em>df</em>, <em>threshold_chip_score_order</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/make_plots.html#binarizeChip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.make_plots.binarizeChip" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.make_plots.filterGRNscore">
-<code class="descclassname">celloracle.chip_analysis.make_plots.</code><code class="descname">filterGRNscore</code><span class="sig-paren">(</span><em>df</em>, <em>threshold_p_max_score</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/make_plots.html#filterGRNscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.make_plots.filterGRNscore" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.make_plots.get_meta_data">
-<code class="descclassname">celloracle.chip_analysis.make_plots.</code><code class="descname">get_meta_data</code><span class="sig-paren">(</span><em>DATA_PATH</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/make_plots.html#get_meta_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.make_plots.get_meta_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.make_plots.pickUpData">
-<code class="descclassname">celloracle.chip_analysis.make_plots.</code><code class="descname">pickUpData</code><span class="sig-paren">(</span><em>meta_df</em>, <em>chip_data_name_list</em>, <em>sample_type_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/make_plots.html#pickUpData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.make_plots.pickUpData" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.make_plots.plot_ROC">
-<code class="descclassname">celloracle.chip_analysis.make_plots.</code><code class="descname">plot_ROC</code><span class="sig-paren">(</span><em>df</em>, <em>plot_value='max_score'</em>, <em>plotRandom=True</em>, <em>by='scRNA-seq_data'</em>, <em>plot=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/make_plots.html#plot_ROC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.make_plots.plot_ROC" title="Permalink to this definition">¶</a></dt>
-<dd><p>Coef; Ceficient [data frame]
-gene_list; gene list [list or numpy array]
-guide_name; gene name [str (when single guide) or list (multiple guides)]
-No_of_random_genes; [int]
-seed; random seed [int]
-shade; plotting with/without shade [bool]</p>
-</dd></dl>
-
+<div class="section" id="celloracle-chip-analysis-make-plots-module">
+<h2>celloracle.chip_analysis.make_plots module<a class="headerlink" href="#celloracle-chip-analysis-make-plots-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-celloracle.chip_analysis">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-celloracle.chip_analysis" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="#module-celloracle.chip_analysis" title="celloracle.chip_analysis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">chip_analysis</span></code></a> module implements transcription factor motif scan.</p>
-<dl class="function">
-<dt id="celloracle.chip_analysis.load_and_merge_chip_bed_files">
-<code class="descclassname">celloracle.chip_analysis.</code><code class="descname">load_and_merge_chip_bed_files</code><span class="sig-paren">(</span><em>base_bed_file_path</em>, <em>chip_bed_file_paths</em>, <em>chip_type</em>, <em>save_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/integrate_chip_data_with_grn_results.html#load_and_merge_chip_bed_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.load_and_merge_chip_bed_files" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.integrate_Chip_and_TN">
-<code class="descclassname">celloracle.chip_analysis.</code><code class="descname">integrate_Chip_and_TN</code><span class="sig-paren">(</span><em>tn_object</em>, <em>Chip_data</em>, <em>TF_of_interest</em>, <em>mode='gene_mode'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/integrate_chip_data_with_grn_results.html#integrate_Chip_and_TN"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.integrate_Chip_and_TN" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.loadAndProcessData">
-<code class="descclassname">celloracle.chip_analysis.</code><code class="descname">loadAndProcessData</code><span class="sig-paren">(</span><em>save_dir</em>, <em>TF_of_interest</em>, <em>chip_data</em>, <em>tn_paths</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/integrate_chip_data_with_grn_results.html#loadAndProcessData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.loadAndProcessData" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.integrate_Chip_and_TN_for_HM_analysus">
-<code class="descclassname">celloracle.chip_analysis.</code><code class="descname">integrate_Chip_and_TN_for_HM_analysus</code><span class="sig-paren">(</span><em>tn_object</em>, <em>Chip_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/integrate_chip_data_with_grn_results.html#integrate_Chip_and_TN_for_HM_analysus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.integrate_Chip_and_TN_for_HM_analysus" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.loadAndProcessData_for_HM_analysis">
-<code class="descclassname">celloracle.chip_analysis.</code><code class="descname">loadAndProcessData_for_HM_analysis</code><span class="sig-paren">(</span><em>save_dir</em>, <em>chip_data</em>, <em>tn_paths</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/integrate_chip_data_with_grn_results.html#loadAndProcessData_for_HM_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.loadAndProcessData_for_HM_analysis" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.get_meta_data">
-<code class="descclassname">celloracle.chip_analysis.</code><code class="descname">get_meta_data</code><span class="sig-paren">(</span><em>DATA_PATH</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/make_plots.html#get_meta_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.get_meta_data" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.pickUpData">
-<code class="descclassname">celloracle.chip_analysis.</code><code class="descname">pickUpData</code><span class="sig-paren">(</span><em>meta_df</em>, <em>chip_data_name_list</em>, <em>sample_type_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/make_plots.html#pickUpData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.pickUpData" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.plot_ROC">
-<code class="descclassname">celloracle.chip_analysis.</code><code class="descname">plot_ROC</code><span class="sig-paren">(</span><em>df</em>, <em>plot_value='max_score'</em>, <em>plotRandom=True</em>, <em>by='scRNA-seq_data'</em>, <em>plot=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/make_plots.html#plot_ROC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.plot_ROC" title="Permalink to this definition">¶</a></dt>
-<dd><p>Coef; Ceficient [data frame]
-gene_list; gene list [list or numpy array]
-guide_name; gene name [str (when single guide) or list (multiple guides)]
-No_of_random_genes; [int]
-seed; random seed [int]
-shade; plotting with/without shade [bool]</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.binarizeChip">
-<code class="descclassname">celloracle.chip_analysis.</code><code class="descname">binarizeChip</code><span class="sig-paren">(</span><em>df</em>, <em>threshold_chip_score_order</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/make_plots.html#binarizeChip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.binarizeChip" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="celloracle.chip_analysis.filterGRNscore">
-<code class="descclassname">celloracle.chip_analysis.</code><code class="descname">filterGRNscore</code><span class="sig-paren">(</span><em>df</em>, <em>threshold_p_max_score</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/chip_analysis/make_plots.html#filterGRNscore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.chip_analysis.filterGRNscore" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<div class="section" id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

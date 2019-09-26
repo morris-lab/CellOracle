@@ -8,7 +8,8 @@ Please run the notebooks following the order. If you do not have ATAC-seq data a
 Please refer to the ``celloracle`` paper for detailed information.
 
 
-You can download all files and notebooks from  `celloracle  git hub page <https://cole-trapnell-lab.github.io/cicero-release/>`_
+You can download all notebooks from `here <https://github.com/KenjiKamimoto-wustl122/CellOracle/tree/master/docs/notebooks>`_ .
+
 
 .. toctree::
    :maxdepth: 1

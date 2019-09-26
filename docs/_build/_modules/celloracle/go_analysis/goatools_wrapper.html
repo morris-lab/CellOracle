@@ -179,6 +179,7 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="k">import</span> <span class="n">request</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
@@ -190,6 +191,22 @@
 <span class="n">go_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;data&quot;</span><span class="p">)</span>
 <span class="n">Xtable_human</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s1">&#39;hg19_xref.txt&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">Xtable_mouse</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s1">&#39;biomart_xref.mm10.txt&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_check_data_and_download_if_necessary</span><span class="p">(</span><span class="n">data_folder</span><span class="p">):</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">data_folder</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;gene2go.txt&#39;</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;gene2go file was not found in the PC. Downloading gene2go file from ncbi ...&quot;</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s2">&quot;gene2go.txt.gz&quot;</span><span class="p">)</span>
+        <span class="c1">#os.system(f&quot;wget -O {path} https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2go.gz&quot;)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="s2">&quot;https://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2go.gz&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;gunzip </span><span class="si">{path}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="s1">&#39;go-basic.obo&#39;</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;go-basic file was not found in the PC. Downloading gene2go file from geneontology.org ...&quot;</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s2">&quot;go-basic.obo&quot;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;wget -O </span><span class="si">{path}</span><span class="s2"> http://geneontology.org/ontology/go-basic.obo&quot;</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="geneSymbol2ID"><a class="viewcode-back" href="../../../modules/celloracle.go_analysis.html#celloracle.go_analysis.geneSymbol2ID">[docs]</a><span class="k">def</span> <span class="nf">geneSymbol2ID</span><span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">species</span><span class="o">=</span><span class="s2">&quot;mouse&quot;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -271,7 +288,11 @@
     <span class="n">sig_thresh</span> <span class="o">=</span> <span class="mi">3</span>
     <span class="n">num_genes</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">GOIs</span> <span class="o">=</span> <span class="n">gene_query</span>
+
     <span class="c1"># prepare files</span>
+    <span class="c1"># check files</span>
+    <span class="n">_check_data_and_download_if_necessary</span><span class="p">(</span><span class="n">go_folder</span><span class="p">)</span>
+
 
     <span class="n">obodag</span> <span class="o">=</span> <span class="n">GODag</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span> <span class="s2">&quot;go-basic.obo&quot;</span><span class="p">))</span>
 
@@ -288,7 +309,7 @@
 
     <span class="k">elif</span> <span class="p">(</span><span class="n">species</span><span class="o">==</span><span class="s1">&#39;mouse&#39;</span><span class="p">):</span>
 
-        <span class="n">geneid2gos</span> <span class="o">=</span> <span class="n">read_ncbi_gene2go</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s2">&quot;gene2go&quot;</span><span class="p">),</span> <span class="n">taxids</span><span class="o">=</span><span class="p">[</span><span class="mi">10090</span><span class="p">])</span>
+        <span class="n">geneid2gos</span> <span class="o">=</span> <span class="n">read_ncbi_gene2go</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">go_folder</span><span class="p">,</span><span class="s2">&quot;gene2go.txt&quot;</span><span class="p">),</span> <span class="n">taxids</span><span class="o">=</span><span class="p">[</span><span class="mi">10090</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{N:,}</span><span class="s2"> annotated genes&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">geneid2gos</span><span class="p">)))</span>
 
         <span class="kn">from</span> <span class="nn">goatools.test_data.genes_NCBI_10090_ProteinCoding</span> <span class="k">import</span> <span class="n">GENEID2NT</span> <span class="k">as</span> <span class="n">GeneID2nt_mus</span>
@@ -327,7 +348,7 @@
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">li</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">df_GO</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">go_default_output</span>
-        <span class="n">df_GO</span><span class="p">[</span><span class="s2">&quot;genes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_GO</span><span class="o">.</span><span class="n">study_items</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">ids2symbols</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">species</span><span class="p">))</span>
+        <span class="n">df_GO</span><span class="p">[</span><span class="s2">&quot;genes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_GO</span><span class="o">.</span><span class="n">study_items</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">_ids2symbols</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">species</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found No GO with significant p-value&quot;</span><span class="p">)</span>
 
