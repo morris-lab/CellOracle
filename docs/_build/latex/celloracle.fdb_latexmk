@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex celloracle.idx"] 1569699497 "celloracle.idx" "celloracle.ind" "celloracle" 1569700666
+["makeindex celloracle.idx"] 1569699497 "celloracle.idx" "celloracle.ind" "celloracle" 1569701047
   "celloracle.idx" 1569700665 11160 e2fdaa934538ce0bfc5d62d50252678a "pdflatex"
   (generated)
-  "celloracle.ilg"
   "celloracle.ind"
-["pdflatex"] 1569700656 "celloracle.tex" "celloracle.pdf" "celloracle" 1569700666
+  "celloracle.ilg"
+["pdflatex"] 1569700656 "celloracle.tex" "celloracle.pdf" "celloracle" 1569701047
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/courier/pcrb8r.tfm" 1136768653 1292 3059476c50a24578715759f22652f3d0 ""
@@ -159,7 +159,7 @@
   "celloracle.aux" 1569700665 65482 54ddce469184423789d37064e638ab54 "pdflatex"
   "celloracle.ind" 1569699497 11322 49d89220221ada83e2e54cd7a5ac4a63 "makeindex celloracle.idx"
   "celloracle.out" 1569700665 1071 529b2b66e6348b6d532d87f94cec3cab "pdflatex"
-  "celloracle.tex" 1569700656 463381 2289ca35b35b300913cf0754f6941609 ""
+  "celloracle.tex" 1569701047 463381 2289ca35b35b300913cf0754f6941609 ""
   "celloracle.toc" 1569700665 12080 c7ce083b69389eb1e2c3966fb47a69b0 "pdflatex"
   "footnotehyper-sphinx.sty" 1568996846 8886 0562fcad2b7e25f93331edc6fc422c87 ""
   "notebooks_01_ATAC-seq_data_processing_option1_scATAC-seq_data_analysis_with_cicero_01_atacdata_to_cicero_8_0.png" 1569521559 37222 c494f0f3aa750d2ac4fef42921918cc1 ""
@@ -243,13 +243,13 @@
   "notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_37_0.png" 1569521579 171344 49e34ac51a4ff2db9de78b8f3ae32b6f ""
   "notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0.png" 1569521579 85170 f79f3cc3d2ee1a686117bac9683eb5ef ""
   "sphinx.sty" 1568996846 68662 158e7929147502e48ab2fdf26a101dfd ""
-  "sphinxhighlight.sty" 1569700655 8137 38a433148fcb7611515a989ff1750dd5 ""
+  "sphinxhighlight.sty" 1569701046 8137 38a433148fcb7611515a989ff1750dd5 ""
   "sphinxmanual.cls" 1568996846 3589 0b0aac49c6f36925cf5f9d524a75a978 ""
   "sphinxmulticell.sty" 1568996846 14618 0defbdc8536ad2e67f1eac6a1431bc55 ""
   (generated)
-  "celloracle.pdf"
-  "celloracle.log"
   "celloracle.idx"
-  "celloracle.aux"
-  "celloracle.toc"
+  "celloracle.pdf"
   "celloracle.out"
+  "celloracle.log"
+  "celloracle.toc"
+  "celloracle.aux"
