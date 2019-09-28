@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  28 SEP 2019 14:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  28 SEP 2019 14:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1870,9 +1870,9 @@ Underfull \vbox (badness 10000) detected at line 7638
 [81 <./notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_dat
 a_37_0.png>]
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 7689.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 7690.
 
-Underfull \hbox (badness 10000) in paragraph at lines 7690--7691
+Underfull \hbox (badness 10000) in paragraph at lines 7691--7692
 \T1/ptm/m/n/10 Bases: \T1/pcr/m/n/10 celloracle.trajectory.modified_VelocytoLoo
 m_class.
  []
@@ -1880,169 +1880,169 @@ m_class.
 [82 <./notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_dat
 a_39_0.png>]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 7744.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 7745.
  [83]
-Underfull \hbox (badness 10000) in paragraph at lines 7860--7860
+Underfull \hbox (badness 10000) in paragraph at lines 7861--7861
 []\T1/ptm/m/it/10 adata\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ter_column_name=No
 ne\T1/ptm/m/n/10 , \T1/ptm/m/it/10 em-bed-
  []
 
 [84] [85] [86]
-Underfull \hbox (badness 10000) in paragraph at lines 8183--8183
+Underfull \hbox (badness 10000) in paragraph at lines 8184--8184
 []\T1/ptm/m/it/10 p=0.001\T1/ptm/m/n/10 , \T1/ptm/m/it/10 weight='coef_abs'\T1/
 ptm/m/n/10 , \T1/ptm/m/it/10 thread_number=10000\T1/ptm/m/n/10 , \T1/ptm/m/it/1
 0 genelist_source=None\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8249--8249
+Underfull \hbox (badness 10000) in paragraph at lines 8250--8250
 []\T1/ptm/m/it/10 gois=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ters=None\T1/p
 tm/m/n/10 , \T1/ptm/m/it/10 scat-ter=False\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8249--8249
+Underfull \hbox (badness 10000) in paragraph at lines 8250--8250
 \T1/ptm/m/it/10 kde=True\T1/ptm/m/n/10 , \T1/ptm/m/it/10 auto_gene_annot=False\
 T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8249--8249
+Underfull \hbox (badness 10000) in paragraph at lines 8250--8250
 \T1/ptm/m/it/10 centile=98\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_dot={}\T1/ptm/m
 /n/10 , \T1/ptm/m/it/10 args_line={}\T1/ptm/m/n/10 ,
  []
 
 [87]
-Underfull \hbox (badness 7064) in paragraph at lines 8371--8371
+Underfull \hbox (badness 7064) in paragraph at lines 8372--8372
 []\T1/ptm/m/it/10 value\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ter1\T1/ptm/m/n/10
  , \T1/ptm/m/it/10 clus-ter2\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-centile=99\T1/
 ptm/m/n/10 , \T1/ptm/m/it/10 an-not_shifts=None\T1/ptm/m/n/10 ,
  []
 
 [88] [89] [90]
-Underfull \hbox (badness 10000) in paragraph at lines 8682--8682
+Underfull \hbox (badness 10000) in paragraph at lines 8683--8683
 []\T1/ptm/m/it/10 bagging_number=200\T1/ptm/m/n/10 , \T1/ptm/m/it/10 scal-ing=T
 rue\T1/ptm/m/n/10 , \T1/ptm/m/it/10 model_method='bagging_ridge'\T1/ptm/m/n/10 
 , \T1/ptm/m/it/10 com-
  []
 
 [91] [92]
-Underfull \hbox (badness 10000) in paragraph at lines 8911--8913
+Underfull \hbox (badness 10000) in paragraph at lines 8912--8914
 \T1/ptm/m/n/10 or it can be a list of peak_id. e.g. [^^Pchr5_0930303_9499409^^Q
 ,
  []
 
 
-Overfull \hbox (11.15468pt too wide) in paragraph at lines 8970--8970
+Overfull \hbox (11.15468pt too wide) in paragraph at lines 8971--8971
 []\T1/ptm/m/it/10 path_to_raw_bed\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (55.92404pt too wide) in paragraph at lines 8970--8970
+Overfull \hbox (55.92404pt too wide) in paragraph at lines 8971--8971
 \T1/ptm/m/it/10 path_to_scanned_result_bed\T1/ptm/m/n/10 ,
  []
 
 [93] [94]
-Underfull \hbox (badness 10000) in paragraph at lines 9206--9206
+Underfull \hbox (badness 10000) in paragraph at lines 9207--9207
 []\T1/ptm/m/it/10 peak_str_list\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ref_genome\T1/p
 tm/m/n/10 , \T1/ptm/m/it/10 ver-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9211--9212
+Underfull \hbox (badness 10000) in paragraph at lines 9212--9213
 []\T1/pcr/b/n/10 peak_str_list \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 list of str\T1/p
 tm/m/n/10 ) ^^U list of peak_id. e.g.,
  []
 
 
-Overfull \hbox (20.33435pt too wide) in paragraph at lines 9228--9228
+Overfull \hbox (20.33435pt too wide) in paragraph at lines 9229--9229
 \T1/ptm/m/it/10 cero_connections\T1/pcr/m/n/10 ) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9264--9264
+Underfull \hbox (badness 10000) in paragraph at lines 9265--9265
 []\T1/ptm/m/it/10 oracle_object\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9264--9264
+Underfull \hbox (badness 10000) in paragraph at lines 9265--9265
 \T1/ptm/m/it/10 ter_name_for_GRN_unit=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 al-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9264--9264
+Underfull \hbox (badness 10000) in paragraph at lines 9265--9265
 \T1/ptm/m/it/10 pha=10\T1/ptm/m/n/10 , \T1/ptm/m/it/10 bag-ging_number=20\T1/pt
 m/m/n/10 , \T1/ptm/m/it/10 ver-
  []
 
 [95]
-Underfull \hbox (badness 10000) in paragraph at lines 9404--9404
+Underfull \hbox (badness 10000) in paragraph at lines 9405--9405
 []\T1/ptm/m/it/10 p=0.001\T1/ptm/m/n/10 , \T1/ptm/m/it/10 weight='coef_abs'\T1/
 ptm/m/n/10 , \T1/ptm/m/it/10 thread_number=10000\T1/ptm/m/n/10 ,
  []
 
 [96]
-Underfull \hbox (badness 10000) in paragraph at lines 9470--9470
+Underfull \hbox (badness 10000) in paragraph at lines 9471--9471
 []\T1/ptm/m/it/10 gois=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ters=None\T1/p
 tm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9470--9470
+Underfull \hbox (badness 10000) in paragraph at lines 9471--9471
 \T1/ptm/m/it/10 scat-ter=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 kde=True\T1/ptm/
 m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9470--9470
+Underfull \hbox (badness 10000) in paragraph at lines 9471--9471
 \T1/ptm/m/it/10 auto_gene_annot=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-
  []
 
 [97]
-Underfull \hbox (badness 10000) in paragraph at lines 9565--9565
+Underfull \hbox (badness 10000) in paragraph at lines 9566--9566
 []\T1/ptm/m/it/10 update_network_entropy=False\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9592--9592
+Underfull \hbox (badness 10000) in paragraph at lines 9593--9593
 []\T1/ptm/m/it/10 value\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ter1\T1/ptm/m/n/10
  , \T1/ptm/m/it/10 clus-ter2\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-centile=99\T1/
 ptm/m/n/10 , \T1/ptm/m/it/10 an-
  []
 
 [98]
-Overfull \hbox (11.52493pt too wide) in paragraph at lines 9720--9720
+Overfull \hbox (11.52493pt too wide) in paragraph at lines 9721--9721
 []\T1/ptm/m/it/10 adata\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (7.63466pt too wide) in paragraph at lines 9720--9720
+Overfull \hbox (7.63466pt too wide) in paragraph at lines 9721--9721
 \T1/ptm/m/it/10 links\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (64.53456pt too wide) in paragraph at lines 9720--9720
+Overfull \hbox (64.53456pt too wide) in paragraph at lines 9721--9721
 \T1/ptm/m/it/10 method='median'\T1/pcr/m/n/10 ) 
  []
 
 [99]
-Underfull \hbox (badness 10000) in paragraph at lines 9966--9966
+Underfull \hbox (badness 10000) in paragraph at lines 9967--9967
 []\T1/ptm/m/it/10 commands\T1/ptm/m/n/10 , \T1/ptm/m/it/10 mes-sage=True\T1/ptm
 /m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9966--9966
+Underfull \hbox (badness 10000) in paragraph at lines 9967--9967
 \T1/ptm/m/it/10 wait_finished=True\T1/ptm/m/n/10 , \T1/ptm/m/it/10 re-
  []
 
 [100] [101]
-Overfull \hbox (51.73412pt too wide) in paragraph at lines 10111--10111
+Overfull \hbox (51.73412pt too wide) in paragraph at lines 10112--10112
 []\T1/ptm/m/it/10 file_path_seurat_object\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (47.13416pt too wide) in paragraph at lines 10111--10111
+Overfull \hbox (47.13416pt too wide) in paragraph at lines 10112--10112
 \T1/ptm/m/it/10 delete_tmp_file=True\T1/pcr/m/n/10 ) 
  []
 
@@ -2243,12 +2243,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 181--182
 [109
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 10198.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 10198.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 10199.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 10199.
  (./celloracle.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 10198.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 10199.
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 10198
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 10199
 .
 Package rerunfilecheck Info: File `celloracle.out' has not changed.
 (rerunfilecheck)             Checksum: 529B2B66E6348B6D532D87F94CEC3CAB;1071.
@@ -2272,10 +2272,10 @@ s/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1
 elvetic/uhvr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/ut
 mb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
 /usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on celloracle.pdf (113 pages, 5164151 bytes).
+Output written on celloracle.pdf (113 pages, 5164165 bytes).
 PDF statistics:
- 1349 PDF objects out of 1440 (max. 8388607)
- 1047 compressed objects within 11 object streams
+ 1350 PDF objects out of 1440 (max. 8388607)
+ 1048 compressed objects within 11 object streams
  417 named destinations out of 1000 (max. 500000)
  501 words of extra memory for PDF output out of 10000 (max. 10000000)
 
