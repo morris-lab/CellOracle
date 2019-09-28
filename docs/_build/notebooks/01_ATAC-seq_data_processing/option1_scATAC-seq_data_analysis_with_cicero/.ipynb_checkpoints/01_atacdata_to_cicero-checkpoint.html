@@ -401,16 +401,14 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-r notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># install cicero before running this script</span>
-<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">cicero</span><span class="p">)</span>
+<span></span><span class="nf">library</span><span class="p">(</span><span class="n">cicero</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="1.-Prepare-data">
 <h1>1. Prepare data<a class="headerlink" href="#1.-Prepare-data" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial we use scAtac-seq data in 10x genomics database. You do not need to download these data when you analyze your scATAC data.</p>
+<p>In this tutorial we use acATAC-seq data in 10x genomics database. You do not need to download these data if you analyze your scATAC data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -432,9 +430,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-r notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Just replace the data path below with the data path of your scATAC data if you have your scATAC data.</span>
-
+<span></span><span class="c1"># You can substitute the data path below with the data path of your scATAC data.</span>
 <span class="n">data_folder</span> <span class="o">&lt;-</span> <span class="s">&quot;data/filtered_peak_bc_matrix&quot;</span>
+
+<span class="c1"># Create a folder to save results</span>
 <span class="n">output_folder</span> <span class="o">&lt;-</span> <span class="s">&quot;cicero_output&quot;</span>
 <span class="nf">dir.create</span><span class="p">(</span><span class="n">output_folder</span><span class="p">)</span>
 </pre></div>
@@ -510,8 +509,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-r notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># filter cells by peak_count</span>
-<span class="n">max_count</span> <span class="o">&lt;-</span>  <span class="m">15000</span>
-<span class="n">min_count</span> <span class="o">&lt;-</span> <span class="m">2000</span>
+<span class="n">max_count</span> <span class="o">&lt;-</span>  <span class="m">15000</span> <span class="c1"># Please change the threshold value according to the distribution of the peak_count of your data</span>
+<span class="n">min_count</span> <span class="o">&lt;-</span> <span class="m">2000</span> <span class="c1"># Please change the threshold value according to the distribution of the peak_count of your data</span>
 <span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="n">input_cds[</span><span class="p">,</span><span class="n">Matrix</span><span class="o">::</span><span class="nf">colSums</span><span class="p">(</span><span class="nf">exprs</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="n">min_count]</span>
 <span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="n">input_cds[</span><span class="p">,</span><span class="n">Matrix</span><span class="o">::</span><span class="nf">colSums</span><span class="p">(</span><span class="nf">exprs</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">max_count]</span>
 </pre></div>
@@ -537,7 +536,8 @@ div.rendered_html tbody tr:hover {
 <span class="nf">row.names</span><span class="p">(</span><span class="n">tsne_coords</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">row.names</span><span class="p">(</span><span class="nf">pData</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span>
 <span class="n">cicero_cds</span> <span class="o">&lt;-</span> <span class="nf">make_cicero_cds</span><span class="p">(</span><span class="n">input_cds</span><span class="p">,</span> <span class="n">reduced_coordinates</span> <span class="o">=</span> <span class="n">tsne_coords</span><span class="p">)</span>
 
-<span class="nf">saveRDS</span><span class="p">(</span><span class="n">cicero_cds</span><span class="p">,</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s">&quot;/cicero_cds.Rds&quot;</span><span class="p">))</span>
+<span class="c1"># Save cicero-CDS object if you want.</span>
+<span class="c1">#saveRDS(cicero_cds, paste0(output_folder, &quot;/cicero_cds.Rds&quot;))</span>
 
 </pre></div>
 </div>
@@ -572,9 +572,6 @@ Median shared cells bin-bin: 0
 
 <span class="c1"># runc the main function</span>
 <span class="n">conns</span> <span class="o">&lt;-</span> <span class="nf">run_cicero</span><span class="p">(</span><span class="n">cicero_cds</span><span class="p">,</span> <span class="n">mm10_chromosome_length</span><span class="p">)</span> <span class="c1"># Takes a few minutes to run</span>
-
-<span class="c1"># save results</span>
-<span class="nf">saveRDS</span><span class="p">(</span><span class="n">conns</span><span class="p">,</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s">&quot;/cicero_connections.Rds&quot;</span><span class="p">))</span>
 
 <span class="c1"># check results</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">conns</span><span class="p">)</span>

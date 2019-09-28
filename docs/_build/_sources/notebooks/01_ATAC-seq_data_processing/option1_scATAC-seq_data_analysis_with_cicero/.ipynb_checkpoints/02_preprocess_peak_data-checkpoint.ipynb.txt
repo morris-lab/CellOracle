@@ -4,11 +4,10 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "In this notebook, we use the results of cicero analysis to get active promoter/enhancer DNA peaks.\n",
-    "Cicero provides us information about the connection between peaks.\n",
-    "First, we pick up peaks around Transcription starting site (TSS).\n",
+    "In this notebook, we process the results of cicero analysis to get active promoter/enhancer DNA peaks.\n",
+    "First, we pick up peaks around the transcription starting site (TSS).\n",
     "Second, we merge cicero data with the peaks around TSS.\n",
-    "Then we remove peaks that have a weak connection to TSS peak. The final product includes TSS peaks and peaks that have a strong connection with TSS peaks. We use this information as an active promoter/enhancer elements."
+    "Then we remove peaks that have a weak connection to TSS peak so that the final product includes TSS peaks and peaks that have a strong connection with the TSS peaks. We use this information as an active promoter/enhancer elements."
    ]
   },
   {
@@ -37,8 +36,8 @@
     "\n",
     "%config InlineBackend.figure_format = 'retina'\n",
     "\n",
-    "plt.rcParams['figure.figsize'] = (15,7)\n",
-    "plt.rcParams[\"savefig.dpi\"] = 200\n",
+    "plt.rcParams['figure.figsize'] = [6, 4.5]\n",
+    "plt.rcParams[\"savefig.dpi\"] = 300\n",
     "\n"
    ]
   },
@@ -182,7 +181,7 @@
    "metadata": {},
    "source": [
     "# 2. Make TSS annotation\n",
-    "!! Please make sure that you are setting correct ref genoms."
+    "## !! Please make sure that you are setting correct reference genoms."
    ]
   },
   {
@@ -297,10 +296,10 @@
    "metadata": {},
    "source": [
     "# 3. Integrate TSS info and cicero connections\n",
-    "The output file after integrartion process have three columns; peak_id, gene_short_name, coaccess.\n",
-    "\"peak_id\" is either of TSS peak or peaks that have cicero connection between TSS peak.\n",
-    "\"gene_short_name\" is gene name of TSS site. \n",
-    "\"coaccess\" is a coacces score between TSS peak. If the score is 1, it means that the peak_id is TSS itself."
+    "The output file after the integration process has three columns; \"peak_id\", \"gene_short_name\", and \"coaccess\".\n",
+    "\"peak_id\" is either of TSS peak or peaks that have a connection with a TSS peak.\n",
+    "\"gene_short_name\" is a gene name of the TSS site. \n",
+    "\"coaccess\" is a co-access score between a peak and TSS peak. If the score is 1, it means that the peak is TSS itself."
    ]
   },
   {

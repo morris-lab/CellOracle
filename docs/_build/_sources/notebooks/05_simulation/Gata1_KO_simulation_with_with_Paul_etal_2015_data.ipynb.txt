@@ -93,7 +93,7 @@
     "\n",
     "In the previous notebook, we already calculated GRNs. We use this GRNs for simulation.\n",
     "\n",
-    "For the simulation with GRNs, we import GRNs which was saved in Links object."
+    "We import GRNs which was saved in Links object."
    ]
   },
   {
@@ -116,8 +116,8 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We will construct regression models again by using the filtered GRN structure.\n",
-    "This process take less time than the GRN inference in the previous notebook because we use only significant TFs to predict target gene rather than all regulatory candidate TFs. "
+    "We construct ridge regression models again based on the filtered GRN structure.\n",
+    "This process takes less time than the GRN inference in the previous notebook because we use only significant TFs to predict target gene instead of all regulatory candidate TFs. "
    ]
   },
   {
@@ -627,11 +627,15 @@
    "source": [
     "# 4. in silico Perturbation-simulation\n",
     "\n",
-    "Next, we will do simulation. Using signal progagation algorithm of celloracle, we can predict what happens if we perturb TF(s). \n",
+    "Next, we simulate an effect of perturbation of a TF to investigate the function and regulatory mechanism of the TF. \n",
     "\n",
-    "See the celloracle paper for the details.\n",
+    "See the celloracle paper for the details and scientific remnants on the algorithm.\n",
     "\n",
-    "In this notebook, we'll show an example of how to do in silico perturb simulation; we'll simulate Gata1 KO in the hematopiesis. Previous studiy have shown that Gata1 is one of the important TFs that regulate cell fate decision in the myeloid progenitors and Gata1 have positive effect for the erythroid cell differentiation."
+    "In this notebook, we'll show an example of the simulation; we'll simulate knock-out of  Gata1 gene in the hematopoiesis. \n",
+    "\n",
+    "Celloracle's simulation supposes to recapitulate previous findings of this gene.\n",
+    "\n",
+    "The previous studies have shown that Gata1 is one of the decisive TFs that regulate cell fate in the myeloid progenitors and Gata1 have a positive effect on the erythroid cell differentiation."
    ]
   },
   {
@@ -666,7 +670,8 @@
    "source": [
     "# check gene expression \n",
     "goi = \"Gata1\"\n",
-    "sc.pl.draw_graph(oracle.adata, color=[goi, oracle.cluster_column_name], layer=\"imputed_count\", use_raw=False, cmap=\"viridis\")"
+    "sc.pl.draw_graph(oracle.adata, color=[goi, oracle.cluster_column_name],\n",
+    "                 layer=\"imputed_count\", use_raw=False, cmap=\"viridis\")"
    ]
   },
   {
@@ -703,10 +708,10 @@
    "source": [
     "## 4.1. calculate future gene expression after perturbation.\n",
     "\n",
-    "Although you can set any arbitrary gene expression value for perturb condition, we recommend avoiding too high value if you simulate overexpression. \n",
-    "In the example below, if you set Gata1 gene expression to 100, for example, it may lead to biologically infeasible results.\n",
+    "Although any arbitrary gene expression value can be used for input of perturbation, we recommend avoiding extreme value which is far from natural gene expression range. \n",
+    "If you set Gata1 gene expression to 100, for example, it may lead to biologically infeasible results.\n",
     "\n",
-    "Here we will simulate Gata1 KO; we will predict what happens to the cells if Gata1 gene expression changed into 0."
+    "Here we simulate Gata1 KO; we predict what happens to the cells if Gata1 gene expression changed into 0."
    ]
   },
   {
@@ -715,7 +720,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Enter perturbation conditions and simulate signal propagation after the perturbation.\n",
+    "# Enter perturbation conditions to simulate signal propagation after the perturbation.\n",
     "oracle.simulate_shift(perturb_condition={goi: 0.0},\n",
     "                      n_propagation=3)"
    ]
@@ -726,17 +731,19 @@
    "source": [
     "## 4.2. calculate transition probability between cells\n",
     "\n",
-    "In the step avobe, we simulated what happens if we perturb TF(s). This means we simulated future gene expression change after perturbation. This prediction is based on itelative calculations of signal propagations inside the GRN. Here we performed just small number of the calculation, thus the we simulated short future. \n",
+    "In the step avobe, we simulated simulated future gene expression after perturbation. This prediction is based on itelative calculations of signal propagations inside the GRN. Here we performed just small number of the calculation, thus the we simulated short future. \n",
     "\n",
     "Next step, we will calculate the propability of cell state transition based on the simulated data. \n",
-    "Using this cell state transition probability between cells, we can predict how cell state changes after perturbation, enabling the analysis of the relationship between genes and cell state determination.\n",
-    "\n",
+    "Using this the transition probability between cells, we can predict how a cell changes after perturbation.\n",
     "\n",
     "This transition probability will be used in two ways.\n",
     "\n",
     "(1) Visualization of directed trjectory graph.\n",
     "\n",
-    "(2) Markof simulation."
+    "(2) Markof simulation.\n",
+    "\n",
+    "In Step 4.2 and 4.3, we use some functions imported from velocytoloom class in velocyto.py.\n",
+    "Please see the documentation of VelocytoLoom for the detail of parameters in the functions. http://velocyto.org/velocyto.py/fullapi/api_analysis.html"
    ]
   },
   {
@@ -757,8 +764,13 @@
     }
    ],
    "source": [
+    "# get transition probability\n",
     "oracle.estimate_transition_prob(n_neighbors=200, knn_random=True, sampled_fraction=0.5)\n",
+    "\n",
+    "# calculate embedding \n",
     "oracle.calculate_embedding_shift(sigma_corr = 0.05)\n",
+    "\n",
+    "# calculate global trend of cell transition\n",
     "oracle.calculate_grid_arrows(smooth=0.8, steps=(40, 40), n_neighbors=300)"
    ]
   },
@@ -879,7 +891,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Based on the transition probability, markov simulation will be performed to simulate cell state transition."
+    "We can also simulate cell state transition with Markof simulation with the transition probability."
    ]
   },
   {
@@ -893,7 +905,8 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We simulate with a parameter, \"n_steps=200\" and  in the following example.\n",
+    "We simulate with the parameters, \"n_steps=200\" and \"n_duplication=5\" in the following example.\n",
+    "\n",
     "It means that \n",
     "\n",
     "(1) we will do 200 times of iterative simulations to predict how cell changes over time\n",
@@ -935,7 +948,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Check the results of simulation by picking some cells and visualize their transition trajectory.\n",
+    "Check the results of simulation. Pick up some cells and visualize their transition trajectory.\n",
     "\n"
    ]
   },
@@ -1046,7 +1059,7 @@
    "source": [
     "Sankey diagram is useful when you want to visualize cell transition between some groups.\n",
     "\n",
-    "plot_mc_resutls_as_sankey function can make a Sankey diagram with any arbitrary cluster information.\n",
+    "The function below can make a Sankey diagram with any arbitrary cluster unit.\n",
     "\n"
    ]
   },
@@ -1171,12 +1184,12 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "In the example above, we may conclude several things as follows.\n",
+    "Based on the results, we may conclude several things as follows.\n",
     "\n",
-    "Gata1 KO induces cell state transition from Erythroids to MEP, from MEP to GMP.\n",
-    "These results suggest that Gata1 may play important roles in the progression of Erythroid differentiation and cell state determination between MEP and GMP lineage.\n",
+    "Gata1 KO induced cell state transition from Erythroids to MEP, and from MEP to GMP.\n",
+    "(1) These results suggest that Gata1 may play a role in the progression of Erythroid differentiation and cell state determination between MEP and GMP lineage.\n",
     "\n",
-    "The data also show that Gata1 KO may induce cell state transition from granulocytes to late GMP, suggesting Gata1's involvement in Granulocytes differentiation.\n",
+    "(2) Gata1 KO also induced cell state transition from granulocytes to late GMP, suggesting Gata1's involvement in Granulocytes differentiation.\n",
     "\n",
     "These results agree with previous reports about Gata1. \n",
     "We could recapitulate Gata1's cell-type-specific function regarding the cell fate decisions in hematopoiesis."

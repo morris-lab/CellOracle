@@ -394,8 +394,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<p>In this notebook, we use the results of cicero analysis to get active promoter/enhancer DNA peaks. Cicero provides us information about the connection between peaks. First, we pick up peaks around Transcription starting site (TSS). Second, we merge cicero data with the peaks around TSS. Then we remove peaks that have a weak connection to TSS peak. The final product includes TSS peaks and peaks that have a strong connection with TSS peaks. We use this information as an active promoter/enhancer
-elements.</p>
+<p>In this notebook, we process the results of cicero analysis to get active promoter/enhancer DNA peaks. First, we pick up peaks around the transcription starting site (TSS). Second, we merge cicero data with the peaks around TSS. Then we remove peaks that have a weak connection to TSS peak so that the final product includes TSS peaks and peaks that have a strong connection with the TSS peaks. We use this information as an active promoter/enhancer elements.</p>
 <div class="section" id="0.-Import-libraries">
 <h1>0. Import libraries<a class="headerlink" href="#0.-Import-libraries" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput nblast docutils container">
@@ -416,8 +415,8 @@ elements.</p>
 
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;savefig.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;savefig.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 
 
 </pre></div>
@@ -544,7 +543,8 @@ elements.</p>
 </div>
 <div class="section" id="2.-Make-TSS-annotation">
 <h1>2. Make TSS annotation<a class="headerlink" href="#2.-Make-TSS-annotation" title="Permalink to this headline">¶</a></h1>
-<p>!! Please make sure that you are setting correct ref genoms.</p>
+<div class="section" id="!!-Please-make-sure-that-you-are-setting-correct-reference-genoms.">
+<h2>!! Please make sure that you are setting correct reference genoms.<a class="headerlink" href="#!!-Please-make-sure-that-you-are-setting-correct-reference-genoms." title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -642,9 +642,10 @@ tss peaks in que: 16987
 </div></div>
 </div>
 </div>
+</div>
 <div class="section" id="3.-Integrate-TSS-info-and-cicero-connections">
 <h1>3. Integrate TSS info and cicero connections<a class="headerlink" href="#3.-Integrate-TSS-info-and-cicero-connections" title="Permalink to this headline">¶</a></h1>
-<p>The output file after integrartion process have three columns; peak_id, gene_short_name, coaccess. “peak_id” is either of TSS peak or peaks that have cicero connection between TSS peak. “gene_short_name” is gene name of TSS site. “coaccess” is a coacces score between TSS peak. If the score is 1, it means that the peak_id is TSS itself.</p>
+<p>The output file after the integration process has three columns; “peak_id”, “gene_short_name”, and “coaccess”. “peak_id” is either of TSS peak or peaks that have a connection with a TSS peak. “gene_short_name” is a gene name of the TSS site. “coaccess” is a co-access score between a peak and TSS peak. If the score is 1, it means that the peak is TSS itself.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>

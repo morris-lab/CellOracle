@@ -13,8 +13,6 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# install cicero before running this script\n",
-    "rm(list=ls())\n",
     "library(cicero)"
    ]
   },
@@ -23,8 +21,8 @@
    "metadata": {},
    "source": [
     "# 1. Prepare data\n",
-    "In this tutorial we use scAtac-seq data in 10x genomics database.\n",
-    "You do not need to download these data when you analyze your scATAC data. "
+    "In this tutorial we use acATAC-seq data in 10x genomics database.\n",
+    "You do not need to download these data if you analyze your scATAC data. "
    ]
   },
   {
@@ -49,9 +47,10 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Just replace the data path below with the data path of your scATAC data if you have your scATAC data.\n",
-    "\n",
+    "# You can substitute the data path below with the data path of your scATAC data.\n",
     "data_folder <- \"data/filtered_peak_bc_matrix\"\n",
+    "\n",
+    "# Create a folder to save results\n",
     "output_folder <- \"cicero_output\"\n",
     "dir.create(output_folder)"
    ]
@@ -146,8 +145,8 @@
    "outputs": [],
    "source": [
     "# filter cells by peak_count\n",
-    "max_count <-  15000\n",
-    "min_count <- 2000\n",
+    "max_count <-  15000 # Please change the threshold value according to the distribution of the peak_count of your data\n",
+    "min_count <- 2000 # Please change the threshold value according to the distribution of the peak_count of your data\n",
     "input_cds <- input_cds[,Matrix::colSums(exprs(input_cds)) >= min_count] \n",
     "input_cds <- input_cds[,Matrix::colSums(exprs(input_cds)) <= max_count] "
    ]
@@ -194,7 +193,8 @@
     "row.names(tsne_coords) <- row.names(pData(input_cds))\n",
     "cicero_cds <- make_cicero_cds(input_cds, reduced_coordinates = tsne_coords)\n",
     "\n",
-    "saveRDS(cicero_cds, paste0(output_folder, \"/cicero_cds.Rds\"))\n"
+    "# Save cicero-CDS object if you want.\n",
+    "#saveRDS(cicero_cds, paste0(output_folder, \"/cicero_cds.Rds\"))\n"
    ]
   },
   {
@@ -287,9 +287,6 @@
     "\n",
     "# runc the main function\n",
     "conns <- run_cicero(cicero_cds, mm10_chromosome_length) # Takes a few minutes to run\n",
-    "\n",
-    "# save results\n",
-    "saveRDS(conns, paste0(output_folder, \"/cicero_connections.Rds\"))\n",
     "\n",
     "# check results\n",
     "head(conns)"

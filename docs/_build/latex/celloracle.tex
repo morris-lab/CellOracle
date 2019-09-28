@@ -181,7 +181,7 @@
 
 
 \title{celloracle}
-\date{Sep 26, 2019}
+\date{Sep 28, 2019}
 \release{0.1.0}
 \author{}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -197,7 +197,7 @@
 
 CellOracle is a python library for the analysis of Gene Regulatory Network with single cell data.
 
-Source code and tutorials are available at \sphinxhref{https://github.com/KenjiKamimoto-wustl122/CellOracle}{celloracle  git hub repository}
+Source code are available at \sphinxhref{https://github.com/KenjiKamimoto-wustl122/CellOracle}{celloracle  git hub repository}
 
 \begin{sphinxadmonition}{note}{Note:}
 \begin{DUlineblock}{0em}
@@ -209,9 +209,9 @@ Source code and tutorials are available at \sphinxhref{https://github.com/KenjiK
 \item[] Documentation is also available as a word and pdf file.
 \end{DUlineblock}
 
-\sphinxcode{\sphinxupquote{pdf version}}
+\sphinxcode{\sphinxupquote{pdf documentation}}
 
-\sphinxcode{\sphinxupquote{microsoft word version}}
+\sphinxcode{\sphinxupquote{word documentation}}
 
 \begin{DUlineblock}{0em}
 \item[] \sphinxstylestrong{Could you please add comments on the file and send it back to Kenji?}
@@ -434,23 +434,30 @@ Please make sure that all R libraries are installed. The following message will 
 
 \section{Tutorial}
 \label{\detokenize{tutorials/index:tutorial}}\label{\detokenize{tutorials/index:id1}}\label{\detokenize{tutorials/index::doc}}
-Analysis of \sphinxcode{\sphinxupquote{celloracle}} proceeds through multiple steps below.
-Please run the notebooks following the order. If you do not have ATAC-seq data and want to use default genome and TF binding information, you can skip the first and second step and start from the third step.
-Please refer to the \sphinxcode{\sphinxupquote{celloracle}} paper for detailed information.
+The analysis proceeds through multiple steps.
+Please run the notebooks following the number of the notebook.
+If you do not have ATAC-seq data and want to use the default TF binding information, you can skip the first and second step and start from the third step.
 
-You can download all notebooks from \sphinxhref{https://github.com/KenjiKamimoto-wustl122/CellOracle/tree/master/docs/notebooks}{here} .
+Please refer to the \sphinxcode{\sphinxupquote{celloracle}} paper for scientific premise and the detail of the algorithm of celloracle.
+
+The jupyter notebook files in this tutorial are available \sphinxhref{https://github.com/KenjiKamimoto-wustl122/CellOracle/tree/master/docs/notebooks}{here} .
 
 
 \subsection{ATAC-seq data preprocessing}
 \label{\detokenize{tutorials/atac:atac-seq-data-preprocessing}}\label{\detokenize{tutorials/atac:atac}}\label{\detokenize{tutorials/atac::doc}}
-Process scATAC-seq data (or bulk ATAC-seq data) to get open accessible promoter/enhancer DNA sequence.
-If you have a scATAC-seq data, proximal and distal cis-regulatory elements from TSS site can be picked up using \sphinxhref{https://cole-trapnell-lab.github.io/cicero-release/docs/\#installing-cicero}{Cicero} . If you have bulk ATAC-seq data, open accessible DNA elements around TSS site will be picked up.
+In this step, we process scATAC-seq data (or bulk ATAC-seq data) to get open accessible promoter/enhancer DNA sequence.
+We can get active proximal promoter/enhancer genome sequence by picking up ATAC-seq peaks that exist around the transcription starting site (TSS).
+Distal cis-regulatory elements can be picked up using  \sphinxhref{https://cole-trapnell-lab.github.io/cicero-release/docs/\#installing-cicero}{Cicero} .
+Cicero analyzes scATAC-seq data to calculate a co-accessible score between peaks.
+We can identify cis-regulatory elements using Cicero co-access score and TSS information.
+
+If you have bulk ATAC-seq data instead of scATAC-data, we’ll get only proximal promoter/enhancer genome sequence.
 
 
 \subsubsection{A. Extract TF binding information from scATAC-seq data}
 \label{\detokenize{tutorials/atac:a-extract-tf-binding-information-from-scatac-seq-data}}
-If you want to use scATAC-seq data, you can start from Cicero analysis to get information of distal cis-regulatory elements.
-This step use Cicero and do not use celloracle. Please refer to \sphinxhref{https://cole-trapnell-lab.github.io/cicero-release/}{the documentation of Cicero} for the detailed usage.
+If you have a scATAC-seq data, you can get information of distal cis-regulatory elements.
+This step uses Cicero and does not use celloracle. Please refer to \sphinxhref{https://cole-trapnell-lab.github.io/cicero-release/}{the documentation of Cicero} for the detailed usage.
 
 R notebook
 
@@ -462,16 +469,14 @@ R notebook
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} install cicero before running this script}
-\PYG{n+nf}{rm}\PYG{p}{(}\PYG{n}{list}\PYG{o}{=}\PYG{n+nf}{ls}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
-\PYG{n+nf}{library}\PYG{p}{(}\PYG{n}{cicero}\PYG{p}{)}
+\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n+nf}{library}\PYG{p}{(}\PYG{n}{cicero}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
 
 \paragraph{1. Prepare data}
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero:1.-Prepare-data}}
-In this tutorial we use scAtac-seq data in 10x genomics database. You do not need to download these data when you analyze your scATAC data.
+In this tutorial we use acATAC-seq data in 10x genomics database. You do not need to download these data if you analyze your scATAC data.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -494,9 +499,10 @@ In this tutorial we use scAtac-seq data in 10x genomics database. You do not nee
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Just replace the data path below with the data path of your scATAC data if you have your scATAC data.}
-
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} You can substitute the data path below with the data path of your scATAC data.}
 \PYG{n}{data\PYGZus{}folder} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{data/filtered\PYGZus{}peak\PYGZus{}bc\PYGZus{}matrix\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Create a folder to save results}
 \PYG{n}{output\PYGZus{}folder} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{cicero\PYGZus{}output\PYGZdq{}}
 \PYG{n+nf}{dir.create}\PYG{p}{(}\PYG{n}{output\PYGZus{}folder}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -576,8 +582,8 @@ In this tutorial we use scAtac-seq data in 10x genomics database. You do not nee
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} filter cells by peak\PYGZus{}count}
-\PYG{n}{max\PYGZus{}count} \PYG{o}{\PYGZlt{}\PYGZhy{}}  \PYG{l+m}{15000}
-\PYG{n}{min\PYGZus{}count} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{l+m}{2000}
+\PYG{n}{max\PYGZus{}count} \PYG{o}{\PYGZlt{}\PYGZhy{}}  \PYG{l+m}{15000} \PYG{c+c1}{\PYGZsh{} Please change the threshold value according to the distribution of the peak\PYGZus{}count of your data}
+\PYG{n}{min\PYGZus{}count} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{l+m}{2000} \PYG{c+c1}{\PYGZsh{} Please change the threshold value according to the distribution of the peak\PYGZus{}count of your data}
 \PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n}{input\PYGZus{}cds}\PYG{n}{[}\PYG{p}{,}\PYG{n}{Matrix}\PYG{o}{::}\PYG{n+nf}{colSums}\PYG{p}{(}\PYG{n+nf}{exprs}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{n}{min\PYGZus{}count}\PYG{n}{]}
 \PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n}{input\PYGZus{}cds}\PYG{n}{[}\PYG{p}{,}\PYG{n}{Matrix}\PYG{o}{::}\PYG{n+nf}{colSums}\PYG{p}{(}\PYG{n+nf}{exprs}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{p}{)} \PYG{o}{\PYGZlt{}=} \PYG{n}{max\PYGZus{}count}\PYG{n}{]}
 \end{sphinxVerbatim}
@@ -603,7 +609,8 @@ In this tutorial we use scAtac-seq data in 10x genomics database. You do not nee
 \PYG{n+nf}{row.names}\PYG{p}{(}\PYG{n}{tsne\PYGZus{}coords}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{row.names}\PYG{p}{(}\PYG{n+nf}{pData}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{cicero\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{make\PYGZus{}cicero\PYGZus{}cds}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{,} \PYG{n}{reduced\PYGZus{}coordinates} \PYG{o}{=} \PYG{n}{tsne\PYGZus{}coords}\PYG{p}{)}
 
-\PYG{n+nf}{saveRDS}\PYG{p}{(}\PYG{n}{cicero\PYGZus{}cds}\PYG{p}{,} \PYG{n+nf}{paste0}\PYG{p}{(}\PYG{n}{output\PYGZus{}folder}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/cicero\PYGZus{}cds.Rds\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Save cicero\PYGZhy{}CDS object if you want.}
+\PYG{c+c1}{\PYGZsh{}saveRDS(cicero\PYGZus{}cds, paste0(output\PYGZus{}folder, \PYGZdq{}/cicero\PYGZus{}cds.Rds\PYGZdq{}))}
 
 \end{sphinxVerbatim}
 }
@@ -649,9 +656,6 @@ Median shared cells bin-bin: 0
 
 \PYG{c+c1}{\PYGZsh{} runc the main function}
 \PYG{n}{conns} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{run\PYGZus{}cicero}\PYG{p}{(}\PYG{n}{cicero\PYGZus{}cds}\PYG{p}{,} \PYG{n}{mm10\PYGZus{}chromosome\PYGZus{}length}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} Takes a few minutes to run}
-
-\PYG{c+c1}{\PYGZsh{} save results}
-\PYG{n+nf}{saveRDS}\PYG{p}{(}\PYG{n}{conns}\PYG{p}{,} \PYG{n+nf}{paste0}\PYG{p}{(}\PYG{n}{output\PYGZus{}folder}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/cicero\PYGZus{}connections.Rds\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} check results}
 \PYG{n+nf}{head}\PYG{p}{(}\PYG{n}{conns}\PYG{p}{)}
@@ -715,12 +719,11 @@ A data.frame: 6 × 3
 \end{sphinxVerbatim}
 }
 
-Next, the results of Cicero analysis will be processed with celloracle to make TSS annotations.
+Next, the results of Cicero analysis will be processed to make TSS annotations.
 
 Python notebook
 
-In this notebook, we use the results of cicero analysis to get active promoter/enhancer DNA peaks. Cicero provides us information about the connection between peaks. First, we pick up peaks around Transcription starting site (TSS). Second, we merge cicero data with the peaks around TSS. Then we remove peaks that have a weak connection to TSS peak. The final product includes TSS peaks and peaks that have a strong connection with TSS peaks. We use this information as an active promoter/enhancer
-elements.
+In this notebook, we process the results of cicero analysis to get active promoter/enhancer DNA peaks. First, we pick up peaks around the transcription starting site (TSS). Second, we merge cicero data with the peaks around TSS. Then we remove peaks that have a weak connection to TSS peak so that the final product includes TSS peaks and peaks that have a strong connection with the TSS peaks. We use this information as an active promoter/enhancer elements.
 
 
 \paragraph{0. Import libraries}
@@ -743,8 +746,8 @@ elements.
 
 \PYG{o}{\PYGZpc{}}\PYG{k}{config} InlineBackend.figure\PYGZus{}format = \PYGZsq{}retina\PYGZsq{}
 
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.figsize}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{savefig.dpi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{200}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.figsize}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{savefig.dpi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{300}
 
 
 \end{sphinxVerbatim}
@@ -843,8 +846,9 @@ elements.
 
 \paragraph{2. Make TSS annotation}
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:2.-Make-TSS-annotation}}
-!! Please make sure that you are setting correct ref genoms.
 
+\subparagraph{!! Please make sure that you are setting correct reference genoms.}
+\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:!!-Please-make-sure-that-you-are-setting-correct-reference-genoms.}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -899,7 +903,7 @@ tss peaks in que: 16987
 
 \paragraph{3. Integrate TSS info and cicero connections}
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:3.-Integrate-TSS-info-and-cicero-connections}}
-The output file after integrartion process have three columns; peak\_id, gene\_short\_name, coaccess. “peak\_id” is either of TSS peak or peaks that have cicero connection between TSS peak. “gene\_short\_name” is gene name of TSS site. “coaccess” is a coacces score between TSS peak. If the score is 1, it means that the peak\_id is TSS itself.
+The output file after the integration process has three columns; “peak\_id”, “gene\_short\_name”, and “coaccess”. “peak\_id” is either of TSS peak or peaks that have a connection with a TSS peak. “gene\_short\_name” is a gene name of the TSS site. “coaccess” is a co-access score between a peak and TSS peak. If the score is 1, it means that the peak is TSS itself.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -1033,7 +1037,7 @@ Save the promoter/enhancer peak.
 
 \subsubsection{B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data}
 \label{\detokenize{tutorials/atac:b-extract-tf-binding-information-from-bulk-atac-seq-data-or-chip-seq-data}}
-Instead of scATAC-seq data bulk DNA-seq data can be used.
+Bulk DNA-seq data can be used to get open accessible promoter/enhancer sequence.
 
 Python notebook
 
@@ -1058,9 +1062,8 @@ Python notebook
 
 \PYG{o}{\PYGZpc{}}\PYG{k}{config} InlineBackend.figure\PYGZus{}format = \PYGZsq{}retina\PYGZsq{}
 
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.figsize}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{savefig.dpi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{200}
-
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.figsize}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{savefig.dpi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{300}
 
 \end{sphinxVerbatim}
 }
@@ -1292,7 +1295,9 @@ tss peaks in que: 24822
 
 \subsection{Transcription factor binding motif scan}
 \label{\detokenize{tutorials/motifscan:transcription-factor-binding-motif-scan}}\label{\detokenize{tutorials/motifscan:motifscan}}\label{\detokenize{tutorials/motifscan::doc}}
-Promoter/enhancer DNA sequence will be subjected to TF-binding motif scan to get the list of potential regulatory genes for each target gene.
+We identified open-accessible Promoter/enhancer DNAs using ATAC-seq data.
+Next, we scan the regulatory genomic sequence searching for the TF-binding motifs to get the list of TFs for each target gene.
+In the later GRN inference process, this TF list per target gene will be used as a potential regulatory connection.
 
 Python notebook
 
@@ -1414,7 +1419,7 @@ mean peak length: 1756.1744260204082
 
 \paragraph{2.1. Remove short peaks}
 \label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:2.1.-Remove-short-peaks}}
-Short peak cannot be used for motif scan. Remove short DNA fragment.
+Short DNA fragment, such as less than 5 bases, cannot be used for motif scan. Remove short DNA fragment.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -1428,7 +1433,7 @@ Short peak cannot be used for motif scan. Remove short DNA fragment.
 
 \subsubsection{3. Instantiate TFinfo object and search for TF binding motifs}
 \label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:3.-Instantiate-TFinfo-object-and-search-for-TF-binding-motifs}}
-In celloracle motif analysis, we use custom class; TFinfo. This class convert peak data into get DNA sequence and scan the DNA sequence searching for TF binding motifs. Then the results of motif scan will be filtered and converted into several files, such as python dictionary or dataframe. These TF information is necessary for celloracle’s GRN inference.
+The motif analysis module has a custom class; TFinfo. TFinfo object converts a peak data into a DNA sequence and scans the DNA sequence searching for TF binding motifs. Then the results of motif scan will be filtered and converted into several files, such as python dictionary or dataframe. This TF information is necessary for GRN inference.
 
 
 \subsubsection{3.1 check reference genome installation}
@@ -1911,7 +1916,7 @@ HBox(children=(IntProgress(value=0, max=1090), HTML(value=\PYGZsq{}\PYGZsq{})))
 
 \subsubsection{7. Save TFinfo as dictionary and dataframe}
 \label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:7.-Save-TFinfo-as-dictionary-and-dataframe}}
-we’ll use this information to make GRN. Save this results.
+We’ll use this information in the later step to make GRN. Save the results.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -1931,34 +1936,47 @@ we’ll use this information to make GRN. Save this results.
 \end{sphinxVerbatim}
 }
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
-\end{sphinxVerbatim}
-}
-
 
 \subsection{Single-cell RNA-seq data preprocessing}
-\label{\detokenize{tutorials/scrnaprocess:single-cell-rna-seq-data-preprocessing}}\label{\detokenize{tutorials/scrnaprocess:scrnaprocess}}\label{\detokenize{tutorials/scrnaprocess::doc}}
-Network analysis and simulation in celloracle require processed scRNA-seq data.
-We recommend processing scRNA-seq data using either scanpy or Seurat.
-If you want to know general idea of scRNA-seq data processing, please go to \sphinxhref{https://scanpy.readthedocs.io/en/stable/}{the documentation of scanpy} and \sphinxhref{https://satijalab.org/seurat/vignettes.html}{the documentation of Seurat} .
-This step needs to include data quality check, filtering, normalization, dimensional reduction, clustering and cluster annotation.
-If you have preprocessed scRNA-seq data, such as anndata or seurat object, you can skip this part.
+\label{\detokenize{tutorials/scrnaprocess:single-cell-rna-seq-data-preprocessing}}\label{\detokenize{tutorials/scrnaprocess:scrnaprocess}}\label{\detokenize{tutorials/scrnaprocess::doc}}\begin{description}
+\item[{Network analysis and simulation in celloracle will be performed using scRNA-seq data. The scRNA-seq data should include the compontnes below.}] \leavevmode\begin{itemize}
+\item {} 
+Gene expression matrix; mRNA counts before scaling and transformation.
 
-\begin{sphinxadmonition}{note}{Note:}
-several tips
-\end{sphinxadmonition}
+\item {} 
+Clustering results.
+
+\item {} 
+Dimensional reduction results.
+
+\end{itemize}
+
+\item[{In addition to these minimum requirements, we highly recommend doing these analyses below in the preprocessing step.}] \leavevmode\begin{itemize}
+\item {} 
+Data quality check and Cell/Gene filtering.
+
+\item {} 
+Normalization
+
+\item {} 
+Identification of highly variable genes
+
+\end{itemize}
+
+\end{description}
+
+We recommend processing scRNA-seq data using either scanpy or Seurat.
+If you are not familiar with the general workflow of scRNA-seq data processing, please go to \sphinxhref{https://scanpy.readthedocs.io/en/stable/}{the documentation of scanpy} and \sphinxhref{https://satijalab.org/seurat/vignettes.html}{the documentation of Seurat} .
+
+If you already have preprocessed scRNA-seq data, which includes necessary information above, you can skip this part.
 
 
 \subsubsection{A. scRNA-seq data preprocessing with scanpy}
 \label{\detokenize{tutorials/scrnaprocess:a-scrna-seq-data-preprocessing-with-scanpy}}
-scanpy is a python library for the analysis of scRNA-seq data.
+\sphinxcode{\sphinxupquote{scanpy}} is a python library for the analysis of scRNA-seq data.
 
-In this tutorial, we use the almost same code as  \sphinxhref{https://scanpy-tutorials.readthedocs.io/en/latest/paga-paul15.html}{one of scanpy tutorials} with some modification.
+In this tutorial, we introduce an example of scRNA-seq preprocessing for celloracle with \sphinxcode{\sphinxupquote{scanpy}}.
+We wrote the notebook based on \sphinxhref{https://scanpy-tutorials.readthedocs.io/en/latest/paga-paul15.html}{one of scanpy’s tutorials} with some modification.
 
 Python notebook
 
@@ -1986,14 +2004,14 @@ Python notebook
 \llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 \PYG{o}{\PYGZpc{}}\PYG{k}{config} InlineBackend.figure\PYGZus{}format = \PYGZsq{}retina\PYGZsq{}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{savefig.dpi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{300}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figure.figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{]}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figure.figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
 \end{sphinxVerbatim}
 }
 
 
 \paragraph{1. Load data}
 \label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:1.-Load-data}}
-In this notebook, we show an example of scRNA-seq preprocessing using scRNA-seq data of hematopoiesis (Paul, F., Arkin, Y., Giladi, A., Jaitin, D. A., Kenigsberg, E., Keren-Shaul, H., et al. (2015). Transcriptional Heterogeneity and Lineage Commitment in Myeloid Progenitors. Cell, 163(7), 1663\textendash{}1677. \sphinxurl{http://doi.org/10.1016/j.cell.2015.11.013}). This data can be download using a scanpy’s function.
+In this notebook, we will show an example of how to process scRNA-seq data using a scRNA-seq data of hematopoiesis (Paul, F., Arkin, Y., Giladi, A., Jaitin, D. A., Kenigsberg, E., Keren-Shaul, H., et al. (2015). Transcriptional Heterogeneity and Lineage Commitment in Myeloid Progenitors. Cell, 163(7), 1663\textendash{}1677. \sphinxurl{http://doi.org/10.1016/j.cell.2015.11.013}). You can easily download this scRNA-seq data with a scanpy’s function.
 
 Please change the code below if you want to use your data.
 
@@ -2074,16 +2092,16 @@ Trying to set attribute `.uns` of view, making a copy.
 }
 
 
-\paragraph{4. Variable gene detection}
-\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:4.-Variable-gene-detection}}
-In celloracle we will make GRN and do simulation using many genes. Removing weakly-variable gene genes will reduce calculation time. We recomend using top 2000\textasciitilde{}3000 variable genes.
+\paragraph{4. Identification of highly variable genes}
+\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:4.-Identification-of-highly-variable-genes}}
+Removing non-variable genes reduces calculation time in the GRN reconstruction and simulation. We recommend using top 2000\textasciitilde{}3000 variable genes.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} select top2000 highly\PYGZhy{}variable genes}
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} select top 2000 highly\PYGZhy{}variable genes}
 \PYG{n}{filter\PYGZus{}result} \PYG{o}{=} \PYG{n}{sc}\PYG{o}{.}\PYG{n}{pp}\PYG{o}{.}\PYG{n}{filter\PYGZus{}genes\PYGZus{}dispersion}\PYG{p}{(}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{X}\PYG{p}{,}
                                               \PYG{n}{flavor}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{cell\PYGZus{}ranger}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
                                               \PYG{n}{n\PYGZus{}top\PYGZus{}genes}\PYG{o}{=}\PYG{l+m+mi}{2000}\PYG{p}{,}
@@ -2119,7 +2137,7 @@ Trying to set attribute `.obs` of view, making a copy.
 
 \paragraph{5. Log transformation}
 \label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:5.-Log-transformation}}
-Log transformation and scaling are necessary for many single cell analysis. But we still use non-transformed gene expression data in the celloracle analysis. We keep raw count in anndata with following command.
+We will do log transformation scaling because these are necessary for PCA, clustering, differential gene calculation. However, we also need non-transformed gene expression data in the celloracle analysis. Thus we keep raw count in anndata with the following command before log transformation.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -2150,9 +2168,11 @@ Log transformation and scaling are necessary for many single cell analysis. But 
 
 \paragraph{6. Dimensional reduction}
 \label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:6.-Dimensional-reduction}}
-Dimensional reduction is one of the most important parts in the scRNA-seq analysis. In celloracle, we use dimensional reduction embeddings for the simulation of cell transition. We need to select an algorithm for dimensional reduction so that cell-cell relationship is properly represented. We recommend using one of the dimensional reduction algorithms (or trajectory inference algorithms); UMAP, tSNE, diffusion map, Force-directed graph drawing, PAGA.
+Dimensional reduction is one of the most important parts of the scRNA-seq analysis. celloracle needs dimensional reduction embeddings to simulate cell transition.
 
-In this example, we use a combination of diffusion, force-directed graph drawing, and PAGA.
+Please choose a proper algorithm of dimensional reduction so that the embedding appropriately represents the data structure. We recommend using one of the dimensional reduction algorithms (or trajectory inference algorithms); UMAP, tSNE, diffusion map, Force-directed graph drawing, PAGA.
+
+In this example, we use a combination of four algorithms; diffusion map, force-directed graph drawing, and PAGA.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -2235,7 +2255,16 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{paga}\PYG{p}{(}\PYG{n}{adata}\PYG{p}{)}
+\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figure.figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{paga}\PYG{p}{(}\PYG{n}{adata}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2246,7 +2275,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=815\sphinxpxdimen,height=363\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_22_0}.png}
+\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=277\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_23_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2255,7 +2284,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{sc}\PYG{o}{.}\PYG{n}{tl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{init\PYGZus{}pos}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{paga}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{123}\PYG{p}{)}
+\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{sc}\PYG{o}{.}\PYG{n}{tl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{init\PYGZus{}pos}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{paga}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{123}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2264,8 +2293,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{louvain}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
-                 \PYG{n}{legend\PYGZus{}loc}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{on data}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{louvain}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{legend\PYGZus{}loc}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{on data}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2276,7 +2304,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=699\sphinxpxdimen,height=369\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_24_0}.png}
+\noindent\sphinxincludegraphics[width=364\sphinxpxdimen,height=288\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_25_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2291,7 +2319,16 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{markers} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Erythroids}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gata1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Klf1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gypa}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Hba\PYGZhy{}a2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}
+\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figure.figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mf}{4.5}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[19]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{markers} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Erythroids}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gata1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Klf1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gypa}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Hba\PYGZhy{}a2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}
            \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Megakaryocytes}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Itga2b}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Pbx1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Sdpr}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Vwf}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}
             \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Granulocytes}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Elane}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Cebpe}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Ctsg}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Mpo}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gfi1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}
             \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Monocytes}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Irf8}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Csf1r}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Ctsg}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Mpo}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}
@@ -2301,7 +2338,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 
 \PYG{k}{for} \PYG{n}{cell\PYGZus{}type}\PYG{p}{,} \PYG{n}{genes} \PYG{o+ow}{in} \PYG{n}{markers}\PYG{o}{.}\PYG{n}{items}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
     \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{marker gene of }\PYG{l+s+si}{\PYGZob{}cell\PYGZus{}type\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
-    \PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{n}{genes}\PYG{p}{,} \PYG{n}{use\PYGZus{}raw}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+    \PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{n}{genes}\PYG{p}{,} \PYG{n}{use\PYGZus{}raw}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{ncols}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}
     \PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{(}\PYG{p}{)}
 
 
@@ -2334,7 +2371,7 @@ marker gene of Erythroids
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=2979\sphinxpxdimen,height=376\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_1}.png}
+\noindent\sphinxincludegraphics[width=656\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2364,7 +2401,7 @@ marker gene of Megakaryocytes
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=2986\sphinxpxdimen,height=376\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_3}.png}
+\noindent\sphinxincludegraphics[width=644\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2394,7 +2431,7 @@ marker gene of Granulocytes
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=2997\sphinxpxdimen,height=751\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_5}.png}
+\noindent\sphinxincludegraphics[width=655\sphinxpxdimen,height=856\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2424,7 +2461,7 @@ marker gene of Monocytes
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=2997\sphinxpxdimen,height=376\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_7}.png}
+\noindent\sphinxincludegraphics[width=656\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_7}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2454,7 +2491,7 @@ marker gene of Mast\_cells
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=2231\sphinxpxdimen,height=376\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_9}.png}
+\noindent\sphinxincludegraphics[width=644\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_9}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2484,7 +2521,7 @@ marker gene of Basophils
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=1488\sphinxpxdimen,height=376\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_11}.png}
+\noindent\sphinxincludegraphics[width=644\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_11}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2513,7 +2550,7 @@ Based on the marker gene expression and previous report, we will manually make a
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=1452\sphinxpxdimen,height=376\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_30_0}.png}
+\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_32_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2623,7 +2660,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \llap{\color{nbsphinxin}[24]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check results}
-\PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{cell\PYGZus{}type}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
+\PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{cell\PYGZus{}type}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{paul15\PYGZus{}clusters}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}
                  \PYG{n}{legend\PYGZus{}loc}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{on data}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -2654,7 +2691,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=699\sphinxpxdimen,height=369\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_34_1}.png}
+\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_36_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2680,7 +2717,7 @@ We’ll make another annotation manually for each louvain clusters
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=1452\sphinxpxdimen,height=376\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_36_0}.png}
+\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_38_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2761,15 +2798,15 @@ We’ll make another annotation manually for each louvain clusters
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=1452\sphinxpxdimen,height=376\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_39_1}.png}
+\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_41_1}.png}
 
 \end{nbsphinxfancyoutput}
 
 We’ve done secveral scRNA-preprocessing steps; filtering, normalization, clustering, dimensional reduction. In the next step, we’ll do GRN inference, network analysis, and in silico simulation based on these information.
 
 
-\paragraph{9. (Option) Select cell cluster}
-\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:9.-(Option)-Select-cell-cluster}}
+\paragraph{9. (Option) Subset cells}
+\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:9.-(Option)-Subset-cells}}
 In this tutorial, we are using scRNA-seq data of hematopoiesis. In the latter part, we will focus on the cell fate decision in the myeloid lineage. So we remove non-myeloid cell cluster, DC and Lymphoid now.
 
 {
@@ -2824,19 +2861,19 @@ Categories (9, object): [MEP, Monocytes, Erythroids, Granulocytes, ..., GMP, Meg
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=1452\sphinxpxdimen,height=376\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_44_0}.png}
+\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_46_0}.png}
 
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{9. Save data}
-\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:9.-Save-data}}
+\paragraph{10. Save data}
+\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:10.-Save-data}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[32]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{write\PYGZus{}h5ad}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{data/Paul\PYGZus{}etal\PYGZus{}15.h5ad}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\llap{\color{nbsphinxin}[32]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}adata.write\PYGZus{}h5ad(\PYGZdq{}data/Paul\PYGZus{}etal\PYGZus{}15.h5ad\PYGZdq{})}
 \end{sphinxVerbatim}
 }
 
@@ -2854,12 +2891,22 @@ Categories (9, object): [MEP, Monocytes, Erythroids, Granulocytes, ..., GMP, Meg
 \label{\detokenize{tutorials/scrnaprocess:b-scrna-seq-data-preprocessing-with-seurat}}
 R notebook … comming soon
 
+\begin{sphinxadmonition}{note}{Note:}
+If you use \sphinxcode{\sphinxupquote{Seurat}} for preprocessing, you need to convert the scRNA-seq data (Seurat object) into anndata to analyze the data with \sphinxcode{\sphinxupquote{celloracle}}.
+\sphinxcode{\sphinxupquote{celloracle}} have python API and command-line API to convert Seurat object into anndata.
+Please go to the documentation of celloracle API for more information.
+\end{sphinxadmonition}
+
 
 \subsection{Network analysis}
 \label{\detokenize{tutorials/networkanalysis:network-analysis}}\label{\detokenize{tutorials/networkanalysis:networkanalysis}}\label{\detokenize{tutorials/networkanalysis::doc}}
-\sphinxcode{\sphinxupquote{celloracle}} reconstructs cluster-specicif GRNs using scRNA-seq dataset and TF binding information which was made in the previous steps.
-Then several network analysis methods will be applied to the cluster specific GRNs.
-This step includes network structure analysis, network score analysis, and key regulatory gene identification.
+\sphinxcode{\sphinxupquote{celloracle}} import scRNA-seq dataset and TF binding information to find active regulatory connections for all genes, generating sample-specific GRNs.
+
+The inferred GRN is analyzed with several network algorithms to get various network scores. The network score is useful to identify key regulatory genes.
+
+celloracle reconstructs GRN for each cluster enabling us to compare GRNs each other. It is also possible to analyze how the GRN change over differentiation.
+The dynamics of the GRN structure provide us insight into the
+context-dependent regulatory mechanism.
 
 Python notebook
 
@@ -2871,7 +2918,7 @@ Python notebook
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} 0. Import}
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} 0. Import}
 
 \PYG{k+kn}{import} \PYG{n+nn}{os}
 \PYG{k+kn}{import} \PYG{n+nn}{sys}
@@ -2881,7 +2928,6 @@ Python notebook
 \PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
 \PYG{k+kn}{import} \PYG{n+nn}{scanpy} \PYG{k}{as} \PYG{n+nn}{sc}
 \PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k}{as} \PYG{n+nn}{sns}
-\PYG{k+kn}{from} \PYG{n+nn}{tqdm} \PYG{k}{import} \PYG{n}{tqdm\PYGZus{}notebook} \PYG{k}{as} \PYG{n}{tqdm}
 
 \end{sphinxVerbatim}
 }
@@ -2891,7 +2937,7 @@ Python notebook
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{celloracle} \PYG{k}{as} \PYG{n+nn}{co}
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{celloracle} \PYG{k}{as} \PYG{n+nn}{co}
 \end{sphinxVerbatim}
 }
 
@@ -2900,13 +2946,12 @@ Python notebook
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[84]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} visualization settings}
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} visualization settings}
 \PYG{o}{\PYGZpc{}}\PYG{k}{config} InlineBackend.figure\PYGZus{}format = \PYGZsq{}retina\PYGZsq{}
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figure.figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{]}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{savefig.dpi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{600}
-
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.figsize}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{savefig.dpi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{300}
 
 \end{sphinxVerbatim}
 }
@@ -2914,14 +2959,14 @@ Python notebook
 
 \paragraph{0.1. Check installation}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:0.1.-Check-installation}}
-Celloracle use some R libraries in network analysis. Check installation.
+Celloracle uses some R libraries in network analysis. Please make sure that all dependent R libraries are installed on your computer. You can test the installation with the following command.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{co}\PYG{o}{.}\PYG{n}{network\PYGZus{}analysis}\PYG{o}{.}\PYG{n}{test\PYGZus{}R\PYGZus{}libraries\PYGZus{}installation}\PYG{p}{(}\PYG{p}{)}
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{co}\PYG{o}{.}\PYG{n}{network\PYGZus{}analysis}\PYG{o}{.}\PYG{n}{test\PYGZus{}R\PYGZus{}libraries\PYGZus{}installation}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2954,7 +2999,7 @@ checking R library installation: rnetcarto -> OK
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{save\PYGZus{}folder} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures}\PYG{l+s+s2}{\PYGZdq{}}
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{save\PYGZus{}folder} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures}\PYG{l+s+s2}{\PYGZdq{}}
 \PYG{n}{os}\PYG{o}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{save\PYGZus{}folder}\PYG{p}{,} \PYG{n}{exist\PYGZus{}ok}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -2972,7 +3017,7 @@ Please refer to the previous notebook in the tutorial for an example of how to p
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} load data. !!Replace the data path below when you use another data.}
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} load data. !!Replace the data path below when you use another data.}
 \PYG{n}{adata} \PYG{o}{=} \PYG{n}{sc}\PYG{o}{.}\PYG{n}{read\PYGZus{}h5ad}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{../03\PYGZus{}scRNA\PYGZhy{}seq\PYGZus{}data\PYGZus{}preprocessing/data/Paul\PYGZus{}etal\PYGZus{}15.h5ad}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -2980,18 +3025,18 @@ Please refer to the previous notebook in the tutorial for an example of how to p
 
 \paragraph{1.2. Load TF data.}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:1.2.-Load-TF-data.}}
-celloracle need TF information, which contains lists of regulatory candidata gene. There are several way to make such TF information. TF information can be made from scATAC-seq data or Bulk ATAC-seq data. Please refer to the first step of the tutorial.
+For the GRN inference, celloracle needs TF information, which contains lists of the regulatory candidate gene. There are several ways to make such TF information. We can generate TF information from scATAC-seq data or Bulk ATAC-seq data. Please refer to the first step of the tutorial for the details of how to make TF information.
 
-If you do not have your scATAC-seq data, you can use some builtin data in celloracle. For example, celloracle have a TFinfo which was made with various kind of tissue/cell-types in mouse ATAC-seq atlas dataset (\sphinxurl{http://atlas.gs.washington.edu/mouse-atac/}).
+If you do not have your scATAC-seq data, you can use some built-in data in celloracle. celloracle have a TFinfo made with various kind of tissue/cell-types of mouse ATAC-seq atlas dataset (\sphinxurl{http://atlas.gs.washington.edu/mouse-atac/}).
 
-This TFinfo is ready. You can load and use it with following command.
+You can load and use the data with the following command.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[13]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load TF info which was made from mouse cell atlas dataset.}
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load TF info which was made from mouse cell atlas dataset.}
 \PYG{n}{TFinfo\PYGZus{}df} \PYG{o}{=} \PYG{n}{co}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{load\PYGZus{}TFinfo\PYGZus{}df\PYGZus{}mm9\PYGZus{}mouse\PYGZus{}atac\PYGZus{}atlas}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} check data}
@@ -3009,7 +3054,7 @@ This TFinfo is ready. You can load and use it with following command.
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[13]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                     peak\PYGZus{}id gene\PYGZus{}short\PYGZus{}name  9430076c15rik  Ac002126.6  \PYGZbs{}
+\llap{\color{nbsphinxout}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                     peak\PYGZus{}id gene\PYGZus{}short\PYGZus{}name  9430076c15rik  Ac002126.6  \PYGZbs{}
 0  chr10\PYGZus{}100050979\PYGZus{}100052296   4930430F08Rik            0.0         0.0
 1  chr10\PYGZus{}101006922\PYGZus{}101007748         SNORA17            0.0         0.0
 2  chr10\PYGZus{}101144061\PYGZus{}101145000          Mgat4c            0.0         0.0
@@ -3037,14 +3082,14 @@ This TFinfo is ready. You can load and use it with following command.
 
 \subsubsection{2. Initiate Oracle object}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.-Initiate-Oracle-object}}
-Basically all information will be stored and proccessed inside Oracle object. Processed gene expression data (anndata) and TFinfo are necessary to initiate Oracle object.
+celloracle have a custom class, Oracle. We can use Oracle for the data preprocessing and GRN inference. Oracle object stores all information and do the calculation with its internal functions. We instantiate an Oracle object, then input a gene expression data (anndata) and a TFinfo into the Oracle object.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} make Oracle object}
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} make Oracle object}
 \PYG{n}{oracle} \PYG{o}{=} \PYG{n}{co}\PYG{o}{.}\PYG{n}{Oracle}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3052,12 +3097,45 @@ Basically all information will be stored and proccessed inside Oracle object. Pr
 
 \paragraph{2.1. load gene expression data into oracle object.}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.1.-load-gene-expression-data-into-oracle-object.}}
+When you load scRNA-seq data, please enter the name of clustering data and dimensional reduction data. Clustering data suppose to be stored in the attribute of “obs” in the anndata. Dimensional reduction data suppose to be stored in the attribute of “obsm” in the anndata. You can check these data by the following command.
+
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} The anndata shoud include (1) gene expression count, (2) clustering information, (3) trajectory (dimensional reduction embeddings) data.}
+\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} show data name in anndata}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{metadata columns :}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{obs}\PYG{o}{.}\PYG{n}{columns}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{dimensional reduction: }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{obsm}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+
+
+%
+{
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\sphinxsetup{VerbatimColor={named}{white}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+metadata columns : ['paul15\_clusters', 'n\_counts\_all', 'n\_counts', 'louvain', 'cell\_type', 'louvain\_annot']
+dimensional reduction:  ['X\_diffmap', 'X\_draw\_graph\_fa', 'X\_pca']
+\end{sphinxVerbatim}
+}
+% The following \relax is needed to avoid problems with adjacent ANSI
+% cells and some other stuff (e.g. bullet lists) following ANSI cells.
+% See https://github.com/sphinx-doc/sphinx/issues/3594
+\relax
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} The anndata shoud include (1) gene expression count, (2) clustering information, (3) trajectory (dimensional reduction embeddings) data.}
 \PYG{c+c1}{\PYGZsh{} Please refer to another notebook for the detail of anndata preprocessing.}
 
 \PYG{c+c1}{\PYGZsh{} In this notebook, we use raw mRNA count as an input of Oracle object.}
@@ -3066,8 +3144,7 @@ Basically all information will be stored and proccessed inside Oracle object. Pr
 \PYG{c+c1}{\PYGZsh{} Instantiate Oracle object. All calculation will be done in this object.}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{import\PYGZus{}anndata\PYGZus{}as\PYGZus{}raw\PYGZus{}count}\PYG{p}{(}\PYG{n}{adata}\PYG{o}{=}\PYG{n}{adata}\PYG{p}{,}
                                    \PYG{n}{cluster\PYGZus{}column\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{louvain\PYGZus{}annot}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
-                                   \PYG{n}{embedding\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{X\PYGZus{}draw\PYGZus{}graph\PYGZus{}fa}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
-                                   \PYG{n}{transform}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{natural\PYGZus{}log}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+                                   \PYG{n}{embedding\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{X\PYGZus{}draw\PYGZus{}graph\PYGZus{}fa}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -3079,7 +3156,7 @@ Basically all information will be stored and proccessed inside Oracle object. Pr
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} If you can load TF info dataframe with the following code.}
+\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} If you can load TF info dataframe with the following code.}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{import\PYGZus{}TF\PYGZus{}data}\PYG{p}{(}\PYG{n}{TF\PYGZus{}info\PYGZus{}matrix}\PYG{o}{=}\PYG{n}{TFinfo\PYGZus{}df}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} Instead of the way avove, you can use TF \PYGZdq{}dictionary\PYGZdq{} with the following code.}
@@ -3090,21 +3167,25 @@ Basically all information will be stored and proccessed inside Oracle object. Pr
 
 \paragraph{2.3. (Optional) Add TF info manually}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.3.-(Optional)-Add-TF-info-manually}}
-We mainly use TF info data made from scATAC-seq data. Besides we can also add any information about TF-target gene pair manually.
+While we mainly use TF info data made from scATAC-seq data, we can also add arbitrary information about the TF-target gene pair by the manual way.
 
-For example if there is a study or database about TF-target pair, you can use such information by the following way.
+For example, if there is a study or database about TF-target pair, you can use such information in the following way.
 
 
 \subparagraph{2.3.1. Make TF info dictionary manually}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.3.1.-Make-TF-info-dictionary-manually}}
-Here, we introduce most simple way to add TF binding information using TF binding data in the supplemental table 4 in (\sphinxurl{http://doi.org/10.1016/j.cell.2015.11.013}).
+Here, we introduce a way to add TF binding information.
+
+We have a TF binding data in about some TFs. The information is the supplemental table 4 in (\sphinxurl{http://doi.org/10.1016/j.cell.2015.11.013}).
+
+In order to import TF data into Oracle object, we need to convert them into a python dictionary, in which dictionary keys are target gene, and values are regulatory candidate TFs.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} We have TF and its target gene information. This is from a supplemental Fig of Paul et. al, (2015).}
+\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} We have TF and its target gene information. This is from a supplemental Fig of Paul et. al, (2015).}
 \PYG{n}{Paul\PYGZus{}15\PYGZus{}data} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{TF\PYGZus{}data\PYGZus{}in\PYGZus{}Paul15.csv}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \PYG{n}{Paul\PYGZus{}15\PYGZus{}data}
 
@@ -3121,7 +3202,7 @@ Here, we introduce most simple way to add TF binding information using TF bindin
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}      TF                                       Target\PYGZus{}genes
+\llap{\color{nbsphinxout}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}      TF                                       Target\PYGZus{}genes
 0  Cebpa  Abcb1b, Acot1, C3, Cnpy3, Dhrs7, Dtx4, Edem2, ...
 1   Irf8  Abcd1, Aif1, BC017643, Cbl, Ccdc109b, Ccl6, d6...
 2   Irf8  1100001G20Rik, 4732418C07Rik, 9230105E10Rik, A...
@@ -3135,7 +3216,7 @@ Here, we introduce most simple way to add TF binding information using TF bindin
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Make dictionary: Key is TF, Value is list of Target gene}
+\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Make dictionary: Key is TF, Value is list of Target gene}
 \PYG{n}{TF\PYGZus{}to\PYGZus{}TG\PYGZus{}dictionary} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
 
 \PYG{k}{for} \PYG{n}{TF}\PYG{p}{,} \PYG{n}{TGs} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{Paul\PYGZus{}15\PYGZus{}data}\PYG{o}{.}\PYG{n}{TF}\PYG{p}{,} \PYG{n}{Paul\PYGZus{}15\PYGZus{}data}\PYG{o}{.}\PYG{n}{Target\PYGZus{}genes}\PYG{p}{)}\PYG{p}{:}
@@ -3192,7 +3273,7 @@ HBox(children=(IntProgress(value=0, max=178), HTML(value=\PYGZsq{}\PYGZsq{})))
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[19]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Add TF information}
+\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Add TF information}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{addTFinfo\PYGZus{}dictionary}\PYG{p}{(}\PYG{n}{TG\PYGZus{}to\PYGZus{}TF\PYGZus{}dictionary}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3200,7 +3281,9 @@ HBox(children=(IntProgress(value=0, max=178), HTML(value=\PYGZsq{}\PYGZsq{})))
 
 \subsubsection{3. Knn imputation}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:3.-Knn-imputation}}
-Celloracle uses almost the same strategy as velocyto for visualization of trajectory, which requires knn imputation to improves the accuracy of cell transition calculation. Besides, PCA and PC selection are required for knn imputation.
+Celloracle uses almost the same strategy as velocyto for visualization of cell transition. This process requires knn imputation.
+
+For the Knn imputation, we need PCA and PC selection first.
 
 
 \paragraph{3.1. PCA}
@@ -3210,7 +3293,7 @@ Celloracle uses almost the same strategy as velocyto for visualization of trajec
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[85]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} perform PCA}
+\llap{\color{nbsphinxin}[67]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} perform PCA}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{perform\PYGZus{}PCA}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} select important PCs}
@@ -3248,19 +3331,21 @@ Celloracle uses almost the same strategy as velocyto for visualization of trajec
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=547\sphinxpxdimen,height=360\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_25_1}.png}
+\noindent\sphinxincludegraphics[width=380\sphinxpxdimen,height=278\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_27_1}.png}
 
 \end{nbsphinxfancyoutput}
 
 
 \paragraph{3.2. Knn imputation}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:3.2.-Knn-imputation}}
+Estimate number of nearest neighbor for k-nn imputation.
+
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[21]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{n\PYGZus{}cell} \PYG{o}{=} \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\llap{\color{nbsphinxin}[20]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{n\PYGZus{}cell} \PYG{o}{=} \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cell number is :}\PYG{l+s+si}{\PYGZob{}n\PYGZus{}cell\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3289,7 +3374,7 @@ cell number is :2671
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[22]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{k} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{0.025}\PYG{o}{*}\PYG{n}{n\PYGZus{}cell}\PYG{p}{)}
+\llap{\color{nbsphinxin}[21]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{k} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{0.025}\PYG{o}{*}\PYG{n}{n\PYGZus{}cell}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Auto\PYGZhy{}selected k is :}\PYG{l+s+si}{\PYGZob{}k\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3318,7 +3403,7 @@ Auto-selected k is :66
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[23]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{knn\PYGZus{}imputation}\PYG{p}{(}\PYG{n}{n\PYGZus{}pca\PYGZus{}dims}\PYG{o}{=}\PYG{n}{n\PYGZus{}comps}\PYG{p}{,} \PYG{n}{k}\PYG{o}{=}\PYG{n}{k}\PYG{p}{,} \PYG{n}{balanced}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{b\PYGZus{}sight}\PYG{o}{=}\PYG{n}{k}\PYG{o}{*}\PYG{l+m+mi}{8}\PYG{p}{,}
+\llap{\color{nbsphinxin}[22]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{knn\PYGZus{}imputation}\PYG{p}{(}\PYG{n}{n\PYGZus{}pca\PYGZus{}dims}\PYG{o}{=}\PYG{n}{n\PYGZus{}comps}\PYG{p}{,} \PYG{n}{k}\PYG{o}{=}\PYG{n}{k}\PYG{p}{,} \PYG{n}{balanced}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{b\PYGZus{}sight}\PYG{o}{=}\PYG{n}{k}\PYG{o}{*}\PYG{l+m+mi}{8}\PYG{p}{,}
                       \PYG{n}{b\PYGZus{}maxl}\PYG{o}{=}\PYG{n}{k}\PYG{o}{*}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{n\PYGZus{}jobs}\PYG{o}{=}\PYG{l+m+mi}{4}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3326,16 +3411,16 @@ Auto-selected k is :66
 
 \subsubsection{4. Save and Load.}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:4.-Save-and-Load.}}
-Celloracle has some custom-class; Links, Oracle, TFinfo, etc., You can save such object using “to\_hdf5”. The file will be saved as a hdf5 file.
+Celloracle has some custom-class: Links, Oracle, TFinfo. You can save such an object using “to\_hdf5”.
 
-To load saved file, pleasae use “load\_hdf5” function.
+Pleasae use “load\_hdf5” function to load the file.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[24]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} save oracle object.}
+\llap{\color{nbsphinxin}[23]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} save oracle object.}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{to\PYGZus{}hdf5}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Paul\PYGZus{}15\PYGZus{}data.celloracle.oracle}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3345,7 +3430,7 @@ To load saved file, pleasae use “load\_hdf5” function.
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[68]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} load file.}
+\llap{\color{nbsphinxin}[24]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} load file.}
 \PYG{c+c1}{\PYGZsh{} oracle = co.load\PYGZus{}hdf5(\PYGZdq{}Paul\PYGZus{}15\PYGZus{}data.celloracle.oracle\PYGZdq{})}
 \end{sphinxVerbatim}
 }
@@ -3355,20 +3440,18 @@ To load saved file, pleasae use “load\_hdf5” function.
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:4.-GRN-calculation}}
 Next step is constructing a cluster-specific GRN for all clusters.
 
-GRN can be calculated at any arbitrary unit.
+You can calculate GRNs with “get\_links” function, and the function returns GRNs as a Links object. Links object stores inferred GRNs and its metadata. You can do network analysis with Links object.
 
-With “get\_links” function, you can calculate cluster-specific GRNs at any unit, and the function returns GRNs as Links object. Links object stores inferred GRNs and its metadata. You can do network analysis with Links object.
+In the example below, we construct GRNs based on “louvain\_annot” clustering unit.
 
-In the example below, we will make GRNs based on “louvain\_annot” clustering unit.
-
-You can use any clustering unit for GRN calculation as long as clustering information is saved in anndata.
+GRN can be calculated at any arbitrary unit as long as the clustering information is stored in anndata.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[86]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check data}
+\llap{\color{nbsphinxin}[43]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check data}
 \PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{louvain\PYGZus{}annot}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3380,10 +3463,13 @@ You can use any clustering unit for GRN calculation as long as clustering inform
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=683\sphinxpxdimen,height=369\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_35_0}.png}
+\noindent\sphinxincludegraphics[width=516\sphinxpxdimen,height=288\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_37_0}.png}
 
 \end{nbsphinxfancyoutput}
 
+
+\paragraph{4.1. Get GRNs}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:4.1.-Get-GRNs}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -4150,14 +4236,19 @@ HBox(children=(IntProgress(value=0, max=1850), HTML(value=\PYGZsq{}\PYGZsq{})))
 % See https://github.com/sphinx-doc/sphinx/issues/3594
 \relax
 
-Links object have some metadata.
+
+\paragraph{4.2. (Optional) Export GRNs}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:4.2.-(Optional)-Export-GRNs}}
+Although celloracle has many functions for network analysis, you can analyze GRNs by yourself. The raw GRN data is stored in the attribute of “links\_dict”.
+
+For example, you can get GRNs for “Ery\_0” cluster with the following commands.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[33]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{palette}
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{links\PYGZus{}dict}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Ery\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}
 \end{sphinxVerbatim}
 }
 
@@ -4171,7 +4262,66 @@ Links object have some metadata.
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[33]:\,\hspace{\fboxrule}\hspace{\fboxsep}}        palette
+\llap{\color{nbsphinxout}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}       source         target  coef\PYGZus{}mean  coef\PYGZus{}abs             p      \PYGZhy{}logp
+0         Id2  0610007L01Rik   0.000552  0.000552  5.724488e\PYGZhy{}01   0.242263
+1        Klf2  0610007L01Rik   0.000000  0.000000           NaN  \PYGZhy{}0.000000
+2      Stat5a  0610007L01Rik  \PYGZhy{}0.005179  0.005179  5.294497e\PYGZhy{}04   3.276175
+3        Elf1  0610007L01Rik   0.002107  0.002107  1.498884e\PYGZhy{}01   0.824232
+4       Gata1  0610007L01Rik  \PYGZhy{}0.000700  0.000700  5.731063e\PYGZhy{}01   0.241765
+...       ...            ...        ...       ...           ...        ...
+74460   Cxxc1            Zyx  \PYGZhy{}0.004999  0.004999  1.578852e\PYGZhy{}02   1.801659
+74461   Mef2c            Zyx   0.017708  0.017708  3.011616e\PYGZhy{}07   6.521200
+74462    Nfe2            Zyx   0.034433  0.034433  2.548244e\PYGZhy{}12  11.593759
+74463   Nr3c1            Zyx  \PYGZhy{}0.022663  0.022663  2.265408e\PYGZhy{}08   7.644854
+74464    Ets1            Zyx   0.012826  0.012826  4.813285e\PYGZhy{}09   8.317558
+
+[74465 rows x 6 columns]
+\end{sphinxVerbatim}
+}
+
+You can export the file as follows.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} set cluster name}
+\PYG{n}{cluster} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Ery\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} save as csv}
+\PYG{n}{links}\PYG{o}{.}\PYG{n}{links\PYGZus{}dict}\PYG{p}{[}\PYG{n}{cluster}\PYG{p}{]}\PYG{o}{.}\PYG{n}{to\PYGZus{}csv}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{raw\PYGZus{}GRN\PYGZus{}for\PYGZus{}}\PYG{l+s+si}{\PYGZob{}cluster\PYGZcb{}}\PYG{l+s+s2}{.csv}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+
+\paragraph{4.3. (Optional) Change order}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:4.3.-(Optional)-Change-order}}
+Links object have a color information in a attribute, “palette”. This information is used for the visualization
+
+The sample will be visualized in the order. Here we change the order.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Show the contents of pallete}
+\PYG{n}{links}\PYG{o}{.}\PYG{n}{palette}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+\sphinxsetup{VerbatimColor={named}{white}}
+
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}        palette
 Ery\PYGZus{}0   \PYGZsh{}7D87B9
 Ery\PYGZus{}1   \PYGZsh{}BEC1D4
 Ery\PYGZus{}2   \PYGZsh{}D6BCC0
@@ -4195,20 +4345,17 @@ Mo\PYGZus{}1    \PYGZsh{}F3E1EB
 \end{sphinxVerbatim}
 }
 
-For the visualization below, we change the order of clusters.
-
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[35]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
-\PYG{c+c1}{\PYGZsh{} For the visualization below, we define and save order of clusters.}
+\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} change the order of pallete}
 \PYG{n}{order} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{MEP\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mk\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}3}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}4}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}5}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
          \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}6}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}7}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}8}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}9}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{GMP\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{GMP\PYGZus{}1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
          \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{GMPl\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mo\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mo\PYGZus{}1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Gran\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Gran\PYGZus{}1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Gran\PYGZus{}2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
-\PYG{n}{links\PYGZus{}louvain}\PYG{o}{.}\PYG{n}{palette} \PYG{o}{=} \PYG{n}{links\PYGZus{}louvain}\PYG{o}{.}\PYG{n}{palette}\PYG{o}{.}\PYG{n}{loc}\PYG{p}{[}\PYG{n}{order}\PYG{p}{]}
-\PYG{n}{links\PYGZus{}louvain}\PYG{o}{.}\PYG{n}{palette}
+\PYG{n}{links}\PYG{o}{.}\PYG{n}{palette} \PYG{o}{=} \PYG{n}{links}\PYG{o}{.}\PYG{n}{palette}\PYG{o}{.}\PYG{n}{loc}\PYG{p}{[}\PYG{n}{order}\PYG{p}{]}
+\PYG{n}{links}\PYG{o}{.}\PYG{n}{palette}
 \end{sphinxVerbatim}
 }
 
@@ -4222,7 +4369,7 @@ For the visualization below, we change the order of clusters.
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[35]:\,\hspace{\fboxrule}\hspace{\fboxsep}}        palette
+\llap{\color{nbsphinxout}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}        palette
 MEP\PYGZus{}0   \PYGZsh{}0FCFC0
 Mk\PYGZus{}0    \PYGZsh{}9CDED6
 Ery\PYGZus{}0   \PYGZsh{}7D87B9
@@ -4252,9 +4399,9 @@ Gran\PYGZus{}2  \PYGZsh{}F0B98D
 
 \paragraph{5.1. Filter network edges}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:5.1.-Filter-network-edges}}
-Celloracle leverages bagging ridge or Bayesian ridge regression for network inference. These methods provide a network edge strength as a distribution rather than point value. We can use the distribution of the network edge strength to know the certainness of the connection.
+Celloracle leverages bagging ridge or Bayesian ridge regression for network inference. These methods provide a network edge strength as a distribution rather than point value. We can use the distribution to know the certainness of the connection.
 
-We will do filtering of network edge before starting network analysis.
+We filter the network edges as follows.
 \begin{enumerate}
 \item {} 
 Remove uncertain network edge based on the p-value.
@@ -4264,7 +4411,7 @@ Remove weak network edge. In this tutorial, we pick up top 2000 edges in terms o
 
 \end{enumerate}
 
-The raw network data is stored as an attribute, “links\_dict,” while filtered network data will be stored in “filtered\_links.” So the raw network data will not be erased after the filtering. You can come back to the filtering process and do the filtering again if you do not like filtering results.
+The raw network data is stored as an attribute, “links\_dict,” while filtered network data is stored in “filtered\_links.” So the filtering function keeps raw network information rather than overwriting data. You can come back to the filtering process to filter the data with different parameters if you want.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -4278,14 +4425,25 @@ The raw network data is stored as an attribute, “links\_dict,” while filtere
 
 \paragraph{5.2. Degree distribution}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:5.2.-Degree-distribution}}
-Network degree, which means the number of edges for each gene, is one of the important metrics to know the network analysis. The degree distribution may change depending on the filtering threshold.
+For the first step, we examine network degree distribution. Network degree, which is the number of edges for each node, is one of the important metrics to investigate the network structure (\sphinxurl{https://en.wikipedia.org/wiki/Degree\_distribution}).
+
+Please keep in mind that the degree distribution may change depending on the filtering threshold.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[87]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}degree\PYGZus{}distributions}\PYG{p}{(}\PYG{n}{plot\PYGZus{}model}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/degree\PYGZus{}distribution/}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\llap{\color{nbsphinxin}[50]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figure.figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[51]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}degree\PYGZus{}distributions}\PYG{p}{(}\PYG{n}{plot\PYGZus{}model}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/degree\PYGZus{}distribution/}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -4315,7 +4473,7 @@ Ery\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_1}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4345,7 +4503,7 @@ Ery\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_3}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4375,7 +4533,7 @@ Ery\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_5}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4405,7 +4563,7 @@ Ery\_3
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_7}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_7}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4435,7 +4593,7 @@ Ery\_4
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_9}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_9}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4465,7 +4623,7 @@ Ery\_5
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_11}.png}
+\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_11}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4495,7 +4653,7 @@ Ery\_6
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_13}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_13}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4525,7 +4683,7 @@ Ery\_7
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_15}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_15}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4555,7 +4713,7 @@ Ery\_8
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_17}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_17}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4585,7 +4743,7 @@ Ery\_9
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_19}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_19}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4615,7 +4773,7 @@ GMP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_21}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_21}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4645,7 +4803,7 @@ GMP\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_23}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_23}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4675,7 +4833,7 @@ GMPl\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_25}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_25}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4705,7 +4863,7 @@ Gran\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_27}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_27}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4735,7 +4893,7 @@ Gran\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_29}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_29}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4765,7 +4923,7 @@ Gran\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_31}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_31}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4795,7 +4953,7 @@ MEP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_33}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_33}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4825,7 +4983,7 @@ Mk\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_35}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_35}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4855,7 +5013,7 @@ Mo\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_37}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_37}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4885,9 +5043,18 @@ Mo\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_39}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_39}.png}
 
 \end{nbsphinxfancyoutput}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[52]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figure.figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
 
 
 \paragraph{5.3. Calculate netowrk score}
@@ -4948,7 +5115,7 @@ the scores are saved in ./louvain\_annot/
 % See https://github.com/sphinx-doc/sphinx/issues/3594
 \relax
 
-The score is stored as a attribute “merged\_score”, and score will also be saved in a folder.
+The score is stored as a attribute “merged\_score”, and score will also be saved in a folder in your computer.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -5025,7 +5192,7 @@ Ybx1   Connector Hub    Ery\PYGZus{}0
 
 \paragraph{5.4. Save}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:5.4.-Save}}
-Save processed GRN. The Links file will also be used in the next notebook; “in silico simulation with GRNs”.
+Save processed GRN. We use this file in the next notebook; “in silico simulation with GRNs”.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -5034,14 +5201,21 @@ Save processed GRN. The Links file will also be used in the next notebook; “in
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \llap{\color{nbsphinxin}[42]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Save Links object.}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{to\PYGZus{}hdf5}\PYG{p}{(}\PYG{n}{file\PYGZus{}path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{links.celloracle.links}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
 
-\PYG{c+c1}{\PYGZsh{} You can load files with the following command.}
-\PYG{c+c1}{\PYGZsh{}links = co.load\PYGZus{}hdf5(file\PYGZus{}path=\PYGZdq{}links.celloracle.links\PYGZdq{})}
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} You can load files with the following command.}
+\PYG{n}{links} \PYG{o}{=} \PYG{n}{co}\PYG{o}{.}\PYG{n}{load\PYGZus{}hdf5}\PYG{p}{(}\PYG{n}{file\PYGZus{}path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{links.celloracle.links}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 
 \end{sphinxVerbatim}
 }
 
-If you are not interested in the network score analysis and just want to do simulation, you can skip the analysis below and go to the next notebook.
+If you are not interested in the network score analysis below and just want to do simulation, you can skip them and go to the next notebook.
 
 
 \subsubsection{6. Network analysis; Network score for each gene}
@@ -5051,12 +5225,16 @@ Links class has many functions to visualize network score. See the documentation
 
 \paragraph{6.1. Network score in each cluster}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:6.1.-Network-score-in-each-cluster}}
+We have calculated several network scores for centrality. We can use the centrality score to identify key regulatory genes because centrality is one of the important indicators of network structure (\sphinxurl{https://en.wikipedia.org/wiki/Centrality}).
+
+Let’s visualize genes with high network centrality.
+
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[44]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check cluster}
+\llap{\color{nbsphinxin}[44]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check cluster name}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{cluster}
 \end{sphinxVerbatim}
 }
@@ -5099,7 +5277,7 @@ Links class has many functions to visualize network score. See the documentation
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[88]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Visualize top n\PYGZhy{}th genes that have high scores.}
+\llap{\color{nbsphinxin}[53]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Visualize top n\PYGZhy{}th genes that have high scores.}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}scores\PYGZus{}as\PYGZus{}rank}\PYG{p}{(}\PYG{n}{cluster}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{MEP\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{n\PYGZus{}gene}\PYG{o}{=}\PYG{l+m+mi}{30}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/ranked\PYGZus{}score}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -5111,7 +5289,7 @@ Links class has many functions to visualize network score. See the documentation
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=423\sphinxpxdimen,height=400\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_0}.png}
+\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5122,7 +5300,7 @@ Links class has many functions to visualize network score. See the documentation
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=460\sphinxpxdimen,height=400\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1}.png}
+\noindent\sphinxincludegraphics[width=341\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5133,7 +5311,7 @@ Links class has many functions to visualize network score. See the documentation
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=423\sphinxpxdimen,height=400\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_2}.png}
+\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_2}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5144,7 +5322,7 @@ Links class has many functions to visualize network score. See the documentation
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=424\sphinxpxdimen,height=400\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3}.png}
+\noindent\sphinxincludegraphics[width=305\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5155,7 +5333,7 @@ Links class has many functions to visualize network score. See the documentation
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=415\sphinxpxdimen,height=400\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_4}.png}
+\noindent\sphinxincludegraphics[width=296\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_4}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5166,7 +5344,7 @@ Links class has many functions to visualize network score. See the documentation
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=468\sphinxpxdimen,height=399\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5}.png}
+\noindent\sphinxincludegraphics[width=342\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5180,7 +5358,7 @@ By comparing network scores between two clusters, we can analyze the difference 
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[89]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ticklabel\PYGZus{}format}\PYG{p}{(}\PYG{n}{style}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{sci}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{axis}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{scilimits}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{)}
+\llap{\color{nbsphinxin}[54]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ticklabel\PYGZus{}format}\PYG{p}{(}\PYG{n}{style}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{sci}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{axis}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{scilimits}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}score\PYGZus{}comparison\PYGZus{}2D}\PYG{p}{(}\PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{eigenvector\PYGZus{}centrality}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
                                \PYG{n}{cluster1}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{MEP\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cluster2}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{GMPl\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
                                \PYG{n}{percentile}\PYG{o}{=}\PYG{l+m+mi}{98}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/score\PYGZus{}comparison}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
@@ -5194,7 +5372,7 @@ By comparing network scores between two clusters, we can analyze the difference 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=572\sphinxpxdimen,height=386\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_57_0}.png}
+\noindent\sphinxincludegraphics[width=407\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5203,7 +5381,7 @@ By comparing network scores between two clusters, we can analyze the difference 
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[90]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
+\llap{\color{nbsphinxin}[55]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ticklabel\PYGZus{}format}\PYG{p}{(}\PYG{n}{style}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{sci}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{axis}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{scilimits}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}score\PYGZus{}comparison\PYGZus{}2D}\PYG{p}{(}\PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{betweenness\PYGZus{}centrality}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
                                \PYG{n}{cluster1}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{MEP\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cluster2}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{GMPl\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
@@ -5218,7 +5396,7 @@ By comparing network scores between two clusters, we can analyze the difference 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=580\sphinxpxdimen,height=386\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_58_0}.png}
+\noindent\sphinxincludegraphics[width=416\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_69_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5227,7 +5405,7 @@ By comparing network scores between two clusters, we can analyze the difference 
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[91]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ticklabel\PYGZus{}format}\PYG{p}{(}\PYG{n}{style}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{sci}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{axis}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{scilimits}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{)}
+\llap{\color{nbsphinxin}[56]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ticklabel\PYGZus{}format}\PYG{p}{(}\PYG{n}{style}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{sci}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{axis}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{y}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{scilimits}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{)}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}score\PYGZus{}comparison\PYGZus{}2D}\PYG{p}{(}\PYG{n}{value}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{degree\PYGZus{}centrality\PYGZus{}all}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
                                \PYG{n}{cluster1}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{MEP\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{cluster2}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{GMPl\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
                                \PYG{n}{percentile}\PYG{o}{=}\PYG{l+m+mi}{98}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/score\PYGZus{}comparison}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
@@ -5241,23 +5419,25 @@ By comparing network scores between two clusters, we can analyze the difference 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=556\sphinxpxdimen,height=386\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_59_0}.png}
+\noindent\sphinxincludegraphics[width=392\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0}.png}
 
 \end{nbsphinxfancyoutput}
 
 
 \paragraph{6.3. Network score dynamics}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:6.3.-Network-score-dynamics}}
-We can analyze how gene function/importance change over the differentiation by the following analysis.
+In the following session, we focus on how network score for gene changes during the differentiation.
 
-Gata2 is known to play an important role in the early progenitor population; MEP, GMP. The following results can recapitulate the Gata2 feature.
+We make some graph to show an example of how to use functions using Gata2 gene.
+
+Gata2 is known to play an essential role in the early progenitor population; MEP, GMP. The following results can recapitulate the Gata2 feature.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[92]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Visualize Gata2 network score dynamics}
+\llap{\color{nbsphinxin}[57]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Visualize Gata2 network score dynamics}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}score\PYGZus{}per\PYGZus{}cluster}\PYG{p}{(}\PYG{n}{goi}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gata2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/network\PYGZus{}score\PYGZus{}per\PYGZus{}gene/}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -5288,28 +5468,27 @@ Gata2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=575\sphinxpxdimen,height=383\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_61_1}.png}
+\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_72_1}.png}
 
 \end{nbsphinxfancyoutput}
 
 
 \paragraph{6.4. Gene cartography analysis}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:6.4.-Gene-cartography-analysis}}
-Gene cartography is a method for gene network analysis. The method classifies the gene into several groups using the network module structure and gene connections. It provides us an insight about the regulatory mechanism per each gene. Please read the paper for the details of gene cartography (\sphinxurl{https://www.nature.com/articles/nature03288})
+Gene cartography is a method for gene network analysis. The method classifies gene into several groups using the network module structure and connections. It provides us an insight about the role and regulatory mechanism per each gene. Please read the paper for the details of gene cartography (\sphinxurl{https://www.nature.com/articles/nature03288})
 
-The calculations of gene cartography will be performed for the GRN in each cluster. Thus we can know how gene role change by comparing the cartography in each cluster.
+The gene cartography will be calculated for the GRN in each cluster. Thus we can know how it change by comparing the the score between clusters.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[93]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} plot cartography as a scatter plot}
+\llap{\color{nbsphinxin}[58]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} plot cartography as a scatter plot}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}cartography\PYGZus{}scatter\PYGZus{}per\PYGZus{}cluster}\PYG{p}{(}\PYG{n}{scatter}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,}
                                            \PYG{n}{kde}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}
                                            \PYG{n}{gois}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gata1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gata2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Sfpi1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}
                                            \PYG{n}{auto\PYGZus{}gene\PYGZus{}annot}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,}
-                                           \PYG{n}{percentile}\PYG{o}{=}\PYG{l+m+mf}{99.5}\PYG{p}{,}
                                            \PYG{n}{args\PYGZus{}dot}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{n\PYGZus{}levels}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{l+m+mi}{105}\PYG{p}{\PYGZcb{}}\PYG{p}{,}
                                            \PYG{n}{args\PYGZus{}line}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{c}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{gray}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{\PYGZcb{}}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/cartography}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -5341,7 +5520,7 @@ Ery\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=507\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_1}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5371,7 +5550,7 @@ Ery\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=514\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_3}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5401,7 +5580,7 @@ Ery\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=507\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_5}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5431,7 +5610,7 @@ Ery\_3
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=514\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_7}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_7}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5461,7 +5640,7 @@ Ery\_4
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=507\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_9}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_9}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5491,7 +5670,7 @@ Ery\_5
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=507\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_11}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_11}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5521,7 +5700,7 @@ Ery\_6
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=507\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_13}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_13}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5551,7 +5730,7 @@ Ery\_7
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=514\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_15}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_15}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5581,7 +5760,7 @@ Ery\_8
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=507\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_17}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_17}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5611,7 +5790,7 @@ Ery\_9
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=514\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_19}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_19}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5641,7 +5820,7 @@ GMP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=514\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_21}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_21}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5671,7 +5850,7 @@ GMP\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=507\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_23}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_23}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5701,7 +5880,7 @@ GMPl\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=514\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_25}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_25}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5731,7 +5910,7 @@ Gran\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=507\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_27}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_27}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5761,7 +5940,7 @@ Gran\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=514\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_29}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_29}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5791,7 +5970,7 @@ Gran\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=514\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_31}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_31}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5821,7 +6000,7 @@ MEP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=514\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_33}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_33}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5851,7 +6030,7 @@ Mk\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=507\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_35}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_35}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5881,7 +6060,7 @@ Mo\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=507\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_37}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_37}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5911,7 +6090,7 @@ Mo\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=514\sphinxpxdimen,height=332\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_39}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_39}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5920,8 +6099,7 @@ Mo\_1
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[94]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} plot the results of cartography analysis}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{]}\PYG{p}{)}
+\llap{\color{nbsphinxin}[66]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} plot the summary of cartography analysis}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}cartography\PYGZus{}term}\PYG{p}{(}\PYG{n}{goi}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gata2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/cartography}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -5945,31 +6123,6 @@ Gata2
 % See https://github.com/sphinx-doc/sphinx/issues/3594
 \relax
 
-
-
-%
-{
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\sphinxsetup{VerbatimColor={named}{nbsphinx-stderr}}
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-/home/k/anaconda3/envs/test/lib/python3.6/site-packages/pandas/core/indexing.py:1418: FutureWarning:
-Passing list-likes to .loc or [] with any missing label will raise
-KeyError in the future, you can use .reindex() as an alternative.
-
-See the documentation here:
-https://pandas.pydata.org/pandas-docs/stable/user\_guide/indexing.html\#deprecate-loc-reindex-listlike
-  return self.\_getitem\_tuple(key)
-\end{sphinxVerbatim}
-}
-% The following \relax is needed to avoid problems with adjacent ANSI
-% cells and some other stuff (e.g. bullet lists) following ANSI cells.
-% See https://github.com/sphinx-doc/sphinx/issues/3594
-\relax
-
 \hrule height -\fboxrule\relax
 \vspace{\nbsphinxcodecellspacing}
 
@@ -5977,14 +6130,14 @@ https://pandas.pydata.org/pandas-docs/stable/user\_guide/indexing.html\#deprecat
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=240\sphinxpxdimen,height=428\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_2}.png}
+\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=346\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_75_1}.png}
 
 \end{nbsphinxfancyoutput}
 
 
 \subsubsection{7. Network analysis; Network score distribution}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:7.-Network-analysis;-Network-score-distribution}}
-Next, we visualize the distribution of network score to get insight into the global trend about the structure of GRNs.
+Next, we visualize the distribution of network score to get insight into the global trend of GRNs.
 
 
 \paragraph{7.1. Distribution of network degree}
@@ -5994,7 +6147,7 @@ Next, we visualize the distribution of network score to get insight into the glo
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[95]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots\PYGZus{}adjust}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{l+m+mf}{0.15}\PYG{p}{,} \PYG{n}{bottom}\PYG{o}{=}\PYG{l+m+mf}{0.3}\PYG{p}{)}
+\llap{\color{nbsphinxin}[60]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots\PYGZus{}adjust}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{l+m+mf}{0.15}\PYG{p}{,} \PYG{n}{bottom}\PYG{o}{=}\PYG{l+m+mf}{0.3}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mf}{0.040}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}score\PYGZus{}discributions}\PYG{p}{(}\PYG{n}{values}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{degree\PYGZus{}centrality\PYGZus{}all}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{method}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{boxplot}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 
@@ -6028,7 +6181,7 @@ degree\_centrality\_all
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=552\sphinxpxdimen,height=325\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_67_1}.png}
+\noindent\sphinxincludegraphics[width=390\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_78_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6037,7 +6190,7 @@ degree\_centrality\_all
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[96]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots\PYGZus{}adjust}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{l+m+mf}{0.15}\PYG{p}{,} \PYG{n}{bottom}\PYG{o}{=}\PYG{l+m+mf}{0.3}\PYG{p}{)}
+\llap{\color{nbsphinxin}[61]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots\PYGZus{}adjust}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{l+m+mf}{0.15}\PYG{p}{,} \PYG{n}{bottom}\PYG{o}{=}\PYG{l+m+mf}{0.3}\PYG{p}{)}
 \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mf}{0.40}\PYG{p}{]}\PYG{p}{)}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}score\PYGZus{}discributions}\PYG{p}{(}\PYG{n}{values}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{eigenvector\PYGZus{}centrality}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{method}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{boxplot}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 
@@ -6072,7 +6225,7 @@ eigenvector\_centrality
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=545\sphinxpxdimen,height=325\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_1}.png}
+\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6084,12 +6237,36 @@ eigenvector\_centrality
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[97]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots\PYGZus{}adjust}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{l+m+mf}{0.15}\PYG{p}{,} \PYG{n}{bottom}\PYG{o}{=}\PYG{l+m+mf}{0.3}\PYG{p}{)}
+\llap{\color{nbsphinxin}[62]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{subplots\PYGZus{}adjust}\PYG{p}{(}\PYG{n}{left}\PYG{o}{=}\PYG{l+m+mf}{0.15}\PYG{p}{,} \PYG{n}{bottom}\PYG{o}{=}\PYG{l+m+mf}{0.3}\PYG{p}{)}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}network\PYGZus{}entropy\PYGZus{}distributions}\PYG{p}{(}\PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 
 
 \end{sphinxVerbatim}
 }
+
+
+
+%
+{
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\sphinxsetup{VerbatimColor={named}{nbsphinx-stderr}}
+\fvset{hllines={, ,}}%
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+/home/k/anaconda3/envs/test/lib/python3.6/site-packages/scipy/stats/\_distn\_infrastructure.py:2614: RuntimeWarning: invalid value encountered in true\_divide
+  pk = 1.0*pk / np.sum(pk, axis=0)
+/home/k/anaconda3/envs/test/lib/python3.6/site-packages/celloracle/network\_analysis/links\_object.py:345: RuntimeWarning: divide by zero encountered in log
+  ent\_norm.append(en/np.log(k[i]))
+/home/k/anaconda3/envs/test/lib/python3.6/site-packages/celloracle/network\_analysis/links\_object.py:345: RuntimeWarning: invalid value encountered in double\_scalars
+  ent\_norm.append(en/np.log(k[i]))
+\end{sphinxVerbatim}
+}
+% The following \relax is needed to avoid problems with adjacent ANSI
+% cells and some other stuff (e.g. bullet lists) following ANSI cells.
+% See https://github.com/sphinx-doc/sphinx/issues/3594
+\relax
 
 \hrule height -\fboxrule\relax
 \vspace{\nbsphinxcodecellspacing}
@@ -6098,18 +6275,28 @@ eigenvector\_centrality
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=555\sphinxpxdimen,height=325\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0}.png}
+\noindent\sphinxincludegraphics[width=393\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_1}.png}
 
 \end{nbsphinxfancyoutput}
 
-In the example below, we did several network analysis and showed that several TFs have high network scores. The TFs, for example “Gata2”, “Gata1”, “Klf1”, “E2f1”, are known to play an important role in MEP. Using the network score, we may pick up cluster-specific key TFs.
+Using the network score, we could pick up cluster-specific key TFs. “Gata2”, “Gata1”, “Klf1”, “E2f1”, for example, are known to play an essential role in MEP, and these TFs showed high network score in our GRN.
 
-In this step, however, we cannot know the specific function or relationship between cell fate. We just pick up several candidate genes for Key TFs here, and in the next analysis, we investigate their function and relationship between cell fate by the simulation with GRNs.
+In this step, however, we cannot know the specific function or relationship between cell fate.
+
+In the next analysis, we investigate their function and relationship between cell fate by the simulation with GRNs.
 
 
 \subsection{Simulation with GRNs}
 \label{\detokenize{tutorials/simulation:simulation-with-grns}}\label{\detokenize{tutorials/simulation:simulation}}\label{\detokenize{tutorials/simulation::doc}}
-\sphinxcode{\sphinxupquote{celloracle}} can simulate an affect of gene perturbation using GRNs. This analysis provides insight into the regulatory mechanism of cel state from a viewpoint of TF and GRN.
+\sphinxcode{\sphinxupquote{celloracle}} leverage GRNs to simulate signal propagation inside a cell.
+We can estimate the effect of gene perturbation by the simulation with GRNs.
+
+\sphinxcode{\sphinxupquote{celloracle}} leverage GRNs to simulate signal propagation inside a cell. We can estimate the effect of gene perturbation by the simulation with GRNs.
+
+Besides, we will combine the simulation for the signal propagation and the simulation of cell state transition, which is performed by a python library for RNA-velocity analysis, \sphinxcode{\sphinxupquote{velocyto}} .
+A series of simulations visualizes a complex system in which TF controls enormous target genes to determines cell fate.
+
+In short, celloracle provides insight into the regulatory mechanism of cell state from the viewpoint of TF and GRN.
 
 Python notebook
 
@@ -6196,7 +6383,7 @@ Load the oracle object. See the previous notebook for the detil of how to prepar
 \label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:1.2.-Load-inferred-GRNs}}
 In the previous notebook, we already calculated GRNs. We use this GRNs for simulation.
 
-For the simulation with GRNs, we import GRNs which was saved in Links object.
+We import GRNs which was saved in Links object.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -6210,7 +6397,7 @@ For the simulation with GRNs, we import GRNs which was saved in Links object.
 
 \subsubsection{3. Make predictive models for simulation}
 \label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:3.-Make-predictive-models-for-simulation}}
-We will construct regression models again by using the filtered GRN structure. This process take less time than the GRN inference in the previous notebook because we use only significant TFs to predict target gene rather than all regulatory candidate TFs.
+We construct ridge regression models again based on the filtered GRN structure. This process takes less time than the GRN inference in the previous notebook because we use only significant TFs to predict target gene instead of all regulatory candidate TFs.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -6965,11 +7152,15 @@ models made for 1074 genes
 
 \subsubsection{4. in silico Perturbation-simulation}
 \label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.-in-silico-Perturbation-simulation}}
-Next, we will do simulation. Using signal progagation algorithm of celloracle, we can predict what happens if we perturb TF(s).
+Next, we simulate an effect of perturbation of a TF to investigate the function and regulatory mechanism of the TF.
 
-See the celloracle paper for the details.
+See the celloracle paper for the details and scientific remnants on the algorithm.
 
-In this notebook, we’ll show an example of how to do in silico perturb simulation; we’ll simulate Gata1 KO in the hematopiesis. Previous studiy have shown that Gata1 is one of the important TFs that regulate cell fate decision in the myeloid progenitors and Gata1 have positive effect for the erythroid cell differentiation.
+In this notebook, we’ll show an example of the simulation; we’ll simulate knock-out of Gata1 gene in the hematopoiesis.
+
+Celloracle’s simulation supposes to recapitulate previous findings of this gene.
+
+The previous studies have shown that Gata1 is one of the decisive TFs that regulate cell fate in the myeloid progenitors and Gata1 have a positive effect on the erythroid cell differentiation.
 
 
 \paragraph{4.1. Check gene expression pattern.}
@@ -6981,7 +7172,8 @@ In this notebook, we’ll show an example of how to do in silico perturb simulat
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \llap{\color{nbsphinxin}[26]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check gene expression}
 \PYG{n}{goi} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gata1}\PYG{l+s+s2}{\PYGZdq{}}
-\PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{p}{[}\PYG{n}{goi}\PYG{p}{,} \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{cluster\PYGZus{}column\PYGZus{}name}\PYG{p}{]}\PYG{p}{,} \PYG{n}{layer}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{imputed\PYGZus{}count}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{use\PYGZus{}raw}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{viridis}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{p}{[}\PYG{n}{goi}\PYG{p}{,} \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{cluster\PYGZus{}column\PYGZus{}name}\PYG{p}{]}\PYG{p}{,}
+                 \PYG{n}{layer}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{imputed\PYGZus{}count}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{use\PYGZus{}raw}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{viridis}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -7021,16 +7213,16 @@ In this notebook, we’ll show an example of how to do in silico perturb simulat
 
 \paragraph{4.1. calculate future gene expression after perturbation.}
 \label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.1.-calculate-future-gene-expression-after-perturbation.}}
-Although you can set any arbitrary gene expression value for perturb condition, we recommend avoiding too high value if you simulate overexpression. In the example below, if you set Gata1 gene expression to 100, for example, it may lead to biologically infeasible results.
+Although any arbitrary gene expression value can be used for input of perturbation, we recommend avoiding extreme value which is far from natural gene expression range. If you set Gata1 gene expression to 100, for example, it may lead to biologically infeasible results.
 
-Here we will simulate Gata1 KO; we will predict what happens to the cells if Gata1 gene expression changed into 0.
+Here we simulate Gata1 KO; we predict what happens to the cells if Gata1 gene expression changed into 0.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[34]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Enter perturbation conditions and simulate signal propagation after the perturbation.}
+\llap{\color{nbsphinxin}[34]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Enter perturbation conditions to simulate signal propagation after the perturbation.}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{simulate\PYGZus{}shift}\PYG{p}{(}\PYG{n}{perturb\PYGZus{}condition}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n}{goi}\PYG{p}{:} \PYG{l+m+mf}{0.0}\PYG{p}{\PYGZcb{}}\PYG{p}{,}
                       \PYG{n}{n\PYGZus{}propagation}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -7039,9 +7231,9 @@ Here we will simulate Gata1 KO; we will predict what happens to the cells if Gat
 
 \paragraph{4.2. calculate transition probability between cells}
 \label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.2.-calculate-transition-probability-between-cells}}
-In the step avobe, we simulated what happens if we perturb TF(s). This means we simulated future gene expression change after perturbation. This prediction is based on itelative calculations of signal propagations inside the GRN. Here we performed just small number of the calculation, thus the we simulated short future.
+In the step avobe, we simulated simulated future gene expression after perturbation. This prediction is based on itelative calculations of signal propagations inside the GRN. Here we performed just small number of the calculation, thus the we simulated short future.
 
-Next step, we will calculate the propability of cell state transition based on the simulated data. Using this cell state transition probability between cells, we can predict how cell state changes after perturbation, enabling the analysis of the relationship between genes and cell state determination.
+Next step, we will calculate the propability of cell state transition based on the simulated data. Using this the transition probability between cells, we can predict how a cell changes after perturbation.
 
 This transition probability will be used in two ways.
 \begin{enumerate}
@@ -7053,13 +7245,20 @@ Markof simulation.
 
 \end{enumerate}
 
+In Step 4.2 and 4.3, we use some functions imported from velocytoloom class in velocyto.py. Please see the documentation of VelocytoLoom for the detail of parameters in the functions. \sphinxurl{http://velocyto.org/velocyto.py/fullapi/api\_analysis.html}
+
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[35]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{estimate\PYGZus{}transition\PYGZus{}prob}\PYG{p}{(}\PYG{n}{n\PYGZus{}neighbors}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{,} \PYG{n}{knn\PYGZus{}random}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{sampled\PYGZus{}fraction}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{)}
+\llap{\color{nbsphinxin}[35]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} get transition probability}
+\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{estimate\PYGZus{}transition\PYGZus{}prob}\PYG{p}{(}\PYG{n}{n\PYGZus{}neighbors}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{,} \PYG{n}{knn\PYGZus{}random}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{sampled\PYGZus{}fraction}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} calculate embedding}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{calculate\PYGZus{}embedding\PYGZus{}shift}\PYG{p}{(}\PYG{n}{sigma\PYGZus{}corr} \PYG{o}{=} \PYG{l+m+mf}{0.05}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} calculate global trend of cell transition}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{calculate\PYGZus{}grid\PYGZus{}arrows}\PYG{p}{(}\PYG{n}{smooth}\PYG{o}{=}\PYG{l+m+mf}{0.8}\PYG{p}{,} \PYG{n}{steps}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{40}\PYG{p}{,} \PYG{l+m+mi}{40}\PYG{p}{)}\PYG{p}{,} \PYG{n}{n\PYGZus{}neighbors}\PYG{o}{=}\PYG{l+m+mi}{300}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -7180,12 +7379,14 @@ WARNING:root:Nans encountered in corrcoef and corrected to 1s. If not identical 
 
 \paragraph{4.4. Markov simulation to analyze the effects of perturbation on cell fate transition}
 \label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.4.-Markov-simulation-to-analyze-the-effects-of-perturbation-on-cell-fate-transition}}
-Based on the transition probability, markov simulation will be performed to simulate cell state transition.
+We can also simulate cell state transition with Markof simulation with the transition probability.
 
 
 \subparagraph{4.4.1. Do simulation}
 \label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.4.1.-Do-simulation}}
-We simulate with a parameter, “n\_steps=200” and in the following example. It means that
+We simulate with the parameters, “n\_steps=200” and “n\_duplication=5” in the following example.
+
+It means that
 \begin{enumerate}
 \item {} 
 we will do 200 times of iterative simulations to predict how cell changes over time
@@ -7230,7 +7431,7 @@ Wall time: 1.33 s
 
 \subparagraph{4.4.2. Check the results of simulation focusing on a specific cells}
 \label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.4.2.-Check-the-results-of-simulation-focusing-on-a-specific-cells}}
-Check the results of simulation by picking some cells and visualize their transition trajectory.
+Check the results of simulation. Pick up some cells and visualize their transition trajectory.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -7349,7 +7550,7 @@ cell 1567
 \label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.4.3.-Summarize-the-results-of-simulation-by-plotting-sankey-diagram}}
 Sankey diagram is useful when you want to visualize cell transition between some groups.
 
-plot\_mc\_resutls\_as\_sankey function can make a Sankey diagram with any arbitrary cluster information.
+The function below can make a Sankey diagram with any arbitrary cluster unit.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -7436,11 +7637,15 @@ Make another saneky diagram with different cluster unit.
 
 \end{nbsphinxfancyoutput}
 
-In the example above, we may conclude several things as follows.
+Based on the results, we may conclude several things as follows.
 
-Gata1 KO induces cell state transition from Erythroids to MEP, from MEP to GMP. These results suggest that Gata1 may play important roles in the progression of Erythroid differentiation and cell state determination between MEP and GMP lineage.
+Gata1 KO induced cell state transition from Erythroids to MEP, and from MEP to GMP. (1) These results suggest that Gata1 may play a role in the progression of Erythroid differentiation and cell state determination between MEP and GMP lineage.
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item {} 
+Gata1 KO also induced cell state transition from granulocytes to late GMP, suggesting Gata1’s involvement in Granulocytes differentiation.
 
-The data also show that Gata1 KO may induce cell state transition from granulocytes to late GMP, suggesting Gata1’s involvement in Granulocytes differentiation.
+\end{enumerate}
 
 These results agree with previous reports about Gata1. We could recapitulate Gata1’s cell-type-specific function regarding the cell fate decisions in hematopoiesis.
 

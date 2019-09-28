@@ -123,7 +123,10 @@
 <li class="toctree-l4"><a class="reference internal" href="index.html#6.-Save-results-for-next-step">6. Save results for next step</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#document-notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data">0. Import libraries</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#1.-Load-data-made-with-cicero">1. Load data made with cicero</a></li>
-<li class="toctree-l4"><a class="reference internal" href="index.html#2.-Make-TSS-annotation">2. Make TSS annotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#2.-Make-TSS-annotation">2. Make TSS annotation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="index.html#!!-Please-make-sure-that-you-are-setting-correct-reference-genoms.">!! Please make sure that you are setting correct reference genoms.</a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#3.-Integrate-TSS-info-and-cicero-connections">3. Integrate TSS info and cicero connections</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#4.-Filter-peaks">4. Filter peaks</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#5.-Save-data">5. Save data</a></li>
@@ -166,7 +169,7 @@
 <li class="toctree-l4"><a class="reference internal" href="index.html#1.-Load-data">1. Load data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#2.-Filtering">2. Filtering</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#3.-Normalization">3. Normalization</a></li>
-<li class="toctree-l4"><a class="reference internal" href="index.html#4.-Variable-gene-detection">4. Variable gene detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#4.-Identification-of-highly-variable-genes">4. Identification of highly variable genes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#5.-Log-transformation">5. Log transformation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#6.-Dimensional-reduction">6. Dimensional reduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#7.-Clustering">7. Clustering</a></li>
@@ -180,8 +183,8 @@
 <li class="toctree-l5"><a class="reference internal" href="index.html#8.2.-Make-annotation-(2)">8.2. Make annotation (2)</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="index.html#9.-(Option)-Select-cell-cluster">9. (Option) Select cell cluster</a></li>
-<li class="toctree-l4"><a class="reference internal" href="index.html#9.-Save-data">9. Save data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#9.-(Option)-Subset-cells">9. (Option) Subset cells</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#10.-Save-data">10. Save data</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#b-scrna-seq-data-preprocessing-with-seurat">B. scRNA-seq data preprocessing with Seurat</a></li>
@@ -214,7 +217,12 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#4.-Save-and-Load.">4. Save and Load.</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#4.-GRN-calculation">4. GRN calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#4.-GRN-calculation">4. GRN calculation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="index.html#4.1.-Get-GRNs">4.1. Get GRNs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#4.2.-(Optional)-Export-GRNs">4.2. (Optional) Export GRNs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#4.3.-(Optional)-Change-order">4.3. (Optional) Change order</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#5.-Network-preprocessing">5. Network preprocessing</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="index.html#5.1.-Filter-network-edges">5.1. Filter network edges</a></li>
 <li class="toctree-l4"><a class="reference internal" href="index.html#5.2.-Degree-distribution">5.2. Degree distribution</a></li>
@@ -396,7 +404,7 @@
 <div class="section" id="welcome-to-celloracle-s-documentation">
 <h1>Welcome to celloracle’s documentation!<a class="headerlink" href="#welcome-to-celloracle-s-documentation" title="Permalink to this headline">¶</a></h1>
 <p>CellOracle is a python library for the analysis of Gene Regulatory Network with single cell data.</p>
-<p>Source code and tutorials are available at <a class="reference external" href="https://github.com/KenjiKamimoto-wustl122/CellOracle">celloracle  git hub repository</a></p>
+<p>Source code are available at <a class="reference external" href="https://github.com/KenjiKamimoto-wustl122/CellOracle">celloracle  git hub repository</a></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <div class="line-block">
@@ -406,8 +414,8 @@
 <div class="line-block">
 <div class="line">Documentation is also available as a word and pdf file.</div>
 </div>
-<p><a class="reference download internal" href="_downloads/celloracle.pdf" download=""><code class="xref download docutils literal notranslate"><span class="pre">pdf</span> <span class="pre">version</span></code></a></p>
-<p><a class="reference download internal" href="_downloads/documentation_microsoft_word.docx" download=""><code class="xref download docutils literal notranslate"><span class="pre">microsoft</span> <span class="pre">word</span> <span class="pre">version</span></code></a></p>
+<p><a class="reference download internal" href="_downloads/celloracle.pdf" download=""><code class="xref download docutils literal notranslate"><span class="pre">pdf</span> <span class="pre">documentation</span></code></a></p>
+<p><a class="reference download internal" href="_downloads/documentation_microsoft_word.docx" download=""><code class="xref download docutils literal notranslate"><span class="pre">word</span> <span class="pre">documentation</span></code></a></p>
 <div class="line-block">
 <div class="line"><strong>Could you please add comments on the file and send it back to Kenji?</strong></div>
 <div class="line">I really appreciate your support!</div>
@@ -569,19 +577,24 @@ You need to install <a class="reference external" href="https://www.gnu.org/soft
 <div class="toctree-wrapper compound">
 <span id="document-tutorials/index"></span><div class="section" id="tutorial">
 <span id="id1"></span><h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
-<p>Analysis of <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> proceeds through multiple steps below.
-Please run the notebooks following the order. If you do not have ATAC-seq data and want to use default genome and TF binding information, you can skip the first and second step and start from the third step.
-Please refer to the <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> paper for detailed information.</p>
-<p>You can download all notebooks from <a class="reference external" href="https://github.com/KenjiKamimoto-wustl122/CellOracle/tree/master/docs/notebooks">here</a> .</p>
+<p>The analysis proceeds through multiple steps.
+Please run the notebooks following the number of the notebook.
+If you do not have ATAC-seq data and want to use the default TF binding information, you can skip the first and second step and start from the third step.</p>
+<p>Please refer to the <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> paper for scientific premise and the detail of the algorithm of celloracle.</p>
+<p>The jupyter notebook files in this tutorial are available <a class="reference external" href="https://github.com/KenjiKamimoto-wustl122/CellOracle/tree/master/docs/notebooks">here</a> .</p>
 <div class="toctree-wrapper compound">
 <span id="document-tutorials/atac"></span><div class="section" id="atac-seq-data-preprocessing">
 <span id="atac"></span><h3>1. ATAC-seq data preprocessing<a class="headerlink" href="#atac-seq-data-preprocessing" title="Permalink to this headline">¶</a></h3>
-<p>Process scATAC-seq data (or bulk ATAC-seq data) to get open accessible promoter/enhancer DNA sequence.
-If you have a scATAC-seq data, proximal and distal cis-regulatory elements from TSS site can be picked up using <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero">Cicero</a> . If you have bulk ATAC-seq data, open accessible DNA elements around TSS site will be picked up.</p>
+<p>In this step, we process scATAC-seq data (or bulk ATAC-seq data) to get open accessible promoter/enhancer DNA sequence.
+We can get active proximal promoter/enhancer genome sequence by picking up ATAC-seq peaks that exist around the transcription starting site (TSS).
+Distal cis-regulatory elements can be picked up using  <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero">Cicero</a> .
+Cicero analyzes scATAC-seq data to calculate a co-accessible score between peaks.
+We can identify cis-regulatory elements using Cicero co-access score and TSS information.</p>
+<p>If you have bulk ATAC-seq data instead of scATAC-data, we’ll get only proximal promoter/enhancer genome sequence.</p>
 <div class="section" id="a-extract-tf-binding-information-from-scatac-seq-data">
 <h4>A. Extract TF binding information from scATAC-seq data<a class="headerlink" href="#a-extract-tf-binding-information-from-scatac-seq-data" title="Permalink to this headline">¶</a></h4>
-<p>If you want to use scATAC-seq data, you can start from Cicero analysis to get information of distal cis-regulatory elements.
-This step use Cicero and do not use celloracle. Please refer to <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/">the documentation of Cicero</a> for the detailed usage.</p>
+<p>If you have a scATAC-seq data, you can get information of distal cis-regulatory elements.
+This step uses Cicero and does not use celloracle. Please refer to <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/">the documentation of Cicero</a> for the detailed usage.</p>
 <p>R notebook</p>
 <div class="toctree-wrapper compound">
 <span id="document-notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero"></span><div class="section" id="0.-Import-library">
@@ -591,16 +604,14 @@ This step use Cicero and do not use celloracle. Please refer to <a class="refere
 </pre></div>
 </div>
 <div class="input_area highlight-r notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># install cicero before running this script</span>
-<span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">cicero</span><span class="p">)</span>
+<span></span><span class="nf">library</span><span class="p">(</span><span class="n">cicero</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="1.-Prepare-data">
 <h5>1. Prepare data<a class="headerlink" href="#1.-Prepare-data" title="Permalink to this headline">¶</a></h5>
-<p>In this tutorial we use scAtac-seq data in 10x genomics database. You do not need to download these data when you analyze your scATAC data.</p>
+<p>In this tutorial we use acATAC-seq data in 10x genomics database. You do not need to download these data if you analyze your scATAC data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -622,9 +633,10 @@ This step use Cicero and do not use celloracle. Please refer to <a class="refere
 </pre></div>
 </div>
 <div class="input_area highlight-r notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Just replace the data path below with the data path of your scATAC data if you have your scATAC data.</span>
-
+<span></span><span class="c1"># You can substitute the data path below with the data path of your scATAC data.</span>
 <span class="n">data_folder</span> <span class="o">&lt;-</span> <span class="s">&quot;data/filtered_peak_bc_matrix&quot;</span>
+
+<span class="c1"># Create a folder to save results</span>
 <span class="n">output_folder</span> <span class="o">&lt;-</span> <span class="s">&quot;cicero_output&quot;</span>
 <span class="nf">dir.create</span><span class="p">(</span><span class="n">output_folder</span><span class="p">)</span>
 </pre></div>
@@ -700,8 +712,8 @@ This step use Cicero and do not use celloracle. Please refer to <a class="refere
 </div>
 <div class="input_area highlight-r notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># filter cells by peak_count</span>
-<span class="n">max_count</span> <span class="o">&lt;-</span>  <span class="m">15000</span>
-<span class="n">min_count</span> <span class="o">&lt;-</span> <span class="m">2000</span>
+<span class="n">max_count</span> <span class="o">&lt;-</span>  <span class="m">15000</span> <span class="c1"># Please change the threshold value according to the distribution of the peak_count of your data</span>
+<span class="n">min_count</span> <span class="o">&lt;-</span> <span class="m">2000</span> <span class="c1"># Please change the threshold value according to the distribution of the peak_count of your data</span>
 <span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="n">input_cds[</span><span class="p">,</span><span class="n">Matrix</span><span class="o">::</span><span class="nf">colSums</span><span class="p">(</span><span class="nf">exprs</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="n">min_count]</span>
 <span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="n">input_cds[</span><span class="p">,</span><span class="n">Matrix</span><span class="o">::</span><span class="nf">colSums</span><span class="p">(</span><span class="nf">exprs</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">max_count]</span>
 </pre></div>
@@ -727,7 +739,8 @@ This step use Cicero and do not use celloracle. Please refer to <a class="refere
 <span class="nf">row.names</span><span class="p">(</span><span class="n">tsne_coords</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">row.names</span><span class="p">(</span><span class="nf">pData</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span>
 <span class="n">cicero_cds</span> <span class="o">&lt;-</span> <span class="nf">make_cicero_cds</span><span class="p">(</span><span class="n">input_cds</span><span class="p">,</span> <span class="n">reduced_coordinates</span> <span class="o">=</span> <span class="n">tsne_coords</span><span class="p">)</span>
 
-<span class="nf">saveRDS</span><span class="p">(</span><span class="n">cicero_cds</span><span class="p">,</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s">&quot;/cicero_cds.Rds&quot;</span><span class="p">))</span>
+<span class="c1"># Save cicero-CDS object if you want.</span>
+<span class="c1">#saveRDS(cicero_cds, paste0(output_folder, &quot;/cicero_cds.Rds&quot;))</span>
 
 </pre></div>
 </div>
@@ -762,9 +775,6 @@ Median shared cells bin-bin: 0
 
 <span class="c1"># runc the main function</span>
 <span class="n">conns</span> <span class="o">&lt;-</span> <span class="nf">run_cicero</span><span class="p">(</span><span class="n">cicero_cds</span><span class="p">,</span> <span class="n">mm10_chromosome_length</span><span class="p">)</span> <span class="c1"># Takes a few minutes to run</span>
-
-<span class="c1"># save results</span>
-<span class="nf">saveRDS</span><span class="p">(</span><span class="n">conns</span><span class="p">,</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s">&quot;/cicero_connections.Rds&quot;</span><span class="p">))</span>
 
 <span class="c1"># check results</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">conns</span><span class="p">)</span>
@@ -819,11 +829,10 @@ Median shared cells bin-bin: 0
 </div>
 </div>
 </div>
-<p>Next, the results of Cicero analysis will be processed with celloracle to make TSS annotations.</p>
+<p>Next, the results of Cicero analysis will be processed to make TSS annotations.</p>
 <p>Python notebook</p>
 <div class="toctree-wrapper compound">
-<span id="document-notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data"></span><p>In this notebook, we use the results of cicero analysis to get active promoter/enhancer DNA peaks. Cicero provides us information about the connection between peaks. First, we pick up peaks around Transcription starting site (TSS). Second, we merge cicero data with the peaks around TSS. Then we remove peaks that have a weak connection to TSS peak. The final product includes TSS peaks and peaks that have a strong connection with TSS peaks. We use this information as an active promoter/enhancer
-elements.</p>
+<span id="document-notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data"></span><p>In this notebook, we process the results of cicero analysis to get active promoter/enhancer DNA peaks. First, we pick up peaks around the transcription starting site (TSS). Second, we merge cicero data with the peaks around TSS. Then we remove peaks that have a weak connection to TSS peak so that the final product includes TSS peaks and peaks that have a strong connection with the TSS peaks. We use this information as an active promoter/enhancer elements.</p>
 <div class="section" id="0.-Import-libraries">
 <h5>0. Import libraries<a class="headerlink" href="#0.-Import-libraries" title="Permalink to this headline">¶</a></h5>
 <div class="nbinput nblast docutils container">
@@ -844,8 +853,8 @@ elements.</p>
 
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;savefig.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;savefig.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 
 
 </pre></div>
@@ -972,7 +981,8 @@ elements.</p>
 </div>
 <div class="section" id="2.-Make-TSS-annotation">
 <h5>2. Make TSS annotation<a class="headerlink" href="#2.-Make-TSS-annotation" title="Permalink to this headline">¶</a></h5>
-<p>!! Please make sure that you are setting correct ref genoms.</p>
+<div class="section" id="!!-Please-make-sure-that-you-are-setting-correct-reference-genoms.">
+<h6>!! Please make sure that you are setting correct reference genoms.<a class="headerlink" href="#!!-Please-make-sure-that-you-are-setting-correct-reference-genoms." title="Permalink to this headline">¶</a></h6>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -1070,9 +1080,10 @@ tss peaks in que: 16987
 </div></div>
 </div>
 </div>
+</div>
 <div class="section" id="3.-Integrate-TSS-info-and-cicero-connections">
 <h5>3. Integrate TSS info and cicero connections<a class="headerlink" href="#3.-Integrate-TSS-info-and-cicero-connections" title="Permalink to this headline">¶</a></h5>
-<p>The output file after integrartion process have three columns; peak_id, gene_short_name, coaccess. “peak_id” is either of TSS peak or peaks that have cicero connection between TSS peak. “gene_short_name” is gene name of TSS site. “coaccess” is a coacces score between TSS peak. If the score is 1, it means that the peak_id is TSS itself.</p>
+<p>The output file after the integration process has three columns; “peak_id”, “gene_short_name”, and “coaccess”. “peak_id” is either of TSS peak or peaks that have a connection with a TSS peak. “gene_short_name” is a gene name of the TSS site. “coaccess” is a co-access score between a peak and TSS peak. If the score is 1, it means that the peak is TSS itself.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -1264,7 +1275,7 @@ tss peaks in que: 16987
 </div>
 <div class="section" id="b-extract-tf-binding-information-from-bulk-atac-seq-data-or-chip-seq-data">
 <h4>B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data<a class="headerlink" href="#b-extract-tf-binding-information-from-bulk-atac-seq-data-or-chip-seq-data" title="Permalink to this headline">¶</a></h4>
-<p>Instead of scATAC-seq data bulk DNA-seq data can be used.</p>
+<p>Bulk DNA-seq data can be used to get open accessible promoter/enhancer sequence.</p>
 <p>Python notebook</p>
 <div class="toctree-wrapper compound">
 <span id="document-notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data"></span><div class="section" id="0.-Import-libraries">
@@ -1287,9 +1298,8 @@ tss peaks in que: 16987
 
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;savefig.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
-
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;savefig.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 
 </pre></div>
 </div>
@@ -1627,7 +1637,9 @@ tss peaks in que: 24822
 </div>
 <span id="document-tutorials/motifscan"></span><div class="section" id="transcription-factor-binding-motif-scan">
 <span id="motifscan"></span><h3>2. Transcription factor binding motif scan<a class="headerlink" href="#transcription-factor-binding-motif-scan" title="Permalink to this headline">¶</a></h3>
-<p>Promoter/enhancer DNA sequence will be subjected to TF-binding motif scan to get the list of potential regulatory genes for each target gene.</p>
+<p>We identified open-accessible Promoter/enhancer DNAs using ATAC-seq data.
+Next, we scan the regulatory genomic sequence searching for the TF-binding motifs to get the list of TFs for each target gene.
+In the later GRN inference process, this TF list per target gene will be used as a potential regulatory connection.</p>
 <p>Python notebook</p>
 <div class="toctree-wrapper compound">
 <span id="document-notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901"></span><div class="section" id="0.-Import-libraries">
@@ -1772,7 +1784,7 @@ mean peak length: 1756.1744260204082
 </div>
 <div class="section" id="2.1.-Remove-short-peaks">
 <h5>2.1. Remove short peaks<a class="headerlink" href="#2.1.-Remove-short-peaks" title="Permalink to this headline">¶</a></h5>
-<p>Short peak cannot be used for motif scan. Remove short DNA fragment.</p>
+<p>Short DNA fragment, such as less than 5 bases, cannot be used for motif scan. Remove short DNA fragment.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -1786,7 +1798,7 @@ mean peak length: 1756.1744260204082
 </div>
 <div class="section" id="3.-Instantiate-TFinfo-object-and-search-for-TF-binding-motifs">
 <h4>3. Instantiate TFinfo object and search for TF binding motifs<a class="headerlink" href="#3.-Instantiate-TFinfo-object-and-search-for-TF-binding-motifs" title="Permalink to this headline">¶</a></h4>
-<p>In celloracle motif analysis, we use custom class; TFinfo. This class convert peak data into get DNA sequence and scan the DNA sequence searching for TF binding motifs. Then the results of motif scan will be filtered and converted into several files, such as python dictionary or dataframe. These TF information is necessary for celloracle’s GRN inference.</p>
+<p>The motif analysis module has a custom class; TFinfo. TFinfo object converts a peak data into a DNA sequence and scans the DNA sequence searching for TF binding motifs. Then the results of motif scan will be filtered and converted into several files, such as python dictionary or dataframe. This TF information is necessary for GRN inference.</p>
 </div>
 <div class="section" id="3.1-check-reference-genome-installation">
 <h4>3.1 check reference genome installation<a class="headerlink" href="#3.1-check-reference-genome-installation" title="Permalink to this headline">¶</a></h4>
@@ -2312,7 +2324,7 @@ converting scan results into dictionaries...
 </div>
 <div class="section" id="7.-Save-TFinfo-as-dictionary-and-dataframe">
 <h4>7. Save TFinfo as dictionary and dataframe<a class="headerlink" href="#7.-Save-TFinfo-as-dictionary-and-dataframe" title="Permalink to this headline">¶</a></h4>
-<p>we’ll use this information to make GRN. Save this results.</p>
+<p>We’ll use this information in the later step to make GRN. Save the results.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
@@ -2331,33 +2343,35 @@ converting scan results into dictionaries...
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>
 <span id="document-tutorials/scrnaprocess"></span><div class="section" id="single-cell-rna-seq-data-preprocessing">
 <span id="scrnaprocess"></span><h3>3. Single-cell RNA-seq data preprocessing<a class="headerlink" href="#single-cell-rna-seq-data-preprocessing" title="Permalink to this headline">¶</a></h3>
-<p>Network analysis and simulation in celloracle require processed scRNA-seq data.
-We recommend processing scRNA-seq data using either scanpy or Seurat.
-If you want to know general idea of scRNA-seq data processing, please go to <a class="reference external" href="https://scanpy.readthedocs.io/en/stable/">the documentation of scanpy</a> and <a class="reference external" href="https://satijalab.org/seurat/vignettes.html">the documentation of Seurat</a> .
-This step needs to include data quality check, filtering, normalization, dimensional reduction, clustering and cluster annotation.
-If you have preprocessed scRNA-seq data, such as anndata or seurat object, you can skip this part.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">several tips</p>
-</div>
+<dl class="docutils">
+<dt>Network analysis and simulation in celloracle will be performed using scRNA-seq data. The scRNA-seq data should include the compontnes below.</dt>
+<dd><ul class="first last simple">
+<li>Gene expression matrix; mRNA counts before scaling and transformation.</li>
+<li>Clustering results.</li>
+<li>Dimensional reduction results.</li>
+</ul>
+</dd>
+<dt>In addition to these minimum requirements, we highly recommend doing these analyses below in the preprocessing step.</dt>
+<dd><ul class="first last simple">
+<li>Data quality check and Cell/Gene filtering.</li>
+<li>Normalization</li>
+<li>Identification of highly variable genes</li>
+</ul>
+</dd>
+</dl>
+<p>We recommend processing scRNA-seq data using either scanpy or Seurat.
+If you are not familiar with the general workflow of scRNA-seq data processing, please go to <a class="reference external" href="https://scanpy.readthedocs.io/en/stable/">the documentation of scanpy</a> and <a class="reference external" href="https://satijalab.org/seurat/vignettes.html">the documentation of Seurat</a> .</p>
+<p>If you already have preprocessed scRNA-seq data, which includes necessary information above, you can skip this part.</p>
 <div class="section" id="a-scrna-seq-data-preprocessing-with-scanpy">
 <h4>A. scRNA-seq data preprocessing with scanpy<a class="headerlink" href="#a-scrna-seq-data-preprocessing-with-scanpy" title="Permalink to this headline">¶</a></h4>
-<p>scanpy is a python library for the analysis of scRNA-seq data.</p>
-<p>In this tutorial, we use the almost same code as  <a class="reference external" href="https://scanpy-tutorials.readthedocs.io/en/latest/paga-paul15.html">one of scanpy tutorials</a> with some modification.</p>
+<p><code class="docutils literal notranslate"><span class="pre">scanpy</span></code> is a python library for the analysis of scRNA-seq data.</p>
+<p>In this tutorial, we introduce an example of scRNA-seq preprocessing for celloracle with <code class="docutils literal notranslate"><span class="pre">scanpy</span></code>.
+We wrote the notebook based on <a class="reference external" href="https://scanpy-tutorials.readthedocs.io/en/latest/paga-paul15.html">one of scanpy’s tutorials</a> with some modification.</p>
 <p>Python notebook</p>
 <div class="toctree-wrapper compound">
 <span id="document-notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data"></span><div class="section" id="0.-Import-libraries">
@@ -2383,14 +2397,14 @@ If you have preprocessed scRNA-seq data, such as anndata or seurat object, you c
 <span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;savefig.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="1.-Load-data">
 <h5>1. Load data<a class="headerlink" href="#1.-Load-data" title="Permalink to this headline">¶</a></h5>
-<p>In this notebook, we show an example of scRNA-seq preprocessing using scRNA-seq data of hematopoiesis (Paul, F., Arkin, Y., Giladi, A., Jaitin, D. A., Kenigsberg, E., Keren-Shaul, H., et al. (2015). Transcriptional Heterogeneity and Lineage Commitment in Myeloid Progenitors. Cell, 163(7), 1663–1677. <a class="reference external" href="http://doi.org/10.1016/j.cell.2015.11.013">http://doi.org/10.1016/j.cell.2015.11.013</a>). This data can be download using a scanpy’s function.</p>
+<p>In this notebook, we will show an example of how to process scRNA-seq data using a scRNA-seq data of hematopoiesis (Paul, F., Arkin, Y., Giladi, A., Jaitin, D. A., Kenigsberg, E., Keren-Shaul, H., et al. (2015). Transcriptional Heterogeneity and Lineage Commitment in Myeloid Progenitors. Cell, 163(7), 1663–1677. <a class="reference external" href="http://doi.org/10.1016/j.cell.2015.11.013">http://doi.org/10.1016/j.cell.2015.11.013</a>). You can easily download this scRNA-seq data with a scanpy’s function.</p>
 <p>Please change the code below if you want to use your data.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -2447,15 +2461,15 @@ Trying to set attribute `.uns` of view, making a copy.
 </div>
 </div>
 </div>
-<div class="section" id="4.-Variable-gene-detection">
-<h5>4. Variable gene detection<a class="headerlink" href="#4.-Variable-gene-detection" title="Permalink to this headline">¶</a></h5>
-<p>In celloracle we will make GRN and do simulation using many genes. Removing weakly-variable gene genes will reduce calculation time. We recomend using top 2000~3000 variable genes.</p>
+<div class="section" id="4.-Identification-of-highly-variable-genes">
+<h5>4. Identification of highly variable genes<a class="headerlink" href="#4.-Identification-of-highly-variable-genes" title="Permalink to this headline">¶</a></h5>
+<p>Removing non-variable genes reduces calculation time in the GRN reconstruction and simulation. We recommend using top 2000~3000 variable genes.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># select top2000 highly-variable genes</span>
+<span></span><span class="c1"># select top 2000 highly-variable genes</span>
 <span class="n">filter_result</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_genes_dispersion</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">,</span>
                                               <span class="n">flavor</span><span class="o">=</span><span class="s1">&#39;cell_ranger&#39;</span><span class="p">,</span>
                                               <span class="n">n_top_genes</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
@@ -2480,7 +2494,7 @@ Trying to set attribute `.obs` of view, making a copy.
 </div>
 <div class="section" id="5.-Log-transformation">
 <h5>5. Log transformation<a class="headerlink" href="#5.-Log-transformation" title="Permalink to this headline">¶</a></h5>
-<p>Log transformation and scaling are necessary for many single cell analysis. But we still use non-transformed gene expression data in the celloracle analysis. We keep raw count in anndata with following command.</p>
+<p>We will do log transformation scaling because these are necessary for PCA, clustering, differential gene calculation. However, we also need non-transformed gene expression data in the celloracle analysis. Thus we keep raw count in anndata with the following command before log transformation.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -2510,8 +2524,9 @@ Trying to set attribute `.obs` of view, making a copy.
 </div>
 <div class="section" id="6.-Dimensional-reduction">
 <h5>6. Dimensional reduction<a class="headerlink" href="#6.-Dimensional-reduction" title="Permalink to this headline">¶</a></h5>
-<p>Dimensional reduction is one of the most important parts in the scRNA-seq analysis. In celloracle, we use dimensional reduction embeddings for the simulation of cell transition. We need to select an algorithm for dimensional reduction so that cell-cell relationship is properly represented. We recommend using one of the dimensional reduction algorithms (or trajectory inference algorithms); UMAP, tSNE, diffusion map, Force-directed graph drawing, PAGA.</p>
-<p>In this example, we use a combination of diffusion, force-directed graph drawing, and PAGA.</p>
+<p>Dimensional reduction is one of the most important parts of the scRNA-seq analysis. celloracle needs dimensional reduction embeddings to simulate cell transition.</p>
+<p>Please choose a proper algorithm of dimensional reduction so that the embedding appropriately represents the data structure. We recommend using one of the dimensional reduction algorithms (or trajectory inference algorithms); UMAP, tSNE, diffusion map, Force-directed graph drawing, PAGA.</p>
+<p>In this example, we use a combination of four algorithms; diffusion map, force-directed graph drawing, and PAGA.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
@@ -2583,8 +2598,17 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2596,11 +2620,11 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_22_0.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_22_0.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_22_0.png" style="width: 815px; height: 363px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_23_0.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_23_0.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_23_0.png" style="width: 383px; height: 277px;" /></a>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2609,12 +2633,11 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;louvain&#39;</span><span class="p">],</span>
-                 <span class="n">legend_loc</span><span class="o">=</span><span class="s1">&#39;on data&#39;</span><span class="p">)</span>
+<span></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;louvain&#39;</span><span class="p">,</span> <span class="n">legend_loc</span><span class="o">=</span><span class="s1">&#39;on data&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2622,7 +2645,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_24_0.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_24_0.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_24_0.png" style="width: 699px; height: 369px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_25_0.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_25_0.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_25_0.png" style="width: 364px; height: 288px;" /></a>
 </div>
 </div>
 </div>
@@ -2630,8 +2653,17 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 <h5>8. Check data<a class="headerlink" href="#8.-Check-data" title="Permalink to this headline">¶</a></h5>
 <div class="section" id="8.1.-Visualize-marker-gene-expression">
 <h6>8.1. Visualize marker gene expression<a class="headerlink" href="#8.1.-Visualize-marker-gene-expression" title="Permalink to this headline">¶</a></h6>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2645,7 +2677,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 
 <span class="k">for</span> <span class="n">cell_type</span><span class="p">,</span> <span class="n">genes</span> <span class="ow">in</span> <span class="n">markers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;marker gene of </span><span class="si">{cell_type}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">genes</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">genes</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
@@ -2664,7 +2696,7 @@ marker gene of Erythroids
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_1.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_1.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_1.png" style="width: 2979px; height: 376px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_1.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_1.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_1.png" style="width: 656px; height: 574px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -2679,7 +2711,7 @@ marker gene of Megakaryocytes
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_3.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_3.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_3.png" style="width: 2986px; height: 376px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_3.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_3.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_3.png" style="width: 644px; height: 574px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -2694,7 +2726,7 @@ marker gene of Granulocytes
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_5.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_5.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_5.png" style="width: 2997px; height: 751px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_5.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_5.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_5.png" style="width: 655px; height: 856px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -2709,7 +2741,7 @@ marker gene of Monocytes
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_7.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_7.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_7.png" style="width: 2997px; height: 376px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_7.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_7.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_7.png" style="width: 656px; height: 574px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -2724,7 +2756,7 @@ marker gene of Mast_cells
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_9.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_9.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_9.png" style="width: 2231px; height: 376px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_9.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_9.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_9.png" style="width: 644px; height: 574px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -2739,7 +2771,7 @@ marker gene of Basophils
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_11.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_11.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_26_11.png" style="width: 1488px; height: 376px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_11.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_11.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_11.png" style="width: 644px; height: 292px;" /></a>
 </div>
 </div>
 </div>
@@ -2763,7 +2795,7 @@ marker gene of Basophils
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_30_0.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_30_0.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_30_0.png" style="width: 1452px; height: 376px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_32_0.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_32_0.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_32_0.png" style="width: 615px; height: 292px;" /></a>
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -2862,7 +2894,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># check results</span>
-<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">],</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cell_type&#39;</span><span class="p">,</span> <span class="s1">&#39;paul15_clusters&#39;</span><span class="p">],</span>
                  <span class="n">legend_loc</span><span class="o">=</span><span class="s1">&#39;on data&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2879,7 +2911,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_34_1.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_34_1.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_34_1.png" style="width: 699px; height: 369px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_36_1.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_36_1.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_36_1.png" style="width: 615px; height: 292px;" /></a>
 </div>
 </div>
 </div>
@@ -2900,7 +2932,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_36_0.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_36_0.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_36_0.png" style="width: 1452px; height: 376px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_38_0.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_38_0.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_38_0.png" style="width: 615px; height: 292px;" /></a>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -2966,14 +2998,14 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_39_1.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_39_1.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_39_1.png" style="width: 1452px; height: 376px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_41_1.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_41_1.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_41_1.png" style="width: 615px; height: 292px;" /></a>
 </div>
 </div>
 <p>We’ve done secveral scRNA-preprocessing steps; filtering, normalization, clustering, dimensional reduction. In the next step, we’ll do GRN inference, network analysis, and in silico simulation based on these information.</p>
 </div>
 </div>
-<div class="section" id="9.-(Option)-Select-cell-cluster">
-<h5>9. (Option) Select cell cluster<a class="headerlink" href="#9.-(Option)-Select-cell-cluster" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="9.-(Option)-Subset-cells">
+<h5>9. (Option) Subset cells<a class="headerlink" href="#9.-(Option)-Subset-cells" title="Permalink to this headline">¶</a></h5>
 <p>In this tutorial, we are using scRNA-seq data of hematopoiesis. In the latter part, we will focus on the cell fate decision in the myeloid lineage. So we remove non-myeloid cell cluster, DC and Lymphoid now.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
@@ -3019,18 +3051,18 @@ Categories (9, object): [MEP, Monocytes, Erythroids, Granulocytes, ..., GMP, Meg
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_44_0.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_44_0.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_44_0.png" style="width: 1452px; height: 376px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_46_0.png"><img alt="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_46_0.png" src="_images/notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_46_0.png" style="width: 615px; height: 292px;" /></a>
 </div>
 </div>
 </div>
-<div class="section" id="9.-Save-data">
-<h5>9. Save data<a class="headerlink" href="#9.-Save-data" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="10.-Save-data">
+<h5>10. Save data<a class="headerlink" href="#10.-Save-data" title="Permalink to this headline">¶</a></h5>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="s2">&quot;data/Paul_etal_15.h5ad&quot;</span><span class="p">)</span>
+<span></span><span class="c1">#adata.write_h5ad(&quot;data/Paul_etal_15.h5ad&quot;)</span>
 </pre></div>
 </div>
 </div>
@@ -3049,19 +3081,27 @@ Categories (9, object): [MEP, Monocytes, Erythroids, Granulocytes, ..., GMP, Meg
 <div class="section" id="b-scrna-seq-data-preprocessing-with-seurat">
 <h4>B. scRNA-seq data preprocessing with Seurat<a class="headerlink" href="#b-scrna-seq-data-preprocessing-with-seurat" title="Permalink to this headline">¶</a></h4>
 <p>R notebook … comming soon</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you use <code class="docutils literal notranslate"><span class="pre">Seurat</span></code> for preprocessing, you need to convert the scRNA-seq data (Seurat object) into anndata to analyze the data with <code class="docutils literal notranslate"><span class="pre">celloracle</span></code>.
+<code class="docutils literal notranslate"><span class="pre">celloracle</span></code> have python API and command-line API to convert Seurat object into anndata.
+Please go to the documentation of celloracle API for more information.</p>
+</div>
 </div>
 </div>
 <span id="document-tutorials/networkanalysis"></span><div class="section" id="network-analysis">
 <span id="networkanalysis"></span><h3>4. Network analysis<a class="headerlink" href="#network-analysis" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> reconstructs cluster-specicif GRNs using scRNA-seq dataset and TF binding information which was made in the previous steps.
-Then several network analysis methods will be applied to the cluster specific GRNs.
-This step includes network structure analysis, network score analysis, and key regulatory gene identification.</p>
+<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> import scRNA-seq dataset and TF binding information to find active regulatory connections for all genes, generating sample-specific GRNs.</p>
+<p>The inferred GRN is analyzed with several network algorithms to get various network scores. The network score is useful to identify key regulatory genes.</p>
+<p>celloracle reconstructs GRN for each cluster enabling us to compare GRNs each other. It is also possible to analyze how the GRN change over differentiation.
+The dynamics of the GRN structure provide us insight into the
+context-dependent regulatory mechanism.</p>
 <p>Python notebook</p>
 <div class="toctree-wrapper compound">
 <span id="document-notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data"></span><div class="section" id="0.-Import-libraries">
 <h4>0. Import libraries<a class="headerlink" href="#0.-Import-libraries" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3075,13 +3115,12 @@ This step includes network structure analysis, network score analysis, and key r
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="nn">sc</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="k">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
 
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3090,7 +3129,7 @@ This step includes network structure analysis, network score analysis, and key r
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3098,18 +3137,17 @@ This step includes network structure analysis, network score analysis, and key r
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;savefig.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">600</span>
-
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;savefig.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 
 </pre></div>
 </div>
 </div>
 <div class="section" id="0.1.-Check-installation">
 <h5>0.1. Check installation<a class="headerlink" href="#0.1.-Check-installation" title="Permalink to this headline">¶</a></h5>
-<p>Celloracle use some R libraries in network analysis. Check installation.</p>
+<p>Celloracle uses some R libraries in network analysis. Please make sure that all dependent R libraries are installed on your computer. You can test the installation with the following command.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3131,7 +3169,7 @@ checking R library installation: rnetcarto -&gt; OK
 <div class="section" id="0.2.-Make-a-folder-to-save-graph">
 <h5>0.2. Make a folder to save graph<a class="headerlink" href="#0.2.-Make-a-folder-to-save-graph" title="Permalink to this headline">¶</a></h5>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3148,7 +3186,7 @@ checking R library installation: rnetcarto -&gt; OK
 <h5>1.1. Load processed gene expression data (anndata)<a class="headerlink" href="#1.1.-Load-processed-gene-expression-data-(anndata)" title="Permalink to this headline">¶</a></h5>
 <p>Please refer to the previous notebook in the tutorial for an example of how to process scRNA-seq data.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3160,11 +3198,11 @@ checking R library installation: rnetcarto -&gt; OK
 </div>
 <div class="section" id="1.2.-Load-TF-data.">
 <h5>1.2. Load TF data.<a class="headerlink" href="#1.2.-Load-TF-data." title="Permalink to this headline">¶</a></h5>
-<p>celloracle need TF information, which contains lists of regulatory candidata gene. There are several way to make such TF information. TF information can be made from scATAC-seq data or Bulk ATAC-seq data. Please refer to the first step of the tutorial.</p>
-<p>If you do not have your scATAC-seq data, you can use some builtin data in celloracle. For example, celloracle have a TFinfo which was made with various kind of tissue/cell-types in mouse ATAC-seq atlas dataset (<a class="reference external" href="http://atlas.gs.washington.edu/mouse-atac/">http://atlas.gs.washington.edu/mouse-atac/</a>).</p>
-<p>This TFinfo is ready. You can load and use it with following command.</p>
+<p>For the GRN inference, celloracle needs TF information, which contains lists of the regulatory candidate gene. There are several ways to make such TF information. We can generate TF information from scATAC-seq data or Bulk ATAC-seq data. Please refer to the first step of the tutorial for the details of how to make TF information.</p>
+<p>If you do not have your scATAC-seq data, you can use some built-in data in celloracle. celloracle have a TFinfo made with various kind of tissue/cell-types of mouse ATAC-seq atlas dataset (<a class="reference external" href="http://atlas.gs.washington.edu/mouse-atac/">http://atlas.gs.washington.edu/mouse-atac/</a>).</p>
+<p>You can load and use the data with the following command.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3177,7 +3215,7 @@ checking R library installation: rnetcarto -&gt; OK
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3352,9 +3390,9 @@ checking R library installation: rnetcarto -&gt; OK
 </div>
 <div class="section" id="2.-Initiate-Oracle-object">
 <h4>2. Initiate Oracle object<a class="headerlink" href="#2.-Initiate-Oracle-object" title="Permalink to this headline">¶</a></h4>
-<p>Basically all information will be stored and proccessed inside Oracle object. Processed gene expression data (anndata) and TFinfo are necessary to initiate Oracle object.</p>
+<p>celloracle have a custom class, Oracle. We can use Oracle for the data preprocessing and GRN inference. Oracle object stores all information and do the calculation with its internal functions. We instantiate an Oracle object, then input a gene expression data (anndata) and a TFinfo into the Oracle object.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3365,8 +3403,29 @@ checking R library installation: rnetcarto -&gt; OK
 </div>
 <div class="section" id="2.1.-load-gene-expression-data-into-oracle-object.">
 <h5>2.1. load gene expression data into oracle object.<a class="headerlink" href="#2.1.-load-gene-expression-data-into-oracle-object." title="Permalink to this headline">¶</a></h5>
+<p>When you load scRNA-seq data, please enter the name of clustering data and dimensional reduction data. Clustering data suppose to be stored in the attribute of “obs” in the anndata. Dimensional reduction data suppose to be stored in the attribute of “obsm” in the anndata. You can check these data by the following command.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># show data name in anndata</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;metadata columns :&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dimensional reduction: &quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+metadata columns : [&#39;paul15_clusters&#39;, &#39;n_counts_all&#39;, &#39;n_counts&#39;, &#39;louvain&#39;, &#39;cell_type&#39;, &#39;louvain_annot&#39;]
+dimensional reduction:  [&#39;X_diffmap&#39;, &#39;X_draw_graph_fa&#39;, &#39;X_pca&#39;]
+</pre></div></div>
+</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3379,8 +3438,7 @@ checking R library installation: rnetcarto -&gt; OK
 <span class="c1"># Instantiate Oracle object. All calculation will be done in this object.</span>
 <span class="n">oracle</span><span class="o">.</span><span class="n">import_anndata_as_raw_count</span><span class="p">(</span><span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span>
                                    <span class="n">cluster_column_name</span><span class="o">=</span><span class="s2">&quot;louvain_annot&quot;</span><span class="p">,</span>
-                                   <span class="n">embedding_name</span><span class="o">=</span><span class="s2">&quot;X_draw_graph_fa&quot;</span><span class="p">,</span>
-                                   <span class="n">transform</span><span class="o">=</span><span class="s2">&quot;natural_log&quot;</span><span class="p">)</span>
+                                   <span class="n">embedding_name</span><span class="o">=</span><span class="s2">&quot;X_draw_graph_fa&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3388,7 +3446,7 @@ checking R library installation: rnetcarto -&gt; OK
 <div class="section" id="2.2.-load-TFinfo-into-oracle-object">
 <h5>2.2. load TFinfo into oracle object<a class="headerlink" href="#2.2.-load-TFinfo-into-oracle-object" title="Permalink to this headline">¶</a></h5>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3403,13 +3461,15 @@ checking R library installation: rnetcarto -&gt; OK
 </div>
 <div class="section" id="2.3.-(Optional)-Add-TF-info-manually">
 <h5>2.3. (Optional) Add TF info manually<a class="headerlink" href="#2.3.-(Optional)-Add-TF-info-manually" title="Permalink to this headline">¶</a></h5>
-<p>We mainly use TF info data made from scATAC-seq data. Besides we can also add any information about TF-target gene pair manually.</p>
-<p>For example if there is a study or database about TF-target pair, you can use such information by the following way.</p>
+<p>While we mainly use TF info data made from scATAC-seq data, we can also add arbitrary information about the TF-target gene pair by the manual way.</p>
+<p>For example, if there is a study or database about TF-target pair, you can use such information in the following way.</p>
 <div class="section" id="2.3.1.-Make-TF-info-dictionary-manually">
 <h6>2.3.1. Make TF info dictionary manually<a class="headerlink" href="#2.3.1.-Make-TF-info-dictionary-manually" title="Permalink to this headline">¶</a></h6>
-<p>Here, we introduce most simple way to add TF binding information using TF binding data in the supplemental table 4 in (<a class="reference external" href="http://doi.org/10.1016/j.cell.2015.11.013">http://doi.org/10.1016/j.cell.2015.11.013</a>).</p>
+<p>Here, we introduce a way to add TF binding information.</p>
+<p>We have a TF binding data in about some TFs. The information is the supplemental table 4 in (<a class="reference external" href="http://doi.org/10.1016/j.cell.2015.11.013">http://doi.org/10.1016/j.cell.2015.11.013</a>).</p>
+<p>In order to import TF data into Oracle object, we need to convert them into a python dictionary, in which dictionary keys are target gene, and values are regulatory candidate TFs.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3421,7 +3481,7 @@ checking R library installation: rnetcarto -&gt; OK
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3478,7 +3538,7 @@ checking R library installation: rnetcarto -&gt; OK
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3502,7 +3562,7 @@ checking R library installation: rnetcarto -&gt; OK
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a023326c9c024b6ebd459c70269b6afe", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6cdd0fba94fe41caae9aace9a609f5f9", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -3516,7 +3576,7 @@ checking R library installation: rnetcarto -&gt; OK
 <div class="section" id="2.3.2.-Add-TF-informatio-dictionary-into-the-oracle-object">
 <h6>2.3.2. Add TF informatio dictionary into the oracle object<a class="headerlink" href="#2.3.2.-Add-TF-informatio-dictionary-into-the-oracle-object" title="Permalink to this headline">¶</a></h6>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3530,11 +3590,12 @@ checking R library installation: rnetcarto -&gt; OK
 </div>
 <div class="section" id="3.-Knn-imputation">
 <h4>3. Knn imputation<a class="headerlink" href="#3.-Knn-imputation" title="Permalink to this headline">¶</a></h4>
-<p>Celloracle uses almost the same strategy as velocyto for visualization of trajectory, which requires knn imputation to improves the accuracy of cell transition calculation. Besides, PCA and PC selection are required for knn imputation.</p>
+<p>Celloracle uses almost the same strategy as velocyto for visualization of cell transition. This process requires knn imputation.</p>
+<p>For the Knn imputation, we need PCA and PC selection first.</p>
 <div class="section" id="3.1.-PCA">
 <h5>3.1. PCA<a class="headerlink" href="#3.1.-PCA" title="Permalink to this headline">¶</a></h5>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3562,14 +3623,15 @@ checking R library installation: rnetcarto -&gt; OK
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_25_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_25_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_25_1.png" style="width: 547px; height: 360px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_27_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_27_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_27_1.png" style="width: 380px; height: 278px;" /></a>
 </div>
 </div>
 </div>
 <div class="section" id="3.2.-Knn-imputation">
 <h5>3.2. Knn imputation<a class="headerlink" href="#3.2.-Knn-imputation" title="Permalink to this headline">¶</a></h5>
+<p>Estimate number of nearest neighbor for k-nn imputation.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3587,7 +3649,7 @@ cell number is :2671
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3605,7 +3667,7 @@ Auto-selected k is :66
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3618,10 +3680,10 @@ Auto-selected k is :66
 </div>
 <div class="section" id="4.-Save-and-Load.">
 <h4>4. Save and Load.<a class="headerlink" href="#4.-Save-and-Load." title="Permalink to this headline">¶</a></h4>
-<p>Celloracle has some custom-class; Links, Oracle, TFinfo, etc., You can save such object using “to_hdf5”. The file will be saved as a hdf5 file.</p>
-<p>To load saved file, pleasae use “load_hdf5” function.</p>
+<p>Celloracle has some custom-class: Links, Oracle, TFinfo. You can save such an object using “to_hdf5”.</p>
+<p>Pleasae use “load_hdf5” function to load the file.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3631,7 +3693,7 @@ Auto-selected k is :66
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3644,12 +3706,11 @@ Auto-selected k is :66
 <div class="section" id="4.-GRN-calculation">
 <h4>4. GRN calculation<a class="headerlink" href="#4.-GRN-calculation" title="Permalink to this headline">¶</a></h4>
 <p>Next step is constructing a cluster-specific GRN for all clusters.</p>
-<p>GRN can be calculated at any arbitrary unit.</p>
-<p>With “get_links” function, you can calculate cluster-specific GRNs at any unit, and the function returns GRNs as Links object. Links object stores inferred GRNs and its metadata. You can do network analysis with Links object.</p>
-<p>In the example below, we will make GRNs based on “louvain_annot” clustering unit.</p>
-<p>You can use any clustering unit for GRN calculation as long as clustering information is saved in anndata.</p>
+<p>You can calculate GRNs with “get_links” function, and the function returns GRNs as a Links object. Links object stores inferred GRNs and its metadata. You can do network analysis with Links object.</p>
+<p>In the example below, we construct GRNs based on “louvain_annot” clustering unit.</p>
+<p>GRN can be calculated at any arbitrary unit as long as the clustering information is stored in anndata.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3662,9 +3723,11 @@ Auto-selected k is :66
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_35_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_35_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_35_0.png" style="width: 683px; height: 369px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_37_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_37_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_37_0.png" style="width: 516px; height: 288px;" /></a>
 </div>
 </div>
+<div class="section" id="4.1.-Get-GRNs">
+<h5>4.1. Get GRNs<a class="headerlink" href="#4.1.-Get-GRNs" title="Permalink to this headline">¶</a></h5>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
@@ -4032,18 +4095,187 @@ alpha: 10
 
 </pre></div></div>
 </div>
-<p>Links object have some metadata.</p>
+</div>
+<div class="section" id="4.2.-(Optional)-Export-GRNs">
+<h5>4.2. (Optional) Export GRNs<a class="headerlink" href="#4.2.-(Optional)-Export-GRNs" title="Permalink to this headline">¶</a></h5>
+<p>Although celloracle has many functions for network analysis, you can analyze GRNs by yourself. The raw GRN data is stored in the attribute of “links_dict”.</p>
+<p>For example, you can get GRNs for “Ery_0” cluster with the following commands.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">links</span><span class="o">.</span><span class="n">palette</span>
+<span></span><span class="n">links</span><span class="o">.</span><span class="n">links_dict</span><span class="p">[</span><span class="s2">&quot;Ery_0&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>source</th>
+      <th>target</th>
+      <th>coef_mean</th>
+      <th>coef_abs</th>
+      <th>p</th>
+      <th>-logp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>Id2</td>
+      <td>0610007L01Rik</td>
+      <td>0.000552</td>
+      <td>0.000552</td>
+      <td>5.724488e-01</td>
+      <td>0.242263</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Klf2</td>
+      <td>0610007L01Rik</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>-0.000000</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Stat5a</td>
+      <td>0610007L01Rik</td>
+      <td>-0.005179</td>
+      <td>0.005179</td>
+      <td>5.294497e-04</td>
+      <td>3.276175</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Elf1</td>
+      <td>0610007L01Rik</td>
+      <td>0.002107</td>
+      <td>0.002107</td>
+      <td>1.498884e-01</td>
+      <td>0.824232</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Gata1</td>
+      <td>0610007L01Rik</td>
+      <td>-0.000700</td>
+      <td>0.000700</td>
+      <td>5.731063e-01</td>
+      <td>0.241765</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>74460</td>
+      <td>Cxxc1</td>
+      <td>Zyx</td>
+      <td>-0.004999</td>
+      <td>0.004999</td>
+      <td>1.578852e-02</td>
+      <td>1.801659</td>
+    </tr>
+    <tr>
+      <td>74461</td>
+      <td>Mef2c</td>
+      <td>Zyx</td>
+      <td>0.017708</td>
+      <td>0.017708</td>
+      <td>3.011616e-07</td>
+      <td>6.521200</td>
+    </tr>
+    <tr>
+      <td>74462</td>
+      <td>Nfe2</td>
+      <td>Zyx</td>
+      <td>0.034433</td>
+      <td>0.034433</td>
+      <td>2.548244e-12</td>
+      <td>11.593759</td>
+    </tr>
+    <tr>
+      <td>74463</td>
+      <td>Nr3c1</td>
+      <td>Zyx</td>
+      <td>-0.022663</td>
+      <td>0.022663</td>
+      <td>2.265408e-08</td>
+      <td>7.644854</td>
+    </tr>
+    <tr>
+      <td>74464</td>
+      <td>Ets1</td>
+      <td>Zyx</td>
+      <td>0.012826</td>
+      <td>0.012826</td>
+      <td>4.813285e-09</td>
+      <td>8.317558</td>
+    </tr>
+  </tbody>
+</table>
+<p>74465 rows × 6 columns</p>
+</div></div>
+</div>
+<p>You can export the file as follows.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># set cluster name</span>
+<span class="n">cluster</span> <span class="o">=</span> <span class="s2">&quot;Ery_0&quot;</span>
+
+<span class="c1"># save as csv</span>
+<span class="n">links</span><span class="o">.</span><span class="n">links_dict</span><span class="p">[</span><span class="n">cluster</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;raw_GRN_for_</span><span class="si">{cluster}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="4.3.-(Optional)-Change-order">
+<h5>4.3. (Optional) Change order<a class="headerlink" href="#4.3.-(Optional)-Change-order" title="Permalink to this headline">¶</a></h5>
+<p>Links object have a color information in a attribute, “palette”. This information is used for the visualization</p>
+<p>The sample will be visualized in the order. Here we change the order.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Show the contents of pallete</span>
+<span class="n">links</span><span class="o">.</span><span class="n">palette</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4153,24 +4385,22 @@ alpha: 10
 </table>
 </div></div>
 </div>
-<p>For the visualization below, we change the order of clusters.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-
-<span></span><span class="c1"># For the visualization below, we define and save order of clusters.</span>
+<span></span><span class="c1"># change the order of pallete</span>
 <span class="n">order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MEP_0&#39;</span><span class="p">,</span> <span class="s1">&#39;Mk_0&#39;</span><span class="p">,</span><span class="s1">&#39;Ery_0&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_1&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_2&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_3&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_4&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_5&#39;</span><span class="p">,</span>
          <span class="s1">&#39;Ery_6&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_7&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_8&#39;</span><span class="p">,</span> <span class="s1">&#39;Ery_9&#39;</span><span class="p">,</span><span class="s1">&#39;GMP_0&#39;</span><span class="p">,</span> <span class="s1">&#39;GMP_1&#39;</span><span class="p">,</span>
          <span class="s1">&#39;GMPl_0&#39;</span><span class="p">,</span> <span class="s1">&#39;Mo_0&#39;</span><span class="p">,</span> <span class="s1">&#39;Mo_1&#39;</span><span class="p">,</span> <span class="s1">&#39;Gran_0&#39;</span><span class="p">,</span> <span class="s1">&#39;Gran_1&#39;</span><span class="p">,</span> <span class="s1">&#39;Gran_2&#39;</span><span class="p">]</span>
-<span class="n">links_louvain</span><span class="o">.</span><span class="n">palette</span> <span class="o">=</span> <span class="n">links_louvain</span><span class="o">.</span><span class="n">palette</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
-<span class="n">links_louvain</span><span class="o">.</span><span class="n">palette</span>
+<span class="n">links</span><span class="o">.</span><span class="n">palette</span> <span class="o">=</span> <span class="n">links</span><span class="o">.</span><span class="n">palette</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">order</span><span class="p">]</span>
+<span class="n">links</span><span class="o">.</span><span class="n">palette</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4279,19 +4509,20 @@ alpha: 10
   </tbody>
 </table>
 </div></div>
+</div>
 </div>
 </div>
 <div class="section" id="5.-Network-preprocessing">
 <h4>5. Network preprocessing<a class="headerlink" href="#5.-Network-preprocessing" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="5.1.-Filter-network-edges">
 <h5>5.1. Filter network edges<a class="headerlink" href="#5.1.-Filter-network-edges" title="Permalink to this headline">¶</a></h5>
-<p>Celloracle leverages bagging ridge or Bayesian ridge regression for network inference. These methods provide a network edge strength as a distribution rather than point value. We can use the distribution of the network edge strength to know the certainness of the connection.</p>
-<p>We will do filtering of network edge before starting network analysis.</p>
+<p>Celloracle leverages bagging ridge or Bayesian ridge regression for network inference. These methods provide a network edge strength as a distribution rather than point value. We can use the distribution to know the certainness of the connection.</p>
+<p>We filter the network edges as follows.</p>
 <ol class="arabic simple">
 <li>Remove uncertain network edge based on the p-value.</li>
 <li>Remove weak network edge. In this tutorial, we pick up top 2000 edges in terms of network strength.</li>
 </ol>
-<p>The raw network data is stored as an attribute, “links_dict,” while filtered network data will be stored in “filtered_links.” So the raw network data will not be erased after the filtering. You can come back to the filtering process and do the filtering again if you do not like filtering results.</p>
+<p>The raw network data is stored as an attribute, “links_dict,” while filtered network data is stored in “filtered_links.” So the filtering function keeps raw network information rather than overwriting data. You can come back to the filtering process to filter the data with different parameters if you want.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
@@ -4304,9 +4535,19 @@ alpha: 10
 </div>
 <div class="section" id="5.2.-Degree-distribution">
 <h5>5.2. Degree distribution<a class="headerlink" href="#5.2.-Degree-distribution" title="Permalink to this headline">¶</a></h5>
-<p>Network degree, which means the number of edges for each gene, is one of the important metrics to know the network analysis. The degree distribution may change depending on the filtering threshold.</p>
+<p>For the first step, we examine network degree distribution. Network degree, which is the number of edges for each node, is one of the important metrics to investigate the network structure (<a class="reference external" href="https://en.wikipedia.org/wiki/Degree_distribution">https://en.wikipedia.org/wiki/Degree_distribution</a>).</p>
+<p>Please keep in mind that the degree distribution may change depending on the filtering threshold.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4326,7 +4567,7 @@ Ery_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_1.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_1.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4341,7 +4582,7 @@ Ery_1
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_3.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_3.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_3.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_3.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_3.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_3.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4356,7 +4597,7 @@ Ery_2
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_5.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_5.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_5.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_5.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_5.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_5.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4371,7 +4612,7 @@ Ery_3
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_7.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_7.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_7.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_7.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_7.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_7.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4386,7 +4627,7 @@ Ery_4
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_9.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_9.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_9.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_9.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_9.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_9.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4401,7 +4642,7 @@ Ery_5
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_11.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_11.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_11.png" style="width: 562px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_11.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_11.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_11.png" style="width: 562px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4416,7 +4657,7 @@ Ery_6
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_13.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_13.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_13.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_13.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_13.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_13.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4431,7 +4672,7 @@ Ery_7
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_15.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_15.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_15.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_15.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_15.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_15.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4446,7 +4687,7 @@ Ery_8
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_17.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_17.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_17.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_17.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_17.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_17.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4461,7 +4702,7 @@ Ery_9
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_19.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_19.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_19.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_19.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_19.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_19.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4476,7 +4717,7 @@ GMP_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_21.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_21.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_21.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_21.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_21.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_21.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4491,7 +4732,7 @@ GMP_1
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_23.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_23.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_23.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_23.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_23.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_23.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4506,7 +4747,7 @@ GMPl_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_25.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_25.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_25.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_25.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_25.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_25.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4521,7 +4762,7 @@ Gran_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_27.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_27.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_27.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_27.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_27.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_27.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4536,7 +4777,7 @@ Gran_1
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_29.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_29.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_29.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_29.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_29.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_29.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4551,7 +4792,7 @@ Gran_2
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_31.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_31.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_31.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_31.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_31.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_31.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4566,7 +4807,7 @@ MEP_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_33.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_33.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_33.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_33.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_33.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_33.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4581,7 +4822,7 @@ Mk_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_35.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_35.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_35.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_35.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_35.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_35.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4596,7 +4837,7 @@ Mo_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_37.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_37.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_37.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_37.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_37.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_37.png" style="width: 561px; height: 318px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -4611,7 +4852,16 @@ Mo_1
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_39.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_39.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_44_39.png" style="width: 561px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_39.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_39.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_39.png" style="width: 561px; height: 318px;" /></a>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -4661,7 +4911,7 @@ Mo_1: finished.
 the scores are saved in ./louvain_annot/
 </pre></div></div>
 </div>
-<p>The score is stored as a attribute “merged_score”, and score will also be saved in a folder.</p>
+<p>The score is stored as a attribute “merged_score”, and score will also be saved in a folder in your computer.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
@@ -4846,7 +5096,7 @@ the scores are saved in ./louvain_annot/
 </div>
 <div class="section" id="5.4.-Save">
 <h5>5.4. Save<a class="headerlink" href="#5.4.-Save" title="Permalink to this headline">¶</a></h5>
-<p>Save processed GRN. The Links file will also be used in the next notebook; “in silico simulation with GRNs”.</p>
+<p>Save processed GRN. We use this file in the next notebook; “in silico simulation with GRNs”.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
@@ -4854,14 +5104,21 @@ the scores are saved in ./louvain_annot/
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># Save Links object.</span>
 <span class="n">links</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;links.celloracle.links&quot;</span><span class="p">)</span>
-
-<span class="c1"># You can load files with the following command.</span>
-<span class="c1">#links = co.load_hdf5(file_path=&quot;links.celloracle.links&quot;)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># You can load files with the following command.</span>
+<span class="n">links</span> <span class="o">=</span> <span class="n">co</span><span class="o">.</span><span class="n">load_hdf5</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;links.celloracle.links&quot;</span><span class="p">)</span>
 
 </pre></div>
 </div>
 </div>
-<p>If you are not interested in the network score analysis and just want to do simulation, you can skip the analysis below and go to the next notebook.</p>
+<p>If you are not interested in the network score analysis below and just want to do simulation, you can skip them and go to the next notebook.</p>
 </div>
 </div>
 <div class="section" id="6.-Network-analysis;-Network-score-for-each-gene">
@@ -4869,12 +5126,14 @@ the scores are saved in ./louvain_annot/
 <p>Links class has many functions to visualize network score. See the documentation for the details of the functions.</p>
 <div class="section" id="6.1.-Network-score-in-each-cluster">
 <h5>6.1. Network score in each cluster<a class="headerlink" href="#6.1.-Network-score-in-each-cluster" title="Permalink to this headline">¶</a></h5>
+<p>We have calculated several network scores for centrality. We can use the centrality score to identify key regulatory genes because centrality is one of the important indicators of network structure (<a class="reference external" href="https://en.wikipedia.org/wiki/Centrality">https://en.wikipedia.org/wiki/Centrality</a>).</p>
+<p>Let’s visualize genes with high network centrality.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># check cluster</span>
+<span></span><span class="c1"># check cluster name</span>
 <span class="n">links</span><span class="o">.</span><span class="n">cluster</span>
 </pre></div>
 </div>
@@ -4908,7 +5167,7 @@ the scores are saved in ./louvain_annot/
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4921,42 +5180,42 @@ the scores are saved in ./louvain_annot/
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_0.png" style="width: 423px; height: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_0.png" style="width: 304px; height: 319px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1.png" style="width: 460px; height: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_1.png" style="width: 341px; height: 319px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_2.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_2.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_2.png" style="width: 423px; height: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_2.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_2.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_2.png" style="width: 304px; height: 319px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3.png" style="width: 424px; height: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_3.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_3.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_3.png" style="width: 305px; height: 319px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_4.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_4.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_4.png" style="width: 415px; height: 400px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_4.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_4.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_4.png" style="width: 296px; height: 319px;" /></a>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5.png" style="width: 468px; height: 399px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_5.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_5.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_65_5.png" style="width: 342px; height: 318px;" /></a>
 </div>
 </div>
 </div>
@@ -4964,7 +5223,7 @@ the scores are saved in ./louvain_annot/
 <h5>6.2. Network score comparison between two clusters<a class="headerlink" href="#6.2.-Network-score-comparison-between-two-clusters" title="Permalink to this headline">¶</a></h5>
 <p>By comparing network scores between two clusters, we can analyze the difference of GRN structure.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4979,11 +5238,11 @@ the scores are saved in ./louvain_annot/
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_57_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_57_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_57_0.png" style="width: 572px; height: 386px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_0.png" style="width: 407px; height: 304px;" /></a>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4999,11 +5258,11 @@ the scores are saved in ./louvain_annot/
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_58_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_58_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_58_0.png" style="width: 580px; height: 386px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_69_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_69_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_69_0.png" style="width: 416px; height: 304px;" /></a>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -5018,16 +5277,17 @@ the scores are saved in ./louvain_annot/
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_59_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_59_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_59_0.png" style="width: 556px; height: 386px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0.png" style="width: 392px; height: 304px;" /></a>
 </div>
 </div>
 </div>
 <div class="section" id="6.3.-Network-score-dynamics">
 <h5>6.3. Network score dynamics<a class="headerlink" href="#6.3.-Network-score-dynamics" title="Permalink to this headline">¶</a></h5>
-<p>We can analyze how gene function/importance change over the differentiation by the following analysis.</p>
-<p>Gata2 is known to play an important role in the early progenitor population; MEP, GMP. The following results can recapitulate the Gata2 feature.</p>
+<p>In the following session, we focus on how network score for gene changes during the differentiation.</p>
+<p>We make some graph to show an example of how to use functions using Gata2 gene.</p>
+<p>Gata2 is known to play an essential role in the early progenitor population; MEP, GMP. The following results can recapitulate the Gata2 feature.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -5048,16 +5308,16 @@ Gata2
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_61_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_61_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_61_1.png" style="width: 575px; height: 383px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_72_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_72_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_72_1.png" style="width: 408px; height: 301px;" /></a>
 </div>
 </div>
 </div>
 <div class="section" id="6.4.-Gene-cartography-analysis">
 <h5>6.4. Gene cartography analysis<a class="headerlink" href="#6.4.-Gene-cartography-analysis" title="Permalink to this headline">¶</a></h5>
-<p>Gene cartography is a method for gene network analysis. The method classifies the gene into several groups using the network module structure and gene connections. It provides us an insight about the regulatory mechanism per each gene. Please read the paper for the details of gene cartography (<a class="reference external" href="https://www.nature.com/articles/nature03288">https://www.nature.com/articles/nature03288</a>)</p>
-<p>The calculations of gene cartography will be performed for the GRN in each cluster. Thus we can know how gene role change by comparing the cartography in each cluster.</p>
+<p>Gene cartography is a method for gene network analysis. The method classifies gene into several groups using the network module structure and connections. It provides us an insight about the role and regulatory mechanism per each gene. Please read the paper for the details of gene cartography (<a class="reference external" href="https://www.nature.com/articles/nature03288">https://www.nature.com/articles/nature03288</a>)</p>
+<p>The gene cartography will be calculated for the GRN in each cluster. Thus we can know how it change by comparing the the score between clusters.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -5066,7 +5326,6 @@ Gata2
                                            <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                            <span class="n">gois</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Gata1&quot;</span><span class="p">,</span> <span class="s2">&quot;Gata2&quot;</span><span class="p">,</span> <span class="s2">&quot;Sfpi1&quot;</span><span class="p">],</span>
                                            <span class="n">auto_gene_annot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                           <span class="n">percentile</span><span class="o">=</span><span class="mf">99.5</span><span class="p">,</span>
                                            <span class="n">args_dot</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_levels&quot;</span><span class="p">:</span> <span class="mi">105</span><span class="p">},</span>
                                            <span class="n">args_line</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;c&quot;</span><span class="p">:</span><span class="s2">&quot;gray&quot;</span><span class="p">},</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">/cartography&quot;</span><span class="p">)</span>
 </pre></div>
@@ -5084,7 +5343,7 @@ Ery_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_1.png" style="width: 507px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_1.png" style="width: 356px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5099,7 +5358,7 @@ Ery_1
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_3.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_3.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_3.png" style="width: 514px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_3.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_3.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_3.png" style="width: 362px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5114,7 +5373,7 @@ Ery_2
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_5.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_5.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_5.png" style="width: 507px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_5.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_5.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_5.png" style="width: 356px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5129,7 +5388,7 @@ Ery_3
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_7.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_7.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_7.png" style="width: 514px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_7.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_7.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_7.png" style="width: 362px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5144,7 +5403,7 @@ Ery_4
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_9.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_9.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_9.png" style="width: 507px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_9.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_9.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_9.png" style="width: 356px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5159,7 +5418,7 @@ Ery_5
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_11.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_11.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_11.png" style="width: 507px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_11.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_11.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_11.png" style="width: 356px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5174,7 +5433,7 @@ Ery_6
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_13.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_13.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_13.png" style="width: 507px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_13.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_13.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_13.png" style="width: 356px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5189,7 +5448,7 @@ Ery_7
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_15.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_15.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_15.png" style="width: 514px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_15.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_15.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_15.png" style="width: 362px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5204,7 +5463,7 @@ Ery_8
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_17.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_17.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_17.png" style="width: 507px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_17.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_17.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_17.png" style="width: 356px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5219,7 +5478,7 @@ Ery_9
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_19.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_19.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_19.png" style="width: 514px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_19.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_19.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_19.png" style="width: 362px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5234,7 +5493,7 @@ GMP_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_21.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_21.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_21.png" style="width: 514px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_21.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_21.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_21.png" style="width: 362px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5249,7 +5508,7 @@ GMP_1
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_23.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_23.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_23.png" style="width: 507px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_23.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_23.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_23.png" style="width: 356px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5264,7 +5523,7 @@ GMPl_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_25.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_25.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_25.png" style="width: 514px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_25.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_25.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_25.png" style="width: 362px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5279,7 +5538,7 @@ Gran_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_27.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_27.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_27.png" style="width: 507px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_27.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_27.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_27.png" style="width: 356px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5294,7 +5553,7 @@ Gran_1
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_29.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_29.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_29.png" style="width: 514px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_29.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_29.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_29.png" style="width: 362px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5309,7 +5568,7 @@ Gran_2
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_31.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_31.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_31.png" style="width: 514px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_31.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_31.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_31.png" style="width: 362px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5324,7 +5583,7 @@ MEP_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_33.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_33.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_33.png" style="width: 514px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_33.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_33.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_33.png" style="width: 362px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5339,7 +5598,7 @@ Mk_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_35.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_35.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_35.png" style="width: 507px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_35.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_35.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_35.png" style="width: 356px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5354,7 +5613,7 @@ Mo_0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_37.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_37.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_37.png" style="width: 507px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_37.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_37.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_37.png" style="width: 356px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -5369,16 +5628,15 @@ Mo_1
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_39.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_39.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_63_39.png" style="width: 514px; height: 332px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_39.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_39.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_74_39.png" style="width: 362px; height: 264px;" /></a>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># plot the results of cartography analysis</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span></span><span class="c1"># plot the summary of cartography analysis</span>
 <span class="n">links</span><span class="o">.</span><span class="n">plot_cartography_term</span><span class="p">(</span><span class="n">goi</span><span class="o">=</span><span class="s2">&quot;Gata2&quot;</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{save_folder}</span><span class="s2">/cartography&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -5391,36 +5649,22 @@ Mo_1
 Gata2
 </pre></div></div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/home/k/anaconda3/envs/test/lib/python3.6/site-packages/pandas/core/indexing.py:1418: FutureWarning:
-Passing list-likes to .loc or [] with any missing label will raise
-KeyError in the future, you can use .reindex() as an alternative.
-
-See the documentation here:
-https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#deprecate-loc-reindex-listlike
-  return self._getitem_tuple(key)
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_2.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_2.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_2.png" style="width: 240px; height: 428px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_75_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_75_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_75_1.png" style="width: 408px; height: 346px;" /></a>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="7.-Network-analysis;-Network-score-distribution">
 <h4>7. Network analysis; Network score distribution<a class="headerlink" href="#7.-Network-analysis;-Network-score-distribution" title="Permalink to this headline">¶</a></h4>
-<p>Next, we visualize the distribution of network score to get insight into the global trend about the structure of GRNs.</p>
+<p>Next, we visualize the distribution of network score to get insight into the global trend of GRNs.</p>
 <div class="section" id="7.1.-Distribution-of-network-degree">
 <h5>7.1. Distribution of network degree<a class="headerlink" href="#7.1.-Distribution-of-network-degree" title="Permalink to this headline">¶</a></h5>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[95]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -5444,11 +5688,11 @@ degree_centrality_all
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_67_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_67_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_67_1.png" style="width: 552px; height: 325px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_78_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_78_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_78_1.png" style="width: 390px; height: 263px;" /></a>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -5473,14 +5717,14 @@ eigenvector_centrality
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_1.png" style="width: 545px; height: 325px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_1.png" style="width: 383px; height: 263px;" /></a>
 </div>
 </div>
 </div>
 <div class="section" id="7.2.-Distribution-of-netowrk-entolopy">
 <h5>7.2. Distribution of netowrk entolopy<a class="headerlink" href="#7.2.-Distribution-of-netowrk-entolopy" title="Permalink to this headline">¶</a></h5>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -5491,22 +5735,41 @@ eigenvector_centrality
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/home/k/anaconda3/envs/test/lib/python3.6/site-packages/scipy/stats/_distn_infrastructure.py:2614: RuntimeWarning: invalid value encountered in true_divide
+  pk = 1.0*pk / np.sum(pk, axis=0)
+/home/k/anaconda3/envs/test/lib/python3.6/site-packages/celloracle/network_analysis/links_object.py:345: RuntimeWarning: divide by zero encountered in log
+  ent_norm.append(en/np.log(k[i]))
+/home/k/anaconda3/envs/test/lib/python3.6/site-packages/celloracle/network_analysis/links_object.py:345: RuntimeWarning: invalid value encountered in double_scalars
+  ent_norm.append(en/np.log(k[i]))
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0.png" style="width: 555px; height: 325px;" /></a>
+<a class="reference internal image-reference" href="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_1.png"><img alt="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_1.png" src="_images/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_1.png" style="width: 393px; height: 263px;" /></a>
 </div>
 </div>
-<p>In the example below, we did several network analysis and showed that several TFs have high network scores. The TFs, for example “Gata2”, “Gata1”, “Klf1”, “E2f1”, are known to play an important role in MEP. Using the network score, we may pick up cluster-specific key TFs.</p>
-<p>In this step, however, we cannot know the specific function or relationship between cell fate. We just pick up several candidate genes for Key TFs here, and in the next analysis, we investigate their function and relationship between cell fate by the simulation with GRNs.</p>
+<p>Using the network score, we could pick up cluster-specific key TFs. “Gata2”, “Gata1”, “Klf1”, “E2f1”, for example, are known to play an essential role in MEP, and these TFs showed high network score in our GRN.</p>
+<p>In this step, however, we cannot know the specific function or relationship between cell fate.</p>
+<p>In the next analysis, we investigate their function and relationship between cell fate by the simulation with GRNs.</p>
 </div>
 </div>
 </div>
 </div>
 <span id="document-tutorials/simulation"></span><div class="section" id="simulation-with-grns">
 <span id="simulation"></span><h3>5. Simulation with GRNs<a class="headerlink" href="#simulation-with-grns" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> can simulate an affect of gene perturbation using GRNs. This analysis provides insight into the regulatory mechanism of cel state from a viewpoint of TF and GRN.</p>
+<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> leverage GRNs to simulate signal propagation inside a cell.
+We can estimate the effect of gene perturbation by the simulation with GRNs.</p>
+<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> leverage GRNs to simulate signal propagation inside a cell. We can estimate the effect of gene perturbation by the simulation with GRNs.</p>
+<p>Besides, we will combine the simulation for the signal propagation and the simulation of cell state transition, which is performed by a python library for RNA-velocity analysis, <code class="docutils literal notranslate"><span class="pre">velocyto</span></code> .
+A series of simulations visualizes a complex system in which TF controls enormous target genes to determines cell fate.</p>
+<p>In short, celloracle provides insight into the regulatory mechanism of cell state from the viewpoint of TF and GRN.</p>
 <p>Python notebook</p>
 <div class="toctree-wrapper compound">
 <span id="document-notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data"></span><div class="section" id="0.-Import-libraries">
@@ -5588,7 +5851,7 @@ eigenvector_centrality
 <div class="section" id="1.2.-Load-inferred-GRNs">
 <h5>1.2. Load inferred GRNs<a class="headerlink" href="#1.2.-Load-inferred-GRNs" title="Permalink to this headline">¶</a></h5>
 <p>In the previous notebook, we already calculated GRNs. We use this GRNs for simulation.</p>
-<p>For the simulation with GRNs, we import GRNs which was saved in Links object.</p>
+<p>We import GRNs which was saved in Links object.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -5602,7 +5865,7 @@ eigenvector_centrality
 </div>
 <div class="section" id="3.-Make-predictive-models-for-simulation">
 <h4>3. Make predictive models for simulation<a class="headerlink" href="#3.-Make-predictive-models-for-simulation" title="Permalink to this headline">¶</a></h4>
-<p>We will construct regression models again by using the filtered GRN structure. This process take less time than the GRN inference in the previous notebook because we use only significant TFs to predict target gene rather than all regulatory candidate TFs.</p>
+<p>We construct ridge regression models again based on the filtered GRN structure. This process takes less time than the GRN inference in the previous notebook because we use only significant TFs to predict target gene instead of all regulatory candidate TFs.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -5965,9 +6228,11 @@ models made for 1074 genes
 </div>
 <div class="section" id="4.-in-silico-Perturbation-simulation">
 <h4>4. in silico Perturbation-simulation<a class="headerlink" href="#4.-in-silico-Perturbation-simulation" title="Permalink to this headline">¶</a></h4>
-<p>Next, we will do simulation. Using signal progagation algorithm of celloracle, we can predict what happens if we perturb TF(s).</p>
-<p>See the celloracle paper for the details.</p>
-<p>In this notebook, we’ll show an example of how to do in silico perturb simulation; we’ll simulate Gata1 KO in the hematopiesis. Previous studiy have shown that Gata1 is one of the important TFs that regulate cell fate decision in the myeloid progenitors and Gata1 have positive effect for the erythroid cell differentiation.</p>
+<p>Next, we simulate an effect of perturbation of a TF to investigate the function and regulatory mechanism of the TF.</p>
+<p>See the celloracle paper for the details and scientific remnants on the algorithm.</p>
+<p>In this notebook, we’ll show an example of the simulation; we’ll simulate knock-out of Gata1 gene in the hematopoiesis.</p>
+<p>Celloracle’s simulation supposes to recapitulate previous findings of this gene.</p>
+<p>The previous studies have shown that Gata1 is one of the decisive TFs that regulate cell fate in the myeloid progenitors and Gata1 have a positive effect on the erythroid cell differentiation.</p>
 <div class="section" id="4.1.-Check-gene-expression-pattern.">
 <h5>4.1. Check gene expression pattern.<a class="headerlink" href="#4.1.-Check-gene-expression-pattern." title="Permalink to this headline">¶</a></h5>
 <div class="nbinput docutils container">
@@ -5977,7 +6242,8 @@ models made for 1074 genes
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># check gene expression</span>
 <span class="n">goi</span> <span class="o">=</span> <span class="s2">&quot;Gata1&quot;</span>
-<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">oracle</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">goi</span><span class="p">,</span> <span class="n">oracle</span><span class="o">.</span><span class="n">cluster_column_name</span><span class="p">],</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;imputed_count&quot;</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">oracle</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">goi</span><span class="p">,</span> <span class="n">oracle</span><span class="o">.</span><span class="n">cluster_column_name</span><span class="p">],</span>
+                 <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;imputed_count&quot;</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -6009,14 +6275,14 @@ models made for 1074 genes
 </div>
 <div class="section" id="4.1.-calculate-future-gene-expression-after-perturbation.">
 <h5>4.1. calculate future gene expression after perturbation.<a class="headerlink" href="#4.1.-calculate-future-gene-expression-after-perturbation." title="Permalink to this headline">¶</a></h5>
-<p>Although you can set any arbitrary gene expression value for perturb condition, we recommend avoiding too high value if you simulate overexpression. In the example below, if you set Gata1 gene expression to 100, for example, it may lead to biologically infeasible results.</p>
-<p>Here we will simulate Gata1 KO; we will predict what happens to the cells if Gata1 gene expression changed into 0.</p>
+<p>Although any arbitrary gene expression value can be used for input of perturbation, we recommend avoiding extreme value which is far from natural gene expression range. If you set Gata1 gene expression to 100, for example, it may lead to biologically infeasible results.</p>
+<p>Here we simulate Gata1 KO; we predict what happens to the cells if Gata1 gene expression changed into 0.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Enter perturbation conditions and simulate signal propagation after the perturbation.</span>
+<span></span><span class="c1"># Enter perturbation conditions to simulate signal propagation after the perturbation.</span>
 <span class="n">oracle</span><span class="o">.</span><span class="n">simulate_shift</span><span class="p">(</span><span class="n">perturb_condition</span><span class="o">=</span><span class="p">{</span><span class="n">goi</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">},</span>
                       <span class="n">n_propagation</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
@@ -6025,20 +6291,26 @@ models made for 1074 genes
 </div>
 <div class="section" id="4.2.-calculate-transition-probability-between-cells">
 <h5>4.2. calculate transition probability between cells<a class="headerlink" href="#4.2.-calculate-transition-probability-between-cells" title="Permalink to this headline">¶</a></h5>
-<p>In the step avobe, we simulated what happens if we perturb TF(s). This means we simulated future gene expression change after perturbation. This prediction is based on itelative calculations of signal propagations inside the GRN. Here we performed just small number of the calculation, thus the we simulated short future.</p>
-<p>Next step, we will calculate the propability of cell state transition based on the simulated data. Using this cell state transition probability between cells, we can predict how cell state changes after perturbation, enabling the analysis of the relationship between genes and cell state determination.</p>
+<p>In the step avobe, we simulated simulated future gene expression after perturbation. This prediction is based on itelative calculations of signal propagations inside the GRN. Here we performed just small number of the calculation, thus the we simulated short future.</p>
+<p>Next step, we will calculate the propability of cell state transition based on the simulated data. Using this the transition probability between cells, we can predict how a cell changes after perturbation.</p>
 <p>This transition probability will be used in two ways.</p>
 <ol class="arabic simple">
 <li>Visualization of directed trjectory graph.</li>
 <li>Markof simulation.</li>
 </ol>
+<p>In Step 4.2 and 4.3, we use some functions imported from velocytoloom class in velocyto.py. Please see the documentation of VelocytoLoom for the detail of parameters in the functions. <a class="reference external" href="http://velocyto.org/velocyto.py/fullapi/api_analysis.html">http://velocyto.org/velocyto.py/fullapi/api_analysis.html</a></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">oracle</span><span class="o">.</span><span class="n">estimate_transition_prob</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">knn_random</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sampled_fraction</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span></span><span class="c1"># get transition probability</span>
+<span class="n">oracle</span><span class="o">.</span><span class="n">estimate_transition_prob</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">knn_random</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sampled_fraction</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># calculate embedding</span>
 <span class="n">oracle</span><span class="o">.</span><span class="n">calculate_embedding_shift</span><span class="p">(</span><span class="n">sigma_corr</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># calculate global trend of cell transition</span>
 <span class="n">oracle</span><span class="o">.</span><span class="n">calculate_grid_arrows</span><span class="p">(</span><span class="n">smooth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -6135,10 +6407,11 @@ WARNING:root:Nans encountered in corrcoef and corrected to 1s. If not identical 
 </div>
 <div class="section" id="4.4.-Markov-simulation-to-analyze-the-effects-of-perturbation-on-cell-fate-transition">
 <h5>4.4. Markov simulation to analyze the effects of perturbation on cell fate transition<a class="headerlink" href="#4.4.-Markov-simulation-to-analyze-the-effects-of-perturbation-on-cell-fate-transition" title="Permalink to this headline">¶</a></h5>
-<p>Based on the transition probability, markov simulation will be performed to simulate cell state transition.</p>
+<p>We can also simulate cell state transition with Markof simulation with the transition probability.</p>
 <div class="section" id="4.4.1.-Do-simulation">
 <h6>4.4.1. Do simulation<a class="headerlink" href="#4.4.1.-Do-simulation" title="Permalink to this headline">¶</a></h6>
-<p>We simulate with a parameter, “n_steps=200” and in the following example. It means that</p>
+<p>We simulate with the parameters, “n_steps=200” and “n_duplication=5” in the following example.</p>
+<p>It means that</p>
 <ol class="arabic simple">
 <li>we will do 200 times of iterative simulations to predict how cell changes over time</li>
 <li>and we will do 5 round of simulations for each cells.</li>
@@ -6167,7 +6440,7 @@ Wall time: 1.33 s
 </div>
 <div class="section" id="4.4.2.-Check-the-results-of-simulation-focusing-on-a-specific-cells">
 <h6>4.4.2. Check the results of simulation focusing on a specific cells<a class="headerlink" href="#4.4.2.-Check-the-results-of-simulation-focusing-on-a-specific-cells" title="Permalink to this headline">¶</a></h6>
-<p>Check the results of simulation by picking some cells and visualize their transition trajectory.</p>
+<p>Check the results of simulation. Pick up some cells and visualize their transition trajectory.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
 </pre></div>
@@ -6239,7 +6512,7 @@ cell 1567
 <div class="section" id="4.4.3.-Summarize-the-results-of-simulation-by-plotting-sankey-diagram">
 <h6>4.4.3. Summarize the results of simulation by plotting sankey diagram<a class="headerlink" href="#4.4.3.-Summarize-the-results-of-simulation-by-plotting-sankey-diagram" title="Permalink to this headline">¶</a></h6>
 <p>Sankey diagram is useful when you want to visualize cell transition between some groups.</p>
-<p>plot_mc_resutls_as_sankey function can make a Sankey diagram with any arbitrary cluster information.</p>
+<p>The function below can make a Sankey diagram with any arbitrary cluster unit.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
 </pre></div>
@@ -6310,9 +6583,11 @@ cell 1567
 <a class="reference internal image-reference" href="_images/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0.png"><img alt="_images/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0.png" src="_images/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0.png" style="width: 346px; height: 360px;" /></a>
 </div>
 </div>
-<p>In the example above, we may conclude several things as follows.</p>
-<p>Gata1 KO induces cell state transition from Erythroids to MEP, from MEP to GMP. These results suggest that Gata1 may play important roles in the progression of Erythroid differentiation and cell state determination between MEP and GMP lineage.</p>
-<p>The data also show that Gata1 KO may induce cell state transition from granulocytes to late GMP, suggesting Gata1’s involvement in Granulocytes differentiation.</p>
+<p>Based on the results, we may conclude several things as follows.</p>
+<p>Gata1 KO induced cell state transition from Erythroids to MEP, and from MEP to GMP. (1) These results suggest that Gata1 may play a role in the progression of Erythroid differentiation and cell state determination between MEP and GMP lineage.</p>
+<ol class="arabic simple" start="2">
+<li>Gata1 KO also induced cell state transition from granulocytes to late GMP, suggesting Gata1’s involvement in Granulocytes differentiation.</li>
+</ol>
 <p>These results agree with previous reports about Gata1. We could recapitulate Gata1’s cell-type-specific function regarding the cell fate decisions in hematopoiesis.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:

@@ -169,7 +169,7 @@
    "metadata": {},
    "source": [
     "## 2.1. Remove short peaks\n",
-    "Short peak cannot be used for motif scan. Remove short DNA fragment."
+    "Short DNA fragment, such as less than 5 bases, cannot be used for motif scan. Remove short DNA fragment."
    ]
   },
   {
@@ -186,7 +186,7 @@
    "metadata": {},
    "source": [
     "# 3. Instantiate TFinfo object and search for TF binding motifs\n",
-    "In celloracle motif analysis, we use custom class; TFinfo. This class convert peak data into get DNA sequence and scan the DNA sequence searching for TF binding motifs. Then the results of motif scan will be filtered and converted into several files, such as python dictionary or dataframe. These TF information is necessary for celloracle's GRN inference."
+    "The motif analysis module has a custom class; TFinfo. TFinfo object converts a peak data into a DNA sequence and scans the DNA sequence searching for TF binding motifs. Then the results of motif scan will be filtered and converted into several files, such as python dictionary or dataframe. This TF information is necessary for GRN inference."
    ]
   },
   {
@@ -833,7 +833,7 @@
    "metadata": {},
    "source": [
     "# 7. Save TFinfo as dictionary and dataframe\n",
-    "we'll use this information to make GRN. Save this results."
+    "We'll use this information in the later step to make GRN. Save the results."
    ]
   },
   {
@@ -853,13 +853,6 @@
     "df = tfi.to_dataframe()\n",
     "df.to_parquet(os.path.join(folder, \"TFinfo_dataframe.parquet\"))"
    ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": []
   }
  ],
  "metadata": {

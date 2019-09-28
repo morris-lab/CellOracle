@@ -215,7 +215,12 @@
 </style>
 <div class="section" id="simulation-with-grns">
 <span id="simulation"></span><h1>5. Simulation with GRNs<a class="headerlink" href="#simulation-with-grns" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> can simulate an affect of gene perturbation using GRNs. This analysis provides insight into the regulatory mechanism of cel state from a viewpoint of TF and GRN.</p>
+<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> leverage GRNs to simulate signal propagation inside a cell.
+We can estimate the effect of gene perturbation by the simulation with GRNs.</p>
+<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> leverage GRNs to simulate signal propagation inside a cell. We can estimate the effect of gene perturbation by the simulation with GRNs.</p>
+<p>Besides, we will combine the simulation for the signal propagation and the simulation of cell state transition, which is performed by a python library for RNA-velocity analysis, <code class="docutils literal notranslate"><span class="pre">velocyto</span></code> .
+A series of simulations visualizes a complex system in which TF controls enormous target genes to determines cell fate.</p>
+<p>In short, celloracle provides insight into the regulatory mechanism of cell state from the viewpoint of TF and GRN.</p>
 <p>Python notebook</p>
 <div class="toctree-wrapper compound">
 <ul>

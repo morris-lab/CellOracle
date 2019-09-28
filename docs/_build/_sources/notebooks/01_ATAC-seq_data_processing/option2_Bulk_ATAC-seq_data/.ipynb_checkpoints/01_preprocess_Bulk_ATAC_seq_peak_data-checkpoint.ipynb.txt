@@ -26,9 +26,8 @@
     "\n",
     "%config InlineBackend.figure_format = 'retina'\n",
     "\n",
-    "plt.rcParams['figure.figsize'] = (15,7)\n",
-    "plt.rcParams[\"savefig.dpi\"] = 200\n",
-    "\n"
+    "plt.rcParams['figure.figsize'] = [6, 4.5]\n",
+    "plt.rcParams[\"savefig.dpi\"] = 300\n"
    ]
   },
   {

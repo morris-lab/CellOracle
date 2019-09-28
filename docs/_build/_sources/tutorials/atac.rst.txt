@@ -3,13 +3,20 @@
 ATAC-seq data preprocessing
 ===========================
 
-Process scATAC-seq data (or bulk ATAC-seq data) to get open accessible promoter/enhancer DNA sequence.
-If you have a scATAC-seq data, proximal and distal cis-regulatory elements from TSS site can be picked up using `Cicero <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_ . If you have bulk ATAC-seq data, open accessible DNA elements around TSS site will be picked up.
+In this step, we process scATAC-seq data (or bulk ATAC-seq data) to get open accessible promoter/enhancer DNA sequence.
+We can get active proximal promoter/enhancer genome sequence by picking up ATAC-seq peaks that exist around the transcription starting site (TSS).
+Distal cis-regulatory elements can be picked up using  `Cicero <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_ .
+Cicero analyzes scATAC-seq data to calculate a co-accessible score between peaks.
+We can identify cis-regulatory elements using Cicero co-access score and TSS information.
+
+If you have bulk ATAC-seq data instead of scATAC-data, we'll get only proximal promoter/enhancer genome sequence.
+
+
 
 A. Extract TF binding information from scATAC-seq data
 ----------------------------------------------------
-If you want to use scATAC-seq data, you can start from Cicero analysis to get information of distal cis-regulatory elements.
-This step use Cicero and do not use celloracle. Please refer to `the documentation of Cicero <https://cole-trapnell-lab.github.io/cicero-release/>`_ for the detailed usage.
+If you have a scATAC-seq data, you can get information of distal cis-regulatory elements.
+This step uses Cicero and does not use celloracle. Please refer to `the documentation of Cicero <https://cole-trapnell-lab.github.io/cicero-release/>`_ for the detailed usage.
 
 R notebook
 
@@ -17,7 +24,7 @@ R notebook
 
    ../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero
 
-Next, the results of Cicero analysis will be processed with celloracle to make TSS annotations.
+Next, the results of Cicero analysis will be processed to make TSS annotations.
 
 Python notebook
 
@@ -29,7 +36,7 @@ Python notebook
 
 B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data
 --------------------------------------------------------------------------
-Instead of scATAC-seq data bulk DNA-seq data can be used.
+Bulk DNA-seq data can be used to get open accessible promoter/enhancer sequence.
 
 Python notebook
 

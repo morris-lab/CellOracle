@@ -234,12 +234,16 @@
 </style>
 <div class="section" id="atac-seq-data-preprocessing">
 <span id="atac"></span><h1>1. ATAC-seq data preprocessing<a class="headerlink" href="#atac-seq-data-preprocessing" title="Permalink to this headline">¶</a></h1>
-<p>Process scATAC-seq data (or bulk ATAC-seq data) to get open accessible promoter/enhancer DNA sequence.
-If you have a scATAC-seq data, proximal and distal cis-regulatory elements from TSS site can be picked up using <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero">Cicero</a> . If you have bulk ATAC-seq data, open accessible DNA elements around TSS site will be picked up.</p>
+<p>In this step, we process scATAC-seq data (or bulk ATAC-seq data) to get open accessible promoter/enhancer DNA sequence.
+We can get active proximal promoter/enhancer genome sequence by picking up ATAC-seq peaks that exist around the transcription starting site (TSS).
+Distal cis-regulatory elements can be picked up using  <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero">Cicero</a> .
+Cicero analyzes scATAC-seq data to calculate a co-accessible score between peaks.
+We can identify cis-regulatory elements using Cicero co-access score and TSS information.</p>
+<p>If you have bulk ATAC-seq data instead of scATAC-data, we’ll get only proximal promoter/enhancer genome sequence.</p>
 <div class="section" id="a-extract-tf-binding-information-from-scatac-seq-data">
 <h2>A. Extract TF binding information from scATAC-seq data<a class="headerlink" href="#a-extract-tf-binding-information-from-scatac-seq-data" title="Permalink to this headline">¶</a></h2>
-<p>If you want to use scATAC-seq data, you can start from Cicero analysis to get information of distal cis-regulatory elements.
-This step use Cicero and do not use celloracle. Please refer to <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/">the documentation of Cicero</a> for the detailed usage.</p>
+<p>If you have a scATAC-seq data, you can get information of distal cis-regulatory elements.
+This step uses Cicero and does not use celloracle. Please refer to <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/">the documentation of Cicero</a> for the detailed usage.</p>
 <p>R notebook</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -255,13 +259,16 @@ This step use Cicero and do not use celloracle. Please refer to <a class="refere
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#6.-Save-results-for-next-step">6. Save results for next step</a></li>
 </ul>
 </div>
-<p>Next, the results of Cicero analysis will be processed with celloracle to make TSS annotations.</p>
+<p>Next, the results of Cicero analysis will be processed to make TSS annotations.</p>
 <p>Python notebook</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html">0. Import libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#1.-Load-data-made-with-cicero">1. Load data made with cicero</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#2.-Make-TSS-annotation">2. Make TSS annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#2.-Make-TSS-annotation">2. Make TSS annotation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#!!-Please-make-sure-that-you-are-setting-correct-reference-genoms.">!! Please make sure that you are setting correct reference genoms.</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#3.-Integrate-TSS-info-and-cicero-connections">3. Integrate TSS info and cicero connections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#4.-Filter-peaks">4. Filter peaks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#5.-Save-data">5. Save data</a></li>
@@ -270,7 +277,7 @@ This step use Cicero and do not use celloracle. Please refer to <a class="refere
 </div>
 <div class="section" id="b-extract-tf-binding-information-from-bulk-atac-seq-data-or-chip-seq-data">
 <h2>B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data<a class="headerlink" href="#b-extract-tf-binding-information-from-bulk-atac-seq-data-or-chip-seq-data" title="Permalink to this headline">¶</a></h2>
-<p>Instead of scATAC-seq data bulk DNA-seq data can be used.</p>
+<p>Bulk DNA-seq data can be used to get open accessible promoter/enhancer sequence.</p>
 <p>Python notebook</p>
 <div class="toctree-wrapper compound">
 <ul>

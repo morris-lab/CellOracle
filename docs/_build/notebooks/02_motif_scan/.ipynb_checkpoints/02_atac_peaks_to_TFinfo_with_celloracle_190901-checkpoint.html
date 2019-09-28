@@ -536,7 +536,7 @@ mean peak length: 1756.1744260204082
 </div>
 <div class="section" id="2.1.-Remove-short-peaks">
 <h2>2.1. Remove short peaks<a class="headerlink" href="#2.1.-Remove-short-peaks" title="Permalink to this headline">¶</a></h2>
-<p>Short peak cannot be used for motif scan. Remove short DNA fragment.</p>
+<p>Short DNA fragment, such as less than 5 bases, cannot be used for motif scan. Remove short DNA fragment.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -550,7 +550,7 @@ mean peak length: 1756.1744260204082
 </div>
 <div class="section" id="3.-Instantiate-TFinfo-object-and-search-for-TF-binding-motifs">
 <h1>3. Instantiate TFinfo object and search for TF binding motifs<a class="headerlink" href="#3.-Instantiate-TFinfo-object-and-search-for-TF-binding-motifs" title="Permalink to this headline">¶</a></h1>
-<p>In celloracle motif analysis, we use custom class; TFinfo. This class convert peak data into get DNA sequence and scan the DNA sequence searching for TF binding motifs. Then the results of motif scan will be filtered and converted into several files, such as python dictionary or dataframe. These TF information is necessary for celloracle’s GRN inference.</p>
+<p>The motif analysis module has a custom class; TFinfo. TFinfo object converts a peak data into a DNA sequence and scans the DNA sequence searching for TF binding motifs. Then the results of motif scan will be filtered and converted into several files, such as python dictionary or dataframe. This TF information is necessary for GRN inference.</p>
 </div>
 <div class="section" id="3.1-check-reference-genome-installation">
 <h1>3.1 check reference genome installation<a class="headerlink" href="#3.1-check-reference-genome-installation" title="Permalink to this headline">¶</a></h1>
@@ -1076,7 +1076,7 @@ converting scan results into dictionaries...
 </div>
 <div class="section" id="7.-Save-TFinfo-as-dictionary-and-dataframe">
 <h1>7. Save TFinfo as dictionary and dataframe<a class="headerlink" href="#7.-Save-TFinfo-as-dictionary-and-dataframe" title="Permalink to this headline">¶</a></h1>
-<p>we’ll use this information to make GRN. Save this results.</p>
+<p>We’ll use this information in the later step to make GRN. Save the results.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
@@ -1092,15 +1092,6 @@ converting scan results into dictionaries...
 <span class="c1"># save TFinfo as a dataframe</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">tfi</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 <span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="s2">&quot;TFinfo_dataframe.parquet&quot;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
 </pre></div>
 </div>
 </div>

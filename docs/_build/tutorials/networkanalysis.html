@@ -220,9 +220,11 @@
 </style>
 <div class="section" id="network-analysis">
 <span id="networkanalysis"></span><h1>4. Network analysis<a class="headerlink" href="#network-analysis" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> reconstructs cluster-specicif GRNs using scRNA-seq dataset and TF binding information which was made in the previous steps.
-Then several network analysis methods will be applied to the cluster specific GRNs.
-This step includes network structure analysis, network score analysis, and key regulatory gene identification.</p>
+<p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> import scRNA-seq dataset and TF binding information to find active regulatory connections for all genes, generating sample-specific GRNs.</p>
+<p>The inferred GRN is analyzed with several network algorithms to get various network scores. The network score is useful to identify key regulatory genes.</p>
+<p>celloracle reconstructs GRN for each cluster enabling us to compare GRNs each other. It is also possible to analyze how the GRN change over differentiation.
+The dynamics of the GRN structure provide us insight into the
+context-dependent regulatory mechanism.</p>
 <p>Python notebook</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -252,7 +254,12 @@ This step includes network structure analysis, network score analysis, and key r
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data.html#4.-Save-and-Load.">4. Save and Load.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data.html#4.-GRN-calculation">4. GRN calculation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data.html#4.-GRN-calculation">4. GRN calculation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data.html#4.1.-Get-GRNs">4.1. Get GRNs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data.html#4.2.-(Optional)-Export-GRNs">4.2. (Optional) Export GRNs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data.html#4.3.-(Optional)-Change-order">4.3. (Optional) Change order</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data.html#5.-Network-preprocessing">5. Network preprocessing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data.html#5.1.-Filter-network-edges">5.1. Filter network edges</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data.html#5.2.-Degree-distribution">5.2. Degree distribution</a></li>

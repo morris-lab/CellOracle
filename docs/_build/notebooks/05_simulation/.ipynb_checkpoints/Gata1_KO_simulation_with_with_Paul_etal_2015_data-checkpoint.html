@@ -473,7 +473,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="1.2.-Load-inferred-GRNs">
 <h2>1.2. Load inferred GRNs<a class="headerlink" href="#1.2.-Load-inferred-GRNs" title="Permalink to this headline">¶</a></h2>
 <p>In the previous notebook, we already calculated GRNs. We use this GRNs for simulation.</p>
-<p>For the simulation with GRNs, we import GRNs which was saved in Links object.</p>
+<p>We import GRNs which was saved in Links object.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -487,7 +487,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="3.-Make-predictive-models-for-simulation">
 <h1>3. Make predictive models for simulation<a class="headerlink" href="#3.-Make-predictive-models-for-simulation" title="Permalink to this headline">¶</a></h1>
-<p>We will construct regression models again by using the filtered GRN structure. This process take less time than the GRN inference in the previous notebook because we use only significant TFs to predict target gene rather than all regulatory candidate TFs.</p>
+<p>We construct ridge regression models again based on the filtered GRN structure. This process takes less time than the GRN inference in the previous notebook because we use only significant TFs to predict target gene instead of all regulatory candidate TFs.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -850,9 +850,11 @@ models made for 1074 genes
 </div>
 <div class="section" id="4.-in-silico-Perturbation-simulation">
 <h1>4. in silico Perturbation-simulation<a class="headerlink" href="#4.-in-silico-Perturbation-simulation" title="Permalink to this headline">¶</a></h1>
-<p>Next, we will do simulation. Using signal progagation algorithm of celloracle, we can predict what happens if we perturb TF(s).</p>
-<p>See the celloracle paper for the details.</p>
-<p>In this notebook, we’ll show an example of how to do in silico perturb simulation; we’ll simulate Gata1 KO in the hematopiesis. Previous studiy have shown that Gata1 is one of the important TFs that regulate cell fate decision in the myeloid progenitors and Gata1 have positive effect for the erythroid cell differentiation.</p>
+<p>Next, we simulate an effect of perturbation of a TF to investigate the function and regulatory mechanism of the TF.</p>
+<p>See the celloracle paper for the details and scientific remnants on the algorithm.</p>
+<p>In this notebook, we’ll show an example of the simulation; we’ll simulate knock-out of Gata1 gene in the hematopoiesis.</p>
+<p>Celloracle’s simulation supposes to recapitulate previous findings of this gene.</p>
+<p>The previous studies have shown that Gata1 is one of the decisive TFs that regulate cell fate in the myeloid progenitors and Gata1 have a positive effect on the erythroid cell differentiation.</p>
 <div class="section" id="4.1.-Check-gene-expression-pattern.">
 <h2>4.1. Check gene expression pattern.<a class="headerlink" href="#4.1.-Check-gene-expression-pattern." title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
@@ -862,7 +864,8 @@ models made for 1074 genes
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># check gene expression</span>
 <span class="n">goi</span> <span class="o">=</span> <span class="s2">&quot;Gata1&quot;</span>
-<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">oracle</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">goi</span><span class="p">,</span> <span class="n">oracle</span><span class="o">.</span><span class="n">cluster_column_name</span><span class="p">],</span> <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;imputed_count&quot;</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">draw_graph</span><span class="p">(</span><span class="n">oracle</span><span class="o">.</span><span class="n">adata</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">goi</span><span class="p">,</span> <span class="n">oracle</span><span class="o">.</span><span class="n">cluster_column_name</span><span class="p">],</span>
+                 <span class="n">layer</span><span class="o">=</span><span class="s2">&quot;imputed_count&quot;</span><span class="p">,</span> <span class="n">use_raw</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -894,14 +897,14 @@ models made for 1074 genes
 </div>
 <div class="section" id="4.1.-calculate-future-gene-expression-after-perturbation.">
 <h2>4.1. calculate future gene expression after perturbation.<a class="headerlink" href="#4.1.-calculate-future-gene-expression-after-perturbation." title="Permalink to this headline">¶</a></h2>
-<p>Although you can set any arbitrary gene expression value for perturb condition, we recommend avoiding too high value if you simulate overexpression. In the example below, if you set Gata1 gene expression to 100, for example, it may lead to biologically infeasible results.</p>
-<p>Here we will simulate Gata1 KO; we will predict what happens to the cells if Gata1 gene expression changed into 0.</p>
+<p>Although any arbitrary gene expression value can be used for input of perturbation, we recommend avoiding extreme value which is far from natural gene expression range. If you set Gata1 gene expression to 100, for example, it may lead to biologically infeasible results.</p>
+<p>Here we simulate Gata1 KO; we predict what happens to the cells if Gata1 gene expression changed into 0.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Enter perturbation conditions and simulate signal propagation after the perturbation.</span>
+<span></span><span class="c1"># Enter perturbation conditions to simulate signal propagation after the perturbation.</span>
 <span class="n">oracle</span><span class="o">.</span><span class="n">simulate_shift</span><span class="p">(</span><span class="n">perturb_condition</span><span class="o">=</span><span class="p">{</span><span class="n">goi</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">},</span>
                       <span class="n">n_propagation</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
@@ -910,20 +913,26 @@ models made for 1074 genes
 </div>
 <div class="section" id="4.2.-calculate-transition-probability-between-cells">
 <h2>4.2. calculate transition probability between cells<a class="headerlink" href="#4.2.-calculate-transition-probability-between-cells" title="Permalink to this headline">¶</a></h2>
-<p>In the step avobe, we simulated what happens if we perturb TF(s). This means we simulated future gene expression change after perturbation. This prediction is based on itelative calculations of signal propagations inside the GRN. Here we performed just small number of the calculation, thus the we simulated short future.</p>
-<p>Next step, we will calculate the propability of cell state transition based on the simulated data. Using this cell state transition probability between cells, we can predict how cell state changes after perturbation, enabling the analysis of the relationship between genes and cell state determination.</p>
+<p>In the step avobe, we simulated simulated future gene expression after perturbation. This prediction is based on itelative calculations of signal propagations inside the GRN. Here we performed just small number of the calculation, thus the we simulated short future.</p>
+<p>Next step, we will calculate the propability of cell state transition based on the simulated data. Using this the transition probability between cells, we can predict how a cell changes after perturbation.</p>
 <p>This transition probability will be used in two ways.</p>
 <ol class="arabic simple">
 <li>Visualization of directed trjectory graph.</li>
 <li>Markof simulation.</li>
 </ol>
+<p>In Step 4.2 and 4.3, we use some functions imported from velocytoloom class in velocyto.py. Please see the documentation of VelocytoLoom for the detail of parameters in the functions. <a class="reference external" href="http://velocyto.org/velocyto.py/fullapi/api_analysis.html">http://velocyto.org/velocyto.py/fullapi/api_analysis.html</a></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">oracle</span><span class="o">.</span><span class="n">estimate_transition_prob</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">knn_random</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sampled_fraction</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span></span><span class="c1"># get transition probability</span>
+<span class="n">oracle</span><span class="o">.</span><span class="n">estimate_transition_prob</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">knn_random</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sampled_fraction</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># calculate embedding</span>
 <span class="n">oracle</span><span class="o">.</span><span class="n">calculate_embedding_shift</span><span class="p">(</span><span class="n">sigma_corr</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># calculate global trend of cell transition</span>
 <span class="n">oracle</span><span class="o">.</span><span class="n">calculate_grid_arrows</span><span class="p">(</span><span class="n">smooth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1020,10 +1029,11 @@ WARNING:root:Nans encountered in corrcoef and corrected to 1s. If not identical 
 </div>
 <div class="section" id="4.4.-Markov-simulation-to-analyze-the-effects-of-perturbation-on-cell-fate-transition">
 <h2>4.4. Markov simulation to analyze the effects of perturbation on cell fate transition<a class="headerlink" href="#4.4.-Markov-simulation-to-analyze-the-effects-of-perturbation-on-cell-fate-transition" title="Permalink to this headline">¶</a></h2>
-<p>Based on the transition probability, markov simulation will be performed to simulate cell state transition.</p>
+<p>We can also simulate cell state transition with Markof simulation with the transition probability.</p>
 <div class="section" id="4.4.1.-Do-simulation">
 <h3>4.4.1. Do simulation<a class="headerlink" href="#4.4.1.-Do-simulation" title="Permalink to this headline">¶</a></h3>
-<p>We simulate with a parameter, “n_steps=200” and in the following example. It means that</p>
+<p>We simulate with the parameters, “n_steps=200” and “n_duplication=5” in the following example.</p>
+<p>It means that</p>
 <ol class="arabic simple">
 <li>we will do 200 times of iterative simulations to predict how cell changes over time</li>
 <li>and we will do 5 round of simulations for each cells.</li>
@@ -1052,7 +1062,7 @@ Wall time: 1.33 s
 </div>
 <div class="section" id="4.4.2.-Check-the-results-of-simulation-focusing-on-a-specific-cells">
 <h3>4.4.2. Check the results of simulation focusing on a specific cells<a class="headerlink" href="#4.4.2.-Check-the-results-of-simulation-focusing-on-a-specific-cells" title="Permalink to this headline">¶</a></h3>
-<p>Check the results of simulation by picking some cells and visualize their transition trajectory.</p>
+<p>Check the results of simulation. Pick up some cells and visualize their transition trajectory.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
 </pre></div>
@@ -1124,7 +1134,7 @@ cell 1567
 <div class="section" id="4.4.3.-Summarize-the-results-of-simulation-by-plotting-sankey-diagram">
 <h3>4.4.3. Summarize the results of simulation by plotting sankey diagram<a class="headerlink" href="#4.4.3.-Summarize-the-results-of-simulation-by-plotting-sankey-diagram" title="Permalink to this headline">¶</a></h3>
 <p>Sankey diagram is useful when you want to visualize cell transition between some groups.</p>
-<p>plot_mc_resutls_as_sankey function can make a Sankey diagram with any arbitrary cluster information.</p>
+<p>The function below can make a Sankey diagram with any arbitrary cluster unit.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
 </pre></div>
@@ -1195,9 +1205,11 @@ cell 1567
 <a class="reference internal image-reference" href="../../../_images/notebooks_05_simulation_.ipynb_checkpoints_Gata1_KO_simulation_with_with_Paul_etal_2015_data-checkpoint_39_0.png"><img alt="../../../_images/notebooks_05_simulation_.ipynb_checkpoints_Gata1_KO_simulation_with_with_Paul_etal_2015_data-checkpoint_39_0.png" src="../../../_images/notebooks_05_simulation_.ipynb_checkpoints_Gata1_KO_simulation_with_with_Paul_etal_2015_data-checkpoint_39_0.png" style="width: 346px; height: 360px;" /></a>
 </div>
 </div>
-<p>In the example above, we may conclude several things as follows.</p>
-<p>Gata1 KO induces cell state transition from Erythroids to MEP, from MEP to GMP. These results suggest that Gata1 may play important roles in the progression of Erythroid differentiation and cell state determination between MEP and GMP lineage.</p>
-<p>The data also show that Gata1 KO may induce cell state transition from granulocytes to late GMP, suggesting Gata1’s involvement in Granulocytes differentiation.</p>
+<p>Based on the results, we may conclude several things as follows.</p>
+<p>Gata1 KO induced cell state transition from Erythroids to MEP, and from MEP to GMP. (1) These results suggest that Gata1 may play a role in the progression of Erythroid differentiation and cell state determination between MEP and GMP lineage.</p>
+<ol class="arabic simple" start="2">
+<li>Gata1 KO also induced cell state transition from granulocytes to late GMP, suggesting Gata1’s involvement in Granulocytes differentiation.</li>
+</ol>
 <p>These results agree with previous reports about Gata1. We could recapitulate Gata1’s cell-type-specific function regarding the cell fate decisions in hematopoiesis.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
