@@ -23,7 +23,7 @@ This step is optional. Please make a new python environment for celloracle and i
 
 ::
 
-    conda make -n celloracle_env python=3.6
+    conda create -n celloracle_env python=3.6
     conda activate celloracle_env
 
 
