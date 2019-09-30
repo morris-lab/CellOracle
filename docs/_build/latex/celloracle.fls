@@ -251,8 +251,11 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/t1pcr.fd
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/t1pcr.fd
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/courier/pcrr8t.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/courier/pcrb8t.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/courier/pcrr8t.vf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/courier/pcrb8t.vf
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/courier/pcrb8r.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/helvetic/phvr8t.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/ts1ptm.fd
@@ -679,11 +682,8 @@ INPUT ./notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_dat
 INPUT ./notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0.png
 INPUT notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0.png
 INPUT ./notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0.png
-INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/courier/pcrb8t.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/courier/pcrro8t.tfm
-INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/courier/pcrb8t.vf
-INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/courier/pcrb8r.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/courier/pcrro8t.vf

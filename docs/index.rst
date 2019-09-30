@@ -20,7 +20,8 @@ Source code are available at `celloracle  git hub repository <https://github.com
    :download:`pdf documentation <_build/latex/celloracle.pdf>`
 
    :download:`word documentation <documentation_microsoft_word.docx>`
-
+    The word documentation does not include figures.
+    
    | **Could you please add comments on the file and send it back to Kenji?**
    | I really appreciate your support!
    |
