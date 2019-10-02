@@ -1,0 +1,1306 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Custom class in celloracle &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="celloracle.motif_analysis module" href="celloracle.motif_analysis.html" />
+    <link rel="prev" title="API" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorial</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#command-line-api">Command Line API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#python-api">Python API</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Custom class in celloracle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modules-for-atac-seq-analysis">Modules for ATAC-seq analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="celloracle.motif_analysis.html">celloracle.motif_analysis module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modules-for-network-analysis">Modules for Network analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="celloracle.network_analysis.html">celloracle.network_analysis module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#other-modules">Other modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="celloracle.go_analysis.html">celloracle.go_analysis module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="celloracle.utility.html">celloracle.utility module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="celloracle.data.html">celloracle.data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="celloracle.data_conversion.html">celloracle.data_conversion module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">API</a> &raquo;</li>
+        
+      <li>Custom class in celloracle</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/celloracle.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="custom-class-in-celloracle">
+<h1>Custom class in celloracle<a class="headerlink" href="#custom-class-in-celloracle" title="Permalink to this headline">¶</a></h1>
+<p>We define some custom classes in celloracle.</p>
+<span class="target" id="module-celloracle"></span><dl class="class">
+<dt id="celloracle.Oracle">
+<em class="property">class </em><code class="descclassname">celloracle.</code><code class="descname">Oracle</code><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">celloracle.trajectory.modified_VelocytoLoom_class.modified_VelocytoLoom</span></code></p>
+<p>Oracle is the main class in CellOracle.
+Oracle object imports scRNA-seq data (anndata) and TF information to infer cluster-specific GRNs.
+It can predict future gene expression patterns and cell state transition after perturbations of TFs.
+Please see the paper of CellOracle for details.</p>
+<p>The code of the Oracle class was made of three components below.</p>
+<p>(1) Anndata:  Gene expression matrix and metadata in single-cell RNA-seq are stored in anndata object.
+Processed values, such as normalized counts and simulated values, are stored as layers of anndata.
+Metadata (i.e., Cluster info) are saved in anndata.obs. Refer to scanpy/anndata documentation for detail.</p>
+<p>(2) Net: Net is a custom class in celloracle.
+Net object process several data to infer GRN.
+See the documentation of Net class for detail.</p>
+<p>(3) VelycytoLoom: Calculation of transition probability and visualization of directed trajectory graph will be performed in the same way as velocytoloom.
+VelocytoLoom is class for the Velocyto, which is a python library for RNA-velocity analysis.
+In the celloracle, we use almost the same functions as velocytoloom for the visualization, but celloracle use simulated gene expression values instead of RNA-velocity data.</p>
+<p>Some CellOracle’s methods were inspired by velocyto analysis and some codes were made by modifying VelocytoLoom class.</p>
+<dl class="attribute">
+<dt id="celloracle.Oracle.adata">
+<code class="descname">adata</code><a class="headerlink" href="#celloracle.Oracle.adata" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>anndata</em> – Imported anndata object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Oracle.cluster_column_name">
+<code class="descname">cluster_column_name</code><a class="headerlink" href="#celloracle.Oracle.cluster_column_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – The column name in adata.obs about cluster info</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Oracle.embedding_name">
+<code class="descname">embedding_name</code><a class="headerlink" href="#celloracle.Oracle.embedding_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – The key name in adata.obsm about dimensional reduction cordinates</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.addTFinfo_dictionary">
+<code class="descname">addTFinfo_dictionary</code><span class="sig-paren">(</span><em>TFdict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.addTFinfo_dictionary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.addTFinfo_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new TF info to pre-existing TFdict.
+Values in the old TF dictionary will remain.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>TFdict</strong> (<em>dictionary</em>) – Python dictionary of TF info.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deepcopy itself.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.fit_GRN_for_simulation">
+<code class="descname">fit_GRN_for_simulation</code><span class="sig-paren">(</span><em>GRN_unit='cluster'</em>, <em>alpha=1</em>, <em>use_cluster_specific_TFdict=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.fit_GRN_for_simulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.fit_GRN_for_simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do GRN inference.
+Please see the paper of CellOracle for details.</p>
+<p>GRN can be constructed at an arbitrary cell group.
+If you want to infer cluster-specific GRN, please set [GRN_unit=”cluster”].
+GRN will be inferred for each cluster. You can select Cluster information when you import data (not when you run this method.).</p>
+<p>If you set [GRN_unit=”whole”], GRN will be made using all cells.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>GRN_unit</strong> (<em>str</em>) – select “cluster” or “whole”</li>
+<li><strong>alpha</strong> (<em>float</em><em> or </em><em>int</em>) – the strength of regularization.
+If you set a lower value, the sensitivity increase, and you can detect a weak network connection, but it might get more noize.
+With a higher value of alpha may reduce the chance of overfitting.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.get_cluster_specific_TFdict_from_Links">
+<code class="descname">get_cluster_specific_TFdict_from_Links</code><span class="sig-paren">(</span><em>links_object</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.get_cluster_specific_TFdict_from_Links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.get_cluster_specific_TFdict_from_Links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract TF and its target gene information from Links object.
+This function can be used to reconstruct GRNs based on pre-existing GRNs saved in Links object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>links_object</strong> (<a class="reference internal" href="#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – Please see the explanation of Links class.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.get_links">
+<code class="descname">get_links</code><span class="sig-paren">(</span><em>cluster_name_for_GRN_unit=None</em>, <em>alpha=10</em>, <em>bagging_number=20</em>, <em>verbose_level=1</em>, <em>test_mode=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.get_links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.get_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make GRN for each cluster and returns results as a Links object.
+Several preprocessing should be done before using this function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cluster_name_for_GRN_unit</strong> (<em>str</em>) – Cluster name for GRN calculation. The cluster information should be stored in Oracle.adata.obs.</li>
+<li><strong>alpha</strong> (<em>float</em><em> or </em><em>int</em>) – the strength of regularization.
+If you set a lower value, the sensitivity increase, and you can detect a weak network connection, but it might get more noize.
+With a higher value of alpha may reduce the chance of overfitting.</li>
+<li><strong>bagging_number</strong> (<em>int</em>) – The number for bagging calculation.</li>
+<li><strong>verbose_level</strong> (<em>int</em>) – if [verbose_level&gt;1], most detailed progress information will be shown.
+if [verbose_level &gt; 0], one progress bar will be shown.
+if [verbose_level == 0], no progress bar will be shown.</li>
+<li><strong>test_mode</strong> (<em>bool</em>) – If test_mode is True, GRN calculation will be done for only one cluster rather than all clusters.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.import_TF_data">
+<code class="descname">import_TF_data</code><span class="sig-paren">(</span><em>TF_info_matrix=None</em>, <em>TF_info_matrix_path=None</em>, <em>TFdict=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.import_TF_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.import_TF_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load data about potential-regulatory TFs.
+You can import either TF_info_matrix or TFdict.
+See the tutorial of celloracle or motif_analysis module for an example to make such files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>TF_info_matrix</strong> (<em>pandas.DataFrame</em>) – TF_info_matrix.</li>
+<li><strong>TF_info_matrix_path</strong> (<em>str</em>) – File path for TF_info_matrix (pandas.DataFrame).</li>
+<li><strong>TFdict</strong> (<em>dictionary</em>) – Python dictionary of TF info.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.import_anndata_as_normalized_count">
+<code class="descname">import_anndata_as_normalized_count</code><span class="sig-paren">(</span><em>adata</em>, <em>cluster_column_name=None</em>, <em>embedding_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.import_anndata_as_normalized_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.import_anndata_as_normalized_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load scRNA-seq data. scRNA-seq data should be prepared as an anndata.
+Preprocessing (cell and gene filtering, calculate DR and cluster, etc.) should be done before loading data.
+The method will import NORMALIZED and LOG TRANSFORMED but NOT SCALED and NOT CENTERED DATA.
+See the tutorial for the details for an example of how to process scRNA-seq data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>adata</strong> (<em>anndata</em>) – anndata object that store scRNA-seq data.</li>
+<li><strong>cluster_column_name</strong> (<em>str</em>) – the column name about cluster info in anndata.obs.
+Clustering data suppose to be in anndata.obs.</li>
+<li><strong>embedding_name</strong> (<em>str</em>) – the key name about a dimensional reduction in anndata.obsm.
+Dimensional reduction (or 2D trajectory graph) should be in anndata.obsm.</li>
+<li><strong>transform</strong> (<em>str</em>) – The method for log-transformation. Chose one from “natural_log” or “log2”.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.import_anndata_as_raw_count">
+<code class="descname">import_anndata_as_raw_count</code><span class="sig-paren">(</span><em>adata</em>, <em>cluster_column_name=None</em>, <em>embedding_name=None</em>, <em>transform='natural_log'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.import_anndata_as_raw_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.import_anndata_as_raw_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load scRNA-seq data. scRNA-seq data should be prepared as an anndata.
+Preprocessing (cell and gene filtering, calculate DR and cluster, etc.) should be done before loading data.
+The method imports RAW GENE COUNTS because unscaled and uncentered gene expression data are required for the GRN inference and simulation.
+See tutorial notebook for the details about how to process scRNA-seq data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>adata</strong> (<em>anndata</em>) – anndata object that stores scRNA-seq data.</li>
+<li><strong>cluster_column_name</strong> (<em>str</em>) – the column name about cluster info in anndata.obs.
+Clustering data suppose to be in anndata.obs.</li>
+<li><strong>embedding_name</strong> (<em>str</em>) – the key name about a dimensional reduction in anndata.obsm.
+Dimensional reduction (or 2D trajectory graph) should be in anndata.obsm.</li>
+<li><strong>transform</strong> (<em>str</em>) – The method for log-transformation. Chose one from “natural_log” or “log2”.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.plot_mc_result_as_kde">
+<code class="descname">plot_mc_result_as_kde</code><span class="sig-paren">(</span><em>n_time</em>, <em>args={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.plot_mc_result_as_kde"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.plot_mc_result_as_kde" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pick up one timepoint in the cell state-transition simulation and plot as a kde plot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_time</strong> (<em>int</em>) – the number in Markov simulation</li>
+<li><strong>args</strong> (<em>dictionary</em>) – An argument for seaborn.kdeplot.
+See seaborn documentation for detail (<a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.kdeplot.html#seaborn.kdeplot">https://seaborn.pydata.org/generated/seaborn.kdeplot.html#seaborn.kdeplot</a>).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.plot_mc_result_as_trajectory">
+<code class="descname">plot_mc_result_as_trajectory</code><span class="sig-paren">(</span><em>cell_name</em>, <em>time_range</em>, <em>args={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.plot_mc_result_as_trajectory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.plot_mc_result_as_trajectory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pick up several timepoints in the cell state-transition simulation and plot as a line plot.
+This function can be used to visualize how cell-state changes after perturbation focusing on a specific cell.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cell_name</strong> (<em>str</em>) – cell name. chose from adata.obs.index</li>
+<li><strong>time_range</strong> (<em>list of int</em>) – the number in markov simulation</li>
+<li><strong>args</strong> (<em>dictionary</em>) – dictionary for the arguments for matplotlib.pyplit.plot.
+See matplotlib documentation for detail (<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot">https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot</a>).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.plot_mc_resutls_as_sankey">
+<code class="descname">plot_mc_resutls_as_sankey</code><span class="sig-paren">(</span><em>cluster_use</em>, <em>start=0</em>, <em>end=-1</em>, <em>order=None</em>, <em>font_size=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.plot_mc_resutls_as_sankey"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.plot_mc_resutls_as_sankey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the simulated cell state-transition as a Sankey-diagram after groping by the cluster.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cluster_use</strong> (<em>str</em>) – cluster information name in anndata.obs.
+You can use any arbitrary cluster information in anndata.obs.</li>
+<li><strong>start</strong> (<em>int</em>) – The starting point of Sankey-diagram. Please select a  step in the Markov simulation.</li>
+<li><strong>end</strong> (<em>int</em>) – The end point of Sankey-diagram. Please select a  step in the Markov simulation.
+if you set [end=-1], the final step of Markov simulation will be used.</li>
+<li><strong>order</strong> (<em>list of str</em>) – The order of cluster name in sankey-diagram.</li>
+<li><strong>font_size</strong> (<em>int</em>) – Font size for cluster name label in Sankey diagram.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.prepare_markov_simulation">
+<code class="descname">prepare_markov_simulation</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.prepare_markov_simulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.prepare_markov_simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pick up cells for Markov simulation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>bool</em>) – If True, it plots selected cells.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.run_markov_chain_simulation">
+<code class="descname">run_markov_chain_simulation</code><span class="sig-paren">(</span><em>n_steps=500</em>, <em>n_duplication=5</em>, <em>seed=123</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.run_markov_chain_simulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.run_markov_chain_simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do Markov simlation to predict cell transition after perturbation.
+The transition probability between cells has been calculated
+based on simulated gene expression values in the signal propagation process.
+The cell state transition will be simulated based on the probability.
+You can simulate the process for multiple times to get a robust outcome.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n_steps</strong> (<em>int</em>) – steps for Markov simulation. This value is equivalent to the time after perturbation.</li>
+<li><strong>n_duplication</strong> (<em>int</em>) – the number for multiple calculations.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.simulate_shift">
+<code class="descname">simulate_shift</code><span class="sig-paren">(</span><em>perturb_condition=None</em>, <em>GRN_unit='whole'</em>, <em>n_propagation=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.simulate_shift"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.simulate_shift" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate signal propagation with GRNs. Please see the paper of CellOracle for details.
+This function simulates a gene expression pattern in the near future.
+Simulated values will be stored in anndata.layers: [“simulated_count”]</p>
+<p>Three data below are used for the simulation.
+(1) GRN inference results (coef_matrix).
+(2) perturb_condition: You can set arbitrary perturbation condition.
+(3) gene expression matrix: simulation starts from imputed gene expression data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>perturb_condition</strong> (<em>dictionary</em>) – condition for perturbation.
+if you want to simulate knockout for GeneX, please set [perturb_condition={“GeneX”: 0.0}]
+Although you can set any non-negative values for the gene condition, avoid setting biologically unfeasible values for the perturb condition.
+It is strongly recommended to check actual gene expression values in your data before selecting perturb condition.</li>
+<li><strong>n_propagation</strong> (<em>int</em>) – Calculation will be performed iteratively to simulate signal propagation in GRN.
+you can set the number of steps for this calculation.
+With a higher number, the results may recapitulate signal propagation for many genes.
+However, a higher number of propagation may cause more error/noise.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.summarize_mc_results_by_cluster">
+<code class="descname">summarize_mc_results_by_cluster</code><span class="sig-paren">(</span><em>cluster_use</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.summarize_mc_results_by_cluster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.summarize_mc_results_by_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function summarizes the simulated cell state-transition by groping the results into each cluster.
+It returns sumarized results as a pandas.DataFrame.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cluster_use</strong> (<em>str</em>) – cluster information name in anndata.obs.
+You can use any arbitrary cluster information in anndata.obs.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.to_hdf5">
+<code class="descname">to_hdf5</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.to_hdf5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.to_hdf5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save object as hdf5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> (<em>str</em>) – file path to save file. Filename needs to end with ‘.celloracle.oracle’</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Oracle.updateTFinfo_dictionary">
+<code class="descname">updateTFinfo_dictionary</code><span class="sig-paren">(</span><em>TFdict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.updateTFinfo_dictionary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.updateTFinfo_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a TF dictionary.
+If a key in the new TF dictionary already existed in the old TF dictionary, old values will be replaced with a new one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>TFdict</strong> (<em>dictionary</em>) – Python dictionary of TF info.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="celloracle.Links">
+<em class="property">class </em><code class="descclassname">celloracle.</code><code class="descname">Links</code><span class="sig-paren">(</span><em>name</em>, <em>links_dict={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a class for the processing and visualization of GRNs.
+Links object stores cluster-specific GRNs and metadata.
+Please use “get_links” function in Oracle object to generate Links object.</p>
+<dl class="attribute">
+<dt id="celloracle.Links.links_dict">
+<code class="descname">links_dict</code><a class="headerlink" href="#celloracle.Links.links_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dictionary</em> – Dictionary that store unprocessed network data.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Links.filtered_links">
+<code class="descname">filtered_links</code><a class="headerlink" href="#celloracle.Links.filtered_links" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dictionary</em> – Dictionary that store filtered network data.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Links.merged_score">
+<code class="descname">merged_score</code><a class="headerlink" href="#celloracle.Links.merged_score" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>pandas.dataframe</em> – Network scores.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Links.cluster">
+<code class="descname">cluster</code><a class="headerlink" href="#celloracle.Links.cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list of str</em> – List of cluster name.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Links.name">
+<code class="descname">name</code><a class="headerlink" href="#celloracle.Links.name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Name of clustering unit.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Links.palette">
+<code class="descname">palette</code><a class="headerlink" href="#celloracle.Links.palette" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>pandas.dataframe</em> – DataFrame that store color information.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.add_palette">
+<code class="descname">add_palette</code><span class="sig-paren">(</span><em>cluster_name_list</em>, <em>color_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.add_palette"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.add_palette" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add color information for each cluster.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cluster_name_list</strong> (<em>list of str</em>) – cluster names.</li>
+<li><strong>color_list</strong> (<em>list of stf</em>) – list of color for each cluster.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.filter_links">
+<code class="descname">filter_links</code><span class="sig-paren">(</span><em>p=0.001</em>, <em>weight='coef_abs'</em>, <em>thread_number=10000</em>, <em>genelist_source=None</em>, <em>genelist_target=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.filter_links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.filter_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter network edges.
+In most case inferred GRN has non-significant random edges.
+We have to remove such random edges before analyzing network structure.
+You can do the filtering either of three ways below.</p>
+<ol class="arabic simple">
+<li>Do filtering based on the p-value of the network edge.
+Please enter p-value for thresholding.</li>
+<li>Do filtering based on network edge number.
+If you set the number, network edges will be filtered based on the order of a network score. The top n-th network edges with network weight will remain, and the other edges will be removed.
+The network data have several types of network weight, so you have to select which network weight do you want to use.</li>
+<li>Do filtering based on an arbitrary gene list. You can set a gene list for source nodes or target nodes.</li>
+</ol>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>p</strong> (<em>float</em>) – threshold for p-value of the network edge.</li>
+<li><strong>weight</strong> (<em>str</em>) – Please select network weight name for the filtering</li>
+<li><strong>genelist_source</strong> (<em>list of str</em>) – gene list to remain in regulatory gene nodes. Default is None.</li>
+<li><strong>genelist_target</strong> (<em>list of str</em>) – gene list to remain in target gene nodes. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.get_network_entropy">
+<code class="descname">get_network_entropy</code><span class="sig-paren">(</span><em>value='coef_abs'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.get_network_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.get_network_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate network entropy scores.
+Please select a type of network weight for the entropy calculation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>str</em>) – Default is “coef_abs”.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.get_score">
+<code class="descname">get_score</code><span class="sig-paren">(</span><em>test_mode=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.get_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.get_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get several network sores using R libraries.
+Make sure all dependant R libraries are installed in your environment before running this function.
+You can check the installation for the R libraries by running test_installation() in network_analysis module.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.plot_cartography_scatter_per_cluster">
+<code class="descname">plot_cartography_scatter_per_cluster</code><span class="sig-paren">(</span><em>gois=None</em>, <em>clusters=None</em>, <em>scatter=False</em>, <em>kde=True</em>, <em>auto_gene_annot=False</em>, <em>percentile=98</em>, <em>args_dot={}</em>, <em>args_line={}</em>, <em>args_annot={}</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_cartography_scatter_per_cluster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.plot_cartography_scatter_per_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a plot of gene network cartography.
+Please read the original paper of gene network cartography for the principle of gene network cartography.
+<a class="reference external" href="https://www.nature.com/articles/nature03288">https://www.nature.com/articles/nature03288</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>gois</strong> (<em>list of srt</em>) – List of Gene name to highlight.</li>
+<li><strong>clusters</strong> (<em>list of str</em>) – List of cluster name to analyze. If None, all clusters in Links object will be analyzed.</li>
+<li><strong>scatter</strong> (<em>bool</em>) – Whether to make a scatter plot.</li>
+<li><strong>auto_gene_annot</strong> (<em>bool</em>) – Whether to pick up genes to make an annotation.</li>
+<li><strong>percentile</strong> (<em>float</em>) – Genes with a network score above the percentile will be shown with annotation. Default is 98.</li>
+<li><strong>args_dot</strong> (<em>dictionary</em>) – Arguments for scatter plot.</li>
+<li><strong>args_line</strong> (<em>dictionary</em>) – Arguments for lines in cartography plot.</li>
+<li><strong>args_annot</strong> (<em>dictionary</em>) – Arguments for annotation in plots.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.plot_cartography_term">
+<code class="descname">plot_cartography_term</code><span class="sig-paren">(</span><em>goi</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_cartography_term"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.plot_cartography_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the summary of gene network cartography like a heatmap.
+Please read the original paper of gene network cartography for the principle of gene network cartography.
+<a class="reference external" href="https://www.nature.com/articles/nature03288">https://www.nature.com/articles/nature03288</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>gois</strong> (<em>list of srt</em>) – List of Gene name to highlight.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.plot_degree_distributions">
+<code class="descname">plot_degree_distributions</code><span class="sig-paren">(</span><em>plot_model=False</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_degree_distributions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.plot_degree_distributions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the distribution of network degree (the number of edge per gene).
+The network degree will be visualized in both linear scale and log scale.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>plot_model</strong> (<em>bool</em>) – Whether to plot linear approximation line.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.plot_network_entropy_distributions">
+<code class="descname">plot_network_entropy_distributions</code><span class="sig-paren">(</span><em>update_network_entropy=False</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_network_entropy_distributions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.plot_network_entropy_distributions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the distribution of network entropy.
+See the CellOracle paper for the detail.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<em>Links object</em>) – See network_analisis.Links class for detail.</li>
+<li><strong>values</strong> (<em>list of str</em>) – The list of score to visualize. If it is None, all network score (listed above) will be used.</li>
+<li><strong>update_network_entropy</strong> (<em>bool</em>) – Whether to recalculate network entropy.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.plot_score_comparison_2D">
+<code class="descname">plot_score_comparison_2D</code><span class="sig-paren">(</span><em>value</em>, <em>cluster1</em>, <em>cluster2</em>, <em>percentile=99</em>, <em>annot_shifts=None</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_score_comparison_2D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.plot_score_comparison_2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a scatter plot that shows the relationship of a specific network score in two groups.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>value</strong> (<em>srt</em>) – The network score type.</li>
+<li><strong>cluster1</strong> (<em>str</em>) – Cluster name. Network scores in the cluster1 will be visualized in the x-axis.</li>
+<li><strong>cluster2</strong> (<em>str</em>) – Cluster name. Network scores in the cluster2 will be visualized in the y-axis.</li>
+<li><strong>percentile</strong> (<em>float</em>) – Genes with a network score above the percentile will be shown with annotation. Default is 99.</li>
+<li><strong>annot_shifts</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>)</em>) – Annotation visualization setting.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.plot_score_discributions">
+<code class="descname">plot_score_discributions</code><span class="sig-paren">(</span><em>values=None</em>, <em>method='boxplot'</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_score_discributions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.plot_score_discributions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the distribution of network scores.
+An individual data point is a network edge (gene) of GRN in each cluster.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See Links class for detail.</li>
+<li><strong>values</strong> (<em>list of str</em>) – The list of score to visualize. If it is None, all network score will be used.</li>
+<li><strong>method</strong> (<em>str</em>) – Plotting method. Select either of “boxplot” or “barplot”.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.plot_score_per_cluster">
+<code class="descname">plot_score_per_cluster</code><span class="sig-paren">(</span><em>goi</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_score_per_cluster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.plot_score_per_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot network score for a gene.
+This function visualizes the network score of a specific gene between clusters to get an insight into the dynamics of the gene.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>goi</strong> (<em>srt</em>) – Gene name.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.plot_scores_as_rank">
+<code class="descname">plot_scores_as_rank</code><span class="sig-paren">(</span><em>cluster</em>, <em>n_gene=50</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_scores_as_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.plot_scores_as_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pick up top n-th genes wich high-network scores and make plots.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>cluster</strong> (<em>str</em>) – Cluster nome to analyze.</li>
+<li><strong>n_gene</strong> (<em>int</em>) – Number of genes to plot. Default is 50.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Links.to_hdf5">
+<code class="descname">to_hdf5</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.to_hdf5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Links.to_hdf5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save object as hdf5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> (<em>str</em>) – file path to save file. Filename needs to end with ‘.celloracle.links’</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="celloracle.Net">
+<em class="property">class </em><code class="descclassname">celloracle.</code><code class="descname">Net</code><span class="sig-paren">(</span><em>gene_expression_matrix</em>, <em>gem_standerdized=None</em>, <em>TFinfo_matrix=None</em>, <em>cellstate=None</em>, <em>TFinfo_dic=None</em>, <em>annotation=None</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Net is a custom class for inferring sample-specific GRN from scRNA-seq data.
+This class is used inside Oracle class for GRN inference.
+This class requires two information below.</p>
+<ol class="arabic simple">
+<li>single-cell RNA-seq data
+The Net class needs processed scRNA-seq data.
+Gene and cell filtering, quality check, normalization, log-transformation (but not scaling and centering) have to be done before starting GRN calculation with this class.
+You can also use any arbitrary metadata (i.e., mRNA count, cell-cycle phase) for GRN input.</li>
+<li>potential regulatory connection
+This method uses the list of potential regulatory TFs as input.
+This information can be calculated from Atac-seq data using the motif-analysis module.
+If sample-specific ATAC-seq data is not available,
+you can use general TF-binding info made from public ATAC-seq dataset of various tissue/cell type.</li>
+</ol>
+<dl class="attribute">
+<dt id="celloracle.Net.linkList">
+<code class="descname">linkList</code><a class="headerlink" href="#celloracle.Net.linkList" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>pandas.DataFrame</em> – the result of GRN inference.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.all_genes">
+<code class="descname">all_genes</code><a class="headerlink" href="#celloracle.Net.all_genes" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>numpy.array</em> – an array of all genes that exist in input gene expression matrix</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.embedding_name">
+<code class="descname">embedding_name</code><a class="headerlink" href="#celloracle.Net.embedding_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – the key name name in adata.obsm about dimensional reduction coordinates</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.annotation">
+<code class="descname">annotation</code><a class="headerlink" href="#celloracle.Net.annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dictionary</em> – annotation. you can add an arbitrary annotation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.coefs_dict">
+<code class="descname">coefs_dict</code><a class="headerlink" href="#celloracle.Net.coefs_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dictionary</em> – coefs of linear regression.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.stats_dict">
+<code class="descname">stats_dict</code><a class="headerlink" href="#celloracle.Net.stats_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dictionary</em> – statistic values about coefs.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.fitted_genes">
+<code class="descname">fitted_genes</code><a class="headerlink" href="#celloracle.Net.fitted_genes" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list of str</em> – list of genes with which regression model was successfully calculated.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.failed_genes">
+<code class="descname">failed_genes</code><a class="headerlink" href="#celloracle.Net.failed_genes" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list of str</em> – list of genes that were not able to get coefs</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.cellstate">
+<code class="descname">cellstate</code><a class="headerlink" href="#celloracle.Net.cellstate" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>pandas.DataFrame</em> – metadata for GRN input</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.TFinfo">
+<code class="descname">TFinfo</code><a class="headerlink" href="#celloracle.Net.TFinfo" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>pandas.DataFrame</em> – information about potential regulatory TFs.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.gem">
+<code class="descname">gem</code><a class="headerlink" href="#celloracle.Net.gem" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>pandas.DataFrame</em> – merged matrix made with gene_expression_matrix and cellstate matrix.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.gem_standerdized">
+<code class="descname">gem_standerdized</code><a class="headerlink" href="#celloracle.Net.gem_standerdized" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>pandas.DataFrame</em> – almost the same as gem, but the gene_expression_matrix was standardized.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.library_last_update_date">
+<code class="descname">library_last_update_date</code><a class="headerlink" href="#celloracle.Net.library_last_update_date" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – last update date of this code (this info is for code development. it will be deleted in the future)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.Net.object_initiation_date">
+<code class="descname">object_initiation_date</code><a class="headerlink" href="#celloracle.Net.object_initiation_date" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – the date when this object is made.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.addAnnotation">
+<code class="descname">addAnnotation</code><span class="sig-paren">(</span><em>annotation_dictionary</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.addAnnotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.addAnnotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new annotation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>annotation_dictionary</strong> (<em>dictionary</em>) – e.g. {“sample_name”: “NIH 3T3 cell”}</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.addTFinfo_dictionary">
+<code class="descname">addTFinfo_dictionary</code><span class="sig-paren">(</span><em>TFdict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.addTFinfo_dictionary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.addTFinfo_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new TF info to pre-exiting TFdict.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>TFdict</strong> (<em>dictionary</em>) – python dictionary of TF info.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.addTFinfo_matrix">
+<code class="descname">addTFinfo_matrix</code><span class="sig-paren">(</span><em>TFinfo_matrix</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.addTFinfo_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.addTFinfo_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load TF info dataframe.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>TFinfo</strong> (<em>pandas.DataFrame</em>) – information about potential regulatory TFs.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deepcopy itself</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.fit_All_genes">
+<code class="descname">fit_All_genes</code><span class="sig-paren">(</span><em>bagging_number=200</em>, <em>scaling=True</em>, <em>model_method='bagging_ridge'</em>, <em>command_line_mode=False</em>, <em>log=None</em>, <em>alpha=1</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.fit_All_genes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.fit_All_genes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make ML models for all genes.
+The calculation will be performed in parallel using scikit-learn bagging function.
+You can select a modeling method (bagging_ridge or bayesian_ridge).  The calculation usually takes a long time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>bagging_number</strong> (<em>int</em>) – The number of estimators for bagging.</li>
+<li><strong>scaling</strong> (<em>bool</em>) – Whether to scale regulatory gene expression values.</li>
+<li><strong>model_method</strong> (<em>str</em>) – ML model name. “bagging_ridge” or “bayesian_ridge”</li>
+<li><strong>command_line_mode</strong> (<em>bool</em>) – Please select False if the calculation is performed on jupyter notebook.</li>
+<li><strong>log</strong> (<em>logging object</em>) – log object to output log</li>
+<li><strong>alpha</strong> (<em>int</em>) – Strength of regularization.</li>
+<li><strong>verbose</strong> (<em>bool</em>) – Whether to show a progress bar.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.fit_All_genes_parallel">
+<code class="descname">fit_All_genes_parallel</code><span class="sig-paren">(</span><em>bagging_number=200</em>, <em>scaling=True</em>, <em>log=None</em>, <em>verbose=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.fit_All_genes_parallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.fit_All_genes_parallel" title="Permalink to this definition">¶</a></dt>
+<dd><p>!! This function has some bug now and currently unavailable.</p>
+<p>Make ML models for all genes.
+The calculation will be performed in parallel using joblib parallel module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>bagging_number</strong> (<em>int</em>) – The number of estimators for bagging.</li>
+<li><strong>scaling</strong> (<em>bool</em>) – Whether to scale regulatory gene expression values.</li>
+<li><strong>log</strong> (<em>logging object</em>) – log object to output log</li>
+<li><strong>verbose</strong> (<em>int</em>) – verbose for joblib parallel</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.fit_genes">
+<code class="descname">fit_genes</code><span class="sig-paren">(</span><em>target_genes</em>, <em>bagging_number=200</em>, <em>scaling=True</em>, <em>model_method='bagging_ridge'</em>, <em>save_coefs=False</em>, <em>command_line_mode=False</em>, <em>log=None</em>, <em>alpha=1</em>, <em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.fit_genes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.fit_genes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make ML models for genes of interest.
+The calculation will be performed in parallel using scikit-learn bagging function.
+You can select a modeling method (bagging_ridge or bayesian_ridge).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target_genes</strong> (<em>list of str</em>) – gene list</li>
+<li><strong>bagging_number</strong> (<em>int</em>) – The number of estimators for bagging.</li>
+<li><strong>scaling</strong> (<em>bool</em>) – Whether to scale regulatory gene expression values.</li>
+<li><strong>model_method</strong> (<em>str</em>) – ML model name. “bagging_ridge” or “bayesian_ridge”</li>
+<li><strong>save_coefs</strong> (<em>bool</em>) – Whether to store details of coef values in bagging model.</li>
+<li><strong>command_line_mode</strong> (<em>bool</em>) – Please select False if the calculation is performed on jupyter notebook.</li>
+<li><strong>log</strong> (<em>logging object</em>) – log object to output log</li>
+<li><strong>alpha</strong> (<em>int</em>) – Strength of regularization.</li>
+<li><strong>verbose</strong> (<em>bool</em>) – Whether to show a progress bar.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.plotCoefs">
+<code class="descname">plotCoefs</code><span class="sig-paren">(</span><em>target_gene</em>, <em>sort=True</em>, <em>threshold_p=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.plotCoefs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.plotCoefs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the distribution of Coef values (network edge weights).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>target_gene</strong> (<em>str</em>) – gene name</li>
+<li><strong>sort</strong> (<em>bool</em>) – Whether to sort genes by its strength</li>
+<li><strong>bagging_number</strong> (<em>int</em>) – The number of estimators for bagging.</li>
+<li><strong>threshold_p</strong> (<em>float</em>) – the threshold for p-values. TFs will be filtered based on the p-value.
+if None, no filtering is applied.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.to_hdf5">
+<code class="descname">to_hdf5</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.to_hdf5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.to_hdf5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save object as hdf5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> (<em>str</em>) – file path to save file. Filename needs to end with ‘.celloracle.net’</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.updateLinkList">
+<code class="descname">updateLinkList</code><span class="sig-paren">(</span><em>verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.updateLinkList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.updateLinkList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update linkList.
+LinkList is a data frame that store information about inferred GRN.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> (<em>bool</em>) – Whether to show a progress bar</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.Net.updateTFinfo_dictionary">
+<code class="descname">updateTFinfo_dictionary</code><span class="sig-paren">(</span><em>TFdict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network/net_core.html#Net.updateTFinfo_dictionary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Net.updateTFinfo_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update TF info matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>TFdict</strong> (<em>dictionary</em>) – A python dictionary in which a key is Target gene, value are potential regulatory genes for the target gene.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="celloracle.load_hdf5">
+<code class="descclassname">celloracle.</code><code class="descname">load_hdf5</code><span class="sig-paren">(</span><em>file_path</em>, <em>object_class_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/utility/load_hdf5.html#load_hdf5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.load_hdf5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an object of celloracle’s custom class that was saved as hdf5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>file_path</strong> (<em>str</em>) – file_path.</li>
+<li><strong>object_class_name</strong> (<em>str</em>) – Types of object.
+If it is None, object class will be identified from the extension of file_name.
+Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="modules-for-atac-seq-analysis">
+<h1>Modules for ATAC-seq analysis<a class="headerlink" href="#modules-for-atac-seq-analysis" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="celloracle.motif_analysis.html">celloracle.motif_analysis module</a></li>
+</ul>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="modules-for-network-analysis">
+<h1>Modules for Network analysis<a class="headerlink" href="#modules-for-network-analysis" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="celloracle.network_analysis.html">celloracle.network_analysis module</a></li>
+</ul>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="other-modules">
+<h1>Other modules<a class="headerlink" href="#other-modules" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="celloracle.go_analysis.html">celloracle.go_analysis module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="celloracle.utility.html">celloracle.utility module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="celloracle.data.html">celloracle.data module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="celloracle.data_conversion.html">celloracle.data_conversion module</a></li>
+</ul>
+</div>
+</div></blockquote>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="celloracle.motif_analysis.html" class="btn btn-neutral float-right" title="celloracle.motif_analysis module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

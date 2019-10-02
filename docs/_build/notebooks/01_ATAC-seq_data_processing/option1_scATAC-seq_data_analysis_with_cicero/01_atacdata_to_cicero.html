@@ -1,0 +1,710 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>0. Import library &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="0. Import libraries" href="02_preprocess_peak_data.html" />
+    <link rel="prev" title="1. ATAC-seq data preprocessing" href="../../../tutorials/atac.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation/index.html">Installation</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../tutorials/index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../tutorials/atac.html">1. ATAC-seq data preprocessing</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../../tutorials/atac.html#a-extract-tf-binding-information-from-scatac-seq-data">A. Extract TF binding information from scATAC-seq data</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">0. Import library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#1.-Prepare-data">1. Prepare data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#2.-Load-data-and-make-Cell-Data-Set-(CDS)-object">2. Load data and make Cell Data Set (CDS) object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#3.-Qauality-check-and-Filtering">3. Qauality check and Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#4.-Process-cicero-CDS-object">4. Process cicero-CDS object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#5.-Run-cicero-to-get-cis-regulatory-connection-scores">5. Run cicero to get cis-regulatory connection scores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#6.-Save-results-for-next-step">6. Save results for next step</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02_preprocess_peak_data.html">0. Import libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02_preprocess_peak_data.html#1.-Load-data-made-with-cicero">1. Load data made with cicero</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02_preprocess_peak_data.html#2.-Make-TSS-annotation">2. Make TSS annotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02_preprocess_peak_data.html#3.-Integrate-TSS-info-and-cicero-connections">3. Integrate TSS info and cicero connections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02_preprocess_peak_data.html#4.-Filter-peaks">4. Filter peaks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02_preprocess_peak_data.html#5.-Save-data">5. Save data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tutorials/atac.html#b-extract-tf-binding-information-from-bulk-atac-seq-data-or-chip-seq-data">B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/motifscan.html">2. Transcription factor binding motif scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/scrnaprocess.html">3. Single-cell RNA-seq data preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/networkanalysis.html">4. Network analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/simulation.html">5. Simulation with GRNs</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html">API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../tutorials/index.html">Tutorial</a> &raquo;</li>
+        
+          <li><a href="../../../tutorials/atac.html">1. ATAC-seq data preprocessing</a> &raquo;</li>
+        
+      <li>0. Import library</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 5ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="0.-Import-library">
+<h1>0. Import library<a class="headerlink" href="#0.-Import-library" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-r notranslate"><div class="highlight"><pre>
+<span></span><span class="nf">library</span><span class="p">(</span><span class="n">cicero</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="1.-Prepare-data">
+<h1>1. Prepare data<a class="headerlink" href="#1.-Prepare-data" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial we use acATAC-seq data in 10x genomics database. You do not need to download these data if you analyze your scATAC data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-r notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># create folder to store data</span>
+<span class="nf">dir.create</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">)</span>
+
+<span class="c1"># download demo dataset from 10x genomics</span>
+<span class="nf">system</span><span class="p">(</span><span class="s">&quot;wget -O data/matrix.tar.gz http://cf.10xgenomics.com/samples/cell-atac/1.1.0/atac_v1_E18_brain_fresh_5k/atac_v1_E18_brain_fresh_5k_filtered_peak_bc_matrix.tar.gz&quot;</span><span class="p">)</span>
+
+<span class="c1"># unzip data</span>
+<span class="nf">system</span><span class="p">(</span><span class="s">&quot;tar -xvf data/matrix.tar.gz -C data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-r notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># You can substitute the data path below with the data path of your scATAC data.</span>
+<span class="n">data_folder</span> <span class="o">&lt;-</span> <span class="s">&quot;data/filtered_peak_bc_matrix&quot;</span>
+
+<span class="c1"># Create a folder to save results</span>
+<span class="n">output_folder</span> <span class="o">&lt;-</span> <span class="s">&quot;cicero_output&quot;</span>
+<span class="nf">dir.create</span><span class="p">(</span><span class="n">output_folder</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="2.-Load-data-and-make-Cell-Data-Set-(CDS)-object">
+<h1>2. Load data and make Cell Data Set (CDS) object<a class="headerlink" href="#2.-Load-data-and-make-Cell-Data-Set-(CDS)-object" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="2.1.-Process-data-to-make-CDS-object">
+<h2>2.1. Process data to make CDS object<a class="headerlink" href="#2.1.-Process-data-to-make-CDS-object" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-r notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># read in matrix data using the Matrix package</span>
+<span class="n">indata</span> <span class="o">&lt;-</span> <span class="n">Matrix</span><span class="o">::</span><span class="nf">readMM</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s">&quot;/matrix.mtx&quot;</span><span class="p">))</span>
+<span class="c1"># binarize the matrix</span>
+<span class="n">indata</span><span class="o">@</span><span class="n">x[indata</span><span class="o">@</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">0</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="m">1</span>
+
+<span class="c1"># format cell info</span>
+<span class="n">cellinfo</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s">&quot;/barcodes.tsv&quot;</span><span class="p">))</span>
+<span class="nf">row.names</span><span class="p">(</span><span class="n">cellinfo</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">cellinfo</span><span class="o">$</span><span class="n">V1</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">cellinfo</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s">&quot;cells&quot;</span>
+
+<span class="c1"># format peak info</span>
+<span class="n">peakinfo</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">data_folder</span><span class="p">,</span> <span class="s">&quot;/peaks.bed&quot;</span><span class="p">))</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">peakinfo</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;chr&quot;</span><span class="p">,</span> <span class="s">&quot;bp1&quot;</span><span class="p">,</span> <span class="s">&quot;bp2&quot;</span><span class="p">)</span>
+<span class="n">peakinfo</span><span class="o">$</span><span class="n">site_name</span> <span class="o">&lt;-</span> <span class="nf">paste</span><span class="p">(</span><span class="n">peakinfo</span><span class="o">$</span><span class="n">chr</span><span class="p">,</span> <span class="n">peakinfo</span><span class="o">$</span><span class="n">bp1</span><span class="p">,</span> <span class="n">peakinfo</span><span class="o">$</span><span class="n">bp2</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;_&quot;</span><span class="p">)</span>
+<span class="nf">row.names</span><span class="p">(</span><span class="n">peakinfo</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">peakinfo</span><span class="o">$</span><span class="n">site_name</span>
+
+<span class="nf">row.names</span><span class="p">(</span><span class="n">indata</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">row.names</span><span class="p">(</span><span class="n">peakinfo</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">indata</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">row.names</span><span class="p">(</span><span class="n">cellinfo</span><span class="p">)</span>
+
+<span class="c1"># make CDS</span>
+<span class="n">input_cds</span> <span class="o">&lt;-</span>  <span class="nf">suppressWarnings</span><span class="p">(</span><span class="nf">newCellDataSet</span><span class="p">(</span><span class="n">indata</span><span class="p">,</span>
+                            <span class="n">phenoData</span> <span class="o">=</span> <span class="n">methods</span><span class="o">::</span><span class="nf">new</span><span class="p">(</span><span class="s">&quot;AnnotatedDataFrame&quot;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">cellinfo</span><span class="p">),</span>
+                            <span class="n">featureData</span> <span class="o">=</span> <span class="n">methods</span><span class="o">::</span><span class="nf">new</span><span class="p">(</span><span class="s">&quot;AnnotatedDataFrame&quot;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">peakinfo</span><span class="p">),</span>
+                            <span class="n">expressionFamily</span><span class="o">=</span><span class="n">VGAM</span><span class="o">::</span><span class="nf">binomialff</span><span class="p">(),</span>
+                            <span class="n">lowerDetectionLimit</span><span class="o">=</span><span class="m">0</span><span class="p">))</span>
+<span class="n">input_cds</span><span class="o">@</span><span class="n">expressionFamily</span><span class="o">@</span><span class="n">vfamily</span> <span class="o">&lt;-</span> <span class="s">&quot;binomialff&quot;</span>
+<span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="n">monocle</span><span class="o">::</span><span class="nf">detectGenes</span><span class="p">(</span><span class="n">input_cds</span><span class="p">)</span>
+
+<span class="c1">#Ensure there are no peaks included with zero reads</span>
+<span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="n">input_cds[Matrix</span><span class="o">::</span><span class="nf">rowSums</span><span class="p">(</span><span class="nf">exprs</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="m">100</span><span class="p">,</span><span class="n">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="3.-Qauality-check-and-Filtering">
+<h1>3. Qauality check and Filtering<a class="headerlink" href="#3.-Qauality-check-and-Filtering" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-r notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Visualize peak_count_per_cell</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">Matrix</span><span class="o">::</span><span class="nf">colSums</span><span class="p">(</span><span class="nf">exprs</span><span class="p">(</span><span class="n">input_cds</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<a class="reference internal image-reference" href="../../../_images/notebooks_01_ATAC-seq_data_processing_option1_scATAC-seq_data_analysis_with_cicero_01_atacdata_to_cicero_8_0.png"><img alt="../../../_images/notebooks_01_ATAC-seq_data_processing_option1_scATAC-seq_data_analysis_with_cicero_01_atacdata_to_cicero_8_0.png" src="../../../_images/notebooks_01_ATAC-seq_data_processing_option1_scATAC-seq_data_analysis_with_cicero_01_atacdata_to_cicero_8_0.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-r notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># filter cells by peak_count</span>
+<span class="n">max_count</span> <span class="o">&lt;-</span>  <span class="m">15000</span> <span class="c1"># Please change the threshold value according to the distribution of the peak_count of your data</span>
+<span class="n">min_count</span> <span class="o">&lt;-</span> <span class="m">2000</span> <span class="c1"># Please change the threshold value according to the distribution of the peak_count of your data</span>
+<span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="n">input_cds[</span><span class="p">,</span><span class="n">Matrix</span><span class="o">::</span><span class="nf">colSums</span><span class="p">(</span><span class="nf">exprs</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="n">min_count]</span>
+<span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="n">input_cds[</span><span class="p">,</span><span class="n">Matrix</span><span class="o">::</span><span class="nf">colSums</span><span class="p">(</span><span class="nf">exprs</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">max_count]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="4.-Process-cicero-CDS-object">
+<h1>4. Process cicero-CDS object<a class="headerlink" href="#4.-Process-cicero-CDS-object" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-r notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Run cicero to get cis-regulatory networks</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">2017</span><span class="p">)</span>
+<span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="nf">detectGenes</span><span class="p">(</span><span class="n">input_cds</span><span class="p">)</span>
+<span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="nf">estimateSizeFactors</span><span class="p">(</span><span class="n">input_cds</span><span class="p">)</span>
+
+<span class="n">input_cds</span> <span class="o">&lt;-</span> <span class="nf">reduceDimension</span><span class="p">(</span><span class="n">input_cds</span><span class="p">,</span> <span class="n">max_components</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">scaling</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span><span class="n">relative_expr</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>
+                      <span class="n">reduction_method</span> <span class="o">=</span> <span class="s">&#39;tSNE&#39;</span><span class="p">,</span> <span class="n">norm_method</span> <span class="o">=</span> <span class="s">&quot;none&quot;</span><span class="p">)</span>
+
+<span class="n">tsne_coords</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="nf">reducedDimA</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span>
+<span class="nf">row.names</span><span class="p">(</span><span class="n">tsne_coords</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">row.names</span><span class="p">(</span><span class="nf">pData</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span>
+<span class="n">cicero_cds</span> <span class="o">&lt;-</span> <span class="nf">make_cicero_cds</span><span class="p">(</span><span class="n">input_cds</span><span class="p">,</span> <span class="n">reduced_coordinates</span> <span class="o">=</span> <span class="n">tsne_coords</span><span class="p">)</span>
+
+<span class="c1"># Save cicero-CDS object if you want.</span>
+<span class="c1">#saveRDS(cicero_cds, paste0(output_folder, &quot;/cicero_cds.Rds&quot;))</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Remove noise by PCA ...
+
+Reduce dimension by tSNE ...
+
+Overlap QC metrics:
+Cells per bin: 50
+Maximum shared cells bin-bin: 44
+Mean shared cells bin-bin: 0.76256263875674
+Median shared cells bin-bin: 0
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="5.-Run-cicero-to-get-cis-regulatory-connection-scores">
+<h1>5. Run cicero to get cis-regulatory connection scores<a class="headerlink" href="#5.-Run-cicero-to-get-cis-regulatory-connection-scores" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-r notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># import genome length, which is needed for the function, run_cicero</span>
+<span class="n">mm10_chromosome_length</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;./mm10_chromosome_length.txt&quot;</span><span class="p">)</span>
+
+<span class="c1"># runc the main function</span>
+<span class="n">conns</span> <span class="o">&lt;-</span> <span class="nf">run_cicero</span><span class="p">(</span><span class="n">cicero_cds</span><span class="p">,</span> <span class="n">mm10_chromosome_length</span><span class="p">)</span> <span class="c1"># Takes a few minutes to run</span>
+
+<span class="c1"># check results</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">conns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[1] &#34;Starting Cicero&#34;
+[1] &#34;Calculating distance_parameter value&#34;
+[1] &#34;Running models&#34;
+[1] &#34;Assembling connections&#34;
+[1] &#34;Done&#34;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<table>
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+    <tr><th></th><th scope=col>Peak1</th><th scope=col>Peak2</th><th scope=col>coaccess</th></tr>
+    <tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><th scope=row>2</th><td>chr1_3094484_3095479</td><td>chr1_3113499_3113979</td><td>-0.316289004</td></tr>
+    <tr><th scope=row>3</th><td>chr1_3094484_3095479</td><td>chr1_3119478_3121690</td><td>-0.419240532</td></tr>
+    <tr><th scope=row>4</th><td>chr1_3094484_3095479</td><td>chr1_3399730_3400368</td><td>-0.050867246</td></tr>
+    <tr><th scope=row>5</th><td>chr1_3113499_3113979</td><td>chr1_3094484_3095479</td><td>-0.316289004</td></tr>
+    <tr><th scope=row>7</th><td>chr1_3113499_3113979</td><td>chr1_3119478_3121690</td><td> 0.370342744</td></tr>
+    <tr><th scope=row>8</th><td>chr1_3113499_3113979</td><td>chr1_3399730_3400368</td><td>-0.009276026</td></tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="section" id="6.-Save-results-for-next-step">
+<h1>6. Save results for next step<a class="headerlink" href="#6.-Save-results-for-next-step" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-r notranslate"><div class="highlight"><pre>
+<span></span><span class="n">all_peaks</span> <span class="o">&lt;-</span> <span class="nf">row.names</span><span class="p">(</span><span class="nf">exprs</span><span class="p">(</span><span class="n">input_cds</span><span class="p">))</span>
+<span class="nf">write.csv</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">all_peaks</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s">&quot;/all_peaks.csv&quot;</span><span class="p">))</span>
+<span class="nf">write.csv</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">conns</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s">&quot;/cicero_connections.csv&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="02_preprocess_peak_data.html" class="btn btn-neutral float-right" title="0. Import libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../../tutorials/atac.html" class="btn btn-neutral float-left" title="1. ATAC-seq data preprocessing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

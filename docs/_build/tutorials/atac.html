@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. ATAC-seq data preprocessing &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="0. Import library" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html" />
+    <link rel="prev" title="Tutorial" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. ATAC-seq data preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#a-extract-tf-binding-information-from-scatac-seq-data">A. Extract TF binding information from scATAC-seq data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html">0. Import library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#1.-Prepare-data">1. Prepare data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#2.-Load-data-and-make-Cell-Data-Set-(CDS)-object">2. Load data and make Cell Data Set (CDS) object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#3.-Qauality-check-and-Filtering">3. Qauality check and Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#4.-Process-cicero-CDS-object">4. Process cicero-CDS object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#5.-Run-cicero-to-get-cis-regulatory-connection-scores">5. Run cicero to get cis-regulatory connection scores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#6.-Save-results-for-next-step">6. Save results for next step</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html">0. Import libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#1.-Load-data-made-with-cicero">1. Load data made with cicero</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#2.-Make-TSS-annotation">2. Make TSS annotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#3.-Integrate-TSS-info-and-cicero-connections">3. Integrate TSS info and cicero connections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#4.-Filter-peaks">4. Filter peaks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#5.-Save-data">5. Save data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#b-extract-tf-binding-information-from-bulk-atac-seq-data-or-chip-seq-data">B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.html">0. Import libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.html#1.-Load-bed-file">1. Load bed file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.html#2.-Make-TSS-annotation">2. Make TSS annotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.html#3.-Save-data">3. Save data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="motifscan.html">2. Transcription factor binding motif scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scrnaprocess.html">3. Single-cell RNA-seq data preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networkanalysis.html">4. Network analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html">5. Simulation with GRNs</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tutorial</a> &raquo;</li>
+        
+      <li>1. ATAC-seq data preprocessing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/atac.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="atac-seq-data-preprocessing">
+<span id="atac"></span><h1>1. ATAC-seq data preprocessing<a class="headerlink" href="#atac-seq-data-preprocessing" title="Permalink to this headline">¶</a></h1>
+<p>In this step, we process scATAC-seq data (or bulk ATAC-seq data) to get open accessible promoter/enhancer DNA sequence.
+We can get active proximal promoter/enhancer genome sequence by picking up ATAC-seq peaks that exist around the transcription starting site (TSS).
+Distal cis-regulatory elements can be picked up using  <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero">Cicero</a> .
+Cicero analyzes scATAC-seq data to calculate a co-accessible score between peaks.
+We can identify cis-regulatory elements using Cicero co-access score and TSS information.</p>
+<p>If you have bulk ATAC-seq data instead of scATAC-data, we’ll get only proximal promoter/enhancer genome sequence.</p>
+<div class="section" id="a-extract-tf-binding-information-from-scatac-seq-data">
+<h2>A. Extract TF binding information from scATAC-seq data<a class="headerlink" href="#a-extract-tf-binding-information-from-scatac-seq-data" title="Permalink to this headline">¶</a></h2>
+<p>If you have a scATAC-seq data, you can get information of distal cis-regulatory elements.
+This step uses Cicero and does not use celloracle. Please refer to <a class="reference external" href="https://cole-trapnell-lab.github.io/cicero-release/">the documentation of Cicero</a> for the detailed usage.</p>
+<p>R notebook</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html">0. Import library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#1.-Prepare-data">1. Prepare data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#2.-Load-data-and-make-Cell-Data-Set-(CDS)-object">2. Load data and make Cell Data Set (CDS) object</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#2.1.-Process-data-to-make-CDS-object">2.1. Process data to make CDS object</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#3.-Qauality-check-and-Filtering">3. Qauality check and Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#4.-Process-cicero-CDS-object">4. Process cicero-CDS object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#5.-Run-cicero-to-get-cis-regulatory-connection-scores">5. Run cicero to get cis-regulatory connection scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html#6.-Save-results-for-next-step">6. Save results for next step</a></li>
+</ul>
+</div>
+<p>Next, the results of Cicero analysis will be processed to make TSS annotations.</p>
+<p>Python notebook</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html">0. Import libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#1.-Load-data-made-with-cicero">1. Load data made with cicero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#2.-Make-TSS-annotation">2. Make TSS annotation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#!!-Please-make-sure-that-you-are-setting-correct-reference-genoms.">!! Please make sure that you are setting correct reference genoms.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#3.-Integrate-TSS-info-and-cicero-connections">3. Integrate TSS info and cicero connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#4.-Filter-peaks">4. Filter peaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.html#5.-Save-data">5. Save data</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="b-extract-tf-binding-information-from-bulk-atac-seq-data-or-chip-seq-data">
+<h2>B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data<a class="headerlink" href="#b-extract-tf-binding-information-from-bulk-atac-seq-data-or-chip-seq-data" title="Permalink to this headline">¶</a></h2>
+<p>Bulk DNA-seq data can be used to get open accessible promoter/enhancer sequence.</p>
+<p>Python notebook</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.html">0. Import libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.html#1.-Load-bed-file">1. Load bed file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.html#2.-Make-TSS-annotation">2. Make TSS annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.html#3.-Save-data">3. Save data</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero.html" class="btn btn-neutral float-right" title="0. Import library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,698 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>celloracle.network_analysis module &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="celloracle.go_analysis module" href="celloracle.go_analysis.html" />
+    <link rel="prev" title="celloracle.motif_analysis module" href="celloracle.motif_analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorial</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#command-line-api">Command Line API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#python-api">Python API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="celloracle.html">Custom class in celloracle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="celloracle.html#modules-for-atac-seq-analysis">Modules for ATAC-seq analysis</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="celloracle.html#modules-for-network-analysis">Modules for Network analysis</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">celloracle.network_analysis module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="celloracle.html#other-modules">Other modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">API</a> &raquo;</li>
+        
+          <li><a href="celloracle.html">Custom class in celloracle</a> &raquo;</li>
+        
+      <li>celloracle.network_analysis module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/celloracle.network_analysis.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-celloracle.network_analysis">
+<span id="celloracle-network-analysis-module"></span><h1>celloracle.network_analysis module<a class="headerlink" href="#module-celloracle.network_analysis" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#module-celloracle.network_analysis" title="celloracle.network_analysis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">network_analysis</span></code></a> module implements Network analysis.</p>
+<dl class="function">
+<dt id="celloracle.network_analysis.get_links">
+<code class="descclassname">celloracle.network_analysis.</code><code class="descname">get_links</code><span class="sig-paren">(</span><em>oracle_object</em>, <em>cluster_name_for_GRN_unit=None</em>, <em>alpha=10</em>, <em>bagging_number=20</em>, <em>verbose_level=1</em>, <em>test_mode=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/network_construction.html#get_links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.get_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make GRN for each cluster and returns results as a Links object.
+Several preprocessing should be done before using this function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>oracle_object</strong> (<a class="reference internal" href="celloracle.html#celloracle.Oracle" title="celloracle.Oracle"><em>Oracle</em></a>) – See Oracle module for detail.</li>
+<li><strong>cluster_name_for_GRN_unit</strong> (<em>str</em>) – Cluster name for GRN calculation. The cluster information should be stored in Oracle.adata.obs.</li>
+<li><strong>alpha</strong> (<em>float</em><em> or </em><em>int</em>) – the strength of regularization.
+If you set a lower value, the sensitivity increase, and you can detect a weak network connection, but it might get more noize.
+With a higher value of alpha may reduce the chance of overfitting.</li>
+<li><strong>bagging_number</strong> (<em>int</em>) – The number for bagging calculation.</li>
+<li><strong>verbose_level</strong> (<em>int</em>) – if [verbose_level&gt;1], most detailed progress information will be shown.
+if [verbose_level &gt; 0], one progress bar will be shown.
+if [verbose_level == 0], no progress bar will be shown.</li>
+<li><strong>test_mode</strong> (<em>bool</em>) – If test_mode is True, GRN calculation will be done for only one cluster rather than all clusters.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="celloracle.network_analysis.test_R_libraries_installation">
+<code class="descclassname">celloracle.network_analysis.</code><code class="descname">test_R_libraries_installation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/use_r_scripts.html#test_R_libraries_installation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.test_R_libraries_installation" title="Permalink to this definition">¶</a></dt>
+<dd><p>CellOracle.network_analysis use some R libraries for network analysis.
+This is a test function to check instalation of necessary R libraries.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="celloracle.network_analysis.load_links">
+<code class="descclassname">celloracle.network_analysis.</code><code class="descname">load_links</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#load_links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.load_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load links object saved as a hdf5 file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> (<em>str</em>) – file path.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">loaded links object.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="celloracle.html#celloracle.Links" title="celloracle.Links">Links</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="celloracle.network_analysis.Links">
+<em class="property">class </em><code class="descclassname">celloracle.network_analysis.</code><code class="descname">Links</code><span class="sig-paren">(</span><em>name</em>, <em>links_dict={}</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a class for the processing and visualization of GRNs.
+Links object stores cluster-specific GRNs and metadata.
+Please use “get_links” function in Oracle object to generate Links object.</p>
+<dl class="attribute">
+<dt id="celloracle.network_analysis.Links.links_dict">
+<code class="descname">links_dict</code><a class="headerlink" href="#celloracle.network_analysis.Links.links_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dictionary</em> – Dictionary that store unprocessed network data.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.network_analysis.Links.filtered_links">
+<code class="descname">filtered_links</code><a class="headerlink" href="#celloracle.network_analysis.Links.filtered_links" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dictionary</em> – Dictionary that store filtered network data.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.network_analysis.Links.merged_score">
+<code class="descname">merged_score</code><a class="headerlink" href="#celloracle.network_analysis.Links.merged_score" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>pandas.dataframe</em> – Network scores.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.network_analysis.Links.cluster">
+<code class="descname">cluster</code><a class="headerlink" href="#celloracle.network_analysis.Links.cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list of str</em> – List of cluster name.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.network_analysis.Links.name">
+<code class="descname">name</code><a class="headerlink" href="#celloracle.network_analysis.Links.name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Name of clustering unit.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celloracle.network_analysis.Links.palette">
+<code class="descname">palette</code><a class="headerlink" href="#celloracle.network_analysis.Links.palette" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>pandas.dataframe</em> – DataFrame that store color information.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.add_palette">
+<code class="descname">add_palette</code><span class="sig-paren">(</span><em>cluster_name_list</em>, <em>color_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.add_palette"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.add_palette" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add color information for each cluster.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cluster_name_list</strong> (<em>list of str</em>) – cluster names.</li>
+<li><strong>color_list</strong> (<em>list of stf</em>) – list of color for each cluster.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.filter_links">
+<code class="descname">filter_links</code><span class="sig-paren">(</span><em>p=0.001</em>, <em>weight='coef_abs'</em>, <em>thread_number=10000</em>, <em>genelist_source=None</em>, <em>genelist_target=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.filter_links"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.filter_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter network edges.
+In most case inferred GRN has non-significant random edges.
+We have to remove such random edges before analyzing network structure.
+You can do the filtering either of three ways below.</p>
+<ol class="arabic simple">
+<li>Do filtering based on the p-value of the network edge.
+Please enter p-value for thresholding.</li>
+<li>Do filtering based on network edge number.
+If you set the number, network edges will be filtered based on the order of a network score. The top n-th network edges with network weight will remain, and the other edges will be removed.
+The network data have several types of network weight, so you have to select which network weight do you want to use.</li>
+<li>Do filtering based on an arbitrary gene list. You can set a gene list for source nodes or target nodes.</li>
+</ol>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>p</strong> (<em>float</em>) – threshold for p-value of the network edge.</li>
+<li><strong>weight</strong> (<em>str</em>) – Please select network weight name for the filtering</li>
+<li><strong>genelist_source</strong> (<em>list of str</em>) – gene list to remain in regulatory gene nodes. Default is None.</li>
+<li><strong>genelist_target</strong> (<em>list of str</em>) – gene list to remain in target gene nodes. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.get_network_entropy">
+<code class="descname">get_network_entropy</code><span class="sig-paren">(</span><em>value='coef_abs'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.get_network_entropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.get_network_entropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate network entropy scores.
+Please select a type of network weight for the entropy calculation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>str</em>) – Default is “coef_abs”.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.get_score">
+<code class="descname">get_score</code><span class="sig-paren">(</span><em>test_mode=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.get_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.get_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get several network sores using R libraries.
+Make sure all dependant R libraries are installed in your environment before running this function.
+You can check the installation for the R libraries by running test_installation() in network_analysis module.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.plot_cartography_scatter_per_cluster">
+<code class="descname">plot_cartography_scatter_per_cluster</code><span class="sig-paren">(</span><em>gois=None</em>, <em>clusters=None</em>, <em>scatter=False</em>, <em>kde=True</em>, <em>auto_gene_annot=False</em>, <em>percentile=98</em>, <em>args_dot={}</em>, <em>args_line={}</em>, <em>args_annot={}</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_cartography_scatter_per_cluster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.plot_cartography_scatter_per_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a plot of gene network cartography.
+Please read the original paper of gene network cartography for the principle of gene network cartography.
+<a class="reference external" href="https://www.nature.com/articles/nature03288">https://www.nature.com/articles/nature03288</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="celloracle.html#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>gois</strong> (<em>list of srt</em>) – List of Gene name to highlight.</li>
+<li><strong>clusters</strong> (<em>list of str</em>) – List of cluster name to analyze. If None, all clusters in Links object will be analyzed.</li>
+<li><strong>scatter</strong> (<em>bool</em>) – Whether to make a scatter plot.</li>
+<li><strong>auto_gene_annot</strong> (<em>bool</em>) – Whether to pick up genes to make an annotation.</li>
+<li><strong>percentile</strong> (<em>float</em>) – Genes with a network score above the percentile will be shown with annotation. Default is 98.</li>
+<li><strong>args_dot</strong> (<em>dictionary</em>) – Arguments for scatter plot.</li>
+<li><strong>args_line</strong> (<em>dictionary</em>) – Arguments for lines in cartography plot.</li>
+<li><strong>args_annot</strong> (<em>dictionary</em>) – Arguments for annotation in plots.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.plot_cartography_term">
+<code class="descname">plot_cartography_term</code><span class="sig-paren">(</span><em>goi</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_cartography_term"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.plot_cartography_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the summary of gene network cartography like a heatmap.
+Please read the original paper of gene network cartography for the principle of gene network cartography.
+<a class="reference external" href="https://www.nature.com/articles/nature03288">https://www.nature.com/articles/nature03288</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="celloracle.html#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>gois</strong> (<em>list of srt</em>) – List of Gene name to highlight.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.plot_degree_distributions">
+<code class="descname">plot_degree_distributions</code><span class="sig-paren">(</span><em>plot_model=False</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_degree_distributions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.plot_degree_distributions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the distribution of network degree (the number of edge per gene).
+The network degree will be visualized in both linear scale and log scale.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="celloracle.html#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>plot_model</strong> (<em>bool</em>) – Whether to plot linear approximation line.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.plot_network_entropy_distributions">
+<code class="descname">plot_network_entropy_distributions</code><span class="sig-paren">(</span><em>update_network_entropy=False</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_network_entropy_distributions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.plot_network_entropy_distributions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the distribution of network entropy.
+See the CellOracle paper for the detail.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<em>Links object</em>) – See network_analisis.Links class for detail.</li>
+<li><strong>values</strong> (<em>list of str</em>) – The list of score to visualize. If it is None, all network score (listed above) will be used.</li>
+<li><strong>update_network_entropy</strong> (<em>bool</em>) – Whether to recalculate network entropy.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.plot_score_comparison_2D">
+<code class="descname">plot_score_comparison_2D</code><span class="sig-paren">(</span><em>value</em>, <em>cluster1</em>, <em>cluster2</em>, <em>percentile=99</em>, <em>annot_shifts=None</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_score_comparison_2D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.plot_score_comparison_2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a scatter plot that shows the relationship of a specific network score in two groups.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="celloracle.html#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>value</strong> (<em>srt</em>) – The network score type.</li>
+<li><strong>cluster1</strong> (<em>str</em>) – Cluster name. Network scores in the cluster1 will be visualized in the x-axis.</li>
+<li><strong>cluster2</strong> (<em>str</em>) – Cluster name. Network scores in the cluster2 will be visualized in the y-axis.</li>
+<li><strong>percentile</strong> (<em>float</em>) – Genes with a network score above the percentile will be shown with annotation. Default is 99.</li>
+<li><strong>annot_shifts</strong> (<em>(</em><em>float</em><em>, </em><em>float</em><em>)</em>) – Annotation visualization setting.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.plot_score_discributions">
+<code class="descname">plot_score_discributions</code><span class="sig-paren">(</span><em>values=None</em>, <em>method='boxplot'</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_score_discributions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.plot_score_discributions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the distribution of network scores.
+An individual data point is a network edge (gene) of GRN in each cluster.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="celloracle.html#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See Links class for detail.</li>
+<li><strong>values</strong> (<em>list of str</em>) – The list of score to visualize. If it is None, all network score will be used.</li>
+<li><strong>method</strong> (<em>str</em>) – Plotting method. Select either of “boxplot” or “barplot”.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.plot_score_per_cluster">
+<code class="descname">plot_score_per_cluster</code><span class="sig-paren">(</span><em>goi</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_score_per_cluster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.plot_score_per_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot network score for a gene.
+This function visualizes the network score of a specific gene between clusters to get an insight into the dynamics of the gene.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="celloracle.html#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>goi</strong> (<em>srt</em>) – Gene name.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.plot_scores_as_rank">
+<code class="descname">plot_scores_as_rank</code><span class="sig-paren">(</span><em>cluster</em>, <em>n_gene=50</em>, <em>save=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.plot_scores_as_rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.plot_scores_as_rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pick up top n-th genes wich high-network scores and make plots.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>links</strong> (<a class="reference internal" href="celloracle.html#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – See network_analisis.Links class for detail.</li>
+<li><strong>cluster</strong> (<em>str</em>) – Cluster nome to analyze.</li>
+<li><strong>n_gene</strong> (<em>int</em>) – Number of genes to plot. Default is 50.</li>
+<li><strong>save</strong> (<em>str</em>) – Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
+Plots will not be saved if [save=None]. Default is None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celloracle.network_analysis.Links.to_hdf5">
+<code class="descname">to_hdf5</code><span class="sig-paren">(</span><em>file_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/links_object.html#Links.to_hdf5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.Links.to_hdf5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save object as hdf5.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_path</strong> (<em>str</em>) – file path to save file. Filename needs to end with ‘.celloracle.links’</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="celloracle.network_analysis.transfer_scores_from_links_to_adata">
+<code class="descclassname">celloracle.network_analysis.</code><code class="descname">transfer_scores_from_links_to_adata</code><span class="sig-paren">(</span><em>adata</em>, <em>links</em>, <em>method='median'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/network_analysis_utility.html#transfer_scores_from_links_to_adata"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.transfer_scores_from_links_to_adata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transfer the summary of network scores (median or mean) per group from Links object into adata.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>adata</strong> (<em>anndata</em>) – anndata</li>
+<li><strong>links</strong> (<a class="reference internal" href="celloracle.html#celloracle.Links" title="celloracle.Links"><em>Links</em></a>) – likns object</li>
+<li><strong>method</strong> (<em>str</em>) – The method to summarize data.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="celloracle.network_analysis.linkList_to_networkgraph">
+<code class="descclassname">celloracle.network_analysis.</code><code class="descname">linkList_to_networkgraph</code><span class="sig-paren">(</span><em>filteredlinkList</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/network_analysis_utility.html#linkList_to_networkgraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.linkList_to_networkgraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert linkList into Graph object in NetworkX.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filteredlinkList</strong> (<em>pandas.DataFrame</em>) – GRN saved as linkList.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Network X graph objenct.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Graph object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="celloracle.network_analysis.draw_network">
+<code class="descclassname">celloracle.network_analysis.</code><code class="descname">draw_network</code><span class="sig-paren">(</span><em>linkList</em>, <em>return_graph=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/network_analysis/network_analysis_utility.html#draw_network"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.network_analysis.draw_network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot network graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>linkList</strong> (<em>pandas.DataFrame</em>) – GRN saved as linkList.</li>
+<li><strong>return_graph</strong> (<em>bool</em>) – Whether to return graph object.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Network X graph objenct.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Graph object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="celloracle.go_analysis.html" class="btn btn-neutral float-right" title="celloracle.go_analysis module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="celloracle.motif_analysis.html" class="btn btn-neutral float-left" title="celloracle.motif_analysis module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

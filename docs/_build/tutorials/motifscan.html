@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Transcription factor binding motif scan &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="0. Import libraries" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html" />
+    <link rel="prev" title="0. Import libraries" href="../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="atac.html">1. ATAC-seq data preprocessing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Transcription factor binding motif scan</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html">0. Import libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#1.-Load-data">1. Load data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#2.-Check-data">2. Check data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#3.-Instantiate-TFinfo-object-and-search-for-TF-binding-motifs">3. Instantiate TFinfo object and search for TF binding motifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#3.1-check-reference-genome-installation">3.1 check reference genome installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#4.-Scan-motifs-and-save-object">4. Scan motifs and save object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#5.-Filtering-motifs">5. Filtering motifs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#6.-Get-Final-results">6. Get Final results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#7.-Save-TFinfo-as-dictionary-and-dataframe">7. Save TFinfo as dictionary and dataframe</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scrnaprocess.html">3. Single-cell RNA-seq data preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networkanalysis.html">4. Network analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html">5. Simulation with GRNs</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tutorial</a> &raquo;</li>
+        
+      <li>2. Transcription factor binding motif scan</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/motifscan.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="transcription-factor-binding-motif-scan">
+<span id="motifscan"></span><h1>2. Transcription factor binding motif scan<a class="headerlink" href="#transcription-factor-binding-motif-scan" title="Permalink to this headline">¶</a></h1>
+<p>We identified open-accessible Promoter/enhancer DNAs using ATAC-seq data.
+Next, we scan the regulatory genomic sequence searching for the TF-binding motifs to get the list of TFs for each target gene.
+In the later GRN inference process, this TF list per target gene will be used as a potential regulatory connection.</p>
+<p>Python notebook</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html">0. Import libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#1.-Load-data">1. Load data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#2.-Check-data">2. Check data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#2.1.-Remove-short-peaks">2.1. Remove short peaks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#3.-Instantiate-TFinfo-object-and-search-for-TF-binding-motifs">3. Instantiate TFinfo object and search for TF binding motifs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#3.1-check-reference-genome-installation">3.1 check reference genome installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#3.2.-Install-reference-genome-(if-refgenome-is-not-installed)">3.2. Install reference genome (if refgenome is not installed)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#4.-Scan-motifs-and-save-object">4. Scan motifs and save object</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#5.-Filtering-motifs">5. Filtering motifs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#6.-Get-Final-results">6. Get Final results</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#6.1.-Get-resutls-as-a-dictionary">6.1. Get resutls as a dictionary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#6.2.-Get-results-as-a-dataframe">6.2. Get results as a dataframe</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html#7.-Save-TFinfo-as-dictionary-and-dataframe">7. Save TFinfo as dictionary and dataframe</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html" class="btn btn-neutral float-right" title="0. Import libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.html" class="btn btn-neutral float-left" title="0. Import libraries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

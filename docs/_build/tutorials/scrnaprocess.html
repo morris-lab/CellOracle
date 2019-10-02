@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Single-cell RNA-seq data preprocessing &mdash; celloracle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'0.1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="0. Import libraries" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html" />
+    <link rel="prev" title="0. Import libraries" href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> celloracle
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome to celloracle’s documentation!</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="atac.html">1. ATAC-seq data preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motifscan.html">2. Transcription factor binding motif scan</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Single-cell RNA-seq data preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#a-scrna-seq-data-preprocessing-with-scanpy">A. scRNA-seq data preprocessing with scanpy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html">0. Import libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#1.-Load-data">1. Load data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#2.-Filtering">2. Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#3.-Normalization">3. Normalization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#4.-Identification-of-highly-variable-genes">4. Identification of highly variable genes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#5.-Log-transformation">5. Log transformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#6.-Dimensional-reduction">6. Dimensional reduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#7.-Clustering">7. Clustering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#(Optional)-Re-calculate-Dimensional-reduction-graph">(Optional) Re-calculate Dimensional reduction graph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#8.-Check-data">8. Check data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#8.-Make-annotation-for-cluster">8. Make annotation for cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#9.-(Option)-Subset-cells">9. (Option) Subset cells</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#10.-Save-data">10. Save data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#b-scrna-seq-data-preprocessing-with-seurat">B. scRNA-seq data preprocessing with Seurat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="networkanalysis.html">4. Network analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html">5. Simulation with GRNs</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license/index.html">License</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../citation/index.html">Authors and citations</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">celloracle</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tutorial</a> &raquo;</li>
+        
+      <li>3. Single-cell RNA-seq data preprocessing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/scrnaprocess.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="single-cell-rna-seq-data-preprocessing">
+<span id="scrnaprocess"></span><h1>3. Single-cell RNA-seq data preprocessing<a class="headerlink" href="#single-cell-rna-seq-data-preprocessing" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Network analysis and simulation in celloracle will be performed using scRNA-seq data. The scRNA-seq data should include the compontnes below.</dt>
+<dd><ul class="first last simple">
+<li>Gene expression matrix; mRNA counts before scaling and transformation.</li>
+<li>Clustering results.</li>
+<li>Dimensional reduction results.</li>
+</ul>
+</dd>
+<dt>In addition to these minimum requirements, we highly recommend doing these analyses below in the preprocessing step.</dt>
+<dd><ul class="first last simple">
+<li>Data quality check and Cell/Gene filtering.</li>
+<li>Normalization</li>
+<li>Identification of highly variable genes</li>
+</ul>
+</dd>
+</dl>
+<p>We recommend processing scRNA-seq data using either scanpy or Seurat.
+If you are not familiar with the general workflow of scRNA-seq data processing, please go to <a class="reference external" href="https://scanpy.readthedocs.io/en/stable/">the documentation of scanpy</a> and <a class="reference external" href="https://satijalab.org/seurat/vignettes.html">the documentation of Seurat</a> .</p>
+<p>If you already have preprocessed scRNA-seq data, which includes necessary information above, you can skip this part.</p>
+<div class="section" id="a-scrna-seq-data-preprocessing-with-scanpy">
+<h2>A. scRNA-seq data preprocessing with scanpy<a class="headerlink" href="#a-scrna-seq-data-preprocessing-with-scanpy" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">scanpy</span></code> is a python library for the analysis of scRNA-seq data.</p>
+<p>In this tutorial, we introduce an example of scRNA-seq preprocessing for celloracle with <code class="docutils literal notranslate"><span class="pre">scanpy</span></code>.
+We wrote the notebook based on <a class="reference external" href="https://scanpy-tutorials.readthedocs.io/en/latest/paga-paul15.html">one of scanpy’s tutorials</a> with some modification.</p>
+<p>Python notebook</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html">0. Import libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#1.-Load-data">1. Load data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#2.-Filtering">2. Filtering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#3.-Normalization">3. Normalization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#4.-Identification-of-highly-variable-genes">4. Identification of highly variable genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#5.-Log-transformation">5. Log transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#6.-Dimensional-reduction">6. Dimensional reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#7.-Clustering">7. Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#(Optional)-Re-calculate-Dimensional-reduction-graph">(Optional) Re-calculate Dimensional reduction graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#8.-Check-data">8. Check data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#8.1.-Visualize-marker-gene-expression">8.1. Visualize marker gene expression</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#8.-Make-annotation-for-cluster">8. Make annotation for cluster</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#8.1.-Make-annotation-(1)">8.1. Make annotation (1)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#8.2.-Make-annotation-(2)">8.2. Make annotation (2)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#9.-(Option)-Subset-cells">9. (Option) Subset cells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html#10.-Save-data">10. Save data</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="b-scrna-seq-data-preprocessing-with-seurat">
+<h2>B. scRNA-seq data preprocessing with Seurat<a class="headerlink" href="#b-scrna-seq-data-preprocessing-with-seurat" title="Permalink to this headline">¶</a></h2>
+<p>R notebook … comming soon</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you use <code class="docutils literal notranslate"><span class="pre">Seurat</span></code> for preprocessing, you need to convert the scRNA-seq data (Seurat object) into anndata to analyze the data with <code class="docutils literal notranslate"><span class="pre">celloracle</span></code>.
+<code class="docutils literal notranslate"><span class="pre">celloracle</span></code> have python API and command-line API to convert Seurat object into anndata.
+Please go to the documentation of celloracle API for more information.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.html" class="btn btn-neutral float-right" title="0. Import libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901.html" class="btn btn-neutral float-left" title="0. Import libraries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Samantha Morris Lab
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
