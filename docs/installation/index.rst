@@ -12,6 +12,7 @@ Python Requirements
 
 - ``celloracle`` was developed with python 3.6. We do not support python 2.7x or python <=3.5.
 - ``celloracle`` was developed in Linux and macOS. We do not guarantee that ``celloracle`` works in Windows OS.
+- If you want to use ``celloracle`` in Windows OS, we recommend using `Windows Subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`_ to built environment. In that case, please select Ubuntu18.04 LTS.
 - We highly recommend using `anaconda <https://www.continuum.io/downloads>`_ to setup python environment.
 - Please install all dependent libraries before installing ``celloracle`` according to the instructions below.
 - ``celloracle``  is still beta version and it is not available through PyPI or anaconda distribution yet. Please install ``celloracle`` from GitHub repository according to the instruction below.
@@ -92,7 +93,7 @@ Please install other python libraries below with the following commands.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ::
 
-    pip install git+https://github.com/KenjiKamimoto-wustl122/CellOracle
+    pip install git+https://github.com/morris-lab/CellOracle.git
 
 
 
@@ -167,7 +168,6 @@ in python console,
 
 Please make sure that all R libraries are installed. The following message will be shown when all R libraries are appropriately installed.
 
-| checking R library installation: gProfileR -> OK
 | checking R library installation: igraph -> OK
 | checking R library installation: linkcomm -> OK
 | checking R library installation: rnetcarto -> OK
