@@ -85,7 +85,7 @@ def _adata_to_color_dict(adata, cluster_use):
         dictionary: python dictionary, key is cluster name, value is clor name
     """
     color_dict = {}
-    for i,j in enumerate(np.unique(adata.obs[cluster_use])):
+    for i,j in enumerate(adata.obs[cluster_use].cat.categories):
         color_dict[j] = adata.uns[f"{cluster_use}_colors"][i]
     return color_dict
 
