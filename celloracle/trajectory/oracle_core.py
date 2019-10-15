@@ -12,6 +12,7 @@ import scanpy as sc
 import seaborn as sns
 from ..utility.hdf5_processing import dump_hdf5, load_hdf5
 
+from sklearn.neighbors import NearestNeighbors
 
 from .sankey import sankey
 from .markov_simulation import _walk
@@ -351,6 +352,15 @@ class Oracle(modified_VelocytoLoom):
                 With a higher number, the results may recapitulate signal propagation for many genes.
                 However, a higher number of propagation may cause more error/noise.
         """
+
+        # 0. Reset previous simulation results if it exist
+        self.ixs_mcmc = None
+        self.mcmc_transition_id = None
+        self.corrcoef = None
+        self.transition_prob = None
+        self.tr = None
+
+
         # 1. prepare perturb information
         if not perturb_condition is None:
             # reset simulation initiation point
@@ -428,7 +438,6 @@ class Oracle(modified_VelocytoLoom):
         meshes_tuple = np.meshgrid(*grs)
         gridpoints_coordinates = np.vstack([i.flat for i in meshes_tuple]).T
 
-        from sklearn.neighbors import NearestNeighbors
         nn = NearestNeighbors()
         nn.fit(self.embedding)
         dist, ixs = nn.kneighbors(gridpoints_coordinates, 1)
@@ -468,8 +477,7 @@ class Oracle(modified_VelocytoLoom):
         np.random.seed(seed)
         _numba_random_seed(seed)
 
-        if self.ixs_mcmc is None:
-            self.prepare_markov_simulation()
+        self.prepare_markov_simulation()
 
         transition_prob = self.tr.toarray()
         n_cells = transition_prob.shape[0]
@@ -599,7 +607,7 @@ class Oracle(modified_VelocytoLoom):
 
         Args:
             cluster_name_for_GRN_unit (str): Cluster name for GRN calculation. The cluster information should be stored in Oracle.adata.obs.
-
+            
             alpha (float or int): the strength of regularization.
                 If you set a lower value, the sensitivity increase, and you can detect a weak network connection, but it might get more noize.
                 With a higher value of alpha may reduce the chance of overfitting.

@@ -62,7 +62,6 @@ def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_n
     if cluster_name_for_GRN_unit is None:
         cluster_name_for_GRN_unit = oracle_object.cluster_column_name
 
-
     # calculate GRN for each cluster
     linkLists = _fit_GRN_for_network_analysis(oracle_object, cluster_name_for_GRN_unit=cluster_name_for_GRN_unit,
                                   alpha=alpha, bagging_number=bagging_number,  verbose_level=verbose_level, test_mode=test_mode)

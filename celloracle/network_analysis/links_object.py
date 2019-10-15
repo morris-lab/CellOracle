@@ -37,7 +37,7 @@ def load_links(file_path):
 
     Returns:
         Links: loaded links object.
-        
+
     """
     return load_hdf5(filename=file_path, obj_class=Links)
 
@@ -280,9 +280,9 @@ class Links():
         plot_score_per_cluster(links=self, goi=goi, save=save)
 
     def plot_cartography_scatter_per_cluster(self, gois=None, clusters=None,
-                                             scatter=False, kde=True,
+                                             scatter=True, kde=False,
                                              auto_gene_annot=False, percentile=98,
-                                             args_dot={}, args_line={},
+                                             args_dot={"n_levels": 105}, args_line={"c":"gray"},
                                              args_annot={}, save=None):
         """
         Make a plot of gene network cartography.
