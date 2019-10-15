@@ -76,6 +76,7 @@ class Oracle(modified_VelocytoLoom):
         self.embedding_name = None
         self.ixs_mcmc = None
         self.cluster_specific_TFdict = None
+        self.cv_mean_selected_genes = None
 
     ############################
     ### 0. utility functions ###
@@ -227,6 +228,14 @@ class Oracle(modified_VelocytoLoom):
                                                   return_as="dict")
         self.colorandum = np.array([col_dict[i] for i in self.adata.obs[self.cluster_column_name]])
 
+        # variable gene detection for the QC of simulation
+        N = adata.shape[1]
+        if N >= 3000:
+            N = 3000
+        self.score_cv_vs_mean(int(N/3)-1, plot=False, max_expr_avg=35)
+        self.high_var_genes = self.cv_mean_selected_genes.copy()
+        self.cv_mean_selected_genes = None
+
     def import_anndata_as_normalized_count(self, adata, cluster_column_name=None, embedding_name=None):
         """
         Load scRNA-seq data. scRNA-seq data should be prepared as an anndata.
@@ -264,6 +273,14 @@ class Oracle(modified_VelocytoLoom):
                                                   cluster_name=self.cluster_column_name,
                                                   return_as="dict")
         self.colorandum = np.array([col_dict[i] for i in self.adata.obs[self.cluster_column_name]])
+
+        # variable gene detection for the QC of simulation
+        N = adata.shape[1]
+        if N >= 3000:
+            N = 3000
+        self.score_cv_vs_mean(int(N/3)-1, plot=False, max_expr_avg=35)
+        self.high_var_genes = self.cv_mean_selected_genes.copy()
+        self.cv_mean_selected_genes = None
 
 
 
@@ -363,6 +380,11 @@ class Oracle(modified_VelocytoLoom):
 
         # 1. prepare perturb information
         if not perturb_condition is None:
+
+            for i in perturb_condition.keys():
+                if i not in self.high_var_genes:
+                    print(f"Variability score of Gene {i} is low. Simulation accuracy may be poor with this gene.")
+
             # reset simulation initiation point
             self.adata.layers["simulation_input"] = self.adata.layers["imputed_count"].copy()
             simulation_input = _adata_to_df(self.adata, "simulation_input")
@@ -607,7 +629,7 @@ class Oracle(modified_VelocytoLoom):
 
         Args:
             cluster_name_for_GRN_unit (str): Cluster name for GRN calculation. The cluster information should be stored in Oracle.adata.obs.
-            
+
             alpha (float or int): the strength of regularization.
                 If you set a lower value, the sensitivity increase, and you can detect a weak network connection, but it might get more noize.
                 With a higher value of alpha may reduce the chance of overfitting.
