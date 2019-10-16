@@ -103,8 +103,8 @@ def _plotDegreedist(degree_df, plot_model=False):
     plt.scatter(x.flatten(), y.flatten(), c="black")
     plt.ylim([y.min()-0.2, y.max()+0.2])
     plt.xlim([-0.2, x.max()+0.2])
-    plt.xlabel("log P(k)")
-    plt.ylabel("log k")
+    plt.xlabel("log k")
+    plt.ylabel("log P(k)")
 
 def _get_degree_info_from_NG(network_x_graph):
 
