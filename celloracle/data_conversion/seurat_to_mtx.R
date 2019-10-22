@@ -5,11 +5,11 @@ library(colorspace)
 
 args <- commandArgs(trailingOnly = T)
 file_path_seurat_object = args[1]
-file_path_seurat_object = "PS_seurat_object_190725.Rds"
+
 # load seurat_object
 message("loading seurat object ...")
 
-SO <- readRDS(file = file_path_seurat_object)
+suppressMessages(SO <- readRDS(file = file_path_seurat_object))
 
 # check version
 if (unlist(SO@version)[1] == 3){
@@ -52,7 +52,8 @@ active_assay <- SO@active.assay
 
 if (active_assay=="RNA"){
 print("active_assay is RNA")
-  n <- Matrix::writeMM(obj = SO@assays$RNA@counts, file = "tmp/data.mtx")
+  n <- Matrix::writeMM(obj = SO@assays$RNA@data, file = "tmp/data.mtx")
+  n <- Matrix::writeMM(obj = SO@assays$RNA@counts, file = "tmp/raw_data.mtx")
   write.csv(colnames(SO@assays$RNA@counts), file="tmp/cells_index.csv")
   write.csv(rownames(SO@assays$RNA@counts), file="tmp/variables_index.csv")
 
@@ -60,7 +61,6 @@ print("active_assay is RNA")
   print("active_assay is SCT")
   n <- Matrix::writeMM(obj = SO@assays$SCT@data, file = "tmp/data.mtx")
   n <- Matrix::writeMM(obj = SO@assays$SCT@counts, file = "tmp/raw_data.mtx")
-  
   write.csv(colnames(SO@assays$SCT@data), file="tmp/cells_index.csv")
   write.csv(rownames(SO@assays$SCT@data), file="tmp/variables_index.csv")
 

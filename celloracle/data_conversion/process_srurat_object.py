@@ -89,7 +89,8 @@ def seurat_object_to_anndata(file_path_seurat_object, delete_tmp_file=True):
 
 
     # check file name
-    if not file_path_seurat_object.lower().endswith(".Rds"):
+    print("input file name: " + file_path_seurat_object)
+    if not file_path_seurat_object.lower().endswith(".rds"):
         raise ValueError("Seurat object should be saved as .Rds file")
 
     # run R script to extract information and make mtx files
@@ -143,15 +144,19 @@ def main():
     if len(sys.argv) == 3:
         output_file_name = sys.argv[2]
     else:
-        output_file_name = sys.argv[1] + ".h5ad"
+        output_file_name = sys.argv[1]
+
+    if not output_file_name.endswith(".h5ad"):
+         output_file_name += ".h5ad"
+
 
     #print(sys.argv[:])
     adata = seurat_object_to_anndata(file_path_seurat_object=sys.argv[1],
                                      delete_tmp_file=True)
 
     # save
-    print("(5/5) saving AnnData as h5ad file ...")
-    mat.write(filename=output_file_name)
+    print("saving AnnData as h5ad file ...")
+    adata.write(filename=output_file_name)
 
     print("finished")
 if __name__ == "__main__":
