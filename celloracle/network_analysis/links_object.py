@@ -165,7 +165,10 @@ class Links():
             network_scores[i] = _load_network_analysis_results(f"./{self.name}/"+i)
         self.merged_score = _merge_df(network_scores)
 
-        print(f"the scores are saved in ./{self.name}/")
+        if not test_mode:
+            os.system(f"rm -r ./{self.name}/")
+
+        #print(f"the scores are saved in ./{self.name}/")
 
 
     def get_network_entropy(self, value="coef_abs"):
