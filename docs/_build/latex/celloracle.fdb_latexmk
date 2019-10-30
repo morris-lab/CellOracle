@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex celloracle.idx"] 1570049562 "celloracle.idx" "celloracle.ind" "celloracle" 1570049581
-  "celloracle.idx" 1570049581 11167 0b18ae35d4ab8e390d8a64cabc8c22bb "pdflatex"
+["makeindex celloracle.idx"] 1570049562 "celloracle.idx" "celloracle.ind" "celloracle" 1572453218
+  "celloracle.idx" 1572453218 11167 0b18ae35d4ab8e390d8a64cabc8c22bb "pdflatex"
   (generated)
-  "celloracle.ilg"
   "celloracle.ind"
-["pdflatex"] 1570049572 "celloracle.tex" "celloracle.pdf" "celloracle" 1570049581
+  "celloracle.ilg"
+["pdflatex"] 1572453209 "celloracle.tex" "celloracle.pdf" "celloracle" 1572453218
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/courier/pcrb8r.tfm" 1136768653 1292 3059476c50a24578715759f22652f3d0 ""
@@ -156,11 +156,11 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1557342064 3277517 23507ed665b4dd9046f0f2a94bbef2be ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1557342086 4259635 562fc36ec496993777a6c428d8bfb811 ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "celloracle.aux" 1570049581 65496 898fadb9fa939d1f256e3becf1358481 "pdflatex"
+  "celloracle.aux" 1572453218 65496 898fadb9fa939d1f256e3becf1358481 "pdflatex"
   "celloracle.ind" 1570049562 11329 38947f27b6d2f4bd736bfc520b8d2f31 "makeindex celloracle.idx"
-  "celloracle.out" 1570049581 1071 529b2b66e6348b6d532d87f94cec3cab "pdflatex"
-  "celloracle.tex" 1570049551 463691 a9399528731a24b75698265e9fa45a8f ""
-  "celloracle.toc" 1570049581 12083 f157dd1ac52fa0007d2341ebc609c224 "pdflatex"
+  "celloracle.out" 1572453218 1071 529b2b66e6348b6d532d87f94cec3cab "pdflatex"
+  "celloracle.tex" 1572453208 463733 2d079ce9e46e398068fa2acce6633458 ""
+  "celloracle.toc" 1572453218 12083 f157dd1ac52fa0007d2341ebc609c224 "pdflatex"
   "footnotehyper-sphinx.sty" 1568996846 8886 0562fcad2b7e25f93331edc6fc422c87 ""
   "notebooks_01_ATAC-seq_data_processing_option1_scATAC-seq_data_analysis_with_cicero_01_atacdata_to_cicero_8_0.png" 1570049528 37222 c494f0f3aa750d2ac4fef42921918cc1 ""
   "notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_23_0.png" 1570049536 64013 e77fb06830d8a02c918251488729f444 ""
@@ -243,13 +243,13 @@
   "notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_37_0.png" 1570049550 171344 49e34ac51a4ff2db9de78b8f3ae32b6f ""
   "notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0.png" 1570049550 85170 f79f3cc3d2ee1a686117bac9683eb5ef ""
   "sphinx.sty" 1568996846 68662 158e7929147502e48ab2fdf26a101dfd ""
-  "sphinxhighlight.sty" 1570049550 8137 38a433148fcb7611515a989ff1750dd5 ""
+  "sphinxhighlight.sty" 1572453207 8137 38a433148fcb7611515a989ff1750dd5 ""
   "sphinxmanual.cls" 1568996846 3589 0b0aac49c6f36925cf5f9d524a75a978 ""
   "sphinxmulticell.sty" 1568996846 14618 0defbdc8536ad2e67f1eac6a1431bc55 ""
   (generated)
   "celloracle.pdf"
   "celloracle.out"
-  "celloracle.idx"
-  "celloracle.log"
-  "celloracle.toc"
   "celloracle.aux"
+  "celloracle.idx"
+  "celloracle.toc"
+  "celloracle.log"

@@ -235,7 +235,6 @@
     <span class="k">if</span> <span class="n">cluster_name_for_GRN_unit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">cluster_name_for_GRN_unit</span> <span class="o">=</span> <span class="n">oracle_object</span><span class="o">.</span><span class="n">cluster_column_name</span>
 
-
     <span class="c1"># calculate GRN for each cluster</span>
     <span class="n">linkLists</span> <span class="o">=</span> <span class="n">_fit_GRN_for_network_analysis</span><span class="p">(</span><span class="n">oracle_object</span><span class="p">,</span> <span class="n">cluster_name_for_GRN_unit</span><span class="o">=</span><span class="n">cluster_name_for_GRN_unit</span><span class="p">,</span>
                                   <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">bagging_number</span><span class="o">=</span><span class="n">bagging_number</span><span class="p">,</span>  <span class="n">verbose_level</span><span class="o">=</span><span class="n">verbose_level</span><span class="p">,</span> <span class="n">test_mode</span><span class="o">=</span><span class="n">test_mode</span><span class="p">)</span>

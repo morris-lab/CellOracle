@@ -210,7 +210,7 @@
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Links: loaded links object.</span>
-<span class="sd">        </span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">load_hdf5</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span> <span class="n">obj_class</span><span class="o">=</span><span class="n">Links</span><span class="p">)</span></div>
 
@@ -338,7 +338,10 @@
             <span class="n">network_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">_load_network_analysis_results</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;./</span><span class="si">{self.name}</span><span class="s2">/&quot;</span><span class="o">+</span><span class="n">i</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">merged_score</span> <span class="o">=</span> <span class="n">_merge_df</span><span class="p">(</span><span class="n">network_scores</span><span class="p">)</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;the scores are saved in ./</span><span class="si">{self.name}</span><span class="s2">/&quot;</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">test_mode</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;rm -r ./</span><span class="si">{self.name}</span><span class="s2">/&quot;</span><span class="p">)</span></div>
+
+        <span class="c1">#print(f&quot;the scores are saved in ./{self.name}/&quot;)</span>
 
 
 <div class="viewcode-block" id="Links.get_network_entropy"><a class="viewcode-back" href="../../../modules/celloracle.network_analysis.html#celloracle.Links.get_network_entropy">[docs]</a>    <span class="k">def</span> <span class="nf">get_network_entropy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;coef_abs&quot;</span><span class="p">):</span>
@@ -453,9 +456,9 @@
         <span class="n">plot_score_per_cluster</span><span class="p">(</span><span class="n">links</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">goi</span><span class="o">=</span><span class="n">goi</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">save</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Links.plot_cartography_scatter_per_cluster"><a class="viewcode-back" href="../../../modules/celloracle.network_analysis.html#celloracle.Links.plot_cartography_scatter_per_cluster">[docs]</a>    <span class="k">def</span> <span class="nf">plot_cartography_scatter_per_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gois</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clusters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                             <span class="n">scatter</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                             <span class="n">scatter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                              <span class="n">auto_gene_annot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="mi">98</span><span class="p">,</span>
-                                             <span class="n">args_dot</span><span class="o">=</span><span class="p">{},</span> <span class="n">args_line</span><span class="o">=</span><span class="p">{},</span>
+                                             <span class="n">args_dot</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_levels&quot;</span><span class="p">:</span> <span class="mi">105</span><span class="p">},</span> <span class="n">args_line</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;c&quot;</span><span class="p">:</span><span class="s2">&quot;gray&quot;</span><span class="p">},</span>
                                              <span class="n">args_annot</span><span class="o">=</span><span class="p">{},</span> <span class="n">save</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make a plot of gene network cartography.</span>

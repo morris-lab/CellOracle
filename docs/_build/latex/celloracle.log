@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  2 OCT 2019 15:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  30 OCT 2019 11:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1906,19 +1906,25 @@ ptm/m/n/10 , \T1/ptm/m/it/10 thread_number=10000\T1/ptm/m/n/10 , \T1/ptm/m/it/1
 
 Underfull \hbox (badness 10000) in paragraph at lines 8255--8255
 []\T1/ptm/m/it/10 gois=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ters=None\T1/p
-tm/m/n/10 , \T1/ptm/m/it/10 scat-ter=False\T1/ptm/m/n/10 ,
+tm/m/n/10 , \T1/ptm/m/it/10 scat-ter=True\T1/ptm/m/n/10 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 8255--8255
-\T1/ptm/m/it/10 kde=True\T1/ptm/m/n/10 , \T1/ptm/m/it/10 auto_gene_annot=False\
-T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-
+\T1/ptm/m/it/10 kde=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 auto_gene_annot=False
+\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 8255--8255
-\T1/ptm/m/it/10 centile=98\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_dot={}\T1/ptm/m
-/n/10 , \T1/ptm/m/it/10 args_line={}\T1/ptm/m/n/10 ,
+\T1/ptm/m/it/10 centile=98\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_dot={'n_levels'
+: 105}\T1/ptm/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 8255--8255
+\T1/ptm/m/it/10 args_line={'c': 'gray'}\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_an
+not={}\T1/ptm/m/n/10 ,
  []
 
 [88]
@@ -1998,13 +2004,25 @@ tm/m/n/10 ,
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 9476--9476
-\T1/ptm/m/it/10 scat-ter=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 kde=True\T1/ptm/
+\T1/ptm/m/it/10 scat-ter=True\T1/ptm/m/n/10 , \T1/ptm/m/it/10 kde=False\T1/ptm/
 m/n/10 ,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 9476--9476
 \T1/ptm/m/it/10 auto_gene_annot=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9476--9476
+\T1/ptm/m/it/10 centile=98\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_dot={'n_levels'
+:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9476--9476
+\T1/ptm/m/it/10 105}\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_line={'c': 'gray'}\T1
+/ptm/m/n/10 ,
  []
 
 [98]
@@ -2286,7 +2304,7 @@ s/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1
 elvetic/uhvr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/ut
 mb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><
 /usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on celloracle.pdf (115 pages, 5164972 bytes).
+Output written on celloracle.pdf (115 pages, 5165117 bytes).
 PDF statistics:
  1360 PDF objects out of 1440 (max. 8388607)
  1056 compressed objects within 11 object streams
