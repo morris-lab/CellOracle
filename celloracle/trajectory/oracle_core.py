@@ -352,7 +352,7 @@ class Oracle(modified_VelocytoLoom):
     #######################################################
 
     def simulate_shift(self, perturb_condition=None, GRN_unit="whole",
-                       n_propagation=3):
+                       n_propagation=3, ignore_warning=False):
         """
         Simulate signal propagation with GRNs. Please see the paper of CellOracle for details.
         This function simulates a gene expression pattern in the near future.
@@ -389,7 +389,10 @@ class Oracle(modified_VelocytoLoom):
 
             for i in perturb_condition.keys():
                 if i not in self.high_var_genes:
-                    print(f"Variability score of Gene {i} is low. Simulation accuracy may be poor with this gene.")
+                    if ignore_warning:
+                        print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
+                    else:
+                        raise ValueError(f"Variability score of Gene {i} is too low. Cannot perform simulation.")
 
             # reset simulation initiation point
             self.adata.layers["simulation_input"] = self.adata.layers["imputed_count"].copy()
