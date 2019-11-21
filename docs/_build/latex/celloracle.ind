@@ -5,7 +5,7 @@
   \item adata (celloracle.Oracle attribute), \hyperpage{84}
   \item add\_palette() (celloracle.Links method), \hyperpage{88}
   \item add\_palette() (celloracle.network\_analysis.Links method), \hyperpage{97}
-  \item addAnnotation() (celloracle.Net method), \hyperpage{91}
+  \item addAnnotation() (celloracle.Net method), \hyperpage{92}
   \item addTFinfo\_dictionary() (celloracle.Net method), \hyperpage{92}
   \item addTFinfo\_dictionary() (celloracle.Oracle method), \hyperpage{84}
   \item addTFinfo\_matrix() (celloracle.Net method), \hyperpage{92}
@@ -18,7 +18,7 @@
   \item celloracle (module), \hyperpage{83}
   \item celloracle.data (module), \hyperpage{102}
   \item celloracle.data\_conversion (module), \hyperpage{103}
-  \item celloracle.go\_analysis (module), \hyperpage{100}
+  \item celloracle.go\_analysis (module), \hyperpage{101}
   \item celloracle.motif\_analysis (module), \hyperpage{93}
   \item celloracle.network\_analysis (module), \hyperpage{96}
   \item celloracle.utility (module), \hyperpage{101}
@@ -33,7 +33,7 @@
 
   \indexspace
   \bigletter D
-  \item dic\_peak2Targetgene (celloracle.motif\_analysis.TFinfo attribute), \hyperpage{94}
+  \item dic\_peak2Targetgene (celloracle.motif\_analysis.TFinfo attribute), \hyperpage{95}
   \item dic\_targetgene2TFs (celloracle.motif\_analysis.TFinfo attribute), \hyperpage{94}
   \item dic\_TF2targetgenes (celloracle.motif\_analysis.TFinfo attribute), \hyperpage{95}
   \item draw\_network() (in module celloracle.network\_analysis), \hyperpage{100}
@@ -42,7 +42,7 @@
   \bigletter E
   \item embedding\_name (celloracle.Net attribute), \hyperpage{91}
   \item embedding\_name (celloracle.Oracle attribute), \hyperpage{84}
-  \item exec\_process() (in module celloracle.utility), \hyperpage{101}
+  \item exec\_process() (in module celloracle.utility), \hyperpage{102}
 
   \indexspace
   \bigletter F
@@ -64,7 +64,7 @@
   \item gem (celloracle.Net attribute), \hyperpage{91}
   \item gem\_standerdized (celloracle.Net attribute), \hyperpage{91}
   \item geneID2Symbol() (in module celloracle.go\_analysis), \hyperpage{101}
-  \item geneSymbol2ID() (in module celloracle.go\_analysis), \hyperpage{100}
+  \item geneSymbol2ID() (in module celloracle.go\_analysis), \hyperpage{101}
   \item get\_cluster\_specific\_TFdict\_from\_Links() (celloracle.Oracle method), \hyperpage{84}
   \item get\_GO() (in module celloracle.go\_analysis), \hyperpage{101}
   \item get\_links() (celloracle.Oracle method), \hyperpage{84}
@@ -113,9 +113,9 @@
 
   \indexspace
   \bigletter N
-  \item name (celloracle.Links attribute), \hyperpage{87}
+  \item name (celloracle.Links attribute), \hyperpage{88}
   \item name (celloracle.network\_analysis.Links attribute), \hyperpage{97}
-  \item Net (class in celloracle), \hyperpage{90}
+  \item Net (class in celloracle), \hyperpage{91}
 
   \indexspace
   \bigletter O
@@ -134,7 +134,7 @@
   \item plot\_cartography\_term() (celloracle.Links method), \hyperpage{89}
   \item plot\_cartography\_term() (celloracle.network\_analysis.Links method), \hyperpage{98}
   \item plot\_degree\_distributions() (celloracle.Links method), \hyperpage{89}
-  \item plot\_degree\_distributions() (celloracle.network\_analysis.Links method), \hyperpage{98}
+  \item plot\_degree\_distributions() (celloracle.network\_analysis.Links method), \hyperpage{99}
   \item plot\_mc\_result\_as\_kde() (celloracle.Oracle method), \hyperpage{86}
   \item plot\_mc\_result\_as\_trajectory() (celloracle.Oracle method), \hyperpage{86}
   \item plot\_mc\_resutls\_as\_sankey() (celloracle.Oracle method), \hyperpage{86}

@@ -262,7 +262,8 @@
 
 
     <span class="c1"># check file name</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path_seurat_object</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.Rds&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;input file name: &quot;</span> <span class="o">+</span> <span class="n">file_path_seurat_object</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path_seurat_object</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.rds&quot;</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Seurat object should be saved as .Rds file&quot;</span><span class="p">)</span>
 
     <span class="c1"># run R script to extract information and make mtx files</span>
@@ -316,15 +317,19 @@
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
         <span class="n">output_file_name</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">output_file_name</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.h5ad&quot;</span>
+        <span class="n">output_file_name</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">output_file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.h5ad&quot;</span><span class="p">):</span>
+         <span class="n">output_file_name</span> <span class="o">+=</span> <span class="s2">&quot;.h5ad&quot;</span>
+
 
     <span class="c1">#print(sys.argv[:])</span>
     <span class="n">adata</span> <span class="o">=</span> <span class="n">seurat_object_to_anndata</span><span class="p">(</span><span class="n">file_path_seurat_object</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                                      <span class="n">delete_tmp_file</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="c1"># save</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(5/5) saving AnnData as h5ad file ...&quot;</span><span class="p">)</span>
-    <span class="n">mat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">output_file_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;saving AnnData as h5ad file ...&quot;</span><span class="p">)</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">output_file_name</span><span class="p">)</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;finished&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

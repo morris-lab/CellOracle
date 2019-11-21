@@ -181,7 +181,7 @@
 
 
 \title{celloracle}
-\date{Oct 30, 2019}
+\date{Nov 21, 2019}
 \release{0.1.0}
 \author{}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -242,19 +242,38 @@ CellOracle is still under development. It is alpha version and functions in this
 \sphinxcode{\sphinxupquote{celloracle}} uses several python libraries and R library. Please follow this guide below to install the dependent software of celloracle.
 
 
+\subsection{Docker image}
+\label{\detokenize{installation/index:docker-image}}\label{\detokenize{installation/index:require}}\begin{itemize}
+\item {} 
+Not available now. Comming soon.
+
+\end{itemize}
+
+
+\subsection{System Requirements}
+\label{\detokenize{installation/index:system-requirements}}\begin{itemize}
+\item {} 
+Operating system: macOS or linux are highly recommended. \sphinxcode{\sphinxupquote{celloracle}} was developed and tested in Linux and macOS.
+
+\item {} 
+We found that the celloracle calculation may be EXTREMELY SLOW under an environment of Windows Subsystem for Linux (WSL). We do not recommend using WSL.
+
+\item {} 
+While you can install \sphinxcode{\sphinxupquote{celloracle}} in Windows OS, please do so at your own risk and responsibility. We DO NOT provide any support for the use in the Windows OS.
+
+\item {} 
+Memory: 16 G byte or more.  Memory usage also depends on your scRNA-seq data. Especially in silico simulation requires large amount of memory.
+
+\item {} 
+CPU: Core i5 or better processor. GRN inference supports multicore calculation. Higer number of CPU cores enables faster calculation.
+
+\end{itemize}
+
+
 \subsection{Python Requirements}
-\label{\detokenize{installation/index:python-requirements}}\label{\detokenize{installation/index:require}}\begin{itemize}
+\label{\detokenize{installation/index:python-requirements}}\begin{itemize}
 \item {} 
 \sphinxcode{\sphinxupquote{celloracle}} was developed with python 3.6. We do not support python 2.7x or python \textless{}=3.5.
-
-\item {} 
-\sphinxcode{\sphinxupquote{celloracle}} was developed in Linux and macOS. We do not guarantee that \sphinxcode{\sphinxupquote{celloracle}} works in Windows OS.
-
-\item {} 
-If you want to use \sphinxcode{\sphinxupquote{celloracle}} in Windows OS, we recommend using \sphinxhref{https://docs.microsoft.com/en-us/windows/wsl/install-win10}{Windows Subsystem for Linux} to built environment. In that case, please select Ubuntu18.04 LTS.
-
-\item {} 
-We highly recommend using \sphinxhref{https://www.continuum.io/downloads}{anaconda} to setup python environment.
 
 \item {} 
 Please install all dependent libraries before installing \sphinxcode{\sphinxupquote{celloracle}} according to the instructions below.
@@ -2158,18 +2177,6 @@ We will do log transformation scaling because these are necessary for PCA, clust
 \end{sphinxVerbatim}
 }
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\fvset{hllines={, ,}}%
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} (optional) Regressing out some values help reduce batch effects.}
-
-\PYG{c+c1}{\PYGZsh{}sc.pp.regress\PYGZus{}out(adata, [\PYGZsq{}n\PYGZus{}counts\PYGZsq{}, \PYGZsq{}percent\PYGZus{}mito\PYGZsq{}])}
-\PYG{c+c1}{\PYGZsh{}sc.pp.regress\PYGZus{}out(adata, [\PYGZsq{}n\PYGZus{}counts\PYGZsq{}])}
-\end{sphinxVerbatim}
-}
-
 
 \paragraph{6. Dimensional reduction}
 \label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:6.-Dimensional-reduction}}
@@ -2280,7 +2287,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=277\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_23_0}.png}
+\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=277\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_22_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2309,7 +2316,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=364\sphinxpxdimen,height=288\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_25_0}.png}
+\noindent\sphinxincludegraphics[width=364\sphinxpxdimen,height=288\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_24_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2376,7 +2383,7 @@ marker gene of Erythroids
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=656\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_1}.png}
+\noindent\sphinxincludegraphics[width=656\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_27_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2406,7 +2413,7 @@ marker gene of Megakaryocytes
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=644\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_3}.png}
+\noindent\sphinxincludegraphics[width=644\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_27_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2436,7 +2443,7 @@ marker gene of Granulocytes
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=655\sphinxpxdimen,height=856\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_5}.png}
+\noindent\sphinxincludegraphics[width=655\sphinxpxdimen,height=856\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_27_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2466,7 +2473,7 @@ marker gene of Monocytes
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=656\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_7}.png}
+\noindent\sphinxincludegraphics[width=656\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_27_7}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2496,7 +2503,7 @@ marker gene of Mast\_cells
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=644\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_9}.png}
+\noindent\sphinxincludegraphics[width=644\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_27_9}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2526,7 +2533,7 @@ marker gene of Basophils
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=644\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_28_11}.png}
+\noindent\sphinxincludegraphics[width=644\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_27_11}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2555,7 +2562,7 @@ Based on the marker gene expression and previous report, we will manually make a
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_32_0}.png}
+\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_31_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2696,7 +2703,7 @@ Categories (23, object): [5, 2, 12, 13, ..., 20, 14, 15, 21]
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_36_1}.png}
+\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_35_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2722,7 +2729,7 @@ We’ll make another annotation manually for each louvain clusters
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_38_0}.png}
+\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_37_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2803,7 +2810,7 @@ We’ll make another annotation manually for each louvain clusters
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_41_1}.png}
+\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_40_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2866,7 +2873,7 @@ Categories (9, object): [MEP, Monocytes, Erythroids, Granulocytes, ..., GMP, Meg
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_46_0}.png}
+\noindent\sphinxincludegraphics[width=615\sphinxpxdimen,height=292\sphinxpxdimen]{{notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_2015_data_45_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -2878,7 +2885,7 @@ Categories (9, object): [MEP, Monocytes, Erythroids, Granulocytes, ..., GMP, Meg
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[32]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}adata.write\PYGZus{}h5ad(\PYGZdq{}data/Paul\PYGZus{}etal\PYGZus{}15.h5ad\PYGZdq{})}
+\llap{\color{nbsphinxin}[32]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{write\PYGZus{}h5ad}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{data/Paul\PYGZus{}etal\PYGZus{}15.h5ad}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2923,7 +2930,7 @@ Python notebook
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} 0. Import}
+\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} 0. Import}
 
 \PYG{k+kn}{import} \PYG{n+nn}{os}
 \PYG{k+kn}{import} \PYG{n+nn}{sys}
@@ -2942,7 +2949,7 @@ Python notebook
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{celloracle} \PYG{k}{as} \PYG{n+nn}{co}
+\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{celloracle} \PYG{k}{as} \PYG{n+nn}{co}
 \end{sphinxVerbatim}
 }
 
@@ -2951,7 +2958,7 @@ Python notebook
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} visualization settings}
+\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} visualization settings}
 \PYG{o}{\PYGZpc{}}\PYG{k}{config} InlineBackend.figure\PYGZus{}format = \PYGZsq{}retina\PYGZsq{}
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 
@@ -2971,7 +2978,7 @@ Celloracle uses some R libraries in network analysis. Please make sure that all 
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{co}\PYG{o}{.}\PYG{n}{network\PYGZus{}analysis}\PYG{o}{.}\PYG{n}{test\PYGZus{}R\PYGZus{}libraries\PYGZus{}installation}\PYG{p}{(}\PYG{p}{)}
+\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{co}\PYG{o}{.}\PYG{n}{network\PYGZus{}analysis}\PYG{o}{.}\PYG{n}{test\PYGZus{}R\PYGZus{}libraries\PYGZus{}installation}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -3004,7 +3011,7 @@ checking R library installation: rnetcarto -> OK
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{save\PYGZus{}folder} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures}\PYG{l+s+s2}{\PYGZdq{}}
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{save\PYGZus{}folder} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures}\PYG{l+s+s2}{\PYGZdq{}}
 \PYG{n}{os}\PYG{o}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{save\PYGZus{}folder}\PYG{p}{,} \PYG{n}{exist\PYGZus{}ok}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3022,7 +3029,7 @@ Please refer to the previous notebook in the tutorial for an example of how to p
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} load data. !!Replace the data path below when you use another data.}
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} load data. !!Replace the data path below when you use another data.}
 \PYG{n}{adata} \PYG{o}{=} \PYG{n}{sc}\PYG{o}{.}\PYG{n}{read\PYGZus{}h5ad}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{../03\PYGZus{}scRNA\PYGZhy{}seq\PYGZus{}data\PYGZus{}preprocessing/data/Paul\PYGZus{}etal\PYGZus{}15.h5ad}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3041,7 +3048,7 @@ You can load and use the data with the following command.
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load TF info which was made from mouse cell atlas dataset.}
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load TF info which was made from mouse cell atlas dataset.}
 \PYG{n}{TFinfo\PYGZus{}df} \PYG{o}{=} \PYG{n}{co}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{load\PYGZus{}TFinfo\PYGZus{}df\PYGZus{}mm9\PYGZus{}mouse\PYGZus{}atac\PYGZus{}atlas}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} check data}
@@ -3059,7 +3066,7 @@ You can load and use the data with the following command.
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                     peak\PYGZus{}id gene\PYGZus{}short\PYGZus{}name  9430076c15rik  Ac002126.6  \PYGZbs{}
+\llap{\color{nbsphinxout}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                     peak\PYGZus{}id gene\PYGZus{}short\PYGZus{}name  9430076c15rik  Ac002126.6  \PYGZbs{}
 0  chr10\PYGZus{}100050979\PYGZus{}100052296   4930430F08Rik            0.0         0.0
 1  chr10\PYGZus{}101006922\PYGZus{}101007748         SNORA17            0.0         0.0
 2  chr10\PYGZus{}101144061\PYGZus{}101145000          Mgat4c            0.0         0.0
@@ -3094,7 +3101,7 @@ celloracle have a custom class, Oracle. We can use Oracle for the data preproces
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} make Oracle object}
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} make Oracle object}
 \PYG{n}{oracle} \PYG{o}{=} \PYG{n}{co}\PYG{o}{.}\PYG{n}{Oracle}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3109,7 +3116,7 @@ When you load scRNA-seq data, please enter the name of clustering data and dimen
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} show data name in anndata}
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} show data name in anndata}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{metadata columns :}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{obs}\PYG{o}{.}\PYG{n}{columns}\PYG{p}{)}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{dimensional reduction: }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{obsm}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -3140,7 +3147,7 @@ dimensional reduction:  ['X\_diffmap', 'X\_draw\_graph\_fa', 'X\_pca']
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} The anndata shoud include (1) gene expression count, (2) clustering information, (3) trajectory (dimensional reduction embeddings) data.}
+\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} The anndata shoud include (1) gene expression count, (2) clustering information, (3) trajectory (dimensional reduction embeddings) data.}
 \PYG{c+c1}{\PYGZsh{} Please refer to another notebook for the detail of anndata preprocessing.}
 
 \PYG{c+c1}{\PYGZsh{} In this notebook, we use raw mRNA count as an input of Oracle object.}
@@ -3161,7 +3168,7 @@ dimensional reduction:  ['X\_diffmap', 'X\_draw\_graph\_fa', 'X\_pca']
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} If you can load TF info dataframe with the following code.}
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} If you can load TF info dataframe with the following code.}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{import\PYGZus{}TF\PYGZus{}data}\PYG{p}{(}\PYG{n}{TF\PYGZus{}info\PYGZus{}matrix}\PYG{o}{=}\PYG{n}{TFinfo\PYGZus{}df}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} Instead of the way avove, you can use TF \PYGZdq{}dictionary\PYGZdq{} with the following code.}
@@ -3190,7 +3197,7 @@ In order to import TF data into Oracle object, we need to convert them into a py
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} We have TF and its target gene information. This is from a supplemental Fig of Paul et. al, (2015).}
+\llap{\color{nbsphinxin}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} We have TF and its target gene information. This is from a supplemental Fig of Paul et. al, (2015).}
 \PYG{n}{Paul\PYGZus{}15\PYGZus{}data} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{TF\PYGZus{}data\PYGZus{}in\PYGZus{}Paul15.csv}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \PYG{n}{Paul\PYGZus{}15\PYGZus{}data}
 
@@ -3207,7 +3214,7 @@ In order to import TF data into Oracle object, we need to convert them into a py
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}      TF                                       Target\PYGZus{}genes
+\llap{\color{nbsphinxout}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}      TF                                       Target\PYGZus{}genes
 0  Cebpa  Abcb1b, Acot1, C3, Cnpy3, Dhrs7, Dtx4, Edem2, ...
 1   Irf8  Abcd1, Aif1, BC017643, Cbl, Ccdc109b, Ccl6, d6...
 2   Irf8  1100001G20Rik, 4732418C07Rik, 9230105E10Rik, A...
@@ -3221,7 +3228,7 @@ In order to import TF data into Oracle object, we need to convert them into a py
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Make dictionary: Key is TF, Value is list of Target gene}
+\llap{\color{nbsphinxin}[13]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Make dictionary: Key is TF, Value is list of Target gene}
 \PYG{n}{TF\PYGZus{}to\PYGZus{}TG\PYGZus{}dictionary} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
 
 \PYG{k}{for} \PYG{n}{TF}\PYG{p}{,} \PYG{n}{TGs} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{Paul\PYGZus{}15\PYGZus{}data}\PYG{o}{.}\PYG{n}{TF}\PYG{p}{,} \PYG{n}{Paul\PYGZus{}15\PYGZus{}data}\PYG{o}{.}\PYG{n}{Target\PYGZus{}genes}\PYG{p}{)}\PYG{p}{:}
@@ -3278,7 +3285,7 @@ HBox(children=(IntProgress(value=0, max=178), HTML(value=\PYGZsq{}\PYGZsq{})))
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Add TF information}
+\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Add TF information}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{addTFinfo\PYGZus{}dictionary}\PYG{p}{(}\PYG{n}{TG\PYGZus{}to\PYGZus{}TF\PYGZus{}dictionary}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3298,7 +3305,7 @@ For the Knn imputation, we need PCA and PC selection first.
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[67]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} perform PCA}
+\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} perform PCA}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{perform\PYGZus{}PCA}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} select important PCs}
@@ -3350,7 +3357,7 @@ Estimate number of nearest neighbor for k-nn imputation.
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[20]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{n\PYGZus{}cell} \PYG{o}{=} \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{n\PYGZus{}cell} \PYG{o}{=} \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cell number is :}\PYG{l+s+si}{\PYGZob{}n\PYGZus{}cell\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3379,7 +3386,7 @@ cell number is :2671
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[21]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{k} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{0.025}\PYG{o}{*}\PYG{n}{n\PYGZus{}cell}\PYG{p}{)}
+\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{k} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{0.025}\PYG{o}{*}\PYG{n}{n\PYGZus{}cell}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Auto\PYGZhy{}selected k is :}\PYG{l+s+si}{\PYGZob{}k\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3408,7 +3415,7 @@ Auto-selected k is :66
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[22]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{knn\PYGZus{}imputation}\PYG{p}{(}\PYG{n}{n\PYGZus{}pca\PYGZus{}dims}\PYG{o}{=}\PYG{n}{n\PYGZus{}comps}\PYG{p}{,} \PYG{n}{k}\PYG{o}{=}\PYG{n}{k}\PYG{p}{,} \PYG{n}{balanced}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{b\PYGZus{}sight}\PYG{o}{=}\PYG{n}{k}\PYG{o}{*}\PYG{l+m+mi}{8}\PYG{p}{,}
+\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{knn\PYGZus{}imputation}\PYG{p}{(}\PYG{n}{n\PYGZus{}pca\PYGZus{}dims}\PYG{o}{=}\PYG{n}{n\PYGZus{}comps}\PYG{p}{,} \PYG{n}{k}\PYG{o}{=}\PYG{n}{k}\PYG{p}{,} \PYG{n}{balanced}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{b\PYGZus{}sight}\PYG{o}{=}\PYG{n}{k}\PYG{o}{*}\PYG{l+m+mi}{8}\PYG{p}{,}
                       \PYG{n}{b\PYGZus{}maxl}\PYG{o}{=}\PYG{n}{k}\PYG{o}{*}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{n\PYGZus{}jobs}\PYG{o}{=}\PYG{l+m+mi}{4}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3425,7 +3432,7 @@ Pleasae use “load\_hdf5” function to load the file.
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[23]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} save oracle object.}
+\llap{\color{nbsphinxin}[19]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} save oracle object.}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{to\PYGZus{}hdf5}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Paul\PYGZus{}15\PYGZus{}data.celloracle.oracle}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3435,7 +3442,7 @@ Pleasae use “load\_hdf5” function to load the file.
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[24]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} load file.}
+\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} load file.}
 \PYG{c+c1}{\PYGZsh{} oracle = co.load\PYGZus{}hdf5(\PYGZdq{}Paul\PYGZus{}15\PYGZus{}data.celloracle.oracle\PYGZdq{})}
 \end{sphinxVerbatim}
 }
@@ -3456,7 +3463,7 @@ GRN can be calculated at any arbitrary unit as long as the clustering informatio
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[43]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check data}
+\llap{\color{nbsphinxin}[21]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check data}
 \PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{louvain\PYGZus{}annot}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3480,10 +3487,11 @@ GRN can be calculated at any arbitrary unit as long as the clustering informatio
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \fvset{hllines={, ,}}%
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[28]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} calculate GRN for each population in \PYGZdq{}louvain\PYGZus{}annot\PYGZdq{} clustering unit.}
+\llap{\color{nbsphinxin}[25]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{o}{\PYGZpc{}\PYGZpc{}time}
+\PYG{c+c1}{\PYGZsh{} calculate GRN for each population in \PYGZdq{}louvain\PYGZus{}annot\PYGZdq{} clustering unit.}
 \PYG{c+c1}{\PYGZsh{} This step may take long time.}
 \PYG{n}{links} \PYG{o}{=} \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{get\PYGZus{}links}\PYG{p}{(}\PYG{n}{cluster\PYGZus{}name\PYGZus{}for\PYGZus{}GRN\PYGZus{}unit}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{louvain\PYGZus{}annot}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,}
-                         \PYG{n}{verbose\PYGZus{}level}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{test\PYGZus{}mode}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+                         \PYG{n}{verbose\PYGZus{}level}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{test\PYGZus{}mode}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
 
 \end{sphinxVerbatim}
 }
@@ -4234,6 +4242,8 @@ HBox(children=(IntProgress(value=0, max=1850), HTML(value=\PYGZsq{}\PYGZsq{})))
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 
 
+CPU times: user 22min 20s, sys: 11.5 s, total: 22min 31s
+Wall time: 47min 55s
 \end{sphinxVerbatim}
 }
 % The following \relax is needed to avoid problems with adjacent ANSI
@@ -8033,7 +8043,7 @@ You can simulate the process for multiple times to get a robust outcome.
 \index{simulate\_shift() (celloracle.Oracle method)}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{modules/celloracle:celloracle.Oracle.simulate_shift}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{simulate\_shift}}}{\emph{perturb\_condition=None}, \emph{GRN\_unit='whole'}, \emph{n\_propagation=3}}{}
+\phantomsection\label{\detokenize{modules/celloracle:celloracle.Oracle.simulate_shift}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{simulate\_shift}}}{\emph{perturb\_condition=None}, \emph{GRN\_unit='whole'}, \emph{n\_propagation=3}, \emph{ignore\_warning=False}}{}
 Simulate signal propagation with GRNs. Please see the paper of CellOracle for details.
 This function simulates a gene expression pattern in the near future.
 Simulated values will be stored in anndata.layers: {[}“simulated\_count”{]}

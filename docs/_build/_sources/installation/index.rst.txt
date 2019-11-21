@@ -7,13 +7,26 @@ Installation
 
 .. _require:
 
+Docker image
+------------
+
+- Not available now. Comming soon.
+
+System Requirements
+--------------------
+
+- Operating system: macOS or linux are highly recommended. ``celloracle`` was developed and tested in Linux and macOS.
+- We found that the celloracle calculation may be EXTREMELY SLOW under an environment of Windows Subsystem for Linux (WSL). We do not recommend using WSL.
+- While you can install ``celloracle`` in Windows OS, please do so at your own risk and responsibility. We DO NOT provide any support for the use in the Windows OS.
+
+- Memory: 8 G byte or more.  Memory usage also depends on your scRNA-seq data. Especially in silico simulation requires large amount of memory.
+- CPU: Core i5 or better processor. GRN inference supports multicore calculation. Higer number of CPU cores enables faster calculation.
+
+
 Python Requirements
 -------------------
 
 - ``celloracle`` was developed with python 3.6. We do not support python 2.7x or python <=3.5.
-- ``celloracle`` was developed in Linux and macOS. We do not guarantee that ``celloracle`` works in Windows OS.
-- If you want to use ``celloracle`` in Windows OS, we recommend using `Windows Subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/install-win10>`_ to built environment. In that case, please select Ubuntu18.04 LTS.
-- We highly recommend using `anaconda <https://www.continuum.io/downloads>`_ to setup python environment.
 - Please install all dependent libraries before installing ``celloracle`` according to the instructions below.
 - ``celloracle``  is still beta version and it is not available through PyPI or anaconda distribution yet. Please install ``celloracle`` from GitHub repository according to the instruction below.
 

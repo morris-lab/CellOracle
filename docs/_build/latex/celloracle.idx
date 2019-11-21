@@ -25,7 +25,7 @@
 \indexentry{filtered\_links (celloracle.Links attribute)|hyperpage}{87}
 \indexentry{merged\_score (celloracle.Links attribute)|hyperpage}{87}
 \indexentry{cluster (celloracle.Links attribute)|hyperpage}{87}
-\indexentry{name (celloracle.Links attribute)|hyperpage}{87}
+\indexentry{name (celloracle.Links attribute)|hyperpage}{88}
 \indexentry{palette (celloracle.Links attribute)|hyperpage}{88}
 \indexentry{add\_palette() (celloracle.Links method)|hyperpage}{88}
 \indexentry{filter\_links() (celloracle.Links method)|hyperpage}{88}
@@ -40,7 +40,7 @@
 \indexentry{plot\_score\_per\_cluster() (celloracle.Links method)|hyperpage}{90}
 \indexentry{plot\_scores\_as\_rank() (celloracle.Links method)|hyperpage}{90}
 \indexentry{to\_hdf5() (celloracle.Links method)|hyperpage}{90}
-\indexentry{Net (class in celloracle)|hyperpage}{90}
+\indexentry{Net (class in celloracle)|hyperpage}{91}
 \indexentry{linkList (celloracle.Net attribute)|hyperpage}{91}
 \indexentry{all\_genes (celloracle.Net attribute)|hyperpage}{91}
 \indexentry{embedding\_name (celloracle.Net attribute)|hyperpage}{91}
@@ -55,7 +55,7 @@
 \indexentry{gem\_standerdized (celloracle.Net attribute)|hyperpage}{91}
 \indexentry{library\_last\_update\_date (celloracle.Net attribute)|hyperpage}{91}
 \indexentry{object\_initiation\_date (celloracle.Net attribute)|hyperpage}{91}
-\indexentry{addAnnotation() (celloracle.Net method)|hyperpage}{91}
+\indexentry{addAnnotation() (celloracle.Net method)|hyperpage}{92}
 \indexentry{addTFinfo\_dictionary() (celloracle.Net method)|hyperpage}{92}
 \indexentry{addTFinfo\_matrix() (celloracle.Net method)|hyperpage}{92}
 \indexentry{copy() (celloracle.Net method)|hyperpage}{92}
@@ -79,7 +79,7 @@
 \indexentry{ref\_genome (celloracle.motif\_analysis.TFinfo attribute)|hyperpage}{94}
 \indexentry{scanned\_df (celloracle.motif\_analysis.TFinfo attribute)|hyperpage}{94}
 \indexentry{dic\_targetgene2TFs (celloracle.motif\_analysis.TFinfo attribute)|hyperpage}{94}
-\indexentry{dic\_peak2Targetgene (celloracle.motif\_analysis.TFinfo attribute)|hyperpage}{94}
+\indexentry{dic\_peak2Targetgene (celloracle.motif\_analysis.TFinfo attribute)|hyperpage}{95}
 \indexentry{dic\_TF2targetgenes (celloracle.motif\_analysis.TFinfo attribute)|hyperpage}{95}
 \indexentry{copy() (celloracle.motif\_analysis.TFinfo method)|hyperpage}{95}
 \indexentry{filter\_motifs\_by\_score() (celloracle.motif\_analysis.TFinfo method)|hyperpage}{95}
@@ -111,7 +111,7 @@
 \indexentry{get\_score() (celloracle.network\_analysis.Links method)|hyperpage}{98}
 \indexentry{plot\_cartography\_scatter\_per\_cluster() (celloracle.network\_analysis.Links method)|hyperpage}{98}
 \indexentry{plot\_cartography\_term() (celloracle.network\_analysis.Links method)|hyperpage}{98}
-\indexentry{plot\_degree\_distributions() (celloracle.network\_analysis.Links method)|hyperpage}{98}
+\indexentry{plot\_degree\_distributions() (celloracle.network\_analysis.Links method)|hyperpage}{99}
 \indexentry{plot\_network\_entropy\_distributions() (celloracle.network\_analysis.Links method)|hyperpage}{99}
 \indexentry{plot\_score\_comparison\_2D() (celloracle.network\_analysis.Links method)|hyperpage}{99}
 \indexentry{plot\_score\_discributions() (celloracle.network\_analysis.Links method)|hyperpage}{99}
@@ -121,8 +121,8 @@
 \indexentry{transfer\_scores\_from\_links\_to\_adata() (in module celloracle.network\_analysis)|hyperpage}{100}
 \indexentry{linkList\_to\_networkgraph() (in module celloracle.network\_analysis)|hyperpage}{100}
 \indexentry{draw\_network() (in module celloracle.network\_analysis)|hyperpage}{100}
-\indexentry{celloracle.go\_analysis (module)|hyperpage}{100}
-\indexentry{geneSymbol2ID() (in module celloracle.go\_analysis)|hyperpage}{100}
+\indexentry{celloracle.go\_analysis (module)|hyperpage}{101}
+\indexentry{geneSymbol2ID() (in module celloracle.go\_analysis)|hyperpage}{101}
 \indexentry{geneID2Symbol() (in module celloracle.go\_analysis)|hyperpage}{101}
 \indexentry{get\_GO() (in module celloracle.go\_analysis)|hyperpage}{101}
 \indexentry{celloracle.utility (module)|hyperpage}{101}
@@ -131,7 +131,7 @@
 \indexentry{save\_as\_pickled\_object() (in module celloracle.utility)|hyperpage}{101}
 \indexentry{load\_pickled\_object() (in module celloracle.utility)|hyperpage}{101}
 \indexentry{intersect() (in module celloracle.utility)|hyperpage}{101}
-\indexentry{exec\_process() (in module celloracle.utility)|hyperpage}{101}
+\indexentry{exec\_process() (in module celloracle.utility)|hyperpage}{102}
 \indexentry{standard() (in module celloracle.utility)|hyperpage}{102}
 \indexentry{load\_hdf5() (in module celloracle.utility)|hyperpage}{102}
 \indexentry{inverse\_dictionary() (in module celloracle.utility)|hyperpage}{102}

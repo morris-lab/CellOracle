@@ -1,28 +1,30 @@
 \babel@toc {english}{}
 \contentsline {chapter}{\numberline {1}Contents}{3}{chapter.1}% 
 \contentsline {section}{\numberline {1.1}Installation}{3}{section.1.1}% 
-\contentsline {subsection}{\numberline {1.1.1}Python Requirements}{3}{subsection.1.1.1}% 
+\contentsline {subsection}{\numberline {1.1.1}Docker image}{3}{subsection.1.1.1}% 
+\contentsline {subsection}{\numberline {1.1.2}System Requirements}{3}{subsection.1.1.2}% 
+\contentsline {subsection}{\numberline {1.1.3}Python Requirements}{3}{subsection.1.1.3}% 
 \contentsline {subsubsection}{0. (Optional) Make a new environment}{3}{subsubsection*.3}% 
-\contentsline {subsubsection}{1. Add conda channels}{3}{subsubsection*.4}% 
-\contentsline {subsubsection}{2. Install velocyto}{3}{subsubsection*.5}% 
+\contentsline {subsubsection}{1. Add conda channels}{4}{subsubsection*.4}% 
+\contentsline {subsubsection}{2. Install velocyto}{4}{subsubsection*.5}% 
 \contentsline {subsubsection}{3. Install scanpy}{4}{subsubsection*.6}% 
 \contentsline {subsubsection}{4. Install gimmemotifs}{4}{subsubsection*.7}% 
 \contentsline {subsubsection}{5. Install other python libraries}{4}{subsubsection*.8}% 
 \contentsline {subsubsection}{6. install celloracle from github}{4}{subsubsection*.9}% 
-\contentsline {subsection}{\numberline {1.1.2}R requirements}{4}{subsection.1.1.2}% 
+\contentsline {subsection}{\numberline {1.1.4}R requirements}{4}{subsection.1.1.4}% 
 \contentsline {subsubsection}{Seurat}{4}{subsubsection*.10}% 
-\contentsline {subsubsection}{Cicero}{4}{subsubsection*.11}% 
+\contentsline {subsubsection}{Cicero}{5}{subsubsection*.11}% 
 \contentsline {subsubsection}{igraph}{5}{subsubsection*.12}% 
 \contentsline {subsubsection}{linkcomm}{5}{subsubsection*.13}% 
 \contentsline {subsubsection}{rnetcarto}{5}{subsubsection*.14}% 
 \contentsline {subsubsection}{Check installation}{5}{subsubsection*.15}% 
-\contentsline {section}{\numberline {1.2}Tutorial}{5}{section.1.2}% 
+\contentsline {section}{\numberline {1.2}Tutorial}{6}{section.1.2}% 
 \contentsline {subsection}{\numberline {1.2.1}ATAC-seq data preprocessing}{6}{subsection.1.2.1}% 
 \contentsline {subsubsection}{A. Extract TF binding information from scATAC-seq data}{6}{subsubsection*.16}% 
 \contentsline {paragraph}{0. Import library}{6}{paragraph*.17}% 
 \contentsline {paragraph}{1. Prepare data}{6}{paragraph*.18}% 
 \contentsline {paragraph}{2. Load data and make Cell Data Set (CDS) object}{6}{paragraph*.19}% 
-\contentsline {subparagraph}{2.1. Process data to make CDS object}{6}{subparagraph*.20}% 
+\contentsline {subparagraph}{2.1. Process data to make CDS object}{7}{subparagraph*.20}% 
 \contentsline {paragraph}{3. Qauality check and Filtering}{7}{paragraph*.21}% 
 \contentsline {paragraph}{4. Process cicero-CDS object}{8}{paragraph*.22}% 
 \contentsline {paragraph}{5. Run cicero to get cis-regulatory connection scores}{9}{paragraph*.23}% 
@@ -134,7 +136,7 @@
 \contentsline {subsubsection}{Modules for Network analysis}{96}{subsubsection*.217}% 
 \contentsline {paragraph}{celloracle.network\_analysis module}{96}{paragraph*.218}% 
 \contentsline {subsubsection}{Other modules}{100}{subsubsection*.245}% 
-\contentsline {paragraph}{celloracle.go\_analysis module}{100}{paragraph*.246}% 
+\contentsline {paragraph}{celloracle.go\_analysis module}{101}{paragraph*.246}% 
 \contentsline {paragraph}{celloracle.utility module}{101}{paragraph*.251}% 
 \contentsline {paragraph}{Examples}{102}{paragraph*.262}% 
 \contentsline {paragraph}{celloracle.data module}{102}{paragraph*.263}% 

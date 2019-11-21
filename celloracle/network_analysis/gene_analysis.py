@@ -54,7 +54,7 @@ def plot_scores_as_rank(links, cluster, n_gene=50, save=None):
         plt.xlabel(value)
         plt.title(f" {value} \n top {n_gene} in {cluster}")
         plt.gca().invert_yaxis()
-        plt.subplots_adjust(left=0.3, right=0.85)
+        plt.subplots_adjust(left=0.5, right=0.85)
 
         if not save is None:
             os.makedirs(save, exist_ok=True)

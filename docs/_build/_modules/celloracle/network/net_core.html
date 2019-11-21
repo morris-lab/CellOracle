@@ -216,7 +216,7 @@
 <span class="c1">### 1.  define main class  ###</span>
 <span class="c1">##############################</span>
 
-<div class="viewcode-block" id="Net"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net">[docs]</a><span class="k">class</span> <span class="nc">Net</span><span class="p">():</span>
+<div class="viewcode-block" id="Net"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net">[docs]</a><span class="k">class</span> <span class="nc">Net</span><span class="p">():</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Net is a custom class for inferring sample-specific GRN from scRNA-seq data.</span>
 <span class="sd">    This class is used inside Oracle class for GRN inference.</span>
@@ -351,13 +351,13 @@
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;initiation completed.&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Net.copy"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Net.copy"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Deepcopy itself</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Net.addTFinfo_matrix"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.addTFinfo_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">addTFinfo_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TFinfo_matrix</span><span class="p">):</span>
+<div class="viewcode-block" id="Net.addTFinfo_matrix"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.addTFinfo_matrix">[docs]</a>    <span class="k">def</span> <span class="nf">addTFinfo_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TFinfo_matrix</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Load TF info dataframe.</span>
 
@@ -371,7 +371,7 @@
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;gene_short_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">TFdict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Net.updateTFinfo_dictionary"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.updateTFinfo_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">updateTFinfo_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TFdict</span><span class="p">):</span>
+<div class="viewcode-block" id="Net.updateTFinfo_dictionary"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.updateTFinfo_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">updateTFinfo_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TFdict</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Update TF info matrix</span>
 
@@ -381,7 +381,7 @@
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">TFdict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">TFdict</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Net.addTFinfo_dictionary"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.addTFinfo_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">addTFinfo_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TFdict</span><span class="p">):</span>
+<div class="viewcode-block" id="Net.addTFinfo_dictionary"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.addTFinfo_dictionary">[docs]</a>    <span class="k">def</span> <span class="nf">addTFinfo_dictionary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">TFdict</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a new TF info to pre-exiting TFdict.</span>
 
@@ -400,7 +400,7 @@
 
 
 
-<div class="viewcode-block" id="Net.addAnnotation"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.addAnnotation">[docs]</a>    <span class="k">def</span> <span class="nf">addAnnotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">annotation_dictionary</span><span class="p">):</span>
+<div class="viewcode-block" id="Net.addAnnotation"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.addAnnotation">[docs]</a>    <span class="k">def</span> <span class="nf">addAnnotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">annotation_dictionary</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Add a new annotation.</span>
 
@@ -417,7 +417,7 @@
     <span class="c1">##############################################################</span>
 
 
-<div class="viewcode-block" id="Net.fit_All_genes_parallel"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.fit_All_genes_parallel">[docs]</a>    <span class="k">def</span> <span class="nf">fit_All_genes_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bagging_number</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="viewcode-block" id="Net.fit_All_genes_parallel"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.fit_All_genes_parallel">[docs]</a>    <span class="k">def</span> <span class="nf">fit_All_genes_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bagging_number</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        !! This function has some bug now and currently unavailable.</span>
 
@@ -467,7 +467,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">fitted_genes</span> <span class="o">=</span> <span class="n">fitted_genes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">failed_genes</span> <span class="o">=</span> <span class="n">failed_genes</span></div>
 
-<div class="viewcode-block" id="Net.fit_All_genes"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.fit_All_genes">[docs]</a>    <span class="k">def</span> <span class="nf">fit_All_genes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bagging_number</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">model_method</span><span class="o">=</span><span class="s2">&quot;bagging_ridge&quot;</span><span class="p">,</span>
+<div class="viewcode-block" id="Net.fit_All_genes"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.fit_All_genes">[docs]</a>    <span class="k">def</span> <span class="nf">fit_All_genes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bagging_number</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">model_method</span><span class="o">=</span><span class="s2">&quot;bagging_ridge&quot;</span><span class="p">,</span>
                       <span class="n">command_line_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make ML models for all genes.</span>
@@ -493,7 +493,7 @@
                        <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
                        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Net.fit_genes"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.fit_genes">[docs]</a>    <span class="k">def</span> <span class="nf">fit_genes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_genes</span><span class="p">,</span> <span class="n">bagging_number</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">model_method</span><span class="o">=</span><span class="s2">&quot;bagging_ridge&quot;</span><span class="p">,</span>
+<div class="viewcode-block" id="Net.fit_genes"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.fit_genes">[docs]</a>    <span class="k">def</span> <span class="nf">fit_genes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_genes</span><span class="p">,</span> <span class="n">bagging_number</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">scaling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">model_method</span><span class="o">=</span><span class="s2">&quot;bagging_ridge&quot;</span><span class="p">,</span>
                   <span class="n">save_coefs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">command_line_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make ML models for genes of interest.</span>
@@ -631,7 +631,7 @@
     <span class="c1">### 3.1. Plot results ###</span>
     <span class="c1">#########################</span>
 
-<div class="viewcode-block" id="Net.plotCoefs"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.plotCoefs">[docs]</a>    <span class="k">def</span> <span class="nf">plotCoefs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_gene</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">threshold_p</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Net.plotCoefs"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.plotCoefs">[docs]</a>    <span class="k">def</span> <span class="nf">plotCoefs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_gene</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">threshold_p</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plot the distribution of Coef values (network edge weights).</span>
 
@@ -667,7 +667,7 @@
     <span class="c1">#############################</span>
 
     <span class="c1"># get linkList</span>
-<div class="viewcode-block" id="Net.updateLinkList"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.updateLinkList">[docs]</a>    <span class="k">def</span> <span class="nf">updateLinkList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Net.updateLinkList"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.updateLinkList">[docs]</a>    <span class="k">def</span> <span class="nf">updateLinkList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update linkList.</span>
 <span class="sd">        LinkList is a data frame that store information about inferred GRN.</span>
@@ -760,7 +760,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;file saved at: </span><span class="si">{folder}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Net.to_hdf5"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Net.to_hdf5">[docs]</a>    <span class="k">def</span> <span class="nf">to_hdf5</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
+<div class="viewcode-block" id="Net.to_hdf5"><a class="viewcode-back" href="../../../modules/celloracle.network.html#celloracle.Net.to_hdf5">[docs]</a>    <span class="k">def</span> <span class="nf">to_hdf5</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save object as hdf5.</span>
 

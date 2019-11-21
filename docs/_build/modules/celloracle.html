@@ -521,7 +521,7 @@ You can simulate the process for multiple times to get a robust outcome.</p>
 
 <dl class="method">
 <dt id="celloracle.Oracle.simulate_shift">
-<code class="descname">simulate_shift</code><span class="sig-paren">(</span><em>perturb_condition=None</em>, <em>GRN_unit='whole'</em>, <em>n_propagation=3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.simulate_shift"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.simulate_shift" title="Permalink to this definition">¶</a></dt>
+<code class="descname">simulate_shift</code><span class="sig-paren">(</span><em>perturb_condition=None</em>, <em>GRN_unit='whole'</em>, <em>n_propagation=3</em>, <em>ignore_warning=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/celloracle/trajectory/oracle_core.html#Oracle.simulate_shift"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#celloracle.Oracle.simulate_shift" title="Permalink to this definition">¶</a></dt>
 <dd><p>Simulate signal propagation with GRNs. Please see the paper of CellOracle for details.
 This function simulates a gene expression pattern in the near future.
 Simulated values will be stored in anndata.layers: [“simulated_count”]</p>

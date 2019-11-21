@@ -525,7 +525,7 @@
     <span class="c1">#######################################################</span>
 
 <div class="viewcode-block" id="Oracle.simulate_shift"><a class="viewcode-back" href="../../../modules/celloracle.html#celloracle.Oracle.simulate_shift">[docs]</a>    <span class="k">def</span> <span class="nf">simulate_shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">perturb_condition</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">GRN_unit</span><span class="o">=</span><span class="s2">&quot;whole&quot;</span><span class="p">,</span>
-                       <span class="n">n_propagation</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+                       <span class="n">n_propagation</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ignore_warning</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Simulate signal propagation with GRNs. Please see the paper of CellOracle for details.</span>
 <span class="sd">        This function simulates a gene expression pattern in the near future.</span>
@@ -562,7 +562,10 @@
 
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">perturb_condition</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">high_var_genes</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Variability score of Gene </span><span class="si">{i}</span><span class="s2"> is low. Simulation accuracy may be poor with this gene.&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">ignore_warning</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Variability score of Gene </span><span class="si">{i}</span><span class="s2"> is too low. Simulation accuracy may be poor with this gene.&quot;</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Variability score of Gene </span><span class="si">{i}</span><span class="s2"> is too low. Cannot perform simulation.&quot;</span><span class="p">)</span>
 
             <span class="c1"># reset simulation initiation point</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="s2">&quot;simulation_input&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adata</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="s2">&quot;imputed_count&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>

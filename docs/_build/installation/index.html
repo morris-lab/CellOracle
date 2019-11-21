@@ -95,6 +95,8 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker-image">Docker image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-requirements">System Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#python-requirements">Python Requirements</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#optional-make-a-new-environment">0. (Optional) Make a new environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-conda-channels">1. Add conda channels</a></li>
@@ -222,13 +224,26 @@
 <div class="section" id="installation">
 <span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> uses several python libraries and R library. Please follow this guide below to install the dependent software of celloracle.</p>
+<div class="section" id="docker-image">
+<span id="require"></span><h2>Docker image<a class="headerlink" href="#docker-image" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Not available now. Comming soon.</li>
+</ul>
+</div>
+<div class="section" id="system-requirements">
+<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Operating system: macOS or linux are highly recommended. <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> was developed and tested in Linux and macOS.</li>
+<li>We found that the celloracle calculation may be EXTREMELY SLOW under an environment of Windows Subsystem for Linux (WSL). We do not recommend using WSL.</li>
+<li>While you can install <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> in Windows OS, please do so at your own risk and responsibility. We DO NOT provide any support for the use in the Windows OS.</li>
+<li>Memory: 8 G byte or more.  Memory usage also depends on your scRNA-seq data. Especially in silico simulation requires large amount of memory.</li>
+<li>CPU: Core i5 or better processor. GRN inference supports multicore calculation. Higer number of CPU cores enables faster calculation.</li>
+</ul>
+</div>
 <div class="section" id="python-requirements">
-<span id="require"></span><h2>Python Requirements<a class="headerlink" href="#python-requirements" title="Permalink to this headline">¶</a></h2>
+<h2>Python Requirements<a class="headerlink" href="#python-requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> was developed with python 3.6. We do not support python 2.7x or python &lt;=3.5.</li>
-<li><code class="docutils literal notranslate"><span class="pre">celloracle</span></code> was developed in Linux and macOS. We do not guarantee that <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> works in Windows OS.</li>
-<li>If you want to use <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> in Windows OS, we recommend using <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux</a> to built environment. In that case, please select Ubuntu18.04 LTS.</li>
-<li>We highly recommend using <a class="reference external" href="https://www.continuum.io/downloads">anaconda</a> to setup python environment.</li>
 <li>Please install all dependent libraries before installing <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> according to the instructions below.</li>
 <li><code class="docutils literal notranslate"><span class="pre">celloracle</span></code>  is still beta version and it is not available through PyPI or anaconda distribution yet. Please install <code class="docutils literal notranslate"><span class="pre">celloracle</span></code> from GitHub repository according to the instruction below.</li>
 </ul>
