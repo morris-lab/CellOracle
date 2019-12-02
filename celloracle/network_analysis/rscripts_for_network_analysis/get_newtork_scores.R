@@ -1,6 +1,6 @@
 library(igraph)
 library(linkcomm)
-library(gProfileR)
+
 library(rnetcarto)
 
 #Functional Cartography of Complex Networks
@@ -183,6 +183,10 @@ get_go <- TRUE
 if (length(commandArgs(trailingOnly = T))>=2){
   get_go <- commandArgs(trailingOnly = T)[2]}
   
+if (get_go) {
+library(gProfileR)
+}
+
 d <- read.csv(paste0(folder, "/linkList.csv"))
 g <- graph.data.frame(d[1:2], directed = T)
 E(g)$weight <- d[[3]]
