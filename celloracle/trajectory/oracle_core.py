@@ -351,7 +351,7 @@ class Oracle(modified_VelocytoLoom):
     ### 3. Methods for simulation of signal propagation ###
     #######################################################
 
-    def simulate_shift(self, perturb_condition=None, GRN_unit="whole",
+    def simulate_shift(self, perturb_condition=None, GRN_unit="cluster",
                        n_propagation=3, ignore_warning=False):
         """
         Simulate signal propagation with GRNs. Please see the paper of CellOracle for details.
@@ -369,6 +369,8 @@ class Oracle(modified_VelocytoLoom):
                if you want to simulate knockout for GeneX, please set [perturb_condition={"GeneX": 0.0}]
                Although you can set any non-negative values for the gene condition, avoid setting biologically unfeasible values for the perturb condition.
                It is strongly recommended to check actual gene expression values in your data before selecting perturb condition.
+
+            GRN_unit (str): GRN type. Please select either "whole" or "cluster". See the documentation of "fit_GRN_for_simulation" for the detailed explanation.
 
             n_propagation (int): Calculation will be performed iteratively to simulate signal propagation in GRN.
                 you can set the number of steps for this calculation.
