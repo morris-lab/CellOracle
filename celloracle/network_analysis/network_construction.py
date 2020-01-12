@@ -26,7 +26,8 @@ from tqdm import tqdm_notebook as tqdm
 from ..network.net_core import Net
 from ..utility import standard
 from .links_object import Links
-from ..trajectory.oracle_utility import _adata_to_df
+from ..trajectory.oracle_utility import _adata_to_df, _get_clustercolor_from_anndata
+
 
 RIDGE_SOLVER = "auto"
 
@@ -69,12 +70,11 @@ def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_n
     # initiate links object
     links = Links(name=cluster_name_for_GRN_unit,
                  links_dict=linkLists)
-    if not test_mode:
-        # extract color infomation
-        c = [i.upper() for i in oracle_object.adata.uns[f"{cluster_name_for_GRN_unit}_colors"]]
-        cnames = list(oracle_object.adata.obs[cluster_name_for_GRN_unit].unique())
-        cnames.sort()
-        links.add_palette(cnames, c)
+
+    # extract color infomation
+    links.palette = _get_clustercolor_from_anndata(adata=oracle_object.adata,
+                                                   cluster_name=cluster_name_for_GRN_unit,
+                                                   return_as="palette")
 
     #links.merge_links()
     links.ALPHA_used = alpha

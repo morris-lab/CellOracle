@@ -91,18 +91,6 @@ class Links():
                   data_compression=compression_opts,  chunks=(2048, 2048),
                   noarray_compression=compression_opts, pickle_protocol=2)
 
-    def add_palette(self, cluster_name_list, color_list):
-        """
-        Add color information for each cluster.
-
-        Args:
-            cluster_name_list (list of str): cluster names.
-            color_list (list of stf): list of color for each cluster.
-
-        """
-        self.palette = pd.DataFrame({"palette": color_list},
-                                    index=cluster_name_list)
-
     def _pipeline(self):
         """
         Perform several processing methods below.
