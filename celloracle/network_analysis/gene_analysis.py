@@ -88,7 +88,7 @@ def _plot_goi(x, y, goi, args_annot, scatter=False, x_shift=0.1, y_shift=0.1):
 
 
 
-def plot_score_comparison_2D(links, value, cluster1, cluster2, percentile=99, annot_shifts=None, save=None):
+def plot_score_comparison_2D(links, value, cluster1, cluster2, percentile=99, annot_shifts=None, save=None, fillna_with_zero=True):
     """
     Make a scatter plot that shows the relationship of a specific network score in two groups.
 
@@ -105,7 +105,10 @@ def plot_score_comparison_2D(links, value, cluster1, cluster2, percentile=99, an
     res = links.merged_score[links.merged_score.cluster.isin([cluster1, cluster2])][[value, "cluster"]]
     res = res.reset_index(drop=False)
     piv = pd.pivot_table(res, values=value, columns="cluster", index="index")
-    piv = piv.fillna(piv.mean(axis=0))
+    if fillna_with_zero:
+        piv = piv.fillna(0)
+    else:
+        piv = piv.fillna(piv.mean(axis=0))
 
     goi1 = piv[piv[cluster1] > np.percentile(piv[cluster1].values, percentile)].index
     goi2 = piv[piv[cluster2] > np.percentile(piv[cluster2].values, percentile)].index
