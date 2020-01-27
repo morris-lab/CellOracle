@@ -146,7 +146,7 @@ def plot_score_discributions(links, values=None, method="boxplot", save=None):
             print(i)
             sns.boxplot(data=links.merged_score,
                         x="cluster", y=i, palette=links.palette.palette.values,
-                        order=links.palette.index.values, fliersize=0.3)
+                        order=links.palette.index.values, fliersize=0.0)
             plt.xticks(rotation=90)
             if not save is None:
                 os.makedirs(save, exist_ok=True)
