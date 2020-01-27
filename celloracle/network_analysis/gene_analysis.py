@@ -135,6 +135,115 @@ def plot_score_comparison_2D(links, value, cluster1, cluster2, percentile=99, an
         plt.savefig(path, transparent=True)
     plt.show()
 
+
+
+
+def _test_ver_plot_score_comparison_2D(links, value, cluster1, cluster2, percentile=99,
+                             annot_shifts=None, save=None, fillna_with_zero=True,
+                             plot_line=True, threshold = 0.25, figsize=(4, 4)):
+    from adjustText import adjust_text
+
+    """
+    Make a scatter plot that shows the relationship of a specific network score in two groups.
+
+    Args:
+        links (Links object): See network_analisis.Links class for detail.
+        value (srt): The network score to be shown.
+        cluster1 (str): Cluster nome to analyze. Network scores in the cluste1 are shown as x-axis.
+        cluster2 (str): Cluster nome to analyze. Network scores in the cluste2 are shown as y-axis.
+        percentile (float): Genes with a network score above the percentile will be shown with annotation. Default is 99.
+        annot_shifts ((float, float)): Shift x and y cordinate for annotations.
+        save (str): Folder path to save plots. If the folde does not exist in the path, the function create the folder.
+            If None plots will not be saved. Default is None.
+    """
+    def rotation_n45(s):
+        k = 1/np.sqrt(2)
+        x = k*(s[0] + s[1])
+        y = k*(-s[0] + s[1])
+        return x, y
+
+    def distance_(s):
+        x, y = rotation_n45(s)
+        return abs(y)
+
+    def rotation_p45(s):
+        k = 1/np.sqrt(2)
+        x = k*(s[0] - s[1])
+        y = k*(s[0] + s[1])
+        return x, y
+
+    def distance_1(s):
+        x, y = rotation_p45(s)
+        return abs(y)
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    plt.ticklabel_format(style='sci',axis='y',scilimits=(0,0))
+    plt.ticklabel_format(style='sci',axis='x',scilimits=(0,0))
+
+    res = links.merged_score[links.merged_score.cluster.isin([cluster1, cluster2])][[value, "cluster"]]
+    res = res.reset_index(drop=False)
+    piv = pd.pivot_table(res, values=value, columns="cluster", index="index")
+    if fillna_with_zero:
+        piv = piv.fillna(0)
+    else:
+        piv = piv.fillna(piv.mean(axis=0))
+
+    # pick up genes with high score
+    goi1 = piv[piv[cluster1] > np.percentile(piv[cluster1].values, percentile)].index
+    goi2 = piv[piv[cluster2] > np.percentile(piv[cluster2].values, percentile)].index
+    gois = np.union1d(goi1, goi2)
+
+
+    # plot lines
+    x, y = piv[cluster1], piv[cluster2]
+    if plot_line:
+        # y = x line
+        max_ = max(x.max(), y.max())
+        plt.plot((0, max_),(0, max_), linestyle=(0, (5, 10)), color="gray", linewidth=0.5)
+        # other lines
+        plt.plot((0, max_-threshold),(threshold, max_),
+                 linestyle="dashed", color="gray", linewidth=0.5, alpha=0.5)
+        plt.plot((threshold, max_), (0, max_-threshold),
+                 linestyle="dashed", color="gray", linewidth=0.5, alpha=0.5)
+        plt.plot((0, threshold),(threshold, 0),
+                    linestyle="dashed", color="gray", linewidth=0.5, alpha=0.5)
+
+    # plot all gene
+    plt.scatter(x, y, c="lightgray")
+
+    # plot genes that have high scores
+    piv["dis_"] = piv.apply(distance_1, axis=1).values
+    piv_ = piv[piv.dis_ >= threshold/np.sqrt(2)]
+    x, y = piv_[cluster1], piv_[cluster2]
+    plt.scatter(x, y, c="dimgray")
+
+    # plot genes that are differentially connected
+    piv_["dis"] = piv_.apply(distance_, axis=1).values
+    x, y = piv_[piv_.dis>=threshold/np.sqrt(2)][cluster1], piv_[piv_.dis>=threshold/np.sqrt(2)][cluster2]
+    gois = np.concatenate([gois, x.index])
+    plt.scatter(x, y, c="indianred")
+
+    # plot annotations
+    texts = []
+    gois = np.unique(gois)
+    for goi in gois:
+        x, y = piv.loc[goi, cluster1], piv.loc[goi, cluster2]
+        plt_text = ax.annotate(goi, (x, y), fontsize=8, color='black')
+        texts.append(plt_text)
+
+    adjust_text(texts, arrowprops=dict(arrowstyle='-', color='dimgray', lw=0.5))
+
+    plt.xlabel(cluster1)
+    plt.ylabel(cluster2)
+    plt.title(f"{value}")
+    if not save is None:
+        os.makedirs(save, exist_ok=True)
+        path = os.path.join(save, f"values_comparison_in_{links.name}_{value}_{links.thread_number}_{cluster1}_vs_{cluster2}.{settings['save_figure_as']}")
+        plt.savefig(path, transparent=True)
+    plt.show()
+
+
 ######################
 ### score dynamics ###
 ######################
