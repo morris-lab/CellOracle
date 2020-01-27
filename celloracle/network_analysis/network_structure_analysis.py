@@ -196,7 +196,7 @@ def plot_network_entropy_distributions(links, update_network_entropy=False, save
                 palette=links.palette.palette.values,
                 order=links.palette.index.values, fliersize=0.0)
     plt.xticks(rotation=90)
-    plt.ylim([0.81,0.98])
+    plt.ylim([0.81,1.0])
 
     if not save is None:
         os.makedirs(save, exist_ok=True)
