@@ -177,7 +177,7 @@ def _test_ver_plot_score_comparison_2D(links, value, cluster1, cluster2, percent
         return abs(y)
 
     fig, ax = plt.subplots(figsize=figsize)
-    
+
 
     plt.ticklabel_format(style='sci',axis='y',scilimits=(0,0))
     plt.ticklabel_format(style='sci',axis='x',scilimits=(0,0))
@@ -204,11 +204,11 @@ def _test_ver_plot_score_comparison_2D(links, value, cluster1, cluster2, percent
         plt.plot((0, max_),(0, max_), linestyle=(0, (5, 10)), color="gray", linewidth=0.5)
         # other lines
         plt.plot((0, max_-threshold),(threshold, max_),
-                 linestyle="dashed", color="gray", linewidth=0.5, alpha=0.5)
+                 linestyle="dashed", color="gray", linewidth=0.5, alpha=1)
         plt.plot((threshold, max_), (0, max_-threshold),
-                 linestyle="dashed", color="gray", linewidth=0.5, alpha=0.5)
+                 linestyle="dashed", color="gray", linewidth=0.5, alpha=1)
         plt.plot((0, threshold),(threshold, 0),
-                    linestyle="dashed", color="gray", linewidth=0.5, alpha=0.5)
+                    linestyle="dashed", color="gray", linewidth=0.5, alpha=1)
 
     # plot all gene
     plt.scatter(x, y, c="lightgray")

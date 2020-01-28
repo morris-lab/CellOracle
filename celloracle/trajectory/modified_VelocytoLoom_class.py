@@ -579,13 +579,13 @@ class modified_VelocytoLoom():
             The probability to be found at any of the states
         """
         self.prepare_markov_simulation()
-        
+
         if starting_p is None:
             starting_p = np.ones(self.tr.shape[0]) / self.tr.shape[0]
         diffusor = Diffusion()
         self.diffused = diffusor.diffuse(starting_p, self.tr, n_steps=n_steps, mode=mode)[0]
 
-    def plot_mc_resutls_as_density(self):
+    def plot_mc_resutls_as_density(self, args={}):
         """
         this function plot the results of mc chain simulation in velocyto method.
         """
@@ -594,9 +594,11 @@ class modified_VelocytoLoom():
         diffused_n = np.clip(diffused_n, 0, 1)
         #diffused_n = tv.diffused
         #plt.figure(None,(7,7))
+        args_ = {"alpha": 0.5, "s": 50, "lw": 0., "edgecolor":"", "cmap": "viridis_r", "rasterized": True}
+        args_.update(args)
+
         plt.scatter(self.embedding[self.ixs_mcmc, 0], self.embedding[self.ixs_mcmc, 1],
-                        c=diffused_n, alpha=0.5, s=50, lw=0.,
-                        edgecolor="", cmap="viridis_r", rasterized=True)
+                        c=diffused_n, **args_)
         plt.axis("off")
         cax = plt.axes([0.85, 0.1, 0.075, 0.8])
         plt.colorbar()
