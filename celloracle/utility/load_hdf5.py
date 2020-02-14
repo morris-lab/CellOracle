@@ -33,7 +33,7 @@ def load_hdf5(file_path, object_class_name=None):
     elif object_class_name == "Oracle":
         obj = load_oracle(file_path=file_path)
 
-    elif object_class_name in ["Tfinfo", "TFinfo"]:
+    elif object_class_name in ["Tfinfo", "tfinfo"]:
         obj = load_TFinfo(file_path=file_path)
 
     else:

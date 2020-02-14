@@ -155,15 +155,12 @@ class Net():
         self.all_genes = np.unique(self.gem.columns)
 
         # 2.3. TF_information
-        self.TFinfo = TFinfo_matrix
-        if not self.TFinfo is None:
-            self.TFinfo.index.name = None
-            self.TFinfo.columns.name = None
-
         if not TFinfo_matrix is None:
             self.TFinfo = TFinfo_matrix.copy()
             self.TFinfo.index.name = None
             self.TFinfo.columns.name = None
+            self.TFinfo = self.TFinfo.reset_index(drop=True)
+
 
             tmp = self.TFinfo.copy()
             tmp = tmp.drop(["peak_id"], axis=1)
@@ -171,6 +168,7 @@ class Net():
             self.TFdict = dict(tmp.apply(lambda x: x[x > 0].index.values, axis=1))
             if verbose:
                 print(f"TF info shape: {self.TFinfo.shape}")
+
 
         if not TFinfo_dic is None:
             self.TFdict.update(TFinfo_dic)

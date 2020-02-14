@@ -314,7 +314,7 @@ class TFinfo():
             self.scanned_filtered = self.scanned_df[["seqname", "motif_id", "score"]].copy()
 
         before = len(self.scanned_filtered)
-        self.scanned_filtered = self.scanned_filtered[self.scanned_filtered.seqname.isin(peaks)]
+        self.scanned_filtered = self.scanned_filtered[self.scanned_filtered.seqname.isin(peaks_to_be_remained)]
         after = len(self.scanned_filtered)
         print(f"peaks were filtered: {before} -> {after}")
 
@@ -537,7 +537,7 @@ class TFinfo():
         elif (self.dic_targetgene2TFs is None) | (self.dic_TF2targetgenes is None):
             if verbose:
                 print("Converting results into dictionaries.")
-            self.make_dictionaries(verbose=verbose)
+            self._make_dictionaries(verbose=verbose)
 
         if dictionary_type == "targetgene2TFs":
             return self.dic_targetgene2TFs

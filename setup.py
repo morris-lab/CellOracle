@@ -14,7 +14,7 @@ with open('LICENSE.txt') as f:
 """
 setup(
     name='celloracle',
-    version='0.2.10',
+    version='0.2.11',
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
