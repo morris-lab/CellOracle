@@ -7,11 +7,10 @@ For more information, please refer to our bioarxiv preprint: [CellOracle: Dissec
 ### Description
 CellOracle documentation is available through the links below.
 
-[Web documentation](https://morris-lab.github.io/CellOracle.documentation/).
+[Web documentation](https://morris-lab.github.io/CellOracle.documentation/)
 
-[Pdf documentation](https://github.com/morris-lab/CellOracle/tree/master/docs/celloracle.pdf).
+[Pdf documentation](https://github.com/morris-lab/CellOracle/tree/master/docs/celloracle.pdf)
 
 
 ### Questions and errors
-If you have question, error, bug, or problem, please use [Github issue](https://github.com/morris-lab/CellOracle/issues).
-https://github.com/morris-lab/CellOracle/tree/master/docs/_build
+If you have question, error, bug, or problem, please use [Github issue page](https://github.com/morris-lab/CellOracle/issues).
