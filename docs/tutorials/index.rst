@@ -4,7 +4,7 @@ Tutorial
 ========
 
 The analysis proceeds through multiple steps.
-Please run the notebooks following the number of the notebook.
+Please run the notebooks sequentially.
 If you do not have ATAC-seq data and want to use the default TF binding information, you can skip the first and second step and start from the third step.
 
 Please refer to the ``celloracle`` paper for scientific premise and the detail of the algorithm of celloracle.

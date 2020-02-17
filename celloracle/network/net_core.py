@@ -46,35 +46,35 @@ RIDGE_SOLVER = "auto"
 class Net():
     '''
     Net is a custom class for inferring sample-specific GRN from scRNA-seq data.
-    This class is used inside Oracle class for GRN inference.
-    This class requires two information below.
+    This class is used inside the Oracle class for GRN inference.
+    This class requires two types of information below.
 
-    (1) single-cell RNA-seq data
+    (1) Single-cell RNA-seq data:
         The Net class needs processed scRNA-seq data.
-        Gene and cell filtering, quality check, normalization, log-transformation (but not scaling and centering) have to be done before starting GRN calculation with this class.
+        Gene and cell filtering, quality check, normalization, log-transformation (but not scaling and centering) have to be done before starting the GRN calculation with this class.
         You can also use any arbitrary metadata (i.e., mRNA count, cell-cycle phase) for GRN input.
 
-    (2) potential regulatory connection
+    (2) Potential regulatory connection (or base GRN):
         This method uses the list of potential regulatory TFs as input.
-        This information can be calculated from Atac-seq data using the motif-analysis module.
+        This information can be calculated from ATAC-seq data using the motif-analysis module.
         If sample-specific ATAC-seq data is not available,
-        you can use general TF-binding info made from public ATAC-seq dataset of various tissue/cell type.
+        you can use general TF-binding info derived from public ATAC-seq dataset of various tissue/cell type.
 
     Attributes:
-        linkList (pandas.DataFrame): the result of GRN inference.
-        all_genes (numpy.array): an array of all genes that exist in input gene expression matrix
-        embedding_name (str): the key name name in adata.obsm about dimensional reduction coordinates
-        annotation(dictionary): annotation. you can add an arbitrary annotation.
-        coefs_dict (dictionary): coefs of linear regression.
-        stats_dict (dictionary): statistic values about coefs.
-        fitted_genes (list of str): list of genes with which regression model was successfully calculated.
-        failed_genes (list of str): list of genes that were not able to get coefs
-        cellstate (pandas.DataFrame): metadata for GRN input
-        TFinfo (pandas.DataFrame): information about potential regulatory TFs.
-        gem (pandas.DataFrame): merged matrix made with gene_expression_matrix and cellstate matrix.
-        gem_standerdized (pandas.DataFrame): almost the same as gem, but the gene_expression_matrix was standardized.
-        library_last_update_date (str): last update date of this code (this info is for code development. it will be deleted in the future)
-        object_initiation_date (str): the date when this object is made.
+        linkList (pandas.DataFrame): The results of the GRN inference.
+        all_genes (numpy.array): An array of all genes that exist in the input gene expression matrix
+        embedding_name (str): The key name name in adata.obsm containing dimensional reduction coordinates
+        annotation(dictionary): Annotation. you can add custom annotation.
+        coefs_dict (dictionary): Coefs of linear regression.
+        stats_dict (dictionary): Statistic values about coefs.
+        fitted_genes (list of str): List of genes where the regression model was successfully calculated.
+        failed_genes (list of str): List of genes that were not assigned coefs
+        cellstate (pandas.DataFrame): A metadata for GRN input
+        TFinfo (pandas.DataFrame): Information about potential regulatory TFs.
+        gem (pandas.DataFrame): Merged matrix made with gene_expression_matrix and cellstate matrix.
+        gem_standerdized (pandas.DataFrame): Almost the same as gem, but the gene_expression_matrix was standardized.
+        library_last_update_date (str): Last update date of this code. This info is for code development. It can be deprecated in the future
+        object_initiation_date (str): The date when this object was made.
 
     '''
 
@@ -244,14 +244,14 @@ class Net():
 
     def fit_All_genes_parallel(self, bagging_number=200, scaling=True, log=None, verbose=10):
         """
-        !! This function has some bug now and currently unavailable.
+        IMPORTANT: this function being debugged and is currently unavailable.
 
         Make ML models for all genes.
         The calculation will be performed in parallel using joblib parallel module.
 
         Args:
             bagging_number (int): The number of estimators for bagging.
-            scaling (bool): Whether to scale regulatory gene expression values.
+            scaling (bool): Whether or not to scale regulatory gene expression values.
             log (logging object): log object to output log
             verbose (int): verbose for joblib parallel
         """
@@ -297,16 +297,16 @@ class Net():
         """
         Make ML models for all genes.
         The calculation will be performed in parallel using scikit-learn bagging function.
-        You can select a modeling method (bagging_ridge or bayesian_ridge).  The calculation usually takes a long time.
+        You can select a modeling method (bagging_ridge or bayesian_ridge).  This calculation usually takes a long time.
 
         Args:
             bagging_number (int): The number of estimators for bagging.
-            scaling (bool): Whether to scale regulatory gene expression values.
-            model_method (str): ML model name. "bagging_ridge" or "bayesian_ridge"
+            scaling (bool): Whether or not to scale regulatory gene expression values.
+            model_method (str): ML model name. Please select either "bagging_ridge" or "bayesian_ridge"
             command_line_mode (bool): Please select False if the calculation is performed on jupyter notebook.
             log (logging object): log object to output log
             alpha (int) : Strength of regularization.
-            verbose (bool): Whether to show a progress bar.
+            verbose (bool): Whether or not to show a progress bar.
         """
         self.fit_genes(target_genes=self.all_genes,
                        bagging_number=bagging_number,
@@ -322,19 +322,19 @@ class Net():
                   save_coefs=False, command_line_mode=False, log=None, alpha=1, verbose=True):
         """
         Make ML models for genes of interest.
-        The calculation will be performed in parallel using scikit-learn bagging function.
-        You can select a modeling method (bagging_ridge or bayesian_ridge).
+        This calculation will be performed in parallel using scikit-learn's bagging function.
+        You can select a modeling method; Please chose either bagging_ridge or bayesian_ridge.
 
         Args:
             target_genes (list of str): gene list
             bagging_number (int): The number of estimators for bagging.
-            scaling (bool): Whether to scale regulatory gene expression values.
-            model_method (str): ML model name. "bagging_ridge" or "bayesian_ridge"
-            save_coefs (bool): Whether to store details of coef values in bagging model.
+            scaling (bool): Whether or not to scale regulatory gene expression values.
+            model_method (str): ML model name. Please select either "bagging_ridge" or "bayesian_ridge"
+            save_coefs (bool): Whether or not to store details of coef values in bagging model.
             command_line_mode (bool): Please select False if the calculation is performed on jupyter notebook.
             log (logging object): log object to output log
             alpha (int) : Strength of regularization.
-            verbose (bool): Whether to show a progress bar.
+            verbose (bool): Whether or not to show a progress bar.
 
         """
         genes = np.array(intersect(target_genes, self.TFdict.keys()))
@@ -462,7 +462,7 @@ class Net():
 
         Args:
             target_gene (str): gene name
-            sort (bool): Whether to sort genes by its strength
+            sort (bool): Whether or not to sort genes by its strength
             bagging_number (int): The number of estimators for bagging.
             threshold_p (float): the threshold for p-values. TFs will be filtered based on the p-value.
                 if None, no filtering is applied.
@@ -494,11 +494,11 @@ class Net():
     # get linkList
     def updateLinkList(self, verbose=True):
         """
-        Update linkList.
-        LinkList is a data frame that store information about inferred GRN.
+        Update LinkList.
+        LinkList is a data frame that store information about inferred GRNs.
 
         Args:
-            verbose (bool): Whether to show a progress bar
+            verbose (bool): Whether or not to show a progress bar
 
         """
         if not self.fitted_genes: # if the sequence is empty

@@ -74,7 +74,7 @@ def intersect(list1, list2):
 
 def inverse_dictionary(dictionary, verbose=True, return_value_as_numpy=False):
     """
-    Make inversed dictionary.
+    Make inverse dictionary.
     See examples below for detail.
 
     Args:
@@ -138,7 +138,7 @@ def exec_process(commands, message=True, wait_finished=True, return_process=True
     Args:
         commands (str): command.
         message (bool): Whether to return a message or not.
-        wait_finished (bool): Whether to wait for the process finished. If False, the function finish immediately.
+        wait_finished (bool): Whether or not to wait for the process to finish. If false, the process will be perfomed in background and the function will finish immediately
         return_process (bool): Whether to return "process".
 
 
@@ -164,14 +164,14 @@ def exec_process(commands, message=True, wait_finished=True, return_process=True
 
 def standard(df):
     """
-    Standerdize value.
+    Standardize value.
 
     Args:
         df (padas.dataframe): dataframe.
 
     Returns:
-        pandas.dataframe: data after standerdization.
-        
+        pandas.dataframe: Data after standardization.
+
     """
     dt = df.copy()
     #dt = dt.astype("float64")

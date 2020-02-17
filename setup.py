@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 with open('README.md') as f:
     readme = f.read()
 
-with open('LICENSE.txt') as f:
+with open('LICENSE') as f:
     license = f.read()
 
 """with open('requirements.txt') as f:
@@ -14,7 +14,7 @@ with open('LICENSE.txt') as f:
 """
 setup(
     name='celloracle',
-    version='0.2.11',
+    version='0.3.0',
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
@@ -58,8 +58,8 @@ setup(
                       'genomepy==0.5.5',
                       'gimmemotifs>=0.13.1'],
     author='Kenji Kamimoto at Samantha Morris Lab',
-    author_email='test@desu',
-    url='https://',
+    author_email='kamimoto@wustl.edu',
+    url='https://github.com/morris-lab/CellOracle',
     license=license,
     package_data={"celloracle": ["go_analysis/data/*.txt", "go_analysis/data/*.obo",
                                  "data_conversion/*.R",

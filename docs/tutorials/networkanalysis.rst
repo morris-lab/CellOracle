@@ -3,13 +3,13 @@
 Network analysis
 ===========================
 
-``celloracle`` import scRNA-seq dataset and TF binding information to find active regulatory connections for all genes, generating sample-specific GRNs.
+``celloracle`` imports the scRNA-seq dataset and TF binding information to find active regulatory connections for all genes, generating sample-specific GRNs.
 
 The inferred GRN is analyzed with several network algorithms to get various network scores. The network score is useful to identify key regulatory genes.
 
-celloracle reconstructs GRN for each cluster enabling us to compare GRNs each other. It is also possible to analyze how the GRN change over differentiation.
-The dynamics of the GRN structure provide us insight into the
-context-dependent regulatory mechanism.
+Celloracle reconstructs a GRN for each cluster, enabling us to compare GRNs to each other. It is also possible to analyze how the GRN changes over differentiation.
+The dynamics of the GRN structure can provide us insight into the
+context-dependent regulatory mechanisms.
 
 Python notebook
 

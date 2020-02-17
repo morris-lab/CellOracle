@@ -30,8 +30,8 @@ from ..network_analysis import __path__ as parent_path
 
 def test_R_libraries_installation():
     """
-    CellOracle.network_analysis use some R libraries for network analysis.
-    This is a test function to check instalation of necessary R libraries.
+    CellOracle.network_analysis use several R libraries for network analysis.
+    This is a test function to check for instalation of the necessary R libraries.
     """
 
     r_libraries = ["igraph", "linkcomm", "rnetcarto"]#,"gProfileR"]

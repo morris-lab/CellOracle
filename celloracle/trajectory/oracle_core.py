@@ -39,32 +39,20 @@ def load_oracle(file_path):
 
 class Oracle(modified_VelocytoLoom):
     """
-    Oracle is the main class in CellOracle.
-    Oracle object imports scRNA-seq data (anndata) and TF information to infer cluster-specific GRNs.
-    It can predict future gene expression patterns and cell state transition after perturbations of TFs.
-    Please see the paper of CellOracle for details.
+    Oracle is the main class in CellOracle. Oracle object imports scRNA-seq data (anndata) and TF information to infer cluster-specific GRNs. It can predict the future gene expression patterns and cell state transitions in response to  the perturbation of TFs. Please see the CellOracle paper for details.
+    The code of the Oracle class was made of the three components below.
 
-    The code of the Oracle class was made of three components below.
+    (1) Anndata: Gene expression matrix and metadata from single-cell RNA-seq are stored in the anndata object. Processed values, such as normalized counts and simulated values, are stored as layers of anndata. Metadata (i.e., Cluster info) are saved in anndata.obs. Refer to scanpy/anndata documentation for detail.
 
-    (1) Anndata:  Gene expression matrix and metadata in single-cell RNA-seq are stored in anndata object.
-    Processed values, such as normalized counts and simulated values, are stored as layers of anndata.
-    Metadata (i.e., Cluster info) are saved in anndata.obs. Refer to scanpy/anndata documentation for detail.
+    (2) Net: Net is a custom class in celloracle. Net object processes several data to infer GRN. See the Net class documentation for details.
 
+    (3) VelycytoLoom: Calculation of transition probability and visualization of directed trajectory graph will be performed in the same way as velocytoloom. VelocytoLoom is class from Velocyto, a python library for RNA-velocity analysis. In celloracle, we use some functions in velocytoloom for the visualization.
 
-    (2) Net: Net is a custom class in celloracle.
-    Net object process several data to infer GRN.
-    See the documentation of Net class for detail.
-
-    (3) VelycytoLoom: Calculation of transition probability and visualization of directed trajectory graph will be performed in the same way as velocytoloom.
-    VelocytoLoom is class for the Velocyto, which is a python library for RNA-velocity analysis.
-    In the celloracle, we use almost the same functions as velocytoloom for the visualization, but celloracle use simulated gene expression values instead of RNA-velocity data.
-
-    Some CellOracle's methods were inspired by velocyto analysis and some codes were made by modifying VelocytoLoom class.
 
     Attributes:
         adata (anndata): Imported anndata object
-        cluster_column_name (str): The column name in adata.obs about cluster info
-        embedding_name (str): The key name in adata.obsm about dimensional reduction cordinates
+        cluster_column_name (str): The column name in adata.obs containing cluster info
+        embedding_name (str): The key name in adata.obsm containing dimensional reduction cordinates
 
     """
 
@@ -113,7 +101,7 @@ class Oracle(modified_VelocytoLoom):
         """
         Load data about potential-regulatory TFs.
         You can import either TF_info_matrix or TFdict.
-        See the tutorial of celloracle or motif_analysis module for an example to make such files.
+        For more information on how to make these files, please see the motif analysis module within the celloracle tutorial.
 
         Args:
             TF_info_matrix (pandas.DataFrame): TF_info_matrix.
@@ -140,7 +128,7 @@ class Oracle(modified_VelocytoLoom):
     def updateTFinfo_dictionary(self, TFdict):
         """
         Update a TF dictionary.
-        If a key in the new TF dictionary already existed in the old TF dictionary, old values will be replaced with a new one.
+        If a key in the new TF dictionary already exists in the old TF dictionary, old values will be replaced with a new one.
 
         Args:
             TFdict (dictionary): Python dictionary of TF info.
@@ -183,18 +171,18 @@ class Oracle(modified_VelocytoLoom):
     def import_anndata_as_raw_count(self, adata, cluster_column_name=None, embedding_name=None,
                                     transform="natural_log"):
         """
-        Load scRNA-seq data. scRNA-seq data should be prepared as an anndata.
-        Preprocessing (cell and gene filtering, calculate DR and cluster, etc.) should be done before loading data.
+        Load scRNA-seq data. scRNA-seq data should be prepared as an anndata object.
+        Preprocessing (cell and gene filtering, dimensional reduction, clustering, etc.) should be done before loading data.
         The method imports RAW GENE COUNTS because unscaled and uncentered gene expression data are required for the GRN inference and simulation.
         See tutorial notebook for the details about how to process scRNA-seq data.
 
         Args:
             adata (anndata): anndata object that stores scRNA-seq data.
 
-            cluster_column_name (str): the column name about cluster info in anndata.obs.
-                Clustering data suppose to be in anndata.obs.
+            cluster_column_name (str): the name of column containing cluster information in anndata.obs.
+                Clustering data should be in anndata.obs.
 
-            embedding_name (str): the key name about a dimensional reduction in anndata.obsm.
+            embedding_name (str): the key name for dimensional reduction information in anndata.obsm.
                 Dimensional reduction (or 2D trajectory graph) should be in anndata.obsm.
 
             transform (str): The method for log-transformation. Chose one from "natural_log" or "log2".
@@ -241,18 +229,18 @@ class Oracle(modified_VelocytoLoom):
 
     def import_anndata_as_normalized_count(self, adata, cluster_column_name=None, embedding_name=None):
         """
-        Load scRNA-seq data. scRNA-seq data should be prepared as an anndata.
-        Preprocessing (cell and gene filtering, calculate DR and cluster, etc.) should be done before loading data.
-        The method will import NORMALIZED and LOG TRANSFORMED but NOT SCALED and NOT CENTERED DATA.
-        See the tutorial for the details for an example of how to process scRNA-seq data.
+        Load scRNA-seq data. scRNA-seq data should be prepared as an anndata object.
+        Preprocessing (cell and gene filtering, dimensional reduction, clustering, etc.) should be done before loading data.
+        The method will import NORMALIZED and LOG TRANSFORMED data but NOT SCALED and NOT CENTERED data.
+        See the tutorial for more details on how to process scRNA-seq data.
 
         Args:
-            adata (anndata): anndata object that store scRNA-seq data.
+            adata (anndata): anndata object containing scRNA-seq data.
 
-            cluster_column_name (str): the column name about cluster info in anndata.obs.
-                Clustering data suppose to be in anndata.obs.
+            cluster_column_name (str): the name of column containing cluster information in anndata.obs.
+                Clustering data should be in anndata.obs.
 
-            embedding_name (str): the key name about a dimensional reduction in anndata.obsm.
+            embedding_name (str): the key name for dimensional reduction information in anndata.obsm.
                 Dimensional reduction (or 2D trajectory graph) should be in anndata.obsm.
 
             transform (str): The method for log-transformation. Chose one from "natural_log" or "log2".
@@ -296,20 +284,20 @@ class Oracle(modified_VelocytoLoom):
     def fit_GRN_for_simulation(self, GRN_unit="cluster", alpha=1, use_cluster_specific_TFdict=False):
         """
         Do GRN inference.
-        Please see the paper of CellOracle for details.
+        Please see the paper of CellOracle paper for details.
 
-        GRN can be constructed at an arbitrary cell group.
+        GRN can be constructed for the entire population or each clusters.
         If you want to infer cluster-specific GRN, please set [GRN_unit="cluster"].
-        GRN will be inferred for each cluster. You can select Cluster information when you import data (not when you run this method.).
+        You can select cluster information when you import data.
 
         If you set [GRN_unit="whole"], GRN will be made using all cells.
 
         Args:
-            GRN_unit (str): select "cluster" or "whole"
+            GRN_unit (str): Select "cluster" or "whole"
 
-            alpha (float or int): the strength of regularization.
-                If you set a lower value, the sensitivity increase, and you can detect a weak network connection, but it might get more noize.
-                With a higher value of alpha may reduce the chance of overfitting.
+            alpha (float or int): The strength of regularization.
+                If you set a lower value, the sensitivity increases, and you can detect weaker network connections. However, there may be more noise.
+                If you select a higher value, it will reduce the chance of overfitting.
         """
         # prepare data for GRN calculation
         gem_imputed = _adata_to_df(self.adata, "imputed_count")
@@ -321,7 +309,7 @@ class Oracle(modified_VelocytoLoom):
             self.coef_matrix_per_cluster = {}
             cluster_info = self.adata.obs[self.cluster_column_name]
 
-            print(f"calculating GRN using cluster specicif TF dict...")
+            print(f"fitting GRN again...")
             for cluster in np.unique(cluster_info):
                 print(f"calculating GRN in {cluster}")
                 cells_in_the_cluster_bool = (cluster_info == cluster)
@@ -354,26 +342,26 @@ class Oracle(modified_VelocytoLoom):
     def simulate_shift(self, perturb_condition=None, GRN_unit="cluster",
                        n_propagation=3, ignore_warning=False):
         """
-        Simulate signal propagation with GRNs. Please see the paper of CellOracle for details.
+        Simulate signal propagation with GRNs. Please see the CellOracle paper for details.
         This function simulates a gene expression pattern in the near future.
         Simulated values will be stored in anndata.layers: ["simulated_count"]
 
 
-        Three data below are used for the simulation.
+        The simulation use three types of data.
         (1) GRN inference results (coef_matrix).
-        (2) perturb_condition: You can set arbitrary perturbation condition.
-        (3) gene expression matrix: simulation starts from imputed gene expression data.
+        (2) Perturb_condition: You can set arbitrary perturbation condition.
+        (3) Gene expression matrix: The simulation starts from imputed gene expression data.
 
         Args:
             perturb_condition (dictionary): condition for perturbation.
                if you want to simulate knockout for GeneX, please set [perturb_condition={"GeneX": 0.0}]
-               Although you can set any non-negative values for the gene condition, avoid setting biologically unfeasible values for the perturb condition.
-               It is strongly recommended to check actual gene expression values in your data before selecting perturb condition.
+               Although you can set any non-negative values for the gene condition, avoid setting biologically infeasible values for the perturb condition.
+               It is strongly recommended to check gene expression values in your data before selecting the perturb condition.
 
             GRN_unit (str): GRN type. Please select either "whole" or "cluster". See the documentation of "fit_GRN_for_simulation" for the detailed explanation.
 
             n_propagation (int): Calculation will be performed iteratively to simulate signal propagation in GRN.
-                you can set the number of steps for this calculation.
+                You can set the number of steps for this calculation.
                 With a higher number, the results may recapitulate signal propagation for many genes.
                 However, a higher number of propagation may cause more error/noise.
         """
@@ -495,14 +483,14 @@ class Oracle(modified_VelocytoLoom):
 
     def run_markov_chain_simulation(self, n_steps=500, n_duplication=5, seed=123):
         """
-        Do Markov simlation to predict cell transition after perturbation.
+        Do Markov simlations to predict cell transition after perturbation.
         The transition probability between cells has been calculated
         based on simulated gene expression values in the signal propagation process.
         The cell state transition will be simulated based on the probability.
-        You can simulate the process for multiple times to get a robust outcome.
+        You can simulate the process multiple times to get a robust outcome.
 
         Args:
-            n_steps (int): steps for Markov simulation. This value is equivalent to the time after perturbation.
+            n_steps (int): steps for Markov simulation. This value is equivalent to the amount of time after perturbation.
 
             n_duplication (int): the number for multiple calculations.
 
@@ -547,16 +535,16 @@ class Oracle(modified_VelocytoLoom):
 
         Args:
             cluster_use (str): cluster information name in anndata.obs.
-               You can use any arbitrary cluster information in anndata.obs.
+               You can use any cluster information in anndata.obs.
 
             start (int): The starting point of Sankey-diagram. Please select a  step in the Markov simulation.
 
             end (int): The end point of Sankey-diagram. Please select a  step in the Markov simulation.
                 if you set [end=-1], the final step of Markov simulation will be used.
 
-            order (list of str): The order of cluster name in sankey-diagram.
+            order (list of str): The order of cluster name in the Sankey-diagram.
 
-            font_size (int): Font size for cluster name label in Sankey diagram.
+            font_size (int): Font size for cluster name label in the Sankey diagram.
 
         """
         mcmc_transition_cluster = self.summarize_mc_results_by_cluster(cluster_use)
@@ -588,7 +576,7 @@ class Oracle(modified_VelocytoLoom):
             n_time (int): the number in Markov simulation
 
             args (dictionary): An argument for seaborn.kdeplot.
-                See seaborn documentation for detail (https://seaborn.pydata.org/generated/seaborn.kdeplot.html#seaborn.kdeplot).
+                See seaborn documentation for details (https://seaborn.pydata.org/generated/seaborn.kdeplot.html#seaborn.kdeplot).
 
         """
         cell_ix = self.mcmc_transition_id.iloc[:, n_time].values
@@ -606,10 +594,10 @@ class Oracle(modified_VelocytoLoom):
         Args:
             cell_name (str): cell name. chose from adata.obs.index
 
-            time_range (list of int): the number in markov simulation
+            time_range (list of int): the list of index in Markov simulation
 
             args (dictionary): dictionary for the arguments for matplotlib.pyplit.plot.
-                See matplotlib documentation for detail (https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot).
+                See matplotlib documentation for details (https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot).
 
         """
         cell_ix = np.where(self.adata.obs.index == cell_name)[0][0]
@@ -635,17 +623,17 @@ class Oracle(modified_VelocytoLoom):
     ###################################################
     def get_links(self, cluster_name_for_GRN_unit=None, alpha=10, bagging_number=20, verbose_level=1, test_mode=False):
         """
-        Make GRN for each cluster and returns results as a Links object.
+        Makes GRN for each cluster and returns results as a Links object.
         Several preprocessing should be done before using this function.
 
         Args:
             cluster_name_for_GRN_unit (str): Cluster name for GRN calculation. The cluster information should be stored in Oracle.adata.obs.
 
-            alpha (float or int): the strength of regularization.
-                If you set a lower value, the sensitivity increase, and you can detect a weak network connection, but it might get more noize.
-                With a higher value of alpha may reduce the chance of overfitting.
+            alpha (float or int): The strength of regularization.
+                If you set a lower value, the sensitivity increases, and you can detect weaker network connections. However, there may be more noise.
+                If you select a higher value, it will reduce the chance of overfitting.
 
-            bagging_number (int): The number for bagging calculation.
+            bagging_number (int): The number used in bagging calculation.
 
 
             verbose_level (int): if [verbose_level>1], most detailed progress information will be shown.

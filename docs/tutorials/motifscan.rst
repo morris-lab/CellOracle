@@ -5,9 +5,9 @@ Transcription factor binding motif scan
 
 
 
-We identified open-accessible Promoter/enhancer DNAs using ATAC-seq data.
-Next, we scan the regulatory genomic sequence searching for the TF-binding motifs to get the list of TFs for each target gene.
-In the later GRN inference process, this TF list per target gene will be used as a potential regulatory connection.
+We identified accessible Promoter/enhancer DNA regions using ATAC-seq data.
+Next, we will obtain a list of TFs for each target gene by scanning the regulatory genomic sequences for TF-binding motifs.
+In the later GRN inference process, this list will be used to define potential regulatory connections.
 
 Python notebook
 

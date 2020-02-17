@@ -108,16 +108,16 @@ class Links():
         """
 
         Filter network edges.
-        In most case inferred GRN has non-significant random edges.
-        We have to remove such random edges before analyzing network structure.
-        You can do the filtering either of three ways below.
+        In most cases, inferred GRN has non-significant random edges.
+        We have to remove these edges before analyzing the network structure.
+        You can do the filtering in any of the following ways.
 
-        (1) Do filtering based on the p-value of the network edge.
+        (1) Filter based on the p-value of the network edge.
             Please enter p-value for thresholding.
-        (2) Do filtering based on network edge number.
+        (2) Filter based on network edge number.
             If you set the number, network edges will be filtered based on the order of a network score. The top n-th network edges with network weight will remain, and the other edges will be removed.
-            The network data have several types of network weight, so you have to select which network weight do you want to use.
-        (3) Do filtering based on an arbitrary gene list. You can set a gene list for source nodes or target nodes.
+            The network data has several types of network weight, so you have to select which network weight do you want to use.
+        (3) Filter based on an arbitrary gene list. You can set a gene list for source nodes or target nodes.
 
         Args:
             p (float): threshold for p-value of the network edge.
@@ -139,7 +139,7 @@ class Links():
     def get_score(self, test_mode=False):
         """
         Get several network sores using R libraries.
-        Make sure all dependant R libraries are installed in your environment before running this function.
+        Make sure all dependent R libraries are installed in your environment before running this function.
         You can check the installation for the R libraries by running test_installation() in network_analysis module.
         """
 
@@ -162,7 +162,6 @@ class Links():
     def get_network_entropy(self, value="coef_abs"):
         """
         Calculate network entropy scores.
-        Please select a type of network weight for the entropy calculation.
 
         Args:
             value (str): Default is "coef_abs".
@@ -182,11 +181,11 @@ class Links():
     #####################################################
     def plot_degree_distributions(self, plot_model=False, save=None):
         """
-        Plot the distribution of network degree (the number of edge per gene).
+        Plot the network degree distributions (the number of edge per gene).
         The network degree will be visualized in both linear scale and log scale.
 
         Args:
-            links (Links): See network_analisis.Links class for detail.
+            links (Links): See network_analysis.Links class for detail.
             plot_model (bool): Whether to plot linear approximation line.
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
@@ -198,12 +197,12 @@ class Links():
     def plot_score_discributions(self, values=None, method="boxplot", save=None):
         """
         Plot the distribution of network scores.
-        An individual data point is a network edge (gene) of GRN in each cluster.
+        An individual data point is a network edge (gene).
 
         Args:
-            links (Links): See Links class for detail.
-            values (list of str): The list of score to visualize. If it is None, all network score will be used.
-            method (str): Plotting method. Select either of "boxplot" or "barplot".
+            links (Links): See Links class for details.
+            values (list of str): The list of score to visualize. If it is None, all of the network score will be used.
+            method (str): Plotting method. Select either "boxplot" or "barplot".
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
@@ -211,11 +210,11 @@ class Links():
 
     def plot_network_entropy_distributions(self, update_network_entropy=False, save=None):
         """
-        Plot the distribution of network entropy.
-        See the CellOracle paper for the detail.
+        Plot the distribution for network entropy.
+        See the CellOracle paper for more detail.
 
         Args:
-            links (Links object): See network_analisis.Links class for detail.
+            links (Links object): See network_analysis.Links class for detail.
             values (list of str): The list of score to visualize. If it is None, all network score (listed above) will be used.
             update_network_entropy (bool): Whether to recalculate network entropy.
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
@@ -232,8 +231,8 @@ class Links():
         Pick up top n-th genes wich high-network scores and make plots.
 
         Args:
-            links (Links): See network_analisis.Links class for detail.
-            cluster (str): Cluster nome to analyze.
+            links (Links): See network_analysis.Links class for detail.
+            cluster (str): Cluster name to analyze.
             n_gene (int): Number of genes to plot. Default is 50.
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
@@ -242,13 +241,13 @@ class Links():
 
     def plot_score_comparison_2D(self, value, cluster1, cluster2, percentile=99, annot_shifts=None, save=None):
         """
-        Make a scatter plot that shows the relationship of a specific network score in two groups.
+        Make a scatter plot that compares specific network scores in two groups.
 
         Args:
-            links (Links): See network_analisis.Links class for detail.
+            links (Links): See network_analysis.Links class for detail.
             value (srt): The network score type.
-            cluster1 (str): Cluster name. Network scores in the cluster1 will be visualized in the x-axis.
-            cluster2 (str): Cluster name. Network scores in the cluster2 will be visualized in the y-axis.
+            cluster1 (str): Cluster name. Network scores in cluster1 will be visualized in the x-axis.
+            cluster2 (str): Cluster name. Network scores in cluster2 will be visualized in the y-axis.
             percentile (float): Genes with a network score above the percentile will be shown with annotation. Default is 99.
             annot_shifts ((float, float)): Annotation visualization setting.
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
@@ -260,10 +259,10 @@ class Links():
     def plot_score_per_cluster(self, goi, save=None):
         """
         Plot network score for a gene.
-        This function visualizes the network score of a specific gene between clusters to get an insight into the dynamics of the gene.
+        This function visualizes the network score for a specific gene between clusters to get an insight into the dynamics of the gene.
 
         Args:
-            links (Links): See network_analisis.Links class for detail.
+            links (Links): See network_analysis.Links class for detail.
             goi (srt): Gene name.
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
@@ -276,13 +275,13 @@ class Links():
                                              args_dot={"n_levels": 105}, args_line={"c":"gray"},
                                              args_annot={}, save=None):
         """
-        Make a plot of gene network cartography.
-        Please read the original paper of gene network cartography for the principle of gene network cartography.
+        Make a gene network cartography plot.
+        Please read the original paper describing gene network cartography for more information.
         https://www.nature.com/articles/nature03288
 
         Args:
-            links (Links): See network_analisis.Links class for detail.
-            gois (list of srt): List of Gene name to highlight.
+            links (Links): See network_analysis.Links class for detail.
+            gois (list of srt): List of gene name to highlight.
             clusters (list of str): List of cluster name to analyze. If None, all clusters in Links object will be analyzed.
             scatter (bool): Whether to make a scatter plot.
             auto_gene_annot (bool): Whether to pick up genes to make an annotation.
@@ -302,13 +301,13 @@ class Links():
 
     def plot_cartography_term(self, goi, save=None):
         """
-        Plot the summary of gene network cartography like a heatmap.
+        Plot the gene network cartography term like a heatmap.
         Please read the original paper of gene network cartography for the principle of gene network cartography.
         https://www.nature.com/articles/nature03288
 
         Args:
-            links (Links): See network_analisis.Links class for detail.
-            gois (list of srt): List of Gene name to highlight.
+            links (Links): See network_analysis.Links class for detail.
+            gois (list of srt): List of gene name to highlight.
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """

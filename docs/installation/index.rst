@@ -44,7 +44,7 @@ This step is optional. Please make a new python environment for celloracle and i
 
 1. Add conda channels
 ^^^^^^^^^^^^^^^^^^^^^
-Installation of some libraries below requires non-default anaconda channels. Please add the channels below. Instead, you can explicitly enter the channel when you install a library.
+Installation of some libraries requires non-default anaconda channels. Please add the channels below. Instead, you can explicitly enter the channel when you install a library.
 
 ::
 
@@ -56,7 +56,7 @@ Installation of some libraries below requires non-default anaconda channels. Ple
 2. Install `velocyto <http://velocyto.org/velocyto.py/install/index.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Please install velocyto with the following commands or `the author's instruction <http://velocyto.org/velocyto.py/install/index.html>`_ .
-On Mac OS, you may have a compile error during velocyto installation. I recommend you installing `Xcode <https://developer.apple.com/xcode/>`_ in that case.
+On Mac OS, you may have a compile error during velocyto installation. I recommend installing `Xcode <https://developer.apple.com/xcode/>`_ in that case.
 
 
 ::
@@ -75,7 +75,7 @@ Please install scanpy with the following commands or `the author's instruction <
 
 ::
 
-    conda install seaborn scikit-learn statsmodels numba pytables python-igraph louvain
+    conda install seaborn statsmodels numba pytables python-igraph louvain
 
 Then
 
@@ -113,7 +113,7 @@ Please install other python libraries below with the following commands.
 R requirements
 --------------
 
-``celloracle`` use R library for the network analysis and scATAC-seq analysis.
+``celloracle`` use R libraries for the network analysis and scATAC-seq analysis.
 Please install `R <https://www.r-project.org>`_ (>=3.5) and R libraries below according to the author's instruction.
 
 `Seurat <https://satijalab.org/seurat/install.html>`_
@@ -122,7 +122,7 @@ Please install ``Seurat`` with the following r-script or `the author's instructi
 ``celloracle`` is compatible with both Seurat V2 and V3.
 If you use only ``scanpy`` for the scRNA-seq preprocessing and do not use ``Seurat`` , you can skip installation of ``Seurat``.
 
-in R console,
+In R console,
 
 .. code-block:: r
 
@@ -131,21 +131,21 @@ in R console,
 `Cicero <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Please install ``Cicero`` with the following r-script or `the author's instruction <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_ .
-If you have no plan for scATAC-seq analysis and just want to use  ``celloracle`` with a default TF information which was supplied with celloracle, you can skip installation of ``Cicero``.
+If you do not have scATAC-seq data and plan to use celloracle's base GRN, you do not need to install ``Cicero``.
 
-in R console,
+In R console,
 
 .. code-block:: r
 
    if (!requireNamespace("BiocManager", quietly = TRUE))
    install.packages("BiocManager")
-   BiocManager::install("cicero", version = "3.8")
+   BiocManager::install("cicero")
 
 `igraph <https://igraph.org/r/>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Please install ``igraph`` with the following r-script or `the author's instruction <https://igraph.org/r/>`_ .
 
-in R console,
+In R console,
 
 .. code-block:: r
 
@@ -156,7 +156,7 @@ in R console,
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Please install ``linkcomm`` with the following r-script or `the author's instruction <https://cran.r-project.org/web/packages/linkcomm/index.html>`_ .
 
-in R console,
+In R console,
 
 .. code-block:: r
 
@@ -164,15 +164,21 @@ in R console,
 
 `rnetcarto <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-``rnetcarto`` installation has to be done with several steps. Please install rnetcarto with `the author's instruction <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_ .
-You need to install `the GNU Scientific Libraries <https://www.gnu.org/software/gsl/>`_ before installing rnetcarto. Detailed instruction can be found `here <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_ .
+Please install ``rnetcarto`` with the following r-script or `the author's instruction <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_ .
+
+In R console,
+
+.. code-block:: r
+
+   install.packages("rnetcarto")
+
 
 
 Check installation
 ^^^^^^^^^^^^^^^^^^
 These R libraries above are necessary for the network analysis in celloracle. You can check installation using celloracle's function.
 
-in python console,
+In python console,
 
 .. code-block:: Python
 

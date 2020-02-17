@@ -117,16 +117,16 @@ class TFinfo():
     This is a custom class for motif analysis in celloracle.
     TFinfo object performs motif scan using the TF motif database in gimmemotifs and several functions of genomepy.
     Analysis results can be exported as a python dictionary or dataframe.
-    These files; python dictionary of dataframe of TF binding information, are needed in GRN inference.
+    These files; python dictionary of dataframe of TF binding information, are needed during GRN inference.
 
     Attributes:
         peak_df (pandas.dataframe): dataframe about DNA peak and target gene data.
         all_target_gene (array of str): target genes.
         ref_genome (str): reference genome name that was used in DNA peak generation.
         scanned_df (dictionary): Results of motif scan. Key is a peak name. Value is a dataframe of motif scan.
-        dic_targetgene2TFs (dictionary): Final product of Motif scan. Key is a target gene. Value is a list of regulatory candidate genes.
+        dic_targetgene2TFs (dictionary): Final product of motif scan. Key is a target gene. Value is a list of regulatory candidate genes.
         dic_peak2Targetgene (dictionary): Dictionary. Key is a peak name. Value is a list of the target gene.
-        dic_TF2targetgenes (dictionary): Final product of Motif scan. Key is a TF. Value is a list of potential target genes of the TF.
+        dic_TF2targetgenes (dictionary): Final product of motif scan. Key is a TF. Value is a list of potential target genes of the TF.
 
     """
 
@@ -281,7 +281,7 @@ class TFinfo():
     def reset_dictionary_and_df(self):
         """
         Reset TF dictionary and TF dataframe.
-        The following attributes will be erased; TF_onehot, dic_targetgene2TFs, dic_peak2Targetgene, dic_TF2targetgenes.
+        The following attributes will be erased: TF_onehot, dic_targetgene2TFs, dic_peak2Targetgene, dic_TF2targetgenes.
 
         """
         self.TF_onehot = None
@@ -293,7 +293,7 @@ class TFinfo():
         """
         Reset filtering information.
         You can use this function to stat over the filtering step with new conditions.
-        The following attributes will be erased; TF_onehot, dic_targetgene2TFs, dic_peak2Targetgene, dic_TF2targetgenes.
+        The following attributes will be erased: TF_onehot, dic_targetgene2TFs, dic_peak2Targetgene, dic_TF2targetgenes.
 
         """
         self.scanned_filtered = None

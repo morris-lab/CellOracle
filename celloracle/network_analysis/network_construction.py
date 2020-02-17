@@ -46,11 +46,11 @@ def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_n
 
         cluster_name_for_GRN_unit (str): Cluster name for GRN calculation. The cluster information should be stored in Oracle.adata.obs.
 
-        alpha (float or int): the strength of regularization.
-            If you set a lower value, the sensitivity increase, and you can detect a weak network connection, but it might get more noize.
-            With a higher value of alpha may reduce the chance of overfitting.
+        alpha (float or int): The strength of regularization.
+            If you set a lower value, the sensitivity increases, and you can detect weaker network connections. However, there may be more noise.
+            If you select a higher value, it will reduce the chance of overfitting.
 
-        bagging_number (int): The number for bagging calculation.
+        bagging_number (int): The number used in bagging calculation.
 
 
         verbose_level (int): if [verbose_level>1], most detailed progress information will be shown.

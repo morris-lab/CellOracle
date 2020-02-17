@@ -3,19 +3,19 @@
 ATAC-seq data preprocessing
 ===========================
 
-In this step, we process scATAC-seq data (or bulk ATAC-seq data) to get open accessible promoter/enhancer DNA sequence.
-We can get active proximal promoter/enhancer genome sequence by picking up ATAC-seq peaks that exist around the transcription starting site (TSS).
+In this step, we process scATAC-seq data (or bulk ATAC-seq data) to obtain the accessible promoter/enhancer DNA sequence.
+We can get the active proximal promoter/enhancer genome sequences by picking up the ATAC-seq peaks that exist around the transcription starting site (TSS).
 Distal cis-regulatory elements can be picked up using  `Cicero <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_ .
 Cicero analyzes scATAC-seq data to calculate a co-accessible score between peaks.
-We can identify cis-regulatory elements using Cicero co-access score and TSS information.
+We can identify cis-regulatory elements using Cicero's co-access score and TSS information.
 
-If you have bulk ATAC-seq data instead of scATAC-data, we'll get only proximal promoter/enhancer genome sequence.
+If you have bulk ATAC-seq data instead of scATAC-data, we'll get only the proximal promoter/enhancer genome sequences.
 
 
 
 A. Extract TF binding information from scATAC-seq data
 ----------------------------------------------------
-If you have a scATAC-seq data, you can get information of distal cis-regulatory elements.
+If you have scATAC-seq data, you can get information on the distal cis-regulatory elements.
 This step uses Cicero and does not use celloracle. Please refer to `the documentation of Cicero <https://cole-trapnell-lab.github.io/cicero-release/>`_ for the detailed usage.
 
 R notebook
@@ -36,7 +36,7 @@ Python notebook
 
 B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data
 --------------------------------------------------------------------------
-Bulk DNA-seq data can be used to get open accessible promoter/enhancer sequence.
+Bulk DNA-seq data can be used to get the accessible promoter/enhancer sequences.
 
 Python notebook
 

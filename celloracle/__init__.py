@@ -25,7 +25,7 @@ warnings.filterwarnings('always', category=DeprecationWarning,
                         module=r'^{0}\.'.format(re.escape(__name__)))
 
 
-__version__ = '0.2.11'
+__version__ = '0.3.0'
 
 __all__ = ["utility", "motif_analysis", "network", "network_analysis",
            "go_analysis", "data", "data_conversion",

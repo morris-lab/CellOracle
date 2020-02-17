@@ -39,7 +39,7 @@ from .tss_annotation import get_tss_info
 def integrate_tss_peak_with_cicero(tss_peak, cicero_connections):
     """
     Process output of cicero data and returns DNA peak information for motif analysis in celloracle.
-    Please see the tutorial of celloracle documentation.
+    Please see the celloracle tutorial for more information.
 
     Args:
         tss_peak (pandas.dataframe): dataframe about TSS information. Please use the function, "get_tss_info" to get this dataframe.

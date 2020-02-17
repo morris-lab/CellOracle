@@ -39,7 +39,7 @@ def transfer_scores_from_links_to_adata(adata, links, method="median"):
     Args:
         adata (anndata): anndata
 
-        links (Links): likns object
+        links (Links): Likns object
 
         method (str): The method to summarize data.
     """
