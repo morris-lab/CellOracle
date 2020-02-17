@@ -9,7 +9,9 @@ CellOracle documentation is available through the links below.
 
 [Web documentation](https://morris-lab.github.io/CellOracle.documentation/)
 
-[Pdf documentation](attach:README.md)
+[Pdf documentation](attach:https://github.com/morris-lab/CellOracle/tree/master/docs/celloracle.pdf)
+
+<a id="raw-url" href="https://github.com/morris-lab/CellOracle/tree/master/docs/celloracle.pdf">Download FILE</a>
 
 
 ### Questions and errors
