@@ -3,12 +3,15 @@
 Single-cell RNA-seq data preprocessing
 ======================================
 
+
 Network analysis and simulation in celloracle will be performed using scRNA-seq data. The scRNA-seq data should include the components below.
+
  - Gene expression matrix; mRNA counts before scaling and transformation.
  - Clustering results.
  - Dimensional reduction results.
 
 In addition to these minimum requirements, we highly recommend doing these analyses below in the preprocessing step.
+
  - Data quality check and cell/gene filtering.
  - Normalization
  - Identification of highly variable genes
