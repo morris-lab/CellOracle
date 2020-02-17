@@ -19,7 +19,7 @@ System Requirements
 - We found that the celloracle calculation may be EXTREMELY SLOW under an environment of Windows Subsystem for Linux (WSL). We do not recommend using WSL.
 - While you can install ``celloracle`` in Windows OS, please do so at your own risk and responsibility. We DO NOT provide any support for the use in the Windows OS.
 
-- Memory: 8 G byte or more.  Memory usage also depends on your scRNA-seq data. Especially in silico simulation requires large amount of memory.
+- Memory: 8 G byte or more.  Memory usage also depends on your scRNA-seq data. Especially in silico perturbation requires large amount of memory.
 - CPU: Core i5 or better processor. GRN inference supports multicore calculation. Higer number of CPU cores enables faster calculation.
 
 
