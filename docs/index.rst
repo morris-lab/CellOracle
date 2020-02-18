@@ -8,7 +8,9 @@ Welcome to celloracle's documentation!
 
 CellOracle is a python library for the analysis of Gene Regulatory Network with single cell data.
 
-Source code are available at `celloracle  GitHub repository <https://github.com/morris-lab/CellOracle>`_
+Source code is available at `celloracle  GitHub repository <https://github.com/morris-lab/CellOracle>`_
+
+For more information, please read our bioarxiv preprint: `CellOracle: Dissecting cell identity via network inference and in silico gene perturbation <https://www.biorxiv.org/content/10.1101/2020.02.17.947416v1>`_
 
 
 .. note::
@@ -19,7 +21,7 @@ Source code are available at `celloracle  GitHub repository <https://github.com/
 
 
 .. warning::
-   CellOracle is still under development. It is alpha version and functions in this package may change in the future release.
+   CellOracle is still under development. It is beta version and functions in this package may change in the future release.
 
 
 Contents
