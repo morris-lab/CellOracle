@@ -49,7 +49,7 @@ Contents
 
 .. toctree::
 
-   changelog
+   changelog/index
 
 .. toctree::
 
