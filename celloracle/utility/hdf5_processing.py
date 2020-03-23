@@ -6,7 +6,7 @@ import os
 from typing import *
 
 
-def _obj2uint(obj: object, compression: int=9, protocol: int=2) -> np.ndarray:
+def _obj2uint(obj: object, compression: int=9, protocol: int=4) -> np.ndarray:
     """Transform a python object in a numpy array of uint8
 
     Arguments
@@ -43,7 +43,7 @@ def _uint2obj(uint: np.ndarray) -> object:
 
 def dump_hdf5(obj: object, filename: str,
               data_compression: int=7, chunks: Tuple =(2048, 2048),
-              noarray_compression: int=9, pickle_protocol: int=2) -> None:
+              noarray_compression: int=9, pickle_protocol: int=4) -> None:
     """Dump all attribute of a python object to hdf5
 
     Arguments
