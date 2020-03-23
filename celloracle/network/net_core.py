@@ -600,7 +600,7 @@ class Net():
         compression_opts = 7
         dump_hdf5(obj=self, filename=file_path,
                   data_compression=compression_opts,  chunks=(2048, 2048),
-                  noarray_compression=compression_opts, pickle_protocol=2)
+                  noarray_compression=compression_opts, pickle_protocol=4)
 
 ####################################################
 ### 2. Define functions for transNet calculation ###
