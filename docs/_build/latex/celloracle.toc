@@ -79,74 +79,74 @@
 \contentsline {subsection}{\numberline {1.2.4}Network analysis}{33}{subsection.1.2.4}
 \contentsline {subsubsection}{0. Import libraries}{33}{subsubsection*.70}
 \contentsline {paragraph}{0.1. Check installation}{33}{paragraph*.71}
-\contentsline {paragraph}{0.2. Make a folder to save graph}{34}{paragraph*.72}
+\contentsline {paragraph}{0.2. Make a folder to save graph}{33}{paragraph*.72}
 \contentsline {subsubsection}{1. Load data}{34}{subsubsection*.73}
 \contentsline {paragraph}{1.1. Load processed gene expression data (anndata)}{34}{paragraph*.74}
 \contentsline {paragraph}{1.2. Load TF data.}{34}{paragraph*.75}
-\contentsline {subsubsection}{2. Initiate Oracle object}{35}{subsubsection*.76}
+\contentsline {subsubsection}{2. Initiate Oracle object}{34}{subsubsection*.76}
 \contentsline {paragraph}{2.1. load gene expression data into oracle object.}{35}{paragraph*.77}
 \contentsline {paragraph}{2.2. Load TFinfo into oracle object}{35}{paragraph*.78}
 \contentsline {paragraph}{2.3. (Optional) Add TF info manually}{35}{paragraph*.79}
-\contentsline {subparagraph}{2.3.1. Make TF info dictionary manually}{36}{subparagraph*.80}
+\contentsline {subparagraph}{2.3.1. Make TF info dictionary manually}{35}{subparagraph*.80}
 \contentsline {subparagraph}{2.3.2. Add TF informatio dictionary into the oracle object}{36}{subparagraph*.81}
 \contentsline {subsubsection}{3. Knn imputation}{36}{subsubsection*.82}
-\contentsline {paragraph}{3.1. PCA}{37}{paragraph*.83}
+\contentsline {paragraph}{3.1. PCA}{36}{paragraph*.83}
 \contentsline {paragraph}{3.2. KNN imputation}{37}{paragraph*.84}
 \contentsline {subsubsection}{4. Save and Load.}{37}{subsubsection*.85}
 \contentsline {subsubsection}{4. GRN calculation}{38}{subsubsection*.86}
-\contentsline {paragraph}{4.1. Get GRNs}{39}{paragraph*.87}
-\contentsline {paragraph}{4.2. (Optional) Export GRNs}{41}{paragraph*.88}
-\contentsline {paragraph}{4.3. (Optional) Change order}{42}{paragraph*.89}
-\contentsline {subsubsection}{5. Network preprocessing}{43}{subsubsection*.90}
-\contentsline {paragraph}{5.1. Filter network edges}{43}{paragraph*.91}
-\contentsline {paragraph}{5.2. Degree distribution}{43}{paragraph*.92}
-\contentsline {paragraph}{5.3. Calculate netowrk score}{53}{paragraph*.93}
-\contentsline {paragraph}{5.4. Save}{55}{paragraph*.94}
-\contentsline {subsubsection}{6. Network analysis; Network score for each gene}{55}{subsubsection*.95}
-\contentsline {paragraph}{6.1. Network score in each cluster}{55}{paragraph*.96}
-\contentsline {paragraph}{6.2. Network score comparison between two clusters}{58}{paragraph*.97}
-\contentsline {paragraph}{6.3. Network score dynamics}{60}{paragraph*.98}
-\contentsline {paragraph}{6.4. Gene cartography analysis}{61}{paragraph*.99}
-\contentsline {subsubsection}{7. Network analysis; network score distribution}{71}{subsubsection*.100}
-\contentsline {paragraph}{7.1. Distribution of network degree}{72}{paragraph*.101}
-\contentsline {paragraph}{7.2. Distribution of netowrk entolopy}{73}{paragraph*.102}
-\contentsline {subsection}{\numberline {1.2.5}Simulation with GRNs}{73}{subsection.1.2.5}
-\contentsline {subsubsection}{0. Import libraries}{74}{subsubsection*.103}
-\contentsline {paragraph}{0.1. Import public libraries}{74}{paragraph*.104}
-\contentsline {paragraph}{0.1. Make a folder to save graph}{74}{paragraph*.105}
-\contentsline {subsubsection}{1. Load data}{74}{subsubsection*.106}
-\contentsline {paragraph}{1.1. Load processed oracle object}{74}{paragraph*.107}
-\contentsline {paragraph}{1.2. Load inferred GRNs}{74}{paragraph*.108}
-\contentsline {subsubsection}{3. Make predictive models for simulation}{74}{subsubsection*.109}
-\contentsline {subsubsection}{4. in silico Perturbation-simulation}{77}{subsubsection*.110}
-\contentsline {paragraph}{4.1. Check gene expression pattern.}{77}{paragraph*.111}
-\contentsline {paragraph}{4.1. calculate future gene expression after perturbation.}{78}{paragraph*.112}
-\contentsline {paragraph}{4.2. calculate transition probability between cells}{78}{paragraph*.113}
-\contentsline {paragraph}{4.3. Visualization}{79}{paragraph*.114}
-\contentsline {subparagraph}{4.3.1. Detailed directed trajectory graph}{79}{subparagraph*.115}
-\contentsline {subparagraph}{4.3.2. Grid graph}{80}{subparagraph*.116}
-\contentsline {paragraph}{4.4. Markov simulation to analyze the effects of perturbation on cell fate transition}{81}{paragraph*.117}
-\contentsline {subparagraph}{4.4.1. Do simulation}{81}{subparagraph*.118}
-\contentsline {subparagraph}{4.4.2. Check the results of the simulation for specific cells}{82}{subparagraph*.119}
-\contentsline {subparagraph}{4.4.3. Summarize the results of simulation by plotting sankey diagram}{83}{subparagraph*.120}
-\contentsline {section}{\numberline {1.3}API}{86}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Command Line API}{86}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}Python API}{86}{subsection.1.3.2}
-\contentsline {subsubsection}{Custom class in celloracle}{86}{subsubsection*.121}
-\contentsline {subsubsection}{Modules for ATAC-seq analysis}{97}{subsubsection*.190}
-\contentsline {paragraph}{celloracle.motif\_analysis module}{97}{paragraph*.191}
-\contentsline {subsubsection}{Modules for Network analysis}{100}{subsubsection*.218}
-\contentsline {paragraph}{celloracle.network\_analysis module}{100}{paragraph*.219}
-\contentsline {subsubsection}{Other modules}{104}{subsubsection*.245}
-\contentsline {paragraph}{celloracle.go\_analysis module}{104}{paragraph*.246}
-\contentsline {paragraph}{celloracle.utility module}{105}{paragraph*.251}
-\contentsline {paragraph}{celloracle.data module}{106}{paragraph*.262}
-\contentsline {paragraph}{celloracle.data\_conversion module}{106}{paragraph*.265}
-\contentsline {section}{\numberline {1.4}Changelog}{107}{section.1.4}
-\contentsline {section}{\numberline {1.5}License}{107}{section.1.5}
-\contentsline {section}{\numberline {1.6}Authors and citations}{109}{section.1.6}
-\contentsline {subsection}{\numberline {1.6.1}Cite celloracle}{109}{subsection.1.6.1}
-\contentsline {subsection}{\numberline {1.6.2}celloracle software development}{109}{subsection.1.6.2}
-\contentsline {chapter}{\numberline {2}Indices and tables}{111}{chapter.2}
-\contentsline {chapter}{Python Module Index}{113}{section*.268}
-\contentsline {chapter}{Index}{115}{section*.269}
+\contentsline {paragraph}{4.1. Get GRNs}{38}{paragraph*.87}
+\contentsline {paragraph}{4.2. (Optional) Export GRNs}{38}{paragraph*.88}
+\contentsline {paragraph}{4.3. (Optional) Change order}{39}{paragraph*.89}
+\contentsline {subsubsection}{5. Network preprocessing}{40}{subsubsection*.90}
+\contentsline {paragraph}{5.1. Filter network edges}{40}{paragraph*.91}
+\contentsline {paragraph}{5.2. Degree distribution}{40}{paragraph*.92}
+\contentsline {paragraph}{5.3. Calculate netowrk score}{50}{paragraph*.93}
+\contentsline {paragraph}{5.4. Save}{52}{paragraph*.94}
+\contentsline {subsubsection}{6. Network analysis; Network score for each gene}{52}{subsubsection*.95}
+\contentsline {paragraph}{6.1. Network score in each cluster}{52}{paragraph*.96}
+\contentsline {paragraph}{6.2. Network score comparison between two clusters}{55}{paragraph*.97}
+\contentsline {paragraph}{6.3. Network score dynamics}{57}{paragraph*.98}
+\contentsline {paragraph}{6.4. Gene cartography analysis}{58}{paragraph*.99}
+\contentsline {subsubsection}{7. Network analysis; network score distribution}{69}{subsubsection*.100}
+\contentsline {paragraph}{7.1. Distribution of network degree}{69}{paragraph*.101}
+\contentsline {paragraph}{7.2. Distribution of netowrk entolopy}{70}{paragraph*.102}
+\contentsline {subsection}{\numberline {1.2.5}Simulation with GRNs}{71}{subsection.1.2.5}
+\contentsline {subsubsection}{0. Import libraries}{71}{subsubsection*.103}
+\contentsline {paragraph}{0.1. Import public libraries}{71}{paragraph*.104}
+\contentsline {paragraph}{0.1. Make a folder to save graph}{72}{paragraph*.105}
+\contentsline {subsubsection}{1. Load data}{72}{subsubsection*.106}
+\contentsline {paragraph}{1.1. Load processed oracle object}{72}{paragraph*.107}
+\contentsline {paragraph}{1.2. Load inferred GRNs}{72}{paragraph*.108}
+\contentsline {subsubsection}{3. Make predictive models for simulation}{72}{subsubsection*.109}
+\contentsline {subsubsection}{4. in silico Perturbation-simulation}{75}{subsubsection*.110}
+\contentsline {paragraph}{4.1. Check gene expression pattern.}{75}{paragraph*.111}
+\contentsline {paragraph}{4.1. calculate future gene expression after perturbation.}{76}{paragraph*.112}
+\contentsline {paragraph}{4.2. calculate transition probability between cells}{76}{paragraph*.113}
+\contentsline {paragraph}{4.3. Visualization}{77}{paragraph*.114}
+\contentsline {subparagraph}{4.3.1. Detailed directed trajectory graph}{77}{subparagraph*.115}
+\contentsline {subparagraph}{4.3.2. Grid graph}{78}{subparagraph*.116}
+\contentsline {paragraph}{4.4. Markov simulation to analyze the effects of perturbation on cell fate transition}{79}{paragraph*.117}
+\contentsline {subparagraph}{4.4.1. Do simulation}{79}{subparagraph*.118}
+\contentsline {subparagraph}{4.4.2. Check the results of the simulation for specific cells}{80}{subparagraph*.119}
+\contentsline {subparagraph}{4.4.3. Summarize the results of simulation by plotting sankey diagram}{81}{subparagraph*.120}
+\contentsline {section}{\numberline {1.3}API}{84}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Command Line API}{84}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Python API}{84}{subsection.1.3.2}
+\contentsline {subsubsection}{Custom class in celloracle}{84}{subsubsection*.121}
+\contentsline {subsubsection}{Modules for ATAC-seq analysis}{95}{subsubsection*.190}
+\contentsline {paragraph}{celloracle.motif\_analysis module}{95}{paragraph*.191}
+\contentsline {subsubsection}{Modules for Network analysis}{98}{subsubsection*.218}
+\contentsline {paragraph}{celloracle.network\_analysis module}{98}{paragraph*.219}
+\contentsline {subsubsection}{Other modules}{102}{subsubsection*.245}
+\contentsline {paragraph}{celloracle.go\_analysis module}{102}{paragraph*.246}
+\contentsline {paragraph}{celloracle.utility module}{103}{paragraph*.251}
+\contentsline {paragraph}{celloracle.data module}{104}{paragraph*.262}
+\contentsline {paragraph}{celloracle.data\_conversion module}{104}{paragraph*.265}
+\contentsline {section}{\numberline {1.4}Changelog}{105}{section.1.4}
+\contentsline {section}{\numberline {1.5}License}{105}{section.1.5}
+\contentsline {section}{\numberline {1.6}Authors and citations}{107}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}Cite celloracle}{107}{subsection.1.6.1}
+\contentsline {subsection}{\numberline {1.6.2}celloracle software development}{107}{subsection.1.6.2}
+\contentsline {chapter}{\numberline {2}Indices and tables}{109}{chapter.2}
+\contentsline {chapter}{Python Module Index}{111}{section*.268}
+\contentsline {chapter}{Index}{113}{section*.269}
