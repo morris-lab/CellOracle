@@ -56,8 +56,6 @@ Installation of some libraries requires non-default anaconda channels. Please ad
 2. Install `velocyto <http://velocyto.org/velocyto.py/install/index.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Please install velocyto with the following commands or `the author's instruction <http://velocyto.org/velocyto.py/install/index.html>`_ .
-On Mac OS, you may have a compile error during velocyto installation. I recommend installing `Xcode <https://developer.apple.com/xcode/>`_ in that case.
-
 
 ::
 
@@ -75,7 +73,8 @@ You may find the solution with these links below.
 
 -`Solution 1 <https://stackoverflow.com/a/53057706/10641716>`_ .
 -`Solution 2 <https://github.com/morris-lab/CellOracle/issues/3>`_ .
--`Velocyto github issue page <https://github.com/velocyto-team/velocyto.py/issues?q=>`_ .
+-`Solution 3: Installing Xcode <https://developer.apple.com/xcode/>`_ .
+-`Other solutions on Velocyto github issue page <https://github.com/velocyto-team/velocyto.py/issues?q=>`_ .
 
 3. Install `scanpy <https://scanpy.readthedocs.io/en/stable/installation.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
