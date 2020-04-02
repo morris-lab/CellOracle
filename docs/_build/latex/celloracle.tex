@@ -212,7 +212,7 @@
 
 
 \title{celloracle}
-\date{Mar 30, 2020}
+\date{Apr 02, 2020}
 \release{0.3.1}
 \author{Samantha Morris Lab}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -324,7 +324,7 @@ Please install velocyto with the following commands or \sphinxhref{http://velocy
 On Mac OS, you may have a compile error during velocyto installation. I recommend installing \sphinxhref{https://developer.apple.com/xcode/}{Xcode} in that case.
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{conda} \PYG{n}{install} \PYG{n}{numpy} \PYG{n}{scipy} \PYG{n}{cython} \PYG{n}{numba} \PYG{n}{matplotlib} \PYG{n}{scikit}\PYG{o}{\PYGZhy{}}\PYG{n}{learn} \PYG{n}{h5py} \PYG{n}{click}
+\PYG{n}{conda} \PYG{n}{install} \PYG{n}{numpy} \PYG{n}{scipy} \PYG{n}{cython} \PYG{n}{numba} \PYG{n}{matplotlib} \PYG{n}{scikit}\PYG{o}{\PYGZhy{}}\PYG{n}{learn} \PYG{n}{h5py} \PYG{n}{click} \PYG{n}{pysam} \PYG{n}{gcc} \PYG{n}{llvm}
 \end{sphinxVerbatim}
 
 Then
@@ -332,6 +332,14 @@ Then
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{pip} \PYG{n}{install} \PYG{n}{velocyto}
 \end{sphinxVerbatim}
+
+It was reported that some compile errors might occur during the installation of velocyto on MacOS.
+Various errors were reported and you need to find best solution depending on your error.
+You may find the solution with these links below.
+
+-\sphinxhref{https://stackoverflow.com/a/53057706/10641716}{Solution 1} .
+-\sphinxhref{https://github.com/morris-lab/CellOracle/issues/3}{Solution 2} .
+-\sphinxhref{https://github.com/velocyto-team/velocyto.py/issues?q=}{Velocyto github issue page} .
 
 
 \subsubsection{3. Install scanpy}

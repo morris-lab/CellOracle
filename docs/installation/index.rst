@@ -61,13 +61,21 @@ On Mac OS, you may have a compile error during velocyto installation. I recommen
 
 ::
 
-    conda install numpy scipy cython numba matplotlib scikit-learn h5py click
+    conda install numpy scipy cython numba matplotlib scikit-learn h5py click pysam gcc llvm
 
 Then
 
 ::
 
     pip install velocyto
+
+It was reported that some compile errors might occur during the installation of velocyto on MacOS.
+Various errors were reported and you need to find best solution depending on your error.
+You may find the solution with these links below.
+
+-`Solution 1 <https://stackoverflow.com/a/53057706/10641716>`_ .
+-`Solution 2 <https://github.com/morris-lab/CellOracle/issues/3>`_ .
+-`Velocyto github issue page <https://github.com/velocyto-team/velocyto.py/issues?q=>`_ .
 
 3. Install `scanpy <https://scanpy.readthedocs.io/en/stable/installation.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
