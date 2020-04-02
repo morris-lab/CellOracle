@@ -71,10 +71,10 @@ It was reported that some compile errors might occur during the installation of 
 Various errors were reported and you need to find best solution depending on your error.
 You may find the solution with these links below.
 
--`Solution 1 <https://stackoverflow.com/a/53057706/10641716>`_ .
--`Solution 2 <https://github.com/morris-lab/CellOracle/issues/3>`_ .
--`Solution 3: Installing Xcode <https://developer.apple.com/xcode/>`_ .
--`Other solutions on Velocyto github issue page <https://github.com/velocyto-team/velocyto.py/issues?q=>`_ .
+- `Solution 1 <https://stackoverflow.com/a/53057706/10641716>`_ .
+- `Solution 2 <https://github.com/morris-lab/CellOracle/issues/3>`_ .
+- `Solution 3: Installing Xcode <https://developer.apple.com/xcode/>`_ .
+- `Other solutions on Velocyto github issue page <https://github.com/velocyto-team/velocyto.py/issues?q=>`_ .
 
 3. Install `scanpy <https://scanpy.readthedocs.io/en/stable/installation.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

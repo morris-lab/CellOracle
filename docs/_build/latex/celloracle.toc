@@ -9,7 +9,7 @@
 \contentsline {subsubsection}{2. Install velocyto}{4}{subsubsection*.5}
 \contentsline {subsubsection}{3. Install scanpy}{4}{subsubsection*.6}
 \contentsline {subsubsection}{4. Install gimmemotifs}{4}{subsubsection*.7}
-\contentsline {subsubsection}{5. Install other python libraries}{4}{subsubsection*.8}
+\contentsline {subsubsection}{5. Install other python libraries}{5}{subsubsection*.8}
 \contentsline {subsubsection}{6. install celloracle from github}{5}{subsubsection*.9}
 \contentsline {subsection}{\numberline {1.1.4}R requirements}{5}{subsection.1.1.4}
 \contentsline {subsubsection}{Seurat}{5}{subsubsection*.10}
@@ -20,7 +20,7 @@
 \contentsline {subsubsection}{Check installation}{6}{subsubsection*.15}
 \contentsline {section}{\numberline {1.2}Tutorial}{6}{section.1.2}
 \contentsline {subsection}{\numberline {1.2.1}ATAC-seq data preprocessing}{6}{subsection.1.2.1}
-\contentsline {subsubsection}{A. Extract TF binding information from scATAC-seq data}{6}{subsubsection*.16}
+\contentsline {subsubsection}{A. Extract TF binding information from scATAC-seq data}{7}{subsubsection*.16}
 \contentsline {paragraph}{0. Import library}{7}{paragraph*.17}
 \contentsline {paragraph}{1. Prepare data}{7}{paragraph*.18}
 \contentsline {paragraph}{2. Load data and make Cell Data Set (CDS) object}{7}{paragraph*.19}
@@ -34,16 +34,16 @@
 \contentsline {paragraph}{2. Make TSS annotation}{11}{paragraph*.27}
 \contentsline {subparagraph}{IMPORTANT: Please make sure that you are setting correct reference genoms.}{11}{subparagraph*.28}
 \contentsline {paragraph}{3. Integrate TSS info and cicero connections}{11}{paragraph*.29}
-\contentsline {paragraph}{4. Filter peaks}{11}{paragraph*.30}
+\contentsline {paragraph}{4. Filter peaks}{12}{paragraph*.30}
 \contentsline {paragraph}{5. Save data}{12}{paragraph*.31}
 \contentsline {subsubsection}{B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data}{12}{subsubsection*.32}
 \contentsline {paragraph}{0. Import libraries}{12}{paragraph*.33}
-\contentsline {paragraph}{1. Load bed file}{12}{paragraph*.34}
+\contentsline {paragraph}{1. Load bed file}{13}{paragraph*.34}
 \contentsline {paragraph}{2. Make TSS annotation}{13}{paragraph*.35}
 \contentsline {paragraph}{3. Save data}{14}{paragraph*.36}
 \contentsline {subsection}{\numberline {1.2.2}Transcription factor binding motif scan}{14}{subsection.1.2.2}
 \contentsline {subsubsection}{0. Import libraries}{14}{subsubsection*.37}
-\contentsline {subsubsection}{1. Load data}{14}{subsubsection*.38}
+\contentsline {subsubsection}{1. Load data}{15}{subsubsection*.38}
 \contentsline {subsubsection}{2. Check data}{15}{subsubsection*.39}
 \contentsline {paragraph}{2.1. Remove short peaks}{15}{paragraph*.40}
 \contentsline {subsubsection}{3. Instantiate TFinfo object and search for TF binding motifs}{15}{subsubsection*.41}
@@ -60,7 +60,7 @@
 \contentsline {paragraph}{0. Import libraries}{19}{paragraph*.51}
 \contentsline {paragraph}{1. Load data}{19}{paragraph*.52}
 \contentsline {paragraph}{2. Filtering}{19}{paragraph*.53}
-\contentsline {paragraph}{3. Normalization}{19}{paragraph*.54}
+\contentsline {paragraph}{3. Normalization}{20}{paragraph*.54}
 \contentsline {paragraph}{4. Identification of highly variable genes}{20}{paragraph*.55}
 \contentsline {paragraph}{5. Log transformation}{20}{paragraph*.56}
 \contentsline {paragraph}{6. Dimensional reduction}{20}{paragraph*.57}
