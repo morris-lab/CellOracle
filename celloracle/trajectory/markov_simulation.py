@@ -3,7 +3,7 @@
 #import logging
 import numpy as np
 
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
 #from network_fitting import TransNet as tn
 from numba import jit, f8, i8, void

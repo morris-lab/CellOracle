@@ -22,7 +22,7 @@ import numpy as np
 
 import sys, os
 
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
 # 0.2. libraries for DNA and genome data wrangling and Motif analysis
 from genomepy import Genome

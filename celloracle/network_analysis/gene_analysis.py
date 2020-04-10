@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
 from .cartography import plot_cartography_kde
 

@@ -23,7 +23,7 @@ import seaborn as sns
 
 from scipy import stats
 
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 import networkx as nx
 
 

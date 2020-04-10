@@ -12,7 +12,7 @@ import pandas as pd
 import os
 
 from sklearn.linear_model import Ridge
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
 from ..utility import intersect
 #from network_fitting import TransNet as tn

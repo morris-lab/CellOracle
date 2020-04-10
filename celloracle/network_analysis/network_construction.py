@@ -21,7 +21,7 @@ import pandas as pd
 
 from scipy import stats
 
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
 from ..network.net_core import Net
 from ..utility import standard

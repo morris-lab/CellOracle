@@ -36,25 +36,25 @@ def get_bayesian_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=Non
     if target_gene not in TFdict.keys():
         #print("err")
         return 0, 0, 0
-    
+
     # define regGenes
     reggenes = TFdict[target_gene]
     allgenes_detected = list(gem.columns)
     reggenes = intersect(reggenes, allgenes_detected)
-    
+
     if target_gene in reggenes:
         reggenes.remove(target_gene)
-    
+
     reg_all = reggenes.copy()
-    
+
     if not reggenes: # if reqgene is empty, return 0
         return 0, 0, 0
-    
+
     # add cell state data
     if not cellstate is None:
         cellstate_name = list(cellstate.columns)
         reg_all += cellstate_name
- 
+
 
     # prepare learning data
     if scaling:
@@ -69,7 +69,7 @@ def get_bayesian_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=Non
 
     coef_names = reggenes
     ind_ = np.where([i in reggenes for i in reg_all])
-    
+
     coef_mean = model_br.coef_[ind_]
     coef_variance = model_br.sigma_.diagonal()[ind_]
 
@@ -86,25 +86,25 @@ def get_bagging_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=None
     if target_gene not in TFdict.keys():
         #print("err")
         return 0
-    
+
     # define regGenes
     reggenes = TFdict[target_gene]
     allgenes_detected = list(gem.columns)
     reggenes = intersect(reggenes, allgenes_detected)
-    
+
     if target_gene in reggenes:
         reggenes.remove(target_gene)
-    
+
     reg_all = reggenes.copy()
-    
+
     if not reggenes: # if reqgene is empty, return 0
         return 0
-    
+
     # add cell state data
     if not cellstate is None:
         cellstate_name = list(cellstate.columns)
         reg_all += cellstate_name
- 
+
 
     # prepare learning data
     if scaling:
@@ -112,12 +112,12 @@ def get_bagging_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=None
     else:
         data = gem[reg_all]
     label = gem[target_gene]
-    
-                             
+
+
     # bagging model
     model = BaggingRegressor(base_estimator=Ridge(alpha=alpha,
                                                   solver=solver,
-                                                  random_state=123), 
+                                                  random_state=123),
                              n_estimators=bagging_number,
                              bootstrap=True,
                              max_features=0.8,
@@ -125,13 +125,13 @@ def get_bagging_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=None
                              verbose=False,
                              random_state=123)
     model.fit(data, label)
-    
+
     # get results
     coefs = _get_coef_matrix(model, reg_all)
-    
+
     # remove cellstate data from coefs
     coefs = coefs[intersect(reggenes, coefs.columns.values)]
-    
+
     return coefs
 
 
@@ -142,10 +142,10 @@ def _get_coef_matrix(ensemble_model, feature_names):
     feature_names = np.array(feature_names)
     n_estimater = len(ensemble_model.estimators_features_)
     coef_list = \
-        [pd.Series(ensemble_model.estimators_[i].coef_, 
+        [pd.Series(ensemble_model.estimators_[i].coef_,
                    index=feature_names[ensemble_model.estimators_features_[i]])\
          for i in range(n_estimater)]
 
     coef_df = pd.concat(coef_list, axis=1, sort=False).transpose()
-    
+
     return coef_df

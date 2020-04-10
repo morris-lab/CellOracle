@@ -25,7 +25,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from joblib import Parallel, delayed
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
 from scipy.stats import ttest_1samp, norm
 

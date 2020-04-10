@@ -11,7 +11,7 @@ import sys
 
 import pandas as pd
 import numpy as np
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
 from sklearn.preprocessing import StandardScaler
 

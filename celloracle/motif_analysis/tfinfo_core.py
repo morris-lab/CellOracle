@@ -30,7 +30,7 @@ import logging
 from copy import deepcopy
 from datetime import datetime
 
-from tqdm import tqdm_notebook as tqdm
+from tqdm.notebook import tqdm
 
 from genomepy import Genome
 

@@ -14,7 +14,7 @@ with open('LICENSE') as f:
 """
 setup(
     name='celloracle',
-    version='0.3.1',
+    version='0.3.2',
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
@@ -48,7 +48,7 @@ setup(
                       'velocyto>=0.17',
                       'pyarrow',
                       'jupyter',
-                      'tqdm',
+                      'tqdm>=4.45',
                       "python-igraph",
                       "louvain",
                       "fa2",
