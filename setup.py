@@ -56,7 +56,7 @@ setup(
                       'joblib',
                       'goatools',
                       'genomepy==0.5.5',
-                      'gimmemotifs>=0.13.1'],
+                      'gimmemotifs==0.13.1'],
     author='Kenji Kamimoto at Samantha Morris Lab',
     author_email='kamimoto@wustl.edu',
     url='https://github.com/morris-lab/CellOracle',

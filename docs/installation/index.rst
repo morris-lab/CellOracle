@@ -97,7 +97,7 @@ Please install gimmemotifs with the following commands or `the author's instruct
 
 ::
 
-    conda install gimmemotifs genomepy=0.5.5
+    conda install genomepy=0.5.5 gimmemotifs=0.13.1
 
 
 5. Install other python libraries
