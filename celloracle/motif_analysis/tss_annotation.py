@@ -40,7 +40,9 @@ from .process_bed_file import list_peakstr_to_df
 def _load_tss_ref_data(ref_genome):
 
     """
-
+    Args:
+        ref_genome (str): Reference genome name. Supported ref genomes are ["mm9", "mm10", "hg19", "hg38"].
+            Please contact us through github issue page if you have a request for another referene genome.
     """
     path = os.path.join(parent_path[0], "tss_ref_data", f"{ref_genome}_tss_info.bed")
     return BedTool(fn=path)

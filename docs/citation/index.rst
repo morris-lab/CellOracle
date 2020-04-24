@@ -6,7 +6,7 @@ Authors and citations
 Cite celloracle
 -------------
 
-If you use celloracle please cite our bioarxiv preprint `CellOracle: Dissecting cell identity via network inference and in silico gene perturbation <https://www.biorxiv.org/content/10.1101/2020.02.17.947416v2>`_.
+If you use celloracle please cite our bioarxiv preprint `CellOracle: Dissecting cell identity via network inference and in silico gene perturbation <https://www.biorxiv.org/content/10.1101/2020.02.17.947416v3>`_.
 
 
 celloracle software development

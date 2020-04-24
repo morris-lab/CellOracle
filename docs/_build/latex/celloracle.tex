@@ -212,7 +212,7 @@
 
 
 \title{celloracle}
-\date{Apr 12, 2020}
+\date{Apr 24, 2020}
 \release{0.3.2}
 \author{Samantha Morris Lab}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -232,7 +232,7 @@ CellOracle is a python library for the analysis of Gene Regulatory Network with 
 
 Source code is available at \sphinxhref{https://github.com/morris-lab/CellOracle}{celloracle  GitHub repository}
 
-For more information, please read our bioarxiv preprint: \sphinxhref{https://www.biorxiv.org/content/10.1101/2020.02.17.947416v2}{CellOracle: Dissecting cell identity via network inference and in silico gene perturbation}
+For more information, please read our bioarxiv preprint: \sphinxhref{https://www.biorxiv.org/content/10.1101/2020.02.17.947416v3}{CellOracle: Dissecting cell identity via network inference and in silico gene perturbation}
 
 \begin{sphinxadmonition}{note}{Note:}
 \begin{DUlineblock}{0em}
@@ -2658,7 +2658,7 @@ Python notebook
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} 0. Import}
+\llap{\color{nbsphinxin}[32]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} 0. Import}
 
 \PYG{k+kn}{import} \PYG{n+nn}{os}
 \PYG{k+kn}{import} \PYG{n+nn}{sys}
@@ -2676,7 +2676,7 @@ Python notebook
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{celloracle} \PYG{k}{as} \PYG{n+nn}{co}
+\llap{\color{nbsphinxin}[33]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{celloracle} \PYG{k}{as} \PYG{n+nn}{co}
 \end{sphinxVerbatim}
 }
 
@@ -2684,7 +2684,7 @@ Python notebook
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} visualization settings}
+\llap{\color{nbsphinxin}[34]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} visualization settings}
 \PYG{o}{\PYGZpc{}}\PYG{k}{config} InlineBackend.figure\PYGZus{}format = \PYGZsq{}retina\PYGZsq{}
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
 
@@ -2703,7 +2703,7 @@ Celloracle uses some R libraries in network analysis. Please make sure that all 
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[31]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{co}\PYG{o}{.}\PYG{n}{network\PYGZus{}analysis}\PYG{o}{.}\PYG{n}{test\PYGZus{}R\PYGZus{}libraries\PYGZus{}installation}\PYG{p}{(}\PYG{p}{)}
+\llap{\color{nbsphinxin}[81]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{co}\PYG{o}{.}\PYG{n}{network\PYGZus{}analysis}\PYG{o}{.}\PYG{n}{test\PYGZus{}R\PYGZus{}libraries\PYGZus{}installation}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -2729,7 +2729,7 @@ checking R library installation: rnetcarto -> OK
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{save\PYGZus{}folder} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures}\PYG{l+s+s2}{\PYGZdq{}}
+\llap{\color{nbsphinxin}[36]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{save\PYGZus{}folder} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figures}\PYG{l+s+s2}{\PYGZdq{}}
 \PYG{n}{os}\PYG{o}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{save\PYGZus{}folder}\PYG{p}{,} \PYG{n}{exist\PYGZus{}ok}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -2746,7 +2746,7 @@ Please refer to the previous notebook in the tutorial for an example of how to p
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load data. !!Replace the data path below when you use another data.}
+\llap{\color{nbsphinxin}[37]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load data. !!Replace the data path below when you use another data.}
 \PYG{n}{adata} \PYG{o}{=} \PYG{n}{sc}\PYG{o}{.}\PYG{n}{read\PYGZus{}h5ad}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{../03\PYGZus{}scRNA\PYGZhy{}seq\PYGZus{}data\PYGZus{}preprocessing/data/Paul\PYGZus{}etal\PYGZus{}15.h5ad}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -2764,7 +2764,7 @@ You can load and use the data with the following command.
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load TF info which was made from mouse cell atlas dataset.}
+\llap{\color{nbsphinxin}[38]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load TF info which was made from mouse cell atlas dataset.}
 \PYG{n}{TFinfo\PYGZus{}df} \PYG{o}{=} \PYG{n}{co}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{load\PYGZus{}TFinfo\PYGZus{}df\PYGZus{}mm9\PYGZus{}mouse\PYGZus{}atac\PYGZus{}atlas}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} Check data}
@@ -2781,7 +2781,7 @@ You can load and use the data with the following command.
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                     peak\_id gene\_short\_name  9430076c15rik  Ac002126.6  \textbackslash{}
+\llap{\color{nbsphinxout}[38]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                     peak\_id gene\_short\_name  9430076c15rik  Ac002126.6  \textbackslash{}
 0  chr10\_100050979\_100052296   4930430F08Rik            0.0         0.0
 1  chr10\_101006922\_101007748         SNORA17            0.0         0.0
 2  chr10\_101144061\_101145000          Mgat4c            0.0         0.0
@@ -2806,6 +2806,14 @@ You can load and use the data with the following command.
 \end{sphinxVerbatim}
 }
 
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
+\end{sphinxVerbatim}
+}
+
 
 \subsubsection{2. Initiate Oracle object}
 \label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.-Initiate-Oracle-object}}
@@ -2815,7 +2823,7 @@ Celloracle has a custom called Oracle. We can use Oracle for the data preprocess
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Instantiate Oracle object}
+\llap{\color{nbsphinxin}[39]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Instantiate Oracle object}
 \PYG{n}{oracle} \PYG{o}{=} \PYG{n}{co}\PYG{o}{.}\PYG{n}{Oracle}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -2833,7 +2841,7 @@ For the celloracle analysis, the anndata shoud include (1) gene expression count
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} show data name in anndata}
+\llap{\color{nbsphinxin}[41]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} show data name in anndata}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{metadata columns :}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{obs}\PYG{o}{.}\PYG{n}{columns}\PYG{p}{)}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{dimensional reduction: }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{obsm}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -2857,7 +2865,7 @@ dimensional reduction:  ['X\_diffmap', 'X\_draw\_graph\_fa', 'X\_pca']
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} In this notebook, we use raw mRNA count as an input of Oracle object.}
+\llap{\color{nbsphinxin}[44]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} In this notebook, we use raw mRNA count as an input of Oracle object.}
 \PYG{n}{adata}\PYG{o}{.}\PYG{n}{X} \PYG{o}{=} \PYG{n}{adata}\PYG{o}{.}\PYG{n}{raw}\PYG{o}{.}\PYG{n}{X}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} Instantiate Oracle object.}
@@ -2874,7 +2882,7 @@ dimensional reduction:  ['X\_diffmap', 'X\_draw\_graph\_fa', 'X\_pca']
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} You can load TF info dataframe with the following code.}
+\llap{\color{nbsphinxin}[46]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} You can load TF info dataframe with the following code.}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{import\PYGZus{}TF\PYGZus{}data}\PYG{p}{(}\PYG{n}{TF\PYGZus{}info\PYGZus{}matrix}\PYG{o}{=}\PYG{n}{TFinfo\PYGZus{}df}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} Alternatively, if you saved the informmation as a dictionary, you can use the code below.}
@@ -2902,7 +2910,7 @@ In order to import TF data into the Oracle object, we need to convert them into 
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} We have TF and its target gene information. This is from a supplemental Fig of Paul et. al, (2015).}
+\llap{\color{nbsphinxin}[50]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} We have TF and its target gene information. This is from a supplemental Fig of Paul et. al, (2015).}
 \PYG{n}{Paul\PYGZus{}15\PYGZus{}data} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{TF\PYGZus{}data\PYGZus{}in\PYGZus{}Paul15.csv}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \PYG{n}{Paul\PYGZus{}15\PYGZus{}data}
 
@@ -2918,7 +2926,7 @@ In order to import TF data into the Oracle object, we need to convert them into 
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}      TF                                       Target\_genes
+\llap{\color{nbsphinxout}[50]:\,\hspace{\fboxrule}\hspace{\fboxsep}}      TF                                       Target\_genes
 0  Cebpa  Abcb1b, Acot1, C3, Cnpy3, Dhrs7, Dtx4, Edem2, {\ldots}
 1   Irf8  Abcd1, Aif1, BC017643, Cbl, Ccdc109b, Ccl6, d6{\ldots}
 2   Irf8  1100001G20Rik, 4732418C07Rik, 9230105E10Rik, A{\ldots}
@@ -2931,7 +2939,7 @@ In order to import TF data into the Oracle object, we need to convert them into 
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[13]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Make dictionary: dictionary Key is TF, dictionary Value is list of target genes}
+\llap{\color{nbsphinxin}[51]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Make dictionary: dictionary Key is TF, dictionary Value is list of target genes}
 \PYG{n}{TF\PYGZus{}to\PYGZus{}TG\PYGZus{}dictionary} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{p}{\PYGZcb{}}
 
 \PYG{k}{for} \PYG{n}{TF}\PYG{p}{,} \PYG{n}{TGs} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{Paul\PYGZus{}15\PYGZus{}data}\PYG{o}{.}\PYG{n}{TF}\PYG{p}{,} \PYG{n}{Paul\PYGZus{}15\PYGZus{}data}\PYG{o}{.}\PYG{n}{Target\PYGZus{}genes}\PYG{p}{)}\PYG{p}{:}
@@ -2956,7 +2964,7 @@ In order to import TF data into the Oracle object, we need to convert them into 
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-HBox(children=(IntProgress(value=0, max=178), HTML(value='')))
+HBox(children=(FloatProgress(value=0.0, max=178.0), HTML(value='')))
 \end{sphinxVerbatim}
 }
 
@@ -2980,7 +2988,7 @@ HBox(children=(IntProgress(value=0, max=178), HTML(value='')))
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Add TF information}
+\llap{\color{nbsphinxin}[53]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Add TF information}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{addTFinfo\PYGZus{}dictionary}\PYG{p}{(}\PYG{n}{TG\PYGZus{}to\PYGZus{}TF\PYGZus{}dictionary}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -2999,7 +3007,7 @@ For the KNN imputation, we need PCA and PC selection first.
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Perform PCA}
+\llap{\color{nbsphinxin}[60]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Perform PCA}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{perform\PYGZus{}PCA}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} Select important PCs}
@@ -3031,7 +3039,7 @@ For the KNN imputation, we need PCA and PC selection first.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=380\sphinxpxdimen,height=278\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_27_1}.png}
+\noindent\sphinxincludegraphics[width=380\sphinxpxdimen,height=278\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_28_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3044,7 +3052,7 @@ Estimate the optimal number of nearest neighbors for KNN imputation.
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{n\PYGZus{}cell} \PYG{o}{=} \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\llap{\color{nbsphinxin}[63]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{n\PYGZus{}cell} \PYG{o}{=} \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cell number is :}\PYG{l+s+si}{\PYGZob{}n\PYGZus{}cell\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3066,7 +3074,7 @@ cell number is :2671
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{k} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{0.025}\PYG{o}{*}\PYG{n}{n\PYGZus{}cell}\PYG{p}{)}
+\llap{\color{nbsphinxin}[64]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{k} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{0.025}\PYG{o}{*}\PYG{n}{n\PYGZus{}cell}\PYG{p}{)}
 \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Auto\PYGZhy{}selected k is :}\PYG{l+s+si}{\PYGZob{}k\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3088,7 +3096,7 @@ Auto-selected k is :66
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{knn\PYGZus{}imputation}\PYG{p}{(}\PYG{n}{n\PYGZus{}pca\PYGZus{}dims}\PYG{o}{=}\PYG{n}{n\PYGZus{}comps}\PYG{p}{,} \PYG{n}{k}\PYG{o}{=}\PYG{n}{k}\PYG{p}{,} \PYG{n}{balanced}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{b\PYGZus{}sight}\PYG{o}{=}\PYG{n}{k}\PYG{o}{*}\PYG{l+m+mi}{8}\PYG{p}{,}
+\llap{\color{nbsphinxin}[65]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{knn\PYGZus{}imputation}\PYG{p}{(}\PYG{n}{n\PYGZus{}pca\PYGZus{}dims}\PYG{o}{=}\PYG{n}{n\PYGZus{}comps}\PYG{p}{,} \PYG{n}{k}\PYG{o}{=}\PYG{n}{k}\PYG{p}{,} \PYG{n}{balanced}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{b\PYGZus{}sight}\PYG{o}{=}\PYG{n}{k}\PYG{o}{*}\PYG{l+m+mi}{8}\PYG{p}{,}
                       \PYG{n}{b\PYGZus{}maxl}\PYG{o}{=}\PYG{n}{k}\PYG{o}{*}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{n}{n\PYGZus{}jobs}\PYG{o}{=}\PYG{l+m+mi}{4}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3104,7 +3112,7 @@ Pleasae use “load\_hdf5” function to load the file.
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[19]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Save oracle object.}
+\llap{\color{nbsphinxin}[66]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Save oracle object.}
 \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{to\PYGZus{}hdf5}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Paul\PYGZus{}15\PYGZus{}data.celloracle.oracle}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3133,7 +3141,7 @@ The GRNs can be calculated at any arbitrary unit as long as the clustering infor
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[20]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check data}
+\llap{\color{nbsphinxin}[67]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check data}
 \PYG{n}{sc}\PYG{o}{.}\PYG{n}{pl}\PYG{o}{.}\PYG{n}{draw\PYGZus{}graph}\PYG{p}{(}\PYG{n}{oracle}\PYG{o}{.}\PYG{n}{adata}\PYG{p}{,} \PYG{n}{color}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{louvain\PYGZus{}annot}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3145,7 +3153,7 @@ The GRNs can be calculated at any arbitrary unit as long as the clustering infor
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=516\sphinxpxdimen,height=288\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_37_0}.png}
+\noindent\sphinxincludegraphics[width=516\sphinxpxdimen,height=288\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_38_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3156,11 +3164,12 @@ The GRNs can be calculated at any arbitrary unit as long as the clustering infor
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[23]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{o}{\PYGZpc{}\PYGZpc{}time}
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{o}{\PYGZpc{}\PYGZpc{}time}
 \PYG{c+c1}{\PYGZsh{} Calculate GRN for each population in \PYGZdq{}louvain\PYGZus{}annot\PYGZdq{} clustering unit.}
 \PYG{c+c1}{\PYGZsh{} This step may take long time.}
 \PYG{n}{links} \PYG{o}{=} \PYG{n}{oracle}\PYG{o}{.}\PYG{n}{get\PYGZus{}links}\PYG{p}{(}\PYG{n}{cluster\PYGZus{}name\PYGZus{}for\PYGZus{}GRN\PYGZus{}unit}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{louvain\PYGZus{}annot}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,}
                          \PYG{n}{verbose\PYGZus{}level}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{test\PYGZus{}mode}\PYG{o}{=}\PYG{k+kc}{False}\PYG{p}{)}
+
 
 
 \end{sphinxVerbatim}
@@ -3177,7 +3186,7 @@ For example, you can get the GRN for the “Ery\_0” cluster with the following
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[24]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{links\PYGZus{}dict}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Ery\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}
+\llap{\color{nbsphinxin}[72]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{links\PYGZus{}dict}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -3190,20 +3199,41 @@ For example, you can get the GRN for the “Ery\_0” cluster with the following
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[24]:\,\hspace{\fboxrule}\hspace{\fboxsep}}       source         target  coef\_mean  coef\_abs             p      -logp
-0         Myc  0610007L01Rik  -0.010948  0.010948  5.977047e-07   6.223513
-1       Zbtb1  0610007L01Rik   0.003490  0.003490  4.477492e-03   2.348965
-2        Elf1  0610007L01Rik   0.003500  0.003500  1.364244e-02   1.865108
-3       Foxp1  0610007L01Rik  -0.009384  0.009384  8.464668e-08   7.072390
-4        E2f4  0610007L01Rik   0.009913  0.009913  2.990790e-05   4.524214
-{\ldots}       {\ldots}            {\ldots}        {\ldots}       {\ldots}           {\ldots}        {\ldots}
-74460    Nfic            Zyx  -0.010452  0.010452  9.119897e-06   5.040010
-74461  Stat5a            Zyx  -0.014712  0.014712  1.555105e-05   4.808240
-74462    Nfe2            Zyx   0.033330  0.033330  4.842186e-12  11.314958
-74463  Zbtb7a            Zyx  -0.006734  0.006734  1.895354e-04   3.722310
-74464   Cxxc1            Zyx  -0.006007  0.006007  1.064120e-02   1.973009
+\llap{\color{nbsphinxout}[72]:\,\hspace{\fboxrule}\hspace{\fboxsep}}dict\_keys(['Ery\_0', 'Ery\_1', 'Ery\_2', 'Ery\_3', 'Ery\_4', 'Ery\_5', 'Ery\_6', 'Ery\_7', 'Ery\_8', 'Ery\_9', 'GMP\_0', 'GMP\_1', 'GMPl\_0', 'Gran\_0', 'Gran\_1', 'Gran\_2', 'MEP\_0', 'Mk\_0', 'Mo\_0', 'Mo\_1'])
+\end{sphinxVerbatim}
+}
 
-[74465 rows x 6 columns]
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[73]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{links\PYGZus{}dict}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Ery\PYGZus{}0}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[73]:\,\hspace{\fboxrule}\hspace{\fboxsep}}        source         target  coef\_mean  coef\_abs             p      -logp
+0        Stat3  0610007L01Rik  -0.010275  0.010275  3.476931e-07   6.458804
+1        Gata1  0610007L01Rik  -0.000380  0.000380  7.598357e-01   0.119280
+2        Zbtb1  0610007L01Rik   0.004452  0.004452  1.018526e-03   2.992028
+3         Rara  0610007L01Rik  -0.000669  0.000669  7.065405e-01   0.150863
+4          Myc  0610007L01Rik  -0.010705  0.010705  1.696471e-05   4.770454
+{\ldots}        {\ldots}            {\ldots}        {\ldots}       {\ldots}           {\ldots}        {\ldots}
+74420  Smarcc2            Zyx  -0.003475  0.003475  2.754236e-02   1.559999
+74421     Nfe2            Zyx   0.031430  0.031430  1.461503e-11  10.835200
+74422    Zbtb4            Zyx   0.001684  0.001684  1.915555e-01   0.717705
+74423  Smarcc1            Zyx   0.011356  0.011356  1.843519e-04   3.734352
+74424    Nfkb1            Zyx   0.010803  0.010803  1.805959e-06   5.743292
+
+[74425 rows x 6 columns]
 \end{sphinxVerbatim}
 }
 
@@ -3232,7 +3262,7 @@ The sample will be visualized in that order. Here we can change the order.
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Show the contents of pallete}
+\llap{\color{nbsphinxin}[75]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Show the contents of pallete}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{palette}
 \end{sphinxVerbatim}
 }
@@ -3246,7 +3276,9 @@ The sample will be visualized in that order. Here we can change the order.
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}        palette
+\llap{\color{nbsphinxout}[75]:\,\hspace{\fboxrule}\hspace{\fboxsep}}        palette
+MEP\_0   \#0FCFC0
+Mk\_0    \#9CDED6
 Ery\_0   \#7D87B9
 Ery\_1   \#BEC1D4
 Ery\_2   \#D6BCC0
@@ -3260,13 +3292,11 @@ Ery\_9   \#E07B91
 GMP\_0   \#D33F6A
 GMP\_1   \#11C638
 GMPl\_0  \#8DD593
+Mo\_0    \#D5EAE7
+Mo\_1    \#F3E1EB
 Gran\_0  \#C6DEC7
 Gran\_1  \#EAD3C6
 Gran\_2  \#F0B98D
-MEP\_0   \#0FCFC0
-Mk\_0    \#9CDED6
-Mo\_0    \#D5EAE7
-Mo\_1    \#F3E1EB
 \end{sphinxVerbatim}
 }
 
@@ -3274,7 +3304,7 @@ Mo\_1    \#F3E1EB
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[25]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Change the order of pallete}
+\llap{\color{nbsphinxin}[76]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Change the order of pallete}
 \PYG{n}{order} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{MEP\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mk\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}3}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}4}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}5}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
          \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}6}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}7}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}8}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Ery\PYGZus{}9}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{GMP\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{GMP\PYGZus{}1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
          \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{GMPl\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mo\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Mo\PYGZus{}1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Gran\PYGZus{}0}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Gran\PYGZus{}1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Gran\PYGZus{}2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
@@ -3292,7 +3322,7 @@ Mo\_1    \#F3E1EB
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[25]:\,\hspace{\fboxrule}\hspace{\fboxsep}}        palette
+\llap{\color{nbsphinxout}[76]:\,\hspace{\fboxrule}\hspace{\fboxsep}}        palette
 MEP\_0   \#0FCFC0
 Mk\_0    \#9CDED6
 Ery\_0   \#7D87B9
@@ -3343,7 +3373,7 @@ The raw network data is stored as an attribute, “links\_dict,” while filtere
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[26]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{filter\PYGZus{}links}\PYG{p}{(}\PYG{n}{p}\PYG{o}{=}\PYG{l+m+mf}{0.001}\PYG{p}{,} \PYG{n}{weight}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{coef\PYGZus{}abs}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{thread\PYGZus{}number}\PYG{o}{=}\PYG{l+m+mi}{2000}\PYG{p}{)}
+\llap{\color{nbsphinxin}[78]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{filter\PYGZus{}links}\PYG{p}{(}\PYG{n}{p}\PYG{o}{=}\PYG{l+m+mf}{0.001}\PYG{p}{,} \PYG{n}{weight}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{coef\PYGZus{}abs}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{thread\PYGZus{}number}\PYG{o}{=}\PYG{l+m+mi}{2000}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -3358,7 +3388,7 @@ Please keep in mind that the degree distribution may change depending on the fil
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[27]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figure.figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
+\llap{\color{nbsphinxin}[79]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{figure.figsize}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+m+mf}{4.5}\PYG{p}{]}
 \end{sphinxVerbatim}
 }
 
@@ -3366,7 +3396,7 @@ Please keep in mind that the degree distribution may change depending on the fil
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[51]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}degree\PYGZus{}distributions}\PYG{p}{(}\PYG{n}{plot\PYGZus{}model}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/degree\PYGZus{}distribution/}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\llap{\color{nbsphinxin}[80]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}degree\PYGZus{}distributions}\PYG{p}{(}\PYG{n}{plot\PYGZus{}model}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/degree\PYGZus{}distribution/}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -3390,7 +3420,7 @@ Ery\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_1}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3414,7 +3444,7 @@ Ery\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_3}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3438,7 +3468,7 @@ Ery\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_5}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3462,7 +3492,7 @@ Ery\_3
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_7}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_7}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3486,7 +3516,7 @@ Ery\_4
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_9}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_9}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3510,7 +3540,7 @@ Ery\_5
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_11}.png}
+\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_11}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3534,7 +3564,7 @@ Ery\_6
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_13}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_13}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3558,7 +3588,7 @@ Ery\_7
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_15}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_15}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3582,7 +3612,7 @@ Ery\_8
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_17}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_17}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3606,7 +3636,7 @@ Ery\_9
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_19}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_19}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3630,7 +3660,7 @@ GMP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_21}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_21}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3654,7 +3684,7 @@ GMP\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_23}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_23}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3678,7 +3708,7 @@ GMPl\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_25}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_25}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3702,7 +3732,7 @@ Gran\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_27}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_27}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3726,7 +3756,7 @@ Gran\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_29}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_29}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3750,7 +3780,7 @@ Gran\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_31}.png}
+\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_31}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3774,7 +3804,7 @@ MEP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_33}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_33}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3798,7 +3828,7 @@ Mk\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_35}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_35}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3822,7 +3852,7 @@ Mo\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_37}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_37}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3846,7 +3876,7 @@ Mo\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_52_39}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_39}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3867,7 +3897,7 @@ Next, we calculate several network score using some R libraries. Please make sur
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[32]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Calculate network scores. It takes several minutes.}
+\llap{\color{nbsphinxin}[25]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Calculate network scores. It takes several minutes.}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{get\PYGZus{}score}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3913,7 +3943,7 @@ The score is stored as a attribute called “merged\_score”, and the score wil
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[33]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{merged\PYGZus{}score}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
+\llap{\color{nbsphinxin}[82]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{links}\PYG{o}{.}\PYG{n}{merged\PYGZus{}score}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -3926,56 +3956,47 @@ The score is stored as a attribute called “merged\_score”, and the score wil
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[33]:\,\hspace{\fboxrule}\hspace{\fboxsep}}       degree\_all  degree\_in  degree\_out  clustering\_coefficient  \textbackslash{}
-Stat3          90          0          90                0.019975
-Mycn           32          0          32                0.002016
-Ybx1           72         10          62                0.025039
-E2f4          183          3         180                0.010028
-Prdm5          20          0          20                0.000000
+\llap{\color{nbsphinxout}[82]:\,\hspace{\fboxrule}\hspace{\fboxsep}}       degree\_all  degree\_in  degree\_out  clustering\_coefficient  \textbackslash{}
+Stat3          82          0          82                0.021981
+Mycn           30          0          30                0.011494
+E2f4          181          2         179                0.009822
+Zbtb1          22          0          22                0.000000
+Ybx1           69          9          60                0.028133
 
        clustering\_coefficient\_weighted  degree\_centrality\_all  \textbackslash{}
-Stat3                         0.020928               0.166052
-Mycn                          0.001471               0.059041
-Ybx1                          0.025153               0.132841
-E2f4                          0.012052               0.337638
-Prdm5                         0.000000               0.036900
+Stat3                         0.022055               0.151292
+Mycn                          0.009986               0.055351
+E2f4                          0.011874               0.333948
+Zbtb1                         0.000000               0.040590
+Ybx1                          0.027709               0.127306
 
        degree\_centrality\_in  degree\_centrality\_out  betweenness\_centrality  \textbackslash{}
-Stat3              0.000000               0.166052                       0
-Mycn               0.000000               0.059041                       0
-Ybx1               0.018450               0.114391                    1224
-E2f4               0.005535               0.332103                    3070
-Prdm5              0.000000               0.036900                       0
+Stat3              0.000000               0.151292                       0
+Mycn               0.000000               0.055351                       0
+E2f4               0.003690               0.330258                    3158
+Zbtb1              0.000000               0.040590                       0
+Ybx1               0.016605               0.110701                    1051
 
-       closeness\_centrality  {\ldots}  assortative\_coefficient  \textbackslash{}
-Stat3              0.000013  {\ldots}                -0.166455
-Mycn               0.000004  {\ldots}                -0.166455
-Ybx1               0.000004  {\ldots}                -0.166455
-E2f4               0.000010  {\ldots}                -0.166455
-Prdm5              0.000004  {\ldots}                -0.166455
+       closeness\_centrality  eigenvector\_centrality  page\_rank  \textbackslash{}
+Stat3              0.000012                0.487978   0.001633
+Mycn               0.000010                0.245650   0.001633
+E2f4               0.000010                1.000000   0.001724
+Zbtb1              0.000004                0.113727   0.001633
+Ybx1               0.000004                0.385376   0.002133
 
-       average\_path\_length  community\_edge\_betweenness  community\_random\_walk  \textbackslash{}
-Stat3             2.610923                           1                      2
-Mycn              2.610923                           2                      2
-Ybx1              2.610923                           3                      4
-E2f4              2.610923                           4                      2
-Prdm5             2.610923                           5                      2
+       assortative\_coefficient  average\_path\_length  community\_random\_walk  \textbackslash{}
+Stat3                -0.161693             2.621324                      1
+Mycn                 -0.161693             2.621324                      1
+E2f4                 -0.161693             2.621324                      1
+Zbtb1                -0.161693             2.621324                     18
+Ybx1                 -0.161693             2.621324                      2
 
-       community\_eigenvector  module  connectivity  participation  \textbackslash{}
-Stat3                      1       4      5.214113       0.659506
-Mycn                       6       0      2.990280       0.537109
-Ybx1                       4       4      3.523104       0.714892
-E2f4                       3       2      9.236103       0.678612
-Prdm5                      4       0      1.621913       0.480000
-
-                role  cluster
-Stat3  Connector Hub    Ery\_0
-Mycn   Connector Hub    Ery\_0
-Ybx1   Connector Hub    Ery\_0
-E2f4   Connector Hub    Ery\_0
-Prdm5     Peripheral    Ery\_0
-
-[5 rows x 22 columns]
+       module  connectivity  participation           role cluster
+Stat3       0      3.573858       0.647531  Connector Hub   Ery\_0
+Mycn        2      1.767680       0.595556     Peripheral   Ery\_0
+E2f4        0      8.575037       0.632252  Connector Hub   Ery\_0
+Zbtb1       2      1.317952       0.533058     Peripheral   Ery\_0
+Ybx1        3      5.306800       0.687251  Connector Hub   Ery\_0
 \end{sphinxVerbatim}
 }
 
@@ -3988,7 +4009,7 @@ Save processed GRN. We use this file in the next notebook; “in silico perturba
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[42]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Save Links object.}
+\llap{\color{nbsphinxin}[31]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Save Links object.}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{to\PYGZus{}hdf5}\PYG{p}{(}\PYG{n}{file\PYGZus{}path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{links.celloracle.links}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -3997,7 +4018,7 @@ Save processed GRN. We use this file in the next notebook; “in silico perturba
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[34]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} You can load files with the following command.}
+\llap{\color{nbsphinxin}[70]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} You can load files with the following command.}
 \PYG{n}{links} \PYG{o}{=} \PYG{n}{co}\PYG{o}{.}\PYG{n}{load\PYGZus{}hdf5}\PYG{p}{(}\PYG{n}{file\PYGZus{}path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{links.celloracle.links}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 
 \end{sphinxVerbatim}
@@ -4019,8 +4040,40 @@ Let’s visualize genes with high network centrality.
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Check cluster name}
+\llap{\color{nbsphinxin}[83]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Check cluster name}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{cluster}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[83]:\,\hspace{\fboxrule}\hspace{\fboxsep}}['Ery\_0',
+ 'Ery\_1',
+ 'Ery\_2',
+ 'Ery\_3',
+ 'Ery\_4',
+ 'Ery\_5',
+ 'Ery\_6',
+ 'Ery\_7',
+ 'Ery\_8',
+ 'Ery\_9',
+ 'GMP\_0',
+ 'GMP\_1',
+ 'GMPl\_0',
+ 'Gran\_0',
+ 'Gran\_1',
+ 'Gran\_2',
+ 'MEP\_0',
+ 'Mk\_0',
+ 'Mo\_0',
+ 'Mo\_1']
 \end{sphinxVerbatim}
 }
 
@@ -4040,7 +4093,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_0}.png}
+\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4051,7 +4104,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=341\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_1}.png}
+\noindent\sphinxincludegraphics[width=341\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4062,7 +4115,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_2}.png}
+\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_2}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4073,7 +4126,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=305\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_3}.png}
+\noindent\sphinxincludegraphics[width=305\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4084,7 +4137,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=296\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_4}.png}
+\noindent\sphinxincludegraphics[width=296\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_4}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4095,7 +4148,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=342\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_64_5}.png}
+\noindent\sphinxincludegraphics[width=342\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4122,7 +4175,7 @@ By comparing network scores between two clusters, we can analyze differences in 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=407\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_67_0}.png}
+\noindent\sphinxincludegraphics[width=407\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_69_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4145,7 +4198,7 @@ By comparing network scores between two clusters, we can analyze differences in 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=416\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_68_0}.png}
+\noindent\sphinxincludegraphics[width=416\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4167,7 +4220,7 @@ By comparing network scores between two clusters, we can analyze differences in 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=392\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_69_0}.png}
+\noindent\sphinxincludegraphics[width=392\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_71_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4184,7 +4237,7 @@ Gata2 is known to play an essential role in the early MEP and GMP populations. .
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[57]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Visualize Gata2 network score dynamics}
+\llap{\color{nbsphinxin}[30]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Visualize Gata2 network score dynamics}
 \PYG{n}{links}\PYG{o}{.}\PYG{n}{plot\PYGZus{}score\PYGZus{}per\PYGZus{}cluster}\PYG{p}{(}\PYG{n}{goi}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Gata2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{save}\PYG{o}{=}\PYG{n}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZob{}save\PYGZus{}folder\PYGZcb{}}\PYG{l+s+s2}{/network\PYGZus{}score\PYGZus{}per\PYGZus{}gene/}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -4209,7 +4262,7 @@ Gata2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_71_1}.png}
+\noindent\sphinxincludegraphics[width=575\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_73_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4243,7 +4296,7 @@ Cebpa
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_73_1}.png}
+\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_75_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4343,7 +4396,7 @@ Ery\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_1}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4367,7 +4420,7 @@ Ery\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_3}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4391,7 +4444,7 @@ Ery\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_5}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4415,7 +4468,7 @@ Ery\_3
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_7}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_7}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4439,7 +4492,7 @@ Ery\_4
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_9}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_9}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4463,7 +4516,7 @@ Ery\_5
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_11}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_11}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4487,7 +4540,7 @@ Ery\_6
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_13}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_13}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4511,7 +4564,7 @@ Ery\_7
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_15}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_15}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4535,7 +4588,7 @@ Ery\_8
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_17}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_17}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4559,7 +4612,7 @@ Ery\_9
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_19}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_19}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4583,7 +4636,7 @@ GMP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_21}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_21}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4607,7 +4660,7 @@ GMP\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_23}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_23}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4631,7 +4684,7 @@ GMPl\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_25}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_25}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4655,7 +4708,7 @@ Gran\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_27}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_27}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4679,7 +4732,7 @@ Gran\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_29}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_29}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4703,7 +4756,7 @@ Gran\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_31}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_31}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4727,7 +4780,7 @@ MEP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_33}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_33}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4751,7 +4804,7 @@ Mk\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_35}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_35}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4775,7 +4828,7 @@ Mo\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_37}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_37}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4799,7 +4852,7 @@ Mo\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_79_39}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_39}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4832,7 +4885,7 @@ Gata2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=346\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_80_1}.png}
+\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=346\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_82_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4876,7 +4929,7 @@ degree\_centrality\_all
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=390\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_83_1}.png}
+\noindent\sphinxincludegraphics[width=390\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_85_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4913,7 +4966,7 @@ eigenvector\_centrality
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_84_1}.png}
+\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_86_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4956,7 +5009,7 @@ eigenvector\_centrality
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=393\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_86_1}.png}
+\noindent\sphinxincludegraphics[width=393\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_88_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -8789,7 +8842,9 @@ anndata
 
 \section{License}
 \label{\detokenize{license/index:license}}\label{\detokenize{license/index:id1}}\label{\detokenize{license/index::doc}}
-The software is provided under Apache License Version 2.0.
+The software is provided under a modified Apache License Version 2.0.
+The software may be used for non-commercial academic purposes only.
+For any other use of the Work, including commercial use, please contact Morris lab.
 
 Copyright 2020 Kenji Kamimoto, Christy Hoffmann, Samantha Morris
 
@@ -9007,7 +9062,7 @@ limitations under the License.
 
 \subsection{Cite celloracle}
 \label{\detokenize{citation/index:cite-celloracle}}
-If you use celloracle please cite our bioarxiv preprint \sphinxhref{https://www.biorxiv.org/content/10.1101/2020.02.17.947416v2}{CellOracle: Dissecting cell identity via network inference and in silico gene perturbation}.
+If you use celloracle please cite our bioarxiv preprint \sphinxhref{https://www.biorxiv.org/content/10.1101/2020.02.17.947416v3}{CellOracle: Dissecting cell identity via network inference and in silico gene perturbation}.
 
 
 \subsection{celloracle software development}
