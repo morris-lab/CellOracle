@@ -376,9 +376,13 @@ def plot_cartography_term(links, goi, save=None):
     tt.columns = [i.replace("role_", "") for i in tt.columns]
 
     order = ["Ultra peripheral", "Peripheral", "Connector","Kinless","Provincical Hub","Connector Hub", "Kinless Hub"]
-    order = [o for o in order if o in tt.columns]
-    #print(tt)
-    tt = tt.loc[links.palette.index.values, order].fillna(0)
+    
+    try:
+        tt = tt.loc[links.palette.index.values, order].fillna(0)
+    except:
+        order = [o for o in order if o in tt.columns]
+        tt = tt.loc[links.palette.index.values, order].fillna(0)
+
     sns.heatmap(data=tt, cmap="Blues", cbar=False)
     if not save is None:
         os.makedirs(save, exist_ok=True)
