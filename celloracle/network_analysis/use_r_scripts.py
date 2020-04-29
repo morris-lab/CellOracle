@@ -16,28 +16,59 @@ Codes were written by Kenji Kamimoto.
 
 
 import os
+import subprocess
 import pandas as pd
 from joblib import dump, load
 
 from multiprocessing import cpu_count
 
-N_CPU = cpu_count()
+
 
 from ..utility import exec_process
 from ..network_analysis import __path__ as parent_path
 #import seaborn as sns
 
+config = {"R_path": "R", "n_cpu": cpu_count()}
 
-def test_R_libraries_installation():
+def get_R_path():
+    r = subprocess.check_output("which R".split(" ")).decode()
+    r = r.replace("\n", "")
+    return r
+
+try:
+    config["R_path"] = get_R_path()
+except:
+    pass
+    #print("R path not found.")
+
+def set_R_path(R_path):
+    if not R_path.endswith("R"):
+        raise ValueError("R_path should end with R.")
+
+    command = f"{R_path} --version"
+    try:
+        print("Testing R...\n")
+        exec_process(command, message=True)
+
+        config["R_path"] = R_path
+    except:
+        raise ValueError(f"Could not find R at {R_path}.")
+
+def test_R_libraries_installation(show_all_stdout=False):
     """
     CellOracle.network_analysis use several R libraries for network analysis.
     This is a test function to check for instalation of the necessary R libraries.
     """
 
+    print("R path: " + config["R_path"])
     r_libraries = ["igraph", "linkcomm", "rnetcarto"]#,"gProfileR"]
     for i in r_libraries:
         try:
-            exec_process(f"Rscript {parent_path[0]}/rscripts_for_network_analysis/test_{i}.R", message=True)
+            if show_all_stdout:
+                command = f"{config['R_path']} --file={parent_path[0]}/rscripts_for_network_analysis/test_{i}.R"
+            else:
+                command = f"{config['R_path']} --slave --file={parent_path[0]}/rscripts_for_network_analysis/test_{i}.R"
+            exec_process(command, message=True)
             print(f"checking R library installation: {i} -> OK")
         except:
             print(f"checking_installation: {i} -> NG")
@@ -51,10 +82,12 @@ def _get_network_score_by_Rscripts(linkList, name, output_folder="network_analys
 
     link_path =folder + "/linkList.csv"
     linkList[["source", "target", "coef_abs"]].to_csv(link_path, index=None)
+
+    r_dir = config["R_path"][:-1]
     if GO:
-        command = f"Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder}"
+        command = f"{r_dir}Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder}"
     else:
-        command = f"Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder} FALSE"
+        command = f"{r_dir}Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder} FALSE"
 
     exec_process(command, message)
 
@@ -63,7 +96,7 @@ def _get_network_score_by_Rscripts_inparallel(dict_links, output_folder="network
                       GO=True, message=False, n_parallel=-1):
 
     if n_parallel == -1:
-        n_parallel = N_CPU
+        n_parallel = config["n_cpu"]
     li = list(dict_links.keys())
     N = len(li)
 
@@ -76,10 +109,12 @@ def _get_network_score_by_Rscripts_inparallel(dict_links, output_folder="network
             link_path =folder + "/linkList.csv"
             dict_links[i][["source", "target", "coef_abs"]].to_csv(link_path, index=None)
 
+            r_dir = config["R_path"][:-1]
+            
             if GO:
-                command = f"Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder}"
+                command = f"{r_dir}Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder}"
             else:
-                command = f"Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder} FALSE"
+                command = f"{r_dir}Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder} FALSE"
             process_list.append(exec_process(command, message=message,
                                              wait_finished=False, return_process=True))
 
