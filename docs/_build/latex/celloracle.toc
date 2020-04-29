@@ -19,7 +19,7 @@
 \contentsline {subsubsection}{rnetcarto}{6}{subsubsection*.14}
 \contentsline {subsubsection}{Check installation}{6}{subsubsection*.15}
 \contentsline {section}{\numberline {1.2}Tutorial}{6}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}ATAC-seq data preprocessing}{6}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.1}ATAC-seq data preprocessing}{7}{subsection.1.2.1}
 \contentsline {subsubsection}{A. Extract TF binding information from scATAC-seq data}{7}{subsubsection*.16}
 \contentsline {paragraph}{0. Import library}{7}{paragraph*.17}
 \contentsline {paragraph}{1. Prepare data}{7}{paragraph*.18}
@@ -27,43 +27,43 @@
 \contentsline {subparagraph}{2.1. Process data to make CDS object}{7}{subparagraph*.20}
 \contentsline {paragraph}{3. Qauality check and Filtering}{8}{paragraph*.21}
 \contentsline {paragraph}{4. Process cicero-CDS object}{9}{paragraph*.22}
-\contentsline {paragraph}{5. Run cicero to get cis-regulatory connection scores}{9}{paragraph*.23}
+\contentsline {paragraph}{5. Run cicero to get cis-regulatory connection scores}{10}{paragraph*.23}
 \contentsline {paragraph}{6. Save results for next step}{10}{paragraph*.24}
-\contentsline {paragraph}{0. Import libraries}{10}{paragraph*.25}
-\contentsline {paragraph}{1. Load data made with cicero}{10}{paragraph*.26}
+\contentsline {paragraph}{0. Import libraries}{11}{paragraph*.25}
+\contentsline {paragraph}{1. Load data made with cicero}{11}{paragraph*.26}
 \contentsline {paragraph}{2. Make TSS annotation}{11}{paragraph*.27}
 \contentsline {subparagraph}{IMPORTANT: Please make sure that you are setting correct reference genoms.}{11}{subparagraph*.28}
-\contentsline {paragraph}{3. Integrate TSS info and cicero connections}{11}{paragraph*.29}
+\contentsline {paragraph}{3. Integrate TSS info and cicero connections}{12}{paragraph*.29}
 \contentsline {paragraph}{4. Filter peaks}{12}{paragraph*.30}
-\contentsline {paragraph}{5. Save data}{12}{paragraph*.31}
-\contentsline {subsubsection}{B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data}{12}{subsubsection*.32}
-\contentsline {paragraph}{0. Import libraries}{12}{paragraph*.33}
+\contentsline {paragraph}{5. Save data}{13}{paragraph*.31}
+\contentsline {subsubsection}{B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data}{13}{subsubsection*.32}
+\contentsline {paragraph}{0. Import libraries}{13}{paragraph*.33}
 \contentsline {paragraph}{1. Load bed file}{13}{paragraph*.34}
-\contentsline {paragraph}{2. Make TSS annotation}{13}{paragraph*.35}
+\contentsline {paragraph}{2. Make TSS annotation}{14}{paragraph*.35}
 \contentsline {paragraph}{3. Save data}{14}{paragraph*.36}
 \contentsline {subsection}{\numberline {1.2.2}Transcription factor binding motif scan}{14}{subsection.1.2.2}
-\contentsline {subsubsection}{0. Import libraries}{14}{subsubsection*.37}
+\contentsline {subsubsection}{0. Import libraries}{15}{subsubsection*.37}
 \contentsline {subsubsection}{1. Load data}{15}{subsubsection*.38}
 \contentsline {subsubsection}{2. Check data}{15}{subsubsection*.39}
-\contentsline {paragraph}{2.1. Remove short peaks}{15}{paragraph*.40}
-\contentsline {subsubsection}{3. Instantiate TFinfo object and search for TF binding motifs}{15}{subsubsection*.41}
-\contentsline {subsubsection}{3.1 check reference genome installation}{15}{subsubsection*.42}
+\contentsline {paragraph}{2.1. Remove short peaks}{16}{paragraph*.40}
+\contentsline {subsubsection}{3. Instantiate TFinfo object and search for TF binding motifs}{16}{subsubsection*.41}
+\contentsline {subsubsection}{3.1 check reference genome installation}{16}{subsubsection*.42}
 \contentsline {paragraph}{3.2. Install reference genome (if refgenome is not installed)}{16}{paragraph*.43}
 \contentsline {subsubsection}{4. Scan motifs and save object}{16}{subsubsection*.44}
 \contentsline {subsubsection}{5. Filtering motifs}{17}{subsubsection*.45}
-\contentsline {subsubsection}{6. Get Final results}{17}{subsubsection*.46}
-\contentsline {paragraph}{6.1. Get resutls as a dictionary}{17}{paragraph*.47}
-\contentsline {paragraph}{6.2. Get results as a dataframe}{17}{paragraph*.48}
+\contentsline {subsubsection}{6. Get Final results}{18}{subsubsection*.46}
+\contentsline {paragraph}{6.1. Get resutls as a dictionary}{18}{paragraph*.47}
+\contentsline {paragraph}{6.2. Get results as a dataframe}{18}{paragraph*.48}
 \contentsline {subsubsection}{7. Save TFinfo as dictionary or dataframe}{18}{subsubsection*.49}
-\contentsline {subsection}{\numberline {1.2.3}Single-cell RNA-seq data preprocessing}{18}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.3}Single-cell RNA-seq data preprocessing}{19}{subsection.1.2.3}
 \contentsline {subsubsection}{A. scRNA-seq data preprocessing with scanpy}{19}{subsubsection*.50}
 \contentsline {paragraph}{0. Import libraries}{19}{paragraph*.51}
-\contentsline {paragraph}{1. Load data}{19}{paragraph*.52}
-\contentsline {paragraph}{2. Filtering}{19}{paragraph*.53}
+\contentsline {paragraph}{1. Load data}{20}{paragraph*.52}
+\contentsline {paragraph}{2. Filtering}{20}{paragraph*.53}
 \contentsline {paragraph}{3. Normalization}{20}{paragraph*.54}
 \contentsline {paragraph}{4. Identification of highly variable genes}{20}{paragraph*.55}
 \contentsline {paragraph}{5. Log transformation}{20}{paragraph*.56}
-\contentsline {paragraph}{6. Dimensional reduction}{20}{paragraph*.57}
+\contentsline {paragraph}{6. Dimensional reduction}{21}{paragraph*.57}
 \contentsline {paragraph}{7. Clustering}{21}{paragraph*.58}
 \contentsline {paragraph}{(Optional) Re-calculate Dimensional reduction graph}{21}{paragraph*.59}
 \contentsline {paragraph}{8. Check data}{22}{paragraph*.60}

@@ -194,6 +194,21 @@ In python console,
 
 Please make sure that all R libraries are installed. The following message will be shown when all R libraries are appropriately installed.
 
+| R path: /usr/lib/R/bin/R
 | checking R library installation: igraph -> OK
 | checking R library installation: linkcomm -> OK
 | checking R library installation: rnetcarto -> OK
+
+
+The first line above is your R path. If you want to use another R program that was installed at the different place, you can set new R path with the following command.
+
+.. code-block:: Python
+
+   co.network_analysis.set_R_path("ENTER YOUR R PATH HERE")
+
+
+If you changed R path settings, please check installation again to make sure everything works.
+
+.. code-block:: Python
+
+   co.network_analysis.test_R_libraries_installation()
