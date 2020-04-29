@@ -17,7 +17,7 @@ import numpy as np
 from scipy import stats
 from ..utility.hdf5_processing import dump_hdf5, load_hdf5
 
-from .use_r_scripts import _get_network_score_by_Rscripts, _get_network_score_by_Rscripts_inparallel
+from .use_r_scripts import _get_network_score_by_Rscripts_inparallel
 from .network_structure_analysis import (plot_degree_distributions,
                                          plot_score_discributions,
                                          plot_network_entropy_distributions)
@@ -143,18 +143,27 @@ class Links():
         You can check the installation for the R libraries by running test_installation() in network_analysis module.
         """
 
+        li = list(self.filtered_links.keys()) # make list of cluster name
+
+        # make dictionary. we make unique id for each cluster and use it for temporary file name.
+        id_dict = {}
+        for id_, i in enumerate(li):
+            id_dict[i] = id_
+
 
         _get_network_score_by_Rscripts_inparallel(
             dict_links=self.filtered_links,
-            output_folder=self.name,
+            id_dict=id_dict,
+            output_folder="network_analysis",
             GO=False, message=False)
+
         network_scores = {}
-        for i in self.cluster:
-            network_scores[i] = _load_network_analysis_results(f"./{self.name}/"+i)
+        for i in li:
+            network_scores[i] = _load_network_analysis_results(f"./network_analysis/{id_dict[i]}")
         self.merged_score = _merge_df(network_scores)
 
         if not test_mode:
-            os.system(f"rm -r ./{self.name}/")
+            os.system(f"rm -r ./network_analysis/")
 
         #print(f"the scores are saved in ./{self.name}/")
 

@@ -75,24 +75,9 @@ def test_R_libraries_installation(show_all_stdout=False):
             print(f" R library, {i} is unavailable. Please check installation.")
 
 
-def _get_network_score_by_Rscripts(linkList, name, output_folder="network_analysis",
-             GO=True, message=False):
-    folder = os.path.join(output_folder, name)
-    os.makedirs(folder, exist_ok=True)
-
-    link_path =folder + "/linkList.csv"
-    linkList[["source", "target", "coef_abs"]].to_csv(link_path, index=None)
-
-    r_dir = config["R_path"][:-1]
-    if GO:
-        command = f"{r_dir}Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder}"
-    else:
-        command = f"{r_dir}Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder} FALSE"
-
-    exec_process(command, message)
 
 
-def _get_network_score_by_Rscripts_inparallel(dict_links, output_folder="network_analysis",
+def _get_network_score_by_Rscripts_inparallel(dict_links, id_dict, output_folder="network_analysis",
                       GO=True, message=False, n_parallel=-1):
 
     if n_parallel == -1:
@@ -100,17 +85,18 @@ def _get_network_score_by_Rscripts_inparallel(dict_links, output_folder="network
     li = list(dict_links.keys())
     N = len(li)
 
+
     def internal(li_):
         process_list = []
         for i in li_:
-            folder = os.path.join(output_folder, i)
+            folder = os.path.join(output_folder, str(id_dict[i]))
             os.makedirs(folder, exist_ok=True)
 
             link_path =folder + "/linkList.csv"
             dict_links[i][["source", "target", "coef_abs"]].to_csv(link_path, index=None)
 
             r_dir = config["R_path"][:-1]
-            
+
             if GO:
                 command = f"{r_dir}Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder}"
             else:
