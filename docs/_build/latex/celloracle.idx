@@ -96,6 +96,8 @@
 \indexentry{celloracle.network\_analysis (module)@\spxentry{celloracle.network\_analysis}\spxextra{module}|hyperpage}{99}
 \indexentry{get\_links() (in module celloracle.network\_analysis)@\spxentry{get\_links()}\spxextra{in module celloracle.network\_analysis}|hyperpage}{99}
 \indexentry{test\_R\_libraries\_installation() (in module celloracle.network\_analysis)@\spxentry{test\_R\_libraries\_installation()}\spxextra{in module celloracle.network\_analysis}|hyperpage}{99}
+\indexentry{get\_R\_path() (in module celloracle.network\_analysis)@\spxentry{get\_R\_path()}\spxextra{in module celloracle.network\_analysis}|hyperpage}{99}
+\indexentry{set\_R\_path() (in module celloracle.network\_analysis)@\spxentry{set\_R\_path()}\spxextra{in module celloracle.network\_analysis}|hyperpage}{99}
 \indexentry{load\_links() (in module celloracle.network\_analysis)@\spxentry{load\_links()}\spxextra{in module celloracle.network\_analysis}|hyperpage}{99}
 \indexentry{Links (class in celloracle.network\_analysis)@\spxentry{Links}\spxextra{class in celloracle.network\_analysis}|hyperpage}{99}
 \indexentry{links\_dict (celloracle.network\_analysis.Links attribute)@\spxentry{links\_dict}\spxextra{celloracle.network\_analysis.Links attribute}|hyperpage}{100}

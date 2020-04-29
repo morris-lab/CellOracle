@@ -83,6 +83,7 @@
   \item \spxentry{get\_network\_entropy()}\spxextra{celloracle.Links method}, \hyperpage{90}
   \item \spxentry{get\_network\_entropy()}\spxextra{celloracle.network\_analysis.Links method}, 
 		\hyperpage{100}
+  \item \spxentry{get\_R\_path()}\spxextra{in module celloracle.network\_analysis}, \hyperpage{99}
   \item \spxentry{get\_score()}\spxextra{celloracle.Links method}, \hyperpage{90}
   \item \spxentry{get\_score()}\spxextra{celloracle.network\_analysis.Links method}, 
 		\hyperpage{100}
@@ -206,6 +207,7 @@
   \item \spxentry{scan()}\spxextra{celloracle.motif\_analysis.TFinfo method}, \hyperpage{98}
   \item \spxentry{scanned\_df}\spxextra{celloracle.motif\_analysis.TFinfo attribute}, 
 		\hyperpage{97}
+  \item \spxentry{set\_R\_path()}\spxextra{in module celloracle.network\_analysis}, \hyperpage{99}
   \item \spxentry{seurat\_object\_to\_anndata()}\spxextra{in module celloracle.data\_conversion}, 
 		\hyperpage{105}
   \item \spxentry{simulate\_shift()}\spxextra{celloracle.Oracle method}, \hyperpage{89}

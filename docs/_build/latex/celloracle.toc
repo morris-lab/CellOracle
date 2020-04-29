@@ -137,16 +137,16 @@
 \contentsline {paragraph}{celloracle.motif\_analysis module}{96}{paragraph*.191}
 \contentsline {subsubsection}{Modules for Network analysis}{99}{subsubsection*.218}
 \contentsline {paragraph}{celloracle.network\_analysis module}{99}{paragraph*.219}
-\contentsline {subsubsection}{Other modules}{103}{subsubsection*.245}
-\contentsline {paragraph}{celloracle.go\_analysis module}{103}{paragraph*.246}
-\contentsline {paragraph}{celloracle.utility module}{104}{paragraph*.251}
-\contentsline {paragraph}{celloracle.data module}{105}{paragraph*.262}
-\contentsline {paragraph}{celloracle.data\_conversion module}{105}{paragraph*.265}
+\contentsline {subsubsection}{Other modules}{103}{subsubsection*.247}
+\contentsline {paragraph}{celloracle.go\_analysis module}{103}{paragraph*.248}
+\contentsline {paragraph}{celloracle.utility module}{104}{paragraph*.253}
+\contentsline {paragraph}{celloracle.data module}{105}{paragraph*.264}
+\contentsline {paragraph}{celloracle.data\_conversion module}{105}{paragraph*.267}
 \contentsline {section}{\numberline {1.4}Changelog}{106}{section.1.4}
 \contentsline {section}{\numberline {1.5}License}{106}{section.1.5}
 \contentsline {section}{\numberline {1.6}Authors and citations}{108}{section.1.6}
 \contentsline {subsection}{\numberline {1.6.1}Cite celloracle}{108}{subsection.1.6.1}
 \contentsline {subsection}{\numberline {1.6.2}celloracle software development}{108}{subsection.1.6.2}
 \contentsline {chapter}{\numberline {2}Indices and tables}{109}{chapter.2}
-\contentsline {chapter}{Python Module Index}{111}{section*.268}
-\contentsline {chapter}{Index}{113}{section*.269}
+\contentsline {chapter}{Python Module Index}{111}{section*.270}
+\contentsline {chapter}{Index}{113}{section*.271}
