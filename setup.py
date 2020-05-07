@@ -40,12 +40,13 @@ setup(
                       'scipy',
                       'cython',
                       'numba',
-                      'matplotlib',
+                      'matplotlib==3.0.*',
                       'seaborn',
                       'scikit-learn',
                       'h5py',
-                      'pandas==0.25',#'pandas>=0.23.3,<1'
+                      'pandas==0.25.*',#'pandas>=0.23.3,<1'
                       'velocyto>=0.17',
+                      'umap-learn==0.3.10',
                       'pyarrow',
                       'jupyter',
                       'tqdm>=4.45',

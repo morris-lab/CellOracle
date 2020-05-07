@@ -82,13 +82,9 @@ Please install scanpy with the following commands or `the author's instruction <
 
 ::
 
-    conda install seaborn statsmodels numba pytables python-igraph louvain
+    conda install scanpy=1.4.4 umap-learn=0.3.10
 
-Then
 
-::
-
-    pip install scanpy
 
 4. Install `gimmemotifs <https://gimmemotifs.readthedocs.io/en/master/installation.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
