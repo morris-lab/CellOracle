@@ -44,7 +44,7 @@ setup(
                       'seaborn',
                       'scikit-learn',
                       'h5py',
-                      'pandas>=0.23.3,<1'
+                      'pandas==0.25',#'pandas>=0.23.3,<1'
                       'velocyto>=0.17',
                       'pyarrow',
                       'jupyter',
