@@ -10,6 +10,8 @@ import shutil
 
 import scanpy as sc
 
+from ..utility import exec_process
+
 rscript_folder = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -95,13 +97,14 @@ def seurat_object_to_anndata(file_path_seurat_object, delete_tmp_file=True):
 
     # run R script to extract information and make mtx files
     os.makedirs("tmp", exist_ok=True)
-    ret = os.system(f"Rscript {rscript_folder}/seurat_to_mtx.R {file_path_seurat_object}")
+    command = f"Rscript {rscript_folder}/seurat_to_mtx.R {file_path_seurat_object}"
+    #ret = os.system()
+    #if ret == 0:
+    #    pass
+    #else:
+    #    print("Error in R script")
 
-    if ret == 0:
-        pass
-    else:
-        print("Error in R script")
-
+    exec_process(command, message=True, wait_finished=True, return_process=False)
 
     print("making AnnData ...")
 
