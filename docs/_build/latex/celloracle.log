@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.17)  9 MAY 2020 15:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.17)  9 MAY 2020 15:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1356,1851 +1356,1051 @@ ocessing_with_Paul_etal_2015_data_47_0.png  used on input line 2622.
 (pdftex.def)             Requested size: 462.9873pt x 219.82079pt.
  [32 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Pau
 l_etal_2015_data_47_0.png>] [33] [34] [35] [36]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_27_1.p
+ng, id=384, 381.425pt x 279.54437pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_2
+7_1.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_27
+_1.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_27_1.png  used on input line 3041.
+(pdftex.def)             Requested size: 286.07968pt x 209.28665pt.
+ [37 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
+_27_1.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_37_0.p
+ng, id=392, 517.935pt x 289.08pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_3
+7_0.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_37
+_0.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_37_0.png  used on input line 3155.
+(pdftex.def)             Requested size: 388.46608pt x 216.80946pt.
+ [38 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
+_37_0.png>] [39]
+[40]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_1.p
+ng, id=416, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_1.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_1.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_1.png  used on input line 3422.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_3.p
+ng, id=417, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_3.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_3.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_3.png  used on input line 3446.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_28_1}.png' not found on input line 3049.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_28_1}.png' not found on input line 3049.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_28_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3049 ...with_with_Paul_etal_2015_data_28_1}.png}
-                                                  
-? 
-[37]
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_38_0}.png' not found on input line 3163.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_38_0}.png' not found on input line 3163.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_38_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3163 ...with_with_Paul_etal_2015_data_38_0}.png}
-                                                  
-? 
-[38] [39] [40]
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_1}.png' not found on input line 3430.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_1}.png' not found on input line 3430.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3430 ...with_with_Paul_etal_2015_data_54_1}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_3}.png' not found on input line 3454.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_3}.png' not found on input line 3454.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_3.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3454 ...with_with_Paul_etal_2015_data_54_3}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 3456
+Underfull \vbox (badness 10000) detected at line 3448
  []
 
-[41]
+[41 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+53_1.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_5.p
+ng, id=426, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_5.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_5.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_5.png  used on input line 3470.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_7.p
+ng, id=427, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_7.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_7.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_7.png  used on input line 3494.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_5}.png' not found on input line 3478.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_5}.png' not found on input line 3478.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_5.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3478 ...with_with_Paul_etal_2015_data_54_5}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_7}.png' not found on input line 3502.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_7}.png' not found on input line 3502.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_7.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3502 ...with_with_Paul_etal_2015_data_54_7}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 3504
+Underfull \vbox (badness 10000) detected at line 3496
  []
 
-[42]
+[42 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+53_3.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015
+_data_53_5.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_9.p
+ng, id=434, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_9.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_9.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_9.png  used on input line 3518.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_11.
+png, id=435, 564.60938pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_11.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_11.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_11.png  used on input line 3542.
+(pdftex.def)             Requested size: 423.08553pt x 239.39378pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_9}.png' not found on input line 3526.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_9}.png' not found on input line 3526.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_9.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3526 ...with_with_Paul_etal_2015_data_54_9}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_11}.png' not found on input line 3550.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_11}.png' not found on input line 3550.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_11.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3550 ...ith_with_Paul_etal_2015_data_54_11}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 3552
+Underfull \vbox (badness 10000) detected at line 3544
  []
 
-[43]
+[43 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+53_7.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015
+_data_53_9.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_13.
+png, id=442, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_13.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_13.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_13.png  used on input line 3566.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_15.
+png, id=443, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_15.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_15.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_15.png  used on input line 3590.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_13}.png' not found on input line 3574.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_13}.png' not found on input line 3574.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_13.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3574 ...ith_with_Paul_etal_2015_data_54_13}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_15}.png' not found on input line 3598.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_15}.png' not found on input line 3598.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_15.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3598 ...ith_with_Paul_etal_2015_data_54_15}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 3600
+Underfull \vbox (badness 10000) detected at line 3592
  []
 
-[44]
+[44 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+53_11.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_53_13.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_17.
+png, id=450, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_17.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_17.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_17.png  used on input line 3614.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_19.
+png, id=451, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_19.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_19.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_19.png  used on input line 3638.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_17}.png' not found on input line 3622.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_17}.png' not found on input line 3622.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_17.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3622 ...ith_with_Paul_etal_2015_data_54_17}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_19}.png' not found on input line 3646.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_19}.png' not found on input line 3646.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_19.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3646 ...ith_with_Paul_etal_2015_data_54_19}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 3648
+Underfull \vbox (badness 10000) detected at line 3640
  []
 
-[45]
+[45 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+53_15.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_53_17.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_21.
+png, id=459, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_21.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_21.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_21.png  used on input line 3662.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_23.
+png, id=460, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_23.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_23.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_23.png  used on input line 3686.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_21}.png' not found on input line 3670.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_21}.png' not found on input line 3670.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_21.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3670 ...ith_with_Paul_etal_2015_data_54_21}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_23}.png' not found on input line 3694.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_23}.png' not found on input line 3694.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_23.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3694 ...ith_with_Paul_etal_2015_data_54_23}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 3696
+Underfull \vbox (badness 10000) detected at line 3688
  []
 
-[46]
+[46 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+53_19.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_53_21.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_25.
+png, id=467, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_25.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_25.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_25.png  used on input line 3710.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_27.
+png, id=468, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_27.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_27.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_27.png  used on input line 3734.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_25}.png' not found on input line 3718.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_25}.png' not found on input line 3718.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_25.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3718 ...ith_with_Paul_etal_2015_data_54_25}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_27}.png' not found on input line 3742.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_27}.png' not found on input line 3742.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_27.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3742 ...ith_with_Paul_etal_2015_data_54_27}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 3744
+Underfull \vbox (badness 10000) detected at line 3736
  []
 
-[47]
+[47 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+53_23.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_53_25.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_29.
+png, id=475, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_29.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_29.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_29.png  used on input line 3758.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_31.
+png, id=476, 564.60938pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_31.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_31.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_31.png  used on input line 3782.
+(pdftex.def)             Requested size: 423.08553pt x 239.39378pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_29}.png' not found on input line 3766.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_29}.png' not found on input line 3766.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_29.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3766 ...ith_with_Paul_etal_2015_data_54_29}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_31}.png' not found on input line 3790.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_31}.png' not found on input line 3790.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_31.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3790 ...ith_with_Paul_etal_2015_data_54_31}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 3792
+Underfull \vbox (badness 10000) detected at line 3784
  []
 
-[48]
+[48 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+53_27.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_53_29.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_33.
+png, id=483, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_33.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_33.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_33.png  used on input line 3806.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_35.
+png, id=484, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_35.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_35.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_35.png  used on input line 3830.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_33}.png' not found on input line 3814.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_33}.png' not found on input line 3814.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_33.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3814 ...ith_with_Paul_etal_2015_data_54_33}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_35}.png' not found on input line 3838.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_35}.png' not found on input line 3838.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_35.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3838 ...ith_with_Paul_etal_2015_data_54_35}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 3840
+Underfull \vbox (badness 10000) detected at line 3832
  []
 
-[49]
+[49 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+53_31.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_53_33.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_37.
+png, id=491, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_37.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_37.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_37.png  used on input line 3854.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_39.
+png, id=492, 563.10374pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
+3_39.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
+_39.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_53_39.png  used on input line 3878.
+(pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_37}.png' not found on input line 3862.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_37}.png' not found on input line 3862.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_37.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3862 ...ith_with_Paul_etal_2015_data_54_37}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_39}.png' not found on input line 3886.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_54_39}.png' not found on input line 3886.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_54_39.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3886 ...ith_with_Paul_etal_2015_data_54_39}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 3888
+Underfull \vbox (badness 10000) detected at line 3880
  []
 
-[50] [51] [52]
+[50 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+53_35.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_53_37.png>] [51 <./notebooks_04_Network_analysis_Network_analysis_with_P
+aul_etal_2015_data_53_39.png>] [52]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_0.p
+ng, id=512, 305.64188pt x 320.19624pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
+5_0.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
+_0.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_65_0.png  used on input line 4095.
+(pdftex.def)             Requested size: 228.85307pt x 240.15146pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_0}.png' not found on input line 4103.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_0}.png' not found on input line 4103.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_66_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4103 ...with_with_Paul_etal_2015_data_66_0}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4105
+Underfull \vbox (badness 10000) detected at line 4097
  []
 
 [53]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_1.p
+ng, id=520, 342.27875pt x 320.19624pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
+5_1.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
+_1.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_65_1.png  used on input line 4106.
+(pdftex.def)             Requested size: 256.72408pt x 240.15146pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_2.p
+ng, id=521, 305.64188pt x 320.19624pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
+5_2.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
+_2.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_65_2.png  used on input line 4117.
+(pdftex.def)             Requested size: 228.85307pt x 240.15146pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_1}.png' not found on input line 4114.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_1}.png' not found on input line 4114.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_66_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4114 ...with_with_Paul_etal_2015_data_66_1}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_2}.png' not found on input line 4125.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_2}.png' not found on input line 4125.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_66_2.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4125 ...with_with_Paul_etal_2015_data_66_2}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4127
+Underfull \vbox (badness 10000) detected at line 4119
  []
 
-[54]
+[54 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+65_0.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015
+_data_65_1.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_3.p
+ng, id=528, 306.14375pt x 320.19624pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
+5_3.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
+_3.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_65_3.png  used on input line 4128.
+(pdftex.def)             Requested size: 229.60724pt x 240.15146pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_4.p
+ng, id=529, 297.61188pt x 320.19624pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
+5_4.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
+_4.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_65_4.png  used on input line 4139.
+(pdftex.def)             Requested size: 222.83144pt x 240.15146pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_3}.png' not found on input line 4136.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_3}.png' not found on input line 4136.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_66_3.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4136 ...with_with_Paul_etal_2015_data_66_3}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_4}.png' not found on input line 4147.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_4}.png' not found on input line 4147.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_66_4.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4147 ...with_with_Paul_etal_2015_data_66_4}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4149
+Underfull \vbox (badness 10000) detected at line 4141
  []
 
-[55]
+[55 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+65_2.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015
+_data_65_3.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_5.p
+ng, id=536, 343.2825pt x 319.1925pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
+5_5.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
+_5.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_65_5.png  used on input line 4150.
+(pdftex.def)             Requested size: 257.456pt x 239.39378pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_68_0.p
+ng, id=537, 409.02812pt x 305.64188pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
+8_0.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_68
+_0.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_68_0.png  used on input line 4177.
+(pdftex.def)             Requested size: 306.40834pt x 228.85307pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_5}.png' not found on input line 4158.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_66_5}.png' not found on input line 4158.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_66_5.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4158 ...with_with_Paul_etal_2015_data_66_5}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_69_0}.png' not found on input line 4185.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_69_0}.png' not found on input line 4185.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_69_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4185 ...with_with_Paul_etal_2015_data_69_0}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 1038) detected at line 4187
+Underfull \vbox (badness 1043) detected at line 4179
  []
 
-[56]
+[56 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+65_4.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015
+_data_65_5.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_69_0.p
+ng, id=545, 417.56pt x 305.64188pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
+9_0.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_69
+_0.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_69_0.png  used on input line 4200.
+(pdftex.def)             Requested size: 313.18832pt x 228.85307pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_70_0.p
+ng, id=546, 393.47pt x 305.64188pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_7
+0_0.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_70
+_0.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_70_0.png  used on input line 4222.
+(pdftex.def)             Requested size: 295.09576pt x 228.85307pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_70_0}.png' not found on input line 4208.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_70_0}.png' not found on input line 4208.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_70_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4208 ...with_with_Paul_etal_2015_data_70_0}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_71_0}.png' not found on input line 4230.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_71_0}.png' not found on input line 4230.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_71_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4230 ...with_with_Paul_etal_2015_data_71_0}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4232
+Underfull \vbox (badness 10000) detected at line 4224
  []
 
-[57]
+[57 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+68_0.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015
+_data_69_0.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_72_1.p
+ng, id=554, 577.65813pt x 302.63063pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_7
+2_1.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_72
+_1.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_72_1.png  used on input line 4264.
+(pdftex.def)             Requested size: 432.86351pt x 226.59836pt.
+ [58 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
+_70_0.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_72_1.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_74_1.p
+ng, id=562, 409.53pt x 302.63063pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_7
+4_1.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_74
+_1.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_74_1.png  used on input line 4298.
+(pdftex.def)             Requested size: 307.16548pt x 226.59836pt.
+ [59 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
+_74_1.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_1.p
+ng, id=571, 357.335pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_1.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_1.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_1.png  used on input line 4398.
+(pdftex.def)             Requested size: 268.01149pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_3.p
+ng, id=572, 363.85938pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_3.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_3.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_3.png  used on input line 4422.
+(pdftex.def)             Requested size: 272.52187pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_5.p
+ng, id=573, 357.335pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_5.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_5.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_5.png  used on input line 4446.
+(pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_73_1}.png' not found on input line 4272.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_73_1}.png' not found on input line 4272.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_73_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4272 ...with_with_Paul_etal_2015_data_73_1}.png}
-                                                  
-? 
-[58]
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_75_1}.png' not found on input line 4306.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_75_1}.png' not found on input line 4306.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_75_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4306 ...with_with_Paul_etal_2015_data_75_1}.png}
-                                                  
-? 
-[59]
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_1}.png' not found on input line 4406.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_1}.png' not found on input line 4406.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4406 ...with_with_Paul_etal_2015_data_81_1}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_3}.png' not found on input line 4430.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_3}.png' not found on input line 4430.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_3.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4430 ...with_with_Paul_etal_2015_data_81_3}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_5}.png' not found on input line 4454.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_5}.png' not found on input line 4454.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_5.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4454 ...with_with_Paul_etal_2015_data_81_5}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4456
+Underfull \vbox (badness 10000) detected at line 4448
  []
 
-[60]
+[60 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+80_1.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015
+_data_80_3.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_7.p
+ng, id=580, 363.85938pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_7.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_7.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_7.png  used on input line 4470.
+(pdftex.def)             Requested size: 272.52187pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_9.p
+ng, id=581, 357.335pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_9.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_9.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_9.png  used on input line 4494.
+(pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_7}.png' not found on input line 4478.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_7}.png' not found on input line 4478.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_7.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4478 ...with_with_Paul_etal_2015_data_81_7}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_9}.png' not found on input line 4502.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_9}.png' not found on input line 4502.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_9.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4502 ...with_with_Paul_etal_2015_data_81_9}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4504
+Underfull \vbox (badness 10000) detected at line 4496
  []
 
-[61]
+[61 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+80_5.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015
+_data_80_7.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_11.
+png, id=588, 357.335pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_11.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_11.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_11.png  used on input line 4518.
+(pdftex.def)             Requested size: 268.01149pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_13.
+png, id=589, 357.335pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_13.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_13.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_13.png  used on input line 4542.
+(pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_11}.png' not found on input line 4526.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_11}.png' not found on input line 4526.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_11.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4526 ...ith_with_Paul_etal_2015_data_81_11}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_13}.png' not found on input line 4550.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_13}.png' not found on input line 4550.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_13.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4550 ...ith_with_Paul_etal_2015_data_81_13}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4552
+Underfull \vbox (badness 10000) detected at line 4544
  []
 
-[62]
+[62 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+80_9.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015
+_data_80_11.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_15.
+png, id=596, 363.85938pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_15.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_15.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_15.png  used on input line 4566.
+(pdftex.def)             Requested size: 272.52187pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_17.
+png, id=597, 357.335pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_17.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_17.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_17.png  used on input line 4590.
+(pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_15}.png' not found on input line 4574.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_15}.png' not found on input line 4574.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_15.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4574 ...ith_with_Paul_etal_2015_data_81_15}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_17}.png' not found on input line 4598.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_17}.png' not found on input line 4598.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_17.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4598 ...ith_with_Paul_etal_2015_data_81_17}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4600
+Underfull \vbox (badness 10000) detected at line 4592
  []
 
-[63]
+[63 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+80_13.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_80_15.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_19.
+png, id=605, 363.85938pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_19.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_19.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_19.png  used on input line 4614.
+(pdftex.def)             Requested size: 272.52187pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_21.
+png, id=606, 363.85938pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_21.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_21.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_21.png  used on input line 4638.
+(pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_19}.png' not found on input line 4622.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_19}.png' not found on input line 4622.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_19.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4622 ...ith_with_Paul_etal_2015_data_81_19}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_21}.png' not found on input line 4646.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_21}.png' not found on input line 4646.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_21.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4646 ...ith_with_Paul_etal_2015_data_81_21}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4648
+Underfull \vbox (badness 10000) detected at line 4640
  []
 
-[64]
+[64 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+80_17.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_80_19.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_23.
+png, id=613, 357.335pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_23.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_23.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_23.png  used on input line 4662.
+(pdftex.def)             Requested size: 268.01149pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_25.
+png, id=614, 363.85938pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_25.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_25.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_25.png  used on input line 4686.
+(pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_23}.png' not found on input line 4670.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_23}.png' not found on input line 4670.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_23.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4670 ...ith_with_Paul_etal_2015_data_81_23}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_25}.png' not found on input line 4694.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_25}.png' not found on input line 4694.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_25.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4694 ...ith_with_Paul_etal_2015_data_81_25}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4696
+Underfull \vbox (badness 10000) detected at line 4688
  []
 
-[65]
+[65 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+80_21.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_80_23.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_27.
+png, id=621, 357.335pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_27.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_27.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_27.png  used on input line 4710.
+(pdftex.def)             Requested size: 268.01149pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_29.
+png, id=622, 363.85938pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_29.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_29.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_29.png  used on input line 4734.
+(pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_27}.png' not found on input line 4718.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_27}.png' not found on input line 4718.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_27.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4718 ...ith_with_Paul_etal_2015_data_81_27}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_29}.png' not found on input line 4742.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_29}.png' not found on input line 4742.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_29.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4742 ...ith_with_Paul_etal_2015_data_81_29}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4744
+Underfull \vbox (badness 10000) detected at line 4736
  []
 
-[66]
+[66 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+80_25.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_80_27.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_31.
+png, id=629, 363.85938pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_31.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_31.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_31.png  used on input line 4758.
+(pdftex.def)             Requested size: 272.52187pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_33.
+png, id=630, 363.85938pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_33.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_33.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_33.png  used on input line 4782.
+(pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_31}.png' not found on input line 4766.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_31}.png' not found on input line 4766.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_31.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4766 ...ith_with_Paul_etal_2015_data_81_31}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_33}.png' not found on input line 4790.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_33}.png' not found on input line 4790.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_33.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4790 ...ith_with_Paul_etal_2015_data_81_33}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4792
+Underfull \vbox (badness 10000) detected at line 4784
  []
 
-[67]
+[67 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+80_29.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_80_31.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_35.
+png, id=637, 357.335pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_35.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_35.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_35.png  used on input line 4806.
+(pdftex.def)             Requested size: 268.01149pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_37.
+png, id=638, 357.335pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_37.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_37.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_37.png  used on input line 4830.
+(pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_35}.png' not found on input line 4814.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_35}.png' not found on input line 4814.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_35.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4814 ...ith_with_Paul_etal_2015_data_81_35}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_37}.png' not found on input line 4838.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_37}.png' not found on input line 4838.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_37.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4838 ...ith_with_Paul_etal_2015_data_81_37}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4840
+Underfull \vbox (badness 10000) detected at line 4832
  []
 
-[68]
+[68 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+80_33.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_80_35.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_39.
+png, id=645, 363.85938pt x 264.99pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+0_39.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
+_39.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_80_39.png  used on input line 4854.
+(pdftex.def)             Requested size: 272.52187pt x 198.742pt.
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_81_1.p
+ng, id=646, 409.53pt x 347.79938pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+1_1.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_81
+_1.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_81_1.png  used on input line 4887.
+(pdftex.def)             Requested size: 307.16548pt x 260.4827pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_39}.png' not found on input line 4862.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_81_39}.png' not found on input line 4862.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_81_39.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4862 ...ith_with_Paul_etal_2015_data_81_39}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_82_1}.png' not found on input line 4895.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_82_1}.png' not found on input line 4895.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_82_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4895 ...with_with_Paul_etal_2015_data_82_1}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4897
+Underfull \vbox (badness 10000) detected at line 4889
  []
 
-[69]
+[69 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+80_37.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_80_39.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_84_1.p
+ng, id=654, 391.4625pt x 263.98625pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+4_1.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_84
+_1.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_84_1.png  used on input line 4931.
+(pdftex.def)             Requested size: 293.6081pt x 197.9892pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_85_1}.png' not found on input line 4939.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_85_1}.png' not found on input line 4939.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_85_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4939 ...with_with_Paul_etal_2015_data_85_1}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 4941
+Underfull \vbox (badness 10000) detected at line 4933
  []
 
-[70]
+[70 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
+81_1.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_85_1.p
+ng, id=663, 384.93813pt x 263.98625pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+5_1.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_85
+_1.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_85_1.png  used on input line 4968.
+(pdftex.def)             Requested size: 288.34459pt x 197.9892pt.
+ [71 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
+_84_1.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
+5_data_85_1.png>]
+<notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_87_1.p
+ng, id=671, 394.97563pt x 263.98625pt>
+File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
+7_1.png Graphic file (type png)
+<use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_87
+_1.png>
+Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
+ul_etal_2015_data_87_1.png  used on input line 5011.
+(pdftex.def)             Requested size: 295.85732pt x 197.9892pt.
+ [72 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
+_87_1.png>] [73] [74] [75]
+<notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_15_0.png,
+ id=698, 938.50626pt x 265.99374pt>
+File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_15_0
+.png Graphic file (type png)
+<use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_15_0.
+png>
+Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
+etal_2015_data_15_0.png  used on input line 5766.
+(pdftex.def)             Requested size: 469.75319pt x 133.1386pt.
+<notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_16_0.png,
+ id=699, 384.93813pt x 264.48813pt>
+File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_16_0
+.png Graphic file (type png)
+<use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_16_0.
+png>
+Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
+etal_2015_data_16_0.png  used on input line 5787.
+(pdftex.def)             Requested size: 288.34459pt x 197.99026pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_86_1}.png' not found on input line 4976.
+Underfull \vbox (badness 2726) detected at line 5789
+ []
 
+[76 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_15_
+0.png>] [77 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_
+data_16_0.png>]
+<notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_22_1.png,
+ id=717, 399.4925pt x 358.33875pt>
+File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_22_1
+.png Graphic file (type png)
+<use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_22_1.
+png>
+Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
+etal_2015_data_22_1.png  used on input line 5913.
+(pdftex.def)             Requested size: 299.63081pt x 268.7698pt.
 
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_86_1}.png' not found on input line 4976.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_86_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.4976 ...with_with_Paul_etal_2015_data_86_1}.png}
-                                                  
-? 
-[71]
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_88_1}.png' not found on input line 5019.
-
-
-LaTeX Warning: File `{notebooks/04_Network_analysis/../../_build/doctrees/nbsph
-inx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_dat
-a_88_1}.png' not found on input line 5019.
-
-
-! Package pdftex.def Error: File `notebooks/04_Network_analysis/../../_build/do
-ctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_e
-tal_2015_data_88_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.5019 ...with_with_Paul_etal_2015_data_88_1}.png}
-                                                  
-? 
-[72] [73] [74] [75]
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_15_0}.p
-ng' not found on input line 5774.
-
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_15_0}.p
-ng' not found on input line 5774.
-
-
-! Package pdftex.def Error: File `notebooks/05_simulation/../../_build/doctrees
-/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_
-data_15_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.5774 ...with_with_Paul_etal_2015_data_15_0}.png}
-                                                  
-? 
-[76]
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_16_0}.p
-ng' not found on input line 5795.
-
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_16_0}.p
-ng' not found on input line 5795.
-
-
-! Package pdftex.def Error: File `notebooks/05_simulation/../../_build/doctrees
-/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_
-data_16_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.5795 ...with_with_Paul_etal_2015_data_16_0}.png}
-                                                  
-? 
-[77]
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_22_1}.p
-ng' not found on input line 5921.
-
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_22_1}.p
-ng' not found on input line 5921.
-
-
-! Package pdftex.def Error: File `notebooks/05_simulation/../../_build/doctrees
-/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_
-data_22_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.5921 ...with_with_Paul_etal_2015_data_22_1}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 5923
+Underfull \vbox (badness 10000) detected at line 5915
  []
 
 [78]
+<notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_24_0.png,
+ id=724, 621.82312pt x 576.65437pt>
+File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_24_0
+.png Graphic file (type png)
+<use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_24_0.
+png>
+Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
+etal_2015_data_24_0.png  used on input line 5945.
+(pdftex.def)             Requested size: 465.98666pt x 432.12895pt.
 
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_24_0}.p
-ng' not found on input line 5953.
-
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_24_0}.p
-ng' not found on input line 5953.
-
-
-! Package pdftex.def Error: File `notebooks/05_simulation/../../_build/doctrees
-/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_
-data_24_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.5953 ...with_with_Paul_etal_2015_data_24_0}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 5955
+Underfull \vbox (badness 10000) detected at line 5947
  []
 
-[79] [80]
+[79 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_22_
+1.png>] [80 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_
+data_24_0.png>]
+<notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_1.png,
+ id=740, 575.65062pt x 209.78375pt>
+File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_1
+.png Graphic file (type png)
+<use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_1.
+png>
+Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
+etal_2015_data_32_1.png  used on input line 6043.
+(pdftex.def)             Requested size: 431.37677pt x 157.3374pt.
+<notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_3.png,
+ id=741, 575.65062pt x 209.78375pt>
+File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_3
+.png Graphic file (type png)
+<use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_3.
+png>
+Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
+etal_2015_data_32_3.png  used on input line 6067.
+(pdftex.def)             Requested size: 431.37677pt x 157.3374pt.
 
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_1}.p
-ng' not found on input line 6051.
-
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_1}.p
-ng' not found on input line 6051.
-
-
-! Package pdftex.def Error: File `notebooks/05_simulation/../../_build/doctrees
-/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_
-data_32_1.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6051 ...with_with_Paul_etal_2015_data_32_1}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_3}.p
-ng' not found on input line 6075.
-
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_3}.p
-ng' not found on input line 6075.
-
-
-! Package pdftex.def Error: File `notebooks/05_simulation/../../_build/doctrees
-/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_
-data_32_3.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6075 ...with_with_Paul_etal_2015_data_32_3}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 6077
+Underfull \vbox (badness 10000) detected at line 6069
  []
 
-[81]
+[81 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_
+1.png>]
+<notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_5.png,
+ id=749, 575.65062pt x 209.78375pt>
+File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_5
+.png Graphic file (type png)
+<use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_5.
+png>
+Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
+etal_2015_data_32_5.png  used on input line 6091.
+(pdftex.def)             Requested size: 431.37677pt x 157.3374pt.
+<notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_35_0.png,
+ id=750, 358.33875pt x 358.33875pt>
+File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_35_0
+.png Graphic file (type png)
+<use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_35_0.
+png>
+Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
+etal_2015_data_35_0.png  used on input line 6120.
+(pdftex.def)             Requested size: 268.7698pt x 268.7698pt.
 
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_5}.p
-ng' not found on input line 6099.
-
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_5}.p
-ng' not found on input line 6099.
-
-
-! Package pdftex.def Error: File `notebooks/05_simulation/../../_build/doctrees
-/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_
-data_32_5.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6099 ...with_with_Paul_etal_2015_data_32_5}.png}
-                                                  
-? 
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_35_0}.p
-ng' not found on input line 6128.
-
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_35_0}.p
-ng' not found on input line 6128.
-
-
-! Package pdftex.def Error: File `notebooks/05_simulation/../../_build/doctrees
-/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_
-data_35_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6128 ...with_with_Paul_etal_2015_data_35_0}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 6130
+Underfull \vbox (badness 10000) detected at line 6122
  []
 
-[82]
+[82 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_
+3.png> <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_
+32_5.png>]
+<notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_37_0.png,
+ id=758, 226.8475pt x 358.33875pt>
+File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_37_0
+.png Graphic file (type png)
+<use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_37_0.
+png>
+Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
+etal_2015_data_37_0.png  used on input line 6153.
+(pdftex.def)             Requested size: 170.1352pt x 268.7698pt.
 
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_37_0}.p
-ng' not found on input line 6161.
-
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_37_0}.p
-ng' not found on input line 6161.
-
-
-! Package pdftex.def Error: File `notebooks/05_simulation/../../_build/doctrees
-/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_
-data_37_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6161 ...with_with_Paul_etal_2015_data_37_0}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 6163
+Underfull \vbox (badness 10000) detected at line 6155
  []
 
-[83]
+[83 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_35_
+0.png>]
+<notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_39_0.png,
+ id=764, 347.79938pt x 361.35pt>
+File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_39_0
+.png Graphic file (type png)
+<use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_39_0.
+png>
+Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
+etal_2015_data_39_0.png  used on input line 6180.
+(pdftex.def)             Requested size: 260.4827pt x 271.01184pt.
 
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0}.p
-ng' not found on input line 6188.
-
-
-LaTeX Warning: File `{notebooks/05_simulation/../../_build/doctrees/nbsphinx/no
-tebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0}.p
-ng' not found on input line 6188.
-
-
-! Package pdftex.def Error: File `notebooks/05_simulation/../../_build/doctrees
-/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_
-data_39_0.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6188 ...with_with_Paul_etal_2015_data_39_0}.png}
-                                                  
-? 
-
-Underfull \vbox (badness 10000) detected at line 6190
+Underfull \vbox (badness 10000) detected at line 6182
  []
 
-[84]
+[84 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_37_
+0.png>]
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 6235.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 6227.
 
-Underfull \hbox (badness 10000) in paragraph at lines 6236--6237
+Underfull \hbox (badness 10000) in paragraph at lines 6228--6229
 \T1/ptm/m/n/10 Bases: \T1/pcr/m/n/10 celloracle.trajectory.modified_VelocytoLoo
 m_class.
  []
 
-[85]
+[85 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_39_
+0.png>]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 6301.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 6293.
  [86]
-Underfull \hbox (badness 10000) in paragraph at lines 6417--6417
+Underfull \hbox (badness 10000) in paragraph at lines 6409--6409
 []\T1/ptm/m/it/10 adata\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ter_column_name=No
 ne\T1/ptm/m/n/10 , \T1/ptm/m/it/10 em-bed-
  []
 
 [87] [88]
-Underfull \hbox (badness 10000) in paragraph at lines 6587--6587
+Underfull \hbox (badness 10000) in paragraph at lines 6579--6579
 []\T1/ptm/m/it/10 perturb_condition=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 GRN_un
 it='cluster'\T1/ptm/m/n/10 , \T1/ptm/m/it/10 n_propagation=3\T1/ptm/m/n/10 , \T
 1/ptm/m/it/10 ig-
  []
 
 [89]
-Underfull \hbox (badness 10000) in paragraph at lines 6754--6754
+Underfull \hbox (badness 10000) in paragraph at lines 6746--6746
 []\T1/ptm/m/it/10 p=0.001\T1/ptm/m/n/10 , \T1/ptm/m/it/10 weight='coef_abs'\T1/
 ptm/m/n/10 , \T1/ptm/m/it/10 thread_number=10000\T1/ptm/m/n/10 , \T1/ptm/m/it/1
 0 genelist_source=None\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6822--6822
+Underfull \hbox (badness 10000) in paragraph at lines 6814--6814
 []\T1/ptm/m/it/10 gois=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ters=None\T1/p
 tm/m/n/10 , \T1/ptm/m/it/10 scat-ter=True\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6822--6822
+Underfull \hbox (badness 10000) in paragraph at lines 6814--6814
 \T1/ptm/m/it/10 kde=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 auto_gene_annot=False
 \T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6822--6822
+Underfull \hbox (badness 10000) in paragraph at lines 6814--6814
 \T1/ptm/m/it/10 centile=98\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_dot={'n_levels'
 : 105}\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6822--6822
+Underfull \hbox (badness 10000) in paragraph at lines 6814--6814
 \T1/ptm/m/it/10 args_line={'c': 'gray'}\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_an
 not={}\T1/ptm/m/n/10 ,
  []
 
 [90]
-Underfull \hbox (badness 7064) in paragraph at lines 6944--6944
+Underfull \hbox (badness 7064) in paragraph at lines 6936--6936
 []\T1/ptm/m/it/10 value\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ter1\T1/ptm/m/n/10
  , \T1/ptm/m/it/10 clus-ter2\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-centile=99\T1/
 ptm/m/n/10 , \T1/ptm/m/it/10 an-not_shifts=None\T1/ptm/m/n/10 ,
  []
 
 [91] [92] [93]
-Underfull \hbox (badness 10000) in paragraph at lines 7328--7328
+Underfull \hbox (badness 10000) in paragraph at lines 7320--7320
 []\T1/ptm/m/it/10 bagging_number=200\T1/ptm/m/n/10 , \T1/ptm/m/it/10 scal-ing=T
 rue\T1/ptm/m/n/10 , \T1/ptm/m/it/10 model_method='bagging_ridge'\T1/ptm/m/n/10 
 , \T1/ptm/m/it/10 com-
  []
 
 [94] [95]
-Underfull \hbox (badness 10000) in paragraph at lines 7557--7559
+Underfull \hbox (badness 10000) in paragraph at lines 7549--7551
 \T1/ptm/m/n/10 or it can be a list of peak_id. e.g. [^^Pchr5_0930303_9499409^^Q
 ,
  []
 
 [96]
-Overfull \hbox (11.15468pt too wide) in paragraph at lines 7616--7616
+Overfull \hbox (11.15468pt too wide) in paragraph at lines 7608--7608
 []\T1/ptm/m/it/10 path_to_raw_bed\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (55.92404pt too wide) in paragraph at lines 7616--7616
+Overfull \hbox (55.92404pt too wide) in paragraph at lines 7608--7608
 \T1/ptm/m/it/10 path_to_scanned_result_bed\T1/ptm/m/n/10 ,
  []
 
 [97]
-Underfull \hbox (badness 10000) in paragraph at lines 7887--7887
+Underfull \hbox (badness 10000) in paragraph at lines 7879--7879
 []\T1/ptm/m/it/10 peak_str_list\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ref_genome\T1/p
 tm/m/n/10 , \T1/ptm/m/it/10 ver-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7892--7893
+Underfull \hbox (badness 10000) in paragraph at lines 7884--7885
 []\T1/pcr/b/n/10 peak_str_list \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 list of str\T1/p
 tm/m/n/10 ) ^^U list of peak_id. e.g.,
  []
 
 
-Overfull \hbox (20.33435pt too wide) in paragraph at lines 7909--7909
+Overfull \hbox (20.33435pt too wide) in paragraph at lines 7901--7901
 \T1/ptm/m/it/10 cero_connections\T1/pcr/m/n/10 ) 
  []
 
 [98]
-Underfull \hbox (badness 10000) in paragraph at lines 7945--7945
+Underfull \hbox (badness 10000) in paragraph at lines 7937--7937
 []\T1/ptm/m/it/10 oracle_object\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7945--7945
+Underfull \hbox (badness 10000) in paragraph at lines 7937--7937
 \T1/ptm/m/it/10 ter_name_for_GRN_unit=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 al-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7945--7945
+Underfull \hbox (badness 10000) in paragraph at lines 7937--7937
 \T1/ptm/m/it/10 pha=10\T1/ptm/m/n/10 , \T1/ptm/m/it/10 bag-ging_number=20\T1/pt
 m/m/n/10 , \T1/ptm/m/it/10 ver-
  []
 
 
-Overfull \hbox (50.03403pt too wide) in paragraph at lines 7981--7981
+Overfull \hbox (50.03403pt too wide) in paragraph at lines 7973--7973
 []\T1/ptm/m/it/10 show_all_stdout=False\T1/pcr/m/n/10 ) 
  []
 
 [99]
-Underfull \hbox (badness 10000) in paragraph at lines 8108--8108
+Underfull \hbox (badness 10000) in paragraph at lines 8100--8100
 []\T1/ptm/m/it/10 p=0.001\T1/ptm/m/n/10 , \T1/ptm/m/it/10 weight='coef_abs'\T1/
 ptm/m/n/10 , \T1/ptm/m/it/10 thread_number=10000\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8176--8176
+Underfull \hbox (badness 10000) in paragraph at lines 8168--8168
 []\T1/ptm/m/it/10 gois=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ters=None\T1/p
 tm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8176--8176
+Underfull \hbox (badness 10000) in paragraph at lines 8168--8168
 \T1/ptm/m/it/10 scat-ter=True\T1/ptm/m/n/10 , \T1/ptm/m/it/10 kde=False\T1/ptm/
 m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8176--8176
+Underfull \hbox (badness 10000) in paragraph at lines 8168--8168
 \T1/ptm/m/it/10 auto_gene_annot=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8176--8176
+Underfull \hbox (badness 10000) in paragraph at lines 8168--8168
 \T1/ptm/m/it/10 centile=98\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_dot={'n_levels'
 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8176--8176
+Underfull \hbox (badness 10000) in paragraph at lines 8168--8168
 \T1/ptm/m/it/10 105}\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_line={'c': 'gray'}\T1
 /ptm/m/n/10 ,
  []
 
 [100]
-Underfull \hbox (badness 10000) in paragraph at lines 8271--8271
+Underfull \hbox (badness 10000) in paragraph at lines 8263--8263
 []\T1/ptm/m/it/10 update_network_entropy=False\T1/ptm/m/n/10 ,
  []
 
 [101]
-Underfull \hbox (badness 10000) in paragraph at lines 8298--8298
+Underfull \hbox (badness 10000) in paragraph at lines 8290--8290
 []\T1/ptm/m/it/10 value\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ter1\T1/ptm/m/n/10
  , \T1/ptm/m/it/10 clus-ter2\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-centile=99\T1/
 ptm/m/n/10 , \T1/ptm/m/it/10 an-
  []
 
 
-Overfull \hbox (11.52493pt too wide) in paragraph at lines 8426--8426
+Overfull \hbox (11.52493pt too wide) in paragraph at lines 8418--8418
 []\T1/ptm/m/it/10 adata\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (7.63466pt too wide) in paragraph at lines 8426--8426
+Overfull \hbox (7.63466pt too wide) in paragraph at lines 8418--8418
 \T1/ptm/m/it/10 links\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (64.53456pt too wide) in paragraph at lines 8426--8426
+Overfull \hbox (64.53456pt too wide) in paragraph at lines 8418--8418
 \T1/ptm/m/it/10 method='median'\T1/pcr/m/n/10 ) 
  []
 
 [102] [103]
-Underfull \hbox (badness 10000) in paragraph at lines 8672--8672
+Underfull \hbox (badness 10000) in paragraph at lines 8664--8664
 []\T1/ptm/m/it/10 commands\T1/ptm/m/n/10 , \T1/ptm/m/it/10 mes-sage=True\T1/ptm
 /m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8672--8672
+Underfull \hbox (badness 10000) in paragraph at lines 8664--8664
 \T1/ptm/m/it/10 wait_finished=True\T1/ptm/m/n/10 , \T1/ptm/m/it/10 re-
  []
 
 [104]
-Overfull \hbox (51.73412pt too wide) in paragraph at lines 8815--8815
+Overfull \hbox (51.73412pt too wide) in paragraph at lines 8807--8807
 []\T1/ptm/m/it/10 file_path_seurat_object\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (47.13416pt too wide) in paragraph at lines 8815--8815
+Overfull \hbox (47.13416pt too wide) in paragraph at lines 8807--8807
 \T1/ptm/m/it/10 delete_tmp_file=True\T1/pcr/m/n/10 ) 
  []
 
@@ -3571,21 +2771,21 @@ lor-acle.Net
  []
 
 [115])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 9122.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 9122.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 9114.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 9114.
  (./celloracle.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 9122.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 9122.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 9114.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 9114.
 
 Package rerunfilecheck Info: File `celloracle.out' has not changed.
 (rerunfilecheck)             Checksum: AEAAF85A00171EDAE1D6D184292D91AD;1071.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 9122.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 9114.
  ) 
 Here is how much of TeX's memory you used:
- 14594 strings out of 494923
- 232023 string characters out of 6180742
- 539861 words of memory out of 5000000
- 17074 multiletter control sequences out of 15000+600000
+ 14860 strings out of 494923
+ 254277 string characters out of 6180742
+ 539850 words of memory out of 5000000
+ 17342 multiletter control sequences out of 15000+600000
  54671 words of font info for 78 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
  37i,12n,45p,742b,737s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3600,10 +2800,10 @@ xlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on celloracle.pdf (119 pages, 1975591 bytes).
+Output written on celloracle.pdf (119 pages, 5201737 bytes).
 PDF statistics:
- 1258 PDF objects out of 1440 (max. 8388607)
+ 1392 PDF objects out of 1440 (max. 8388607)
  1082 compressed objects within 11 object streams
  430 named destinations out of 1000 (max. 500000)
- 171 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 506 words of extra memory for PDF output out of 10000 (max. 10000000)
 

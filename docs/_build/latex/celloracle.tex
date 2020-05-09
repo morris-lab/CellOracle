@@ -2660,7 +2660,7 @@ Python notebook
 
 
 \subsubsection{0. Import libraries}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:0.-Import-libraries}}\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data::doc}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:0.-Import-libraries}}\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data::doc}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -2703,7 +2703,7 @@ Python notebook
 
 
 \paragraph{0.1. Check installation}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:0.1.-Check-installation}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:0.1.-Check-installation}}
 Celloracle uses some R libraries in network analysis. Please make sure that all dependent R libraries are installed on your computer. You can test the installation with the following command.
 
 {
@@ -2731,7 +2731,7 @@ checking R library installation: rnetcarto -> OK
 
 
 \paragraph{0.2. Make a folder to save graph}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:0.2.-Make-a-folder-to-save-graph}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:0.2.-Make-a-folder-to-save-graph}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -2743,10 +2743,10 @@ checking R library installation: rnetcarto -> OK
 
 
 \subsubsection{1. Load data}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:1.-Load-data}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:1.-Load-data}}
 
 \paragraph{1.1. Load processed gene expression data (anndata)}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:1.1.-Load-processed-gene-expression-data-(anndata)}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:1.1.-Load-processed-gene-expression-data-(anndata)}}
 Please refer to the previous notebook in the tutorial for an example of how to process scRNA-seq data.
 
 {
@@ -2760,7 +2760,7 @@ Please refer to the previous notebook in the tutorial for an example of how to p
 
 
 \paragraph{1.2. Load TF data.}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:1.2.-Load-TF-data.}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:1.2.-Load-TF-data.}}
 For the GRN inference, celloracle needs TF information, which contains lists of the regulatory candidate genes. There are several ways to make such TF information. We can generate TF information from scATAC-seq data or bulk ATAC-seq data. Please refer to the first step of the tutorial for the details of this process.
 
 If you do not have your scATAC-seq data, you can use some built-in data in celloracle. The built-in TFinfo wqs made using various tissue/cell-types from the mouse ATAC-seq atlas dataset (\sphinxurl{http://atlas.gs.washington.edu/mouse-atac/}).
@@ -2813,17 +2813,9 @@ You can load and use the data with the following command.
 \end{sphinxVerbatim}
 }
 
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
-\end{sphinxVerbatim}
-}
-
 
 \subsubsection{2. Initiate Oracle object}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.-Initiate-Oracle-object}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:2.-Initiate-Oracle-object}}
 Celloracle has a custom called Oracle. We can use Oracle for the data preprocessing and GRN inference steps. The Oracle object stores all of necessary information and does the calculations with its internal functions. We instantiate an Oracle object, then input the gene expression data (anndata) and a TFinfo into the Oracle object.
 
 {
@@ -2837,7 +2829,7 @@ Celloracle has a custom called Oracle. We can use Oracle for the data preprocess
 
 
 \paragraph{2.1. load gene expression data into oracle object.}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.1.-load-gene-expression-data-into-oracle-object.}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:2.1.-load-gene-expression-data-into-oracle-object.}}
 When you load a scRNA-seq data, please enter the name of clustering data and dimensional reduction data. The clustering data should be to be stored in the attribute of “obs” in the anndata. Dimensional reduction data suppose to be stored in the attribute of “obsm” in the anndata. You can check these data by the following command.
 
 If you are not familiar with anndata, please look at the documentation of annata (\sphinxurl{https://anndata.readthedocs.io/en/stable/}) or Scanpy (\sphinxurl{https://scanpy.readthedocs.io/en/stable/}).
@@ -2884,7 +2876,7 @@ dimensional reduction:  ['X\_diffmap', 'X\_draw\_graph\_fa', 'X\_pca']
 
 
 \paragraph{2.2. Load TFinfo into oracle object}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.2.-Load-TFinfo-into-oracle-object}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:2.2.-Load-TFinfo-into-oracle-object}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -2899,14 +2891,14 @@ dimensional reduction:  ['X\_diffmap', 'X\_draw\_graph\_fa', 'X\_pca']
 
 
 \paragraph{2.3. (Optional) Add TF info manually}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.3.-(Optional)-Add-TF-info-manually}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:2.3.-(Optional)-Add-TF-info-manually}}
 While we mainly use TF info data made from scATAC-seq data, we can also add additional information about the TF-target gene pair manually.
 
 For example, if there is a study or database that includes specific TF-target pairs, you can use such information in the following way.
 
 
 \subparagraph{2.3.1. Make TF info dictionary manually}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.3.1.-Make-TF-info-dictionary-manually}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:2.3.1.-Make-TF-info-dictionary-manually}}
 Here, we will introduce how to add TF binding information.
 
 We will start with TF binding data from supplemental table 4 in (\sphinxurl{http://doi.org/10.1016/j.cell.2015.11.013}).
@@ -2990,7 +2982,7 @@ HBox(children=(FloatProgress(value=0.0, max=178.0), HTML(value='')))
 
 
 \subparagraph{2.3.2. Add TF informatio dictionary into the oracle object}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:2.3.2.-Add-TF-informatio-dictionary-into-the-oracle-object}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:2.3.2.-Add-TF-informatio-dictionary-into-the-oracle-object}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -3002,14 +2994,14 @@ HBox(children=(FloatProgress(value=0.0, max=178.0), HTML(value='')))
 
 
 \subsubsection{3. Knn imputation}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:3.-Knn-imputation}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:3.-Knn-imputation}}
 Celloracle uses almost the same strategy as velocyto for visualizing cell transitions. This process requires KNN imputation in advance.
 
 For the KNN imputation, we need PCA and PC selection first.
 
 
 \paragraph{3.1. PCA}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:3.1.-PCA}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:3.1.-PCA}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -3046,13 +3038,13 @@ For the KNN imputation, we need PCA and PC selection first.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=380\sphinxpxdimen,height=278\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_28_1}.png}
+\noindent\sphinxincludegraphics[width=380\sphinxpxdimen,height=278\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_27_1}.png}
 
 \end{nbsphinxfancyoutput}
 
 
 \paragraph{3.2. KNN imputation}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:3.2.-KNN-imputation}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:3.2.-KNN-imputation}}
 Estimate the optimal number of nearest neighbors for KNN imputation.
 
 {
@@ -3110,7 +3102,7 @@ Auto-selected k is :66
 
 
 \subsubsection{4. Save and Load.}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:4.-Save-and-Load.}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:4.-Save-and-Load.}}
 Celloracle has some custom-classes: Links, Oracle and TFinfo. You can save such an object using “to\_hdf5”.
 
 Pleasae use “load\_hdf5” function to load the file.
@@ -3134,8 +3126,8 @@ Pleasae use “load\_hdf5” function to load the file.
 }
 
 
-\subsubsection{4. GRN calculation}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:4.-GRN-calculation}}
+\subsubsection{5. GRN calculation}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:5.-GRN-calculation}}
 The next step is constructing a cluster-specific GRN for all clusters.
 
 You can calculate GRNs with the “get\_links” function, and the function returns GRNs as a Links object. The Links object stores inferred GRNs and the corresponding metadata. You can do network analysis with the Links object.
@@ -3160,13 +3152,13 @@ The GRNs can be calculated at any arbitrary unit as long as the clustering infor
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=516\sphinxpxdimen,height=288\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_38_0}.png}
+\noindent\sphinxincludegraphics[width=516\sphinxpxdimen,height=288\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_37_0}.png}
 
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{4.1. Get GRNs}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:4.1.-Get-GRNs}}
+\paragraph{5.1. Get GRNs}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:5.1.-Get-GRNs}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -3183,8 +3175,8 @@ The GRNs can be calculated at any arbitrary unit as long as the clustering infor
 }
 
 
-\paragraph{4.2. (Optional) Export GRNs}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:4.2.-(Optional)-Export-GRNs}}
+\paragraph{5.2. (Optional) Export GRNs}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:5.2.-(Optional)-Export-GRNs}}
 Although celloracle has many functions for network analysis, you can analyze GRNs by hand if you choose. The raw GRN data is stored in the attribute of “links\_dict”.
 
 For example, you can get the GRN for the “Ery\_0” cluster with the following commands.
@@ -3259,8 +3251,8 @@ You can export the file as follows.
 }
 
 
-\paragraph{4.3. (Optional) Change order}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:4.3.-(Optional)-Change-order}}
+\paragraph{5.3. (Optional) Change order}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:5.3.-(Optional)-Change-order}}
 The links object has a color information in an attribute, “palette”. This information is used for the visualization
 
 The sample will be visualized in that order. Here we can change the order.
@@ -3354,11 +3346,11 @@ Gran\_2  \#F0B98D
 }
 
 
-\subsubsection{5. Network preprocessing}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:5.-Network-preprocessing}}
+\subsubsection{6. Network preprocessing}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:6.-Network-preprocessing}}
 
-\paragraph{5.1. Filter network edges}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:5.1.-Filter-network-edges}}
+\paragraph{6.1. Filter network edges}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:6.1.-Filter-network-edges}}
 Celloracle utilizes bagging ridge or Bayesian ridge regression to infer gene regulatory networks. These methods provide a network edge strength as a distribution rather than a point value. We can use the distribution to know the certainness of the connection.
 
 We filter the network edges as follows.
@@ -3385,8 +3377,8 @@ The raw network data is stored as an attribute, “links\_dict,” while filtere
 }
 
 
-\paragraph{5.2. Degree distribution}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:5.2.-Degree-distribution}}
+\paragraph{6.2. Degree distribution}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:6.2.-Degree-distribution}}
 In the first step, we examine the network degree distribution. Network degree, which is the number of edges for each node, is one of the important metrics used to investigate the network structure (\sphinxurl{https://en.wikipedia.org/wiki/Degree\_distribution}).
 
 Please keep in mind that the degree distribution may change depending on the filtering threshold.
@@ -3427,7 +3419,7 @@ Ery\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3451,7 +3443,7 @@ Ery\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3475,7 +3467,7 @@ Ery\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3499,7 +3491,7 @@ Ery\_3
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_7}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_7}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3523,7 +3515,7 @@ Ery\_4
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_9}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_9}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3547,7 +3539,7 @@ Ery\_5
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_11}.png}
+\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_11}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3571,7 +3563,7 @@ Ery\_6
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_13}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_13}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3595,7 +3587,7 @@ Ery\_7
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_15}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_15}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3619,7 +3611,7 @@ Ery\_8
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_17}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_17}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3643,7 +3635,7 @@ Ery\_9
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_19}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_19}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3667,7 +3659,7 @@ GMP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_21}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_21}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3691,7 +3683,7 @@ GMP\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_23}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_23}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3715,7 +3707,7 @@ GMPl\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_25}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_25}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3739,7 +3731,7 @@ Gran\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_27}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_27}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3763,7 +3755,7 @@ Gran\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_29}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_29}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3787,7 +3779,7 @@ Gran\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_31}.png}
+\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_31}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3811,7 +3803,7 @@ MEP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_33}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_33}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3835,7 +3827,7 @@ Mk\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_35}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_35}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3859,7 +3851,7 @@ Mo\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_37}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_37}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3883,7 +3875,7 @@ Mo\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_39}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_39}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3897,7 +3889,7 @@ Mo\_1
 
 
 \paragraph{5.3. Calculate netowrk score}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:5.3.-Calculate-netowrk-score}}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:5.3.-Calculate-netowrk-score}}
 Next, we calculate several network score using some R libraries. Please make sure that R libraries are installed in your PC before running the command below.
 
 {
@@ -4008,8 +4000,8 @@ Ybx1        3      5.306800       0.687251  Connector Hub   Ery\_0
 }
 
 
-\paragraph{5.4. Save}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:5.4.-Save}}
+\paragraph{6.4. Save}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:6.4.-Save}}
 Save processed GRN. We use this file in the next notebook; “in silico perturbation with GRNs”.
 
 {
@@ -4032,13 +4024,13 @@ Save processed GRN. We use this file in the next notebook; “in silico perturba
 }
 
 
-\subsubsection{6. Network analysis; Network score for each gene}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:6.-Network-analysis;-Network-score-for-each-gene}}
+\subsubsection{7. Network analysis; Network score for each gene}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:7.-Network-analysis;-Network-score-for-each-gene}}
 The Links class has many functions to visualize network score. See the documentation for the details of the functions.
 
 
-\paragraph{6.1. Network score in each cluster}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:6.1.-Network-score-in-each-cluster}}
+\paragraph{7.1. Network score in each cluster}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:7.1.-Network-score-in-each-cluster}}
 We have calculated several network scores using different centrality metrics. We can use the centrality score to identify key regulatory genes because centrality is one of the important indicators of network structure (\sphinxurl{https://en.wikipedia.org/wiki/Centrality}).
 
 Let’s visualize genes with high network centrality.
@@ -4100,7 +4092,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_0}.png}
+\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4111,7 +4103,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=341\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_1}.png}
+\noindent\sphinxincludegraphics[width=341\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4122,7 +4114,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_2}.png}
+\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_2}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4133,7 +4125,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=305\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_3}.png}
+\noindent\sphinxincludegraphics[width=305\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4144,7 +4136,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=296\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_4}.png}
+\noindent\sphinxincludegraphics[width=296\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_4}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4155,13 +4147,13 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=342\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_5}.png}
+\noindent\sphinxincludegraphics[width=342\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_5}.png}
 
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{6.2. Network score comparison between two clusters}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:6.2.-Network-score-comparison-between-two-clusters}}
+\paragraph{7.2. Network score comparison between two clusters}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:7.2.-Network-score-comparison-between-two-clusters}}
 By comparing network scores between two clusters, we can analyze differences in GRN structure.
 
 {
@@ -4182,7 +4174,7 @@ By comparing network scores between two clusters, we can analyze differences in 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=407\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_69_0}.png}
+\noindent\sphinxincludegraphics[width=407\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_68_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4205,7 +4197,7 @@ By comparing network scores between two clusters, we can analyze differences in 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=416\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0}.png}
+\noindent\sphinxincludegraphics[width=416\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_69_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4227,13 +4219,13 @@ By comparing network scores between two clusters, we can analyze differences in 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=392\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_71_0}.png}
+\noindent\sphinxincludegraphics[width=392\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_70_0}.png}
 
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{6.3. Network score dynamics}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:6.3.-Network-score-dynamics}}
+\paragraph{7.3. Network score dynamics}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:7.3.-Network-score-dynamics}}
 In the following session, we focus on how a gene’s network score changes during the differentiation.
 
 Using Gata2, we will demonstrate how you can visualize networks scores for a single gene.
@@ -4269,7 +4261,7 @@ Gata2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=575\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_73_1}.png}
+\noindent\sphinxincludegraphics[width=575\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_72_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4303,7 +4295,7 @@ Cebpa
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_75_1}.png}
+\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_74_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4363,8 +4355,8 @@ Index: []
 }
 
 
-\paragraph{6.4. Gene cartography analysis}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:6.4.-Gene-cartography-analysis}}
+\paragraph{7.4. Gene cartography analysis}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:7.4.-Gene-cartography-analysis}}
 Gene cartography is a method for gene network analysis. The method classifies gene into several groups using the network module structure and connections. It provides us an insight about the role and regulatory mechanism for each gene. For more information on gene cartography, please refer to the following paper (\sphinxurl{https://www.nature.com/articles/nature03288}).
 
 The gene cartography will be calculated for the GRN in each cluster. Thus we can know how the gene cartography change by comparing the the score between clusters.
@@ -4403,7 +4395,7 @@ Ery\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_1}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4427,7 +4419,7 @@ Ery\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_3}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4451,7 +4443,7 @@ Ery\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_5}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4475,7 +4467,7 @@ Ery\_3
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_7}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_7}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4499,7 +4491,7 @@ Ery\_4
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_9}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_9}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4523,7 +4515,7 @@ Ery\_5
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_11}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_11}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4547,7 +4539,7 @@ Ery\_6
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_13}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_13}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4571,7 +4563,7 @@ Ery\_7
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_15}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_15}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4595,7 +4587,7 @@ Ery\_8
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_17}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_17}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4619,7 +4611,7 @@ Ery\_9
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_19}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_19}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4643,7 +4635,7 @@ GMP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_21}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_21}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4667,7 +4659,7 @@ GMP\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_23}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_23}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4691,7 +4683,7 @@ GMPl\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_25}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_25}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4715,7 +4707,7 @@ Gran\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_27}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_27}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4739,7 +4731,7 @@ Gran\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_29}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_29}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4763,7 +4755,7 @@ Gran\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_31}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_31}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4787,7 +4779,7 @@ MEP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_33}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_33}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4811,7 +4803,7 @@ Mk\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_35}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_35}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4835,7 +4827,7 @@ Mo\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_37}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_37}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4859,7 +4851,7 @@ Mo\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_39}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_39}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4892,18 +4884,18 @@ Gata2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=346\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_82_1}.png}
+\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=346\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_81_1}.png}
 
 \end{nbsphinxfancyoutput}
 
 
-\subsubsection{7. Network analysis; network score distribution}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:7.-Network-analysis;-network-score-distribution}}
+\subsubsection{8. Network analysis; network score distribution}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:8.-Network-analysis;-network-score-distribution}}
 Next, we visualize the distribution of network score to get insight into the global trend of the GRNs.
 
 
-\paragraph{7.1. Distribution of network degree}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:7.1.-Distribution-of-network-degree}}
+\paragraph{8.1. Distribution of network degree}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:8.1.-Distribution-of-network-degree}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -4936,7 +4928,7 @@ degree\_centrality\_all
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=390\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_85_1}.png}
+\noindent\sphinxincludegraphics[width=390\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_84_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4973,13 +4965,13 @@ eigenvector\_centrality
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_86_1}.png}
+\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_85_1}.png}
 
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{7.2. Distribution of netowrk entolopy}
-\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data:7.2.-Distribution-of-netowrk-entolopy}}
+\paragraph{8.2. Distribution of netowrk entropy}
+\label{\detokenize{notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data:8.2.-Distribution-of-netowrk-entropy}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -5016,7 +5008,7 @@ eigenvector\_centrality
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=393\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_88_1}.png}
+\noindent\sphinxincludegraphics[width=393\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_87_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5047,10 +5039,10 @@ Python notebook
 
 
 \subsubsection{0. Import libraries}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:0.-Import-libraries}}\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data::doc}}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:0.-Import-libraries}}\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data::doc}}
 
 \paragraph{0.1. Import public libraries}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:0.1.-Import-public-libraries}}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:0.1.-Import-public-libraries}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -5091,7 +5083,7 @@ Python notebook
 
 
 \paragraph{0.1. Make a folder to save graph}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:0.1.-Make-a-folder-to-save-graph}}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:0.1.-Make-a-folder-to-save-graph}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -5104,10 +5096,10 @@ Python notebook
 
 
 \subsubsection{1. Load data}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:1.-Load-data}}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:1.-Load-data}}
 
 \paragraph{1.1. Load processed oracle object}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:1.1.-Load-processed-oracle-object}}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:1.1.-Load-processed-oracle-object}}
 Load the oracle object. See the previous notebook for the notes on how to prepare the oracle object.
 
 {
@@ -5120,7 +5112,7 @@ Load the oracle object. See the previous notebook for the notes on how to prepar
 
 
 \paragraph{1.2. Load inferred GRNs}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:1.2.-Load-inferred-GRNs}}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:1.2.-Load-inferred-GRNs}}
 In the previous notebook, we calculated GRNs. Now, we will use these GRNs for simulation. We import GRNs which were saved in the Links object.
 
 {
@@ -5132,8 +5124,8 @@ In the previous notebook, we calculated GRNs. Now, we will use these GRNs for si
 }
 
 
-\subsubsection{3. Make predictive models for simulation}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:3.-Make-predictive-models-for-simulation}}
+\subsubsection{2. Make predictive models for simulation}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:2.-Make-predictive-models-for-simulation}}
 We will fit ridge regression models again. This process takes less time than the GRN inference in the previous notebook because we only use significant TFs to predict target gene instead of all regulatory candidate TFs.
 
 {
@@ -5740,8 +5732,8 @@ models made for 1074 genes
 }
 
 
-\subsubsection{4. in silico Perturbation-simulation}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.-in-silico-Perturbation-simulation}}
+\subsubsection{3. in silico Perturbation-simulation}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:3.-in-silico-Perturbation-simulation}}
 Next, we will simulate the effects of perturbing a single TF to investigate its function and regulatory mechanism. See the celloracle paper for the details and scientific premise on the algorithm.
 
 In this notebook, we’ll show an example of the simulation; we’ll simulate knock-out of Gata1 gene in the hematopoiesis.
@@ -5751,8 +5743,8 @@ Previous studies have shown that Gata1 is one of the TFs that regulates cell fat
 Here, we will analyze Gata1 for the demonstration of celloracle; Celloracle try to recapitulate the previous findings of Gata1 gene above.
 
 
-\paragraph{4.1. Check gene expression pattern.}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.1.-Check-gene-expression-pattern.}}
+\paragraph{3.1. Check gene expression pattern.}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:3.1.-Check-gene-expression-pattern.}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -5771,7 +5763,7 @@ Here, we will analyze Gata1 for the demonstration of celloracle; Celloracle try 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=935\sphinxpxdimen,height=265\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_15_0}.png}
+\noindent\sphinxincludegraphics[width=935\sphinxpxdimen,height=265\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_15_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5792,13 +5784,13 @@ Here, we will analyze Gata1 for the demonstration of celloracle; Celloracle try 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_16_0}.png}
+\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_16_0}.png}
 
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{4.1. calculate future gene expression after perturbation.}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.1.-calculate-future-gene-expression-after-perturbation.}}
+\paragraph{3.2. calculate future gene expression after perturbation.}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:3.2.-calculate-future-gene-expression-after-perturbation.}}
 Although you can use any gene expression value for the input of in silico perturbation, we recommend avoiding extreme values which are far from natural gene expression ranges. If you set Gata1 gene expression to 100, for example, it may lead to biologically infeasible results.
 
 Here we simulate Gata1 KO; we predict what happens to the cells if Gata1 gene expression changed into 0.
@@ -5814,8 +5806,8 @@ Here we simulate Gata1 KO; we predict what happens to the cells if Gata1 gene ex
 }
 
 
-\paragraph{4.2. calculate transition probability between cells}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.2.-calculate-transition-probability-between-cells}}
+\paragraph{3.3. calculate transition probability between cells}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:3.3.-calculate-transition-probability-between-cells}}
 In the step above, we simulated simulated future gene expression values after perturbation. This prediction is based on itelative calculations of signal propagations within the GRN.
 
 Next step, we will calculate the probabilityof a cell state transition based on the simulated data. Using the transition probability between cells, we can predict how a cell changes after perturbation.
@@ -5866,11 +5858,11 @@ WARNING:root:Nans encountered in corrcoef and corrected to 1s. If not identical 
 }
 
 
-\paragraph{4.3. Visualization}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.3.-Visualization}}
+\subsubsection{4. Visualization}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:4.-Visualization}}
 
-\subparagraph{4.3.1. Detailed directed trajectory graph}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.3.1.-Detailed-directed-trajectory-graph}}
+\paragraph{4.1. Detailed directed trajectory graph}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:4.1.-Detailed-directed-trajectory-graph}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -5918,13 +5910,13 @@ WARNING:root:Nans encountered in corrcoef and corrected to 1s. If not identical 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=398\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_22_1}.png}
+\noindent\sphinxincludegraphics[width=398\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_22_1}.png}
 
 \end{nbsphinxfancyoutput}
 
 
-\subparagraph{4.3.2. Grid graph}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.3.2.-Grid-graph}}
+\paragraph{4.2. Grid graph}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:4.2.-Grid-graph}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -5950,18 +5942,18 @@ WARNING:root:Nans encountered in corrcoef and corrected to 1s. If not identical 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=619\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_24_0}.png}
+\noindent\sphinxincludegraphics[width=619\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_24_0}.png}
 
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{4.4. Markov simulation to analyze the effects of perturbation on cell fate transition}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.4.-Markov-simulation-to-analyze-the-effects-of-perturbation-on-cell-fate-transition}}
+\subsubsection{5. Markov simulation to analyze the effects of perturbation on cell fate transition}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:5.-Markov-simulation-to-analyze-the-effects-of-perturbation-on-cell-fate-transition}}
 We can also simulate cell state transition using Markof simulation.
 
 
-\subparagraph{4.4.1. Do simulation}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.4.1.-Do-simulation}}
+\subsubsection{5.1. Do Markov simulation}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:5.1.-Do-Markov-simulation}}
 We will simulate using the parameters, “n\_steps=200” and “n\_duplication=5” in the following example.
 
 To elaborate, this means:
@@ -6003,8 +5995,8 @@ Wall time: 1.33 s
 }
 
 
-\subparagraph{4.4.2. Check the results of the simulation for specific cells}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.4.2.-Check-the-results-of-the-simulation-for-specific-cells}}
+\paragraph{5.2. Check the results of the simulation for specific cells}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:5.2.-Check-the-results-of-the-simulation-for-specific-cells}}
 Check the results of simulation. Pick up some cells and visualize their transition trajectory.
 
 {
@@ -6048,7 +6040,7 @@ cell 1961
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_1}.png}
+\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6072,7 +6064,7 @@ cell 43
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_3}.png}
+\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6096,13 +6088,13 @@ cell 1567
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_5}.png}
+\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_5}.png}
 
 \end{nbsphinxfancyoutput}
 
 
-\subparagraph{4.4.3. Summarize the results of simulation by plotting sankey diagram}
-\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_with_Paul_etal_2015_data:4.4.3.-Summarize-the-results-of-simulation-by-plotting-sankey-diagram}}
+\paragraph{5.3. Summarize the results of simulation by plotting sankey diagram}
+\label{\detokenize{notebooks/05_simulation/Gata1_KO_simulation_with_Paul_etal_2015_data:5.3.-Summarize-the-results-of-simulation-by-plotting-sankey-diagram}}
 Sankey diagrams are useful when you want to visualize proportional cell transitions between some groups.
 
 For the grouping of cells, you can use arbitrary cluster unit.
@@ -6125,7 +6117,7 @@ For the grouping of cells, you can use arbitrary cluster unit.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=357\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_35_0}.png}
+\noindent\sphinxincludegraphics[width=357\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_35_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6158,7 +6150,7 @@ Let’s change the cluster order and make the plot again
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=226\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_37_0}.png}
+\noindent\sphinxincludegraphics[width=226\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_37_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6185,7 +6177,7 @@ Make another Saneky diagram with different cluster units.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=346\sphinxpxdimen,height=360\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0}.png}
+\noindent\sphinxincludegraphics[width=346\sphinxpxdimen,height=360\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_39_0}.png}
 
 \end{nbsphinxfancyoutput}
 

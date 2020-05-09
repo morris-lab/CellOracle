@@ -15,4 +15,4 @@ Python notebook
 
 .. toctree::
 
-   ../notebooks/04_Network_analysis/Network_analysis_with_with_Paul_etal_2015_data
+   ../notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data
