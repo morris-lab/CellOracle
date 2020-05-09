@@ -70,6 +70,6 @@ setup(
     packages=["celloracle", "celloracle.data_conversion", "celloracle.network", "celloracle.trajectory",
               "celloracle.data", "celloracle.go_analysis",
               "celloracle.motif_analysis", "celloracle.network_analysis", "celloracle.utility"],
-    entry_points={'console_scripts':['seuratToAnndata = celloracle.data_conversion.process_srurat_object:main']}
+    entry_points={'console_scripts':['seuratToAnndata = celloracle.data_conversion.process_seurat_object:main']}
 
 )

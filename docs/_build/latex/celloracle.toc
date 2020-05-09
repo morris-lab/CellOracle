@@ -47,9 +47,9 @@
 \contentsline {subsubsection}{2. Check data}{15}{subsubsection*.39}
 \contentsline {paragraph}{2.1. Remove short peaks}{16}{paragraph*.40}
 \contentsline {subsubsection}{3. Instantiate TFinfo object and search for TF binding motifs}{16}{subsubsection*.41}
-\contentsline {subsubsection}{3.1 check reference genome installation}{16}{subsubsection*.42}
+\contentsline {paragraph}{3.1 check reference genome installation}{16}{paragraph*.42}
 \contentsline {paragraph}{3.2. Install reference genome (if refgenome is not installed)}{16}{paragraph*.43}
-\contentsline {subsubsection}{4. Scan motifs and save object}{16}{subsubsection*.44}
+\contentsline {subsubsection}{4. Scan motifs and save object}{17}{subsubsection*.44}
 \contentsline {subsubsection}{5. Filtering motifs}{17}{subsubsection*.45}
 \contentsline {subsubsection}{6. Get Final results}{18}{subsubsection*.46}
 \contentsline {paragraph}{6.1. Get resutls as a dictionary}{18}{paragraph*.47}
@@ -62,19 +62,19 @@
 \contentsline {paragraph}{2. Filtering}{20}{paragraph*.53}
 \contentsline {paragraph}{3. Normalization}{20}{paragraph*.54}
 \contentsline {paragraph}{4. Identification of highly variable genes}{20}{paragraph*.55}
-\contentsline {paragraph}{5. Log transformation}{20}{paragraph*.56}
+\contentsline {paragraph}{5. Log transformation}{21}{paragraph*.56}
 \contentsline {paragraph}{6. Dimensional reduction}{21}{paragraph*.57}
 \contentsline {paragraph}{7. Clustering}{21}{paragraph*.58}
 \contentsline {paragraph}{(Optional) Re-calculate Dimensional reduction graph}{21}{paragraph*.59}
 \contentsline {paragraph}{8. Check data}{22}{paragraph*.60}
-\contentsline {subparagraph}{8.1. Visualize marker gene expression}{22}{subparagraph*.61}
-\contentsline {paragraph}{8. Make annotation for cluster}{28}{paragraph*.62}
-\contentsline {subparagraph}{8.1. Make annotation (1)}{28}{subparagraph*.63}
+\contentsline {subparagraph}{8.1. Visualize marker gene expression}{23}{subparagraph*.61}
+\contentsline {paragraph}{9. Make annotation for cluster}{28}{paragraph*.62}
+\contentsline {subparagraph}{9.1. Make annotation (1)}{28}{subparagraph*.63}
 \contentsline {subparagraph}{!! Please change the dictionary below depending on the clustering results. The results may change depending on the execution environment.}{29}{subparagraph*.64}
-\contentsline {subparagraph}{8.2. Make annotation (2)}{30}{subparagraph*.65}
+\contentsline {subparagraph}{9.2. Make annotation (2)}{30}{subparagraph*.65}
 \contentsline {subparagraph}{!! Please change the dictionary below depending on the clustering results. The results may change depending on the execution environment.}{31}{subparagraph*.66}
-\contentsline {paragraph}{9. (Option) Subset cells}{32}{paragraph*.67}
-\contentsline {paragraph}{10. Save data}{32}{paragraph*.68}
+\contentsline {paragraph}{10. (Option) Subset cells}{32}{paragraph*.67}
+\contentsline {paragraph}{11. Save data}{32}{paragraph*.68}
 \contentsline {subsubsection}{B. scRNA-seq data preprocessing with Seurat}{32}{subsubsection*.69}
 \contentsline {subsection}{\numberline {1.2.4}Network analysis}{33}{subsection.1.2.4}
 \contentsline {subsubsection}{0. Import libraries}{33}{subsubsection*.70}

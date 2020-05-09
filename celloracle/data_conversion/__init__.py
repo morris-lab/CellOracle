@@ -4,7 +4,7 @@ The :mod:`.data_conversion` module implements data conversion between different 
 
 """
 
-from .process_srurat_object import seurat_object_to_anndata
+from .process_seurat_object import seurat_object_to_anndata
 
 
 __all__ = ["seurat_object_to_anndata"]

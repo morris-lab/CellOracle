@@ -212,7 +212,7 @@
 
 
 \title{celloracle}
-\date{May 07, 2020}
+\date{May 09, 2020}
 \release{0.3.5}
 \author{Samantha Morris Lab}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1378,7 +1378,7 @@ Short DNA fragment that are less than 5 bases, cannot be used for motif scanning
 The motif analysis module has a custom class; TFinfo. The TFinfo object converts a peak data into a DNA sequences and scans the DNA sequences searching for TF binding motifs. Then, the results of motif scan will be filtered and converted into either a python dictionary or a depending on your preference. This TF information is necessary for GRN inference.
 
 
-\subsubsection{3.1 check reference genome installation}
+\paragraph{3.1 check reference genome installation}
 \label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:3.1-check-reference-genome-installation}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -2305,13 +2305,13 @@ marker gene of Basophils
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{8. Make annotation for cluster}
-\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:8.-Make-annotation-for-cluster}}
+\paragraph{9. Make annotation for cluster}
+\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:9.-Make-annotation-for-cluster}}
 Based on the marker gene expression and previous reports, we will manually annotate each cluster. When using your own data, you will need to annotate the clusters appropriately.
 
 
-\subparagraph{8.1. Make annotation (1)}
-\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:8.1.-Make-annotation-(1)}}
+\subparagraph{9.1. Make annotation (1)}
+\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:9.1.-Make-annotation-(1)}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -2465,8 +2465,8 @@ Categories (23, object): [5, 2, 12, 13, {\ldots}, 20, 14, 15, 21]
 \end{nbsphinxfancyoutput}
 
 
-\subparagraph{8.2. Make annotation (2)}
-\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:8.2.-Make-annotation-(2)}}
+\subparagraph{9.2. Make annotation (2)}
+\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:9.2.-Make-annotation-(2)}}
 We’ll make another annotation manually for each Louvain clusters.
 
 {
@@ -2567,8 +2567,8 @@ We’ll make another annotation manually for each Louvain clusters.
 We’ve done secveral scRNA-preprocessing steps; filtering, normalization, clustering, and dimensional reduction. In the next step, we’ll do the GRN inference, network analysis, and in silico simulation based on this information.
 
 
-\paragraph{9. (Option) Subset cells}
-\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:9.-(Option)-Subset-cells}}
+\paragraph{10. (Option) Subset cells}
+\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:10.-(Option)-Subset-cells}}
 In this tutorial, we are using scRNA-seq data of hematopoiesis. In the latter part, we will focus on the cell fate decision in the myeloid lineage. So we will remove non-myeloid cell cluster; DC and Lymphoid cell cluster.
 
 {
@@ -2624,8 +2624,8 @@ Categories (9, object): [MEP, Monocytes, Erythroids, Granulocytes, {\ldots}, GMP
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{10. Save data}
-\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:10.-Save-data}}
+\paragraph{11. Save data}
+\label{\detokenize{notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data:11.-Save-data}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -3046,7 +3046,7 @@ For the KNN imputation, we need PCA and PC selection first.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=380\sphinxpxdimen,height=278\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_28_1}.png}
+\noindent\sphinxincludegraphics[width=380\sphinxpxdimen,height=278\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_28_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3160,7 +3160,7 @@ The GRNs can be calculated at any arbitrary unit as long as the clustering infor
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=516\sphinxpxdimen,height=288\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_38_0}.png}
+\noindent\sphinxincludegraphics[width=516\sphinxpxdimen,height=288\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_38_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3427,7 +3427,7 @@ Ery\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3451,7 +3451,7 @@ Ery\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3475,7 +3475,7 @@ Ery\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3499,7 +3499,7 @@ Ery\_3
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_7}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_7}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3523,7 +3523,7 @@ Ery\_4
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_9}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_9}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3547,7 +3547,7 @@ Ery\_5
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_11}.png}
+\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_11}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3571,7 +3571,7 @@ Ery\_6
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_13}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_13}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3595,7 +3595,7 @@ Ery\_7
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_15}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_15}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3619,7 +3619,7 @@ Ery\_8
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_17}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_17}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3643,7 +3643,7 @@ Ery\_9
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_19}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_19}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3667,7 +3667,7 @@ GMP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_21}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_21}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3691,7 +3691,7 @@ GMP\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_23}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_23}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3715,7 +3715,7 @@ GMPl\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_25}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_25}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3739,7 +3739,7 @@ Gran\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_27}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_27}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3763,7 +3763,7 @@ Gran\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_29}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_29}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3787,7 +3787,7 @@ Gran\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_31}.png}
+\noindent\sphinxincludegraphics[width=562\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_31}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3811,7 +3811,7 @@ MEP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_33}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_33}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3835,7 +3835,7 @@ Mk\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_35}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_35}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3859,7 +3859,7 @@ Mo\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_37}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_37}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -3883,7 +3883,7 @@ Mo\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_39}.png}
+\noindent\sphinxincludegraphics[width=561\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_54_39}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4100,7 +4100,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_0}.png}
+\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4111,7 +4111,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=341\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_1}.png}
+\noindent\sphinxincludegraphics[width=341\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4122,7 +4122,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_2}.png}
+\noindent\sphinxincludegraphics[width=304\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_2}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4133,7 +4133,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=305\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_3}.png}
+\noindent\sphinxincludegraphics[width=305\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4144,7 +4144,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=296\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_4}.png}
+\noindent\sphinxincludegraphics[width=296\sphinxpxdimen,height=319\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_4}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4155,7 +4155,7 @@ Let’s visualize genes with high network centrality.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=342\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_5}.png}
+\noindent\sphinxincludegraphics[width=342\sphinxpxdimen,height=318\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_66_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4182,7 +4182,7 @@ By comparing network scores between two clusters, we can analyze differences in 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=407\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_69_0}.png}
+\noindent\sphinxincludegraphics[width=407\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_69_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4205,7 +4205,7 @@ By comparing network scores between two clusters, we can analyze differences in 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=416\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0}.png}
+\noindent\sphinxincludegraphics[width=416\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_70_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4227,7 +4227,7 @@ By comparing network scores between two clusters, we can analyze differences in 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=392\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_71_0}.png}
+\noindent\sphinxincludegraphics[width=392\sphinxpxdimen,height=304\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_71_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4269,7 +4269,7 @@ Gata2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=575\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_73_1}.png}
+\noindent\sphinxincludegraphics[width=575\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_73_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4303,7 +4303,7 @@ Cebpa
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_75_1}.png}
+\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=301\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_75_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4403,7 +4403,7 @@ Ery\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_1}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4427,7 +4427,7 @@ Ery\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_3}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4451,7 +4451,7 @@ Ery\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_5}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4475,7 +4475,7 @@ Ery\_3
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_7}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_7}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4499,7 +4499,7 @@ Ery\_4
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_9}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_9}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4523,7 +4523,7 @@ Ery\_5
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_11}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_11}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4547,7 +4547,7 @@ Ery\_6
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_13}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_13}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4571,7 +4571,7 @@ Ery\_7
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_15}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_15}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4595,7 +4595,7 @@ Ery\_8
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_17}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_17}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4619,7 +4619,7 @@ Ery\_9
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_19}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_19}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4643,7 +4643,7 @@ GMP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_21}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_21}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4667,7 +4667,7 @@ GMP\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_23}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_23}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4691,7 +4691,7 @@ GMPl\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_25}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_25}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4715,7 +4715,7 @@ Gran\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_27}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_27}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4739,7 +4739,7 @@ Gran\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_29}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_29}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4763,7 +4763,7 @@ Gran\_2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_31}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_31}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4787,7 +4787,7 @@ MEP\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_33}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_33}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4811,7 +4811,7 @@ Mk\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_35}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_35}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4835,7 +4835,7 @@ Mo\_0
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_37}.png}
+\noindent\sphinxincludegraphics[width=356\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_37}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4859,7 +4859,7 @@ Mo\_1
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_39}.png}
+\noindent\sphinxincludegraphics[width=362\sphinxpxdimen,height=264\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_81_39}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4892,7 +4892,7 @@ Gata2
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=346\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_82_1}.png}
+\noindent\sphinxincludegraphics[width=408\sphinxpxdimen,height=346\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_82_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4936,7 +4936,7 @@ degree\_centrality\_all
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=390\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_85_1}.png}
+\noindent\sphinxincludegraphics[width=390\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_85_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -4973,7 +4973,7 @@ eigenvector\_centrality
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_86_1}.png}
+\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_86_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5016,7 +5016,7 @@ eigenvector\_centrality
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=393\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_88_1}.png}
+\noindent\sphinxincludegraphics[width=393\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks/04_Network_analysis/../../_build/doctrees/nbsphinx/notebooks_04_Network_analysis_Network_analysis_with_with_Paul_etal_2015_data_88_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5771,7 +5771,7 @@ Here, we will analyze Gata1 for the demonstration of celloracle; Celloracle try 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=935\sphinxpxdimen,height=265\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_15_0}.png}
+\noindent\sphinxincludegraphics[width=935\sphinxpxdimen,height=265\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_15_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5792,7 +5792,7 @@ Here, we will analyze Gata1 for the demonstration of celloracle; Celloracle try 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_16_0}.png}
+\noindent\sphinxincludegraphics[width=383\sphinxpxdimen,height=263\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_16_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5918,7 +5918,7 @@ WARNING:root:Nans encountered in corrcoef and corrected to 1s. If not identical 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=398\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_22_1}.png}
+\noindent\sphinxincludegraphics[width=398\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_22_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -5950,7 +5950,7 @@ WARNING:root:Nans encountered in corrcoef and corrected to 1s. If not identical 
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=619\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_24_0}.png}
+\noindent\sphinxincludegraphics[width=619\sphinxpxdimen,height=574\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_24_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6048,7 +6048,7 @@ cell 1961
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_1}.png}
+\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_1}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6072,7 +6072,7 @@ cell 43
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_3}.png}
+\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_3}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6096,7 +6096,7 @@ cell 1567
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_5}.png}
+\noindent\sphinxincludegraphics[width=573\sphinxpxdimen,height=209\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_32_5}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6125,7 +6125,7 @@ For the grouping of cells, you can use arbitrary cluster unit.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=357\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_35_0}.png}
+\noindent\sphinxincludegraphics[width=357\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_35_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6158,7 +6158,7 @@ Let’s change the cluster order and make the plot again
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=226\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_37_0}.png}
+\noindent\sphinxincludegraphics[width=226\sphinxpxdimen,height=357\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_37_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -6185,7 +6185,7 @@ Make another Saneky diagram with different cluster units.
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=346\sphinxpxdimen,height=360\sphinxpxdimen]{{notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0}.png}
+\noindent\sphinxincludegraphics[width=346\sphinxpxdimen,height=360\sphinxpxdimen]{{notebooks/05_simulation/../../_build/doctrees/nbsphinx/notebooks_05_simulation_Gata1_KO_simulation_with_with_Paul_etal_2015_data_39_0}.png}
 
 \end{nbsphinxfancyoutput}
 
