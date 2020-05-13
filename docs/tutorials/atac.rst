@@ -14,17 +14,26 @@ If you have bulk ATAC-seq data instead of scATAC-data, we'll get only the proxim
 
 
 A. Extract TF binding information from scATAC-seq data
-----------------------------------------------------
+------------------------------------------------------
 If you have scATAC-seq data, you can get information on the distal cis-regulatory elements.
-This step uses Cicero and does not use celloracle. Please refer to `the documentation of Cicero <https://cole-trapnell-lab.github.io/cicero-release/>`_ for the detailed usage.
+This step uses Cicero and does not use celloracle.
+You need to get co-accessibility table in this analysis.
+Although we provide an example notebook here, you can analyze your data with Cicero in a different way if you are familiar with Cicero.
+If you have a question about Cicero, please read `the documentation of Cicero <https://cole-trapnell-lab.github.io/cicero-release/>`_ for the detailed usage.
+
+scATAC-seq analysis with Cicero and Monocle3
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 R notebook
 
 .. toctree::
 
-   ../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero
+   ../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3
 
-Next, the results of Cicero analysis will be processed to make TSS annotations.
+
+
+TSS annotation
+^^^^^^^^^^^^^^
 
 Python notebook
 

@@ -133,7 +133,7 @@ In R console,
 
 `Cicero <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please install ``Cicero`` with the following r-script or `the author's instruction <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_ .
+Please install ``Cicero`` and ``Monocle3`` with the following r-script or `the author's instruction <https://cole-trapnell-lab.github.io/cicero-release/docs_m3/#installing-cicero>`_ .
 If you do not have scATAC-seq data and plan to use celloracle's base GRN, you do not need to install ``Cicero``.
 
 In R console,
@@ -141,8 +141,12 @@ In R console,
 .. code-block:: r
 
    if (!requireNamespace("BiocManager", quietly = TRUE))
-   install.packages("BiocManager")
-   BiocManager::install("cicero")
+    install.packages("BiocManager")
+   BiocManager::install(c("Gviz", "GenomicRanges", "rtracklayer"))
+
+   install.packages("devtools")
+   devtools::install_github("cole-trapnell-lab/cicero-release", ref = "monocle3")
+   
 
 `igraph <https://igraph.org/r/>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

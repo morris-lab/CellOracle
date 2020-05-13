@@ -212,7 +212,7 @@
 
 
 \title{celloracle}
-\date{May 09, 2020}
+\date{May 13, 2020}
 \release{0.3.5}
 \author{Samantha Morris Lab}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -406,15 +406,18 @@ In R console,
 
 \subsubsection{Cicero}
 \label{\detokenize{installation/index:id5}}
-Please install \sphinxcode{\sphinxupquote{Cicero}} with the following r-script or \sphinxhref{https://cole-trapnell-lab.github.io/cicero-release/docs/\#installing-cicero}{the author’s instruction} .
+Please install \sphinxcode{\sphinxupquote{Cicero}} and \sphinxcode{\sphinxupquote{Monocle3}} with the following r-script or \sphinxhref{https://cole-trapnell-lab.github.io/cicero-release/docs\_m3/\#installing-cicero}{the author’s instruction} .
 If you do not have scATAC-seq data and plan to use celloracle’s base GRN, you do not need to install \sphinxcode{\sphinxupquote{Cicero}}.
 
 In R console,
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n+nf}{if }\PYG{p}{(}\PYG{o}{!}\PYG{n+nf}{requireNamespace}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{BiocManager\PYGZdq{}}\PYG{p}{,} \PYG{n}{quietly} \PYG{o}{=} \PYG{k+kc}{TRUE}\PYG{p}{)}\PYG{p}{)}
-\PYG{n+nf}{install.packages}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{BiocManager\PYGZdq{}}\PYG{p}{)}
-\PYG{n}{BiocManager}\PYG{o}{::}\PYG{n+nf}{install}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{cicero\PYGZdq{}}\PYG{p}{)}
+ \PYG{n+nf}{install.packages}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{BiocManager\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{BiocManager}\PYG{o}{::}\PYG{n+nf}{install}\PYG{p}{(}\PYG{n+nf}{c}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Gviz\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{GenomicRanges\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{rtracklayer\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{n+nf}{install.packages}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{devtools\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{devtools}\PYG{o}{::}\PYG{n+nf}{install\PYGZus{}github}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{cole\PYGZhy{}trapnell\PYGZhy{}lab/cicero\PYGZhy{}release\PYGZdq{}}\PYG{p}{,} \PYG{n}{ref} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{monocle3\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 
@@ -509,13 +512,27 @@ If you have bulk ATAC-seq data instead of scATAC-data, we’ll get only the prox
 \subsubsection{A. Extract TF binding information from scATAC-seq data}
 \label{\detokenize{tutorials/atac:a-extract-tf-binding-information-from-scatac-seq-data}}
 If you have scATAC-seq data, you can get information on the distal cis-regulatory elements.
-This step uses Cicero and does not use celloracle. Please refer to \sphinxhref{https://cole-trapnell-lab.github.io/cicero-release/}{the documentation of Cicero} for the detailed usage.
+This step uses Cicero and does not use celloracle.
+You need to get co-accessibility table in this analysis.
+Although we provide an example notebook here, you can analyze your data with Cicero in a different way if you are familiar with Cicero.
+If you have a question about Cicero, please read \sphinxhref{https://cole-trapnell-lab.github.io/cicero-release/}{the documentation of Cicero} for the detailed usage.
 
+
+\paragraph{scATAC-seq analysis with Cicero and Monocle3}
+\label{\detokenize{tutorials/atac:scatac-seq-analysis-with-cicero-and-monocle3}}
 R notebook
 
+This is an example R script for Cicero analysis. In this R notebook, we’ll use Cicero and Monocle3.
 
-\paragraph{0. Import library}
-\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero:0.-Import-library}}\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero::doc}}
+Please make sure that you installed these packages in adavance.
+
+You can download notebook file and additional data files from celloracle github page. \sphinxurl{https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01\_ATAC-seq\_data\_processing/option1\_scATAC-seq\_data\_analysis\_with\_cicero}
+
+Another tutorial notebook that uses Monocle2 is also available in the celloracle github page above.
+
+
+\subparagraph{0. Import library}
+\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3:0.-Import-library}}\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3::doc}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -525,8 +542,8 @@ R notebook
 }
 
 
-\paragraph{1. Prepare data}
-\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero:1.-Prepare-data}}
+\subparagraph{1. Prepare data}
+\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3:1.-Prepare-data}}
 In this tutorial we’ll use acATAC-seq data from the 10x genomics database. You do not need to download these data if you analyze your own scATAC-seq data.
 
 {
@@ -558,26 +575,26 @@ In this tutorial we’ll use acATAC-seq data from the 10x genomics database. You
 }
 
 
-\paragraph{2. Load data and make Cell Data Set (CDS) object}
-\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero:2.-Load-data-and-make-Cell-Data-Set-(CDS)-object}}
+\subparagraph{2. Load data and make Cell Data Set (CDS) object}
+\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3:2.-Load-data-and-make-Cell-Data-Set-(CDS)-object}}
 
 \subparagraph{2.1. Process data to make CDS object}
-\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero:2.1.-Process-data-to-make-CDS-object}}
+\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3:2.1.-Process-data-to-make-CDS-object}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Read in matrix data using the Matrix package}
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} read in matrix data using the Matrix package}
 \PYG{n}{indata} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n}{Matrix}\PYG{o}{::}\PYG{n+nf}{readMM}\PYG{p}{(}\PYG{n+nf}{paste0}\PYG{p}{(}\PYG{n}{data\PYGZus{}folder}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/matrix.mtx\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
 \PYG{c+c1}{\PYGZsh{} binarize the matrix}
 \PYG{n}{indata}\PYG{o}{@}\PYG{n}{x}\PYG{n}{[indata}\PYG{o}{@}\PYG{n}{x} \PYG{o}{\PYGZgt{}} \PYG{l+m}{0}\PYG{n}{]} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{l+m}{1}
 
-\PYG{c+c1}{\PYGZsh{} Format cell info}
+\PYG{c+c1}{\PYGZsh{} format cell info}
 \PYG{n}{cellinfo} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{read.table}\PYG{p}{(}\PYG{n+nf}{paste0}\PYG{p}{(}\PYG{n}{data\PYGZus{}folder}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/barcodes.tsv\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
 \PYG{n+nf}{row.names}\PYG{p}{(}\PYG{n}{cellinfo}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n}{cellinfo}\PYG{o}{\PYGZdl{}}\PYG{n}{V1}
 \PYG{n+nf}{names}\PYG{p}{(}\PYG{n}{cellinfo}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{cells\PYGZdq{}}
 
-\PYG{c+c1}{\PYGZsh{} Format peak info}
+\PYG{c+c1}{\PYGZsh{} format peak info}
 \PYG{n}{peakinfo} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{read.table}\PYG{p}{(}\PYG{n+nf}{paste0}\PYG{p}{(}\PYG{n}{data\PYGZus{}folder}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/peaks.bed\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
 \PYG{n+nf}{names}\PYG{p}{(}\PYG{n}{peakinfo}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{c}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{chr\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{bp1\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{bp2\PYGZdq{}}\PYG{p}{)}
 \PYG{n}{peakinfo}\PYG{o}{\PYGZdl{}}\PYG{n}{site\PYGZus{}name} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{paste}\PYG{p}{(}\PYG{n}{peakinfo}\PYG{o}{\PYGZdl{}}\PYG{n}{chr}\PYG{p}{,} \PYG{n}{peakinfo}\PYG{o}{\PYGZdl{}}\PYG{n}{bp1}\PYG{p}{,} \PYG{n}{peakinfo}\PYG{o}{\PYGZdl{}}\PYG{n}{bp2}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZus{}\PYGZdq{}}\PYG{p}{)}
@@ -586,23 +603,21 @@ In this tutorial we’ll use acATAC-seq data from the 10x genomics database. You
 \PYG{n+nf}{row.names}\PYG{p}{(}\PYG{n}{indata}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{row.names}\PYG{p}{(}\PYG{n}{peakinfo}\PYG{p}{)}
 \PYG{n+nf}{colnames}\PYG{p}{(}\PYG{n}{indata}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{row.names}\PYG{p}{(}\PYG{n}{cellinfo}\PYG{p}{)}
 
-\PYG{c+c1}{\PYGZsh{} Make CDS}
-\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}}  \PYG{n+nf}{suppressWarnings}\PYG{p}{(}\PYG{n+nf}{newCellDataSet}\PYG{p}{(}\PYG{n}{indata}\PYG{p}{,}
-                            \PYG{n}{phenoData} \PYG{o}{=} \PYG{n}{methods}\PYG{o}{::}\PYG{n+nf}{new}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{AnnotatedDataFrame\PYGZdq{}}\PYG{p}{,} \PYG{n}{data} \PYG{o}{=} \PYG{n}{cellinfo}\PYG{p}{)}\PYG{p}{,}
-                            \PYG{n}{featureData} \PYG{o}{=} \PYG{n}{methods}\PYG{o}{::}\PYG{n+nf}{new}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{AnnotatedDataFrame\PYGZdq{}}\PYG{p}{,} \PYG{n}{data} \PYG{o}{=} \PYG{n}{peakinfo}\PYG{p}{)}\PYG{p}{,}
-                            \PYG{n}{expressionFamily}\PYG{o}{=}\PYG{n}{VGAM}\PYG{o}{::}\PYG{n+nf}{binomialff}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}
-                            \PYG{n}{lowerDetectionLimit}\PYG{o}{=}\PYG{l+m}{0}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{input\PYGZus{}cds}\PYG{o}{@}\PYG{n}{expressionFamily}\PYG{o}{@}\PYG{n}{vfamily} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{binomialff\PYGZdq{}}
-\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n}{monocle}\PYG{o}{::}\PYG{n+nf}{detectGenes}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} make CDS}
+\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}}  \PYG{n+nf}{suppressWarnings}\PYG{p}{(}\PYG{n+nf}{new\PYGZus{}cell\PYGZus{}data\PYGZus{}set}\PYG{p}{(}\PYG{n}{indata}\PYG{p}{,}
+\PYG{n}{cell\PYGZus{}metadata} \PYG{o}{=} \PYG{n}{cellinfo}\PYG{p}{,}
+\PYG{n}{gene\PYGZus{}metadata} \PYG{o}{=} \PYG{n}{peakinfo}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n}{monocle3}\PYG{o}{::}\PYG{n+nf}{detect\PYGZus{}genes}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{}Ensure there are no peaks included with zero reads}
-\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n}{input\PYGZus{}cds}\PYG{n}{[Matrix}\PYG{o}{::}\PYG{n+nf}{rowSums}\PYG{p}{(}\PYG{n+nf}{exprs}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{l+m}{100}\PYG{p}{,}\PYG{n}{]}
+\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n}{input\PYGZus{}cds}\PYG{n}{[Matrix}\PYG{o}{::}\PYG{n+nf}{rowSums}\PYG{p}{(}\PYG{n+nf}{exprs}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{p}{)} \PYG{o}{!=} \PYG{l+m}{0}\PYG{p}{,}\PYG{n}{]}
 \end{sphinxVerbatim}
 }
 
 
-\paragraph{3. Qauality check and Filtering}
-\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero:3.-Qauality-check-and-Filtering}}
+\subparagraph{3. Qauality check and Filtering}
+\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3:3.-Qauality-check-and-Filtering}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -619,7 +634,7 @@ In this tutorial we’ll use acATAC-seq data from the 10x genomics database. You
 
 \begin{nbsphinxfancyoutput}
 
-\noindent\sphinxincludegraphics[width=420\sphinxpxdimen,height=420\sphinxpxdimen]{{notebooks_01_ATAC-seq_data_processing_option1_scATAC-seq_data_analysis_with_cicero_01_atacdata_to_cicero_8_0}.png}
+\noindent\sphinxincludegraphics[width=420\sphinxpxdimen,height=420\sphinxpxdimen]{{notebooks_01_ATAC-seq_data_processing_option1_scATAC-seq_data_analysis_with_cicero_01_atacdata_analysis_with_cicero_and_monocle3_9_0}.png}
 
 \end{nbsphinxfancyoutput}
 
@@ -627,75 +642,87 @@ In this tutorial we’ll use acATAC-seq data from the 10x genomics database. You
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Filter cells by peak\PYGZus{}count}
-\PYG{n}{max\PYGZus{}count} \PYG{o}{\PYGZlt{}\PYGZhy{}}  \PYG{l+m}{15000} \PYG{c+c1}{\PYGZsh{} Please change the threshold value according to the distribution of the peak\PYGZus{}count of your data}
-\PYG{n}{min\PYGZus{}count} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{l+m}{2000} \PYG{c+c1}{\PYGZsh{} Please change the threshold value according to the distribution of the peak\PYGZus{}count of your data}
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} filter cells by peak\PYGZus{}count}
+\PYG{c+c1}{\PYGZsh{} PLEASE SET APPROPRIATE THRESHOLD VALUES according to your data}
+\PYG{n}{max\PYGZus{}count} \PYG{o}{\PYGZlt{}\PYGZhy{}}  \PYG{l+m}{15000}
+\PYG{n}{min\PYGZus{}count} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{l+m}{2000}
 \PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n}{input\PYGZus{}cds}\PYG{n}{[}\PYG{p}{,}\PYG{n}{Matrix}\PYG{o}{::}\PYG{n+nf}{colSums}\PYG{p}{(}\PYG{n+nf}{exprs}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{n}{min\PYGZus{}count}\PYG{n}{]}
 \PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n}{input\PYGZus{}cds}\PYG{n}{[}\PYG{p}{,}\PYG{n}{Matrix}\PYG{o}{::}\PYG{n+nf}{colSums}\PYG{p}{(}\PYG{n+nf}{exprs}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{p}{)} \PYG{o}{\PYGZlt{}=} \PYG{n}{max\PYGZus{}count}\PYG{n}{]}
+
 \end{sphinxVerbatim}
 }
 
 
-\paragraph{4. Process cicero-CDS object}
-\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero:4.-Process-cicero-CDS-object}}
+\subparagraph{4. Process cicero-CDS object}
+\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3:4.-Process-cicero-CDS-object}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Run cicero to get cis\PYGZhy{}regulatory networks}
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Data preprocessing}
 \PYG{n+nf}{set.seed}\PYG{p}{(}\PYG{l+m}{2017}\PYG{p}{)}
-\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{detectGenes}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}
-\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{estimateSizeFactors}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}
 
-\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{reduceDimension}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{,} \PYG{n}{max\PYGZus{}components} \PYG{o}{=} \PYG{l+m}{2}\PYG{p}{,} \PYG{n}{verbose}\PYG{o}{=}\PYG{n+nb+bp}{T}\PYG{p}{,}\PYG{n}{scaling} \PYG{o}{=} \PYG{k+kc}{FALSE}\PYG{p}{,}\PYG{n}{relative\PYGZus{}expr}\PYG{o}{=}\PYG{k+kc}{FALSE}\PYG{p}{,}
-                      \PYG{n}{reduction\PYGZus{}method} \PYG{o}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{tSNE\PYGZsq{}}\PYG{p}{,} \PYG{n}{norm\PYGZus{}method} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{none\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{detect\PYGZus{}genes}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}
+\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{estimate\PYGZus{}size\PYGZus{}factors}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}
+\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{preprocess\PYGZus{}cds}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{,} \PYG{n}{method} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{LSI\PYGZdq{}}\PYG{p}{)}
 
-\PYG{n}{tsne\PYGZus{}coords} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{t}\PYG{p}{(}\PYG{n+nf}{reducedDimA}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{p}{)}
-\PYG{n+nf}{row.names}\PYG{p}{(}\PYG{n}{tsne\PYGZus{}coords}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{row.names}\PYG{p}{(}\PYG{n+nf}{pData}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{p}{)}
-\PYG{n}{cicero\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{make\PYGZus{}cicero\PYGZus{}cds}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{,} \PYG{n}{reduced\PYGZus{}coordinates} \PYG{o}{=} \PYG{n}{tsne\PYGZus{}coords}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Dimensional reduction with umap}
+\PYG{n}{input\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{reduce\PYGZus{}dimension}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{,} \PYG{n}{reduction\PYGZus{}method} \PYG{o}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{UMAP\PYGZsq{}}\PYG{p}{,}
+                              \PYG{n}{preprocess\PYGZus{}method} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{LSI\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{umap\PYGZus{}coords} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{reducedDims}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{o}{\PYGZdl{}}\PYG{n}{UMAP}
 
-\PYG{c+c1}{\PYGZsh{} Save cicero\PYGZhy{}CDS object if you want.}
-\PYG{c+c1}{\PYGZsh{}saveRDS(cicero\PYGZus{}cds, paste0(output\PYGZus{}folder, \PYGZdq{}/cicero\PYGZus{}cds.Rds\PYGZdq{}))}
 
-\end{sphinxVerbatim}
-}
+\PYG{n}{cicero\PYGZus{}cds} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{make\PYGZus{}cicero\PYGZus{}cds}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{,} \PYG{n}{reduced\PYGZus{}coordinates} \PYG{o}{=} \PYG{n}{umap\PYGZus{}coords}\PYG{p}{)}
 
-{
+\PYG{c+c1}{\PYGZsh{} Save cds object if you want}
+\PYG{n+nf}{saveRDS}\PYG{p}{(}\PYG{n}{cicero\PYGZus{}cds}\PYG{p}{,} \PYG{n+nf}{paste0}\PYG{p}{(}\PYG{n}{output\PYGZus{}folder}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/cicero\PYGZus{}cds.Rds\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
 
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-
-\sphinxsetup{VerbatimColor={named}{nbsphinx-stderr}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-Remove noise by PCA {\ldots}
-
-Reduce dimension by tSNE {\ldots}
-
-Overlap QC metrics:
-Cells per bin: 50
-Maximum shared cells bin-bin: 44
-Mean shared cells bin-bin: 0.76256263875674
-Median shared cells bin-bin: 0
 
 \end{sphinxVerbatim}
 }
 
 
-\paragraph{5. Run cicero to get cis-regulatory connection scores}
-\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero:5.-Run-cicero-to-get-cis-regulatory-connection-scores}}
+\subparagraph{5. Load reference genome information}
+\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3:5.-Load-reference-genome-information}}
+To run cicero, we need to get a genome coordinates files, which contains the lengths of each chromosomes. You can read mm10 genome information with the following command. The text file, mm10\_chromosome\_length.txt is included in the celloracle notebook folder.https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01\_ATAC-seq\_data\_processing/option1\_scATAC-seq\_data\_analysis\_with\_cicero
+
+If your scATAC-seq data use different reference genome, you need to get a genome coordinates files for your reference genome. Please see the Cicero documentation for more information.https://cole-trapnell-lab.github.io/cicero-release/docs\_m3/\#installing-cicero
+
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Import genome length, which is needed for the function, run\PYGZus{}cicero}
-\PYG{n}{mm10\PYGZus{}chromosome\PYGZus{}length} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{read.table}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{./mm10\PYGZus{}chromosome\PYGZus{}length.txt\PYGZdq{}}\PYG{p}{)}
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} !!Please make sure that the reference genome information below match the reference genome of your scATAC\PYGZhy{}seq data.}
 
-\PYG{c+c1}{\PYGZsh{} Run the main function}
-\PYG{n}{conns} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{run\PYGZus{}cicero}\PYG{p}{(}\PYG{n}{cicero\PYGZus{}cds}\PYG{p}{,} \PYG{n}{mm10\PYGZus{}chromosome\PYGZus{}length}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} Takes a few minutes to run}
+\PYG{c+c1}{\PYGZsh{} If your scATAC\PYGZhy{}seq uses mm10 reference genome, you can read chromosome length file with the following command.}
+\PYG{n}{chromosome\PYGZus{}length} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{read.table}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{./mm10\PYGZus{}chromosome\PYGZus{}length.txt\PYGZdq{}}\PYG{p}{)}
 
-\PYG{c+c1}{\PYGZsh{} Check results}
+\PYG{c+c1}{\PYGZsh{} For mm9 genome, you can use the following command.}
+\PYG{c+c1}{\PYGZsh{}data(\PYGZdq{}mouse.mm9.genome\PYGZdq{})}
+\PYG{c+c1}{\PYGZsh{}chromosome\PYGZus{}length \PYGZlt{}\PYGZhy{} mouse.mm9.genome}
+
+\PYG{c+c1}{\PYGZsh{} For hg19 genome, you can use the following command.}
+\PYG{c+c1}{\PYGZsh{}data(\PYGZdq{}human.hg19.genome\PYGZdq{})}
+\PYG{c+c1}{\PYGZsh{}chromosome\PYGZus{}length \PYGZlt{}\PYGZhy{} mhuman.hg19.genome}
+
+
+\end{sphinxVerbatim}
+}
+
+
+\subparagraph{6. Run Cicero}
+\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3:6.-Run-Cicero}}
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} runc the main function}
+\PYG{n}{conns} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{run\PYGZus{}cicero}\PYG{p}{(}\PYG{n}{cicero\PYGZus{}cds}\PYG{p}{,} \PYG{n}{chromosome\PYGZus{}length}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} Takes a few minutes to run}
+
+\PYG{c+c1}{\PYGZsh{} save results}
+\PYG{n+nf}{saveRDS}\PYG{p}{(}\PYG{n}{conns}\PYG{p}{,} \PYG{n+nf}{paste0}\PYG{p}{(}\PYG{n}{output\PYGZus{}folder}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/cicero\PYGZus{}connections.Rds\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} check results}
 \PYG{n+nf}{head}\PYG{p}{(}\PYG{n}{conns}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -738,8 +765,8 @@ A data.frame: 6 × 3
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{6. Save results for next step}
-\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_to_cicero:6.-Save-results-for-next-step}}
+\subparagraph{6. Save results for the next step}
+\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3:6.-Save-results-for-the-next-step}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -747,17 +774,19 @@ A data.frame: 6 × 3
 \llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{all\PYGZus{}peaks} \PYG{o}{\PYGZlt{}\PYGZhy{}} \PYG{n+nf}{row.names}\PYG{p}{(}\PYG{n+nf}{exprs}\PYG{p}{(}\PYG{n}{input\PYGZus{}cds}\PYG{p}{)}\PYG{p}{)}
 \PYG{n+nf}{write.csv}\PYG{p}{(}\PYG{n}{x} \PYG{o}{=} \PYG{n}{all\PYGZus{}peaks}\PYG{p}{,} \PYG{n}{file} \PYG{o}{=} \PYG{n+nf}{paste0}\PYG{p}{(}\PYG{n}{output\PYGZus{}folder}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/all\PYGZus{}peaks.csv\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
 \PYG{n+nf}{write.csv}\PYG{p}{(}\PYG{n}{x} \PYG{o}{=} \PYG{n}{conns}\PYG{p}{,} \PYG{n}{file} \PYG{o}{=} \PYG{n+nf}{paste0}\PYG{p}{(}\PYG{n}{output\PYGZus{}folder}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/cicero\PYGZus{}connections.csv\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
+
 \end{sphinxVerbatim}
 }
 
-Next, the results of Cicero analysis will be processed to make TSS annotations.
 
+\paragraph{TSS annotation}
+\label{\detokenize{tutorials/atac:tss-annotation}}
 Python notebook
 
 In this notebook, we process the results of cicero analysis to get active promoter/enhancer DNA peaks. First, we pick up peaks around the transcription starting site (TSS). Second, we merge cicero data with the peaks around TSS. Then we remove peaks that have a weak connection to TSS peak so that the final product includes TSS peaks and peaks that have a strong connection with the TSS peaks. We use this information as an active promoter/enhancer elements.
 
 
-\paragraph{0. Import libraries}
+\subparagraph{0. Import libraries}
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:0.-Import-libraries}}\label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data::doc}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -790,7 +819,7 @@ In this notebook, we process the results of cicero analysis to get active promot
 }
 
 
-\paragraph{1. Load data made with cicero}
+\subparagraph{1. Load data made with cicero}
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:1.-Load-data-made-with-cicero}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -861,16 +890,22 @@ In this notebook, we process the results of cicero analysis to get active promot
 }
 
 
-\paragraph{2. Make TSS annotation}
+\subparagraph{2. Make TSS annotation}
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:2.-Make-TSS-annotation}}
 
 \subparagraph{IMPORTANT: Please make sure that you are setting correct reference genoms.}
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:IMPORTANT:-Please-make-sure-that-you-are-setting-correct-reference-genoms.}}
+If your scATAC-seq data was generated with mm10 reference genome, you can set ref\_genome=“mm10”. If you used hg19 human reference genome, please set ref\_genome==“hg19”
+
+Currently we support {[}“mm9”, “mm10”, “hg19”, “hg38”{]}. If your reference genome is not in the list, please send a request through github issue page.
+
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{tss\PYGZus{}annotated} \PYG{o}{=} \PYG{n}{ma}\PYG{o}{.}\PYG{n}{get\PYGZus{}tss\PYGZus{}info}\PYG{p}{(}\PYG{n}{peak\PYGZus{}str\PYGZus{}list}\PYG{o}{=}\PYG{n}{peaks}\PYG{p}{,} \PYG{n}{ref\PYGZus{}genome}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{mm10}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
+\PYG{n}{tss\PYGZus{}annotated} \PYG{o}{=} \PYG{n}{ma}\PYG{o}{.}\PYG{n}{get\PYGZus{}tss\PYGZus{}info}\PYG{p}{(}\PYG{n}{peak\PYGZus{}str\PYGZus{}list}\PYG{o}{=}\PYG{n}{peaks}\PYG{p}{,} \PYG{n}{ref\PYGZus{}genome}\PYG{o}{=} \PYG{p}{)} \PYG{c+c1}{\PYGZsh{}\PYGZsh{}!! Set reference genome here}
+
 
 \PYG{c+c1}{\PYGZsh{} Check results}
 \PYG{n}{tss\PYGZus{}annotated}\PYG{o}{.}\PYG{n}{tail}\PYG{p}{(}\PYG{p}{)}
@@ -910,7 +945,7 @@ tss peaks in que: 16987
 }
 
 
-\paragraph{3. Integrate TSS info and cicero connections}
+\subparagraph{3. Integrate TSS info and cicero connections}
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:3.-Integrate-TSS-info-and-cicero-connections}}
 The output file after the integration process has three columns; “peak\_id”, “gene\_short\_name”, and “coaccess”. “peak\_id” is either the TSS peak or the peaks that have a connection with the TSS peak. “gene\_short\_name” is the gene name that associated with the TSS site. “coaccess” is the co-access score between a peak and TSS peak. Note, the TSS peak is indicated by a score of 1.
 
@@ -957,7 +992,7 @@ The output file after the integration process has three columns; “peak\_id”,
 }
 
 
-\paragraph{4. Filter peaks}
+\subparagraph{4. Filter peaks}
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:4.-Filter-peaks}}
 Remove peaks that have weak coaccess score.
 
@@ -1011,7 +1046,7 @@ Remove peaks that have weak coaccess score.
 }
 
 
-\paragraph{5. Save data}
+\subparagraph{5. Save data}
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:5.-Save-data}}
 Save the promoter/enhancer peak.
 
