@@ -7,6 +7,7 @@ output: html_notebook
 # Please make sure that you installed cicero before running this script
 rm(list=ls())
 library(cicero)
+library(monocle3)
 
 ```
 # 0. Prepare data
