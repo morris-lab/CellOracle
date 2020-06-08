@@ -481,7 +481,7 @@ class Oracle(modified_VelocytoLoom):
                        direction='forward', cells_ixs=ixs)
 
 
-    def run_markov_chain_simulation(self, n_steps=500, n_duplication=5, seed=123):
+    def run_markov_chain_simulation(self, n_steps=500, n_duplication=5, seed=123, calculate_randomized=True):
         """
         Do Markov simlations to predict cell transition after perturbation.
         The transition probability between cells has been calculated
@@ -501,6 +501,10 @@ class Oracle(modified_VelocytoLoom):
         self.prepare_markov_simulation()
 
         transition_prob = self.tr.toarray()
+
+        #
+        transition_prob = _deal_with_na(transition_prob) # added 20200607
+
         n_cells = transition_prob.shape[0]
 
         start_cell_id_array = np.repeat(np.arange(n_cells), n_duplication)
@@ -513,7 +517,25 @@ class Oracle(modified_VelocytoLoom):
         ind = np.repeat(self.ixs_mcmc, n_duplication)
         self.mcmc_transition_id = pd.DataFrame(transition, ind)
 
-    def summarize_mc_results_by_cluster(self, cluster_use):
+        if calculate_randomized:
+            transition_prob_random = self.tr_random.toarray()
+            #
+            transition_prob_random = _deal_with_na(transition_prob_random) # added 20200607
+
+            n_cells = transition_prob_random.shape[0]
+
+            start_cell_id_array = np.repeat(np.arange(n_cells), n_duplication)
+
+            transition_random = _walk(start_cell_id_array, transition_prob_random, n_steps)
+            transition_random = self.ixs_mcmc[transition_random]
+
+            li = None
+
+            ind = np.repeat(self.ixs_mcmc, n_duplication)
+            self.mcmc_transition_random_id = pd.DataFrame(transition_random, ind)
+
+
+    def summarize_mc_results_by_cluster(self, cluster_use, random=False):
         """
         This function summarizes the simulated cell state-transition by groping the results into each cluster.
         It returns sumarized results as a pandas.DataFrame.
@@ -522,7 +544,11 @@ class Oracle(modified_VelocytoLoom):
             cluster_use (str): cluster information name in anndata.obs.
                You can use any arbitrary cluster information in anndata.obs.
         """
-        transition = self.mcmc_transition_id.values
+        if random:
+            transition = self.mcmc_transition_random_id.values
+        else:
+            transition = self.mcmc_transition_id.values
+
         mcmc_transition_cluster = np.array(self.adata.obs[cluster_use])[transition]
         mcmc_transition_cluster = pd.DataFrame(mcmc_transition_cluster,
                                                index=self.mcmc_transition_id.index)
@@ -618,6 +644,49 @@ class Oracle(modified_VelocytoLoom):
         plt.plot(self.embedding[:,0][tt], self.embedding[:,1][tt], **args)
 
 
+    def count_cells_in_mc_resutls(self, cluster_use, end=-1, order=None):
+        """
+        Count the simulated cell by the cluster.
+
+        Args:
+            cluster_use (str): cluster information name in anndata.obs.
+               You can use any cluster information in anndata.obs.
+
+            end (int): The end point of Sankey-diagram. Please select a  step in the Markov simulation.
+                if you set [end=-1], the final step of Markov simulation will be used.
+        Returns:
+            pandas.DataFrame : Number of cells before / after simulation
+
+        """
+        mcmc_transition_cluster = self.summarize_mc_results_by_cluster(cluster_use, random=False)
+
+        if hasattr(self, "mcmc_transition_random_id"):
+            mcmc_transition_cluster_random = self.summarize_mc_results_by_cluster(cluster_use, random=True)
+
+            df = pd.DataFrame({"original": mcmc_transition_cluster.iloc[:, 0],
+                               "simulated": mcmc_transition_cluster.iloc[:, end],
+                               "randomized": mcmc_transition_cluster_random.iloc[:, end]})
+        else:
+            df = pd.DataFrame({"original": mcmc_transition_cluster.iloc[:, 0],
+                               "simulated": mcmc_transition_cluster.iloc[:, end]})
+
+        # Post processing
+        n_duplicated = df.index.value_counts().values[0]
+        df["simulation_batch"] = [i%n_duplicated for i in np.arange(len(df))]
+
+        df = df.melt(id_vars="simulation_batch")
+        df["count"] = 1
+        df = df.groupby(["value", "variable", "simulation_batch"]).count()
+        df = df.reset_index(drop=False)
+        
+        df = df.rename(columns={"value": "cluster", "variable": "data"})
+        df["simulation_batch"] = df["simulation_batch"].astype(np.object)
+
+
+        return df
+
+
+
     ###################################################
     ### 5. GRN inference for Network score analysis ###
     ###################################################
@@ -648,3 +717,16 @@ class Oracle(modified_VelocytoLoom):
                           alpha=alpha, bagging_number=bagging_number,
                           verbose_level=verbose_level, test_mode=test_mode)
         return links
+
+
+def _deal_with_na(transition_prob):
+    tr = transition_prob.copy()
+
+    # remove nan
+    tr = np.nan_to_num(tr, copy=True, nan=0)
+
+    # if transition prob is 0 in all row, assign transitionprob = 1 to self row.
+    no_transition_ids = (tr.sum(axis=1) == 0)
+    tr[no_transition_ids, no_transition_ids] = 1
+
+    return tr

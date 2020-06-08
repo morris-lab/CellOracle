@@ -559,6 +559,26 @@ class modified_VelocytoLoom():
         self.tr = self.tr / self.tr.sum(1)[:, None]
         self.tr = scipy.sparse.csr_matrix(self.tr)
 
+        if hasattr(self, "corrcoef_random"):
+            if direction == "forward":
+                self.tr_random = np.array(self.transition_prob_random[cells_ixs, :][:, cells_ixs])
+            elif direction == "backwards":
+                self.tr_random = np.array((self.transition_prob_random[cells_ixs, :][:, cells_ixs]).T, order="C")
+            else:
+                raise NotImplementedError(f"{direction} is not an implemented direction")
+            #dist_matrix = squareform(pdist(self.embedding[cells_ixs, :]))
+            #K_D = gaussian_kernel(dist_matrix, sigma=sigma_D)
+            self.tr_random = self.tr_random * K_D
+            # Fill diagonal with max or the row and sum=1 normalize
+            np.fill_diagonal(self.tr_random, self.tr_random.max(1))
+            self.tr_random = self.tr_random / self.tr_random.sum(1)[:, None]
+
+            #K_W = gaussian_kernel(dist_matrix, sigma=sigma_W)
+            #K_W = K_W / K_W.sum(1)[:, None]
+            self.tr_random = 0.8 * self.tr_random + 0.2 * K_W
+            self.tr_random = self.tr_random / self.tr_random.sum(1)[:, None]
+            self.tr_random = scipy.sparse.csr_matrix(self.tr_random)
+
     def run_markov(self, starting_p: np.ndarray=None, n_steps: int=2500, mode: str="time_evolution") -> None:
         """Run a Markov process
 
