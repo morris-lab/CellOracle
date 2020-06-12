@@ -201,15 +201,18 @@ def plot_network_entropy_distributions(links, update_network_entropy=False, save
     if update_network_entropy:
         links.get_network_entropy()
 
-    sns.boxplot(data=links.entropy, x="cluster", y="entropy_norm",
+    fig = plt.figure()
+
+    ax = sns.boxplot(data=links.entropy, x="cluster", y="entropy_norm",
                 palette=links.palette.palette.values,
                 order=links.palette.index.values, fliersize=0.0)
-    plt.xticks(rotation=90)
-    plt.ylim([0.81,1.0])
+
+    ax.tick_params(axis="x", rotation=90)
+    ax.set_ylim([0.81,1.0])
 
     if not save is None:
         os.makedirs(save, exist_ok=True)
         path = os.path.join(save, f"network_entropy_in_{links.name}_{links.thread_number}.{settings['save_figure_as']}")
-        plt.ylabel("normalized\nentropy")
-        plt.savefig(path, transparent=True)
+        ax.set_ylabel("normalized\nentropy")
+        fig.savefig(path, transparent=True)
     plt.show()
