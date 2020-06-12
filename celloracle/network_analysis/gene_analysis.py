@@ -49,6 +49,9 @@ def plot_scores_as_rank(links, cluster, n_gene=50, save=None):
         res = links.merged_score[links.merged_score.cluster == cluster]
         res = res[value].sort_values(ascending=False)
         res = res[:n_gene]
+
+        fig = plt.figure()
+
         plt.scatter(res.values, range(len(res)))
         plt.yticks(range(len(res)), res.index.values)#, rotation=90)
         plt.xlabel(value)
@@ -59,7 +62,7 @@ def plot_scores_as_rank(links, cluster, n_gene=50, save=None):
         if not save is None:
             os.makedirs(save, exist_ok=True)
             path = os.path.join(save, f"ranked_values_in_{links.name}_{value}_{links.thread_number}_in_{cluster}.{settings['save_figure_as']}")
-            plt.savefig(path, transparent=True)
+            fig.savefig(path, transparent=True)
         plt.show()
 
 
@@ -346,6 +349,8 @@ def plot_cartography_scatter_per_cluster(links, gois=None, clusters=None,
         else:
             gois_ = gois
 
+        fig = plt.figure()
+
         plot_cartography_kde(data, gois_, scatter, kde,
                              args_dot, args_line, args_annot)
         plt.title(f"cartography in {cluster}")
@@ -354,7 +359,7 @@ def plot_cartography_scatter_per_cluster(links, gois=None, clusters=None,
         if not save is None:
             os.makedirs(save, exist_ok=True)
             path = os.path.join(save, f"cartography_in_{links.name}_{links.thread_number}_{cluster}.{settings['save_figure_as']}")
-            plt.savefig(path, transparent=True)
+            fig.savefig(path, transparent=True)
         plt.show()
 
 
