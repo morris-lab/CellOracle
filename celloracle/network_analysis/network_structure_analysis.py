@@ -51,16 +51,18 @@ def plot_degree_distributions(links, plot_model=False, save=None):
 
         g = linkList_to_networkgraph(links.filtered_links[i])
         degree_df = _get_degree_info_from_NG(g)
-        _plotDegreedist(degree_df, plot_model)
 
         if not save is None:
             os.makedirs(save, exist_ok=True)
             path = os.path.join(save, f"degree_dist_{links.name}_{links.thread_number}_{i}.{settings['save_figure_as']}")
-            plt.savefig(path, transparent=True)
-        plt.show()
+        else:
+            path = None
+
+        _plotDegreedist(degree_df=degree_df, plot_model=plot_model, path=path)
 
 
-def _plotDegreedist(degree_df, plot_model=False):
+
+def _plotDegreedist(degree_df, plot_model=False, path=None):
 
     """
     Args:
@@ -69,8 +71,8 @@ def _plotDegreedist(degree_df, plot_model=False):
 
         plot_model (bool): Whether to plot linear approximation line.
 
-        save (str): Folder path to save plots. If the folde does not exist in the path, the function create the folder.
-            If None plots will not be saved. Default is None.
+        path (str): Folder path to save plots. If the folde does not exist in the path, the function create the folder.
+            If None, plots will not be saved. Default is None.
     """
 
     from sklearn.linear_model import LinearRegression as lr
@@ -78,13 +80,15 @@ def _plotDegreedist(degree_df, plot_model=False):
 
     dist = df.degree.value_counts()/df.degree.value_counts().sum()
     dist.index = dist.index.astype(np.int)
-    plt.subplot(1,2,1)
-    plt.scatter(dist.index.values, dist.values, c="black")
-    plt.title("degree distribution")
-    plt.xlabel("k")
-    plt.ylabel("P(k)")
 
-    plt.subplot(1,2,2)
+    fig, ax = plt.subplots(1,2)
+
+    ax[0].scatter(dist.index.values, dist.values, c="black")
+    ax[0].set_title("degree distribution")
+    ax[0].set_xlabel("k")
+    ax[0].set_ylabel("P(k)")
+
+
     #plt.yscale('log')
     #plt.xscale('log')
 
@@ -95,16 +99,21 @@ def _plotDegreedist(degree_df, plot_model=False):
         model.fit(x,y)
         x_ = np.array([-1, 5]).reshape([-1,1])
         y_ = model.predict(x_)
-        plt.title(f"degree distribution (log scale)\nslope: {model.coef_[0][0] :.4g}, r2: {model.score(x,y) :.4g}")
-        plt.plot(x_.flatten(), y_.flatten(), c="black", alpha=0.5)
-    else:
 
-        plt.title(f"degree distribution (log scale)")
-    plt.scatter(x.flatten(), y.flatten(), c="black")
-    plt.ylim([y.min()-0.2, y.max()+0.2])
-    plt.xlim([-0.2, x.max()+0.2])
-    plt.xlabel("log k")
-    plt.ylabel("log P(k)")
+        ax[1].set_title(f"degree distribution (log scale)\nslope: {model.coef_[0][0] :.4g}, r2: {model.score(x,y) :.4g}")
+        ax[1].plot(x_.flatten(), y_.flatten(), c="black", alpha=0.5)
+    else:
+        ax[1].set_title(f"degree distribution (log scale)")
+
+    ax[1].scatter(x.flatten(), y.flatten(), c="black")
+    ax[1].set_ylim([y.min()-0.2, y.max()+0.2])
+    ax[1].set_xlim([-0.2, x.max()+0.2])
+    ax[1].set_xlabel("log k")
+    ax[1].set_ylabel("log P(k)")
+
+    if path is not None:
+        fig.savefig(path, transparent=True)
+    plt.show()
 
 def _get_degree_info_from_NG(network_x_graph):
 
