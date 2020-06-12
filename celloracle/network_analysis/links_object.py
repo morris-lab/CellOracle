@@ -155,7 +155,7 @@ class Links():
             dict_links=self.filtered_links,
             id_dict=id_dict,
             output_folder="network_analysis",
-            GO=False, message=False)
+            message=False)
 
         network_scores = {}
         for i in li:

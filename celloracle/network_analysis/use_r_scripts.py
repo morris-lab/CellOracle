@@ -78,7 +78,7 @@ def test_R_libraries_installation(show_all_stdout=False):
 
 
 def _get_network_score_by_Rscripts_inparallel(dict_links, id_dict, output_folder="network_analysis",
-                      GO=True, message=False, n_parallel=-1):
+                      message=False, n_parallel=-1):
 
     if n_parallel == -1:
         n_parallel = config["n_cpu"]
@@ -97,10 +97,8 @@ def _get_network_score_by_Rscripts_inparallel(dict_links, id_dict, output_folder
 
             r_dir = config["R_path"][:-1]
 
-            if GO:
-                command = f"{r_dir}Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder}"
-            else:
-                command = f"{r_dir}Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder} FALSE"
+            command = f"{r_dir}Rscript {parent_path[0]}/rscripts_for_network_analysis/get_newtork_scores.R {folder}"
+
             process_list.append(exec_process(command, message=message,
                                              wait_finished=False, return_process=True))
 

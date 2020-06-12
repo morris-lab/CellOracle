@@ -140,61 +140,18 @@ calculateNetworkScores <- function(g, folder){
   #return()
 }
 
-# community (overlapping)
-overlappingCommunityAnalysis <- function(d, folder, get_go=TRUE){
-  g <- d[1:3]
-
-
-  data <- getLinkCommunities(g,directed=T)
-  link_rep_com <- data$nodeclusters
-  write.csv(link_rep_com, file = paste0(folder, "/overlapping_cluster.csv"))
-
-  pdf(paste0(folder, "/overlapping_cluster_matrix.pdf"))
-  plot(data,type="members")
-  dev.off()
-
-  if (get_go){
-  message("calculating GO... this step may take long time")
-  # get GO
-  ff = t(data.frame(row.names = c("query.number", "significant",
-                                  "p.value","term.size","query.size","overlap.size","precision",
-                                  "recall","term.id", "domain", "subgraph.number", "term.name",
-                                  "relative.depth","intersection", "cluster")))
-
-  for ( i in unique(link_rep_com$cluster)){
-    genes <- link_rep_com[link_rep_com$cluster == i,]$node
-    genes <- as.character(genes)
-    go <- gprofiler(genes, organism = "mmusculus")
-
-    if (dim(go)[1]>=1){
-      go$cluster <- i
-      if (dim(go)[2]==15){
-        ff = rbind(ff, go)
-      }}
-  }
-
-  write.csv(ff, file = paste0(folder, "/overlapping_cluster_GO.csv"))}
-}
 
 
 
 ## main
 
 folder <- commandArgs(trailingOnly = T)[1]
-get_go <- TRUE
-if (length(commandArgs(trailingOnly = T))>=2){
-  get_go <- commandArgs(trailingOnly = T)[2]}
 
-if (get_go) {
-library(gProfileR)
-}
 
 d <- read.csv(paste0(folder, "/linkList.csv"))
 g <- graph.data.frame(d[1:2], directed = T)
 E(g)$weight <- d[[3]]
 
 calculateNetworkScores(g, folder)
-
-#overlappingCommunityAnalysis(d, folder, get_go = get_go)
 
 message("finished")
