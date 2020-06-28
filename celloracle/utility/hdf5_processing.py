@@ -126,4 +126,5 @@ def load_hdf5(filename: str, obj_class: Type[object]) -> object:
         else:
             setattr(obj, k, _file[k][:])
     _file.close()
+
     return obj

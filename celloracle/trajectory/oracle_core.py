@@ -24,17 +24,36 @@ from .modified_VelocytoLoom_class import modified_VelocytoLoom
 from ..network_analysis.network_construction import get_links
 
 
+def update_adata(adata):
+    # Update Anndata
+    # Anndata generated with Scanpy 1.4 or less should be updated with this function
+    # This function will be depricated in the future.
+
+    try:
+        lo = adata.uns['draw_graph']['params']['layout']
+        if isinstance(lo, np.ndarray):
+            lo = lo[0]
+        adata.uns['draw_graph']['params']['layout'] = lo
+    except:
+        pass
+
+
 
 def load_oracle(file_path):
+
     """
     Load oracle object saved as hdf5 file.
 
     Args:
         file_path (str): File path to the hdf5 file.
-
     """
 
-    return load_hdf5(filename=file_path, obj_class=Oracle)
+    obj = load_hdf5(filename=file_path, obj_class=Oracle)
+
+    # Update Anndata
+    update_adata(obj.adata)
+
+    return obj
 
 
 class Oracle(modified_VelocytoLoom):
@@ -193,6 +212,10 @@ class Oracle(modified_VelocytoLoom):
 
         # store data
         self.adata = adata.copy()
+
+        # update anndata format
+        update_adata(self.adata)
+
         self.cluster_column_name = cluster_column_name
         self.embedding_name = embedding_name
 
@@ -248,8 +271,12 @@ class Oracle(modified_VelocytoLoom):
         if adata.X.min() < 0:
             raise ValueError("gene expression matrix (adata.X) contains negavive values. Please use UNSCALED and UNCENTERED data.")
 
-        # store data
+        # Store data
         self.adata = adata.copy()
+
+        # Update anndata format
+        update_adata(self.adata)
+
         self.cluster_column_name = cluster_column_name
         self.embedding_name = embedding_name
 
@@ -678,7 +705,7 @@ class Oracle(modified_VelocytoLoom):
         df["count"] = 1
         df = df.groupby(["value", "variable", "simulation_batch"]).count()
         df = df.reset_index(drop=False)
-        
+
         df = df.rename(columns={"value": "cluster", "variable": "data"})
         df["simulation_batch"] = df["simulation_batch"].astype(np.object)
 
