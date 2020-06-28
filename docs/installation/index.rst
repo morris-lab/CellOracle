@@ -59,7 +59,7 @@ Please install velocyto with the following commands or `the author's instruction
 
 ::
 
-    conda install numpy scipy cython numba matplotlib scikit-learn h5py click pysam llvm
+    conda install numpy scipy cython numba matplotlib scikit-learn h5py click pysam llvm louvain
 
 Then
 
