@@ -59,7 +59,7 @@ Please install velocyto with the following commands or `the author's instruction
 
 ::
 
-    conda install numpy scipy cython numba matplotlib scikit-learn h5py click pysam gcc llvm
+    conda install numpy scipy cython numba matplotlib scikit-learn h5py click pysam llvm
 
 Then
 
@@ -82,7 +82,7 @@ Please install scanpy with the following commands or `the author's instruction <
 
 ::
 
-    conda install scanpy=1.4.4 umap-learn=0.3.10
+    conda install scanpy
 
 
 
@@ -146,7 +146,7 @@ In R console,
 
    install.packages("devtools")
    devtools::install_github("cole-trapnell-lab/cicero-release", ref = "monocle3")
-   
+
 
 `igraph <https://igraph.org/r/>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -16,6 +16,7 @@ from tqdm.notebook import tqdm
 from sklearn.preprocessing import StandardScaler
 
 
+
 def save_as_pickled_object(obj, filepath):
     """
     Save any object using pickle.
@@ -188,3 +189,60 @@ def standard(df):
     dt.index = cell_names
 
     return(dt)
+
+
+def adata_to_color_dict(adata, cluster_use):
+    """
+    Extract color information from adata and returns as dictionary.
+
+    Args:
+        adata (anndata): anndata
+
+        cluster_use (str): column name in anndata.obs
+
+    Returns:
+        dictionary: python dictionary, key is cluster name, value is clor name
+    """
+    color_dict = {}
+    for i,j in enumerate(adata.obs[cluster_use].cat.categories):
+        color_dict[j] = adata.uns[f"{cluster_use}_colors"][i]
+    return color_dict
+
+
+
+def transfer_all_colors_between_anndata(anndata_ref, anndata_que):
+
+    # Get all clusters that have colors in anndata_ref
+    keys = list(anndata_ref.uns.keys())
+    keys = [i.replace("_colors", "") for i in keys if "_colors" in i]
+
+    keys = [i for i in keys if i in anndata_que.obs.columns]
+
+    for cluster_name in keys:
+        transfer_color_between_anndata(anndata_ref=anndata_ref,
+                                      anndata_que=anndata_que,
+                                      cluster_name=cluster_name)
+
+    print("Color meta data were transfered for \n")
+    print(" ", keys)
+
+
+def transfer_color_between_anndata(anndata_ref, anndata_que, cluster_name):
+
+    # Get color as a dictionary
+    dic_ref = adata_to_color_dict(anndata_ref, cluster_name)
+
+
+    # Get color keys from que data
+    color_keys = list(anndata_que.obs[cluster_name].cat.categories)
+
+    # Convert color list
+    colors_after = []
+    for i in color_keys:
+        color = dic_ref[i]
+        colors_after.append(color)
+
+    colors_after = np.array(colors_after)
+
+    # Update color
+    anndata_que.uns[cluster_name + "_colors"] = colors_after

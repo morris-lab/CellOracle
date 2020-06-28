@@ -340,9 +340,10 @@ class Net():
         genes = np.array(intersect(target_genes, self.TFdict.keys()))
         genes = np.array(intersect(genes, self.all_genes))
         if verbose:
-            print(f"method: {model_method}")
+            #print(f"method: {model_method}")
             if model_method == "bagging_ridge":
-                print(f"alpha: {alpha}")
+                #print(f"alpha: {alpha}")
+                pass
 
         if command_line_mode:
 
