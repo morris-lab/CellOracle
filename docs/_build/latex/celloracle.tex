@@ -214,8 +214,8 @@
 
 
 \title{celloracle}
-\date{Jun 28, 2020}
-\release{0.4.0}
+\date{Jul 02, 2020}
+\release{0.4.1}
 \author{Samantha Morris Lab}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -904,7 +904,9 @@ In this notebook, we process the results of cicero analysis to get active promot
 \label{\detokenize{notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data:IMPORTANT:-Please-make-sure-that-you-are-setting-correct-reference-genoms.}}
 If your scATAC\sphinxhyphen{}seq data was generated with mm10 reference genome, you can set ref\_genome=“mm10”. If you used hg19 human reference genome, please set ref\_genome==“hg19”
 
-Currently we support {[}“mm9”, “mm10”, “hg19”, “hg38”{]}. If your reference genome is not in the list, please send a request through github issue page.
+Currently we support refgenomes below. \{“Human”: {[}‘hg38’, ‘hg19’{]}, “Mouse”: {[}‘mm10’, ‘mm9’{]}, “S.cerevisiae”: {[}“sacCer2”, “sacCer3”{]}\}
+
+If your reference genome is not in the list, please send a request through github issue page.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -1310,7 +1312,7 @@ Python notebook
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
 \PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
@@ -1332,8 +1334,22 @@ Python notebook
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{celloracle} \PYG{k+kn}{import} \PYG{n}{motif\PYGZus{}analysis} \PYG{k}{as} \PYG{n}{ma}
+\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{celloracle} \PYG{k+kn}{import} \PYG{n}{motif\PYGZus{}analysis} \PYG{k}{as} \PYG{n}{ma}
 \PYG{k+kn}{from} \PYG{n+nn}{celloracle}\PYG{n+nn}{.}\PYG{n+nn}{utility} \PYG{k+kn}{import} \PYG{n}{save\PYGZus{}as\PYGZus{}pickled\PYGZus{}object}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{nbsphinx-stderr}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+/home/k/anaconda3/envs/pandas1/lib/python3.6/site-packages/gimmemotifs/plot.py:19: MatplotlibDeprecationWarning: The 'warn' parameter of use() is deprecated since Matplotlib 3.1 and will be removed in 3.3.  If any parameter follows 'warn', they should be pass as keyword, not positionally.
+  mpl.use("Agg", warn=False)
 \end{sphinxVerbatim}
 }
 
@@ -1466,32 +1482,6 @@ e.g.
 
 \paragraph{3.2. Install reference genome (if refgenome is not installed)}
 \label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:3.2.-Install-reference-genome-(if-refgenome-is-not-installed)}}
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{genomepy}
-\PYG{n}{genomepy}\PYG{o}{.}\PYG{n}{install\PYGZus{}genome}\PYG{p}{(}\PYG{n}{ref\PYGZus{}genome}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{UCSC}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
-\end{sphinxVerbatim}
-}
-
-{
-
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-
-\sphinxsetup{VerbatimColor={named}{nbsphinx-stderr}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-downloading from http://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/chromFa.tar.gz{\ldots}
-done{\ldots}
-name: mm10
-local name: mm10
-fasta: /home/k/.local/share/genomes/mm10/mm10.fa
-\end{sphinxVerbatim}
-}
-
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.17)  28 JUN 2020 14:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.17)  2 JUL 2020 14:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1217,44 +1217,40 @@ _
 
 [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22]
 <notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_
-2015_data_22_0.png, id=277, 384.93813pt x 278.03876pt>
+2015_data_22_0.png, id=279, 384.93813pt x 278.03876pt>
 File: notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_
 etal_2015_data_22_0.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_22_0.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_22_0.png  used on input line 2139.
+ocessing_with_Paul_etal_2015_data_22_0.png  used on input line 2129.
 (pdftex.def)             Requested size: 288.34459pt x 208.53279pt.
 <notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_
-2015_data_24_0.png, id=278, 365.365pt x 289.08pt>
+2015_data_24_0.png, id=280, 365.365pt x 289.08pt>
 File: notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_
 etal_2015_data_24_0.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_24_0.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_24_0.png  used on input line 2166.
+ocessing_with_Paul_etal_2015_data_24_0.png  used on input line 2156.
 (pdftex.def)             Requested size: 274.03423pt x 216.80946pt.
-
-Underfull \vbox (badness 10000) detected at line 2168
- []
-
-[23 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul
-_etal_2015_data_22_0.png>]
+ [23 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Pau
+l_etal_2015_data_22_0.png> <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_
+preprocessing_with_Paul_etal_2015_data_24_0.png>]
 <notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_
-2015_data_27_1.png, id=286, 658.46pt x 576.65437pt>
+2015_data_27_1.png, id=287, 658.46pt x 576.65437pt>
 File: notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_
 etal_2015_data_27_1.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_27_1.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_27_1.png  used on input line 2225.
+ocessing_with_Paul_etal_2015_data_27_1.png  used on input line 2215.
 (pdftex.def)             Requested size: 469.76047pt x 411.39844pt.
 
-Underfull \vbox (badness 10000) detected at line 2227
+Underfull \vbox (badness 10000) detected at line 2217
  []
 
-[24 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul
-_etal_2015_data_24_0.png>]
+[24]
 <notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_
 2015_data_27_3.png, id=294, 646.91687pt x 576.65437pt>
 File: notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_
@@ -1262,10 +1258,10 @@ etal_2015_data_27_3.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_27_3.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_27_3.png  used on input line 2249.
+ocessing_with_Paul_etal_2015_data_27_3.png  used on input line 2239.
 (pdftex.def)             Requested size: 469.75786pt x 418.73683pt.
 
-Underfull \vbox (badness 10000) detected at line 2251
+Underfull \vbox (badness 10000) detected at line 2241
  []
 
 [25 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul
@@ -1277,10 +1273,10 @@ etal_2015_data_27_5.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_27_5.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_27_5.png  used on input line 2273.
+ocessing_with_Paul_etal_2015_data_27_5.png  used on input line 2263.
 (pdftex.def)             Requested size: 469.76384pt x 613.81041pt.
 
-Underfull \vbox (badness 10000) detected at line 2275
+Underfull \vbox (badness 10000) detected at line 2265
  []
 
 [26 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul
@@ -1293,7 +1289,7 @@ etal_2015_data_27_7.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_27_7.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_27_7.png  used on input line 2297.
+ocessing_with_Paul_etal_2015_data_27_7.png  used on input line 2287.
 (pdftex.def)             Requested size: 469.76047pt x 411.39844pt.
 <notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_
 2015_data_27_9.png, id=313, 646.91687pt x 576.65437pt>
@@ -1302,10 +1298,10 @@ etal_2015_data_27_9.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_27_9.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_27_9.png  used on input line 2321.
+ocessing_with_Paul_etal_2015_data_27_9.png  used on input line 2311.
 (pdftex.def)             Requested size: 469.75786pt x 418.73683pt.
 
-Underfull \vbox (badness 10000) detected at line 2323
+Underfull \vbox (badness 10000) detected at line 2313
  []
 
 [28 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul
@@ -1317,10 +1313,10 @@ etal_2015_data_27_11.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_27_11.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_27_11.png  used on input line 2345.
+ocessing_with_Paul_etal_2015_data_27_11.png  used on input line 2335.
 (pdftex.def)             Requested size: 469.75786pt x 213.19498pt.
 
-Underfull \vbox (badness 10000) detected at line 2347
+Underfull \vbox (badness 10000) detected at line 2337
  []
 
 [29 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul
@@ -1332,7 +1328,7 @@ etal_2015_data_31_0.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_31_0.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_31_0.png  used on input line 2373.
+ocessing_with_Paul_etal_2015_data_31_0.png  used on input line 2363.
 (pdftex.def)             Requested size: 462.9873pt x 219.82079pt.
  [30 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Pau
 l_etal_2015_data_27_11.png> <./notebooks_03_scRNA-seq_data_preprocessing_scanpy
@@ -1345,7 +1341,7 @@ etal_2015_data_36_1.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_36_1.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_36_1.png  used on input line 2505.
+ocessing_with_Paul_etal_2015_data_36_1.png  used on input line 2495.
 (pdftex.def)             Requested size: 462.9873pt x 219.82079pt.
 <notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_etal_
 2015_data_38_0.png, id=340, 617.80812pt x 293.59688pt>
@@ -1354,7 +1350,7 @@ etal_2015_data_38_0.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_38_0.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_38_0.png  used on input line 2530.
+ocessing_with_Paul_etal_2015_data_38_0.png  used on input line 2520.
 (pdftex.def)             Requested size: 462.9873pt x 219.82079pt.
  [32 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Pau
 l_etal_2015_data_36_1.png> <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_
@@ -1366,7 +1362,7 @@ etal_2015_data_42_1.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_42_1.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_42_1.png  used on input line 2605.
+ocessing_with_Paul_etal_2015_data_42_1.png  used on input line 2595.
 (pdftex.def)             Requested size: 462.9873pt x 219.82079pt.
  [33 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Pau
 l_etal_2015_data_42_1.png>]
@@ -1377,7 +1373,7 @@ etal_2015_data_47_0.png Graphic file (type png)
 <use notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Paul_e
 tal_2015_data_47_0.png>
 Package pdftex.def Info: notebooks_03_scRNA-seq_data_preprocessing_scanpy_prepr
-ocessing_with_Paul_etal_2015_data_47_0.png  used on input line 2664.
+ocessing_with_Paul_etal_2015_data_47_0.png  used on input line 2654.
 (pdftex.def)             Requested size: 462.9873pt x 219.82079pt.
  [34 <./notebooks_03_scRNA-seq_data_preprocessing_scanpy_preprocessing_with_Pau
 l_etal_2015_data_47_0.png>] [35] [36] [37] [38]
@@ -1388,10 +1384,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_2
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_27
 _1.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_27_1.png  used on input line 3132.
+ul_etal_2015_data_27_1.png  used on input line 3122.
 (pdftex.def)             Requested size: 286.07968pt x 209.28665pt.
 
-Underfull \vbox (badness 3803) detected at line 3134
+Underfull \vbox (badness 3803) detected at line 3124
  []
 
 [39] [40 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_
@@ -1403,7 +1399,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_3
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_37
 _0.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_37_0.png  used on input line 3246.
+ul_etal_2015_data_37_0.png  used on input line 3236.
 (pdftex.def)             Requested size: 388.46608pt x 216.80946pt.
  [41 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
 _37_0.png>] [42] [43]
@@ -1414,7 +1410,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _1.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_1.png  used on input line 3511.
+ul_etal_2015_data_53_1.png  used on input line 3501.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_3.p
 ng, id=439, 563.10374pt x 319.1925pt>
@@ -1423,10 +1419,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _3.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_3.png  used on input line 3535.
+ul_etal_2015_data_53_3.png  used on input line 3525.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-Underfull \vbox (badness 10000) detected at line 3537
+Underfull \vbox (badness 10000) detected at line 3527
  []
 
 [44 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1438,7 +1434,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _5.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_5.png  used on input line 3559.
+ul_etal_2015_data_53_5.png  used on input line 3549.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_7.p
 ng, id=448, 563.10374pt x 319.1925pt>
@@ -1447,10 +1443,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _7.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_7.png  used on input line 3583.
+ul_etal_2015_data_53_7.png  used on input line 3573.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-Underfull \vbox (badness 10000) detected at line 3585
+Underfull \vbox (badness 10000) detected at line 3575
  []
 
 [45 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1463,7 +1459,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _9.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_9.png  used on input line 3607.
+ul_etal_2015_data_53_9.png  used on input line 3597.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_11.
 png, id=457, 564.60938pt x 319.1925pt>
@@ -1472,10 +1468,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _11.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_11.png  used on input line 3631.
+ul_etal_2015_data_53_11.png  used on input line 3621.
 (pdftex.def)             Requested size: 423.08553pt x 239.39378pt.
 
-Underfull \vbox (badness 10000) detected at line 3633
+Underfull \vbox (badness 10000) detected at line 3623
  []
 
 [46 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1488,7 +1484,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _13.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_13.png  used on input line 3655.
+ul_etal_2015_data_53_13.png  used on input line 3645.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_15.
 png, id=465, 563.10374pt x 319.1925pt>
@@ -1497,10 +1493,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _15.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_15.png  used on input line 3679.
+ul_etal_2015_data_53_15.png  used on input line 3669.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-Underfull \vbox (badness 10000) detected at line 3681
+Underfull \vbox (badness 10000) detected at line 3671
  []
 
 [47 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1513,7 +1509,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _17.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_17.png  used on input line 3703.
+ul_etal_2015_data_53_17.png  used on input line 3693.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_19.
 png, id=473, 563.10374pt x 319.1925pt>
@@ -1522,10 +1518,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _19.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_19.png  used on input line 3727.
+ul_etal_2015_data_53_19.png  used on input line 3717.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-Underfull \vbox (badness 10000) detected at line 3729
+Underfull \vbox (badness 10000) detected at line 3719
  []
 
 [48 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1538,7 +1534,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _21.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_21.png  used on input line 3751.
+ul_etal_2015_data_53_21.png  used on input line 3741.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_23.
 png, id=481, 563.10374pt x 319.1925pt>
@@ -1547,10 +1543,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _23.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_23.png  used on input line 3775.
+ul_etal_2015_data_53_23.png  used on input line 3765.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-Underfull \vbox (badness 10000) detected at line 3777
+Underfull \vbox (badness 10000) detected at line 3767
  []
 
 [49 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1563,7 +1559,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _25.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_25.png  used on input line 3799.
+ul_etal_2015_data_53_25.png  used on input line 3789.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_27.
 png, id=489, 563.10374pt x 319.1925pt>
@@ -1572,10 +1568,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _27.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_27.png  used on input line 3823.
+ul_etal_2015_data_53_27.png  used on input line 3813.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-Underfull \vbox (badness 10000) detected at line 3825
+Underfull \vbox (badness 10000) detected at line 3815
  []
 
 [50 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1588,7 +1584,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _29.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_29.png  used on input line 3847.
+ul_etal_2015_data_53_29.png  used on input line 3837.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_31.
 png, id=497, 564.60938pt x 319.1925pt>
@@ -1597,10 +1593,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _31.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_31.png  used on input line 3871.
+ul_etal_2015_data_53_31.png  used on input line 3861.
 (pdftex.def)             Requested size: 423.08553pt x 239.39378pt.
 
-Underfull \vbox (badness 10000) detected at line 3873
+Underfull \vbox (badness 10000) detected at line 3863
  []
 
 [51 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1613,7 +1609,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _33.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_33.png  used on input line 3895.
+ul_etal_2015_data_53_33.png  used on input line 3885.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_35.
 png, id=506, 563.10374pt x 319.1925pt>
@@ -1622,10 +1618,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _35.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_35.png  used on input line 3919.
+ul_etal_2015_data_53_35.png  used on input line 3909.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-Underfull \vbox (badness 10000) detected at line 3921
+Underfull \vbox (badness 10000) detected at line 3911
  []
 
 [52 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1638,7 +1634,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _37.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_37.png  used on input line 3943.
+ul_etal_2015_data_53_37.png  used on input line 3933.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53_39.
 png, id=514, 563.10374pt x 319.1925pt>
@@ -1647,10 +1643,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_5
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_53
 _39.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_53_39.png  used on input line 3967.
+ul_etal_2015_data_53_39.png  used on input line 3957.
 (pdftex.def)             Requested size: 422.32677pt x 239.39378pt.
 
-Underfull \vbox (badness 10000) detected at line 3969
+Underfull \vbox (badness 10000) detected at line 3959
  []
 
 [53 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1664,10 +1660,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
 _0.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_65_0.png  used on input line 4184.
+ul_etal_2015_data_65_0.png  used on input line 4174.
 (pdftex.def)             Requested size: 228.85307pt x 240.15146pt.
 
-Underfull \vbox (badness 10000) detected at line 4186
+Underfull \vbox (badness 10000) detected at line 4176
  []
 
 [56]
@@ -1678,7 +1674,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
 _1.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_65_1.png  used on input line 4195.
+ul_etal_2015_data_65_1.png  used on input line 4185.
 (pdftex.def)             Requested size: 256.72408pt x 240.15146pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_2.p
 ng, id=542, 305.64188pt x 320.19624pt>
@@ -1687,10 +1683,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
 _2.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_65_2.png  used on input line 4206.
+ul_etal_2015_data_65_2.png  used on input line 4196.
 (pdftex.def)             Requested size: 228.85307pt x 240.15146pt.
 
-Underfull \vbox (badness 10000) detected at line 4208
+Underfull \vbox (badness 10000) detected at line 4198
  []
 
 [57 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1703,7 +1699,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
 _3.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_65_3.png  used on input line 4217.
+ul_etal_2015_data_65_3.png  used on input line 4207.
 (pdftex.def)             Requested size: 229.60724pt x 240.15146pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65_4.p
 ng, id=551, 297.61188pt x 320.19624pt>
@@ -1712,10 +1708,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
 _4.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_65_4.png  used on input line 4228.
+ul_etal_2015_data_65_4.png  used on input line 4218.
 (pdftex.def)             Requested size: 222.83144pt x 240.15146pt.
 
-Underfull \vbox (badness 10000) detected at line 4230
+Underfull \vbox (badness 10000) detected at line 4220
  []
 
 [58 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1728,7 +1724,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_65
 _5.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_65_5.png  used on input line 4239.
+ul_etal_2015_data_65_5.png  used on input line 4229.
 (pdftex.def)             Requested size: 257.456pt x 239.39378pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_68_0.p
 ng, id=559, 409.02812pt x 305.64188pt>
@@ -1737,10 +1733,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_68
 _0.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_68_0.png  used on input line 4266.
+ul_etal_2015_data_68_0.png  used on input line 4256.
 (pdftex.def)             Requested size: 306.40834pt x 228.85307pt.
 
-Underfull \vbox (badness 1043) detected at line 4268
+Underfull \vbox (badness 1043) detected at line 4258
  []
 
 [59 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1753,7 +1749,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_6
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_69
 _0.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_69_0.png  used on input line 4289.
+ul_etal_2015_data_69_0.png  used on input line 4279.
 (pdftex.def)             Requested size: 313.18832pt x 228.85307pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_70_0.p
 ng, id=568, 393.47pt x 305.64188pt>
@@ -1762,10 +1758,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_7
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_70
 _0.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_70_0.png  used on input line 4311.
+ul_etal_2015_data_70_0.png  used on input line 4301.
 (pdftex.def)             Requested size: 295.09576pt x 228.85307pt.
 
-Underfull \vbox (badness 10000) detected at line 4313
+Underfull \vbox (badness 10000) detected at line 4303
  []
 
 [60 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1778,7 +1774,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_7
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_72
 _1.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_72_1.png  used on input line 4353.
+ul_etal_2015_data_72_1.png  used on input line 4343.
 (pdftex.def)             Requested size: 432.86351pt x 226.59836pt.
  [61 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
 _70_0.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
@@ -1790,7 +1786,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_7
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_74
 _1.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_74_1.png  used on input line 4387.
+ul_etal_2015_data_74_1.png  used on input line 4377.
 (pdftex.def)             Requested size: 307.16548pt x 226.59836pt.
  [62 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
 _74_1.png>]
@@ -1801,7 +1797,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _1.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_1.png  used on input line 4487.
+ul_etal_2015_data_80_1.png  used on input line 4477.
 (pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_3.p
 ng, id=591, 363.85938pt x 264.99pt>
@@ -1810,10 +1806,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _3.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_3.png  used on input line 4511.
+ul_etal_2015_data_80_3.png  used on input line 4501.
 (pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 
-Underfull \vbox (badness 10000) detected at line 4513
+Underfull \vbox (badness 10000) detected at line 4503
  []
 
 [63 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1825,7 +1821,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _5.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_5.png  used on input line 4535.
+ul_etal_2015_data_80_5.png  used on input line 4525.
 (pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_7.p
 ng, id=601, 363.85938pt x 264.99pt>
@@ -1834,10 +1830,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _7.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_7.png  used on input line 4559.
+ul_etal_2015_data_80_7.png  used on input line 4549.
 (pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 
-Underfull \vbox (badness 10000) detected at line 4561
+Underfull \vbox (badness 10000) detected at line 4551
  []
 
 [64 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1850,7 +1846,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _9.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_9.png  used on input line 4583.
+ul_etal_2015_data_80_9.png  used on input line 4573.
 (pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_11.
 png, id=609, 357.335pt x 264.99pt>
@@ -1859,10 +1855,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _11.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_11.png  used on input line 4607.
+ul_etal_2015_data_80_11.png  used on input line 4597.
 (pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 
-Underfull \vbox (badness 10000) detected at line 4609
+Underfull \vbox (badness 10000) detected at line 4599
  []
 
 [65 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1875,7 +1871,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _13.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_13.png  used on input line 4631.
+ul_etal_2015_data_80_13.png  used on input line 4621.
 (pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_15.
 png, id=617, 363.85938pt x 264.99pt>
@@ -1884,10 +1880,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _15.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_15.png  used on input line 4655.
+ul_etal_2015_data_80_15.png  used on input line 4645.
 (pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 
-Underfull \vbox (badness 10000) detected at line 4657
+Underfull \vbox (badness 10000) detected at line 4647
  []
 
 [66 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1900,7 +1896,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _17.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_17.png  used on input line 4679.
+ul_etal_2015_data_80_17.png  used on input line 4669.
 (pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_19.
 png, id=625, 363.85938pt x 264.99pt>
@@ -1909,10 +1905,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _19.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_19.png  used on input line 4703.
+ul_etal_2015_data_80_19.png  used on input line 4693.
 (pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 
-Underfull \vbox (badness 10000) detected at line 4705
+Underfull \vbox (badness 10000) detected at line 4695
  []
 
 [67 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1925,7 +1921,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _21.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_21.png  used on input line 4727.
+ul_etal_2015_data_80_21.png  used on input line 4717.
 (pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_23.
 png, id=633, 357.335pt x 264.99pt>
@@ -1934,10 +1930,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _23.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_23.png  used on input line 4751.
+ul_etal_2015_data_80_23.png  used on input line 4741.
 (pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 
-Underfull \vbox (badness 10000) detected at line 4753
+Underfull \vbox (badness 10000) detected at line 4743
  []
 
 [68 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1950,7 +1946,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _25.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_25.png  used on input line 4775.
+ul_etal_2015_data_80_25.png  used on input line 4765.
 (pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_27.
 png, id=642, 357.335pt x 264.99pt>
@@ -1959,10 +1955,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _27.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_27.png  used on input line 4799.
+ul_etal_2015_data_80_27.png  used on input line 4789.
 (pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 
-Underfull \vbox (badness 10000) detected at line 4801
+Underfull \vbox (badness 10000) detected at line 4791
  []
 
 [69 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -1975,7 +1971,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _29.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_29.png  used on input line 4823.
+ul_etal_2015_data_80_29.png  used on input line 4813.
 (pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_31.
 png, id=651, 363.85938pt x 264.99pt>
@@ -1984,10 +1980,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _31.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_31.png  used on input line 4847.
+ul_etal_2015_data_80_31.png  used on input line 4837.
 (pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 
-Underfull \vbox (badness 10000) detected at line 4849
+Underfull \vbox (badness 10000) detected at line 4839
  []
 
 [70 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -2000,7 +1996,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _33.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_33.png  used on input line 4871.
+ul_etal_2015_data_80_33.png  used on input line 4861.
 (pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_35.
 png, id=659, 357.335pt x 264.99pt>
@@ -2009,10 +2005,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _35.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_35.png  used on input line 4895.
+ul_etal_2015_data_80_35.png  used on input line 4885.
 (pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 
-Underfull \vbox (badness 10000) detected at line 4897
+Underfull \vbox (badness 10000) detected at line 4887
  []
 
 [71 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -2025,7 +2021,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _37.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_37.png  used on input line 4919.
+ul_etal_2015_data_80_37.png  used on input line 4909.
 (pdftex.def)             Requested size: 268.01149pt x 198.742pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80_39.
 png, id=667, 363.85938pt x 264.99pt>
@@ -2034,10 +2030,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_80
 _39.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_80_39.png  used on input line 4943.
+ul_etal_2015_data_80_39.png  used on input line 4933.
 (pdftex.def)             Requested size: 272.52187pt x 198.742pt.
 
-Underfull \vbox (badness 10000) detected at line 4945
+Underfull \vbox (badness 10000) detected at line 4935
  []
 
 [72 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -2050,7 +2046,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_81
 _1.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_81_1.png  used on input line 4976.
+ul_etal_2015_data_81_1.png  used on input line 4966.
 (pdftex.def)             Requested size: 307.16548pt x 260.4827pt.
  [73 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
 _80_39.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_20
@@ -2062,7 +2058,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_84
 _1.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_84_1.png  used on input line 5020.
+ul_etal_2015_data_84_1.png  used on input line 5010.
 (pdftex.def)             Requested size: 293.6081pt x 197.9892pt.
 <notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_85_1.p
 ng, id=682, 384.93813pt x 263.98625pt>
@@ -2071,10 +2067,10 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_85
 _1.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_85_1.png  used on input line 5057.
+ul_etal_2015_data_85_1.png  used on input line 5047.
 (pdftex.def)             Requested size: 288.34459pt x 197.9892pt.
 
-Underfull \vbox (badness 10000) detected at line 5059
+Underfull \vbox (badness 10000) detected at line 5049
  []
 
 [74 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_
@@ -2086,7 +2082,7 @@ File: notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_8
 <use notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data_87
 _1.png>
 Package pdftex.def Info: notebooks_04_Network_analysis_Network_analysis_with_Pa
-ul_etal_2015_data_87_1.png  used on input line 5100.
+ul_etal_2015_data_87_1.png  used on input line 5090.
 (pdftex.def)             Requested size: 295.85732pt x 197.9892pt.
  [75 <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_2015_data
 _85_1.png> <./notebooks_04_Network_analysis_Network_analysis_with_Paul_etal_201
@@ -2098,7 +2094,7 @@ File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_15_0
 <use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_15_0.
 png>
 Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
-etal_2015_data_15_0.png  used on input line 5855.
+etal_2015_data_15_0.png  used on input line 5845.
 (pdftex.def)             Requested size: 469.75319pt x 133.1386pt.
 <notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_16_0.png,
  id=725, 384.93813pt x 264.48813pt>
@@ -2107,7 +2103,7 @@ File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_16_0
 <use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_16_0.
 png>
 Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
-etal_2015_data_16_0.png  used on input line 5876.
+etal_2015_data_16_0.png  used on input line 5866.
 (pdftex.def)             Requested size: 288.34459pt x 197.99026pt.
  [80 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_15
 _0.png> <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data
@@ -2119,7 +2115,7 @@ File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_22_1
 <use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_22_1.
 png>
 Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
-etal_2015_data_22_1.png  used on input line 6000.
+etal_2015_data_22_1.png  used on input line 5990.
 (pdftex.def)             Requested size: 299.63081pt x 268.7698pt.
 <notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_24_0.png,
  id=746, 621.82312pt x 576.65437pt>
@@ -2128,10 +2124,10 @@ File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_24_0
 <use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_24_0.
 png>
 Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
-etal_2015_data_24_0.png  used on input line 6032.
+etal_2015_data_24_0.png  used on input line 6022.
 (pdftex.def)             Requested size: 465.98666pt x 432.12895pt.
 
-Underfull \vbox (badness 10000) detected at line 6034
+Underfull \vbox (badness 10000) detected at line 6024
  []
 
 [82 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_22_
@@ -2144,7 +2140,7 @@ File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_1
 <use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_1.
 png>
 Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
-etal_2015_data_32_1.png  used on input line 6128.
+etal_2015_data_32_1.png  used on input line 6118.
 (pdftex.def)             Requested size: 431.37677pt x 157.3374pt.
 <notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_3.png,
  id=763, 575.65062pt x 209.78375pt>
@@ -2153,10 +2149,10 @@ File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_3
 <use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_3.
 png>
 Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
-etal_2015_data_32_3.png  used on input line 6152.
+etal_2015_data_32_3.png  used on input line 6142.
 (pdftex.def)             Requested size: 431.37677pt x 157.3374pt.
 
-Underfull \vbox (badness 10000) detected at line 6154
+Underfull \vbox (badness 10000) detected at line 6144
  []
 
 [84 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_
@@ -2168,7 +2164,7 @@ File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_5
 <use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_5.
 png>
 Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
-etal_2015_data_32_5.png  used on input line 6176.
+etal_2015_data_32_5.png  used on input line 6166.
 (pdftex.def)             Requested size: 431.37677pt x 157.3374pt.
 <notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_35_0.png,
  id=771, 358.33875pt x 358.33875pt>
@@ -2177,10 +2173,10 @@ File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_35_0
 <use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_35_0.
 png>
 Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
-etal_2015_data_35_0.png  used on input line 6205.
+etal_2015_data_35_0.png  used on input line 6195.
 (pdftex.def)             Requested size: 268.7698pt x 268.7698pt.
 
-Underfull \vbox (badness 10000) detected at line 6207
+Underfull \vbox (badness 10000) detected at line 6197
  []
 
 [85 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_32_
@@ -2193,10 +2189,10 @@ File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_37_0
 <use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_37_0.
 png>
 Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
-etal_2015_data_37_0.png  used on input line 6238.
+etal_2015_data_37_0.png  used on input line 6228.
 (pdftex.def)             Requested size: 170.1352pt x 268.7698pt.
 
-Underfull \vbox (badness 10000) detected at line 6240
+Underfull \vbox (badness 10000) detected at line 6230
  []
 
 [86 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_35_
@@ -2208,19 +2204,19 @@ File: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_39_0
 <use notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_39_0.
 png>
 Package pdftex.def Info: notebooks_05_simulation_Gata1_KO_simulation_with_Paul_
-etal_2015_data_39_0.png  used on input line 6265.
+etal_2015_data_39_0.png  used on input line 6255.
 (pdftex.def)             Requested size: 260.4827pt x 271.01184pt.
 
-Underfull \vbox (badness 10000) detected at line 6267
+Underfull \vbox (badness 10000) detected at line 6257
  []
 
 [87 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_37_
 0.png>] [88 <./notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_
 data_39_0.png>]
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 6310.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 6300.
 
-Underfull \hbox (badness 10000) in paragraph at lines 6397--6397
+Underfull \hbox (badness 10000) in paragraph at lines 6387--6387
 []\T1/ptm/m/it/10 p=0.001\T1/ptm/m/n/10 , \T1/ptm/m/it/10 weight=\TS1/ptm/m/it/
 10 '\T1/ptm/m/it/10 coef_abs\TS1/ptm/m/it/10 '\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
 thread_number=10000\T1/ptm/m/n/10 , \T1/ptm/m/it/10 genelist_source=None\T1/ptm
@@ -2228,49 +2224,49 @@ thread_number=10000\T1/ptm/m/n/10 , \T1/ptm/m/it/10 genelist_source=None\T1/ptm
  []
 
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 6420.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 6410.
 [89]
-Underfull \hbox (badness 10000) in paragraph at lines 6463--6463
+Underfull \hbox (badness 10000) in paragraph at lines 6453--6453
 []\T1/ptm/m/it/10 gois=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ters=None\T1/p
 tm/m/n/10 , \T1/ptm/m/it/10 scat-ter=True\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6463--6463
+Underfull \hbox (badness 10000) in paragraph at lines 6453--6453
 \T1/ptm/m/it/10 kde=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 auto_gene_annot=False
 \T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6463--6463
+Underfull \hbox (badness 10000) in paragraph at lines 6453--6453
 \T1/ptm/m/it/10 centile=98\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_dot={\TS1/ptm/m
 /it/10 '\T1/ptm/m/it/10 n_levels\TS1/ptm/m/it/10 '\T1/ptm/m/it/10 : 105}\T1/ptm
 /m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6463--6463
+Underfull \hbox (badness 10000) in paragraph at lines 6453--6453
 \T1/ptm/m/it/10 args_line={\TS1/ptm/m/it/10 '\T1/ptm/m/it/10 c\TS1/ptm/m/it/10 
 '\T1/ptm/m/it/10 : \TS1/ptm/m/it/10 '\T1/ptm/m/it/10 gray\TS1/ptm/m/it/10 '\T1/
 ptm/m/it/10 }\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_annot={}\T1/ptm/m/n/10 ,
  []
 
 [90]
-Underfull \hbox (badness 7064) in paragraph at lines 6585--6585
+Underfull \hbox (badness 7064) in paragraph at lines 6575--6575
 []\T1/ptm/m/it/10 value\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ter1\T1/ptm/m/n/10
  , \T1/ptm/m/it/10 clus-ter2\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-centile=99\T1/
 ptm/m/n/10 , \T1/ptm/m/it/10 an-not_shifts=None\T1/ptm/m/n/10 ,
  []
 
 [91] [92]
-Underfull \hbox (badness 10000) in paragraph at lines 6967--6967
+Underfull \hbox (badness 10000) in paragraph at lines 6957--6957
 []\T1/ptm/m/it/10 bagging_number=200\T1/ptm/m/n/10 , \T1/ptm/m/it/10 scal-ing=T
 rue\T1/ptm/m/n/10 , \T1/ptm/m/it/10 model_method=\TS1/ptm/m/it/10 '\T1/ptm/m/it
 /10 bagging_ridge\TS1/ptm/m/it/10 '\T1/ptm/m/n/10 , \T1/ptm/m/it/10 com-
  []
 
 [93]
-Underfull \hbox (badness 5817) in paragraph at lines 7031--7031
+Underfull \hbox (badness 5817) in paragraph at lines 7021--7021
 []\T1/ptm/m/it/10 target_genes\T1/ptm/m/n/10 , \T1/ptm/m/it/10 bag-ging_number=
 200\T1/ptm/m/n/10 , \T1/ptm/m/it/10 scal-ing=True\T1/ptm/m/n/10 , \T1/ptm/m/it/
 10 model_method=\TS1/ptm/m/it/10 '\T1/ptm/m/it/10 bagging_ridge\TS1/ptm/m/it/10
@@ -2278,198 +2274,198 @@ Underfull \hbox (badness 5817) in paragraph at lines 7031--7031
  []
 
 [94]
-Underfull \hbox (badness 10000) in paragraph at lines 7143--7144
+Underfull \hbox (badness 10000) in paragraph at lines 7133--7134
 \T1/ptm/m/n/10 Bases: \T1/pcr/m/n/10 celloracle.trajectory.modified_VelocytoLoo
 m_class.
  []
 
 [95] [96]
-Underfull \hbox (badness 10000) in paragraph at lines 7349--7349
+Underfull \hbox (badness 10000) in paragraph at lines 7339--7339
 []\T1/ptm/m/it/10 adata\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ter_column_name=No
 ne\T1/ptm/m/n/10 , \T1/ptm/m/it/10 em-bed-
  []
 
 [97]
-Underfull \hbox (badness 10000) in paragraph at lines 7496--7496
+Underfull \hbox (badness 10000) in paragraph at lines 7486--7486
 []\T1/ptm/m/it/10 n_steps=500\T1/ptm/m/n/10 , \T1/ptm/m/it/10 n_duplication=5\T
 1/ptm/m/n/10 , \T1/ptm/m/it/10 seed=123\T1/ptm/m/n/10 , \T1/ptm/m/it/10 cal-cu-
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7519--7519
+Underfull \hbox (badness 10000) in paragraph at lines 7509--7509
 []\T1/ptm/m/it/10 perturb_condition=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 GRN_un
 it=\TS1/ptm/m/it/10 '\T1/ptm/m/it/10 cluster\TS1/ptm/m/it/10 '\T1/ptm/m/n/10 , 
 \T1/ptm/m/it/10 n_propagation=3\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ig-
  []
 
 [98] [99] [100]
-Underfull \hbox (badness 10000) in paragraph at lines 7896--7896
+Underfull \hbox (badness 10000) in paragraph at lines 7886--7886
 []\T1/ptm/m/it/10 peak_str_list\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ref_genome\T1/p
 tm/m/n/10 , \T1/ptm/m/it/10 ver-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7901--7902
+Underfull \hbox (badness 10000) in paragraph at lines 7891--7892
 []\T1/pcr/b/n/10 peak_str_list \T1/ptm/m/n/10 (\T1/pcr/m/sl/10 list of str\T1/p
 tm/m/n/10 ) ^^U list of peak_id. e.g.,
  []
 
 
-Overfull \hbox (20.33435pt too wide) in paragraph at lines 7918--7918
+Overfull \hbox (20.33435pt too wide) in paragraph at lines 7908--7908
 \T1/ptm/m/it/10 cero_connections\T1/pcr/m/n/10 ) 
  []
 
 [101]
-Overfull \hbox (11.15468pt too wide) in paragraph at lines 7978--7978
+Overfull \hbox (11.15468pt too wide) in paragraph at lines 7968--7968
 []\T1/ptm/m/it/10 path_to_raw_bed\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (55.92404pt too wide) in paragraph at lines 7978--7978
+Overfull \hbox (55.92404pt too wide) in paragraph at lines 7968--7968
 \T1/ptm/m/it/10 path_to_scanned_result_bed\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7991--7993
+Underfull \hbox (badness 10000) in paragraph at lines 7981--7983
 \T1/ptm/m/n/10 or it can be a list of peak_id. e.g. [^^Pchr5_0930303_9499409^^Q
 ,
  []
 
 [102]
-Underfull \hbox (badness 10000) in paragraph at lines 8128--8128
+Underfull \hbox (badness 10000) in paragraph at lines 8118--8118
 []\T1/ptm/m/it/10 p=0.001\T1/ptm/m/n/10 , \T1/ptm/m/it/10 weight=\TS1/ptm/m/it/
 10 '\T1/ptm/m/it/10 coef_abs\TS1/ptm/m/it/10 '\T1/ptm/m/n/10 , \T1/ptm/m/it/10 
 thread_number=10000\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8194--8194
+Underfull \hbox (badness 10000) in paragraph at lines 8184--8184
 []\T1/ptm/m/it/10 gois=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ters=None\T1/p
 tm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8194--8194
+Underfull \hbox (badness 10000) in paragraph at lines 8184--8184
 \T1/ptm/m/it/10 scat-ter=True\T1/ptm/m/n/10 , \T1/ptm/m/it/10 kde=False\T1/ptm/
 m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8194--8194
+Underfull \hbox (badness 10000) in paragraph at lines 8184--8184
 \T1/ptm/m/it/10 auto_gene_annot=False\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8194--8194
+Underfull \hbox (badness 10000) in paragraph at lines 8184--8184
 \T1/ptm/m/it/10 centile=98\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_dot={\TS1/ptm/m
 /it/10 '\T1/ptm/m/it/10 n_levels\TS1/ptm/m/it/10 '\T1/ptm/m/it/10 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8194--8194
+Underfull \hbox (badness 10000) in paragraph at lines 8184--8184
 \T1/ptm/m/it/10 105}\T1/ptm/m/n/10 , \T1/ptm/m/it/10 args_line={\TS1/ptm/m/it/1
 0 '\T1/ptm/m/it/10 c\TS1/ptm/m/it/10 '\T1/ptm/m/it/10 : \TS1/ptm/m/it/10 '\T1/p
 tm/m/it/10 gray\TS1/ptm/m/it/10 '\T1/ptm/m/it/10 }\T1/ptm/m/n/10 ,
  []
 
 [103]
-Underfull \hbox (badness 10000) in paragraph at lines 8289--8289
+Underfull \hbox (badness 10000) in paragraph at lines 8279--8279
 []\T1/ptm/m/it/10 update_network_entropy=False\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8316--8316
+Underfull \hbox (badness 10000) in paragraph at lines 8306--8306
 []\T1/ptm/m/it/10 value\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-ter1\T1/ptm/m/n/10
  , \T1/ptm/m/it/10 clus-ter2\T1/ptm/m/n/10 , \T1/ptm/m/it/10 per-centile=99\T1/
 ptm/m/n/10 , \T1/ptm/m/it/10 an-
  []
 
 [104]
-Underfull \hbox (badness 10000) in paragraph at lines 8475--8475
+Underfull \hbox (badness 10000) in paragraph at lines 8465--8465
 []\T1/ptm/m/it/10 oracle_object\T1/ptm/m/n/10 , \T1/ptm/m/it/10 clus-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8475--8475
+Underfull \hbox (badness 10000) in paragraph at lines 8465--8465
 \T1/ptm/m/it/10 ter_name_for_GRN_unit=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 al-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8475--8475
+Underfull \hbox (badness 10000) in paragraph at lines 8465--8465
 \T1/ptm/m/it/10 pha=10\T1/ptm/m/n/10 , \T1/ptm/m/it/10 bag-ging_number=20\T1/pt
 m/m/n/10 , \T1/ptm/m/it/10 ver-
  []
 
 [105]
-Overfull \hbox (50.03403pt too wide) in paragraph at lines 8555--8555
+Overfull \hbox (50.03403pt too wide) in paragraph at lines 8545--8545
 []\T1/ptm/m/it/10 show_all_stdout=False\T1/pcr/m/n/10 ) 
  []
 
 
-Overfull \hbox (11.52493pt too wide) in paragraph at lines 8564--8564
+Overfull \hbox (11.52493pt too wide) in paragraph at lines 8554--8554
 []\T1/ptm/m/it/10 adata\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (7.63466pt too wide) in paragraph at lines 8564--8564
+Overfull \hbox (7.63466pt too wide) in paragraph at lines 8554--8554
 \T1/ptm/m/it/10 links\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (62.42433pt too wide) in paragraph at lines 8564--8564
+Overfull \hbox (62.42433pt too wide) in paragraph at lines 8554--8554
 \T1/ptm/m/it/10 method=\TS1/ptm/m/it/10 '\T1/ptm/m/it/10 median\TS1/ptm/m/it/10
  '\T1/pcr/m/n/10 ) 
  []
 
 [106]
-Underfull \hbox (badness 10000) in paragraph at lines 8680--8680
+Underfull \hbox (badness 10000) in paragraph at lines 8670--8670
 []\T1/ptm/m/it/10 commands\T1/ptm/m/n/10 , \T1/ptm/m/it/10 mes-sage=True\T1/ptm
 /m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8680--8680
+Underfull \hbox (badness 10000) in paragraph at lines 8670--8670
 \T1/ptm/m/it/10 wait_finished=True\T1/ptm/m/n/10 , \T1/ptm/m/it/10 re-
  []
 
 [107]
-Overfull \hbox (23.96461pt too wide) in paragraph at lines 8831--8831
+Overfull \hbox (23.96461pt too wide) in paragraph at lines 8821--8821
 []\T1/ptm/m/it/10 anndata_ref\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8831--8831
+Underfull \hbox (badness 10000) in paragraph at lines 8821--8821
 \T1/ptm/m/it/10 an-n-
  []
 
 
-Overfull \hbox (16.16484pt too wide) in paragraph at lines 8831--8831
+Overfull \hbox (16.16484pt too wide) in paragraph at lines 8821--8821
 \T1/ptm/m/it/10 data_que\T1/pcr/m/n/10 ) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8837--8837
+Underfull \hbox (badness 10000) in paragraph at lines 8827--8827
 []\T1/ptm/m/it/10 anndata_ref\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8837--8837
+Underfull \hbox (badness 10000) in paragraph at lines 8827--8827
 \T1/ptm/m/it/10 an-n-data_que\T1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8837--8837
+Underfull \hbox (badness 10000) in paragraph at lines 8827--8827
 \T1/ptm/m/it/10 clus-
  []
 
 [108]
-Overfull \hbox (51.73412pt too wide) in paragraph at lines 8876--8876
+Overfull \hbox (51.73412pt too wide) in paragraph at lines 8866--8866
 []\T1/ptm/m/it/10 file_path_seurat_object\T1/ptm/m/n/10 ,
  []
 
 
-Overfull \hbox (47.13416pt too wide) in paragraph at lines 8876--8876
+Overfull \hbox (47.13416pt too wide) in paragraph at lines 8866--8866
 \T1/ptm/m/it/10 delete_tmp_file=True\T1/pcr/m/n/10 ) 
  []
 
@@ -2845,15 +2841,15 @@ lor-acle.Net
  []
 
 [119])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 9181.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 9181.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 9171.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 9171.
  (./celloracle.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 9181.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 9181.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 9171.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 9171.
 
 Package rerunfilecheck Info: File `celloracle.out' has not changed.
 (rerunfilecheck)             Checksum: DAB790A9C66A537F31D0DF5C7EFD0A51;1071.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 9181.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 9171.
  ) 
 Here is how much of TeX's memory you used:
  14886 strings out of 494923
@@ -2874,7 +2870,7 @@ xlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on celloracle.pdf (123 pages, 5205207 bytes).
+Output written on celloracle.pdf (123 pages, 5205105 bytes).
 PDF statistics:
  1434 PDF objects out of 1440 (max. 8388607)
  1119 compressed objects within 12 object streams

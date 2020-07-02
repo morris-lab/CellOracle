@@ -22,7 +22,7 @@ copyright = '2020, Samantha Morris Lab'
 author = 'Samantha Morris Lab'
 
 # The full version, including alpha/beta/rc tags
-release = '0.4.0'
+release = '0.4.1'
 
 
 # -- General configuration ---------------------------------------------------

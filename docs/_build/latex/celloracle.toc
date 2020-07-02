@@ -52,23 +52,23 @@
 \contentsline {subsubsection}{3. Instantiate TFinfo object and search for TF binding motifs}{17}{subsubsection*.44}
 \contentsline {paragraph}{3.1 check reference genome installation}{17}{paragraph*.45}
 \contentsline {paragraph}{3.2. Install reference genome (if refgenome is not installed)}{17}{paragraph*.46}
-\contentsline {subsubsection}{4. Scan motifs and save object}{18}{subsubsection*.47}
+\contentsline {subsubsection}{4. Scan motifs and save object}{17}{subsubsection*.47}
 \contentsline {subsubsection}{5. Filtering motifs}{18}{subsubsection*.48}
 \contentsline {subsubsection}{6. Get Final results}{19}{subsubsection*.49}
 \contentsline {paragraph}{6.1. Get resutls as a dictionary}{19}{paragraph*.50}
 \contentsline {paragraph}{6.2. Get results as a dataframe}{19}{paragraph*.51}
-\contentsline {subsubsection}{7. Save TFinfo as dictionary or dataframe}{20}{subsubsection*.52}
+\contentsline {subsubsection}{7. Save TFinfo as dictionary or dataframe}{19}{subsubsection*.52}
 \contentsline {subsection}{\numberline {1.2.3}Single\sphinxhyphen {}cell RNA\sphinxhyphen {}seq data preprocessing}{20}{subsection.1.2.3}
 \contentsline {subsubsection}{A. scRNA\sphinxhyphen {}seq data preprocessing with scanpy}{20}{subsubsection*.53}
-\contentsline {paragraph}{0. Import libraries}{21}{paragraph*.54}
+\contentsline {paragraph}{0. Import libraries}{20}{paragraph*.54}
 \contentsline {paragraph}{1. Load data}{21}{paragraph*.55}
 \contentsline {paragraph}{2. Filtering}{21}{paragraph*.56}
 \contentsline {paragraph}{3. Normalization}{21}{paragraph*.57}
-\contentsline {paragraph}{4. Identification of highly variable genes}{22}{paragraph*.58}
+\contentsline {paragraph}{4. Identification of highly variable genes}{21}{paragraph*.58}
 \contentsline {paragraph}{5. Log transformation}{22}{paragraph*.59}
 \contentsline {paragraph}{6. Dimensional reduction}{22}{paragraph*.60}
-\contentsline {paragraph}{7. Clustering}{23}{paragraph*.61}
-\contentsline {paragraph}{(Optional) Re\sphinxhyphen {}calculate Dimensional reduction graph}{23}{paragraph*.62}
+\contentsline {paragraph}{7. Clustering}{22}{paragraph*.61}
+\contentsline {paragraph}{(Optional) Re\sphinxhyphen {}calculate Dimensional reduction graph}{22}{paragraph*.62}
 \contentsline {paragraph}{8. Check data}{24}{paragraph*.63}
 \contentsline {subparagraph}{8.1. Visualize marker gene expression}{24}{subparagraph*.64}
 \contentsline {paragraph}{9. Make annotation for cluster}{30}{paragraph*.65}
