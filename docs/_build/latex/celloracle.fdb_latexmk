@@ -1,10 +1,10 @@
 # Fdb version 3
-["makeindex celloracle.idx"] 1593373102 "celloracle.idx" "celloracle.ind" "celloracle" 1593718692
+["makeindex celloracle.idx"] 1593373102 "celloracle.idx" "celloracle.ind" "celloracle" 1593719651
   "celloracle.idx" 1593718691 22386 f008e3439aac2377a00658e2ba5ce37e ""
   (generated)
-  "celloracle.ilg"
   "celloracle.ind"
-["pdflatex"] 1593718684 "celloracle.tex" "celloracle.pdf" "celloracle" 1593718692
+  "celloracle.ilg"
+["pdflatex"] 1593718684 "celloracle.tex" "celloracle.pdf" "celloracle" 1593719651
   "/etc/texmf/web2c/texmf.cnf" 1581962786 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
@@ -249,14 +249,14 @@
   "notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_37_0.png" 1589057441 171344 49e34ac51a4ff2db9de78b8f3ae32b6f ""
   "notebooks_05_simulation_Gata1_KO_simulation_with_Paul_etal_2015_data_39_0.png" 1589057441 85170 f79f3cc3d2ee1a686117bac9683eb5ef ""
   "sphinx.sty" 1593372872 82020 a38700b8aa22dfd94a8a5b905e69be73 ""
-  "sphinxhighlight.sty" 1593718675 8137 38a433148fcb7611515a989ff1750dd5 ""
+  "sphinxhighlight.sty" 1593719650 8137 38a433148fcb7611515a989ff1750dd5 ""
   "sphinxmanual.cls" 1593372872 4236 124cd90deb92742b5d3922bfc2cd70c0 ""
-  "sphinxmessages.sty" 1593718676 745 3f5fcd6cdd7964ed608767954a8ced6f ""
+  "sphinxmessages.sty" 1593719651 745 3f5fcd6cdd7964ed608767954a8ced6f ""
   "sphinxmulticell.sty" 1593372872 14606 0b6edc2b1a83546ed92026d1f6a311b5 ""
   (generated)
-  "celloracle.log"
   "celloracle.out"
-  "celloracle.toc"
-  "celloracle.pdf"
-  "celloracle.idx"
   "celloracle.aux"
+  "celloracle.pdf"
+  "celloracle.toc"
+  "celloracle.idx"
+  "celloracle.log"
