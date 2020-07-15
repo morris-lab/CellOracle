@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.17)  15 JUL 2020 15:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.17)  15 JUL 2020 15:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2841,15 +2841,15 @@ lor-acle.Net
  []
 
 [119])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 9247.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 9247.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 9259.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 9259.
  (./celloracle.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 9247.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 9247.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 9259.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 9259.
 
 Package rerunfilecheck Info: File `celloracle.out' has not changed.
 (rerunfilecheck)             Checksum: DAB790A9C66A537F31D0DF5C7EFD0A51;1071.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 9247.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 9259.
  ) 
 Here is how much of TeX's memory you used:
  14886 strings out of 494923
@@ -2870,7 +2870,7 @@ xlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on celloracle.pdf (123 pages, 5206218 bytes).
+Output written on celloracle.pdf (123 pages, 5206136 bytes).
 PDF statistics:
  1434 PDF objects out of 1440 (max. 8388607)
  1119 compressed objects within 12 object streams
