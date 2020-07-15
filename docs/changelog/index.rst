@@ -4,6 +4,38 @@
 Changelog
 =========
 
+* `0.4.2 <2020-07-14>`
+`-` Add promoter-TSS information for Zebrafish reference genome (danRer7, danRer10 and danRer11).
+
+* `0.4.1 <2020-07-02>`
+`-` Add promoter-TSS information for S.cerevisiae reference genome (sacCer2 and sacCer3).
+
+* `0.4.0 <2020-06-28>`
+ `-` Change requirements.
+ `-` From this version, pandas version 1.0.3 or later is required.
+ `-` From this version, scanpy version 1.5.3 or later is required.
+
+* `0.3.7 <2020-06-12>`
+ `-` Delete GO function from r-script
+ `-` Update some functions for network visualization
+
+* `0.3.6 <2020-06-08>`
+ `-` Fix a bug on the transition probability calculation in Markov simulation
+ `-` Add new function "count_cells_in_mc_results" to oracle class
+
+* `0.3.5 <2020-05-09>`
+ `-` Fix a bug on the function for gene cortography visualization
+ `-` Change some settings for installation
+ `-` Update data conversion module
+
+* `0.3.4 <2020-04-29>`
+ `-` Change pandas version restriction
+ `-` Fix a bug on the function for gene cortography visualization
+ `-` Add new functions for R-path configuration
+
+* `0.3.3 <2020-04-24>`
+ `-` Add promoter-TSS information for hg19 and hg38 reference genome
+
 * `0.3.1 <2020-03-23>`
  `-` Fix an error when try to save file larger than 4GB file
 

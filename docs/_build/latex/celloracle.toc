@@ -146,7 +146,7 @@
 \contentsline {paragraph}{celloracle.data module}{108}{paragraph*.269}
 \contentsline {paragraph}{celloracle.data\_conversion module}{109}{paragraph*.272}
 \contentsline {section}{\numberline {1.4}Changelog}{109}{section.1.4}
-\contentsline {section}{\numberline {1.5}License}{109}{section.1.5}
+\contentsline {section}{\numberline {1.5}License}{110}{section.1.5}
 \contentsline {section}{\numberline {1.6}Authors and citations}{112}{section.1.6}
 \contentsline {subsection}{\numberline {1.6.1}Cite celloracle}{112}{subsection.1.6.1}
 \contentsline {subsection}{\numberline {1.6.2}celloracle software development}{112}{subsection.1.6.2}

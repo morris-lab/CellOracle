@@ -46,8 +46,8 @@ from .process_bed_file import read_bed, peak2fasta
 
 SUPPORTED_REF_GENOME = {"Human": ['hg38', 'hg19'], #  'hg18', 'hg17', 'hg16' were not installed now
                         "Mouse": ['mm10', 'mm9'], # 'mm8', 'mm7', 'micMur2', 'micMur1' were not installed now
-                        "S.cerevisiae": ["sacCer2", "sacCer3"]
-                        }
+                        "S.cerevisiae": ["sacCer2", "sacCer3"],
+                        "Zebrafish": ["danRer7", "danRer10", "danRer11"]}
 
 
 def load_TFinfo(file_path):
@@ -165,6 +165,8 @@ class TFinfo():
             self.species = "Human"
         elif ref_genome in SUPPORTED_REF_GENOME["S.cerevisiae"]:
             self.species = "S.cerevisiae"
+        elif ref_genome in SUPPORTED_REF_GENOME["Zebrafish"]:
+            self.species = "Zebrafish"
 
         else:
             raise ValueError(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list.")
@@ -574,11 +576,15 @@ def _get_dic_motif2TFs(species):
         for i in motifs:
             fcs = i.factors["direct"] + i.factors["indirect"]
             dic_motif2TFs[i.id] = [fa.capitalize() for fa in fcs]
-    if species in ["Human", "S.cerevisiae"]:
+    elif species in ["Human", "S.cerevisiae"]:
         for i in motifs:
             fcs = i.factors["direct"] + i.factors["indirect"]
             dic_motif2TFs[i.id] = [fa.upper() for fa in fcs]
-
+    elif species in ["Zebrafish"]:
+        for i in motifs:
+            fcs = i.factors["direct"] + i.factors["indirect"]
+            dic_motif2TFs[i.id] = [fa.lower() for fa in fcs]
+    
     return dic_motif2TFs
 
 
