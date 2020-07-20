@@ -311,10 +311,9 @@ def knn_data_transferer(adata_ref, adata_que, n_neighbors=20, cluster_name=None,
     X_train = adata_ref.to_df()
     X_test = adata_que.to_df()
 
-    if ~np.all(X_train.columns == X_test.columns):
-        genes = np.intersect1d(X_train.columns, X_test.columns)
-        X_train = X_train[genes]
-        X_test = X_test[genes]
+    genes = np.intersect1d(X_train.columns, X_test.columns)
+    X_train = X_train[genes]
+    X_test = X_test[genes]
 
     # 2. PCA
     model_PCA = PCA(n_components=n_PCA)
