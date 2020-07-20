@@ -270,7 +270,7 @@ def transfer_color_between_anndata(adata_ref, adata_que, cluster_name):
 
 
     # Get color keys from que data
-    adata_que.obs[i] = adata_que.obs[cluster_name].astype("category")
+    adata_que.obs[cluster_name] = adata_que.obs[cluster_name].astype("category")
     color_keys = list(adata_que.obs[cluster_name].cat.categories)
 
     # Convert color list
