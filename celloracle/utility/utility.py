@@ -12,6 +12,7 @@ import sys
 import pandas as pd
 import numpy as np
 from tqdm.notebook import tqdm
+import matplotlib.pyplot as plt
 
 from sklearn.preprocessing import StandardScaler
 
