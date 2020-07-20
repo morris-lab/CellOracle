@@ -285,7 +285,7 @@ def transfer_color_between_anndata(adata_ref, adata_que, cluster_name):
     adata_que.uns[cluster_name + "_colors"] = colors_after
 
 
-def knn_data_transformer(adata_ref, adata_que, n_neighbors=20, cluster_name=None, embedding_name=None, adata_true=None, transfer_color=True, n_PCA=30):
+def knn_data_transferer(adata_ref, adata_que, n_neighbors=20, cluster_name=None, embedding_name=None, adata_true=None, transfer_color=True, n_PCA=30):
     """
     Extract categorical information from adata.obs or embedding information from adata.obsm and transfer these information into query anndata.
     In the calculation, KNN is used after PCA.
