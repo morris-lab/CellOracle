@@ -286,7 +286,9 @@ def transfer_color_between_anndata(adata_ref, adata_que, cluster_name):
     adata_que.uns[cluster_name + "_colors"] = colors_after
 
 
-def knn_data_transferer(adata_ref, adata_que, n_neighbors=20, cluster_name=None, embedding_name=None, adata_true=None, transfer_color=True, n_PCA=30):
+def knn_data_transferer(adata_ref, adata_que,
+                        n_neighbors=20, cluster_name=None, embedding_name=None, adata_true=None,
+                        transfer_color=True, n_PCA=30, use_PCA_in_adata=False):
     """
     Extract categorical information from adata.obs or embedding information from adata.obsm and transfer these information into query anndata.
     In the calculation, KNN is used after PCA.
@@ -316,9 +318,13 @@ def knn_data_transferer(adata_ref, adata_que, n_neighbors=20, cluster_name=None,
     X_test = X_test[genes]
 
     # 2. PCA
-    model_PCA = PCA(n_components=n_PCA)
-    X_train_PCA = model_PCA.fit_transform(X_train)
-    X_test_PCA = model_PCA.transform(X_test)
+    if use_PCA_in_adata:
+        X_train_PCA = adata_ref.obsm["X_pca"]
+        X_test_PCA = adata_que.obsm["X_pca"]
+    else:
+        model_PCA = PCA(n_components=n_PCA)
+        X_train_PCA = model_PCA.fit_transform(X_train)
+        X_test_PCA = model_PCA.transform(X_test)
 
     # 3. Learning and prediction
     if cluster_name is not None:
