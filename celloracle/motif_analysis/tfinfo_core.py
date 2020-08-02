@@ -43,6 +43,7 @@ from ..utility import save_as_pickled_object, load_pickled_object, intersect,\
 #
 from .motif_analysis_utility import scan_dna_for_motifs, is_genome_installed
 from .process_bed_file import read_bed, peak2fasta
+from .motif_data import load_motifs
 
 SUPPORTED_REF_GENOME = {"Human": ['hg38', 'hg19'], #  'hg18', 'hg17', 'hg16' were not installed now
                         "Mouse": ['mm10', 'mm9'], # 'mm8', 'mm7', 'micMur2', 'micMur1' were not installed now
@@ -175,7 +176,6 @@ class TFinfo():
         if not is_genome_installed(ref_genome=ref_genome):
             raise ValueError(f"ref_genome: {ref_genome} is not installed. TFinfo initiation failed.")
 
-        self.dic_motif2TFs = _get_dic_motif2TFs(species=self.species)
 
         self.scanned_df = None
         self.TF_onehot = None
@@ -245,7 +245,7 @@ class TFinfo():
 
 
 
-    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True):
+    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True, motifs=None, TF_evidence_level="direct_and_indirect"):
         """
         Scan DNA sequences searching for TF binding motifs.
 
@@ -258,6 +258,12 @@ class TFinfo():
 
            verbose (bool): Whether to show a progress bar.
 
+           motifs (list): a list of gimmemotifs motifs, will revert to default_motifs() if None
+
+           TF_evidence_level (str): Please select one from ["direct", "direct_and_indirect"]. If "direct" is selected, TFs that have a binding evidence were used.
+               If "direct_and_indirect" is selected, TFs with binding evidence and inferred TFs are used.
+               For more information, please read explanation of Motif class in gimmemotifs documentation (https://gimmemotifs.readthedocs.io/en/master/index.html)
+
         """
 
 
@@ -266,7 +272,36 @@ class TFinfo():
         print("initiating scanner ...")
         ## 1. initialilze scanner  ##
         # load motif
-        motifs = default_motifs()
+        if motifs is None:
+            if self.species in ["Mouse", "Human"]: # If species is vertebrate, we use fimmemotif default motifs as a default.
+                print("Default motif for vertebrate: gimme.vertebrate.v5.0. \n For more information, please go https://gimmemotifs.readthedocs.io/en/master/overview.html")
+                motifs = default_motifs()
+                self.motif_db_name = "gimme.vertebrate.v5.0"
+                self.TF_formatting = True
+
+            elif self.species in ["Zebrafish"]: # If species is Zebrafish, we use CisDB database.
+                self.motif_db_name = 'CisDB_ver2_Danio_rerio.pfm'
+                motifs = load_motifs(self.motif_db_name)
+                self.TF_formatting = False
+                print(f"Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation.")
+
+            elif self.species in ["S.cerevisiae"]: # If species is S.cerevisiae, we use CisDB database.
+                self.motif_db_name = 'CisDB_ver2_Saccharomyces_cerevisiae.pfm'
+                motifs = load_motifs(self.motif_db_name)
+                self.TF_formatting = False
+                print(f"Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation.")
+
+            else:
+                raise ValueError(f"We have no default motifs for your species, {self.species}. Please set motifs.")
+
+        else:
+            self.motif_db_name = "custom_motifs"
+            self.TF_formatting = False
+
+        self.motifs = motifs
+
+        self.dic_motif2TFs = _get_dic_motif2TFs(species=self.species, motifs=motifs, TF_evidence_level=TF_evidence_level, formatting=self.TF_formatting)
+        self.TF_evidence_level = TF_evidence_level
 
         # initialize scanner
         s = Scanner(ncpus=n_cpus)
@@ -564,27 +599,43 @@ class TFinfo():
 
 
 
-def _get_dic_motif2TFs(species):
+def _get_dic_motif2TFs(species, motifs, TF_evidence_level="direct_and_indirect", formatting=True):
+    """
 
-    motifs  = default_motifs()
-    motif_names = [i.id for i in motifs]
-    factors_direct = [i.factors["direct"] for i in motifs]
-    factors_indirect = [i.factors["indirect"] for i in motifs]
+    Args:
+
+    TF_evidence_level (str): Please select one from ["direct", "direct_and_indirect"]. If "direct" is selected, TFs that have a binding evidence were used.
+        If "direct_and_indirect" is selected, TFs with binding evidence and inferred TFs are used.
+        For more information, please read explanation of Motif class in gimmemotifs documentation (https://gimmemotifs.readthedocs.io/en/master/index.html)
+
+    """
+
+    if TF_evidence_level == "direct_and_indirect":
+        factor_kind = ["direct", "indirect"]
+    elif TF_evidence_level == "direct":
+        factor_kind = ["direct"]
 
     dic_motif2TFs = {}
-    if species == "Mouse":
-        for i in motifs:
-            fcs = i.factors["direct"] + i.factors["indirect"]
-            dic_motif2TFs[i.id] = [fa.capitalize() for fa in fcs]
-    elif species in ["Human", "S.cerevisiae"]:
-        for i in motifs:
-            fcs = i.factors["direct"] + i.factors["indirect"]
-            dic_motif2TFs[i.id] = [fa.upper() for fa in fcs]
-    elif species in ["Zebrafish"]:
-        for i in motifs:
-            fcs = i.factors["direct"] + i.factors["indirect"]
-            dic_motif2TFs[i.id] = [fa.lower() for fa in fcs]
-    
+
+    for i in motifs:
+        fcs = []
+        for j in factor_kind:
+            fcs += i.factors[j]
+        dic_motif2TFs[i.id] = fcs
+
+    if formatting:
+        if species == "Mouse":
+            for key in dic_motif2TFs.keys():
+                dic_motif2TFs[key] = [tf.capitalize() for tf in dic_motif2TFs[key]]
+
+        elif species in ["Human", "S.cerevisiae"]:
+            for key in dic_motif2TFs.keys():
+                dic_motif2TFs[key] = [tf.upper() for tf in dic_motif2TFs[key]]
+
+        elif species in ["Zebrafish"]:
+            for key in dic_motif2TFs.keys():
+                dic_motif2TFs[key] = [tf.lower() for tf in dic_motif2TFs[key]]
+
     return dic_motif2TFs
 
 

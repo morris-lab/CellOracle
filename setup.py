@@ -14,7 +14,7 @@ with open('LICENSE') as f:
 """
 setup(
     name='celloracle',
-    version='0.4.2',
+    version='0.5.0',
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
@@ -65,7 +65,7 @@ setup(
     package_data={"celloracle": ["go_analysis/data/*.txt", "go_analysis/data/*.obo",
                                  "data_conversion/*.R",
                                  "motif_analysis/tss_ref_data/*.bed",
-                                 "data/TFinfo_data/*.txt", "data/TFinfo_data/*.parquet",
+                                 "data/TFinfo_data/*.txt", "data/TFinfo_data/*.parquet", "data/motif_data/*.txt", "data/motif_data/*.pfm",
                                  "network_analysis/rscripts_for_network_analysis/*.R"]},
     packages=["celloracle", "celloracle.data_conversion", "celloracle.network", "celloracle.trajectory",
               "celloracle.data", "celloracle.go_analysis",
