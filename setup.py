@@ -47,7 +47,7 @@ setup(
                       'pandas>=1.0.3', #'pandas==0.25.*',
                       'velocyto>=0.17',
                       'umap-learn', #'umap-learn==0.3.10',
-                      'pyarrow',
+                      'pyarrow>=0.17',
                       'jupyter',
                       'tqdm>=4.45',
                       "python-igraph",
@@ -56,8 +56,8 @@ setup(
                       'scanpy', #'scanpy==1.4.4',
                       'joblib',
                       'goatools',
-                      'genomepy==0.5.5',
-                      'gimmemotifs==0.13.1'],
+                      'genomepy==0.8.4', #0.5.5
+                      'gimmemotifs==0.14.4'], # 0.13.1
     author='Kenji Kamimoto at Samantha Morris Lab',
     author_email='kamimoto@wustl.edu',
     url='https://github.com/morris-lab/CellOracle',

@@ -23,8 +23,12 @@ from genomepy import Genome
 #from gimmemotifs.motif import Motif
 from gimmemotifs.scanner import Scanner
 from gimmemotifs.fasta import Fasta
+from gimmemotifs.config import DIRECT_NAME, INDIRECT_NAME
+
 
 from .process_bed_file import peak_M1
+
+
 
 ####
 ###
@@ -115,8 +119,8 @@ def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, verbose=
                 for score, pos, strand in matches:
                     li.append(np.array([seqname,
                                         motif.id,
-                                        list2str(motif.factors["direct"]),
-                                        list2str(motif.factors["indirect"]),
+                                        list2str(motif.factors[DIRECT_NAME]),
+                                        list2str(motif.factors[INDIRECT_NAME]),
                                         score, pos, strand]))
     else:
         for i, result in enumerate(scanner_object.scan(sequence_object)):
@@ -126,8 +130,8 @@ def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, verbose=
                 for score, pos, strand in matches:
                     li.append(np.array([seqname,
                                         motif.id,
-                                        list2str(motif.factors["direct"]),
-                                        list2str(motif.factors["indirect"]),
+                                        list2str(motif.factors[DIRECT_NAME]),
+                                        list2str(motif.factors[INDIRECT_NAME]),
                                         score, pos, strand]))
 
     #save_as_pickled_object(li, "./tmp_li.pickle")
