@@ -43,7 +43,7 @@ from ..utility import save_as_pickled_object, load_pickled_object, intersect,\
                       makelog, inverse_dictionary
 #
 from .motif_analysis_utility import scan_dna_for_motifs, is_genome_installed
-from .process_bed_file import read_bed, peak2fasta
+from .process_bed_file import read_bed, peak2fasta, remove_zero_seq
 from .motif_data import load_motifs
 
 SUPPORTED_REF_GENOME = {"Human": ['hg38', 'hg19'], #  'hg18', 'hg17', 'hg16' were not installed now
@@ -333,12 +333,16 @@ class TFinfo():
 
         #s.set_background(genome="mm9", length=400)
         if verbose:
-            print("Calculating FPR-based threshold. This step may take substantial time when you load new motifs or new ref-genome. It will be done quicker on the second time. \n")
+            print("Calculating FPR-based threshold. This step may take substantial time when you load a new ref-genome. It will be done quicker on the second time. \n")
         s.set_threshold(fpr=fpr)
 
         ## 2. motif scan ##
         print("Convert peak info into DNA sequences ... \n")
+        # Get DNA sequences
         target_sequences = peak2fasta(self.all_peaks, self.ref_genome)
+        # Remove DNA sequence with zero length
+        target_sequences = remove_zero_seq(fasta_object=target_sequences)
+
         print("Scanning motifs ... It may take several hours if you proccess many peaks. \n")
         self.scanned_df = scan_dna_for_motifs(s, motifs, target_sequences, verbose)
 

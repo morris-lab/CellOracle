@@ -61,7 +61,7 @@ def is_genome_installed(ref_genome):
 
         print(f"genome {ref_genome} is not installed in this environment.")
         print("Please install genome using genomepy.")
-        print('e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome("mm9", "UCSC")')
+        print(f'e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome("{ref_genome}", "UCSC")')
 
     return False
         #raise ValueError(f"Ref_Genome: {ref_genome} is not available.")

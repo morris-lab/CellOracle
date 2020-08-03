@@ -36,7 +36,7 @@ from pybedtools import BedTool
 
 ####
 ### bed f
-def peakstr_to_int(peak_str):
+def decompose_chrstr(peak_str):
     """
     Take peak name as input and return splitted strs.
 
@@ -47,11 +47,13 @@ def peakstr_to_int(peak_str):
         tuple: splitted peak name.
 
     Examples:
-       >>> peakstr_to_int("chr1_111111_222222")
+       >>> decompose_chrstr("chr1_111111_222222")
        "chr1", "111111", "222222"
     """
-    sp = peak_str.split("_")
-    return sp[0], sp[1], sp[2]
+    *chr_, start, end = peak_str.split("_")
+    chr_ = "_".join(chr_)
+
+    return chr_, start, end
 
 def list_peakstr_to_df(x):
     """
@@ -71,7 +73,7 @@ def list_peakstr_to_df(x):
             1	chr1	3113499	3113979
             2	chr1	3119478	3121690
     """
-    df = np.array([peakstr_to_int(i) for i in x])
+    df = np.array([decompose_chrstr(i) for i in x])
     df = pd.DataFrame(df, columns=["chr", "start", "end"])
     df["start"] = df["start"].astype(np.int)
     df["end"] = df["end"].astype(np.int)
@@ -129,8 +131,9 @@ def peak2fasta(peak_ids, ref_genome):
     genome_data = Genome(ref_genome)
 
     def peak2seq(peak_id):
-        chromosome_name = peak_id.split("_")[0]
-        locus = (int(peak_id.split("_")[1]),int(peak_id.split("_")[2]))
+        chromosome_name, start, end = decompose_chrstr(peak_id)
+        locus = (int(start),int(end))
+
         tmp = genome_data[chromosome_name][locus[0]:locus[1]]
         name = f"{tmp.name}_{tmp.start}_{tmp.end}"
         seq = tmp.seq
@@ -147,6 +150,16 @@ def peak2fasta(peak_ids, ref_genome):
 
     return fasta
 
+def remove_zero_seq(fasta_object):
+    """
+    Remove DNA sequence with zero length
+    """
+    fasta = Fasta()
+    for i, seq in enumerate(fasta_object.seqs):
+        if seq:
+            name = fasta_object.ids[i]
+            fasta.add(name, seq)
+    return fasta
 
 
 def read_bed(bed_path):
