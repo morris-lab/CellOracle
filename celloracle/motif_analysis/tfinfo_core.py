@@ -281,21 +281,21 @@ class TFinfo():
                 self.motif_db_name = "gimme.vertebrate.v5.0"
                 self.TF_formatting = True
                 if verbose:
-                    print(" Default motif for vertebrate: gimme.vertebrate.v5.0. \n For more information, please go https://gimmemotifs.readthedocs.io/en/master/overview.html")
+                    print(" Default motif for vertebrate: gimme.vertebrate.v5.0. \n For more information, please go https://gimmemotifs.readthedocs.io/en/master/overview.html \n")
 
             elif self.species in ["Zebrafish"]: # If species is Zebrafish, we use CisDB database.
                 self.motif_db_name = 'CisDB_ver2_Danio_rerio.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation.")
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation. \n")
 
             elif self.species in ["S.cerevisiae"]: # If species is S.cerevisiae, we use CisDB database.
                 self.motif_db_name = 'CisDB_ver2_Saccharomyces_cerevisiae.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation.")
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation. \n")
 
             else:
                 raise ValueError(f"We have no default motifs for your species, {self.species}. Please set motifs.")
@@ -305,7 +305,7 @@ class TFinfo():
             if isinstance(motifs, list):
                 if isinstance(motifs[0], Motif):
                     if verbose:
-                        print("Checking your motifs... Motifs format looks good.")
+                        print("Checking your motifs... Motifs format looks good. \n")
                 else:
                     raise ValueError(f"Motif data type was invalid.")
             else:
@@ -321,7 +321,7 @@ class TFinfo():
 
         # initialize scanner
         if verbose:
-            print("Initiating scanner...")
+            print("Initiating scanner... \n")
         s = Scanner(ncpus=n_cpus)
 
         # set parameters
@@ -333,13 +333,13 @@ class TFinfo():
 
         #s.set_background(genome="mm9", length=400)
         if verbose:
-            print("Calculating FPR-based threshold. This step may take substantial time when you load new motifs or new ref-genome. It will be done quicker on the second time.")
+            print("Calculating FPR-based threshold. This step may take substantial time when you load new motifs or new ref-genome. It will be done quicker on the second time. \n")
         s.set_threshold(fpr=fpr)
 
         ## 2. motif scan ##
-        print("Convert peak info into DNA sequences ...")
+        print("Convert peak info into DNA sequences ... \n")
         target_sequences = peak2fasta(self.all_peaks, self.ref_genome)
-        print("Scanning motifs ... It may take several hours if you proccess many peaks.")
+        print("Scanning motifs ... It may take several hours if you proccess many peaks. \n")
         self.scanned_df = scan_dna_for_motifs(s, motifs, target_sequences, verbose)
 
         self.__addLog("scanMotifs")
