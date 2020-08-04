@@ -4,6 +4,15 @@
 Changelog
 =========
 
+
+* `0.5.0 <2020-08-3>`
+ `-` Add now functions for custom motifs. You can select motifs from several options. Also, we updated our web tutorial to introduce how to load / make a different motif data.
+
+ `-` Change default motifs for S.cerevisiae and Zebrafish.
+ 
+ `-` Change requirements for dependent package: gimmemotifs and geomepy. Celloracle codes were updated to support new version of gimmemotifs (0.14.4) and genomepy (0.8.4).
+
+
 * `0.4.2 <2020-07-14>`
  `-` Add promoter-TSS information for Zebrafish reference genome (danRer7, danRer10 and danRer11).
 
@@ -38,7 +47,7 @@ Changelog
  `-` Change pandas version restriction
 
  `-` Fix a bug on the function for gene cortography visualization
- 
+
  `-` Add new functions for R-path configuration
 
 * `0.3.3 <2020-04-24>`

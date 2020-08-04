@@ -1,7 +1,5 @@
 This is makeindex, version 2.15 [TeX Live 2017] (kpathsea + Thai support).
 Scanning style file ./python.ist.......done (7 attributes redefined, 0 ignored).
-Scanning input file celloracle.idx....done (156 entries accepted, 0 rejected).
-Sorting entries....done (1170 comparisons).
-Generating output file celloracle.ind....done (275 lines written, 0 warnings).
-Output written in celloracle.ind.
+Scanning input file celloracle.idx...done (0 entries accepted, 0 rejected).
+Nothing written in celloracle.ind.
 Transcript written in celloracle.ilg.
