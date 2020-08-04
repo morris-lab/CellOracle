@@ -189,12 +189,6 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-INPUT celloracle.out
-INPUT celloracle.out
-INPUT celloracle.out
-INPUT celloracle.out
-INPUT ./celloracle.out
-INPUT ./celloracle.out
 OUTPUT celloracle.out
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
@@ -243,8 +237,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvr8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvb8t.tfm
-INPUT celloracle.toc
-INPUT celloracle.toc
 OUTPUT celloracle.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/helvetic/phvb8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm

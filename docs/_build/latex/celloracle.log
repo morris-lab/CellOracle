@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.17)  3 AUG 2020 21:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.17)  3 AUG 2020 22:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1106,8 +1106,6 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 223.
 LaTeX Info: Redefining \pageref on input line 223.
 LaTeX Info: Redefining \nameref on input line 223.
-
-(./celloracle.out) (./celloracle.out)
 \@outlinefile=\write5
 \openout5 = `celloracle.out'.
 
@@ -1152,7 +1150,6 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 228.
- (./celloracle.toc)
 \tf@toc=\write6
 \openout6 = `celloracle.toc'.
 
@@ -1195,7 +1192,7 @@ LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 549.
  [8]
 <notebooks_01_ATAC-seq_data_processing_option1_scATAC-seq_data_analysis_with_ci
-cero_01_atacdata_analysis_with_cicero_and_monocle3_9_0.png, id=125, 843.15pt x 
+cero_01_atacdata_analysis_with_cicero_and_monocle3_9_0.png, id=116, 843.15pt x 
 843.15pt>
 File: notebooks_01_ATAC-seq_data_processing_option1_scATAC-seq_data_analysis_wi
 th_cicero_01_atacdata_analysis_with_cicero_and_monocle3_9_0.png Graphic file (t
@@ -1223,18 +1220,18 @@ LaTeX Font Info:    Font shape `TS1/pcr/m/it' in size <9> not available
 ! TeX capacity exceeded, sorry [main memory size=5000000].
 \sphinxafterbreak ->\copy \sphinxcontinuationbox 
                                                  
-l.9317   inflating: pwms/M06830\_2.00.txt
+l.9325   inflating: pwms/M06838\_2.00.txt
                                          
 If you really absolutely need more capacity,
 you can ask a wizard to enlarge me.
 
  
 Here is how much of TeX's memory you used:
- 13881 strings out of 494923
- 199691 string characters out of 6180742
- 4999999 words of memory out of 5000000
- 16779 multiletter control sequences out of 15000+600000
+ 13782 strings out of 494923
+ 191759 string characters out of 6180742
+ 5000000 words of memory out of 5000000
+ 16686 multiletter control sequences out of 15000+600000
  49623 words of font info for 72 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
- 37i,11n,48p,518b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,48p,476b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
 !  ==> Fatal error occurred, no output PDF file produced!

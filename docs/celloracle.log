@@ -1,0 +1,32 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.2.17)  3 AUG 2020 22:00
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**_build/latex/celloracle.tex --extra-mem-top=10000000
+(./_build/latex/celloracle.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 3 language(s) loaded.
+
+! LaTeX Error: File `sphinxmanual.cls' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: cls)
+
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.4 \ifdefined
+              \pdfpxdimen^^M
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 12 strings out of 494923
+ 276 string characters out of 6180742
+ 45839 words of memory out of 5000000
+ 3425 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 10i,0n,7p,109b,8s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!
