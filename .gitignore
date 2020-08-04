@@ -10,3 +10,5 @@ nohup.out
 */*/nohup.out
 docs/notebooks/04_Network_analysis/links.celloracle.links
 docs/notebooks/*/figures
+docs/_build
+docs/_build/*
