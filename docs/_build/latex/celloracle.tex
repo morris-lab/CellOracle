@@ -214,8 +214,8 @@
 
 
 \title{celloracle}
-\date{Jul 15, 2020}
-\release{0.4.2}
+\date{Aug 03, 2020}
+\release{0.5.0}
 \author{Samantha Morris Lab}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -497,7 +497,7 @@ If you do not have ATAC\sphinxhyphen{}seq data and want to use the default TF bi
 
 Please refer to the \sphinxcode{\sphinxupquote{celloracle}} paper for scientific premise and the detail of the algorithm of celloracle.
 
-The jupyter notebook files in this tutorial are available \sphinxhref{https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks}{here} .
+The jupyter notebook files and data used in this tutorial are available \sphinxhref{https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks}{here} .
 
 
 \subsection{ATAC\sphinxhyphen{}seq data preprocessing}
@@ -522,6 +522,8 @@ If you have a question about Cicero, please read \sphinxhref{https://cole-trapne
 
 \paragraph{scATAC\sphinxhyphen{}seq analysis with Cicero and Monocle3}
 \label{\detokenize{tutorials/atac:scatac-seq-analysis-with-cicero-and-monocle3}}
+The jupyter notebook files and data used in this tutorial are available \sphinxhref{https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01\_ATAC-seq\_data\_processing}{here} .
+
 R notebook
 
 This is an example R script for Cicero analysis. In this R notebook, we’ll use Cicero and Monocle3.
@@ -788,6 +790,8 @@ A data.frame: 6 × 3
 
 \paragraph{TSS annotation}
 \label{\detokenize{tutorials/atac:tss-annotation}}
+The jupyter notebook files and data used in this tutorial are available \sphinxhref{https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01\_ATAC-seq\_data\_processing}{here} .
+
 Python notebook
 
 In this notebook, we process the results of cicero analysis to get active promoter/enhancer DNA peaks. First, we pick up peaks around the transcription starting site (TSS). Second, we merge cicero data with the peaks around TSS. Then we remove peaks that have a weak connection to TSS peak so that the final product includes TSS peaks and peaks that have a strong connection with the TSS peaks. We use this information as an active promoter/enhancer elements.
@@ -1074,6 +1078,8 @@ Save the promoter/enhancer peak.
 \label{\detokenize{tutorials/atac:b-extract-tf-binding-information-from-bulk-atac-seq-data-or-chip-seq-data}}
 Bulk DNA\sphinxhyphen{}seq data can be used to get the accessible promoter/enhancer sequences.
 
+The jupyter notebook files and data used in this tutorial are available \sphinxhref{https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01\_ATAC-seq\_data\_processing}{here} .
+
 Python notebook
 
 
@@ -1303,11 +1309,13 @@ We identified accessible Promoter/enhancer DNA regions using ATAC\sphinxhyphen{}
 Next, we will obtain a list of TFs for each target gene by scanning the regulatory genomic sequences for TF\sphinxhyphen{}binding motifs.
 In the later GRN inference process, this list will be used to define potential regulatory connections.
 
+The jupyter notebook files and data used in this tutorial are available \sphinxhref{https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/02\_motif\_scan}{here} .
+
 Python notebook
 
 
 \subsubsection{0. Import libraries}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:0.-Import-libraries}}\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901::doc}}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:0.-Import-libraries}}\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801::doc}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
@@ -1315,18 +1323,12 @@ Python notebook
 \llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
 \PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
 \PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
-\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+
 
 \PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k}{as} \PYG{n+nn}{sns}
 
 \PYG{k+kn}{import} \PYG{n+nn}{os}\PYG{o}{,} \PYG{n+nn}{sys}\PYG{o}{,} \PYG{n+nn}{shutil}\PYG{o}{,} \PYG{n+nn}{importlib}\PYG{o}{,} \PYG{n+nn}{glob}
 \PYG{k+kn}{from} \PYG{n+nn}{tqdm}\PYG{n+nn}{.}\PYG{n+nn}{notebook} \PYG{k+kn}{import} \PYG{n}{tqdm}
-
-\PYG{o}{\PYGZpc{}}\PYG{k}{config} InlineBackend.figure\PYGZus{}format = \PYGZsq{}retina\PYGZsq{}
-
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.figsize}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{)}
-\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{savefig.dpi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{600}
-
 \end{sphinxVerbatim}
 }
 
@@ -1340,27 +1342,89 @@ Python notebook
 }
 
 {
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{o}{\PYGZpc{}}\PYG{k}{config} InlineBackend.figure\PYGZus{}format = \PYGZsq{}retina\PYGZsq{}
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{figure.figsize}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{15}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{rcParams}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{savefig.dpi}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{600}
+\end{sphinxVerbatim}
+}
+
+
+\subsubsection{1. Rerefence genome data preparation}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:1.-Rerefence-genome-data-preparation}}
+
+\paragraph{1.1. Check reference genome installation}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:1.1.-Check-reference-genome-installation}}
+Celloracle uses genomepy to get DNA sequence data. Before starting celloracle analysis, we need to make sure that the reference genome is correctly installed in your computational environment. If not, please install reference genome.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} PLEASE make sure that you are setting correct ref genome.}
+\PYG{n}{ref\PYGZus{}genome} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{mm10}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{n}{genome\PYGZus{}installation} \PYG{o}{=} \PYG{n}{ma}\PYG{o}{.}\PYG{n}{is\PYGZus{}genome\PYGZus{}installed}\PYG{p}{(}\PYG{n}{ref\PYGZus{}genome}\PYG{o}{=}\PYG{n}{ref\PYGZus{}genome}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{ref\PYGZus{}genome}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{installation: }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{genome\PYGZus{}installation}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
 
 \kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
 \kern+\FrameHeightAdjust\kern-\fboxrule
 \vspace{\nbsphinxcodecellspacing}
 
-\sphinxsetup{VerbatimColor={named}{nbsphinx-stderr}}
+\sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-/home/k/anaconda3/envs/pandas1/lib/python3.6/site-packages/gimmemotifs/plot.py:19: MatplotlibDeprecationWarning: The 'warn' parameter of use() is deprecated since Matplotlib 3.1 and will be removed in 3.3.  If any parameter follows 'warn', they should be pass as keyword, not positionally.
-  mpl.use("Agg", warn=False)
+mm10 installation:  True
 \end{sphinxVerbatim}
 }
 
 
-\subsubsection{1. Load data}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:1.-Load-data}}
+\paragraph{1.2. Install reference genome (if refgenome is not installed)}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:1.2.-Install-reference-genome-(if-refgenome-is-not-installed)}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load annotated peak data.}
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{genome\PYGZus{}installation}\PYG{p}{:}
+    \PYG{k+kn}{import} \PYG{n+nn}{genomepy}
+    \PYG{n}{genomepy}\PYG{o}{.}\PYG{n}{install\PYGZus{}genome}\PYG{p}{(}\PYG{n}{ref\PYGZus{}genome}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{UCSC}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{k}{else}\PYG{p}{:}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{ref\PYGZus{}genome}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{is installed.}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+mm10 is installed.
+\end{sphinxVerbatim}
+}
+
+
+\subsubsection{2. Load data}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:2.-Load-data}}
+
+\paragraph{2.1. Load processed peak data}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:2.1.-Load-processed-peak-data}}
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load annotated peak data.}
 \PYG{n}{peaks} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}parquet}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{../01\PYGZus{}ATAC\PYGZhy{}seq\PYGZus{}data\PYGZus{}processing/option1\PYGZus{}scATAC\PYGZhy{}seq\PYGZus{}data\PYGZus{}analysis\PYGZus{}with\PYGZus{}cicero/peak\PYGZus{}file.parquet}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \PYG{n}{peaks}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
@@ -1375,7 +1439,7 @@ Python notebook
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                     peak\_id gene\_short\_name
+\llap{\color{nbsphinxout}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                     peak\_id gene\_short\_name
 0  chr10\_100015291\_100017830            Kitl
 1  chr10\_100486534\_100488209           Tmtc3
 2  chr10\_100588641\_100589556   4930430F08Rik
@@ -1385,21 +1449,83 @@ Python notebook
 }
 
 
-\subsubsection{2. Check data}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:2.-Check-data}}
+\paragraph{2.1. Check data}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:2.1.-Check-data}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Check data}
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{number of peak: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{peaks}\PYG{o}{.}\PYG{n}{peak\PYGZus{}id}\PYG{o}{.}\PYG{n}{unique}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Define function for quality check}
+\PYG{k}{def} \PYG{n+nf}{decompose\PYGZus{}chrstr}\PYG{p}{(}\PYG{n}{peak\PYGZus{}str}\PYG{p}{)}\PYG{p}{:}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Args:}
+\PYG{l+s+sd}{        peak\PYGZus{}str (str): peak\PYGZus{}str. e.g. \PYGZsq{}chr1\PYGZus{}3094484\PYGZus{}3095479\PYGZsq{}}
 
-\PYG{k}{def} \PYG{n+nf}{getLength}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:}
-    \PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{c} \PYG{o}{=} \PYG{n}{x}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{peak\PYGZus{}id}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZus{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
-    \PYG{k}{return} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{c}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{b}\PYG{p}{)}
+\PYG{l+s+sd}{    Returns:}
+\PYG{l+s+sd}{        tuple: chromosome name, start position, end position}
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
 
-\PYG{n}{df} \PYG{o}{=} \PYG{n}{peaks}\PYG{o}{.}\PYG{n}{apply}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{getLength}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
-\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{mean peak length: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{df}\PYG{o}{.}\PYG{n}{values}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+    \PYG{o}{*}\PYG{n}{chr\PYGZus{}}\PYG{p}{,} \PYG{n}{start}\PYG{p}{,} \PYG{n}{end} \PYG{o}{=} \PYG{n}{peak\PYGZus{}str}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZus{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{chr\PYGZus{}} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZus{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{chr\PYGZus{}}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{chr\PYGZus{}}\PYG{p}{,} \PYG{n}{start}\PYG{p}{,} \PYG{n}{end}
+
+\PYG{k+kn}{from} \PYG{n+nn}{genomepy} \PYG{k+kn}{import} \PYG{n}{Genome}
+
+\PYG{k}{def} \PYG{n+nf}{check\PYGZus{}peak\PYGZus{}foamat}\PYG{p}{(}\PYG{n}{peaks\PYGZus{}df}\PYG{p}{,} \PYG{n}{ref\PYGZus{}genome}\PYG{p}{)}\PYG{p}{:}
+    \PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{    Check peak fomat.}
+\PYG{l+s+sd}{     (1) Check chromosome name.}
+\PYG{l+s+sd}{     (2) Check peak size (length) and remove sort DNAs (\PYGZlt{}5bp)}
+
+\PYG{l+s+sd}{    \PYGZdq{}\PYGZdq{}\PYGZdq{}}
+
+    \PYG{n}{df} \PYG{o}{=} \PYG{n}{peaks\PYGZus{}df}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{(}\PYG{p}{)}
+
+    \PYG{n}{n\PYGZus{}peaks\PYGZus{}before} \PYG{o}{=} \PYG{n}{df}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} Decompose peaks and make df}
+    \PYG{n}{decomposed} \PYG{o}{=} \PYG{p}{[}\PYG{n}{decompose\PYGZus{}chrstr}\PYG{p}{(}\PYG{n}{peak\PYGZus{}str}\PYG{p}{)} \PYG{k}{for} \PYG{n}{peak\PYGZus{}str} \PYG{o+ow}{in} \PYG{n}{df}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{peak\PYGZus{}id}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{]}
+    \PYG{n}{df\PYGZus{}decomposed} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{decomposed}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{df\PYGZus{}decomposed}\PYG{o}{.}\PYG{n}{columns} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{chr}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{start}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{end}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}
+    \PYG{n}{df\PYGZus{}decomposed}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{start}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{df\PYGZus{}decomposed}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{start}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{int}\PYG{p}{)}
+    \PYG{n}{df\PYGZus{}decomposed}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{end}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{df\PYGZus{}decomposed}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{end}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{int}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Load genome data}
+    \PYG{n}{genome\PYGZus{}data} \PYG{o}{=} \PYG{n}{Genome}\PYG{p}{(}\PYG{n}{ref\PYGZus{}genome}\PYG{p}{)}
+    \PYG{n}{all\PYGZus{}chr\PYGZus{}list} \PYG{o}{=} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{genome\PYGZus{}data}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}
+
+
+    \PYG{c+c1}{\PYGZsh{} DNA length check}
+    \PYG{n}{lengths} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{df\PYGZus{}decomposed}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{end}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{df\PYGZus{}decomposed}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{start}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+
+
+    \PYG{c+c1}{\PYGZsh{} Filter peaks with invalid chromosome name}
+    \PYG{n}{n\PYGZus{}threshold} \PYG{o}{=} \PYG{l+m+mi}{5}
+    \PYG{n}{df} \PYG{o}{=} \PYG{n}{df}\PYG{p}{[}\PYG{p}{(}\PYG{n}{lengths} \PYG{o}{\PYGZgt{}}\PYG{o}{=} \PYG{n}{n\PYGZus{}threshold}\PYG{p}{)} \PYG{o}{\PYGZam{}} \PYG{n}{df\PYGZus{}decomposed}\PYG{o}{.}\PYG{n}{chr}\PYG{o}{.}\PYG{n}{isin}\PYG{p}{(}\PYG{n}{all\PYGZus{}chr\PYGZus{}list}\PYG{p}{)}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} DNA length check}
+    \PYG{n}{lengths} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{df\PYGZus{}decomposed}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{end}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{df\PYGZus{}decomposed}\PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{start}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Data counting}
+    \PYG{n}{n\PYGZus{}invalid\PYGZus{}length} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{lengths}\PYG{p}{[}\PYG{n}{lengths} \PYG{o}{\PYGZlt{}} \PYG{n}{n\PYGZus{}threshold}\PYG{p}{]}\PYG{p}{)}
+    \PYG{n}{n\PYGZus{}peaks\PYGZus{}invalid\PYGZus{}chr} \PYG{o}{=} \PYG{n}{n\PYGZus{}peaks\PYGZus{}before} \PYG{o}{\PYGZhy{}} \PYG{n}{df\PYGZus{}decomposed}\PYG{o}{.}\PYG{n}{chr}\PYG{o}{.}\PYG{n}{isin}\PYG{p}{(}\PYG{n}{all\PYGZus{}chr\PYGZus{}list}\PYG{p}{)}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{p}{)}
+    \PYG{n}{n\PYGZus{}peaks\PYGZus{}after} \PYG{o}{=} \PYG{n}{df}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{}}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Peaks before filtering: }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{n\PYGZus{}peaks\PYGZus{}before}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Peaks with invalid chr\PYGZus{}name: }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{n\PYGZus{}peaks\PYGZus{}invalid\PYGZus{}chr}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Peaks with invalid length: }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{n\PYGZus{}invalid\PYGZus{}length}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Peaks after filtering: }\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{n\PYGZus{}peaks\PYGZus{}after}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{df}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{peaks} \PYG{o}{=} \PYG{n}{check\PYGZus{}peak\PYGZus{}foamat}\PYG{p}{(}\PYG{n}{peaks}\PYG{p}{,} \PYG{n}{ref\PYGZus{}genome}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -1412,192 +1538,234 @@ Python notebook
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-number of peak: 13919
-mean peak length: 1756.1744260204082
+Peaks before filtering:  15900
+Peaks with invalid chr\_name:  0
+Peaks with invalid length:  2
+Peaks after filtering:  15898
 \end{sphinxVerbatim}
 }
 
 
-\paragraph{2.1. Remove short peaks}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:2.1.-Remove-short-peaks}}
-Short DNA fragment that are less than 5 bases, cannot be used for motif scanning. Therefore, we will remove the short DNA fragments.
+\paragraph{2.2. {[}Optional step{]} Load motifs}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:2.2.-_Optional-step_-Load-motifs}}
+You can select TF binding motif data for Celloracle motif analysis. If you have no preference and just want to use a default motif, you can skip this step. If you want to use a non\sphinxhyphen{}default motif dataset, please prepare motif data as a list of motif class in gimmemotifs. We have several option for loading motif database as below.
+
+
+\subparagraph{2.2.1. {[}Optional step{]} Load motif data from gimmemotifs dataset}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:2.2.1.-_Optional-step_-Load-motif-data-from-gimmemotifs-dataset}}
+Many motif databases are included with GimmeMotifs. \sphinxurl{https://gimmemotifs.readthedocs.io/en/master/overview.html} You can load them as follows.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{peaks} \PYG{o}{=} \PYG{n}{peaks}\PYG{p}{[}\PYG{n}{df}\PYG{o}{\PYGZgt{}}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{]}
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} First, we need to pick up motifs for your dataset. We can get a list.}
+
+\PYG{c+c1}{\PYGZsh{} Get folder path that stores motif data.}
+\PYG{k+kn}{import} \PYG{n+nn}{os}\PYG{o}{,} \PYG{n+nn}{glob}
+\PYG{k+kn}{from} \PYG{n+nn}{gimmemotifs}\PYG{n+nn}{.}\PYG{n+nn}{motif} \PYG{k+kn}{import} \PYG{n}{MotifConfig}
+\PYG{n}{config} \PYG{o}{=} \PYG{n}{MotifConfig}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{motif\PYGZus{}dir} \PYG{o}{=} \PYG{n}{config}\PYG{o}{.}\PYG{n}{get\PYGZus{}motif\PYGZus{}dir}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Get list for motif data name}
+\PYG{n}{motifs\PYGZus{}data\PYGZus{}name} \PYG{o}{=} \PYG{p}{[}\PYG{n}{i} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{motif\PYGZus{}dir}\PYG{p}{)} \PYG{k}{if} \PYG{n}{i}\PYG{o}{.}\PYG{n}{endswith}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{.pfm}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{]}
+\PYG{n}{motifs\PYGZus{}data\PYGZus{}name}\PYG{o}{.}\PYG{n}{sort}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{motifs\PYGZus{}data\PYGZus{}name}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}['CIS-BP.pfm',
+ 'ENCODE.pfm',
+ 'HOCOMOCOv10\_HUMAN.pfm',
+ 'HOCOMOCOv10\_MOUSE.pfm',
+ 'HOCOMOCOv11\_HUMAN.pfm',
+ 'HOCOMOCOv11\_MOUSE.pfm',
+ 'HOMER.pfm',
+ 'IMAGE.pfm',
+ 'JASPAR2018.pfm',
+ 'JASPAR2018\_fungi.pfm',
+ 'JASPAR2018\_insects.pfm',
+ 'JASPAR2018\_nematodes.pfm',
+ 'JASPAR2018\_plants.pfm',
+ 'JASPAR2018\_urochordates.pfm',
+ 'JASPAR2018\_vertebrates.pfm',
+ 'JASPAR2020.pfm',
+ 'JASPAR2020\_fungi.pfm',
+ 'JASPAR2020\_insects.pfm',
+ 'JASPAR2020\_nematodes.pfm',
+ 'JASPAR2020\_plants.pfm',
+ 'JASPAR2020\_urochordates.pfm',
+ 'JASPAR2020\_vertebrates.pfm',
+ 'RSAT\_insects.pfm',
+ 'RSAT\_plants.pfm',
+ 'RSAT\_vertebrates.pfm',
+ 'SwissRegulon.pfm',
+ 'factorbook.pfm',
+ 'gimme.vertebrate.v5.0.pfm']
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Once you picked up motifs, you can load the motif files with \PYGZdq{}read\PYGZus{}motifs\PYGZdq{}}
+\PYG{k+kn}{from} \PYG{n+nn}{gimmemotifs}\PYG{n+nn}{.}\PYG{n+nn}{motif} \PYG{k+kn}{import} \PYG{n}{read\PYGZus{}motifs}
+
+\PYG{n}{path} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{motif\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{JASPAR2018\PYGZus{}plants.pfm}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{c+c1}{\PYGZsh{} Please enter motifs name here}
+\PYG{n}{motifs} \PYG{o}{=} \PYG{n}{read\PYGZus{}motifs}\PYG{p}{(}\PYG{n}{path}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Check first 10 motifs}
+\PYG{n}{motifs}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}[MA0020.1\_Dof2\_AAAGCn,
+ MA0021.1\_Dof3\_AAAGyn,
+ MA0034.1\_Gam1\_nnyAACCGmC,
+ MA0044.1\_HMG-1\_sTTGTnyTy,
+ MA0045.1\_HMG-I/Y\_nwAnAAAnrnmrAmAy,
+ MA0053.1\_MNB1A\_AAAGC,
+ MA0054.1\_myb.Ph3\_TAACnGTTw,
+ MA0064.1\_PBF\_AAAGy,
+ MA0082.1\_squamosa\_mCAwAwATrGwAAn,
+ MA0096.1\_bZIP910\_mTGACGT]
+\end{sphinxVerbatim}
+}
+
+
+\subparagraph{2.2.2 {[}Optional step{]} Load motif data from celloracle motif dataset}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:2.2.2-_Optional-step_-Load-motif-data-from-celloracle-motif-dataset}}
+Celloracle also provides many motif dataset that was generated from CisDB. \sphinxurl{http://cisbp.ccbr.utoronto.ca/}
+
+These motifs were organized by each species. Please select motifs for your species.
+
+If you have a request for motifs for a new species, you can ask us to add new motifs through github issue page.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Check available motifs}
+\PYG{n}{ma}\PYG{o}{.}\PYG{n}{MOTIFS\PYGZus{}LIST}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}['CisDB\_ver2\_Mus\_musculus.pfm',
+ 'CisDB\_ver2\_Saccharomyces\_cerevisiae.pfm',
+ 'CisDB\_ver2\_Danio\_rerio.pfm',
+ 'CisDB\_ver2\_Homo\_sapiens.pfm']
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load motifs from celloracle dataset.}
+\PYG{n}{motifs} \PYG{o}{=} \PYG{n}{ma}\PYG{o}{.}\PYG{n}{load\PYGZus{}motifs}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{CisDB\PYGZus{}ver2\PYGZus{}Mus\PYGZus{}musculus.pfm}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Check first 10 motifs}
+\PYG{n}{motifs}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{10}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}[M00008\_2.00\_nnnAAww,
+ M00044\_2.00\_nrTAAACAn,
+ M00056\_2.00\_TAATAAAT,
+ M00060\_2.00\_nnnTTCnnn,
+ M00111\_2.00\_nGCCynnGGs,
+ M00112\_2.00\_CCTsrGGCnA,
+ M00113\_2.00\_nsCCnnAGGs,
+ M00114\_2.00\_nnGCCynnGG,
+ M00115\_2.00\_nnATnAAAn,
+ M00116\_2.00\_nnAATATTAnn]
 \end{sphinxVerbatim}
 }
 
 
 \subsubsection{3. Instantiate TFinfo object and search for TF binding motifs}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:3.-Instantiate-TFinfo-object-and-search-for-TF-binding-motifs}}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:3.-Instantiate-TFinfo-object-and-search-for-TF-binding-motifs}}
 The motif analysis module has a custom class; TFinfo. The TFinfo object converts a peak data into a DNA sequences and scans the DNA sequences searching for TF binding motifs. Then, the results of motif scan will be filtered and converted into either a python dictionary or a depending on your preference. This TF information is necessary for GRN inference.
 
 
-\paragraph{3.1 check reference genome installation}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:3.1-check-reference-genome-installation}}
+\paragraph{3.1. Instantiate TFinfo object}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:3.1.-Instantiate-TFinfo-object}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} PLEASE make sure that you are setting correct ref genome.}
-\PYG{n}{ref\PYGZus{}genome} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{mm10}\PYG{l+s+s2}{\PYGZdq{}}
-
-\PYG{n}{ma}\PYG{o}{.}\PYG{n}{is\PYGZus{}genome\PYGZus{}installed}\PYG{p}{(}\PYG{n}{ref\PYGZus{}genome}\PYG{o}{=}\PYG{n}{ref\PYGZus{}genome}\PYG{p}{)}
-\end{sphinxVerbatim}
-}
-
-{
-
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-
-\sphinxsetup{VerbatimColor={named}{white}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-genome mm10 is not installed in this environment.
-Please install genome using genomepy.
-e.g.
-    >>> import genomepy
-    >>> genomepy.install\_genome("mm9", "UCSC")
-\end{sphinxVerbatim}
-}
-
-{
-
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-
-\sphinxsetup{VerbatimColor={named}{white}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}False
-\end{sphinxVerbatim}
-}
-
-
-\paragraph{3.2. Install reference genome (if refgenome is not installed)}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:3.2.-Install-reference-genome-(if-refgenome-is-not-installed)}}
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check again}
-\PYG{n}{ma}\PYG{o}{.}\PYG{n}{is\PYGZus{}genome\PYGZus{}installed}\PYG{p}{(}\PYG{n}{ref\PYGZus{}genome}\PYG{o}{=}\PYG{n}{ref\PYGZus{}genome}\PYG{p}{)}
-\end{sphinxVerbatim}
-}
-
-{
-
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-
-\sphinxsetup{VerbatimColor={named}{white}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}True
-\end{sphinxVerbatim}
-}
-
-{
-\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Instantiate TFinfo object}
+\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Instantiate TFinfo object}
 \PYG{n}{tfi} \PYG{o}{=} \PYG{n}{ma}\PYG{o}{.}\PYG{n}{TFinfo}\PYG{p}{(}\PYG{n}{peak\PYGZus{}data\PYGZus{}frame}\PYG{o}{=}\PYG{n}{peaks}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{} peak info calculated from ATAC\PYGZhy{}seq data}
-                \PYG{n}{ref\PYGZus{}genome}\PYG{o}{=}\PYG{n}{ref\PYGZus{}genome}\PYG{p}{)}
+                       \PYG{n}{ref\PYGZus{}genome}\PYG{o}{=}\PYG{n}{ref\PYGZus{}genome}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
 
-\subsubsection{4. Scan motifs and save object}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:4.-Scan-motifs-and-save-object}}
-This step may take long time
+\paragraph{3.2. Motif scan}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:3.2.-Motif-scan}}
+!!You can set TF binding motif information as an argument:
+
+tfi.scan(motifs=motifs)
+
+If you don’t set motifs or set None, default motifs will be loaded automatically.
+\begin{itemize}
+\item {} 
+For mouse and human, “gimme.vertebrate.v5.0.” will be used as a default motifs.
+
+\item {} 
+For another species, a species specific TF binding motif data extracted from CisDB ver2.0 will be used.
+
+\end{itemize}
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{o}{\PYGZpc{}\PYGZpc{}time}
-\PYG{c+c1}{\PYGZsh{} Scan motifs}
-\PYG{n}{tfi}\PYG{o}{.}\PYG{n}{scan}\PYG{p}{(}\PYG{n}{fpr}\PYG{o}{=}\PYG{l+m+mf}{0.02}\PYG{p}{,} \PYG{n}{verbose}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{o}{\PYGZpc{}\PYGZpc{}time}
+\PYG{c+c1}{\PYGZsh{} Scan motifs. !!CAUTION!! This step may take several hours if you have many peaks!}
+\PYG{n}{tfi}\PYG{o}{.}\PYG{n}{scan}\PYG{p}{(}\PYG{n}{fpr}\PYG{o}{=}\PYG{l+m+mf}{0.02}\PYG{p}{,}
+            \PYG{n}{motifs}\PYG{o}{=}\PYG{n}{motifs}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} If you enter None, default motifs will be loaded.}
+            \PYG{n}{verbose}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} Save tfinfo object}
-\PYG{n}{tfi}\PYG{o}{.}\PYG{n}{to\PYGZus{}hdf5}\PYG{p}{(}\PYG{n}{file\PYGZus{}path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{test.celloracle.tfinfo}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
-\end{sphinxVerbatim}
-}
-
-{
-
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-
-\sphinxsetup{VerbatimColor={named}{white}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-initiating scanner {\ldots}
-\end{sphinxVerbatim}
-}
-
-{
-
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-
-\sphinxsetup{VerbatimColor={named}{nbsphinx-stderr}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-2019-09-22 23:00:18,604 - INFO - Using background: genome mm10 with length 200
-2019-09-22 23:00:18,986 - INFO - Determining FPR-based threshold
-\end{sphinxVerbatim}
-}
-
-{
-
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-
-\sphinxsetup{VerbatimColor={named}{white}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-getting DNA sequences {\ldots}
-scanning motifs {\ldots}
-\end{sphinxVerbatim}
-}
-
-{
-
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-
-\sphinxsetup{VerbatimColor={named}{white}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-HBox(children=(IntProgress(value=1, bar\_style='info', max=1), HTML(value='')))
-\end{sphinxVerbatim}
-}
-
-{
-
-\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
-\kern+\FrameHeightAdjust\kern-\fboxrule
-\vspace{\nbsphinxcodecellspacing}
-
-\sphinxsetup{VerbatimColor={named}{white}}
-\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-
-CPU times: user 52min 23s, sys: 36.8 s, total: 53min
-Wall time: 52min 58s
+\PYG{n}{tfi}\PYG{o}{.}\PYG{n}{to\PYGZus{}hdf5}\PYG{p}{(}\PYG{n}{file\PYGZus{}path}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{test1.celloracle.tfinfo}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
 
@@ -1639,12 +1807,12 @@ We have the score for each sequence and motif\_id pair. In the next step we will
 
 
 \subsubsection{5. Filtering motifs}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:5.-Filtering-motifs}}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:5.-Filtering-motifs}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Reset filtering}
+\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Reset filtering}
 \PYG{n}{tfi}\PYG{o}{.}\PYG{n}{reset\PYGZus{}filtering}\PYG{p}{(}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} Do filtering}
@@ -1652,6 +1820,8 @@ We have the score for each sequence and motif\_id pair. In the next step we will
 
 \PYG{c+c1}{\PYGZsh{} Do post filtering process. Convert results into several file format.}
 \PYG{n}{tfi}\PYG{o}{.}\PYG{n}{make\PYGZus{}TFinfo\PYGZus{}dataframe\PYGZus{}and\PYGZus{}dictionary}\PYG{p}{(}\PYG{n}{verbose}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+
+
 \end{sphinxVerbatim}
 }
 
@@ -1664,7 +1834,7 @@ We have the score for each sequence and motif\_id pair. In the next step we will
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-peaks were filtered: 12934005 -> 2285279
+peaks were filtered: 12952283 -> 2288874
 1. converting scanned results into one-hot encoded dataframe.
 \end{sphinxVerbatim}
 }
@@ -1678,7 +1848,7 @@ peaks were filtered: 12934005 -> 2285279
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-HBox(children=(IntProgress(value=0, max=13919), HTML(value='')))
+HBox(children=(FloatProgress(value=0.0, max=14142.0), HTML(value='')))
 \end{sphinxVerbatim}
 }
 
@@ -1706,7 +1876,7 @@ converting scan results into dictionaries{\ldots}
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-HBox(children=(IntProgress(value=0, max=14804), HTML(value='')))
+HBox(children=(FloatProgress(value=0.0, max=15006.0), HTML(value='')))
 \end{sphinxVerbatim}
 }
 
@@ -1732,7 +1902,7 @@ HBox(children=(IntProgress(value=0, max=14804), HTML(value='')))
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-HBox(children=(IntProgress(value=0, max=1090), HTML(value='')))
+HBox(children=(FloatProgress(value=0.0, max=1090.0), HTML(value='')))
 \end{sphinxVerbatim}
 }
 
@@ -1751,27 +1921,27 @@ HBox(children=(IntProgress(value=0, max=1090), HTML(value='')))
 
 
 \subsubsection{6. Get Final results}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:6.-Get-Final-results}}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:6.-Get-Final-results}}
 
 \paragraph{6.1. Get resutls as a dictionary}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:6.1.-Get-resutls-as-a-dictionary}}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:6.1.-Get-resutls-as-a-dictionary}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{td} \PYG{o}{=} \PYG{n}{tfi}\PYG{o}{.}\PYG{n}{to\PYGZus{}dictionary}\PYG{p}{(}\PYG{n}{dictionary\PYGZus{}type}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{targetgene2TFs}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\llap{\color{nbsphinxin}[23]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{td} \PYG{o}{=} \PYG{n}{tfi}\PYG{o}{.}\PYG{n}{to\PYGZus{}dictionary}\PYG{p}{(}\PYG{n}{dictionary\PYGZus{}type}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{targetgene2TFs}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 
 \end{sphinxVerbatim}
 }
 
 
 \paragraph{6.2. Get results as a dataframe}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:6.2.-Get-results-as-a-dataframe}}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:6.2.-Get-results-as-a-dataframe}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[20]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{df} \PYG{o}{=} \PYG{n}{tfi}\PYG{o}{.}\PYG{n}{to\PYGZus{}dataframe}\PYG{p}{(}\PYG{p}{)}
+\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{df} \PYG{o}{=} \PYG{n}{tfi}\PYG{o}{.}\PYG{n}{to\PYGZus{}dataframe}\PYG{p}{(}\PYG{p}{)}
 \PYG{n}{df}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
 \end{sphinxVerbatim}
 }
@@ -1785,26 +1955,26 @@ HBox(children=(IntProgress(value=0, max=1090), HTML(value='')))
 \sphinxsetup{VerbatimColor={named}{white}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxout}[20]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                     peak\_id gene\_short\_name  9430076c15rik  Ac002126.6  \textbackslash{}
-0  chr10\_100015291\_100017830            Kitl              0           0
-1  chr10\_100486534\_100488209           Tmtc3              0           0
-2  chr10\_100588641\_100589556   4930430F08Rik              0           0
-3  chr10\_100741247\_100742505         Gm35722              0           0
-4  chr10\_101681379\_101682124          Mgat4c              0           0
+\llap{\color{nbsphinxout}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                     peak\_id gene\_short\_name  9430076c15rik  Ac002126.6  \textbackslash{}
+0  chr10\_100015291\_100017830            Kitl            0.0         0.0
+1  chr10\_100486534\_100488209           Tmtc3            0.0         0.0
+2  chr10\_100588641\_100589556   4930430F08Rik            0.0         0.0
+3  chr10\_100741247\_100742505         Gm35722            0.0         0.0
+4  chr10\_101681379\_101682124          Mgat4c            0.0         0.0
 
    Ac012531.1  Ac226150.2  Afp  Ahr  Ahrr  Aire  {\ldots}  Znf784  Znf8  Znf816  \textbackslash{}
-0           0           0    0    1     1     0  {\ldots}       0     0       0
-1           0           0    0    0     0     0  {\ldots}       1     0       0
-2           1           0    0    1     1     0  {\ldots}       0     0       0
-3           0           0    0    0     0     0  {\ldots}       0     0       0
-4           0           0    0    0     0     0  {\ldots}       0     0       0
+0         0.0         0.0  0.0  1.0   1.0   0.0  {\ldots}     0.0   0.0     0.0
+1         0.0         0.0  0.0  0.0   0.0   0.0  {\ldots}     1.0   0.0     0.0
+2         1.0         0.0  0.0  1.0   1.0   0.0  {\ldots}     0.0   0.0     0.0
+3         0.0         0.0  0.0  0.0   0.0   0.0  {\ldots}     0.0   0.0     0.0
+4         0.0         0.0  0.0  0.0   0.0   0.0  {\ldots}     0.0   0.0     0.0
 
    Znf85  Zscan10  Zscan16  Zscan22  Zscan26  Zscan31  Zscan4
-0      0        0        0        0        0        1       0
-1      0        0        0        1        0        0       0
-2      0        0        0        0        0        0       0
-3      0        0        0        0        0        0       0
-4      0        0        0        0        0        0       1
+0    0.0      0.0      0.0      0.0      0.0      1.0     0.0
+1    0.0      0.0      0.0      1.0      0.0      0.0     0.0
+2    0.0      0.0      0.0      0.0      0.0      0.0     0.0
+3    0.0      0.0      0.0      0.0      0.0      0.0     0.0
+4    0.0      0.0      0.0      0.0      0.0      0.0     1.0
 
 [5 rows x 1092 columns]
 \end{sphinxVerbatim}
@@ -1812,14 +1982,14 @@ HBox(children=(IntProgress(value=0, max=1090), HTML(value='')))
 
 
 \subsubsection{7. Save TFinfo as dictionary or dataframe}
-\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_190901:7.-Save-TFinfo-as-dictionary-or-dataframe}}
+\label{\detokenize{notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801:7.-Save-TFinfo-as-dictionary-or-dataframe}}
 We’ll use this information when making the GRNs. Save the results.
 
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
 \sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\llap{\color{nbsphinxin}[21]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{folder} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{TFinfo\PYGZus{}outputs}\PYG{l+s+s2}{\PYGZdq{}}
+\llap{\color{nbsphinxin}[19]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{folder} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{TFinfo\PYGZus{}outputs}\PYG{l+s+s2}{\PYGZdq{}}
 \PYG{n}{os}\PYG{o}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{folder}\PYG{p}{,} \PYG{n}{exist\PYGZus{}ok}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
 
 \PYG{c+c1}{\PYGZsh{} save TFinfo as a dictionary}
@@ -1829,6 +1999,14 @@ We’ll use this information when making the GRNs. Save the results.
 \PYG{c+c1}{\PYGZsh{} save TFinfo as a dataframe}
 \PYG{n}{df} \PYG{o}{=} \PYG{n}{tfi}\PYG{o}{.}\PYG{n}{to\PYGZus{}dataframe}\PYG{p}{(}\PYG{p}{)}
 \PYG{n}{df}\PYG{o}{.}\PYG{n}{to\PYGZus{}parquet}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{folder}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{TFinfo\PYGZus{}dataframe.parquet}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
 \end{sphinxVerbatim}
 }
 
@@ -1873,6 +2051,8 @@ If you already have preprocessed scRNA\sphinxhyphen{}seq data, which includes th
 
 In this tutorial, we introduce an example of scRNA\sphinxhyphen{}seq preprocessing for celloracle with \sphinxcode{\sphinxupquote{scanpy}}.
 We wrote the notebook based on \sphinxhref{https://scanpy-tutorials.readthedocs.io/en/latest/paga-paul15.html}{one of scanpy’s tutorials} with some modifications.
+
+The jupyter notebook files and data used in this tutorial are available \sphinxhref{https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/03\_scRNA-seq\_data\_preprocessing}{here} .
 
 Python notebook
 
@@ -2685,8 +2865,9 @@ Please go to the documentation of celloracle’s API documentation for more info
 The inferred GRN is analyzed with several network algorithms to get various network scores. The network score is useful to identify key regulatory genes.
 
 Celloracle reconstructs a GRN for each cluster, enabling us to compare GRNs to each other. It is also possible to analyze how the GRN changes over differentiation.
-The dynamics of the GRN structure can provide us insight into the
-context\sphinxhyphen{}dependent regulatory mechanisms.
+The dynamics of the GRN structure can provide us insight into the context\sphinxhyphen{}dependent regulatory mechanisms.
+
+The jupyter notebook files and data used in this tutorial are available \sphinxhref{https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/04\_Network\_analysis}{here} .
 
 Python notebook
 
@@ -5113,6 +5294,8 @@ We can estimate the effect of gene perturbation by the simulation with GRNs.
 
 Additonally, we will combine the signal propagation simulation with a cell state transition simulation. The latter simulation is performed by a python library for RNA\sphinxhyphen{}velocity analysis, called \sphinxcode{\sphinxupquote{velocyto}} .
 This analysis may provide an insight into a complex system how TF controls enormous target genes to determines cell fate.
+
+The jupyter notebook files and data used in this tutorial are available \sphinxhref{https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/05\_simulation}{here} .
 
 Python notebook
 
@@ -7801,7 +7984,7 @@ Save itself. Some attributes are saved as parquet file.
 \index{scan() (celloracle.motif\_analysis.TFinfo method)@\spxentry{scan()}\spxextra{celloracle.motif\_analysis.TFinfo method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{modules/celloracle.motif_analysis:celloracle.motif_analysis.TFinfo.scan}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{scan}}}{\emph{\DUrole{n}{background\_length}\DUrole{o}{=}\DUrole{default_value}{200}}, \emph{\DUrole{n}{fpr}\DUrole{o}{=}\DUrole{default_value}{0.02}}, \emph{\DUrole{n}{n\_cpus}\DUrole{o}{=}\DUrole{default_value}{\sphinxhyphen{} 1}}, \emph{\DUrole{n}{verbose}\DUrole{o}{=}\DUrole{default_value}{True}}}{}
+\phantomsection\label{\detokenize{modules/celloracle.motif_analysis:celloracle.motif_analysis.TFinfo.scan}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{scan}}}{\emph{\DUrole{n}{background\_length}\DUrole{o}{=}\DUrole{default_value}{200}}, \emph{\DUrole{n}{fpr}\DUrole{o}{=}\DUrole{default_value}{0.02}}, \emph{\DUrole{n}{n\_cpus}\DUrole{o}{=}\DUrole{default_value}{\sphinxhyphen{} 1}}, \emph{\DUrole{n}{verbose}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{motifs}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{TF\_evidence\_level}\DUrole{o}{=}\DUrole{default_value}{\textquotesingle{}direct\_and\_indirect\textquotesingle{}}}}{}
 Scan DNA sequences searching for TF binding motifs.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
@@ -7816,6 +7999,14 @@ Scan DNA sequences searching for TF binding motifs.
 
 \item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{verbose}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}) \textendash{} Whether to show a progress bar.
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{motifs}} (\sphinxstyleliteralemphasis{\sphinxupquote{list}}) \textendash{} a list of gimmemotifs motifs, will revert to default\_motifs() if None
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{TF\_evidence\_level}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} Please select one from {[}“direct”, “direct\_and\_indirect”{]}. If “direct” is selected, TFs that have a binding evidence were used.
+If “direct\_and\_indirect” is selected, TFs with binding evidence and inferred TFs are used.
+For more information, please read explanation of Motif class in gimmemotifs documentation (\sphinxurl{https://gimmemotifs.readthedocs.io/en/master/index.html})
 
 \end{itemize}
 
@@ -7943,6 +8134,25 @@ This function checks the installation status of the reference genome.
 
 \end{fulllineitems}
 
+\index{load\_TFinfo() (in module celloracle.motif\_analysis)@\spxentry{load\_TFinfo()}\spxextra{in module celloracle.motif\_analysis}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules/celloracle.motif_analysis:celloracle.motif_analysis.load_TFinfo}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{celloracle.motif\_analysis.}}\sphinxbfcode{\sphinxupquote{load\_TFinfo}}}{\emph{\DUrole{n}{file\_path}}}{}
+Load TFinfo object which was saved as hdf5 file.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{file\_path}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} file path.
+
+\item[{Returns}] \leavevmode
+Loaded TFinfo object.
+
+\item[{Return type}] \leavevmode
+{\hyperref[\detokenize{modules/celloracle.motif_analysis:celloracle.motif_analysis.TFinfo}]{\sphinxcrossref{TFinfo}}}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{load\_TFinfo\_from\_parquets() (in module celloracle.motif\_analysis)@\spxentry{load\_TFinfo\_from\_parquets()}\spxextra{in module celloracle.motif\_analysis}}
 
 \begin{fulllineitems}
@@ -7957,6 +8167,25 @@ Loaded TFinfo object.
 
 \item[{Return type}] \leavevmode
 {\hyperref[\detokenize{modules/celloracle.motif_analysis:celloracle.motif_analysis.TFinfo}]{\sphinxcrossref{TFinfo}}}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{load\_motifs() (in module celloracle.motif\_analysis)@\spxentry{load\_motifs()}\spxextra{in module celloracle.motif\_analysis}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules/celloracle.motif_analysis:celloracle.motif_analysis.load_motifs}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{celloracle.motif\_analysis.}}\sphinxbfcode{\sphinxupquote{load\_motifs}}}{\emph{\DUrole{n}{motifs\_name}}}{}
+Load motifs from celloracle motif database
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{motifs\_name}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} Name of motifs.
+
+\item[{Returns}] \leavevmode
+List of gimmemotifs.motif object.
+
+\item[{Return type}] \leavevmode
+list
 
 \end{description}\end{quote}
 
@@ -8007,6 +8236,42 @@ Load bed file and return as dataframe.
 
 \item[{Returns}] \leavevmode
 bed file in dataframe.
+
+\item[{Return type}] \leavevmode
+pandas.dataframe
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{remove\_zero\_seq() (in module celloracle.motif\_analysis)@\spxentry{remove\_zero\_seq()}\spxextra{in module celloracle.motif\_analysis}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules/celloracle.motif_analysis:celloracle.motif_analysis.remove_zero_seq}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{celloracle.motif\_analysis.}}\sphinxbfcode{\sphinxupquote{remove\_zero\_seq}}}{\emph{\DUrole{n}{fasta\_object}}}{}
+Remove DNA sequence with zero length
+
+\end{fulllineitems}
+
+\index{scan\_dna\_for\_motifs() (in module celloracle.motif\_analysis)@\spxentry{scan\_dna\_for\_motifs()}\spxextra{in module celloracle.motif\_analysis}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules/celloracle.motif_analysis:celloracle.motif_analysis.scan_dna_for_motifs}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{celloracle.motif\_analysis.}}\sphinxbfcode{\sphinxupquote{scan\_dna\_for\_motifs}}}{\emph{\DUrole{n}{scanner\_object}}, \emph{\DUrole{n}{motifs\_object}}, \emph{\DUrole{n}{sequence\_object}}, \emph{\DUrole{n}{verbose}\DUrole{o}{=}\DUrole{default_value}{True}}}{}
+This is a wrapper function to scan DNA sequences searchig for Gene motifs.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{scanner\_object}} (\sphinxstyleliteralemphasis{\sphinxupquote{gimmemotifs.scanner}}) \textendash{} Object that do motif scan.
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{motifs\_object}} (\sphinxstyleliteralemphasis{\sphinxupquote{gimmemotifs.motifs}}) \textendash{} Object that stores motif data.
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{sequence\_object}} (\sphinxstyleliteralemphasis{\sphinxupquote{gimmemotifs.fasta}}) \textendash{} Object that stores sequence data.
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+scan results is stored in data frame.
 
 \item[{Return type}] \leavevmode
 pandas.dataframe
@@ -8714,6 +8979,41 @@ list
 
 \end{fulllineitems}
 
+\index{knn\_data\_transferer() (in module celloracle.utility)@\spxentry{knn\_data\_transferer()}\spxextra{in module celloracle.utility}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules/celloracle.utility:celloracle.utility.knn_data_transferer}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{celloracle.utility.}}\sphinxbfcode{\sphinxupquote{knn\_data\_transferer}}}{\emph{\DUrole{n}{adata\_ref}}, \emph{\DUrole{n}{adata\_que}}, \emph{\DUrole{n}{n\_neighbors}\DUrole{o}{=}\DUrole{default_value}{20}}, \emph{\DUrole{n}{cluster\_name}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{embedding\_name}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{adata\_true}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{transfer\_color}\DUrole{o}{=}\DUrole{default_value}{True}}, \emph{\DUrole{n}{n\_PCA}\DUrole{o}{=}\DUrole{default_value}{30}}, \emph{\DUrole{n}{use\_PCA\_in\_adata}\DUrole{o}{=}\DUrole{default_value}{False}}}{}
+Extract categorical information from adata.obs or embedding information from adata.obsm and transfer these information into query anndata.
+In the calculation, KNN is used after PCA.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{adata\_ref}} (\sphinxstyleliteralemphasis{\sphinxupquote{anndata}}) \textendash{} reference anndata
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{adata\_que}} (\sphinxstyleliteralemphasis{\sphinxupquote{anndata}}) \textendash{} query anndata
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{cluster\_name}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}\sphinxstyleliteralemphasis{\sphinxupquote{ or }}\sphinxstyleliteralemphasis{\sphinxupquote{list of str}}) \textendash{} cluster name(s) to be transfered. If you want to transfer multiple data, you can set the cluster names as a list.
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{embedding\_name}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}\sphinxstyleliteralemphasis{\sphinxupquote{ or }}\sphinxstyleliteralemphasis{\sphinxupquote{list of str}}) \textendash{} embedding name(s) to be transfered. If you want to transfer multiple data, you can set the embedding names as a list.
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{adata\_true}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} This argument can be used for the validataion of this algorithm. If you have true answer, you can set it. If you set true answer, the function will return some metrics for benchmarking.
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{transfer\_color}} (\sphinxstyleliteralemphasis{\sphinxupquote{bool}}) \textendash{} Whether or not to transfer color data in addition to cluster information.
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{n\_PCA}} (\sphinxstyleliteralemphasis{\sphinxupquote{int}}) \textendash{} Number of PCs that will be used for the input of KNN algorithm.
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 \index{load\_hdf5() (in module celloracle.utility)@\spxentry{load\_hdf5()}\spxextra{in module celloracle.utility}}
 
 \begin{fulllineitems}
@@ -8818,13 +9118,48 @@ pandas.dataframe
 \index{transfer\_all\_colors\_between\_anndata() (in module celloracle.utility)@\spxentry{transfer\_all\_colors\_between\_anndata()}\spxextra{in module celloracle.utility}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{modules/celloracle.utility:celloracle.utility.transfer_all_colors_between_anndata}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{celloracle.utility.}}\sphinxbfcode{\sphinxupquote{transfer\_all\_colors\_between\_anndata}}}{\emph{\DUrole{n}{anndata\_ref}}, \emph{\DUrole{n}{anndata\_que}}}{}
+\phantomsection\label{\detokenize{modules/celloracle.utility:celloracle.utility.transfer_all_colors_between_anndata}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{celloracle.utility.}}\sphinxbfcode{\sphinxupquote{transfer\_all\_colors\_between\_anndata}}}{\emph{\DUrole{n}{adata\_ref}}, \emph{\DUrole{n}{adata\_que}}}{}
+Extract all color information from reference anndata and transfer the color into query anndata.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{adata\_ref}} (\sphinxstyleliteralemphasis{\sphinxupquote{anndata}}) \textendash{} reference anndata
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{adata\_que}} (\sphinxstyleliteralemphasis{\sphinxupquote{anndata}}) \textendash{} query anndata
+
+\end{itemize}
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{transfer\_color\_between\_anndata() (in module celloracle.utility)@\spxentry{transfer\_color\_between\_anndata()}\spxextra{in module celloracle.utility}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{modules/celloracle.utility:celloracle.utility.transfer_color_between_anndata}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{celloracle.utility.}}\sphinxbfcode{\sphinxupquote{transfer\_color\_between\_anndata}}}{\emph{\DUrole{n}{anndata\_ref}}, \emph{\DUrole{n}{anndata\_que}}, \emph{\DUrole{n}{cluster\_name}}}{}
+\phantomsection\label{\detokenize{modules/celloracle.utility:celloracle.utility.transfer_color_between_anndata}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{celloracle.utility.}}\sphinxbfcode{\sphinxupquote{transfer\_color\_between\_anndata}}}{\emph{\DUrole{n}{adata\_ref}}, \emph{\DUrole{n}{adata\_que}}, \emph{\DUrole{n}{cluster\_name}}}{}
+Extract color information from reference anndata and transfer the color into query anndata.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{adata\_ref}} (\sphinxstyleliteralemphasis{\sphinxupquote{anndata}}) \textendash{} reference anndata
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{adata\_que}} (\sphinxstyleliteralemphasis{\sphinxupquote{anndata}}) \textendash{} query anndata
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{cluster\_name}} (\sphinxstyleliteralemphasis{\sphinxupquote{str}}) \textendash{} cluster name. This information should exist in the anndata.obs.
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{update\_adata() (in module celloracle.utility)@\spxentry{update\_adata()}\spxextra{in module celloracle.utility}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{modules/celloracle.utility:celloracle.utility.update_adata}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{celloracle.utility.}}\sphinxbfcode{\sphinxupquote{update\_adata}}}{\emph{\DUrole{n}{adata}}}{}
 \end{fulllineitems}
 
 \end{quote}

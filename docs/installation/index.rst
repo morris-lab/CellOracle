@@ -86,17 +86,7 @@ Please install scanpy with the following commands or `the author's instruction <
 
 
 
-4. Install `gimmemotifs <https://gimmemotifs.readthedocs.io/en/master/installation.html>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please install gimmemotifs with the following commands or `the author's instruction <https://gimmemotifs.readthedocs.io/en/master/installation.html>`_ .
-
-
-::
-
-    conda install genomepy=0.5.5 gimmemotifs=0.13.1
-
-
-5. Install other python libraries
+4. Install other python libraries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Please install other python libraries below with the following commands.
 
@@ -105,7 +95,7 @@ Please install other python libraries below with the following commands.
     conda install goatools pyarrow tqdm joblib jupyter
 
 
-6. install celloracle from github
+5. install celloracle from github
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ::
 

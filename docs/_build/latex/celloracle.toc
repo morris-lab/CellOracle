@@ -46,110 +46,115 @@
 \contentsline {paragraph}{3. Save data}{15}{paragraph*.39}
 \contentsline {subsection}{\numberline {1.2.2}Transcription factor binding motif scan}{15}{subsection.1.2.2}
 \contentsline {subsubsection}{0. Import libraries}{16}{subsubsection*.40}
-\contentsline {subsubsection}{1. Load data}{16}{subsubsection*.41}
-\contentsline {subsubsection}{2. Check data}{16}{subsubsection*.42}
-\contentsline {paragraph}{2.1. Remove short peaks}{17}{paragraph*.43}
-\contentsline {subsubsection}{3. Instantiate TFinfo object and search for TF binding motifs}{17}{subsubsection*.44}
-\contentsline {paragraph}{3.1 check reference genome installation}{17}{paragraph*.45}
-\contentsline {paragraph}{3.2. Install reference genome (if refgenome is not installed)}{17}{paragraph*.46}
-\contentsline {subsubsection}{4. Scan motifs and save object}{17}{subsubsection*.47}
-\contentsline {subsubsection}{5. Filtering motifs}{18}{subsubsection*.48}
-\contentsline {subsubsection}{6. Get Final results}{19}{subsubsection*.49}
-\contentsline {paragraph}{6.1. Get resutls as a dictionary}{19}{paragraph*.50}
-\contentsline {paragraph}{6.2. Get results as a dataframe}{19}{paragraph*.51}
-\contentsline {subsubsection}{7. Save TFinfo as dictionary or dataframe}{19}{subsubsection*.52}
-\contentsline {subsection}{\numberline {1.2.3}Single\sphinxhyphen {}cell RNA\sphinxhyphen {}seq data preprocessing}{20}{subsection.1.2.3}
-\contentsline {subsubsection}{A. scRNA\sphinxhyphen {}seq data preprocessing with scanpy}{20}{subsubsection*.53}
-\contentsline {paragraph}{0. Import libraries}{20}{paragraph*.54}
-\contentsline {paragraph}{1. Load data}{21}{paragraph*.55}
-\contentsline {paragraph}{2. Filtering}{21}{paragraph*.56}
-\contentsline {paragraph}{3. Normalization}{21}{paragraph*.57}
-\contentsline {paragraph}{4. Identification of highly variable genes}{21}{paragraph*.58}
-\contentsline {paragraph}{5. Log transformation}{22}{paragraph*.59}
-\contentsline {paragraph}{6. Dimensional reduction}{22}{paragraph*.60}
-\contentsline {paragraph}{7. Clustering}{22}{paragraph*.61}
-\contentsline {paragraph}{(Optional) Re\sphinxhyphen {}calculate Dimensional reduction graph}{22}{paragraph*.62}
-\contentsline {paragraph}{8. Check data}{24}{paragraph*.63}
-\contentsline {subparagraph}{8.1. Visualize marker gene expression}{24}{subparagraph*.64}
-\contentsline {paragraph}{9. Make annotation for cluster}{30}{paragraph*.65}
-\contentsline {subparagraph}{9.1. Make annotation (1)}{30}{subparagraph*.66}
-\contentsline {subparagraph}{!! Please change the dictionary below depending on the clustering results. The results may change depending on the execution environment.}{31}{subparagraph*.67}
-\contentsline {subparagraph}{9.2. Make annotation (2)}{32}{subparagraph*.68}
-\contentsline {subparagraph}{!! Please change the dictionary below depending on the clustering results. The results may change depending on the execution environment.}{33}{subparagraph*.69}
-\contentsline {paragraph}{10. (Option) Subset cells}{34}{paragraph*.70}
-\contentsline {paragraph}{11. Save data}{34}{paragraph*.71}
-\contentsline {subsubsection}{B. scRNA\sphinxhyphen {}seq data preprocessing with Seurat}{34}{subsubsection*.72}
-\contentsline {subsection}{\numberline {1.2.4}Network analysis}{35}{subsection.1.2.4}
-\contentsline {subsubsection}{0. Import libraries}{35}{subsubsection*.73}
-\contentsline {paragraph}{0.1. Check installation}{36}{paragraph*.74}
-\contentsline {paragraph}{0.2. Make a folder to save graph}{36}{paragraph*.75}
-\contentsline {subsubsection}{1. Load data}{36}{subsubsection*.76}
-\contentsline {paragraph}{1.1. Load processed gene expression data (anndata)}{36}{paragraph*.77}
-\contentsline {paragraph}{1.2. Load TF data.}{36}{paragraph*.78}
-\contentsline {subsubsection}{2. Initiate Oracle object}{37}{subsubsection*.79}
-\contentsline {paragraph}{2.1. load gene expression data into oracle object.}{37}{paragraph*.80}
-\contentsline {paragraph}{2.2. Load TFinfo into oracle object}{38}{paragraph*.81}
-\contentsline {paragraph}{2.3. (Optional) Add TF info manually}{38}{paragraph*.82}
-\contentsline {subparagraph}{2.3.1. Make TF info dictionary manually}{38}{subparagraph*.83}
-\contentsline {subparagraph}{2.3.2. Add TF informatio dictionary into the oracle object}{39}{subparagraph*.84}
-\contentsline {subsubsection}{3. Knn imputation}{39}{subsubsection*.85}
-\contentsline {paragraph}{3.1. PCA}{39}{paragraph*.86}
-\contentsline {paragraph}{3.2. KNN imputation}{40}{paragraph*.87}
-\contentsline {subsubsection}{4. Save and Load.}{40}{subsubsection*.88}
-\contentsline {subsubsection}{5. GRN calculation}{41}{subsubsection*.89}
-\contentsline {paragraph}{5.1. Get GRNs}{41}{paragraph*.90}
-\contentsline {paragraph}{5.2. (Optional) Export GRNs}{42}{paragraph*.91}
-\contentsline {paragraph}{5.3. (Optional) Change order}{42}{paragraph*.92}
-\contentsline {subsubsection}{6. Network preprocessing}{43}{subsubsection*.93}
-\contentsline {paragraph}{6.1. Filter network edges}{43}{paragraph*.94}
-\contentsline {paragraph}{6.2. Degree distribution}{44}{paragraph*.95}
-\contentsline {paragraph}{5.3. Calculate netowrk score}{54}{paragraph*.96}
-\contentsline {paragraph}{6.4. Save}{55}{paragraph*.97}
-\contentsline {subsubsection}{7. Network analysis; Network score for each gene}{56}{subsubsection*.98}
-\contentsline {paragraph}{7.1. Network score in each cluster}{56}{paragraph*.99}
-\contentsline {paragraph}{7.2. Network score comparison between two clusters}{59}{paragraph*.100}
-\contentsline {paragraph}{7.3. Network score dynamics}{61}{paragraph*.101}
-\contentsline {paragraph}{7.4. Gene cartography analysis}{63}{paragraph*.102}
-\contentsline {subsubsection}{8. Network analysis; network score distribution}{74}{subsubsection*.103}
-\contentsline {paragraph}{8.1. Distribution of network degree}{74}{paragraph*.104}
-\contentsline {paragraph}{8.2. Distribution of netowrk entropy}{75}{paragraph*.105}
-\contentsline {subsection}{\numberline {1.2.5}Simulation with GRNs}{76}{subsection.1.2.5}
-\contentsline {subsubsection}{0. Import libraries}{76}{subsubsection*.106}
-\contentsline {paragraph}{0.1. Import public libraries}{76}{paragraph*.107}
-\contentsline {paragraph}{0.1. Make a folder to save graph}{76}{paragraph*.108}
-\contentsline {subsubsection}{1. Load data}{77}{subsubsection*.109}
-\contentsline {paragraph}{1.1. Load processed oracle object}{77}{paragraph*.110}
-\contentsline {paragraph}{1.2. Load inferred GRNs}{77}{paragraph*.111}
-\contentsline {subsubsection}{2. Make predictive models for simulation}{77}{subsubsection*.112}
-\contentsline {subsubsection}{3. in silico Perturbation\sphinxhyphen {}simulation}{79}{subsubsection*.113}
-\contentsline {paragraph}{3.1. Check gene expression pattern.}{80}{paragraph*.114}
-\contentsline {paragraph}{3.2. calculate future gene expression after perturbation.}{80}{paragraph*.115}
-\contentsline {paragraph}{3.3. calculate transition probability between cells}{81}{paragraph*.116}
-\contentsline {subsubsection}{4. Visualization}{81}{subsubsection*.117}
-\contentsline {paragraph}{4.1. Detailed directed trajectory graph}{81}{paragraph*.118}
-\contentsline {paragraph}{4.2. Grid graph}{82}{paragraph*.119}
-\contentsline {subsubsection}{5. Markov simulation to analyze the effects of perturbation on cell fate transition}{83}{subsubsection*.120}
-\contentsline {subsubsection}{5.1. Do Markov simulation}{83}{subsubsection*.121}
-\contentsline {paragraph}{5.2. Check the results of the simulation for specific cells}{84}{paragraph*.122}
-\contentsline {paragraph}{5.3. Summarize the results of simulation by plotting sankey diagram}{85}{paragraph*.123}
-\contentsline {section}{\numberline {1.3}API}{88}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Command Line API}{88}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}Python API}{89}{subsection.1.3.2}
-\contentsline {subsubsection}{Custom class in celloracle}{89}{subsubsection*.124}
-\contentsline {subsubsection}{Modules for ATAC\sphinxhyphen {}seq analysis}{99}{subsubsection*.194}
-\contentsline {paragraph}{celloracle.motif\_analysis module}{99}{paragraph*.195}
-\contentsline {subsubsection}{Modules for Network analysis}{102}{subsubsection*.222}
-\contentsline {paragraph}{celloracle.network\_analysis module}{102}{paragraph*.223}
-\contentsline {subsubsection}{Other modules}{107}{subsubsection*.251}
-\contentsline {paragraph}{celloracle.go\_analysis module}{107}{paragraph*.252}
-\contentsline {paragraph}{celloracle.utility module}{107}{paragraph*.257}
-\contentsline {paragraph}{celloracle.data module}{108}{paragraph*.269}
-\contentsline {paragraph}{celloracle.data\_conversion module}{109}{paragraph*.272}
-\contentsline {section}{\numberline {1.4}Changelog}{109}{section.1.4}
-\contentsline {section}{\numberline {1.5}License}{110}{section.1.5}
-\contentsline {section}{\numberline {1.6}Authors and citations}{112}{section.1.6}
-\contentsline {subsection}{\numberline {1.6.1}Cite celloracle}{112}{subsection.1.6.1}
-\contentsline {subsection}{\numberline {1.6.2}celloracle software development}{112}{subsection.1.6.2}
-\contentsline {chapter}{\numberline {2}Indices and tables}{113}{chapter.2}
-\contentsline {chapter}{Python Module Index}{115}{section*.275}
-\contentsline {chapter}{Index}{117}{section*.276}
+\contentsline {subsubsection}{1. Rerefence genome data preparation}{16}{subsubsection*.41}
+\contentsline {paragraph}{1.1. Check reference genome installation}{16}{paragraph*.42}
+\contentsline {paragraph}{1.2. Install reference genome (if refgenome is not installed)}{16}{paragraph*.43}
+\contentsline {subsubsection}{2. Load data}{17}{subsubsection*.44}
+\contentsline {paragraph}{2.1. Load processed peak data}{17}{paragraph*.45}
+\contentsline {paragraph}{2.1. Check data}{17}{paragraph*.46}
+\contentsline {paragraph}{2.2. {[}Optional step{]} Load motifs}{18}{paragraph*.47}
+\contentsline {subparagraph}{2.2.1. {[}Optional step{]} Load motif data from gimmemotifs dataset}{18}{subparagraph*.48}
+\contentsline {subparagraph}{2.2.2 {[}Optional step{]} Load motif data from celloracle motif dataset}{20}{subparagraph*.49}
+\contentsline {subsubsection}{3. Instantiate TFinfo object and search for TF binding motifs}{20}{subsubsection*.50}
+\contentsline {paragraph}{3.1. Instantiate TFinfo object}{21}{paragraph*.51}
+\contentsline {paragraph}{3.2. Motif scan}{21}{paragraph*.52}
+\contentsline {subsubsection}{5. Filtering motifs}{21}{subsubsection*.53}
+\contentsline {subsubsection}{6. Get Final results}{22}{subsubsection*.54}
+\contentsline {paragraph}{6.1. Get resutls as a dictionary}{22}{paragraph*.55}
+\contentsline {paragraph}{6.2. Get results as a dataframe}{22}{paragraph*.56}
+\contentsline {subsubsection}{7. Save TFinfo as dictionary or dataframe}{23}{subsubsection*.57}
+\contentsline {subsection}{\numberline {1.2.3}Single\sphinxhyphen {}cell RNA\sphinxhyphen {}seq data preprocessing}{23}{subsection.1.2.3}
+\contentsline {subsubsection}{A. scRNA\sphinxhyphen {}seq data preprocessing with scanpy}{23}{subsubsection*.58}
+\contentsline {paragraph}{0. Import libraries}{24}{paragraph*.59}
+\contentsline {paragraph}{1. Load data}{24}{paragraph*.60}
+\contentsline {paragraph}{2. Filtering}{24}{paragraph*.61}
+\contentsline {paragraph}{3. Normalization}{24}{paragraph*.62}
+\contentsline {paragraph}{4. Identification of highly variable genes}{25}{paragraph*.63}
+\contentsline {paragraph}{5. Log transformation}{25}{paragraph*.64}
+\contentsline {paragraph}{6. Dimensional reduction}{25}{paragraph*.65}
+\contentsline {paragraph}{7. Clustering}{26}{paragraph*.66}
+\contentsline {paragraph}{(Optional) Re\sphinxhyphen {}calculate Dimensional reduction graph}{26}{paragraph*.67}
+\contentsline {paragraph}{8. Check data}{27}{paragraph*.68}
+\contentsline {subparagraph}{8.1. Visualize marker gene expression}{27}{subparagraph*.69}
+\contentsline {paragraph}{9. Make annotation for cluster}{33}{paragraph*.70}
+\contentsline {subparagraph}{9.1. Make annotation (1)}{33}{subparagraph*.71}
+\contentsline {subparagraph}{!! Please change the dictionary below depending on the clustering results. The results may change depending on the execution environment.}{34}{subparagraph*.72}
+\contentsline {subparagraph}{9.2. Make annotation (2)}{35}{subparagraph*.73}
+\contentsline {subparagraph}{!! Please change the dictionary below depending on the clustering results. The results may change depending on the execution environment.}{36}{subparagraph*.74}
+\contentsline {paragraph}{10. (Option) Subset cells}{37}{paragraph*.75}
+\contentsline {paragraph}{11. Save data}{37}{paragraph*.76}
+\contentsline {subsubsection}{B. scRNA\sphinxhyphen {}seq data preprocessing with Seurat}{37}{subsubsection*.77}
+\contentsline {subsection}{\numberline {1.2.4}Network analysis}{38}{subsection.1.2.4}
+\contentsline {subsubsection}{0. Import libraries}{38}{subsubsection*.78}
+\contentsline {paragraph}{0.1. Check installation}{39}{paragraph*.79}
+\contentsline {paragraph}{0.2. Make a folder to save graph}{39}{paragraph*.80}
+\contentsline {subsubsection}{1. Load data}{39}{subsubsection*.81}
+\contentsline {paragraph}{1.1. Load processed gene expression data (anndata)}{39}{paragraph*.82}
+\contentsline {paragraph}{1.2. Load TF data.}{39}{paragraph*.83}
+\contentsline {subsubsection}{2. Initiate Oracle object}{40}{subsubsection*.84}
+\contentsline {paragraph}{2.1. load gene expression data into oracle object.}{40}{paragraph*.85}
+\contentsline {paragraph}{2.2. Load TFinfo into oracle object}{41}{paragraph*.86}
+\contentsline {paragraph}{2.3. (Optional) Add TF info manually}{41}{paragraph*.87}
+\contentsline {subparagraph}{2.3.1. Make TF info dictionary manually}{41}{subparagraph*.88}
+\contentsline {subparagraph}{2.3.2. Add TF informatio dictionary into the oracle object}{42}{subparagraph*.89}
+\contentsline {subsubsection}{3. Knn imputation}{42}{subsubsection*.90}
+\contentsline {paragraph}{3.1. PCA}{42}{paragraph*.91}
+\contentsline {paragraph}{3.2. KNN imputation}{43}{paragraph*.92}
+\contentsline {subsubsection}{4. Save and Load.}{43}{subsubsection*.93}
+\contentsline {subsubsection}{5. GRN calculation}{44}{subsubsection*.94}
+\contentsline {paragraph}{5.1. Get GRNs}{44}{paragraph*.95}
+\contentsline {paragraph}{5.2. (Optional) Export GRNs}{45}{paragraph*.96}
+\contentsline {paragraph}{5.3. (Optional) Change order}{45}{paragraph*.97}
+\contentsline {subsubsection}{6. Network preprocessing}{46}{subsubsection*.98}
+\contentsline {paragraph}{6.1. Filter network edges}{46}{paragraph*.99}
+\contentsline {paragraph}{6.2. Degree distribution}{47}{paragraph*.100}
+\contentsline {paragraph}{5.3. Calculate netowrk score}{57}{paragraph*.101}
+\contentsline {paragraph}{6.4. Save}{58}{paragraph*.102}
+\contentsline {subsubsection}{7. Network analysis; Network score for each gene}{59}{subsubsection*.103}
+\contentsline {paragraph}{7.1. Network score in each cluster}{59}{paragraph*.104}
+\contentsline {paragraph}{7.2. Network score comparison between two clusters}{62}{paragraph*.105}
+\contentsline {paragraph}{7.3. Network score dynamics}{64}{paragraph*.106}
+\contentsline {paragraph}{7.4. Gene cartography analysis}{66}{paragraph*.107}
+\contentsline {subsubsection}{8. Network analysis; network score distribution}{77}{subsubsection*.108}
+\contentsline {paragraph}{8.1. Distribution of network degree}{77}{paragraph*.109}
+\contentsline {paragraph}{8.2. Distribution of netowrk entropy}{78}{paragraph*.110}
+\contentsline {subsection}{\numberline {1.2.5}Simulation with GRNs}{79}{subsection.1.2.5}
+\contentsline {subsubsection}{0. Import libraries}{79}{subsubsection*.111}
+\contentsline {paragraph}{0.1. Import public libraries}{79}{paragraph*.112}
+\contentsline {paragraph}{0.1. Make a folder to save graph}{80}{paragraph*.113}
+\contentsline {subsubsection}{1. Load data}{80}{subsubsection*.114}
+\contentsline {paragraph}{1.1. Load processed oracle object}{80}{paragraph*.115}
+\contentsline {paragraph}{1.2. Load inferred GRNs}{80}{paragraph*.116}
+\contentsline {subsubsection}{2. Make predictive models for simulation}{80}{subsubsection*.117}
+\contentsline {subsubsection}{3. in silico Perturbation\sphinxhyphen {}simulation}{82}{subsubsection*.118}
+\contentsline {paragraph}{3.1. Check gene expression pattern.}{83}{paragraph*.119}
+\contentsline {paragraph}{3.2. calculate future gene expression after perturbation.}{84}{paragraph*.120}
+\contentsline {paragraph}{3.3. calculate transition probability between cells}{84}{paragraph*.121}
+\contentsline {subsubsection}{4. Visualization}{85}{subsubsection*.122}
+\contentsline {paragraph}{4.1. Detailed directed trajectory graph}{85}{paragraph*.123}
+\contentsline {paragraph}{4.2. Grid graph}{86}{paragraph*.124}
+\contentsline {subsubsection}{5. Markov simulation to analyze the effects of perturbation on cell fate transition}{87}{subsubsection*.125}
+\contentsline {subsubsection}{5.1. Do Markov simulation}{87}{subsubsection*.126}
+\contentsline {paragraph}{5.2. Check the results of the simulation for specific cells}{87}{paragraph*.127}
+\contentsline {paragraph}{5.3. Summarize the results of simulation by plotting sankey diagram}{88}{paragraph*.128}
+\contentsline {section}{\numberline {1.3}API}{91}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Command Line API}{91}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Python API}{92}{subsection.1.3.2}
+\contentsline {subsubsection}{Custom class in celloracle}{92}{subsubsection*.129}
+\contentsline {subsubsection}{Modules for ATAC\sphinxhyphen {}seq analysis}{102}{subsubsection*.199}
+\contentsline {paragraph}{celloracle.motif\_analysis module}{102}{paragraph*.200}
+\contentsline {subsubsection}{Modules for Network analysis}{106}{subsubsection*.231}
+\contentsline {paragraph}{celloracle.network\_analysis module}{106}{paragraph*.232}
+\contentsline {subsubsection}{Other modules}{110}{subsubsection*.260}
+\contentsline {paragraph}{celloracle.go\_analysis module}{110}{paragraph*.261}
+\contentsline {paragraph}{celloracle.utility module}{111}{paragraph*.266}
+\contentsline {paragraph}{celloracle.data module}{113}{paragraph*.280}
+\contentsline {paragraph}{celloracle.data\_conversion module}{113}{paragraph*.283}
+\contentsline {section}{\numberline {1.4}Changelog}{113}{section.1.4}
+\contentsline {section}{\numberline {1.5}License}{114}{section.1.5}
+\contentsline {section}{\numberline {1.6}Authors and citations}{117}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}Cite celloracle}{117}{subsection.1.6.1}
+\contentsline {subsection}{\numberline {1.6.2}celloracle software development}{117}{subsection.1.6.2}
+\contentsline {chapter}{\numberline {2}Indices and tables}{119}{chapter.2}
+\contentsline {chapter}{Python Module Index}{121}{section*.286}
+\contentsline {chapter}{Index}{123}{section*.287}

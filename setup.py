@@ -53,7 +53,7 @@ setup(
                       "python-igraph",
                       "louvain", #"louvain==0.6.1",
                       "fa2",
-                      'scanpy', #'scanpy==1.4.4',
+                      'scanpy>=1.5', #'scanpy==1.4.4',
                       'joblib',
                       'goatools',
                       'genomepy==0.8.4', #0.5.5

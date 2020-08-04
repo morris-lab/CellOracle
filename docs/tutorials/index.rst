@@ -10,7 +10,7 @@ If you do not have ATAC-seq data and want to use the default TF binding informat
 Please refer to the ``celloracle`` paper for scientific premise and the detail of the algorithm of celloracle.
 
 
-The jupyter notebook files in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks>`_ .
+The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks>`_ .
 
 
 .. toctree::

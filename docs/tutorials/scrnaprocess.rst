@@ -31,6 +31,8 @@ In this tutorial, we introduce an example of scRNA-seq preprocessing for cellora
 We wrote the notebook based on `one of scanpy's tutorials <https://scanpy-tutorials.readthedocs.io/en/latest/paga-paul15.html>`_ with some modifications.
 
 
+The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/03_scRNA-seq_data_preprocessing>`_ .
+
 Python notebook
 
 .. toctree::

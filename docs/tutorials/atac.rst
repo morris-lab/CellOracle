@@ -24,6 +24,9 @@ If you have a question about Cicero, please read `the documentation of Cicero <h
 scATAC-seq analysis with Cicero and Monocle3
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+
+The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01_ATAC-seq_data_processing>`_ .
+
 R notebook
 
 .. toctree::
@@ -34,6 +37,9 @@ R notebook
 
 TSS annotation
 ^^^^^^^^^^^^^^
+
+
+The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01_ATAC-seq_data_processing>`_ .
 
 Python notebook
 
@@ -46,6 +52,9 @@ Python notebook
 B. Extract TF binding information from bulk ATAC-seq data or Chip-seq data
 --------------------------------------------------------------------------
 Bulk DNA-seq data can be used to get the accessible promoter/enhancer sequences.
+
+
+The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01_ATAC-seq_data_processing>`_ .
 
 Python notebook
 
