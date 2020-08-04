@@ -109,8 +109,8 @@ def peak_M1(peak_id):
         >>> peak_M1(a)
         "chr11_123445554_123445577"
     """
-    i = peak_id.split("_")
-    return i[0] + "_" + str(int(i[1])-1) + "_" + i[2]
+    chr_, start, end = decompose_chrstr(peak_id)
+    return chr_ + "_" + str(int(start)-1) + "_" + end
 
 
 def peak2fasta(peak_ids, ref_genome):
