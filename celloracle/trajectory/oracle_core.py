@@ -47,9 +47,12 @@ def load_oracle(file_path):
     Args:
         file_path (str): File path to the hdf5 file.
     """
+    try:
+        obj = load_hdf5(filename=file_path, obj_class=Oracle, ignore_attrs_if_err=["knn", "knn_smoothing_w", "pca"])
 
-    obj = load_hdf5(filename=file_path, obj_class=Oracle)
-
+    except:
+        print("Found serious error when loading data. It might be because of discrepancy of dependent library. You are trying to load an object which was generated with a library of different version.")
+        return None
     # Update Anndata
     update_adata(obj.adata)
 
