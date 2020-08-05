@@ -4,12 +4,17 @@
 Changelog
 =========
 
+* `0.5.1 <2020-08-4>`
+ `-` Add new promoter-TSS reference data for several reference genomes;(1)"Xenopus": ["xenTro2", "xenTro3"],(2)"Rat": ["rn4", "rn5", "rn6"], (3)"Drosophila": ["dm3", "dm6"], (4)"C.elegans": ["ce6", "ce10"], (5)"Arabidopsis": ["tair10"].
+
+ `-` Add new motif data for several species: "Xenopus", "Rat", "Drosophila", "C.elegans" and "Arabidopsis".
+
 
 * `0.5.0 <2020-08-3>`
  `-` Add now functions for custom motifs. You can select motifs from several options. Also, we updated our web tutorial to introduce how to load / make a different motif data.
 
  `-` Change default motifs for S.cerevisiae and Zebrafish.
- 
+
  `-` Change requirements for dependent package: gimmemotifs and geomepy. Celloracle codes were updated to support new version of gimmemotifs (0.14.4) and genomepy (0.8.4).
 
 
