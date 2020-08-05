@@ -120,8 +120,11 @@ def load_hdf5(filename, obj_class, ignore_attrs_if_err=[]):
 
     obj = obj_class.__new__(obj_class)
     _file = h5py.File(filename, "r")
+
+    ignore_attrs_if_err = ["&"+ k for k in ignore_attrs_if_err]
+
     for k in _file.keys():
-        if f"&{k}" in ignore_attrs_if_err:
+        if k in ignore_attrs_if_err:
             try:
                 setattr(obj, k[1:], _uint2obj(_file[k][:]))
             except:
