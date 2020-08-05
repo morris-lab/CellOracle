@@ -46,10 +46,17 @@ from .motif_analysis_utility import scan_dna_for_motifs, is_genome_installed
 from .process_bed_file import read_bed, peak2fasta, remove_zero_seq
 from .motif_data import load_motifs
 
-SUPPORTED_REF_GENOME = {"Human": ['hg38', 'hg19'], #  'hg18', 'hg17', 'hg16' were not installed now
-                        "Mouse": ['mm10', 'mm9'], # 'mm8', 'mm7', 'micMur2', 'micMur1' were not installed now
+SUPPORTED_REF_GENOME = {"Human": ['hg38', 'hg19'],
+                        "Mouse": ['mm10', 'mm9'],
                         "S.cerevisiae": ["sacCer2", "sacCer3"],
-                        "Zebrafish": ["danRer7", "danRer10", "danRer11"]}
+                        "Zebrafish": ["danRer7", "danRer10", "danRer11"],
+                        "Xenopus": ["xenTro2", "xenTro3"],
+                        "Rat": ["rn4", "rn5", "rn6"],
+                        "Drosophila": ["dm3", "dm6"],
+                        "C.elegans": ["ce6", "ce10"],
+                        "Arabidopsis": ["tair10"],
+                        #"Chicken": ["galGal4", "galGal5", "galGal6"],
+                        }
 
 
 def load_TFinfo(file_path):
@@ -161,17 +168,12 @@ class TFinfo():
         self.ref_genome = ref_genome
 
         # check ref_genome is supported or not
-        if ref_genome in SUPPORTED_REF_GENOME["Mouse"]:
-            self.species = "Mouse"
-        elif ref_genome in SUPPORTED_REF_GENOME["Human"]:
-            self.species = "Human"
-        elif ref_genome in SUPPORTED_REF_GENOME["S.cerevisiae"]:
-            self.species = "S.cerevisiae"
-        elif ref_genome in SUPPORTED_REF_GENOME["Zebrafish"]:
-            self.species = "Zebrafish"
-
-        else:
-            raise ValueError(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list.")
+        self.species = None
+        for species, ref_genomes in SUPPORTED_REF_GENOME.items():
+            if ref_genome in ref_genomes:
+                self.species = species
+        if self.species is None:
+            raise ValueError(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page.")
 
         # check  genome installation
         if not is_genome_installed(ref_genome=ref_genome):
@@ -650,20 +652,22 @@ def _get_dic_motif2TFs(species, motifs, TF_evidence_level="direct_and_indirect",
         dic_motif2TFs[i.id] = fcs
 
     if formatting:
-        if species == "Mouse":
+        if species in ["Mouse", "Rat", "Chicken"]:
             for key in dic_motif2TFs.keys():
                 dic_motif2TFs[key] = [tf.capitalize() for tf in dic_motif2TFs[key]]
 
-        elif species in ["Human", "S.cerevisiae"]:
+        elif species in ["Human", "S.cerevisiae", "Arabidopsis"]:
             for key in dic_motif2TFs.keys():
                 dic_motif2TFs[key] = [tf.upper() for tf in dic_motif2TFs[key]]
 
-        elif species in ["Zebrafish"]:
+        elif species in ["Zebrafish", "Xenopus"]:
             for key in dic_motif2TFs.keys():
                 dic_motif2TFs[key] = [tf.lower() for tf in dic_motif2TFs[key]]
 
-    return dic_motif2TFs
+        elif species in ["Drosophila", "C.elegans"]:
+            pass
 
+    return dic_motif2TFs
 
 
 
