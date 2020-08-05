@@ -27,6 +27,7 @@ from ..data.motif_data import __path__ as PATH_TO_MOTIF_DATA
 
 PATH_TO_MOTIF_DATA = list(PATH_TO_MOTIF_DATA)[0]
 PFM_PATHS = glob(os.path.join(PATH_TO_MOTIF_DATA, "*.pfm"))
+PFM_PATHS.sort()
 MOTIFS_PATH_DICT = {os.path.basename(path):path for path in PFM_PATHS}
 MOTIFS_LIST = list(MOTIFS_PATH_DICT.keys())
 
