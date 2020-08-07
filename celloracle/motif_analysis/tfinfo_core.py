@@ -277,7 +277,7 @@ class TFinfo():
         if motifs is None:
             if verbose:
                 print("No motif data entered. Loading default motifs for your species ...")
-            
+
             if self.species in ["Mouse", "Human", "Rat"]: # If species is vertebrate, we use gimmemotif default motifs as a default.
                 motifs = default_motifs()
                 self.motif_db_name = "gimme.vertebrate.v5.0"
@@ -285,43 +285,43 @@ class TFinfo():
                 if verbose:
                     print(" Default motif for vertebrate: gimme.vertebrate.v5.0. \n For more information, please go https://gimmemotifs.readthedocs.io/en/master/overview.html \n")
 
-            elif self.species in ["Zebrafish"]: # If species is Zebrafish, we use CisDB database.
-                self.motif_db_name = 'CisDB_ver2_Danio_rerio.pfm'
+            elif self.species in ["Zebrafish"]: # If species is Zebrafish, we use CisBP database.
+                self.motif_db_name = 'CisBP_ver2_Danio_rerio.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation. \n")
 
-            elif self.species in ["S.cerevisiae"]: # If species is S.cerevisiae, we use CisDB database.
-                self.motif_db_name = 'CisDB_ver2_Saccharomyces_cerevisiae.pfm'
+            elif self.species in ["S.cerevisiae"]: # If species is S.cerevisiae, we use CisBP database.
+                self.motif_db_name = 'CisBP_ver2_Saccharomyces_cerevisiae.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation. \n")
 
-            elif self.species in ["Xenopus"]: # If species is S.cerevisiae, we use CisDB database.
-                self.motif_db_name = 'CisDB_ver2_Xenopus_tropicalis_and_Xenopus_laevis.pfm'
+            elif self.species in ["Xenopus"]: # If species is S.cerevisiae, we use CisBP database.
+                self.motif_db_name = 'CisBP_ver2_Xenopus_tropicalis_and_Xenopus_laevis.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation. \n")
 
-            elif self.species in ["Drosophila"]: # If species is S.cerevisiae, we use CisDB database.
-                self.motif_db_name = 'CisDB_ver2_Drosophila_mix.pfm'
+            elif self.species in ["Drosophila"]: # If species is S.cerevisiae, we use CisBP database.
+                self.motif_db_name = 'CisBP_ver2_Drosophila_mix.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation. \n")
 
-            elif self.species in ["C.elegans"]: # If species is S.cerevisiae, we use CisDB database.
-                self.motif_db_name = 'CisDB_ver2_Caenorhabditis_elegans.pfm'
+            elif self.species in ["C.elegans"]: # If species is S.cerevisiae, we use CisBP database.
+                self.motif_db_name = 'CisBP_ver2_Caenorhabditis_elegans.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please go celloracle documentation. \n")
 
-            elif self.species in ["Arabidopsis"]: # If species is S.cerevisiae, we use CisDB database.
-                self.motif_db_name = 'CisDB_ver2_Arabidopsis_thaliana.pfm'
+            elif self.species in ["Arabidopsis"]: # If species is S.cerevisiae, we use CisBP database.
+                self.motif_db_name = 'CisBP_ver2_Arabidopsis_thaliana.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
