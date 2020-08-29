@@ -151,3 +151,21 @@ def _get_clustercolor_from_anndata(adata, cluster_name, return_as):
 def _numba_random_seed(value: int) -> None:
     """Same as np.random.seed but for numba"""
     np.random.seed(value)
+
+def _decompose_TFdict(TFdict):
+    """
+    Args:
+        TFdict (dict): Key is target gene, Value is a list of regulatory gene of this target.
+
+    Return:
+        (list, list): list of all target gene in the TFdict and list of regulatory gene in the TFdict.
+    """
+
+    all_regulatory_genes_in_TFdict = []
+    for val in TFdict.values():
+        all_regulatory_genes_in_TFdict += list(val)
+    all_regulatory_genes_in_TFdict = list(np.unique(all_regulatory_genes_in_TFdict))
+
+    all_target_genes_in_TFdict = list(TFdict.keys())
+
+    return all_target_genes_in_TFdict, all_regulatory_genes_in_TFdict

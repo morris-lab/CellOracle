@@ -10,6 +10,8 @@ from typing import Dict, Any, List, Union, Tuple
 import pandas as pd
 import scanpy as sc
 import seaborn as sns
+from tqdm.notebook import tqdm
+
 from ..utility.hdf5_processing import dump_hdf5, load_hdf5
 
 from sklearn.neighbors import NearestNeighbors
@@ -18,8 +20,9 @@ from .sankey import sankey
 from .markov_simulation import _walk
 from .oracle_utility import (_adata_to_matrix, _adata_to_df,
                              _adata_to_color_dict, _get_clustercolor_from_anndata,
-                             _numba_random_seed, _linklist2dict)
-from .oracle_GRN import _do_simulation, _getCoefMatrix
+                             _numba_random_seed, _linklist2dict,
+                             _decompose_TFdict)
+from .oracle_GRN import _do_simulation, _getCoefMatrix, _coef_to_active_gene_list
 from .modified_VelocytoLoom_class import modified_VelocytoLoom
 from ..network_analysis.network_construction import get_links
 
@@ -120,6 +123,16 @@ class Oracle(modified_VelocytoLoom):
     ###################################
     ### 1. Methods for loading data ###
     ###################################
+    def _process_TFdict_metadata(self):
+
+        # Make list of all target genes and all reguolatory genes in the TFdict
+        self.all_target_genes_in_TFdict, self.all_regulatory_genes_in_TFdict = _decompose_TFdict(TFdict=self.TFdict)
+
+        # Intersect gene between the list above and gene expression matrix.
+        self.adata.var["symbol"] = self.adata.var.index.values
+        self.adata.var["isin_TFdict_targets"] = self.adata.var.symbol.isin(self.all_target_genes_in_TFdict)
+        self.adata.var["isin_TFdict_regulators"] = self.adata.var.symbol.isin(self.all_regulatory_genes_in_TFdict)
+
 
     def import_TF_data(self, TF_info_matrix=None, TF_info_matrix_path=None, TFdict=None):
         """
@@ -149,7 +162,11 @@ class Oracle(modified_VelocytoLoom):
         if not TFdict is None:
             self.TFdict=TFdict.copy()
 
-    def updateTFinfo_dictionary(self, TFdict):
+        # Update summary of TFdata
+        self._process_TFdict_metadata()
+
+
+    def updateTFinfo_dictionary(self, TFdict={}):
         """
         Update a TF dictionary.
         If a key in the new TF dictionary already exists in the old TF dictionary, old values will be replaced with a new one.
@@ -159,6 +176,9 @@ class Oracle(modified_VelocytoLoom):
         """
 
         self.TFdict.update(TFdict)
+
+        # Update summary of TFdata
+        self._process_TFdict_metadata()
 
     def addTFinfo_dictionary(self, TFdict):
         """
@@ -176,6 +196,10 @@ class Oracle(modified_VelocytoLoom):
                 self.TFdict.update({tf: targets})
             else:
                 self.TFdict.update({tf: TFdict[tf]})
+
+        # Update summary of TFdata
+        self._process_TFdict_metadata()
+
 
     def get_cluster_specific_TFdict_from_Links(self, links_object):
 
@@ -255,6 +279,10 @@ class Oracle(modified_VelocytoLoom):
         self.high_var_genes = self.cv_mean_selected_genes.copy()
         self.cv_mean_selected_genes = None
 
+        self.adata.var["symbol"] = self.adata.var.index.values
+        self.adata.var["isin_top1000_var_mean_genes"] = self.adata.var.symbol.isin(self.high_var_genes)
+
+
     def import_anndata_as_normalized_count(self, adata, cluster_column_name=None, embedding_name=None):
         """
         Load scRNA-seq data. scRNA-seq data should be prepared as an anndata object.
@@ -308,6 +336,9 @@ class Oracle(modified_VelocytoLoom):
         self.high_var_genes = self.cv_mean_selected_genes.copy()
         self.cv_mean_selected_genes = None
 
+        self.adata.var["symbol"] = self.adata.var.index.values
+        self.adata.var["isin_top1000_var_mean_genes"] = self.adata.var.symbol.isin(self.high_var_genes)
+
 
 
     ####################################
@@ -336,6 +367,7 @@ class Oracle(modified_VelocytoLoom):
 
         self.adata.layers["simulation_input"] = self.adata.layers["imputed_count"].copy()
         self.alpha_for_trajectory_GRN = alpha
+        self.GRN_unit = GRN_unit
 
         if use_cluster_specific_TFdict & (self.cluster_specific_TFdict is not None):
             self.coef_matrix_per_cluster = {}
@@ -365,13 +397,74 @@ class Oracle(modified_VelocytoLoom):
                                                                            TFdict=self.TFdict,
                                                                            alpha=alpha)
 
+        self.extract_active_gene_lists(verbose=False)
+
+
+    def extract_active_gene_lists(self, return_as=None, verbose=False):
+        """
+        Args:
+            return_as (str): If not None, it returns dictionary or list. Chose either "indivisual_dict" or "unified_list".
+            verbose (bool): Whether to show progress bar.
+
+        Returns:
+            dictionary or list: The format depends on the argument, "return_as".
+
+        """
+        if return_as not in ["indivisual_dict", "unified_list", None]:
+            raise ValueError("return_as should be either 'indivisual_dict' or 'unified_list'.")
+
+        if not hasattr(self, "GRN_unit"):
+            try:
+                loop = self.coef_matrix_per_cluster.items()
+                self.GRN_unit = "cluster"
+                print("Currently selected GRN_unit: ", self.GRN_unit)
+
+            except:
+                try:
+                    loop = {"whole_cell": self.coef_matrix}.items()
+                    self.GRN_unit = "whole"
+                    print("Currently selected GRN_unit: ", self.GRN_unit)
+                except:
+                    raise ValueError("GRN is not ready. Please run 'fit_GRN_for_simulation' first.")
+
+        elif self.GRN_unit == "cluster":
+            loop = self.coef_matrix_per_cluster.items()
+        elif self.GRN_unit == "whole":
+            loop = {"whole_cell": self.coef_matrix}.items()
+
+        if verbose:
+            loop = tqdm(loop)
+
+        unified_list = []
+        indivisual_dict = {}
+        for cluster, coef_matrix in loop:
+            active_genes = _coef_to_active_gene_list(coef_matrix)
+            unified_list += active_genes
+            indivisual_dict[cluster] = active_genes
+
+        unified_list = list(np.unique(unified_list))
+
+        # Store data
+        self.active_regulatory_genes = unified_list.copy()
+        self.adata.var["symbol"] = self.adata.var.index.values
+        if "isin_top1000_var_mean_genes" not in self.adata.var.columns:
+            self.adata.var["isin_top1000_var_mean_genes"] = self.adata.var.symbol.isin(self.high_var_genes)
+        self.adata.var["isin_actve_regulators"] = self.adata.var.symbol.isin(unified_list)
+
+        if return_as == "indivisual_dict":
+            return indivisual_dict
+
+        elif return_as == "unified_list":
+            return unified_list
+
+
 
 
     #######################################################
     ### 3. Methods for simulation of signal propagation ###
     #######################################################
 
-    def simulate_shift(self, perturb_condition=None, GRN_unit="cluster",
+    def simulate_shift(self, perturb_condition=None, GRN_unit=None,
                        n_propagation=3, ignore_warning=False):
         """
         Simulate signal propagation with GRNs. Please see the CellOracle paper for details.
@@ -405,27 +498,54 @@ class Oracle(modified_VelocytoLoom):
         self.transition_prob = None
         self.tr = None
 
+        if GRN_unit is not None:
+            self.GRN_unit = GRN_unit
+        elif hasattr(self, "GRN_unit"):
+            GRN_unit = self.GRN_unit
+            #print("Currently selected GRN_unit: ", self.GRN_unit)
+        elif hasattr(self, "coef_matrix_per_cluster"):
+            GRN_unit = "cluster"
+            self.GRN_unit = GRN_unit
+        elif hasattr(self, "coef_matrix"):
+            GRN_unit = "whole"
+            self.GRN_unit = GRN_unit
+        else:
+            raise ValueError("GRN is not ready. Please run 'fit_GRN_for_simulation' first.")
+
 
         # 1. prepare perturb information
         if not perturb_condition is None:
+
             self.perturb_condition = perturb_condition.copy()
 
+
+            # Do Quality check before simulation.
+            if not hasattr(self, "active_regulatory_genes"):
+                self.extract_active_gene_lists(verbose=False)
+
             for i in perturb_condition.keys():
+                # 1st QC
+                if not i in self.adata.var.index:
+                    raise ValueError(f"{i} is not included in the Gene expression matrix.")
+
+                # 2nd QC
+                if i not in self.active_regulatory_genes:
+                    raise ValueError(f"Gene {i} does not have enough regulatory connection in the GRNs. Cannot perform simulation.")
+
+                # 3rd QC
                 if i not in self.high_var_genes:
                     if ignore_warning:
                         print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
                     else:
                         raise ValueError(f"Variability score of Gene {i} is too low. Cannot perform simulation.")
 
+
             # reset simulation initiation point
             self.adata.layers["simulation_input"] = self.adata.layers["imputed_count"].copy()
             simulation_input = _adata_to_df(self.adata, "simulation_input")
-
             for i in perturb_condition.keys():
-                if not i in simulation_input.columns:
-                    raise ValueError(f"{i} is not in the data")
-                else:
-                    simulation_input[i] = perturb_condition[i]
+                simulation_input[i] = perturb_condition[i]
+
         else:
             simulation_input = _adata_to_df(self.adata, "simulation_input")
 

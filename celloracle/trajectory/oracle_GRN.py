@@ -128,3 +128,21 @@ def _getCoefMatrix(gem, TFdict, alpha=1):
 
 
     return coef_matrix #, li_calculated
+
+def _coef_to_active_gene_list(coef_matrix):
+    """
+    Args:
+        coef_matricx (pd.DataFrame): 2d dataframe (gene x gene). This is a result of GRN calculation.
+
+    Return:
+        list: list of active gene that have at least one target gene.
+    """
+    coef = coef_matrix.copy()
+    
+    active_TF_list = []
+    for i in coef.columns.values:
+        coef.loc[i, i] = 0
+        if np.any(coef.loc[i, :] != 0):
+            active_TF_list.append(i)
+
+    return active_TF_list
