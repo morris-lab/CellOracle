@@ -408,6 +408,7 @@ class Oracle(modified_VelocytoLoom):
 
         # 1. prepare perturb information
         if not perturb_condition is None:
+            self.perturb_condition = perturb_condition.copy()
 
             for i in perturb_condition.keys():
                 if i not in self.high_var_genes:
