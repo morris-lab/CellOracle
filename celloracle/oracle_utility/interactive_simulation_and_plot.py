@@ -27,7 +27,7 @@ DEFAULT_PARAMETERS = {"n_neighbors": 200,
 
 class Oracle_extended(Oracle_data_strage):
 
-    def __init__(self, oracle=None, default_parameters=None):
+    def __init__(self, oracle=None):
         self.oracle = oracle
         self.gene = None
         self.n_neighbors = None

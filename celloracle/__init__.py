@@ -5,7 +5,7 @@ import re
 import warnings
 import logging
 
-from . import utility, network, network_analysis, go_analysis, data, data_conversion, interactive
+from . import utility, network, network_analysis, go_analysis, data, data_conversion, oracle_utility
 from .trajectory.oracle_core import Oracle
 from .network import Net
 from .network_analysis import Links
