@@ -329,10 +329,10 @@ class modified_VelocytoLoom():
             # Not updated yet not to break previous analyses
             # Fix is substituting below `neigh_ixs.shape[1]` with `np.arange(1,neigh_ixs.shape[1]-1)`
             # I change it here since I am doing some breaking changes
-            sampling_ixs = np.stack((np.random.choice(neigh_ixs.shape[1],
+            sampling_ixs = np.stack([np.random.choice(neigh_ixs.shape[1],
                                                       size=(int(sampled_fraction * (n_neighbors + 1)),),
                                                       replace=False,
-                                                      p=p) for i in range(neigh_ixs.shape[0])), 0)
+                                                      p=p) for i in range(neigh_ixs.shape[0])], 0)
             self.sampling_ixs = sampling_ixs
             neigh_ixs = neigh_ixs[np.arange(neigh_ixs.shape[0])[:, None], sampling_ixs]
             nonzero = neigh_ixs.shape[0] * neigh_ixs.shape[1]

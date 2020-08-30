@@ -22,18 +22,23 @@ ATTRS = ["delta_embedding", "delta_embedding_random"]
 
 class Oracle_data_strage():
     def __init__(self):
-        self.names = []
-        self.path = None
+        pass
 
     def create_hdf_path(self, path):
         self.path = path
+        self.names = []
         with h5py.File(self.path, mode='w') as f:
             pass
 
-    def set_existing_hdf_path(self, path):
+    def set_hdf_path(self, path, create_if_not_exist=True):
         self.path = path
-        with h5py.File(self.path, mode='r') as f:
-            self.names = [i[0] for i in list(f.items())]
+        try:
+            with h5py.File(self.path, mode='r') as f:
+                self.names = [i[0] for i in list(f.items())]
+            print(f"hdf file with {len(self.names)} data was found.")
+        except:
+            print("No hdf file found in the path. New hdf5 file was created.")
+            self.create_hdf_path(path=path)
 
     def save_data(self, oracle, name):
         with h5py.File(self.path, mode='r+') as f:

@@ -13,16 +13,23 @@ import pandas as pd
 import numpy as np
 from tqdm.notebook import tqdm
 import matplotlib.pyplot as plt
+import h5py
+
 
 from .utility import Oracle_data_strage
 #import scanpy as sc
 #import seaborn as sns
 #from ipywidgets import interactive
+import h5py
+
 
 DEFAULT_PARAMETERS = {"n_neighbors": 200,
                       "quiver_scale": 30, "quiver_scale_grid": 2.0,
                       "min_mass": 0.015, "n_grid": 40,
                       "gene": "Gata1"}
+
+
+ATTRS = ["delta_embedding", "delta_embedding_random"]
 
 
 class Oracle_extended(Oracle_data_strage):
@@ -32,6 +39,8 @@ class Oracle_extended(Oracle_data_strage):
         self.gene = None
         self.n_neighbors = None
         self.n_grid = None
+        self.names = []
+        self.path = None
 
     def load_calculated_simulation(self, gene=DEFAULT_PARAMETERS["gene"]):
         print("Loading data ..")
@@ -41,7 +50,7 @@ class Oracle_extended(Oracle_data_strage):
         self.gene = gene
         print(f"Data loaded. Perturbed gene: {gene}")
 
-    def interactive_simulation(self, goi, n_neighbors=DEFAULT_PARAMETERS["n_neighbors"]):
+    def interactive_simulation(self, goi, n_neighbors=DEFAULT_PARAMETERS["n_neighbors"], save=True):
         """
 
 
@@ -61,7 +70,7 @@ class Oracle_extended(Oracle_data_strage):
         self.gene = goi
         self.n_neighbors = n_neighbors
 
-        if self.path is not None:
+        if save:
             self.save_data(oracle=self.oracle, name=goi)
             print("Results were saved to hdf5 file.")
 
