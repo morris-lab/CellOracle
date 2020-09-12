@@ -703,22 +703,23 @@ class modified_VelocytoLoom():
             else:
                 UV[mass_filter | (self.flow_norm_magnitude < min_magnitude), :] = 0
 
-        if plot_random:
-            if min_magnitude is None:
-                XY, UV_rndm = np.copy(self.flow_grid), np.copy(self.flow_rndm)
-                if not plot_dots:
-                    UV_rndm = UV_rndm[~mass_filter, :]
-                    XY = XY[~mass_filter, :]
-                else:
-                    UV_rndm[mass_filter, :] = 0
-            else:
-                XY, UV_rndm = np.copy(self.flow_grid), np.copy(self.flow_norm_rndm)
-                if not plot_dots:
-                    UV_rndm = UV_rndm[~(mass_filter | (self.flow_norm_magnitude_rndm < min_magnitude)), :]
-                    XY = XY[~(mass_filter | (self.flow_norm_magnitude_rndm < min_magnitude)), :]
-                else:
-                    UV_rndm[mass_filter | (self.flow_norm_magnitude_rndm < min_magnitude), :] = 0
 
+        if min_magnitude is None:
+            XY, UV_rndm = np.copy(self.flow_grid), np.copy(self.flow_rndm)
+            if not plot_dots:
+                UV_rndm = UV_rndm[~mass_filter, :]
+                XY = XY[~mass_filter, :]
+            else:
+                UV_rndm[mass_filter, :] = 0
+        else:
+            XY, UV_rndm = np.copy(self.flow_grid), np.copy(self.flow_norm_rndm)
+            if not plot_dots:
+                UV_rndm = UV_rndm[~(mass_filter | (self.flow_norm_magnitude_rndm < min_magnitude)), :]
+                XY = XY[~(mass_filter | (self.flow_norm_magnitude_rndm < min_magnitude)), :]
+            else:
+                UV_rndm[mass_filter | (self.flow_norm_magnitude_rndm < min_magnitude), :] = 0
+        
+        if plot_random:
             plt.subplot(122)
             plt.title("Randomized")
             plt.scatter(self.flow_embedding[:, 0], self.flow_embedding[:, 1], **scatter_dict)

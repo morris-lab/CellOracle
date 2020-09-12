@@ -18,40 +18,77 @@ import matplotlib.pyplot as plt
 #import seaborn as sns
 import h5py
 
-ATTRS = ["delta_embedding", "delta_embedding_random"]
+#ATTRS = ["delta_embedding", "delta_embedding_random"]
 
 class Oracle_data_strage():
     def __init__(self):
         pass
 
     def create_hdf_path(self, path):
+        if not path.endswith(".hdf5"):
+            raise ValueError("path should ends with '.hdf5'")
         self.path = path
+        self.path_df = self.path.replace(".hdf5", "_df.hdf5")
+
         self.names = []
         with h5py.File(self.path, mode='w') as f:
             pass
 
     def set_hdf_path(self, path, create_if_not_exist=True):
+        if not path.endswith(".hdf5"):
+            raise ValueError("path should ends with '.hdf5'")
         self.path = path
+        self.path_df = self.path.replace(".hdf5", "_df.hdf5")
+
         try:
             with h5py.File(self.path, mode='r') as f:
-                self.names = [i[0] for i in list(f.items())]
-            print(f"hdf file with {len(self.names)} data was found.")
+                self.names = []
+                f.visit(self.names.append)
+
+            unique_genes = np.unique([i.split("/")[0] for i in self.names])
+            print(f"hdf file with {len(unique_genes)} data was found.")
         except:
             print("No hdf file found in the path. New hdf5 file was created.")
             self.create_hdf_path(path=path)
 
-    def save_data(self, oracle, name):
+    def save_data(self, oracle, place, attributes):
+        """
+        Args:
+            place (str): Directry in hdf5 file.
+            attributes (list of str): attributes to save.
+        """
+
         with h5py.File(self.path, mode='r+') as f:
-            if name in self.names:
-                del f[name]
-            for i, j in enumerate(ATTRS):
-                f[f"{name}/{j}"] = getattr(oracle, j)
-        self.names.append(name)
+            for i, j in enumerate(attributes):
+                name_ = f"{place}/{j}"
+                if name_ in self.names:
+                    del f[name_]
+                f[name_] = getattr(oracle, j)
+                self.names.append(name_)
         self.names = list(set(self.names))
 
-    def load_data(self, oracle, name):
+    def load_data(self, oracle, place, attributes):
         with h5py.File(self.path, mode='r') as f:
-            for i, j in enumerate(ATTRS):
-                val = f[f"{name}/{j}"][...]
+            for i, j in enumerate(attributes):
+                val = f[f"{place}/{j}"][...]
                 setattr(oracle, j, val)
-        oracle.corrcoef_random = "dummy"
+
+    def save_dfs(self, oracle, place, attributes):
+        """
+        Args:
+            place (str): Directry in hdf5 file.
+            attributes (list of str): attributes to save.
+        """
+        for i, j in enumerate(attributes):
+            name_ = f"{place}/{j}"
+            getattr(oracle, j).to_hdf(self.path_df, key=name_)
+
+    def load_dfs(self, oracle, place, attributes):
+        """
+        Args:
+            place (str): Directry in hdf5 file.
+            attributes (list of str): attributes to load.
+        """
+        for i, j in enumerate(attributes):
+            name_ = f"{place}/{j}"
+            setattr(oracle, j, pd.read_hdf(self.path_df, key=name_))

@@ -838,6 +838,42 @@ class Oracle(modified_VelocytoLoom):
 
         return df
 
+    def get_mcmc_cell_transition_table(self, cluster_column_name=None, end=-1):
+
+        """
+        Return cell count in the initial state and final state after mcmc.
+        Cell counts are grouped by the cluster of interest.
+        Result will be returned as 2D matrix.
+        """
+
+        if cluster_column_name is None:
+            cluster_column_name = self.cluster_column_name
+
+        start = 0
+
+        mcmc_transition = self.summarize_mc_results_by_cluster(cluster_column_name, random=False)
+        mcmc_transition = mcmc_transition.iloc[:, [start, end]]
+        mcmc_transition.columns = ["start", "end"]
+        mcmc_transition["count"] = 1
+        mcmc_transition = pd.pivot_table(mcmc_transition, values='count', index=['start'],
+                               columns=['end'], aggfunc=np.sum, fill_value=0)
+
+
+        mcmc_transition_random = self.summarize_mc_results_by_cluster(cluster_column_name, random=True)
+        mcmc_transition_random = mcmc_transition_random.iloc[:, [start, end]]
+        mcmc_transition_random.columns = ["start", "end"]
+        mcmc_transition_random["count"] = 1
+        mcmc_transition_random = pd.pivot_table(mcmc_transition_random, values='count', index=['start'],
+                               columns=['end'], aggfunc=np.sum, fill_value=0)
+
+        # store data
+        mcmc_transition_random.index.name = None
+        mcmc_transition_random.columns.name = None
+        mcmc_transition.index.name = None
+        mcmc_transition.columns.name = None
+
+        self.mcmc_transition = mcmc_transition
+        self.mcmc_transition_random = mcmc_transition_random
 
 
     ###################################################

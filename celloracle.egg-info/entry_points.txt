@@ -1,0 +1,3 @@
+[console_scripts]
+seuratToAnndata = celloracle.data_conversion.process_seurat_object:main
+

@@ -17,6 +17,8 @@ from .utility import (save_as_pickled_object, load_pickled_object,
                       update_adata)
 from .load_hdf5 import load_hdf5
 
+from .pandas_utility_for_jupyternotebook import init_datatable_mode
+
 __all__ = [
            "makelog",
            "save_as_pickled_object",
