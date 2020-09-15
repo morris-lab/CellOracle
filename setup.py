@@ -55,6 +55,7 @@ setup(
                       "fa2",
                       'scanpy>=1.5', #'scanpy==1.4.4',
                       'joblib',
+                      'ipyvuetify',
                       'goatools',
                       'genomepy==0.8.4', #0.5.5
                       'gimmemotifs==0.14.4'], # 0.13.1
