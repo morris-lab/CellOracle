@@ -46,7 +46,7 @@ class Oracle_data_strage():
                 f.visit(self.names.append)
 
             unique_genes = np.unique([i.split("/")[0] for i in self.names])
-            print(f"hdf file with {len(unique_genes)} data was found.")
+            #print(f"hdf file with {len(unique_genes)} data was found.")
         except:
             print("No hdf file found in the path. New hdf5 file was created.")
             self.create_hdf_path(path=path)

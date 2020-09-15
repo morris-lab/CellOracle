@@ -81,6 +81,15 @@ def visualize_developmental_analysis_ver1(self, scale_for_pseudotime=30, scale_f
     ax[1, 3].set_ylabel("inner product score")
 
 
+def plot_scatter_with_anndata(adata, obsm_key, cluster_column_name, ax, args={}):
+
+    embedding = adata.obsm[obsm_key]
+    colors = _adata_to_color_dict(adata=adata, cluster_use=cluster_column_name)
+
+    for cluster, color in colors.items():
+        idx = np.where(adata.obs[cluster_column_name] == cluster)[0]
+        ax.scatter(embedding[idx, 0], embedding[idx, 1], c=color, label=cluster, **args)
+
 
 
 def visualize_developmental_analysis_ver2(self, scale_for_pseudotime=30, scale_for_simulated=30, s=10, s_grid=30, vmin=-1, vmax=1):
@@ -98,18 +107,25 @@ def visualize_developmental_analysis_ver2(self, scale_for_pseudotime=30, scale_f
     cluster = self.oracle_dev.cluster_loaded
     cluster_column_name = self.oracle_dev.cluster_column_name_loaded
 
-    cluster_color = _adata_to_color_dict(self.oracle.adata, cluster_column_name)[cluster]
-
-
     inner_product_stats = self.oracle_dev.inner_product_stats
     inner_product_stats_grouped = self.oracle_dev.inner_product_stats_grouped
 
+
     fig, ax = plt.subplots(2, 4, figsize=[20,10])
 
-    ax[0, 0].scatter(whole_embedding[:, 0], whole_embedding[:, 1], c="lightgray", s=s)
-    ax[0, 0].scatter(original_embedding[:, 0], original_embedding[:, 1], c=cluster_color, s=s)
-    ax[0, 0].set_title(f"Cluster of interest: {cluster}")
-    ax[0, 0].axis("off")
+    if cluster == "whole":
+        plot_scatter_with_anndata(adata=self.oracle.adata, obsm_key="X_umap",
+                                  cluster_column_name=cluster_column_name,
+                                  ax=ax[0, 0], args={"s": s})
+        ax[0, 0].set_title(f"Cluster of interest: all clusters")
+        ax[0, 0].axis("off")
+    else:
+        cluster_color = _adata_to_color_dict(self.oracle.adata, cluster_column_name)[cluster]
+
+        ax[0, 0].scatter(whole_embedding[:, 0], whole_embedding[:, 1], c="lightgray", s=s)
+        ax[0, 0].scatter(original_embedding[:, 0], original_embedding[:, 1], c=cluster_color, s=s)
+        ax[0, 0].set_title(f"Cluster of interest: {cluster}")
+        ax[0, 0].axis("off")
 
     ax[0, 1].scatter(original_embedding[:, 0], original_embedding[:, 1], c=original_value, cmap="rainbow", s=s)
     ax[0, 1].set_title("Pseudotime")
