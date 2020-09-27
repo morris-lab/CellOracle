@@ -29,7 +29,7 @@ import h5py
 
 DEFAULT_PARAMETERS = {"n_neighbors": 200,
                       "quiver_scale": 30, "quiver_scale_grid": 1.5,
-                      "min_mass": 0.015, "n_grid": 40,
+                      "min_mass": 1.0, "n_grid": 40,
                       "min_magnitude": None,
                       "sampled_fraction": 0.5,
                       "n_propagation": 3,
