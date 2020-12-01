@@ -431,7 +431,7 @@ class modified_VelocytoLoom():
 
 
     def calculate_grid_arrows(self, smooth: float=0.5, steps: Tuple=(40, 40),
-                              n_neighbors: int=100, n_jobs: int=4) -> None:
+                              n_neighbors: int=100, n_jobs: int=4, xylim: Tuple=((None, None), (None, None))) -> None:
         """Calculate the velocity using a points on a regular grid and a gaussian kernel
 
         Note: the function should work also for n-dimensional grid
@@ -452,6 +452,8 @@ class modified_VelocytoLoom():
             Higher value correspond to slower execution time
         n_jobs:
             number of processes for parallel computing
+        xymin:
+            ((xmin, xmax), (ymin, ymax))
 
         Returns
         -------
@@ -478,6 +480,12 @@ class modified_VelocytoLoom():
         grs = []
         for dim_i in range(embedding.shape[1]):
             m, M = np.min(embedding[:, dim_i]), np.max(embedding[:, dim_i])
+
+            if xylim[dim_i][0] is not None:
+                m = xylim[dim_i][0]
+            if xylim[dim_i][1] is not None:
+                M = xylim[dim_i][1]
+
             m = m - 0.025 * np.abs(M - m)
             M = M + 0.025 * np.abs(M - m)
             gr = np.linspace(m, M, steps[dim_i])
@@ -718,7 +726,7 @@ class modified_VelocytoLoom():
                 XY = XY[~(mass_filter | (self.flow_norm_magnitude_rndm < min_magnitude)), :]
             else:
                 UV_rndm[mass_filter | (self.flow_norm_magnitude_rndm < min_magnitude), :] = 0
-        
+
         if plot_random:
             plt.subplot(122)
             plt.title("Randomized")

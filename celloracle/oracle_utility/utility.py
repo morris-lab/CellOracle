@@ -63,7 +63,11 @@ class Oracle_data_strage():
                 name_ = f"{place}/{j}"
                 if name_ in self.names:
                     del f[name_]
-                f[name_] = getattr(oracle, j)
+                att = getattr(oracle, j)
+                try:
+                    f[name_] = att
+                except:
+                    f[name_] = att.astype(h5py.string_dtype(encoding='utf-8'))
                 self.names.append(name_)
         self.names = list(set(self.names))
 

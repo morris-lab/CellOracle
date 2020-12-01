@@ -42,12 +42,13 @@ COMMON_ATTRS = ["embedding", "colorandum", "cluster_column_name"]
 
 class Oracle_extended(Oracle_data_strage, Oracle_development_module):
 
-    def __init__(self, oracle, hdf_path, mode):
+    def __init__(self, oracle, hdf_path, mode, obsm_key="X_umap"):
         self.oracle = oracle
         self.gene = None
         self.n_neighbors = None
         self.n_grid = None
         self.names = []
+        self.obsm_key = obsm_key
 
         self.set_hdf_path(path=hdf_path, create_if_not_exist=True)
 
@@ -144,10 +145,10 @@ class Oracle_extended(Oracle_data_strage, Oracle_development_module):
             plt.figure(None,(6,6))
 
         if self.n_grid is None:
-            self.oracle.calculate_grid_arrows(smooth=0.8, steps=(n_grid, n_grid), n_neighbors=300)
+            self.oracle.calculate_grid_arrows(smooth=0.8, steps=(n_grid, n_grid), n_neighbors=200)
         else:
             if n_grid != self.n_grid:
-                self.oracle.calculate_grid_arrows(smooth=0.8, steps=(n_grid, n_grid), n_neighbors=300)
+                self.oracle.calculate_grid_arrows(smooth=0.8, steps=(n_grid, n_grid), n_neighbors=200)
 
         plt.title(f"Perturb simulation: {self.gene}")
 
@@ -211,7 +212,7 @@ class Oracle_extended(Oracle_data_strage, Oracle_development_module):
                        place=f"dev_analysis/{cluster_column_name}/{cluster}/{gene}",
                        attributes=["embedding", "pseudotime", "mass_filter",
                                    "flow_grid", "flow", "flow_norm_rndm",
-                                   "new_pseudotime", "gradient", "inner_product"])
+                                   "new_pseudotime", "gradient", "inner_product", "stage", "stage_grid"])
 
         self.save_dfs(oracle=self.oracle_dev,
                       place=f"inner_product/{cluster_column_name}/{cluster}/{gene}",
@@ -231,7 +232,7 @@ class Oracle_extended(Oracle_data_strage, Oracle_development_module):
                        attributes=["embedding", "pseudotime", "mass_filter",
                                    "flow_grid", "flow", "flow_norm_rndm",
                                    "new_pseudotime", "gradient",
-                                   "inner_product"])
+                                   "inner_product", "stage", "stage_grid"])
 
         self.load_dfs(oracle=self.oracle_dev,
                       place=f"inner_product/{cluster_column_name}/{cluster}/{gene}",

@@ -283,7 +283,7 @@ class Oracle(modified_VelocytoLoom):
         self.adata.var["isin_top1000_var_mean_genes"] = self.adata.var.symbol.isin(self.high_var_genes)
 
 
-    def import_anndata_as_normalized_count(self, adata, cluster_column_name=None, embedding_name=None):
+    def import_anndata_as_normalized_count(self, adata, cluster_column_name=None, embedding_name=None, test_mode=False):
         """
         Load scRNA-seq data. scRNA-seq data should be prepared as an anndata object.
         Preprocessing (cell and gene filtering, dimensional reduction, clustering, etc.) should be done before loading data.
@@ -320,24 +320,26 @@ class Oracle(modified_VelocytoLoom):
         self.adata.layers["normalized_count"] = self.adata.X.copy()
 
         # update color information
-        col_dict = _get_clustercolor_from_anndata(adata=self.adata,
-                                                  cluster_name=self.cluster_column_name,
-                                                  return_as="dict")
-        self.colorandum = np.array([col_dict[i] for i in self.adata.obs[self.cluster_column_name]])
+        if not test_mode:
 
-        # variable gene detection for the QC of simulation
-        """N = adata.shape[1]
-        if N >= 3000:
-            N = 3000
-        n = int(N/3)-1
-        """
-        n = 1000
-        self.score_cv_vs_mean(n, plot=False, max_expr_avg=35)
-        self.high_var_genes = self.cv_mean_selected_genes.copy()
-        self.cv_mean_selected_genes = None
+            col_dict = _get_clustercolor_from_anndata(adata=self.adata,
+                                                      cluster_name=self.cluster_column_name,
+                                                      return_as="dict")
+            self.colorandum = np.array([col_dict[i] for i in self.adata.obs[self.cluster_column_name]])
 
-        self.adata.var["symbol"] = self.adata.var.index.values
-        self.adata.var["isin_top1000_var_mean_genes"] = self.adata.var.symbol.isin(self.high_var_genes)
+            # variable gene detection for the QC of simulation
+            """N = adata.shape[1]
+            if N >= 3000:
+                N = 3000
+            n = int(N/3)-1
+            """
+            n = 1000
+            self.score_cv_vs_mean(n, plot=False, max_expr_avg=35)
+            self.high_var_genes = self.cv_mean_selected_genes.copy()
+            self.cv_mean_selected_genes = None
+
+            self.adata.var["symbol"] = self.adata.var.index.values
+            self.adata.var["isin_top1000_var_mean_genes"] = self.adata.var.symbol.isin(self.high_var_genes)
 
 
 
