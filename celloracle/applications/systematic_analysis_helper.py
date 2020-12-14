@@ -40,6 +40,8 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
     def get_negative_ip_sum_for_all_data(self, verbose=True, return_result=True):
 
+        self.del_attrs()
+
         gene_misc_lists = self.hdf5_info["gene_misc_lists"]
 
         li = []
@@ -49,6 +51,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             loop = gene_misc_lists
 
         for gene, misc in loop:
+
             self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
             df = self.get_sum_of_negative_ips()
             df["gene"] = gene
@@ -60,13 +63,15 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         self.negative_ip_sum = negative_ip_sum
 
         # Clear memory
-        self.del_attrs(exemptions=self._exemptions_when_del_attrs)
+        self.del_attrs()
 
         if return_result:
             return self.negative_ip_sum
 
 
     def get_positive_ip_sum_for_all_data(self, verbose=True, return_result=True):
+
+        self.del_attrs()
 
         gene_misc_lists = self.hdf5_info["gene_misc_lists"]
 
@@ -75,6 +80,8 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             loop = tqdm(gene_misc_lists)
         else:
             loop = gene_misc_lists
+
+        self.del_attrs()
 
         for gene, misc in loop:
             self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
@@ -88,7 +95,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         self.positive_ip_sum = positive_ip_sum
 
         # Clear memory
-        self.del_attrs(exemptions=self._exemptions_when_del_attrs)
+        self.del_attrs()
 
         if return_result:
             return positive_ip_sum
@@ -152,6 +159,8 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
     def _estimate_scale(self, misc):
 
+        self.del_attrs()
+
         reference_scaling_dictionary = {"inner_product": 0.5,
                                         "flow": 5,
                                         "ref_flow": 18}
@@ -162,7 +171,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             scales.append(max_ * reference_scaling_dictionary[i])
 
         # Clear memory
-        self.del_attrs(exemptions=self._exemptions_when_del_attrs)
+        self.del_attrs()
 
         # this is the lis of scales
         return scales
@@ -219,6 +228,8 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         # 1. Define a custom function
         def wrapper(gene, misc, scale_simulation, scale_pseudotime, vm, background):
             # Load data
+            #self.del_attrs()
+
             self.load_hdf5(gene=gene, misc=misc)
             # Visualize
             self.visualize_development_module_layout_0(s=s,
@@ -272,7 +283,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         ips = pd.DataFrame(ips, index=genes)
 
         # Clear memory
-        self.del_attrs(exemptions=self._exemptions_when_del_attrs)
+        self.del_attrs()
 
         return ips
 

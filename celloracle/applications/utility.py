@@ -23,7 +23,7 @@ class Data_strage:
     """
 
     def __init__(self):
-        pass
+        self._exemptions_when_del_attrs = []
 
     def _set_hdf_path(self, path, key, create_if_not_exist=True):
 
@@ -33,6 +33,7 @@ class Data_strage:
         self._path = path
         self._key = key
         self._names = []
+
 
         try:
             with h5py.File(self._path, mode='r') as f:
@@ -137,6 +138,11 @@ class Data_strage:
             att = pd.read_hdf(self._path, key=key)
             setattr(self, j, att)
 
+    def _load_attrs_None(self, place, attributes):
+
+        for i, j in enumerate(attributes):
+            setattr(self, j, None)
+
     def _dump_hdf5(self, place=None):
         """
         Save all attribues in hdf5 file.
@@ -153,6 +159,7 @@ class Data_strage:
         attrs_np = []
         attrs_list = []
         attrs_misc = []
+        attrs_None = []
 
         for key, val in self.__dict__.items():
             if not key.startswith("_"):
@@ -164,14 +171,17 @@ class Data_strage:
                     attrs_list.append(key)
                 elif type(val) in [int, str, float]:
                     attrs_misc.append(key)
+                elif val is None:
+                    attrs_None.append(key)
 
         self.attrs_df = attrs_df
         self.attrs_np = attrs_np
         self.attrs_list = attrs_list
         self.attrs_misc = attrs_misc
+        self.attrs_None = attrs_None
 
         self._save_attrs_df(place, attrs_df)
-        self._save_attrs_list(place, attrs_list + ["attrs_df", "attrs_np", "attrs_list", "attrs_misc"])
+        self._save_attrs_list(place, attrs_list + ["attrs_df", "attrs_np", "attrs_list", "attrs_misc", "attrs_None"])
         self._save_attrs_misc(place, attrs_misc)
         self._save_attrs(place, attrs_np)
 
@@ -193,29 +203,33 @@ class Data_strage:
             place = self._key
 
 
-        self._load_attrs_list(place, ["attrs_df", "attrs_np", "attrs_list", "attrs_misc"])
+        self._load_attrs_list(place, ["attrs_df", "attrs_np", "attrs_list", "attrs_misc", "attrs_None"])
 
         if specify_attributes is not None:
             attrs_np = [i for i in self.attrs_np if i in specify_attributes]
             attrs_misc = [i for i in self.attrs_misc if i in specify_attributes]
             attrs_list = [i for i in self.attrs_list if i in specify_attributes]
             attrs_df = [i for i in self.attrs_df if i in specify_attributes]
+            attrs_None = [i for i in self.attrs_None if i in specify_attributes]
         else:
             attrs_np = self.attrs_np
             attrs_misc = self.attrs_misc
             attrs_list = self.attrs_list
             attrs_df = self.attrs_df
+            attrs_None = self.attrs_None
 
         self._load_attrs(place, attrs_np)
         self._load_attrs_misc(place, attrs_misc)
         self._load_attrs_list(place, attrs_list)
         self._load_attrs_df(place, attrs_df)
+        self._load_attrs_None(place, attrs_None)
 
     def _del_attrs(self, exemptions=[]):
         """
         Delete attributes in the object.
         """
 
+        del_exemptions = self._exemptions_when_del_attrs + exemptions
         for key, val in self.__dict__.items():
-            if (not key.startswith("_")) & (not key in exemptions):
+            if (not key.startswith("_")) & (not key in del_exemptions):
                 setattr(self, key, None)
