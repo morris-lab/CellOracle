@@ -3,7 +3,8 @@
 import logging
 import warnings
 from copy import deepcopy
-
+import math
+import os
 import matplotlib.pyplot as plt
 import numpy as np
 from typing import Dict, Any, List, Union, Tuple
@@ -25,7 +26,7 @@ from .oracle_utility import (_adata_to_matrix, _adata_to_df,
 from .oracle_GRN import _do_simulation, _getCoefMatrix, _coef_to_active_gene_list
 from .modified_VelocytoLoom_class import modified_VelocytoLoom
 from ..network_analysis.network_construction import get_links
-
+from ..visualizations.oracle_object_visualization import Oracle_visualization
 
 def update_adata(adata):
     # Update Anndata
@@ -49,7 +50,15 @@ def load_oracle(file_path):
 
     Args:
         file_path (str): File path to the hdf5 file.
+
+
     """
+
+    if os.path.exists(file_path):
+        pass
+    else:
+        raise ValueError("File not found. Please check if the file_path is correct.")
+
     try:
         obj = load_hdf5(filename=file_path, obj_class=Oracle, ignore_attrs_if_err=["knn", "knn_smoothing_w", "pca"])
 
@@ -64,7 +73,7 @@ def load_oracle(file_path):
     return obj
 
 
-class Oracle(modified_VelocytoLoom):
+class Oracle(modified_VelocytoLoom, Oracle_visualization):
     """
     Oracle is the main class in CellOracle. Oracle object imports scRNA-seq data (anndata) and TF information to infer cluster-specific GRNs. It can predict the future gene expression patterns and cell state transitions in response to  the perturbation of TFs. Please see the CellOracle paper for details.
     The code of the Oracle class was made of the three components below.
@@ -247,6 +256,7 @@ class Oracle(modified_VelocytoLoom):
 
         self.cluster_column_name = cluster_column_name
         self.embedding_name = embedding_name
+        self.embedding = self.adata.obsm[embedding_name].copy()
 
         #if hasattr(self.adata, "raw"):
         #    self.adata.X = self.adata.raw.X.copy()
@@ -312,6 +322,7 @@ class Oracle(modified_VelocytoLoom):
 
         self.cluster_column_name = cluster_column_name
         self.embedding_name = embedding_name
+        self.embedding = self.adata.obsm[embedding_name].copy()
 
         # store raw count data
         #self.adata.layers["raw_count"] = adata.X.copy()
@@ -537,9 +548,11 @@ class Oracle(modified_VelocytoLoom):
                 # 3rd QC
                 if i not in self.high_var_genes:
                     if ignore_warning:
-                        print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
+                        pass
+                        #print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
                     else:
-                        raise ValueError(f"Variability score of Gene {i} is too low. Cannot perform simulation.")
+                        print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
+                        #raise ValueError(f"Variability score of Gene {i} is too low. Cannot perform simulation.")
 
 
             # reset simulation initiation point
@@ -589,6 +602,61 @@ class Oracle(modified_VelocytoLoom):
         #  difference between simulated values and original values
         self.adata.layers["delta_X"] = self.adata.layers["simulated_count"] - self.adata.layers["imputed_count"]
 
+
+    def calculate_p_mass(self, smooth=0.8, n_grid=40, n_neighbors=200, n_jobs=-1):
+
+        self.calculate_grid_arrows(smooth=0.8, steps=(n_grid, n_grid), n_neighbors=n_neighbors, n_jobs=-1)
+
+
+    def suggest_mass_thresholds(self, n_suggestion=12, s=1, n_col=4):
+
+        min_ = self.total_p_mass.min()
+        max_ = self.total_p_mass.max()
+        suggestions = np.linspace(min_, max_/2, n_suggestion)
+
+        n_rows = math.ceil(n_suggestion / n_col)
+
+        fig, ax = plt.subplots(n_rows, n_col, figsize=[5*n_col, 5*n_rows])
+        if n_rows == 1:
+            ax = ax.reshape(1, -1)
+
+        row = 0
+        col = 0
+        for i in range(n_suggestion):
+
+            ax_ = ax[row, col]
+
+            col += 1
+            if col == n_col:
+                col = 0
+                row += 1
+
+            idx = self.total_p_mass > suggestions[i]
+
+                #ax_.scatter(gridpoints_coordinates[mass_filter, 0], gridpoints_coordinates[mass_filter, 1], s=0)
+            ax_.scatter(self.embedding[:, 0], self.embedding[:, 1], c="lightgray", s=s)
+            ax_.scatter(self.flow_grid[idx, 0],
+                       self.flow_grid[idx, 1],
+                       c="black", s=s)
+            ax_.set_title(f"min_mass: {suggestions[i]: .2g}")
+            ax_.axis("off")
+
+
+    def calculate_mass_filter(self, min_mass=0.01, plot=False):
+
+        self.min_mass = min_mass
+        self.mass_filter = (self.total_p_mass < min_mass)
+
+        if plot:
+            fig, ax = plt.subplots(figsize=[5,5])
+
+            #ax_.scatter(gridpoints_coordinates[mass_filter, 0], gridpoints_coordinates[mass_filter, 1], s=0)
+            ax.scatter(self.embedding[:, 0], self.embedding[:, 1], c="lightgray", s=10)
+            ax.scatter(self.flow_grid[~self.mass_filter, 0],
+                       self.flow_grid[~self.mass_filter, 1],
+                       c="black", s=0.5)
+            ax.set_title("Grid points selected")
+            ax.axis("off")
 
     ########################################
     ### 4. Methods for Markov simulation ###

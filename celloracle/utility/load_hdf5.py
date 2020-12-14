@@ -6,6 +6,7 @@ from ..network_analysis import load_links
 from ..network import load_net
 from ..trajectory.oracle_core import load_oracle
 from ..motif_analysis.tfinfo_core import load_TFinfo
+from ..applications.differentiation_flow import load_gradient
 
 def load_hdf5(file_path, object_class_name=None):
     """
@@ -35,6 +36,9 @@ def load_hdf5(file_path, object_class_name=None):
 
     elif object_class_name in ["Tfinfo", "tfinfo"]:
         obj = load_TFinfo(file_path=file_path)
+
+    elif object_class_name == "Gradient":
+        obj = load_gradient(file_path=file_path)
 
     else:
         print(f"object_class_name: {object_class_name} was not in the loading option")

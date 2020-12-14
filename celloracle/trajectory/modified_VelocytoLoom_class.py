@@ -354,12 +354,14 @@ class modified_VelocytoLoom():
 
             if np.any(np.isnan(self.corrcoef)):
                 self.corrcoef[np.isnan(self.corrcoef)] = 1
-                logging.warning("Nans encountered in corrcoef and corrected to 1s. If not identical cells were present it is probably a small isolated cluster converging after imputation.")
+                logging.debug("Nans encountered in corrcoef and corrected to 1s. If not identical cells were present it is probably a small isolated cluster converging after imputation.")
+                #logging.warning("Nans encountered in corrcoef and corrected to 1s. If not identical cells were present it is probably a small isolated cluster converging after imputation.")
             if calculate_randomized:
                 np.fill_diagonal(self.corrcoef_random, 0)
                 if np.any(np.isnan(self.corrcoef_random)):
                     self.corrcoef_random[np.isnan(self.corrcoef_random)] = 1
-                    logging.warning("Nans encountered in corrcoef_random and corrected to 1s. If not identical cells were present it is probably a small isolated cluster converging after imputation.")
+                    #logging.warning("Nans encountered in corrcoef and corrected to 1s. If not identical cells were present it is probably a small isolated cluster converging after imputation.")
+                    logging.debug("Nans encountered in corrcoef_random and corrected to 1s. If not identical cells were present it is probably a small isolated cluster converging after imputation.")
             logging.debug(f"Done Correlation Calculation")
         else:
             self.corr_calc = "full"

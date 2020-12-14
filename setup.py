@@ -14,7 +14,7 @@ with open('LICENSE') as f:
 """
 setup(
     name='celloracle',
-    version='0.5.2',
+    version='0.6.0',
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
@@ -70,7 +70,7 @@ setup(
                                  "network_analysis/rscripts_for_network_analysis/*.R"]},
     packages=["celloracle", "celloracle.data_conversion", "celloracle.network", "celloracle.trajectory",
               "celloracle.data", "celloracle.go_analysis", "celloracle.oracle_utility",
-              "celloracle.motif_analysis", "celloracle.network_analysis", "celloracle.utility"],
+              "celloracle.motif_analysis", "celloracle.network_analysis", "celloracle.utility", "celloracle.applications", "celloracle.visualizations"],
     entry_points={'console_scripts':['seuratToAnndata = celloracle.data_conversion.process_seurat_object:main']}
 
 )
