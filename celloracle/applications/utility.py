@@ -93,7 +93,13 @@ class Data_strage:
         with h5py.File(self._path, mode='r') as f:
             for i, j in enumerate(attributes):
                 val = f[f"{place}/{j}"][...]
-                setattr(self, j, list(val))
+                if len(val) > 0:
+                    if isinstance(val[0], bytes):
+                        setattr(self, j, [i.decode() for i in val])
+                    else:
+                        setattr(self, j, list(val))
+                else:
+                    setattr(self, j, [])
 
     def _save_attrs_misc(self, place, attributes):
         with h5py.File(self._path, mode='r+') as f:

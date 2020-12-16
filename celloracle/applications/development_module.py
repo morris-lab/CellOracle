@@ -42,6 +42,8 @@ from ..visualizations.development_module_visualization import (\
 class Oracle_development_module(Data_strage):
 
     def __init__(self, oracle_object=None, gradient_object=None, name=None):
+        super().__init__()
+        self._exemptions_when_del_attrs = []
 
         self.name = name
         self.cell_idx_use = None

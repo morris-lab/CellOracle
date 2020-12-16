@@ -14,7 +14,7 @@ with open('LICENSE') as f:
 """
 setup(
     name='celloracle',
-    version='0.6.1',
+    version='0.6.2',
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
@@ -43,7 +43,7 @@ setup(
                       'matplotlib',#'matplotlib==3.0.*',
                       'seaborn',
                       'scikit-learn',
-                      'h5py',
+                      'h5py>=3.1.0',
                       'pandas>=1.0.3', #'pandas==0.25.*',
                       'velocyto>=0.17',
                       'umap-learn', #'umap-learn==0.3.10',
