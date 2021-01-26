@@ -5,7 +5,7 @@ numba
 matplotlib
 seaborn
 scikit-learn
-h5py
+h5py>=3.1.0
 pandas>=1.0.3
 velocyto>=0.17
 umap-learn
@@ -15,8 +15,10 @@ tqdm>=4.45
 python-igraph
 louvain
 fa2
+anndata>=0.7.5
 scanpy>=1.5
 joblib
+ipyvuetify
 goatools
 genomepy==0.8.4
 gimmemotifs==0.14.4

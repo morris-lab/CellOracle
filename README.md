@@ -19,6 +19,16 @@ If you have question, error, bug, or problem, please use [Github issue page](htt
 
 ### Changelog
 
+- `0.6.3 <2021-1-26>`
+  - Big fix to solve [this issue](https://github.com/morris-lab/CellOracle/issues/42).
+  - Bug fix. Anndata>=0.7.5 is required.
+
+- `0.6.2 <2020-12-16>`
+  - Big fix. h5py>=3.1.0 is required.  
+
+- `0.6.0 <2020-12-14>`
+  - Add new modules: dev_modules and analysis_helper.
+
 - `0.5.1 <2020-08-4>`
   - Add new promoter-TSS reference data for several reference genomes; (1)"Xenopus": ["xenTro2", "xenTro3"], (2)"Rat": ["rn4", "rn5", "rn6"], (3)"Drosophila": ["dm3", "dm6"], (4)"C.elegans": ["ce6", "ce10"], (5)"Arabidopsis": ["tair10"].
   - Add new motif data for several species: "Xenopus", "Rat", "Drosophila", "C.elegans" and "Arabidopsis".

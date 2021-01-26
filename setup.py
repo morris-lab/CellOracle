@@ -14,7 +14,7 @@ with open('LICENSE') as f:
 """
 setup(
     name='celloracle',
-    version='0.6.2',
+    version='0.6.3',
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
@@ -53,7 +53,8 @@ setup(
                       "python-igraph",
                       "louvain", #"louvain==0.6.1",
                       "fa2",
-                      'scanpy>=1.5', #'scanpy==1.4.4',
+                      "anndata>=0.7.5",
+                      'scanpy>=1.6', #'scanpy==1.4.4',
                       'joblib',
                       'ipyvuetify',
                       'goatools',

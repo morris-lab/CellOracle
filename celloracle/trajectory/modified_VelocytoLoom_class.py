@@ -19,7 +19,10 @@ from velocyto.diffusion import Diffusion
 from velocyto.estimation import (colDeltaCor, colDeltaCorLog10,
                                  colDeltaCorLog10partial, colDeltaCorpartial,
                                  colDeltaCorSqrt, colDeltaCorSqrtpartial)
-from velocyto.neighbors import (BalancedKNN, connectivity_to_weights,
+#from velocyto.neighbors import (BalancedKNN, connectivity_to_weights,
+#                                convolve_by_sparse_weights,
+#                                knn_distance_matrix)
+from .neighbors import (BalancedKNN, connectivity_to_weights,
                                 convolve_by_sparse_weights,
                                 knn_distance_matrix)
 from velocyto.serialization import dump_hdf5, load_hdf5

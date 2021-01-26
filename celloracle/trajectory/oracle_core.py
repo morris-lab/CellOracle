@@ -101,6 +101,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         self.ixs_mcmc = None
         self.cluster_specific_TFdict = None
         self.cv_mean_selected_genes = None
+        self.TFdict = {}
 
     ############################
     ### 0. utility functions ###
