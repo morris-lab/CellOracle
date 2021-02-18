@@ -10,7 +10,7 @@ from .trajectory.oracle_core import Oracle
 from .network import Net
 from .network_analysis import Links
 from .utility.load_hdf5 import load_hdf5
-
+from .version import __version__
 
 #from . import motif_analysis
 
@@ -25,7 +25,6 @@ warnings.filterwarnings('always', category=DeprecationWarning,
                         module=r'^{0}\.'.format(re.escape(__name__)))
 
 
-__version__ = '0.6.3'
 
 __all__ = ["utility", "motif_analysis", "network", "network_analysis",
            "go_analysis", "data", "data_conversion",

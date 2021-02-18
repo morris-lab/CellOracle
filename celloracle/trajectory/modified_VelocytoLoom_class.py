@@ -256,6 +256,8 @@ class modified_VelocytoLoom():
         Xx = convolve_by_sparse_weights(X, self.knn_smoothing_w)
         self.adata.layers["imputed_count"] = Xx.transpose().copy()
 
+        self.k_knn_imputation = k
+
 
     def estimate_transition_prob(self,
                                  n_neighbors: int=None,

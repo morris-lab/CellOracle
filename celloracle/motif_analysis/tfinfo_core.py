@@ -248,7 +248,7 @@ class TFinfo():
 
 
 
-    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True, motifs=None, TF_evidence_level="direct_and_indirect"):
+    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True, motifs=None, TF_evidence_level="direct_and_indirect", TF_formatting="auto"):
         """
         Scan DNA sequences searching for TF binding motifs.
 
@@ -342,7 +342,10 @@ class TFinfo():
                 raise ValueError(f"motifs should be a list of Motif object in gimmemotifs.")
 
             self.motif_db_name = "custom_motifs"
-            self.TF_formatting = False
+            if TF_formatting == "auto":
+                self.TF_formatting = False
+            else:
+                self.TF_formatting = TF_formatting
 
         self.motifs = motifs
 

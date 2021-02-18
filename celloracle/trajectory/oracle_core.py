@@ -27,6 +27,7 @@ from .oracle_GRN import _do_simulation, _getCoefMatrix, _coef_to_active_gene_lis
 from .modified_VelocytoLoom_class import modified_VelocytoLoom
 from ..network_analysis.network_construction import get_links
 from ..visualizations.oracle_object_visualization import Oracle_visualization
+from ..version import __version__
 
 def update_adata(adata):
     # Update Anndata
@@ -93,9 +94,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
     """
 
     def __init__(self):
-
+        self.celloracle_version_used = __version__
         self.adata = None
-
         self.cluster_column_name = None
         self.embedding_name = None
         self.ixs_mcmc = None
@@ -129,6 +129,67 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                   data_compression=compression_opts,  chunks=(2048, 2048),
                   noarray_compression=compression_opts, pickle_protocol=4)
 
+
+    def __generate_meta_data(self):
+        info = {}
+        if hasattr(self, "celloracle_version_used"):
+            info["celloracle version used for instantiation"] = self.celloracle_version_used
+        else:
+            info["celloracle version used for instantiation"] = "NA"
+
+        if self.adata is not None:
+            info["n_cells"] = self.adata.shape[0]
+            info["n_genes"] = self.adata.shape[1]
+            info["status - Gene expression matrix"] = "Ready"
+        else:
+            info["n_cells"] = "NA"
+            info["n_genes"] = "NA"
+            info["status - Gene expression matrix"] = "Not imported"
+
+        info["cluster_name"] = self.cluster_column_name
+        info["dimensional_reduction_name"] = self.embedding_name
+
+        if len(self.TFdict.keys()) > 0:
+            info["status - BaseGRN"] = "Ready"
+        else:
+            info["status - BaseGRN"] = "Not imported"
+
+        if hasattr(self, "pcs"):
+            info["status - PCA calculation"] = "Done"
+        else:
+            info["status - PCA calculation"] = "Not finished"
+
+        if hasattr(self, "knn"):
+            info["status - knn_imputation"] = "Done"
+        else:
+            info["status - knn_imputation"] = "Not finished"
+
+        if hasattr(self, "k_knn_imputation"):
+            info["k_for_knn_imputation"] =  self.k_knn_imputation
+        else:
+            info["k_for_knn_imputation"] =  "NA"
+
+        if hasattr(self, "coef_matrix_per_cluster") | hasattr(self, "coef_matrix"):
+            info["status - GRN_calculated_for_simulation"] = "Done"
+        else:
+            info["status - GRN_calculated_for_simulation"] = "Not finished"
+        return info
+
+    def __repr__(self):
+        info = self.__generate_meta_data()
+
+        message = "Oracle object\n\n"
+        message += "Meta data\n"
+        message_status = "Status\n"
+        for key, value in info.items():
+            if key.startswith("status"):
+                message_status += "    " + key.replace("status - ", "") + ": " + str(value) + "\n"
+            else:
+                message += "    " + key + ": " + str(value) + "\n"
+
+        message += message_status
+
+        return message
 
     ###################################
     ### 1. Methods for loading data ###
@@ -221,6 +282,14 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             links_object (Links): Please see the explanation of Links class.
 
         """
+        # Check cluster unit in oracle object is same as cluster unit in links_object
+        clusters_in_oracle_object = sorted(self.adata.obs[self.cluster_column_name].unique())
+        clusters_in_link_object = sorted(links_object.cluster)
+        if (self.cluster_column_name == links_object.name) & (clusters_in_link_object == clusters_in_oracle_object):
+            pass
+        else:
+            raise ValueError("Clustering unit does not match. Please prepare links object that was made with same cluster data.")
+
         self.cluster_specific_TFdict = {}
 
         for i in links_object.filtered_links:
@@ -354,7 +423,44 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             self.adata.var["isin_top1000_var_mean_genes"] = self.adata.var.symbol.isin(self.high_var_genes)
 
 
+    def change_cluster_unit(self, new_cluster_column_name):
+        """
+        Change clustering unit.
+        If you change cluster, previous GRN data and simulation data will be delated.
+        Please re-calculate GRNs.
+        """
 
+        # 1. Check new cluster information exists in anndata.
+        if new_cluster_column_name in self.adata.obs.columns:
+            if not f"{new_cluster_column_name}_colors" in self.adata.uns.keys():
+                sc.pl.scatter(self.adata,
+                              color=new_cluster_column_name,
+                              basis=self.embedding_name[2:])
+        else:
+            raise ValueError(f"{new_cluster_column_name} was not found in anndata")
+
+
+        # 2. Reset previous GRN data and simoulation data
+        attributes_remained = ['TFdict', 'adata',  'cv_mean_selected_genes',
+                               'embedding_name', 'high_var_genes', 'knn',
+                               'knn_smoothing_w', 'pca', 'cv_mean_score',
+                               'cv_mean_selected', 'pcs', #'GRN_unit',
+                               'active_regulatory_genes']
+
+        attributes = list(self.__dict__.keys())
+        for i in attributes:
+            if i not in attributes_remained:
+                delattr(self, i)
+
+        # 4. Update cluster info
+        self.cluster_column_name = new_cluster_column_name
+
+        # 3. Update color information
+        col_dict = _get_clustercolor_from_anndata(adata=self.adata,
+                                                  cluster_name=new_cluster_column_name,
+                                                  return_as="dict")
+        self.colorandum = np.array([col_dict[i] for i in self.adata.obs[new_cluster_column_name]])
+    
     ####################################
     ### 2. Methods for GRN inference ###
     ####################################

@@ -12,9 +12,11 @@ with open('LICENSE') as f:
 """with open('requirements.txt') as f:
     requirements = f.read()
 """
+
+from celloracle import __version__
 setup(
     name='celloracle',
-    version='0.6.3',
+    version=__version__,
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
