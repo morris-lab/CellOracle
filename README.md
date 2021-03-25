@@ -19,9 +19,12 @@ If you have question, error, bug, or problem, please use [Github issue page](htt
 
 ### Changelog
 
+- `0.6.5 <2021-3-25>`
+  - Minor bug fix in the installation process.
+
 - `0.6.4 <2021-2-18>`
   - Minor change for oracle object. Metadata will be shown if you print oracle object.
-  - Add new function to oracle class. 
+  - Add new function to oracle class.
 
 - `0.6.3 <2021-1-26>`
   - Big fix to solve [this issue](https://github.com/morris-lab/CellOracle/issues/42).
