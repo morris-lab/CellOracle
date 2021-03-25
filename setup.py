@@ -60,6 +60,7 @@ setup(
                       'joblib',
                       'ipyvuetify',
                       'goatools',
+                      'ipyvuetify',
                       'genomepy==0.8.4', #0.5.5
                       'gimmemotifs==0.14.4'], # 0.13.1
     author='Kenji Kamimoto at Samantha Morris Lab',

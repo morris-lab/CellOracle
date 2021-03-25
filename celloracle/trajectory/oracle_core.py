@@ -160,9 +160,9 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             info["status - PCA calculation"] = "Not finished"
 
         if hasattr(self, "knn"):
-            info["status - knn_imputation"] = "Done"
+            info["status - Knn imputation"] = "Done"
         else:
-            info["status - knn_imputation"] = "Not finished"
+            info["status - Knn imputation"] = "Not finished"
 
         if hasattr(self, "k_knn_imputation"):
             info["k_for_knn_imputation"] =  self.k_knn_imputation
@@ -170,9 +170,9 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             info["k_for_knn_imputation"] =  "NA"
 
         if hasattr(self, "coef_matrix_per_cluster") | hasattr(self, "coef_matrix"):
-            info["status - GRN_calculated_for_simulation"] = "Done"
+            info["status - GRN calculation for simulation"] = "Done"
         else:
-            info["status - GRN_calculated_for_simulation"] = "Not finished"
+            info["status - GRN calculation for simulation"] = "Not finished"
         return info
 
     def __repr__(self):
@@ -460,7 +460,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                                                   cluster_name=new_cluster_column_name,
                                                   return_as="dict")
         self.colorandum = np.array([col_dict[i] for i in self.adata.obs[new_cluster_column_name]])
-    
+
     ####################################
     ### 2. Methods for GRN inference ###
     ####################################

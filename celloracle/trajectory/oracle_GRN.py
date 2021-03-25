@@ -24,7 +24,7 @@ def _do_simulation(coef_matrix, simulation_input, gem, n_propagation):
     Silulate signal propagation in GRNs.
 
     Args:
-        coef_matrix (numpy array): 2d matrix that store GRN weights
+        coef_matrix (pandas.DataFrame): 2d matrix that store GRN weights
 
         simulation_input (pandas.DataFrame): input for simulation
 
@@ -138,7 +138,7 @@ def _coef_to_active_gene_list(coef_matrix):
         list: list of active gene that have at least one target gene.
     """
     coef = coef_matrix.copy()
-    
+
     active_TF_list = []
     for i in coef.columns.values:
         coef.loc[i, i] = 0
