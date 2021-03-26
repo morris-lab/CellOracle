@@ -92,7 +92,7 @@ Please install other python libraries below with the following commands.
 
 ::
 
-    conda install goatools pyarrow tqdm joblib jupyter
+    conda install goatools pyarrow tqdm joblib jupyter gimmemotifs==0.14.4 genomepy==0.8.4
 
 
 5. install celloracle from github
