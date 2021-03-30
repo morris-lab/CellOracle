@@ -58,7 +58,6 @@ setup(
                       "anndata>=0.7.5",
                       'scanpy>=1.6', #'scanpy==1.4.4',
                       'joblib',
-                      'ipyvuetify',
                       'goatools',
                       'ipyvuetify',
                       'genomepy==0.8.4', #0.5.5
