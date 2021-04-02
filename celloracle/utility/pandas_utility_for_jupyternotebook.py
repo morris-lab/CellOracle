@@ -42,7 +42,7 @@ def init_datatable_mode(pd):
 
     pd.DataFrame._repr_javascript_ = _repr_datatable_
 
-
+"""
 import ipyvuetify as v
 from traitlets import (Unicode, List)
 
@@ -80,3 +80,4 @@ class voila_df(v.VuetifyTemplate):
         self.template = '<v-data-table :headers="headers" :items="items" class="elevation-1">' \
             + v_slot \
             + '</v-data-table>'
+"""
