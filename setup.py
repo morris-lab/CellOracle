@@ -2,6 +2,8 @@
 
 from setuptools import setup, find_packages
 
+with open("requrements.txt") as f:
+    required = f.read().splitlines()
 
 with open('README.md') as f:
     readme = f.read()
@@ -38,30 +40,7 @@ setup(
                 'Programming Language :: Python :: 3.6',
                 'Programming Language :: Python :: 3.7'
             ],
-    install_requires=['numpy',
-                      'scipy',
-                      'cython',
-                      'numba',
-                      'matplotlib',#'matplotlib==3.0.*',
-                      'seaborn',
-                      'scikit-learn',
-                      'h5py>=3.1.0',
-                      'pandas>=1.0.3', #'pandas==0.25.*',
-                      'velocyto>=0.17',
-                      'umap-learn', #'umap-learn==0.3.10',
-                      'pyarrow>=0.17',
-                      'jupyter',
-                      'tqdm>=4.45',
-                      "python-igraph",
-                      "louvain", #"louvain==0.6.1",
-                      "fa2",
-                      "anndata>=0.7.5",
-                      'scanpy>=1.6', #'scanpy==1.4.4',
-                      'joblib',
-                      'goatools',
-                      #'ipyvuetify',
-                      'genomepy==0.8.4', #0.5.5
-                      'gimmemotifs==0.14.4'], # 0.13.1
+    install_requires=required,
     author='Kenji Kamimoto at Samantha Morris Lab',
     author_email='kamimoto@wustl.edu',
     url='https://github.com/morris-lab/CellOracle',
