@@ -15,10 +15,9 @@ with open('LICENSE') as f:
     requirements = f.read()
 """
 
-from celloracle import __version__
 setup(
     name='celloracle',
-    version=__version__,
+    version="0.6.7",
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',

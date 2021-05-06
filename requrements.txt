@@ -1,7 +1,7 @@
 numpy
 scipy
 cython
-numba
+numba>=0.49.1
 matplotlib
 seaborn
 scikit-learn
