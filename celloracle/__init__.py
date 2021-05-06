@@ -11,6 +11,7 @@ from .network import Net
 from .network_analysis import Links
 from .utility.load_hdf5 import load_hdf5
 from .version import __version__
+from .utility import check_python_requirements
 
 #from . import motif_analysis
 
@@ -32,3 +33,5 @@ __all__ = ["utility", "motif_analysis", "network", "network_analysis",
            "Links",
            "Net",
            "load_hdf5"]
+
+check_python_requirements(return_detail=False, print_warning=True)
