@@ -52,10 +52,10 @@ def seurat_object_to_anndata(file_path_seurat_object, delete_tmp_file=True):
         print("If the seurat object was made by integrating multiple files, please be careful about its interpretation.")
         print("Go to CellOracle web documentation for detailed information.")
 
-    resutls = {}
+    results = {}
     for assay_name in assay_names:
         results[assay_name] = make_anndata_from_files(assay_name=assay_name,
-                                                      folder_path=folder)
+                                                      folder=folder)
     # Delete temporary files
     if delete_tmp_file:
         shutil.rmtree(folder)
@@ -63,7 +63,7 @@ def seurat_object_to_anndata(file_path_seurat_object, delete_tmp_file=True):
     return results
 
 
-def make_anndata_from_files(assay_name, folder_path="./tmp"):
+def make_anndata_from_files(assay_name, folder="./tmp"):
 
     # Load gene expression matrix
     mm = sc.read_mtx(folder + f"/assay_{assay_name}_data.mtx")
@@ -130,10 +130,10 @@ def main():
     # save
     print("saving AnnData as h5ad file ...")
     if len(adata_dictionary.keys()) >= 2:
-        for assay_name, adata in adata_dictionary.items:
+        for assay_name, adata in adata_dictionary.items():
             adata.write(filename=output_file_name.replace(".h5ad", f"_{assay_name}.h5ad"))
     else:
-        for assay_name, adata in adata_dictionary.items:
+        for assay_name, adata in adata_dictionary.items():
             adata.write(filename=output_file_name)
     print("finished")
 if __name__ == "__main__":
