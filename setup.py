@@ -17,7 +17,7 @@ with open('LICENSE') as f:
 
 setup(
     name='celloracle',
-    version="0.6.7",
+    version="0.6.8",
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
