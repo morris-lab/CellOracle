@@ -7,9 +7,7 @@ args <- commandArgs(trailingOnly = T)
 file_path_seurat_object = args[1]
 
 # Extract cluster color information
-get_cluster_colors <- function(seurat_object){
-
-  clusters <- factor(seurat_object@active.ident)
+get_cluster_colors <- function(clusters){
 
   gg_color_hue <- function(n) {
     hues = seq(15, 375, length = n + 1)
@@ -58,10 +56,6 @@ export_SeuratObjectV3 <- function(SO){
   meta$active_ident <- factor(SO@active.ident)
   write.csv(meta, file = "tmp/meta_data.csv")
 
-  # Cells & Genes
-  cells <- colnames(SO@assays$RNA@counts)
-  genes <- rownames(SO@assays$RNA@counts)
-
   # write data type of meta.data
   meta_data_dtype <- data.frame(row.names = colnames(meta))
   for (i in colnames(meta)){
@@ -70,7 +64,8 @@ export_SeuratObjectV3 <- function(SO){
   write.csv(meta_data_dtype, "tmp/meta_data_dtype.csv")
 
   # Color info
-  colors_hex_df <- get_cluster_colors(seurat_object = SO)
+  clusters <- factor(SO@active.ident)
+  colors_hex_df <- get_cluster_colors(clusters = clusters)
   write.csv(colors_hex_df, "tmp/cluster_color_hex.csv")
 
   # Variable gene list
@@ -88,12 +83,12 @@ export_SeuratObjectV2 <- function(SO){
   dir.create("tmp")
 
   # Save gene expression matrix
-  n <- Matrix::writeMM(obj = SO@data,
+  n <- Matrix::writeMM(obj = t(SO@data),
                        file = paste0("tmp/assay_RNA_data.mtx"))
-  n <- Matrix::writeMM(obj = SO@counts,
+  n <- Matrix::writeMM(obj = t(SO@raw.data[rownames(SO@data), colnames(SO@data)]),
                        file = paste0("tmp/assay_RNA_rawdata.mtx"))
-  write.csv(colnames(SO@counts), file = paste0("tmp/assay_RNA_cells.csv"))
-  write.csv(rownames(SO@counts), file = paste0("tmp/assay_RNA_genes.csv"))
+  write.csv(colnames(SO@data), file = paste0("tmp/assay_RNA_cells.csv"))
+  write.csv(rownames(SO@data), file = paste0("tmp/assay_RNA_genes.csv"))
 
 
   for (reduction_name in names(SO@dr)){
@@ -106,10 +101,6 @@ export_SeuratObjectV2 <- function(SO){
   meta$active_ident <- factor(SO@ident)
   write.csv(meta, file = "tmp/meta_data.csv")
 
-  # Cells & Genes
-  cells <- colnames(SO@assays$RNA@counts)
-  genes <- rownames(SO@assays$RNA@counts)
-
   # write data type of meta.data
   meta_data_dtype <- data.frame(row.names = colnames(meta))
   for (i in colnames(meta)){
@@ -118,7 +109,8 @@ export_SeuratObjectV2 <- function(SO){
   write.csv(meta_data_dtype, "tmp/meta_data_dtype.csv")
 
   # Color info
-  colors_hex_df <- get_cluster_colors(seurat_object = SO)
+  clusters <- factor(SO@ident)
+  colors_hex_df <- get_cluster_colors(clusters = clusters)
   write.csv(colors_hex_df, "tmp/cluster_color_hex.csv")
 
   # Variable gene list

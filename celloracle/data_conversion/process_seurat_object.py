@@ -33,7 +33,7 @@ def seurat_object_to_anndata(file_path_seurat_object, delete_tmp_file=True):
         raise ValueError("Seurat object should be saved as .Rds file")
 
     # run R script to extract information and make mtx files
-    os.makedirs("tmp", exist_ok=True)
+    #os.makedirs("tmp", exist_ok=True)
     command = f"Rscript {rscript_folder}/seurat_to_mtx.R {file_path_seurat_object}"
 
 
