@@ -49,8 +49,8 @@ def seurat_object_to_anndata(file_path_seurat_object, delete_tmp_file=True):
     if len(assay_names) > 1:
         print(f"{len(assay_names)} assays found in the seurat object.")
         print(f"Data is exported as multiple files.")
-        print("If the seurat object was made by integrating multiple files, please be careful about its interpretation.")
-        print("Go to CellOracle web documentation for detailed information.")
+        print("If the seurat object was made by integrating multiple files, please be careful about 'Simpson's effect' in the inferred GRN.")
+        print("Go to CellOracle web documentation for detailed information about this issue.")
 
     results = {}
     for assay_name in assay_names:
