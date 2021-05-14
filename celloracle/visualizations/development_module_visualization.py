@@ -367,6 +367,8 @@ def visualize_development_module_layout_2(self, scale_for_pseudotime=CONFIG["sca
     ax_ = ax[2, 3]
     plot_inner_product_as_box(self, ax=ax_, vm=vm)
 
+    return fig
+
 
 def visualize_development_module_layout_1(self, scale_for_pseudotime=CONFIG["scale_dev"],
     scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True):
@@ -410,6 +412,8 @@ def visualize_development_module_layout_1(self, scale_for_pseudotime=CONFIG["sca
     ax_ = ax[1, 3]
     plot_inner_product_as_box(self, ax=ax_, vm=vm)
 
+    return fig
+
 def visualize_development_module_layout_0(self, scale_for_pseudotime=CONFIG["scale_dev"],
     scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True):
 
@@ -441,6 +445,8 @@ def visualize_development_module_layout_0(self, scale_for_pseudotime=CONFIG["sca
     #####
     ax_ = ax[1, 2]
     plot_inner_product_as_box(self, ax=ax_, vm=vm)
+
+    return fig
 
 
 

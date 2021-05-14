@@ -228,22 +228,31 @@ class Oracle_development_module(Data_strage):
         plot_quiver(self=self, ax=ax, scale=scale, color=color, s=s, show_background=show_background, args=args)
 
     def visualize_development_module_layout_2(self, scale_for_pseudotime=CONFIG["scale_dev"],
-        scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True):
+        scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True, return_fig=False):
 
-        visualize_development_module_layout_2(self=self, scale_for_pseudotime=scale_for_pseudotime,
+        fig = visualize_development_module_layout_2(self=self, scale_for_pseudotime=scale_for_pseudotime,
             scale_for_simulation=scale_for_simulation, s=s, s_grid=s_grid, vm=vm, show_background=show_background)
+
+        if return_fig:
+            return fig
 
     def visualize_development_module_layout_1(self, scale_for_pseudotime=CONFIG["scale_dev"],
-        scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True):
+        scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True, return_fig=False):
 
-        visualize_development_module_layout_1(self=self, scale_for_pseudotime=scale_for_pseudotime,
+        fig = visualize_development_module_layout_1(self=self, scale_for_pseudotime=scale_for_pseudotime,
             scale_for_simulation=scale_for_simulation, s=s, s_grid=s_grid, vm=vm, show_background=show_background)
+
+        if return_fig:
+            return fig
 
     def visualize_development_module_layout_0(self, scale_for_pseudotime=CONFIG["scale_dev"],
-        scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True):
+        scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True, return_fig=False):
 
-        visualize_development_module_layout_0(self=self, scale_for_pseudotime=scale_for_pseudotime,
+        fig = visualize_development_module_layout_0(self=self, scale_for_pseudotime=scale_for_pseudotime,
             scale_for_simulation=scale_for_simulation, s=s, s_grid=s_grid, vm=vm, show_background=show_background)
+
+        if return_fig:
+            return fig
 
 
 def subset_oracle_for_development_analysiis(oracle_object, cell_idx_use):
