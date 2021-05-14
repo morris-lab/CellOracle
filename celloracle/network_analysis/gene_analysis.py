@@ -40,11 +40,10 @@ def plot_scores_as_rank(links, cluster, n_gene=50, save=None):
         save (str): Folder path to save plots. If the folde does not exist in the path, the function create the folder.
             If None plots will not be saved. Default is None.
     """
-
-    col = ['degree_centrality_all',
-   'degree_centrality_in', 'degree_centrality_out',
-   'betweenness_centrality',  'eigenvector_centrality', "participation"]
-    for value in col:
+    values = ['degree_centrality_all',
+                  'degree_centrality_in', 'degree_centrality_out',
+                  'betweenness_centrality',  'eigenvector_centrality', "participation"]
+    for value in values:
 
         res = links.merged_score[links.merged_score.cluster == cluster]
         res = res[value].sort_values(ascending=False)
@@ -91,7 +90,7 @@ def _plot_goi(x, y, goi, args_annot, scatter=False, x_shift=0.1, y_shift=0.1):
 
 
 
-def plot_score_comparison_2D(links, value, cluster1, cluster2, percentile=99, annot_shifts=None, save=None, fillna_with_zero=True):
+def plot_score_comparison_2D(links, value, cluster1, cluster2, percentile=99, annot_shifts=None, save=None, fillna_with_zero=True, plt_show=True):
     """
     Make a scatter plot that shows the relationship of a specific network score in two groups.
 
@@ -136,7 +135,8 @@ def plot_score_comparison_2D(links, value, cluster1, cluster2, percentile=99, an
         os.makedirs(save, exist_ok=True)
         path = os.path.join(save, f"values_comparison_in_{links.name}_{value}_{links.thread_number}_{cluster1}_vs_{cluster2}.{settings['save_figure_as']}")
         plt.savefig(path, transparent=True)
-    plt.show()
+    if plt_show:
+        plt.show()
 
 
 
@@ -249,11 +249,45 @@ def _test_ver_plot_score_comparison_2D(links, value, cluster1, cluster2, percent
         plt.savefig(path, transparent=True)
     plt.show()
 
+try:
+    import plotly.express as px
+except:
+    pass
+
+def plot_score_comparison_2D_with_plotly(links, value, cluster1, cluster2, fillna_with_zero=True):
+    """
+    Make a scatter plot that shows the relationship of a specific network score in two groups.
+
+    Args:
+        links (Links object): See network_analisis.Links class for detail.
+        value (srt): The network score to be shown.
+        cluster1 (str): Cluster nome to analyze. Network scores in the cluste1 are shown as x-axis.
+        cluster2 (str): Cluster nome to analyze. Network scores in the cluste2 are shown as y-axis.
+    """
+
+    res = links.merged_score[links.merged_score.cluster.isin([cluster1, cluster2])][[value, "cluster"]]
+    res = res.reset_index(drop=False)
+    piv = pd.pivot_table(res, values=value, columns="cluster", index="index")
+    piv = piv.reset_index(drop=False)
+
+    if fillna_with_zero:
+        piv = piv.fillna(0)
+    else:
+        piv = piv.fillna(piv.mean(axis=0))
+
+
+    x, y = piv[cluster1], piv[cluster2]
+    
+    fig = px.scatter(piv, x=cluster1, y=cluster2,
+                     hover_data=['index'], template="plotly_white")
+
+    return fig
+
 
 ######################
 ### score dynamics ###
 ######################
-def plot_score_per_cluster(links, goi, save=None):
+def plot_score_per_cluster(links, goi, save=None, plt_show=True):
     """
     Plot network score for a specific gene.
     This function can be used to compare network score of a specific gene between clusters
@@ -298,7 +332,8 @@ def plot_score_per_cluster(links, goi, save=None):
         path = os.path.join(save,
                            f"score_dynamics_in_{links.name}_{links.thread_number}_{goi}.{settings['save_figure_as']}")
         plt.savefig(path, transparent=True)
-    plt.show()
+    if plt_show:
+        plt.show()
 
 
 ###################
@@ -363,7 +398,7 @@ def plot_cartography_scatter_per_cluster(links, gois=None, clusters=None,
         plt.show()
 
 
-def plot_cartography_term(links, goi, save=None):
+def plot_cartography_term(links, goi, save=None, plt_show=True):
     """
     Plot the summary of gene network cartography like a heatmap.
     Please read the original paper of gene network cartography for detail.
@@ -390,4 +425,6 @@ def plot_cartography_term(links, goi, save=None):
         path = os.path.join(save,
                            f"cartography_role_in_{links.name}_{links.thread_number}_{goi}.{settings['save_figure_as']}")
         plt.savefig(path, transparent=True)
-    plt.show()
+
+    if plt_show:
+        plt.show()

@@ -24,6 +24,7 @@ from .network_structure_analysis import (plot_degree_distributions,
 
 from .gene_analysis import (plot_scores_as_rank,
                             plot_score_comparison_2D,
+                            plot_score_comparison_2D_with_plotly,
                             plot_score_per_cluster,
                             plot_cartography_scatter_per_cluster,
                             plot_cartography_term)
@@ -246,9 +247,9 @@ class Links():
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
-        plot_scores_as_rank(links=self, cluster=cluster, n_gene=n_gene, save=save)
+        plot_scores_as_rank(links=self, cluster=cluster, n_gene=n_gene, save=save, values=values)
 
-    def plot_score_comparison_2D(self, value, cluster1, cluster2, percentile=99, annot_shifts=None, save=None):
+    def plot_score_comparison_2D(self, value, cluster1, cluster2, percentile=99, annot_shifts=None, save=None, plt_show=True, interactive=False):
         """
         Make a scatter plot that compares specific network scores in two groups.
 
@@ -262,10 +263,13 @@ class Links():
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
-        plot_score_comparison_2D(links=self, value=value, cluster1=cluster1, cluster2=cluster2,
-                                 percentile=percentile, annot_shifts=annot_shifts, save=save)
+        if interactive:
+            return plot_score_comparison_2D_with_plotly(links=self, value=value, cluster1=cluster1, cluster2=cluster2, fillna_with_zero=True)
+        else:
+            plot_score_comparison_2D(links=self, value=value, cluster1=cluster1, cluster2=cluster2,
+                                     percentile=percentile, annot_shifts=annot_shifts, save=save, plt_show=plt_show)
 
-    def plot_score_per_cluster(self, goi, save=None):
+    def plot_score_per_cluster(self, goi, save=None, plt_show=True):
         """
         Plot network score for a gene.
         This function visualizes the network score for a specific gene between clusters to get an insight into the dynamics of the gene.
@@ -276,7 +280,7 @@ class Links():
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
-        plot_score_per_cluster(links=self, goi=goi, save=save)
+        plot_score_per_cluster(links=self, goi=goi, save=save, plt_show=plt_show)
 
     def plot_cartography_scatter_per_cluster(self, gois=None, clusters=None,
                                              scatter=True, kde=False,
@@ -308,7 +312,7 @@ class Links():
                                              args_dot=args_dot, args_line=args_line,
                                              args_annot=args_annot, save=save)
 
-    def plot_cartography_term(self, goi, save=None):
+    def plot_cartography_term(self, goi, save=None, plt_show=True):
         """
         Plot the gene network cartography term like a heatmap.
         Please read the original paper of gene network cartography for the principle of gene network cartography.
@@ -320,7 +324,7 @@ class Links():
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
-        plot_cartography_term(links=self, goi=goi, save=save)
+        plot_cartography_term(links=self, goi=goi, save=save, plt_show=plt_show)
 
 
 def _link2mat(link, value="coef_abs", fillna=0):
@@ -338,14 +342,18 @@ def _getNetworkEntropy(linkMat):
     tmp = linkMat.copy()
     ent = []
     ent_norm = []
+    genes = []
     for i in tmp.index:
-        en = stats.entropy(tmp.loc[i])
-        ent.append(en)
-        ent_norm.append(en/np.log(k[i]))
+        if k[i] > 1:
+            en = stats.entropy(tmp.loc[i])
+            ent.append(en)
+            ent_norm.append(en/np.log(k[i]))
+            genes.append(i)
 
     df = pd.DataFrame({"entropy": ent, "entropy_norm": ent_norm},
-                     index=tmp.index).dropna(axis=0)
+                     index=genes).dropna(axis=0)
     return df
+    
 
 
 
