@@ -247,7 +247,7 @@ class Links():
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
-        plot_scores_as_rank(links=self, cluster=cluster, n_gene=n_gene, save=save, values=values)
+        plot_scores_as_rank(links=self, cluster=cluster, n_gene=n_gene, save=save)
 
     def plot_score_comparison_2D(self, value, cluster1, cluster2, percentile=99, annot_shifts=None, save=None, plt_show=True, interactive=False):
         """
@@ -353,7 +353,7 @@ def _getNetworkEntropy(linkMat):
     df = pd.DataFrame({"entropy": ent, "entropy_norm": ent_norm},
                      index=genes).dropna(axis=0)
     return df
-    
+
 
 
 
