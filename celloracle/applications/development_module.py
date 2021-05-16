@@ -177,7 +177,7 @@ class Oracle_development_module(Data_strage):
 
 
         bins = _get_bins(inner_product_df.pseudotime, n_bins)
-        inner_product_df["pseudotime_id"] = np.digitize(inner_product_df.pseudotime, bins) - 1
+        inner_product_df["pseudotime_id"] = np.digitize(inner_product_df.pseudotime, bins)
 
         self.inner_product_df = inner_product_df
 
@@ -275,11 +275,17 @@ def subset_oracle_for_development_analysiis(oracle_object, cell_idx_use):
 
     return oracle_
 
-def _get_bins(array, n_bins):
+"""def _get_bins(array, n_bins):
     min_ = array.min()
     max_ = array.max()
     width = (max_ - min_)/(n_bins-1)
-    return np.arange(min_, max_ + width, width)
+    return np.arange(min_, max_ + width, width)"""
+
+def _get_bins(array, n_bins):
+    min_ = array.min()
+    max_ = array.max()
+    width = (max_ - min_)/(n_bins)
+    return np.arange(min_, max_ + width, width)[1:-1]
 
 
 from scipy.stats import wilcoxon
