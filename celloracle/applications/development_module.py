@@ -278,7 +278,7 @@ def subset_oracle_for_development_analysiis(oracle_object, cell_idx_use):
 def _get_bins(array, n_bins):
     min_ = array.min()
     max_ = array.max()
-    width = (max_ - min_)/(n_bins)
+    width = (max_ - min_)/(n_bins-1)
     return np.arange(min_, max_ + width, width)
 
 
