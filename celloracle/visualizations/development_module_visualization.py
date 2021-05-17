@@ -125,6 +125,34 @@ def plot_pseudotime_on_grid(self, ax=None, s=CONFIG["s_grid"], show_background=T
 
     ax.axis("off")
 
+def plot_selected_pseudotime_on_grid(self, ax=None, pseudotime_selected=[], s=CONFIG["s_grid"], show_background=True, args={}):
+
+    if ax is None:
+        ax = plt
+
+    mass_filter = self.mass_filter_simulation
+
+    if show_background:
+        plot_background_on_grid(self=self, ax=ax, s=s,
+                                args={"facecolor": "None",
+                                      "c": "None",
+                                      "edgecolors":'black',
+                                      "linewidths": 0.05})
+    else:
+        plot_cluster_cells_use(self=self, ax=ax, s=0, color="white", show_background=False, args={})
+
+    x = self.gridpoints_coordinates[~mass_filter, 0]
+    y = self.gridpoints_coordinates[~mass_filter, 1]
+    for label, color in zip(["True", "False"], ["#EC7063", "#D0D3D4"]):
+        if label == "True":
+            idx = self.inner_product_df.pseudotime_id.isin(pseudotime_selected).values
+        else:
+            idx = ~self.inner_product_df.pseudotime_id.isin(pseudotime_selected).values
+
+        ax.scatter(x[idx], y[idx], color=color, label=label, s=s, **args)
+        ax.legend()
+
+    ax.axis("off")
 
 
 def plot_reference_flow_on_grid(self, ax=None, scale=CONFIG["scale_dev"], show_background=True, s=CONFIG["s_scatter"], args=CONFIG["default_args_quiver"]):

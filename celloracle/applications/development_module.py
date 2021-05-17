@@ -29,12 +29,15 @@ from ..visualizations.development_module_visualization import (\
                             plot_background,
                             plot_pseudotime,
                             plot_pseudotime_on_grid,
+                            plot_selected_pseudotime_on_grid,
                             plot_reference_flow_on_grid,
                             plot_simulation_flow_on_grid,
+                            plot_simulation_flow_random_on_grid,
                             plot_inner_product_on_grid,
                             plot_inner_product_on_pseudotime,
                             plot_inner_product_as_box,
                             plot_quiver,
+                            plot_quiver_random,
                             visualize_development_module_layout_0,
                             visualize_development_module_layout_1,
                             visualize_development_module_layout_2)
@@ -123,7 +126,7 @@ class Oracle_development_module(Data_strage):
             raise ValueError("Please load differentiation reference data first.")
 
         # 0. Store data
-        for i in ["delta_embedding", "embedding", "colorandum"]:
+        for i in ["delta_embedding", "delta_embedding_random", "embedding", "colorandum"]:
             setattr(self, i, getattr(oracle_object, i))
 
         if cell_idx_use is not None:
@@ -209,11 +212,17 @@ class Oracle_development_module(Data_strage):
     def plot_pseudotime_on_grid(self, ax=None, s=CONFIG["s_grid"], show_background=True, args={}):
         plot_pseudotime_on_grid(self=self, ax=ax, s=s, show_background=show_background, args=args)
 
+    def plot_selected_pseudotime_on_grid(self, ax=None, pseudotime_selected=[], s=CONFIG["s_grid"], show_background=True, args={}):
+        plot_selected_pseudotime_on_grid(self=self, ax=ax, pseudotime_selected=pseudotime_selected, s=s, show_background=show_background, args=args)
+
     def plot_reference_flow_on_grid(self, ax=None, scale=CONFIG["scale_dev"], show_background=True, s=CONFIG["s_scatter"], args=CONFIG["default_args_quiver"]):
         plot_reference_flow_on_grid(self=self, ax=ax, scale=scale, show_background=show_background, s=s, args=args)
 
     def plot_simulation_flow_on_grid(self, ax=None, scale=CONFIG["scale_simulation"], show_background=True, s=CONFIG["s_scatter"], args=CONFIG["default_args_quiver"]):
         plot_simulation_flow_on_grid(self, ax=ax, scale=scale, show_background=show_background, s=s, args=args)
+
+    def plot_simulation_flow_random_on_grid(self, ax=None, scale=CONFIG["scale_simulation"], show_background=True, s=CONFIG["s_scatter"], args=CONFIG["default_args_quiver"]):
+        plot_simulation_flow_random_on_grid(self, ax=ax, scale=scale, show_background=show_background, s=s, args=args)
 
     def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, args={}):
         plot_inner_product_on_grid(self=self, ax=ax, vm=vm, s=s, show_background=show_background, args=args)
@@ -226,6 +235,9 @@ class Oracle_development_module(Data_strage):
 
     def plot_quiver(self, ax=None, scale=CONFIG["scale_simulation"], color=None, s=CONFIG["s_scatter"], show_background=True, args=CONFIG["default_args"]):
         plot_quiver(self=self, ax=ax, scale=scale, color=color, s=s, show_background=show_background, args=args)
+
+    def plot_quiver_random(self, ax=None, scale=CONFIG["scale_simulation"], color=None, s=CONFIG["s_scatter"], show_background=True, args=CONFIG["default_args"]):
+        plot_quiver_random(self=self, ax=ax, scale=scale, color=color, s=s, show_background=show_background, args=args)
 
     def visualize_development_module_layout_2(self, scale_for_pseudotime=CONFIG["scale_dev"],
         scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True, return_fig=False):
