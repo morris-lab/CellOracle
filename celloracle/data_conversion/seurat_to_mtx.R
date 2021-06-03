@@ -38,7 +38,7 @@ export_SeuratObjectV3 <- function(SO){
     }
     dim_ <- dim(SO@assays[assay_name][[1]]@counts)
     #print(dim_)
-    if (dim_[1] * dim_[2] != 0){
+    if ((dim_[1] > 0) & (dim_[2] > 0)){
       n <- Matrix::writeMM(obj = t(SO@assays[assay_name][[1]]@counts),
                        file = paste0("tmp/assay_", assay_name,  "_rawdata.mtx"))
       #write.csv(colnames(SO@assays[assay_name][[1]]@counts), file = paste0("tmp/assay_", assay_name,  "_cells.csv"))
