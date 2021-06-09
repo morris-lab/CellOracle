@@ -19,9 +19,10 @@ Codes were written by Kenji Kamimoto.
 
 import pandas as pd
 import numpy as np
-
+import scanpy as sc
 import sys, os
 from ..data import __path__ as parent_path
+from ..utility import load_hdf5
 
 def load_TFinfo_df_mm9_mouse_atac_atlas():
     """
@@ -36,3 +37,22 @@ def load_TFinfo_df_mm9_mouse_atac_atlas():
 
     path = os.path.join(parent_path[0], "TFinfo_data", "mm9_mouse_atac_atlas_data_TSS_and_cicero_0.9_accum_threshold_10.5_DF_peaks_by_TFs.parquet")
     return pd.read_parquet(path)
+
+def load_Paul2015_data():
+    """
+    Load mouse hematopoiesis scRNA-seq data. The data was processed according to the standard CellOracle preprocessing method described in the tutorial.
+    """
+
+    path = os.path.join(parent_path[0], "anndata", "Paul_etal_v201212.h5ad")
+
+    return sc.read_h5ad(path)
+
+def load_tutorial_links_object():
+    """
+    """
+    path = os.path.join(parent_path[0], "tutorial_data", "links_louvain_190829.celloracle.links")
+    return load_hdf5.load_hdf5(path)
+
+def load_tutorial_oracle_object():
+    path = os.path.join(parent_path[0], "tutorial_data", "Paul15_210609.celloracle.oracle")
+    return load_hdf5.load_hdf5(path)

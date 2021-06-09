@@ -12,6 +12,7 @@ from .network_analysis import Links
 from .utility.load_hdf5 import load_hdf5
 from .version import __version__
 from .utility import check_python_requirements
+from .network_analysis import test_R_libraries_installation
 
 #from . import motif_analysis
 
@@ -32,6 +33,9 @@ __all__ = ["utility", "motif_analysis", "network", "network_analysis",
            "Oracle",
            "Links",
            "Net",
-           "load_hdf5"]
+           "load_hdf5",
+           "test_R_libraries_installation",
+           "check_python_requirements"
+           ]
 
 check_python_requirements(return_detail=False, print_warning=True)
