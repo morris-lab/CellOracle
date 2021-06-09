@@ -50,7 +50,7 @@ setup(
                                  "data/TFinfo_data/*.txt", "data/TFinfo_data/*.parquet",
                                  "data/motif_data/*.txt", "data/motif_data/*.pfm",
                                  "data/anndata/*.h5ad",
-                                 "data/tutorial_data/*.celloracle.*"
+                                 "data/tutorial_data/*"
                                  "network_analysis/rscripts_for_network_analysis/*.R",
                                  "utility/requrements.txt"]},
     packages=["celloracle", "celloracle.data_conversion", "celloracle.network", "celloracle.trajectory",
