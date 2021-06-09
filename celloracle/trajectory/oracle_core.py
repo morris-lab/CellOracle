@@ -22,7 +22,7 @@ from .markov_simulation import _walk
 from .oracle_utility import (_adata_to_matrix, _adata_to_df,
                              _adata_to_color_dict, _get_clustercolor_from_anndata,
                              _numba_random_seed, _linklist2dict,
-                             _decompose_TFdict)
+                             _decompose_TFdict, _is_perturb_condition_valid)
 from .oracle_GRN import _do_simulation, _getCoefMatrix, _coef_to_active_gene_list
 from .modified_VelocytoLoom_class import modified_VelocytoLoom
 from ..network_analysis.network_construction import get_links
@@ -643,16 +643,23 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             if not hasattr(self, "active_regulatory_genes"):
                 self.extract_active_gene_lists(verbose=False)
 
-            for i in perturb_condition.keys():
+            if not hasattr(self, "all_regulatory_genes_in_TFdict"):
+                self._process_TFdict_metadata()
+
+            for i, value in perturb_condition.items():
                 # 1st QC
                 if not i in self.adata.var.index:
                     raise ValueError(f"{i} is not included in the Gene expression matrix.")
 
                 # 2nd QC
+                if i not in self.all_regulatory_genes_in_TFdict:
+                    raise ValueError(f"Gene {i} is not included in the base GRN; It is not TF or TF motif information is not available. Cannot perform simulation.")
+
+                # 3rd QC
                 if i not in self.active_regulatory_genes:
                     raise ValueError(f"Gene {i} does not have enough regulatory connection in the GRNs. Cannot perform simulation.")
 
-                # 3rd QC
+                # 4th QC
                 if i not in self.high_var_genes:
                     if ignore_warning:
                         pass
@@ -660,6 +667,20 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                     else:
                         print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
                         #raise ValueError(f"Variability score of Gene {i} is too low. Cannot perform simulation.")
+
+                # 5th QC
+                if value < 0:
+                    raise ValueError(f"Negative gene expression value is not allowed.")
+
+                # 6th QC
+                safe = _is_perturb_condition_valid(adata=self.adata,
+                                            goi=i, value=value, safe_range_fold=2)
+                if not safe:
+                    if ignore_warning:
+                        pass
+                    else:
+                        raise ValueError(f"Input perturbation condition is far from actural gene expression value. Please follow the recommended usage. ")
+
 
 
             # reset simulation initiation point

@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import os
 from numba import jit
+import scanpy as sc
 
 from ..utility import intersect
 
@@ -169,3 +170,29 @@ def _decompose_TFdict(TFdict):
     all_target_genes_in_TFdict = list(TFdict.keys())
 
     return all_target_genes_in_TFdict, all_regulatory_genes_in_TFdict
+
+
+def _is_perturb_condition_valid(adata, goi, value, safe_range_fold=2):
+
+    """
+    Check the input perturb condition is within the safe range.
+    Args:
+        adata (anndata): scRNA-seq data
+        goi (str): Gene of interest
+        value (str): Perturb condition input value
+        safe_range_fold (float or int): Fold change value.
+    Returns:
+        Bool
+
+    """
+    actual_values = sc.get.obs_df(adata, keys=[goi], layer="imputed_count").values
+    min_ = actual_values.min()
+    max_ = actual_values.max()
+    range_ = max_ - min_
+
+    upper_limit = range_ * (safe_range_fold -1) + max_
+
+    if value <= upper_limit:
+        return True
+    else:
+        return False
