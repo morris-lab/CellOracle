@@ -130,7 +130,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                   noarray_compression=compression_opts, pickle_protocol=4)
 
 
-    def __generate_meta_data(self):
+    def _generate_meta_data(self):
         info = {}
         if hasattr(self, "celloracle_version_used"):
             info["celloracle version used for instantiation"] = self.celloracle_version_used
@@ -148,6 +148,16 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         info["cluster_name"] = self.cluster_column_name
         info["dimensional_reduction_name"] = self.embedding_name
+
+        if hasattr(self, "all_target_genes_in_TFdict"):
+            pass
+        else:
+            self._process_TFdict_metadata(verbose=False)
+        info["n_target_genes_in_TFdict"] = f"{len(self.all_target_genes_in_TFdict)} genes"
+        info["n_regulatory_in_TFdict"] = f"{len(self.all_regulatory_genes_in_TFdict)} genes"
+        info["n_regulatory_in_both_TFdict_and_scRNA-seq"] = f"{self.adata.var['isin_TFdict_regulators'].sum()} genes"
+        info["n_target_genes_both_TFdict_and_scRNA-seq"] = f"{self.adata.var['isin_TFdict_targets'].sum()} genes"
+
 
         if len(self.TFdict.keys()) > 0:
             info["status - BaseGRN"] = "Ready"
@@ -176,7 +186,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         return info
 
     def __repr__(self):
-        info = self.__generate_meta_data()
+        info = self._generate_meta_data()
 
         message = "Oracle object\n\n"
         message += "Meta data\n"
@@ -194,7 +204,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
     ###################################
     ### 1. Methods for loading data ###
     ###################################
-    def _process_TFdict_metadata(self):
+    def _process_TFdict_metadata(self, verbose=True):
 
         # Make list of all target genes and all reguolatory genes in the TFdict
         self.all_target_genes_in_TFdict, self.all_regulatory_genes_in_TFdict = _decompose_TFdict(TFdict=self.TFdict)
@@ -203,6 +213,18 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         self.adata.var["symbol"] = self.adata.var.index.values
         self.adata.var["isin_TFdict_targets"] = self.adata.var.symbol.isin(self.all_target_genes_in_TFdict)
         self.adata.var["isin_TFdict_regulators"] = self.adata.var.symbol.isin(self.all_regulatory_genes_in_TFdict)
+
+        #n_target = self.adata.var["isin_TFdict_targets"].sum()
+        #if n_target == 0:
+            #print("Found no overlap between TF info (base GRN) and your scRNA-seq data. Please check your data format and species.")
+        if verbose:
+            n_reg = self.adata.var["isin_TFdict_regulators"].sum()
+            if n_reg == 0:
+                print("Found No overlap between TF info (base GRN) and your scRNA-seq data. Please check your data format and species.")
+
+            elif n_reg < 50:
+                print(f"Total number of TF was {n_reg}. Although we can go to the GRN calculation with this data, but the TF number is small." )
+
 
 
     def import_TF_data(self, TF_info_matrix=None, TF_info_matrix_path=None, TFdict=None):
@@ -218,6 +240,13 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
             TFdict (dictionary): Python dictionary of TF info.
         """
+
+        if self.adata is None:
+            raise ValueError("Please import scRNA-seq data first.")
+
+        if len(self.TFdict) != 0:
+            print("TF dict already exists. The old TF dict data was deleted. \n")
+
         if not TF_info_matrix is None:
             tmp = TF_info_matrix.copy()
             tmp = tmp.drop(["peak_id"], axis=1)
@@ -235,6 +264,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         # Update summary of TFdata
         self._process_TFdict_metadata()
+
+
 
 
     def updateTFinfo_dictionary(self, TFdict={}):
@@ -1099,6 +1130,29 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             test_mode (bool): If test_mode is True, GRN calculation will be done for only one cluster rather than all clusters.
 
         """
+
+        ## Check data
+        info = self._generate_meta_data()
+
+        if info["status - Gene expression matrix"] != "Ready":
+            raise ValueError("scRNA-seq data is not imported.")
+
+        if info["status - PCA calculation"] != "Done":
+            raise ValueError("Preprocessing is not done. Do PCA and Knn imputation.")
+
+        if info["status - Knn imputation"] != "Done":
+            raise ValueError("Preprocessing is not done. Do Knn imputation.")
+
+        if info["status - BaseGRN"] != "Ready":
+            raise ValueError("Found No TF information. Please import TF data (base-GRN) first.")
+
+        if info["n_regulatory_in_both_TFdict_and_scRNA-seq"] == '0 genes':
+            raise ValueError("Found No overlap between TF info (base GRN) and your scRNA-seq data. Please check your data format and species.")
+
+        if info["n_target_genes_both_TFdict_and_scRNA-seq"] == '0 genes':
+            raise ValueError("Found No overlap between TF info (base GRN) and your scRNA-seq data. Please check your data format and species.")
+
+
         links = get_links(oracle_object=self,
                           cluster_name_for_GRN_unit=cluster_name_for_GRN_unit,
                           alpha=alpha, bagging_number=bagging_number,

@@ -42,10 +42,6 @@ Contents
 
    tutorials/index
 
-.. toctree::
-
-   google_colab/index
-   
 
 .. toctree::
 
