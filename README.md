@@ -13,7 +13,7 @@ CellOracle documentation is available through the links below.
 
 
 ### Questions and errors
-If you have question, error, bug, or problem, please use [Github issue page](https://github.com/morris-lab/CellOracle/issues).
+If you have a question, error, bug, or problem, please use [Github issue page](https://github.com/morris-lab/CellOracle/issues).
 
 
 
@@ -42,13 +42,13 @@ If you have question, error, bug, or problem, please use [Github issue page](htt
 
 
 - `0.5.0 <2020-08-3>`
-  - Add now functions for custom motifs. You can select motifs from several options. Also, we updated our web tutorial to introduce how to load / make a different motif data.
-  - Change default motifs for S.cerevisiae and Zebrafish.
+  - Add new functions for custom motifs. You can select motifs from several options. Also, we updated our web tutorial to introduce how to load / make different motif data.
+  - Change default motifs for S.cerevisiae and zebrafish.
   - Change requirements for dependent package: gimmemotifs and geomepy. Celloracle codes were updated to support new version of gimmemotifs (0.14.4) and genomepy (0.8.4).
 
 
 - `0.4.2 <2020-07-14>`
-  - Add promoter-TSS information for Zebrafish reference genome (danRer7, danRer10 and danRer11).
+  - Add promoter-TSS information for zebrafish reference genome (danRer7, danRer10 and danRer11).
 
 - `0.4.1 <2020-07-02>`
   - Add promoter-TSS information for S.cerevisiae reference genome (sacCer2 and sacCer3).
