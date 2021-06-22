@@ -34,6 +34,12 @@ settings = {"save_figure_as": "png"}
 ### Analyze degree distribution ###
 ###################################
 
+def _get_degree_distribution(links, cluster):
+    g = linkList_to_networkgraph(links.filtered_links[cluster])
+    degree_df = _get_degree_info_from_NG(g)
+    return degree_df
+
+
 def plot_degree_distributions(links, plot_model=False, save=None):
     """
     Plot the distribution of network degree (the number of edge per gene).

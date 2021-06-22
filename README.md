@@ -15,9 +15,23 @@ CellOracle documentation is available through the links below.
 ### Questions and errors
 If you have question, error, bug, or problem, please use [Github issue page](https://github.com/morris-lab/CellOracle/issues).
 
+### Species and reference genomes supported
+
+- Human: ['hg38', 'hg19']
+- Mouse: ['mm10', 'mm9']
+- S.cerevisiae: ["sacCer2", "sacCer3"]
+- Zebrafish: ["danRer7", "danRer10", "danRer11"]
+- Xenopus: ["xenTro2", "xenTro3"]
+- Rat: ["rn4", "rn5", "rn6"]
+- Drosophila: ["dm3", "dm6"]
+- C.elegans: ["ce6", "ce10"]
+- Arabidopsis: ["tair10"]
+- Chicken: ["galGal4", "galGal5", "galGal6"]
 
 
 ### Changelog
+
+
 
 - `0.6.5 <2021-3-25>`
   - Minor bug fix in the installation process.
