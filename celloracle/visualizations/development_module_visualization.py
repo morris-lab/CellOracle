@@ -102,7 +102,7 @@ def plot_background_on_grid(self, ax=None, s=CONFIG["s_grid"], args={}):
     ax.axis("off")
 
 
-def plot_pseudotime_on_grid(self, ax=None, s=CONFIG["s_grid"], show_background=True, args={}):
+def plot_pseudotime_on_grid(self, ax=None, s=CONFIG["s_grid"], show_background=True, cmap="rainbow", args={}):
 
     if ax is None:
         ax = plt
@@ -121,7 +121,7 @@ def plot_pseudotime_on_grid(self, ax=None, s=CONFIG["s_grid"], show_background=T
     ax.scatter(self.gridpoints_coordinates[~mass_filter, 0],
                self.gridpoints_coordinates[~mass_filter, 1],
                c=self.pseudotime_on_grid[~mass_filter],
-               cmap="rainbow", s=s, **args)
+               cmap=cmap, s=s, **args)
 
     ax.axis("off")
 

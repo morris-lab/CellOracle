@@ -203,14 +203,14 @@ class Oracle_development_module(Data_strage):
     def plot_background(self, ax=None, s=CONFIG["s_scatter"], args=CONFIG["default_args"]):
         plot_background(self=self, ax=ax, s=s, args=args)
 
-    def plot_pseudotime(self, ax=None, s=CONFIG["s_scatter"], show_background=True, args=CONFIG["default_args"]):
-        plot_pseudotime(self=self, ax=ax, s=s, show_background=show_background, args=args)
+    def plot_pseudotime(self, ax=None, s=CONFIG["s_scatter"], show_background=True, cmap="rainbow", args=CONFIG["default_args"]):
+        plot_pseudotime(self=self, ax=ax, s=s, show_background=show_background, cmap=cmap, args=args)
 
     def plot_background_on_grid(self, ax=None, s=CONFIG["s_grid"], args={}):
         plot_background_on_grid(self=self, ax=ax, s=s, args=args)
 
-    def plot_pseudotime_on_grid(self, ax=None, s=CONFIG["s_grid"], show_background=True, args={}):
-        plot_pseudotime_on_grid(self=self, ax=ax, s=s, show_background=show_background, args=args)
+    def plot_pseudotime_on_grid(self, ax=None, s=CONFIG["s_grid"], show_background=True, cmap="rainbow", args={}):
+        plot_pseudotime_on_grid(self=self, ax=ax, s=s, show_background=show_background, cmap=cmap, args=args)
 
     def plot_selected_pseudotime_on_grid(self, ax=None, pseudotime_selected=[], s=CONFIG["s_grid"], show_background=True, args={}):
         plot_selected_pseudotime_on_grid(self=self, ax=ax, pseudotime_selected=pseudotime_selected, s=s, show_background=show_background, args=args)
