@@ -15,7 +15,7 @@ CellOracle documentation is available through the links below.
 ### Questions and errors
 If you have a question, error, bug, or problem, please use [Github issue page](https://github.com/morris-lab/CellOracle/issues).
 
-### Species and reference genomes supported
+### Supported Species and reference genomes
 
 - Human: ['hg38', 'hg19']
 - Mouse: ['mm10', 'mm9']
