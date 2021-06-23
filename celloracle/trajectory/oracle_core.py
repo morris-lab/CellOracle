@@ -303,7 +303,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         self._process_TFdict_metadata()
 
 
-    def get_cluster_specific_TFdict_from_Links(self, links_object):
+    def get_cluster_specific_TFdict_from_Links(self, links_object, ignore_warning=False):
 
         """
         Extract TF and its target gene information from Links object.
@@ -319,7 +319,10 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         if (self.cluster_column_name == links_object.name) & (clusters_in_link_object == clusters_in_oracle_object):
             pass
         else:
-            raise ValueError("Clustering unit does not match. Please prepare links object that was made with same cluster data.")
+            if ignore_warning:
+                pass
+            else:
+                raise ValueError("Clustering unit does not match. Please prepare links object that was made with same cluster data.")
 
         self.cluster_specific_TFdict = {}
 

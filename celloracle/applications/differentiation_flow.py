@@ -342,6 +342,8 @@ def aggregate_Gradient_objects(gradient_object_list, base_gt=None, fill_na=True)
 
         gt.pseudotime_on_grid[~gt.mass_filter] = y_filled
 
+    gt.pseudotime = gradient_object_list[0].pseudotime.copy()
+
     return gt
 
 def _aggregate_gradients(pseudotime_stack, gradient_stack, mass_filter_stack):
