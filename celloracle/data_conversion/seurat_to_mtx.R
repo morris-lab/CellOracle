@@ -27,6 +27,8 @@ export_SeuratObjectV3 <- function(SO){
 
   # Save gene expression matrix
   for (assay_name in names(SO@assays)){
+    tryCatch({
+    message(paste0("Processing an assay: ", assay_name))
 
     dim_ <- dim(SO@assays[assay_name][[1]]@data)
     if ((dim_[1] > 0) & (dim_[2] > 0)){
@@ -44,6 +46,8 @@ export_SeuratObjectV3 <- function(SO){
       #write.csv(colnames(SO@assays[assay_name][[1]]@counts), file = paste0("tmp/assay_", assay_name,  "_cells.csv"))
       #write.csv(rownames(SO@assays[assay_name][[1]]@counts), file = paste0("tmp/assay_", assay_name,  "_genes.csv"))
     }
+    }, error = function(e) {message(paste0("Error. Could not finish processing ", assay_name))}
+  )
   }
 
   for (reduction_name in names(SO@reductions)){

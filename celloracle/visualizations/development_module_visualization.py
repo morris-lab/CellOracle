@@ -219,10 +219,15 @@ def _plot_simulation_flow_on_grid(self, ax=None, scale=CONFIG["scale_simulation"
 
     ax.axis("off")
 
-def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, args={}):
+def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, args={}):
 
     if ax is None:
         ax = plt
+
+    if vmin is None:
+        vmin = -vm
+    if vmax is None:
+        vmax = vm
 
     if show_background:
         plot_background_on_grid(self=self, ax=ax, s=s,
@@ -236,40 +241,50 @@ def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_back
     ax.scatter(self.gridpoints_coordinates[~self.mass_filter_simulation, 0],
                self.gridpoints_coordinates[~self.mass_filter_simulation, 1],
                c=self.inner_product[~self.mass_filter_simulation],
-               cmap="coolwarm", vmin=-vm, vmax=vm, s=s, **args)
+               cmap="coolwarm", vmin=vmin, vmax=vmax, s=s, **args)
 
     ax.axis("off")
 
 
 
-def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], args={}):
+def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vmin=None, vmax=None, args={}):
 
     if ax is None:
         fig, ax = plt.subplots()
+
+    if vmin is None:
+        vmin = -vm
+    if vmax is None:
+        vmax = vm
 
     pcm = ax.scatter(self.pseudotime_on_grid[~self.mass_filter_simulation],
                      self.inner_product[~self.mass_filter_simulation],
                      c=self.inner_product[~self.mass_filter_simulation],
                      cmap="coolwarm",
-                     vmin=-vm, vmax=vm, s=s, **args)
+                     vmin=vmin, vmax=vmax, s=s, **args)
 
-    ax.set_ylim([-vm*1.1, vm*1.1])
+    ax.set_ylim([vmin*1.1, vmax*1.1])
     ax.axhline(0, color="lightgray")
     pp = plt.colorbar(pcm, ax=ax, orientation="vertical")
     sns.despine()
     ax.set_xlabel("pseudotime")
     ax.set_ylabel("inner product score")
 
-def plot_inner_product_as_box(self, ax=None, vm=1, args={}):
+def plot_inner_product_as_box(self, ax=None, vm=1, vmin=None, vmax=None, args={}):
 
     if ax is None:
         fig, ax = plt.subplots()
+
+    if vmin is None:
+        vmin = -vm
+    if vmax is None:
+        vmax = vm
 
     sns.boxplot(data=self.inner_product_df, x="pseudotime_id", y="score", color="white", ax=ax)
     ax.set_xlabel("Digitized_pseudotime")
     ax.set_ylabel("inner product score")
     ax.axhline(0, color="gray")
-    ax.set_ylim([-vm*1.1, vm*1.1])
+    ax.set_ylim([vmin*1.1, vmax*1.1])
     ax.tick_params(
                 labelleft=False)
     sns.despine()

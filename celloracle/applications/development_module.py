@@ -224,14 +224,14 @@ class Oracle_development_module(Data_strage):
     def plot_simulation_flow_random_on_grid(self, ax=None, scale=CONFIG["scale_simulation"], show_background=True, s=CONFIG["s_scatter"], args=CONFIG["default_args_quiver"]):
         plot_simulation_flow_random_on_grid(self, ax=ax, scale=scale, show_background=show_background, s=s, args=args)
 
-    def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, args={}):
-        plot_inner_product_on_grid(self=self, ax=ax, vm=vm, s=s, show_background=show_background, args=args)
+    def plot_inner_product_on_grid(self, ax=None, vm=1, s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, args={}):
+        plot_inner_product_on_grid(self=self, ax=ax, vm=vm, s=s, show_background=show_background, vmin=vmin, vmax=vmax, args=args)
 
-    def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], args={}):
-        plot_inner_product_on_pseudotime(self=self, ax=ax, vm=vm, s=s, args=args)
+    def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vmin=None, vmax=None, args={}):
+        plot_inner_product_on_pseudotime(self=self, ax=ax, vm=vm, s=s, vmin=vmin, vmax=vmax, args=args)
 
-    def plot_inner_product_as_box(self, ax=None, vm=1, args={}):
-        plot_inner_product_as_box(self=self, ax=ax, vm=vm, args=args)
+    def plot_inner_product_as_box(self, ax=None, vm=1, vmin=None, vmax=None, args={}):
+        plot_inner_product_as_box(self=self, ax=ax, vm=vm, vmin=vmin, vmax=vmax, args=args)
 
     def plot_quiver(self, ax=None, scale=CONFIG["scale_simulation"], color=None, s=CONFIG["s_scatter"], show_background=True, args=CONFIG["default_args"]):
         plot_quiver(self=self, ax=ax, scale=scale, color=color, s=s, show_background=show_background, args=args)
