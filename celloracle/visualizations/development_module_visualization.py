@@ -6,6 +6,8 @@ import os, sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.colors as colors
+
 import seaborn as sns
 
 from .config import CONFIG
@@ -229,6 +231,11 @@ def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_back
     if vmax is None:
         vmax = vm
 
+    try:
+        norm = colors.TwoSlopeNorm(vmin=vmin, vcenter=0, vmax=vmax)
+    except:
+        norm = colors.DivergingNorm(vmin=vmin, vcenter=0, vmax=vmax)
+
     if show_background:
         plot_background_on_grid(self=self, ax=ax, s=s,
                                 args={"facecolor": "None",
@@ -241,7 +248,8 @@ def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_back
     ax.scatter(self.gridpoints_coordinates[~self.mass_filter_simulation, 0],
                self.gridpoints_coordinates[~self.mass_filter_simulation, 1],
                c=self.inner_product[~self.mass_filter_simulation],
-               cmap="coolwarm", vmin=vmin, vmax=vmax, s=s, **args)
+               cmap="coolwarm", norm=norm,#vmin=vmin, vmax=vmax,
+               s=s, **args)
 
     ax.axis("off")
 
@@ -257,11 +265,17 @@ def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vm
     if vmax is None:
         vmax = vm
 
+    try:
+        norm = colors.TwoSlopeNorm(vmin=vmin, vcenter=0, vmax=vmax)
+    except:
+        norm = colors.DivergingNorm(vmin=vmin, vcenter=0, vmax=vmax)
+
     pcm = ax.scatter(self.pseudotime_on_grid[~self.mass_filter_simulation],
                      self.inner_product[~self.mass_filter_simulation],
                      c=self.inner_product[~self.mass_filter_simulation],
                      cmap="coolwarm",
-                     vmin=vmin, vmax=vmax, s=s, **args)
+                     norm=norm,#vmin=vmin, vmax=vmax, 
+                     s=s, **args)
 
     ax.set_ylim([vmin*1.1, vmax*1.1])
     ax.axhline(0, color="lightgray")

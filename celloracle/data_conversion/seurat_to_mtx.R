@@ -46,7 +46,10 @@ export_SeuratObjectV3 <- function(SO){
       #write.csv(colnames(SO@assays[assay_name][[1]]@counts), file = paste0("tmp/assay_", assay_name,  "_cells.csv"))
       #write.csv(rownames(SO@assays[assay_name][[1]]@counts), file = paste0("tmp/assay_", assay_name,  "_genes.csv"))
     }
-    }, error = function(e) {message(paste0("Error. Could not finish processing ", assay_name))}
+    }, error = function(e) {
+    message(paste0("Error. The following assay was skipped: ", assay_name))
+
+    }
   )
   }
 
