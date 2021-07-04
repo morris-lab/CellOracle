@@ -1,7 +1,10 @@
 .. _scrnaprocess:
 
-Single-cell RNA-seq data preprocessing
-======================================
+scRNA-seq data preparation
+==========================
+
+Overview
+--------
 
 
 Network analysis and simulation in celloracle will be performed using scRNA-seq data. The scRNA-seq data should include the components below.
