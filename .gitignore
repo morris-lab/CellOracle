@@ -13,4 +13,6 @@ docs/notebooks/*/figures
 docs/_build
 docs/_build/*
 celloracle.egg-info
+docs/notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/data/*
+*/matrix.tar.gz
 

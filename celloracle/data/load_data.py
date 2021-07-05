@@ -54,5 +54,5 @@ def load_tutorial_links_object():
     return load_hdf5.load_hdf5(path)
 
 def load_tutorial_oracle_object():
-    path = os.path.join(parent_path[0], "tutorial_data", "Paul15_210609.celloracle.oracle")
+    path = os.path.join(parent_path[0], "tutorial_data", "Paul_etal_v20210704.celloracle.oracle")
     return load_hdf5.load_hdf5(path)
