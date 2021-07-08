@@ -292,43 +292,57 @@ class TFinfo():
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see t celloracle documentation. \n")
 
-            elif self.species in ["S.cerevisiae"]: # If species is S.cerevisiae, we use CisBP database.
+            elif self.species in ["S.cerevisiae"]:
                 self.motif_db_name = 'CisBP_ver2_Saccharomyces_cerevisiae.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
-            elif self.species in ["Xenopus"]: # If species is S.cerevisiae, we use CisBP database.
+            elif self.species in ["Xenopus"]:
                 self.motif_db_name = 'CisBP_ver2_Xenopus_tropicalis_and_Xenopus_laevis.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
-            elif self.species in ["Drosophila"]: # If species is S.cerevisiae, we use CisBP database.
+            elif self.species in ["Drosophila"]:
                 self.motif_db_name = 'CisBP_ver2_Drosophila_mix.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
-            elif self.species in ["C.elegans"]: # If species is S.cerevisiae, we use CisBP database.
+            elif self.species in ["C.elegans"]:
                 self.motif_db_name = 'CisBP_ver2_Caenorhabditis_elegans.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
-            elif self.species in ["Arabidopsis"]: # If species is S.cerevisiae, we use CisBP database.
+            elif self.species in ["Arabidopsis"]:
                 self.motif_db_name = 'CisBP_ver2_Arabidopsis_thaliana.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
+            elif self.species in ["Chicken"]: #CisBP_ver2_Gallus_gallus
+                self.motif_db_name = 'CisBP_ver2_Gallus_gallus.pfm'
+                motifs = load_motifs(self.motif_db_name)
+                self.TF_formatting = False
+                if verbose:
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
+
+            elif self.species in ["Guinea_pig"]: #CisBP_ver2_Gallus_gallus
+                self.motif_db_name = 'CisBP_ver2_Cavia_porcellus.pfm'
+                motifs = load_motifs(self.motif_db_name)
+                self.TF_formatting = False
+                if verbose:
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
+
             else:
-                raise ValueError(f"We have no default motifs for your species, {self.species}. Please set motifs.")
+                raise ValueError(f"We don't have default motifs for your species, {self.species}. Please set motifs.")
 
         else:
             # Check format
@@ -683,7 +697,7 @@ def _get_dic_motif2TFs(species, motifs, TF_evidence_level="direct_and_indirect",
         dic_motif2TFs[i.id] = fcs
 
     if formatting:
-        if species in ["Mouse", "Rat", "Chicken"]:
+        if species in ["Mouse", "Rat"]:
             for key in dic_motif2TFs.keys():
                 dic_motif2TFs[key] = [tf.capitalize() for tf in dic_motif2TFs[key]]
 
