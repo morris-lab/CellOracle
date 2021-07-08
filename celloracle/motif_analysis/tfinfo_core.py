@@ -54,7 +54,7 @@ SUPPORTED_REF_GENOME = {"Human": ['hg38', 'hg19'],
                         "Rat": ["rn4", "rn5", "rn6"],
                         "Drosophila": ["dm3", "dm6"],
                         "C.elegans": ["ce6", "ce10"],
-                        "Arabidopsis": ["tair10"],
+                        "Arabidopsis": ["TAIR10"],
                         "Chicken": ["galGal4", "galGal5", "galGal6"],
                         }
 
