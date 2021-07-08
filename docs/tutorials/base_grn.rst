@@ -33,8 +33,8 @@ Distal cis-regulatory elements can be picked up using  `Cicero <https://cole-tra
 Although we provide an example notebook here, you can analyze your data with Cicero in a different way if you are familiar with Cicero.
 If you have a question about Cicero, please read `the documentation of Cicero <https://cole-trapnell-lab.github.io/cicero-release/>`_ for the detailed usage.
 
-scATAC-seq analysis with Cicero
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step1. scATAC-seq analysis with Cicero
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01_ATAC-seq_data_processing>`_ .
 
@@ -46,8 +46,8 @@ R notebook
 
 
 
-TSS annotation
-^^^^^^^^^^^^^^
+Step2. TSS annotation
+^^^^^^^^^^^^^^^^^^^^^
 
 We got active promoter / enhancer peaks. CellOracle annotate these peaks to get annotated promoter / enhancer peaks for target all genes.
 

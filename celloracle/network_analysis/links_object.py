@@ -103,9 +103,10 @@ class Links():
 
 
     def filter_links(self, p=0.001, weight="coef_abs",
-                     thread_number=10000,
+                     threshold_number=10000,
                      genelist_source=None,
-                     genelist_target=None):
+                     genelist_target=None,
+                     thread_number=None):
         """
 
         Filter network edges.
@@ -127,10 +128,13 @@ class Links():
             genelist_target (list of str): gene list to remain in target gene nodes. Default is None.
 
         """
+        if thread_number is not None:
+            threshold_number = thread_number
+
         self.filtered_links = {}
-        self.thread_number=thread_number
+        self.threshold_number=threshold_number
         for i in self.cluster:
-            self.filtered_links[i] = _threathlding(
+            self.filtered_links[i] = _thresholding(
                             linkList=self.links_dict[i],
                             p=p, weight=weight,
                             thread_number=thread_number,
@@ -357,7 +361,7 @@ def _getNetworkEntropy(linkMat):
 
 
 
-def _threathlding(linkList, p=0.001, weight="coef_abs",
+def _thresholding(linkList, p=None, weight="coef_abs",
                  thread_number=10000, genelist_source=None,
                 genelist_target=None):
     li = linkList.copy()
@@ -366,7 +370,8 @@ def _threathlding(linkList, p=0.001, weight="coef_abs",
     if not genelist_target is None:
         li = li[li.target.isin(genelist_target)]
 
-    li = li[li["p"] <= p]
+    if not p is None:
+        li = li[li["p"] <= p]
     li = li.sort_values(weight, ascending=False)
 
     if not thread_number is None:

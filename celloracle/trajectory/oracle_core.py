@@ -1111,7 +1111,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
     ###################################################
     ### 5. GRN inference for Network score analysis ###
     ###################################################
-    def get_links(self, cluster_name_for_GRN_unit=None, alpha=10, bagging_number=20, verbose_level=1, test_mode=False):
+    def get_links(self, cluster_name_for_GRN_unit=None, alpha=10, bagging_number=20, verbose_level=1, test_mode=False, model_method="bagging_ridge"):
         """
         Makes GRN for each cluster and returns results as a Links object.
         Several preprocessing should be done before using this function.
@@ -1131,6 +1131,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                 if [verbose_level == 0], no progress bar will be shown.
 
             test_mode (bool): If test_mode is True, GRN calculation will be done for only one cluster rather than all clusters.
+
+            model_method (str): Chose modeling algorithm. "bagging_ridge" or "bayesian_ridge"
 
         """
 
@@ -1159,7 +1161,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         links = get_links(oracle_object=self,
                           cluster_name_for_GRN_unit=cluster_name_for_GRN_unit,
                           alpha=alpha, bagging_number=bagging_number,
-                          verbose_level=verbose_level, test_mode=test_mode)
+                          verbose_level=verbose_level, test_mode=test_mode,
+                          model_method=model_method)
         return links
 
 

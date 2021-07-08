@@ -12,8 +12,8 @@ What the tutorial covers
 - :doc:`networkanalysis`: This notebook introduces how to construct sample-specific GRN models. It also contains examples of network analysis with graph theory.
 - :doc:`simulation` : This notebook performs in silico gene perturbation analysis using GRN models.
 
-These tutorial notebooks above come with preprocessed demo dataset. You can try CellOracle quickly.
-But If you want to apply CellOracle to your scRNA-seq or scATAC dataset, please refer to the following tutorials.
+Demo dataset is available in the tutorial notebooks above. You can try CellOracle quickly.
+But If you want to apply CellOracle to your scRNA-seq or scATAC dataset, please refer to the following tutorials to know how to prepare input data.
 
 - :doc:`scrnaprocess`: This notebook explains preprocessing steps for scRNA-seq data.
 - :doc:`base_grn`: This tutorial explains how to prepare input data for TF motif scan.

@@ -36,7 +36,7 @@ RIDGE_SOLVER = "auto"
 ### Construct cluster specific GRNs  ###
 ########################################
 
-def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_number=20, verbose_level=1, test_mode=False):
+def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_number=20, verbose_level=1, test_mode=False, model_method="bagging_ridge"):
     """
     Make GRN for each cluster and returns results as a Links object.
     Several preprocessing should be done before using this function.
@@ -59,13 +59,19 @@ def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_n
 
         test_mode (bool): If test_mode is True, GRN calculation will be done for only one cluster rather than all clusters.
 
+        model_method (str): Chose modeling algorithm. "bagging_ridge" or "bayesian_ridge"
+
     """
+    if model_method not in ["bagging_ridge", "bayesian_ridge"]:
+        raise ValueError("model_mothod error. Please set 'bagging_ridge' or 'bayesian_ridge'.")
+
     if cluster_name_for_GRN_unit is None:
         cluster_name_for_GRN_unit = oracle_object.cluster_column_name
 
     # calculate GRN for each cluster
     linkLists = _fit_GRN_for_network_analysis(oracle_object, cluster_name_for_GRN_unit=cluster_name_for_GRN_unit,
-                                  alpha=alpha, bagging_number=bagging_number,  verbose_level=verbose_level, test_mode=test_mode)
+                                  alpha=alpha, bagging_number=bagging_number,  verbose_level=verbose_level, test_mode=test_mode,
+                                  model_method=model_method)
 
     # initiate links object
     links = Links(name=cluster_name_for_GRN_unit,
@@ -79,11 +85,13 @@ def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_n
     #links.merge_links()
     links.ALPHA_used = alpha
 
+    links.model_method = model_method
+
     return links
 
 
 def _fit_GRN_for_network_analysis(oracle_object, cluster_name_for_GRN_unit, alpha=10, bagging_number=20,
-                                  verbose_level=1, test_mode=False):
+                                  verbose_level=1, test_mode=False, model_method="bagging_ridge"):
 
     # extract information from oracle_object
     gem_imputed = _adata_to_df(oracle_object.adata, "imputed_count")
@@ -121,6 +129,7 @@ def _fit_GRN_for_network_analysis(oracle_object, cluster_name_for_GRN_unit, alph
                          TFinfo_dic=oracle_object.TFdict,
                          verbose=False)
             tn_.fit_All_genes(bagging_number=bagging_number,
+                              model_method=model_method,
                               alpha=alpha, verbose=verbose)
 
 
