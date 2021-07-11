@@ -307,7 +307,7 @@ class TFinfo():
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
             elif self.species in ["Drosophila"]:
-                self.motif_db_name = 'CisBP_ver2_Drosophila_mix.pfm'
+                self.motif_db_name = 'CisBP_ver2_Drosophila_melanogaster.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
