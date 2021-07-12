@@ -24,7 +24,7 @@ import sys, os
 from ..data import __path__ as parent_path
 from ..utility import load_hdf5
 
-def load_TFinfo_df_mm9_mouse_atac_atlas():
+def load_mouse_scATAC_atlas_base_GRN():
     """
     Load Transcription factor binding information made from mouse scATAC-seq atlas dataset.
     mm9 genome was used for the reference genome.
@@ -37,6 +37,8 @@ def load_TFinfo_df_mm9_mouse_atac_atlas():
 
     path = os.path.join(parent_path[0], "TFinfo_data", "mm9_mouse_atac_atlas_data_TSS_and_cicero_0.9_accum_threshold_10.5_DF_peaks_by_TFs.parquet")
     return pd.read_parquet(path)
+
+load_TFinfo_df_mm9_mouse_atac_atlas = load_mouse_scATAC_atlas_base_GRN # Old function name
 
 def load_Paul2015_data():
     """

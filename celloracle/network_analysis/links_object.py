@@ -137,7 +137,7 @@ class Links():
             self.filtered_links[i] = _thresholding(
                             linkList=self.links_dict[i],
                             p=p, weight=weight,
-                            thread_number=thread_number,
+                            threshold_number=threshold_number,
                             genelist_source=genelist_source,
                             genelist_target=genelist_target)
 
@@ -362,7 +362,7 @@ def _getNetworkEntropy(linkMat):
 
 
 def _thresholding(linkList, p=None, weight="coef_abs",
-                 thread_number=10000, genelist_source=None,
+                 threshold_number=10000, genelist_source=None,
                 genelist_target=None):
     li = linkList.copy()
     if not genelist_source is None:
@@ -374,8 +374,8 @@ def _thresholding(linkList, p=None, weight="coef_abs",
         li = li[li["p"] <= p]
     li = li.sort_values(weight, ascending=False)
 
-    if not thread_number is None:
-        li = li[:thread_number]
+    if not threshold_number is None:
+        li = li[:threshold_number]
 
     #li = li[["source", "target", weight]]
 
