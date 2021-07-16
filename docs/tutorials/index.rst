@@ -17,7 +17,7 @@ What the tutorial covers
 
 
 .. note::
-   Demo dataset is available in the tutorial notebooks above. You can try CellOracle if you do not have any data.
+   Demo dataset is available in the tutorial notebooks above. You can try CellOracle even if you do not have any data.
 
 2. How to prepare input data
 ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -48,14 +48,18 @@ Prerequisites
 Code and data availability
 --------------------------
 
-The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks>`_ .
+- All jupyter notebook files are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks>`_ .
 
+- Also, we provide link for the notebook in each section.
 
+- You can download demo input data using the notebooks.
+
+- We provide intermediate files. You can start at any section.
 
 Getting started
 ----------------
 
-If you run CellOracle for the first time, please start with the :doc:`networkanalysis`.
+If you run CellOracle for the first time, please start with the :doc:`networkanalysis`. And then, please proceed to :doc:`simulation`.
 We provide demo scRNA-seq dataset and base-GRN data as follows.
 You can load these data using the CellOracle data loading function.
 
@@ -66,9 +70,11 @@ You can easily start CellOracle analysis with this dataset.
 You can reproduce hematopoiesis network analysis and perturbation simulation results that are shown in `our bioarxiv preprint <https://www.biorxiv.org/content/10.1101/2020.02.17.947416v3>`_ .
 
 
+Index
+-----
 
 GRN model construction and Network analysis
-------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
@@ -78,7 +84,7 @@ GRN model construction and Network analysis
    networkanalysis
 
 in silico gene perturbation with GRNs
--------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
@@ -88,17 +94,18 @@ in silico gene perturbation with GRNs
 
 
 Prepare input data
-------------------
+^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
    :numbered: 1
 
    scrnaprocess
+   pseudotime
    base_grn
 
-TF motif scan
--------------
+TF motif scan for base-GRN construction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2

@@ -23,6 +23,12 @@ For more information, please read our bioarxiv preprint: `CellOracle: Dissecting
 .. warning::
    CellOracle is still under development. It is a beta version. Functions in this package may change in the future release.
 
+News
+====
+
+- 7/16/2021: We overhauled our documentation and tutorial codes. Please re-download tutorial notebooks if you have old one. Also, we are updating CellOracle frequently. Please install the latest version of CellOracle if you have an old version. The latest version is 0.7.1.
+
+
 
 Contents
 ========
