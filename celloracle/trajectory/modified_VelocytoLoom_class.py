@@ -264,7 +264,7 @@ class modified_VelocytoLoom():
                                  knn_random: bool=True, sampled_fraction: float=0.3,
                                  sampling_probs: Tuple[float, float]=(0.5, 0.1),
                                  n_jobs: int=4, threads: int=None, calculate_randomized: bool=True,
-                                 random_seed: int=15071990) -> None:
+                                 random_seed: int=15071990, cell_idx_use=None) -> None:
         """Use correlation to estimate transition probabilities for every cells to its embedding neighborhood
 
         Arguments
@@ -320,9 +320,17 @@ class modified_VelocytoLoom():
                 permute_rows_nsign(delta_X_rndm)
 
             logging.debug("Calculate KNN in the embedding space")
-            nn = NearestNeighbors(n_neighbors=n_neighbors + 1, n_jobs=n_jobs)
-            nn.fit(embedding)  # NOTE should support knn in high dimensions
-            self.embedding_knn = nn.kneighbors_graph(mode="connectivity")
+
+            if cell_idx_use is None:
+                nn = NearestNeighbors(n_neighbors=n_neighbors + 1, n_jobs=n_jobs)
+                nn.fit(embedding)  # NOTE should support knn in high dimensions
+                self.embedding_knn = nn.kneighbors_graph(mode="connectivity")
+
+            else:
+                self.embedding_knn = calculate_embedding_knn_with_cell_idx(embedding_original=self.embedding,
+                                                                           cell_idx_use=cell_idx_use,
+                                                                           n_neighbors=n_neighbors,
+                                                                           n_jobs=n_jobs)
 
             # Pick random neighbours and prune the rest
             neigh_ixs = self.embedding_knn.indices.reshape((-1, n_neighbors + 1))
@@ -913,6 +921,31 @@ def scatter_viz(x: np.ndarray, y: np.ndarray, *args: Any, **kwargs: Any) -> Any:
 
 
 
+def calculate_embedding_knn_with_cell_idx(embedding_original, cell_idx_use, n_neighbors, n_jobs=4):
+
+    """
+    Calculate knn graph focusing on a cell population.
+
+    """
+
+
+    nn = NearestNeighbors(n_neighbors=n_neighbors + 1, n_jobs=n_jobs)
+    nn.fit(embedding_original[cell_idx_use, :])  # NOTE should support knn in high dimensions
+    embedding_knn = nn.kneighbors_graph(mode="connectivity")
+
+    #print(embedding_knn.indices.max())
+
+    indices_in_original_emb = cell_idx_use[embedding_knn.indices]
+    neigh_ixs = np.zeros((embedding_original.shape[0], n_neighbors + 1))
+    neigh_ixs[cell_idx_use, :] = indices_in_original_emb.reshape((-1, n_neighbors + 1))
+
+    nonzero = neigh_ixs.shape[0] * neigh_ixs.shape[1]
+    embedding_knn = sparse.csr_matrix((np.ones(nonzero),
+                                      neigh_ixs.ravel(),
+                                      np.arange(0, nonzero + 1, neigh_ixs.shape[1])),
+                                      shape=(neigh_ixs.shape[0],
+                                             neigh_ixs.shape[0]))
+    return embedding_knn
 
 
 @jit(nopython=True)

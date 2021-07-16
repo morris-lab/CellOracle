@@ -20708,3 +20708,15 @@ label 422:
 2021-07-07 21:50:48,294 [12878] DEBUG    matplotlib.font_manager:1056: [JupyterRequire] font search path [PosixPath('/home/k/anaconda3/envs/pandas1/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf'), PosixPath('/home/k/anaconda3/envs/pandas1/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/afm'), PosixPath('/home/k/anaconda3/envs/pandas1/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/pdfcorefonts')]
 2021-07-07 21:50:50,343 [12878] INFO     matplotlib.font_manager:1080: [JupyterRequire] Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face.  Unknown file format.
 2021-07-07 21:50:50,531 [12878] DEBUG    matplotlib.pyplot:290: [JupyterRequire] Loaded backend module://ipykernel.pylab.backend_inline version unknown.
+2021-07-12 23:39:43,526 [25412] DEBUG    root:75: [JupyterRequire] Loading Jupyter Require extension.
+2021-07-12 23:39:43,531 [25412] DEBUG    root:93: [JupyterRequire] Initializing comms.
+2021-07-12 23:39:43,531 [25412] INFO     root:247: [JupyterRequire] Initializing comms.
+2021-07-12 23:39:43,535 [25412] DEBUG    root:197: [JupyterRequire] Configuration requested: {'paths': {}, 'shim': None}
+2021-07-12 23:39:43,536 [25412] INFO     root:271: [JupyterRequire] Comms have been successfully initialized.
+2021-07-12 23:39:43,537 [25412] DEBUG    root:97: [JupyterRequire] Registering comm targets.
+2021-07-12 23:42:53,002 [25448] DEBUG    root:75: [JupyterRequire] Loading Jupyter Require extension.
+2021-07-12 23:42:53,002 [25448] DEBUG    root:93: [JupyterRequire] Initializing comms.
+2021-07-12 23:42:53,002 [25448] INFO     root:247: [JupyterRequire] Initializing comms.
+2021-07-12 23:42:53,004 [25448] DEBUG    root:197: [JupyterRequire] Configuration requested: {'paths': {}, 'shim': None}
+2021-07-12 23:42:53,005 [25448] INFO     root:271: [JupyterRequire] Comms have been successfully initialized.
+2021-07-12 23:42:53,005 [25448] DEBUG    root:97: [JupyterRequire] Registering comm targets.

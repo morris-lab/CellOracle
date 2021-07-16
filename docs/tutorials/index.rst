@@ -9,15 +9,30 @@ Once you get used to CellOracle codes, please replace demo data with your data t
 What the tutorial covers
 ------------------------
 
+Main celloracle analysis
+^^^^^^^^^^^^^^^^^^^^^^^^
+
 - :doc:`networkanalysis`: This notebook introduces how to construct sample-specific GRN models. It also contains examples of network analysis with graph theory.
 - :doc:`simulation` : This notebook performs in silico gene perturbation analysis using GRN models.
 
-Demo dataset is available in the tutorial notebooks above. You can try CellOracle quickly.
-But If you want to apply CellOracle to your scRNA-seq or scATAC dataset, please refer to the following tutorials to know how to prepare input data.
+
+.. note::
+   Demo dataset is available in the tutorial notebooks above. You can try CellOracle if you do not have any data.
+
+How to prepare input data
+^^^^^^^^^^^^^^^^^^^^^^^^^
+We recommend getting started with CellOracle using demo dataset. Please get used to CellOracle analysis with them first.
+When you want to apply CellOracle to your scRNA-seq or scATAC dataset, please refer to the following tutorials to know how to prepare input data.
 
 - :doc:`scrnaprocess`: This notebook explains preprocessing steps for scRNA-seq data.
 - :doc:`base_grn`: This tutorial explains how to prepare input data for TF motif scan.
 - :doc:`motifscan`: This tutorial describes the TF motif scan pipeline for base-GRN construction.
+
+.. warning::
+   In the input data preparation, we introduce how to prepare input data using some other libraries.
+   But **the input data preparation notebook is NOT CellOracle analysis itself**, and we just provide an example how to leverage pre-existing tools **to prepare input data**.
+   CellOracle is not just pipeline that is made of pre-existing tools.
+
 
 Prerequisites
 -------------
@@ -30,8 +45,8 @@ Prerequisites
 
 
 
-Scripts and data
-----------------
+Code and data availability
+--------------------------
 
 The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks>`_ .
 

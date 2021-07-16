@@ -20692,3 +20692,15 @@ label 422:
 2021-07-07 21:39:58,325 [12621] DEBUG    numba.core.ssa:143: [JupyterRequire] SSA violators set()
 2021-07-07 21:39:59,264 [12621] DEBUG    matplotlib.font_manager:1056: [JupyterRequire] font search path [PosixPath('/home/k/anaconda3/envs/pandas1/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf'), PosixPath('/home/k/anaconda3/envs/pandas1/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/afm'), PosixPath('/home/k/anaconda3/envs/pandas1/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/pdfcorefonts')]
 2021-07-07 21:40:01,287 [12621] INFO     matplotlib.font_manager:1080: [JupyterRequire] Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face.  Unknown file format.
+2021-07-13 00:00:03,847 [25625] DEBUG    root:75: [JupyterRequire] Loading Jupyter Require extension.
+2021-07-13 00:00:03,852 [25625] DEBUG    root:93: [JupyterRequire] Initializing comms.
+2021-07-13 00:00:03,852 [25625] INFO     root:247: [JupyterRequire] Initializing comms.
+2021-07-13 00:00:03,854 [25625] DEBUG    root:197: [JupyterRequire] Configuration requested: {'paths': {}, 'shim': None}
+2021-07-13 00:00:03,855 [25625] INFO     root:271: [JupyterRequire] Comms have been successfully initialized.
+2021-07-13 00:00:03,855 [25625] DEBUG    root:97: [JupyterRequire] Registering comm targets.
+2021-07-13 00:00:04,749 [25625] DEBUG    root:75: [JupyterRequire] Loading Jupyter Require extension.
+2021-07-13 00:00:04,750 [25625] DEBUG    root:93: [JupyterRequire] Initializing comms.
+2021-07-13 00:00:04,750 [25625] INFO     root:247: [JupyterRequire] Initializing comms.
+2021-07-13 00:00:04,755 [25625] DEBUG    root:197: [JupyterRequire] Configuration requested: {'paths': {}, 'shim': None}
+2021-07-13 00:00:04,755 [25625] INFO     root:271: [JupyterRequire] Comms have been successfully initialized.
+2021-07-13 00:00:04,755 [25625] DEBUG    root:97: [JupyterRequire] Registering comm targets.

@@ -2,7 +2,7 @@
 title: "R Notebook"
 output: html_notebook
 ---
-
+# 0.Import library
 ```{r}
 # Please make sure that you installed cicero before running this script
 rm(list=ls())
@@ -10,43 +10,53 @@ library(cicero)
 library(monocle3)
 
 ```
-# 0. Prepare data
- In this tutorial we use scAtac-seq data in 10x genomics database.
- You do not need to download these data when you analyze your scATAC data. 
+
+# 1. Download data
+
+This tutorial uses fetal brain acATAC-seq data obtained from a 10x genomics database.
+If you want to analyze your scATAC-seq data, you do not need to download these data.
+
+
+You can download the demo file by running the following command:
+If the file download fails, please manually download and unzip the data.
+http://cf.10xgenomics.com/samples/cell-atac/1.1.0/atac_v1_E18_brain_fresh_5k/atac_v1_E18_brain_fresh_5k_filtered_peak_bc_matrix.tar.gz
+
 ```{r}
-# create folder to store data
+# Create folder to store data
 dir.create("data")
 
-# download demo dataset from 10x genomics 
-system("wget -O data/matrix.tar.gz http://cf.10xgenomics.com/samples/cell-atac/1.1.0/atac_v1_E18_brain_fresh_5k/atac_v1_E18_brain_fresh_5k_filtered_peak_bc_matrix.tar.gz")
-
-# unzip data
+# Download demo dataset from 10x genomics 
+download.file(url = "http://cf.10xgenomics.com/samples/cell-atac/1.1.0/atac_v1_E18_brain_fresh_5k/atac_v1_E18_brain_fresh_5k_filtered_peak_bc_matrix.tar.gz",
+              destfile = "data/matrix.tar.gz")
+# Unzip data
 system("tar -xvf data/matrix.tar.gz -C data")
 ```
-```{r}
-# Just replace the data path below with the data path of your scATAC data if you have your scATAC data.
 
+```{r}
+# You can substitute the data path below with the data path of your scATAC data.
 data_folder <- "data/filtered_peak_bc_matrix"
+
+# Create a folder to save results
 output_folder <- "cicero_output"
 dir.create(output_folder)
 ```
 
 
-# 1. Load data and make Cell Data Set (CDS) object 
+# 2. Load data and make Cell Data Set (CDS) object 
+## 2.1. Process data to make CDS object
 
-## 1.1. Process data to make CDS object
 ```{r}
-# read in matrix data using the Matrix package
+# Read in matrix data using the Matrix package
 indata <- Matrix::readMM(paste0(data_folder, "/matrix.mtx")) 
-# binarize the matrix
+# Binarize the matrix
 indata@x[indata@x > 0] <- 1
 
-# format cell info
+# Format cell info
 cellinfo <- read.table(paste0(data_folder, "/barcodes.tsv"))
 row.names(cellinfo) <- cellinfo$V1
 names(cellinfo) <- "cells"
 
-# format peak info
+# Format peak info
 peakinfo <- read.table(paste0(data_folder, "/peaks.bed"))
 names(peakinfo) <- c("chr", "bp1", "bp2")
 peakinfo$site_name <- paste(peakinfo$chr, peakinfo$bp1, peakinfo$bp2, sep="_")
@@ -55,7 +65,7 @@ row.names(peakinfo) <- peakinfo$site_name
 row.names(indata) <- row.names(peakinfo)
 colnames(indata) <- row.names(cellinfo)
 
-# make CDS
+# Make CDS
 input_cds <-  suppressWarnings(new_cell_data_set(indata,
 cell_metadata = cellinfo,
 gene_metadata = peakinfo))
@@ -66,16 +76,15 @@ input_cds <- monocle3::detect_genes(input_cds)
 input_cds <- input_cds[Matrix::rowSums(exprs(input_cds)) != 0,] 
 ```
 
-# 2. QC and Filtering
+# 3. Qauality check and Filtering
 ```{r}
 # Visualize peak_count_per_cell
 hist(Matrix::colSums(exprs(input_cds)))
-
-
 ```
+
 ```{r}
-# filter cells by peak_count
-# PLEASE CHANGE the threshold values below depending on your data
+# Filter cells by peak_count
+# Please set an appropriate threshold values according to your data 
 max_count <-  15000
 min_count <- 2000
 input_cds <- input_cds[,Matrix::colSums(exprs(input_cds)) >= min_count] 
@@ -84,8 +93,8 @@ input_cds <- input_cds[,Matrix::colSums(exprs(input_cds)) <= max_count]
 ```
 
 
+# 4. Process cicero-CDS object
 
-# 3. Process cicero-CDS object
 ```{r}
 # Data preprocessing
 set.seed(2017)
@@ -99,22 +108,29 @@ input_cds <- reduce_dimension(input_cds, reduction_method = 'UMAP',
                               preprocess_method = "LSI")
 umap_coords <- reducedDims(input_cds)$UMAP
 
-# save cds object
+
 cicero_cds <- make_cicero_cds(input_cds, reduced_coordinates = umap_coords)
-saveRDS(cicero_cds, paste0(output_folder, "/cicero_cds.Rds"))
+
+# Save cds object if you want
+#saveRDS(cicero_cds, paste0(output_folder, "/cicero_cds.Rds"))
+
 ```
 
-# 3. Set reference genome information. 
-To run cicero, we need to get a genome coordinates files, which contains the lengths of each chromosomes.
-You can read mm10 genome information with the following command. 
-The text file, mm10_chromosome_length.txt is included in the celloracle notebook folder.https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero
+# 5. Load reference genome information
 
-If your scATAC-seq data use different reference genome, you need to get a genome coordinates files for your reference genome. Please see the Cicero documentation for more information.https://cole-trapnell-lab.github.io/cicero-release/docs_m3/#installing-cicero
+To run cicero, you need to get a genomic coordinate file that contains the length of each chromosome.
+You can download the mm10 genomic information with the following command.
+
+If your scATAC-seq data was generated with another reference genome, you need to get the genome coordinate file for the reference genome you used. See the Cicero documentation for more information.
+
+https://cole-trapnell-lab.github.io/cicero-release/docs_m3/#installing-cicero
 
 ```{r}
 # !!Please make sure that the reference genome information below match the reference genome of your scATAC-seq data.
 
 # If your scATAC-seq uses mm10 reference genome, you can read chromosome length file with the following command.
+download.file(url = "https://raw.githubusercontent.com/morris-lab/CellOracle/master/docs/demo_data/mm10_chromosome_length.txt",
+              destfile = "./mm10_chromosome_length.txt")
 chromosome_length <- read.table("./mm10_chromosome_length.txt")
 
 # For mm9 genome, you can use the following command.
@@ -125,19 +141,23 @@ chromosome_length <- read.table("./mm10_chromosome_length.txt")
 #data("human.hg19.genome")
 #chromosome_length <- mhuman.hg19.genome
 
+
 ```
 
-# 4. Run cicero to get cis-regulatory connection scores
+# 6. Run Cicero
+
 ```{r}
-# runc the main function
+# Run the main function
 conns <- run_cicero(cicero_cds, chromosome_length) # Takes a few minutes to run
 
-# save results
-saveRDS(conns, paste0(output_folder, "/cicero_connections.Rds"))
+# Save results if you want
+#saveRDS(conns, paste0(output_folder, "/cicero_connections.Rds"))
 
-# check results
+# Check results
 head(conns)
 ```
+
+# 7. Save results for the next step
 
 ```{r}
 all_peaks <- row.names(exprs(input_cds))
