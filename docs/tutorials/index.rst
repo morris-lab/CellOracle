@@ -31,7 +31,7 @@ When you want to apply CellOracle to your scRNA-seq or scATAC dataset, please re
 .. warning::
    In the input data preparation, we introduce how to prepare input data using some other libraries.
    But **the input data preparation notebook is NOT CellOracle analysis itself**, and we just provide an example how to leverage pre-existing tools **to prepare input data**.
-   CellOracle is not just pipeline that is made of pre-existing tools.
+   CellOracle is not a pipeline for scRNA-seq / scATAC-seq data preprocessing.
 
 
 Prerequisites
