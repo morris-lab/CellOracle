@@ -1,7 +1,7 @@
 .. _simulation:
 
-Simulation with GRNs
-====================
+in silico gene perturbation with GRNs
+=====================================
 
 ``celloracle`` leverage GRNs to simulate signal propagation inside a cell.
 We can estimate the effect of gene perturbation by the simulation with GRNs.

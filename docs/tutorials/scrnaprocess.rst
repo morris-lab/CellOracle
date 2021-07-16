@@ -6,37 +6,24 @@ scRNA-seq data preparation
 Overview
 --------
 
+In advance to CellOrale analysis, scRNA-seq data should be processed.
+Please prepare scRNA-seq data as an `anndata` using `scanpy`.
 
-Network analysis and simulation in celloracle will be performed using scRNA-seq data. The scRNA-seq data should include the components below.
+.. note::
+   `scanpy` is a python toolkit for scRNA-seq data analysis. If you are new to scanpy, pelase read the documentation to learn it in advance.
 
- - Gene expression matrix; mRNA counts before scaling and transformation.
- - Clustering results.
- - Dimensional reduction results.
+    - scanpy documentation: https://scanpy.readthedocs.io/en/stable/
+    - anndata documentation: https://anndata.readthedocs.io/en/latest/
 
-In addition to these minimum requirements, we highly recommend doing these analyses below in the preprocessing step.
-
- - Data quality check and cell/gene filtering.
- - Normalization
- - Identification of highly variable genes
-
-We recommend processing scRNA-seq data using either Scanpy or Seurat.
-If you are not familiar with the general workflow of scRNA-seq data processing, please go to `the documentation for scanpy <https://scanpy.readthedocs.io/en/stable/>`_ and `the documentation for Seurat <https://satijalab.org/seurat/vignettes.html>`_ before celloracle analysis.
-
-If you already have preprocessed scRNA-seq data, which includes the necessary information above, you can skip this part.
-
+.. warning::
+   In this section, we intend to introduce an example of how to prepare the **input data** for CellOracle analysis.
+   **This is NOT the CellOracle analysis itself.** We do NOT use celloracle in this notebook.
 
 
 A. scRNA-seq data preprocessing with scanpy
 -------------------------------------------
-``scanpy`` is a python library for the analysis of scRNA-seq data.
-
-In this tutorial, we introduce an example of scRNA-seq preprocessing for celloracle with ``scanpy``.
-We wrote the notebook based on `one of scanpy's tutorials <https://scanpy-tutorials.readthedocs.io/en/latest/paga-paul15.html>`_ with some modifications.
-
-
-The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/03_scRNA-seq_data_preprocessing>`_ .
-
-Python notebook
+Please download notebooks from `here <https://github.com/morris-lab/CellOracle/blob/master/docs/notebooks/03_scRNA-seq_data_preprocessing/scanpy_preprocessing_with_Paul_etal_2015_data.ipynb>`_ .
+Or please click below to view the content.
 
 .. toctree::
 

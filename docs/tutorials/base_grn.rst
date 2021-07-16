@@ -27,20 +27,28 @@ Option1. Data preprocessing of scATAC-seq data
 
 If you have scATAC-seq data, you can use scATAC-seq data to obtain the accessible promoter/enhancer DNA sequence.
 To prepare input data of base-GRN construction, we need to get the accessible promoter/enhancer DNA sequence from scATAC-seq data.
-This is just a data preparation step, and it uses Cicero and does NOT use celloracle.
-Distal cis-regulatory elements can be picked up using  `Cicero <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_ .
 
-Although we provide an example notebook here, you can analyze your data with Cicero in a different way if you are familiar with Cicero.
-If you have a question about Cicero, please read `the documentation of Cicero <https://cole-trapnell-lab.github.io/cicero-release/>`_ for the detailed usage.
+Here, we introduce an example method to extract active promoter / enhancer peaks from scATAC-seq data using Cicero.
+
+.. note::
+   Cicero is a R package for scATAC-seq data analysis. It can pick up distal cis-regulatory elements in scATAC-seq data.
+
+.. warning::
+   - Here, we intend to introduce an example of how to prepare input data. **This is not CellOracle analysis. We do NOT use celloracle in this step**.
+   - This is just an example of data preparation step, you can analyze your data with Cicero in a different way if you are familiar with Cicero. If you have a question about Cicero, please read `the documentation of Cicero <https://cole-trapnell-lab.github.io/cicero-release/>`_ for the detailed usage.
+   - If you have a favorite algorithm / software for scATAC-data analysis, you can use totally different software to pick up gene expression regulatory elements.
+
 
 Step1. scATAC-seq analysis with Cicero
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01_ATAC-seq_data_processing>`_ .
+The jupyter notebook file is available `here <https://github.com/morris-lab/CellOracle/blob/master/docs/notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3.ipynb>`_ .
+The R notebook file is available `here <https://github.com/morris-lab/CellOracle/blob/master/docs/notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3.Rmd>`_ .
 
-R notebook
+Or click below to see the contents.
 
 .. toctree::
+   :maxdepth: 1
 
    ../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/01_atacdata_analysis_with_cicero_and_monocle3
 
@@ -49,17 +57,20 @@ R notebook
 Step2. TSS annotation
 ^^^^^^^^^^^^^^^^^^^^^
 
-We got active promoter / enhancer peaks. CellOracle annotate these peaks to get annotated promoter / enhancer peaks for target all genes.
+We can get active promoter / enhancer peaks in step1 above. Next, we will make gene annotations for these peaks.
 
 
-The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01_ATAC-seq_data_processing>`_ .
+The jupyter notebook file is available `here <https://github.com/morris-lab/CellOracle/blob/master/docs/notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.ipynb>`_ .
 
-Python notebook
+
+Or click below to see the contents.
 
 .. toctree::
+   :maxdepth: 1
 
    ../notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data
 
+Once you get the input data, please go to the Motif scan section.
 
 
 Option2. Data preprocessing of bulk ATAC-seq data
@@ -67,10 +78,12 @@ Option2. Data preprocessing of bulk ATAC-seq data
 Bulk DNA-seq data can be used to get the accessible promoter/enhancer sequences.
 
 
-The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/01_ATAC-seq_data_processing>`_ .
+The jupyter notebook file is available `here <https://github.com/morris-lab/CellOracle/blob/master/docs/notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.ipynb>`_ .
 
-Python notebook
+
+Or click below to see the contents.
 
 .. toctree::
+   :maxdepth: 1
 
    ../notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data

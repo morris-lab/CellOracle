@@ -9,7 +9,7 @@ Once you get used to CellOracle codes, please replace demo data with your data t
 What the tutorial covers
 ------------------------
 
-Main celloracle analysis
+1. Main celloracle analysis
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 - :doc:`networkanalysis`: This notebook introduces how to construct sample-specific GRN models. It also contains examples of network analysis with graph theory.
@@ -19,7 +19,7 @@ Main celloracle analysis
 .. note::
    Demo dataset is available in the tutorial notebooks above. You can try CellOracle if you do not have any data.
 
-How to prepare input data
+2. How to prepare input data
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 We recommend getting started with CellOracle using demo dataset. Please get used to CellOracle analysis with them first.
 When you want to apply CellOracle to your scRNA-seq or scATAC dataset, please refer to the following tutorials to know how to prepare input data.
@@ -77,7 +77,7 @@ GRN model construction and Network analysis
 
    networkanalysis
 
-in silico Gene perturbation with GRNs
+in silico gene perturbation with GRNs
 -------------------------------------
 
 .. toctree::

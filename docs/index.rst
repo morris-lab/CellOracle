@@ -35,15 +35,18 @@ Contents
 
 
 .. toctree::
+   :maxdepth: 2
 
    installation/index
 
 .. toctree::
+   :maxdepth: 2
 
    tutorials/index
 
 
 .. toctree::
+   :maxdepth: 2
 
    modules/index
 
