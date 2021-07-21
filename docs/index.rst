@@ -68,6 +68,11 @@ Contents
 
    citation/index
 
+.. toctree::
+
+   contact/index
+   
+
 Indices and tables
 ==================
 
