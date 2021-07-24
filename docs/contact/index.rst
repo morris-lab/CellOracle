@@ -17,7 +17,7 @@ Inquiry for collabolation or discussion
 Please send e-mail to us if you want a discussion with us.
 
 - Lab PI: Samantha Morris
-- Principal code manager: Kenji Kamimoto
+- Principal code developer: Kenji Kamimoto
 
 E-mail address can be found `here <http://morrislab.wustl.edu/lab-members/>`_.
 

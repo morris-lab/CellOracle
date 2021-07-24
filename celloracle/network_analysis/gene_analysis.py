@@ -263,25 +263,32 @@ def plot_score_comparison_2D_with_plotly(links, value, cluster1, cluster2, filln
         value (srt): The network score to be shown.
         cluster1 (str): Cluster nome to analyze. Network scores in the cluste1 are shown as x-axis.
         cluster2 (str): Cluster nome to analyze. Network scores in the cluste2 are shown as y-axis.
+
     """
 
-    res = links.merged_score[links.merged_score.cluster.isin([cluster1, cluster2])][[value, "cluster"]]
-    res = res.reset_index(drop=False)
-    piv = pd.pivot_table(res, values=value, columns="cluster", index="index")
-    piv = piv.reset_index(drop=False)
+    try:
+        import plotly.express as px
+        res = links.merged_score[links.merged_score.cluster.isin([cluster1, cluster2])][[value, "cluster"]]
+        res = res.reset_index(drop=False)
+        piv = pd.pivot_table(res, values=value, columns="cluster", index="index")
+        piv = piv.reset_index(drop=False)
 
-    if fillna_with_zero:
-        piv = piv.fillna(0)
-    else:
-        piv = piv.fillna(piv.mean(axis=0))
+        if fillna_with_zero:
+            piv = piv.fillna(0)
+        else:
+            piv = piv.fillna(piv.mean(axis=0))
 
 
-    x, y = piv[cluster1], piv[cluster2]
-    
-    fig = px.scatter(piv, x=cluster1, y=cluster2,
-                     hover_data=['index'], template="plotly_white")
+        x, y = piv[cluster1], piv[cluster2]
 
-    return fig
+        fig = px.scatter(piv, x=cluster1, y=cluster2,
+                         hover_data=['index'], template="plotly_white")
+
+        return fig
+    except:
+        print("Interactive mode requires plotly. Please install plotly before use.: pip install plotly")
+
+
 
 
 ######################
