@@ -13,13 +13,13 @@ with open('LICENSE') as f:
 
 """with open('requirements.txt') as f:
     requirements = f.read()
-    
+
 """
 
 
 setup(
     name='celloracle',
-    version="0.7.2",
+    version="0.7.3",
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',

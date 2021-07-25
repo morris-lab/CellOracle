@@ -321,7 +321,7 @@ class TFinfo():
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
             elif self.species in ["Arabidopsis"]:
-                self.motif_db_name = 'CisBP_ver2_Arabidopsis_thaliana.pfm'
+                self.motif_db_name = 'CisBP_ver2_Arabidopsis_thaliana_GENE_ID.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
