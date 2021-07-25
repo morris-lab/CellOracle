@@ -69,4 +69,4 @@ html_static_path = ['_static']
 
 nbsphinx_allow_errors = True
 
-from no_share import googleanalytics_id
+from .no_share import googleanalytics_id
