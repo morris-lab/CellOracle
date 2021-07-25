@@ -13,7 +13,9 @@ with open('LICENSE') as f:
 
 """with open('requirements.txt') as f:
     requirements = f.read()
+    
 """
+
 
 setup(
     name='celloracle',
