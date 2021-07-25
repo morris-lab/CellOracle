@@ -38,7 +38,8 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx_click.ext',
               'releases',
               'nbsphinx',
-              'docxbuilder']
+              'docxbuilder',
+              'sphinxcontrib.googleanalytics']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -67,3 +68,5 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 nbsphinx_allow_errors = True
+
+from no_share import googleanalytics_id
