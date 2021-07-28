@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-with open("requrements.txt") as f:
+with open("requirements.txt") as f:
     required = f.read().splitlines()
 
 with open('README.md') as f:
@@ -19,7 +19,7 @@ with open('LICENSE') as f:
 
 setup(
     name='celloracle',
-    version="0.7.4",
+    version="0.7.5",
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
