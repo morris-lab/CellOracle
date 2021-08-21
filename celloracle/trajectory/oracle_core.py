@@ -1111,7 +1111,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
     ###################################################
     ### 5. GRN inference for Network score analysis ###
     ###################################################
-    def get_links(self, cluster_name_for_GRN_unit=None, alpha=10, bagging_number=20, verbose_level=1, test_mode=False, model_method="bagging_ridge"):
+    def get_links(self, cluster_name_for_GRN_unit=None, alpha=10, bagging_number=20, verbose_level=1, test_mode=False, model_method="bagging_ridge", ignore_warning=False):
         """
         Makes GRN for each cluster and returns results as a Links object.
         Several preprocessing should be done before using this function.
@@ -1139,23 +1139,26 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         ## Check data
         info = self._generate_meta_data()
 
-        if info["status - Gene expression matrix"] != "Ready":
-            raise ValueError("scRNA-seq data is not imported.")
+        if ignore_warning:
+            pass
+        else:
+            if info["status - Gene expression matrix"] != "Ready":
+                raise ValueError("scRNA-seq data is not imported.")
 
-        if info["status - PCA calculation"] != "Done":
-            raise ValueError("Preprocessing is not done. Do PCA and Knn imputation.")
+            if info["status - PCA calculation"] != "Done":
+                raise ValueError("Preprocessing is not done. Do PCA and Knn imputation.")
 
-        if info["status - Knn imputation"] != "Done":
-            raise ValueError("Preprocessing is not done. Do Knn imputation.")
+            if info["status - Knn imputation"] != "Done":
+                raise ValueError("Preprocessing is not done. Do Knn imputation.")
 
-        if info["status - BaseGRN"] != "Ready":
-            raise ValueError("Found No TF information. Please import TF data (base-GRN) first.")
+            if info["status - BaseGRN"] != "Ready":
+                raise ValueError("Found No TF information. Please import TF data (base-GRN) first.")
 
-        if info["n_regulatory_in_both_TFdict_and_scRNA-seq"] == '0 genes':
-            raise ValueError("Found No overlap between TF info (base GRN) and your scRNA-seq data. Please check your data format and species.")
+            if info["n_regulatory_in_both_TFdict_and_scRNA-seq"] == '0 genes':
+                raise ValueError("Found No overlap between TF info (base GRN) and your scRNA-seq data. Please check your data format and species.")
 
-        if info["n_target_genes_both_TFdict_and_scRNA-seq"] == '0 genes':
-            raise ValueError("Found No overlap between TF info (base GRN) and your scRNA-seq data. Please check your data format and species.")
+            if info["n_target_genes_both_TFdict_and_scRNA-seq"] == '0 genes':
+                raise ValueError("Found No overlap between TF info (base GRN) and your scRNA-seq data. Please check your data format and species.")
 
 
         links = get_links(oracle_object=self,
