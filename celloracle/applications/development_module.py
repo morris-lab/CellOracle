@@ -14,6 +14,7 @@ import pandas as pd
 import numpy as np
 from tqdm.notebook import tqdm
 import matplotlib.pyplot as plt
+import seaborn as sns
 #import h5py
 
 from scipy.stats import wilcoxon
@@ -171,12 +172,14 @@ class Oracle_development_module(Data_strage):
 
         # Calculate inner product between the pseudotime-gradient and the perturb-gradient
         self.inner_product = np.array([np.dot(i, j) for i, j in zip(self.flow, self.ref_flow)])
+        self.inner_product_random = np.array([np.dot(i, j) for i, j in zip(self.flow_rndm, self.ref_flow)])
 
 
     def calculate_digitized_ip(self, n_bins=10):
 
         inner_product_df = pd.DataFrame({"score": self.inner_product[~self.mass_filter_simulation],
-                                                "pseudotime": self.pseudotime_on_grid[~self.mass_filter_simulation]})
+                                         "score_randomized_GRN": self.inner_product_random[~self.mass_filter_simulation],
+                                         "pseudotime": self.pseudotime_on_grid[~self.mass_filter_simulation]})
 
 
         bins = _get_bins(inner_product_df.pseudotime, n_bins)
@@ -184,8 +187,58 @@ class Oracle_development_module(Data_strage):
 
         self.inner_product_df = inner_product_df
 
-    def get_p_inner_product(self, method="wilcoxon"):
-        return get_p_inner_product(inner_product_df=self.inner_product_df, method=method)
+    def get_negative_PS_p_value(self, pseudotime=None, return_ps_sum=False, plot=False):
+
+        df = self.inner_product_df.copy()
+
+        if pseudotime is not None:
+            pseudotime = [i for i in pseudotime if i in list("0123456789")]
+            df = df[df.pseudotime_id.isin(pseudotime)]
+
+        x = df["score"]
+        y = df["score_randomized_GRN"]
+
+        # Clipping positive value to focus on negative IP
+        x = np.clip(x, -np.inf, 0)
+        y = np.clip(y, -np.inf, 0)
+
+        if plot:
+            sns.distplot(x)
+            sns.distplot(y)
+
+        # Paired non-parametric test with Wilcoxon's runk sum test
+        s, p = wilcoxon(x, y, alternative="less")
+
+        if return_ps_sum:
+            return p, -x.sum(), -y.sum()
+
+        return p
+
+    def get_positive_PS_p_value(self, pseudotime=None, return_ps_sum=False, plot=False):
+        df = self.inner_product_df.copy()
+
+        if pseudotime is not None:
+            pseudotime = [i for i in pseudotime if i in list("0123456789")]
+            df = df[df.pseudotime_id.isin(pseudotime)]
+
+        x = df["score"]
+        y = df["score_randomized_GRN"]
+
+        # Clipping negative value to focus on positive IP
+        x = np.clip(x, 0, np.inf)
+        y = np.clip(y, 0, np.inf)
+
+        if plot:
+            sns.distplot(x)
+            sns.distplot(y)
+
+        # Paired non-parametric test with Wilcoxon's runk sum test
+        s, p = wilcoxon(x, y, alternative="greater")
+
+        if return_ps_sum:
+            return p, -x.sum(), -y.sum()
+
+        return p
 
     def get_sum_of_negative_ips(self):
         return get_sum_of_negative_ips(inner_product_df=self.inner_product_df)
@@ -302,32 +355,6 @@ def _get_bins(array, n_bins):
 
 from scipy.stats import wilcoxon
 
-def get_p_inner_product(inner_product_df, method="wilcoxon"):
-    """
-
-
-    """
-    dizitized_pseudotimes = np.sort(inner_product_df["pseudotime_id"].unique())
-
-    li = []
-    for i in dizitized_pseudotimes:
-        pseudotime_ = inner_product_df[inner_product_df["pseudotime_id"]==i].score.values
-
-        if method == "wilcoxon":
-            _, p_ts = wilcoxon(x=pseudotime_, alternative="two-sided")
-            _, p_greater = wilcoxon(x=pseudotime_, alternative="greater")
-            _, p_less = wilcoxon(x=pseudotime_, alternative="less")
-            mean_ = pseudotime_.mean()
-            median_ = np.median(pseudotime_)
-        #print(i, p)
-        li.append([mean_, median_, p_ts, p_greater, p_less])
-
-    inner_product_summary = \
-        pd.DataFrame(np.array(li),
-                     columns=["ip_mean", "ip_median", "p_twosided", "p_less", "p_greater"],
-                     index=dizitized_pseudotimes)
-
-    return inner_product_summary
 
 
 def get_sum_of_positive_ips(inner_product_df):

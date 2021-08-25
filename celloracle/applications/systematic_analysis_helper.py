@@ -140,6 +140,94 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
         return interactive_table
 
+    def _interactive_calculate_negative_ps_p_value(self):
+        """
+        8/21/2021. This function is under development
+        Get p-values for negative PS sum score by comparing nPS to randomized GRN nPS.
+        """
+
+        if self.hdf5_info is None:
+            self.get_hdf5_info()
+
+        def wrapper(misc, pseudotime, n_TFs=20):
+            df = self._calculate_negative_ps_p_value(misc=misc, pseudotime=pseudotime)
+
+
+            print(f"Top {n_TFs} in {misc}")
+            display(HTML(df.iloc[:min(n_TFs, df.shape[0])].to_html()))
+
+        interactive_table = interactive(wrapper,
+                               #{'manual': True},
+                               misc=self.hdf5_info["misc_list"],
+                               pseudotime="0,1,2,3,4,5,6,7,8,9",
+                               n_TFs=(5, 50, 1))
+
+        return interactive_table
+
+    def _update_inner_product_df(self, n_bins=10, verbose=True):
+        self.del_attrs()
+
+        gene_misc_lists = self.hdf5_info["gene_misc_lists"]
+
+        li = []
+        if verbose:
+            loop = tqdm(gene_misc_lists)
+        else:
+            loop = gene_misc_lists
+
+        self.del_attrs()
+
+        for gene, misc in loop:
+            self.load_hdf5(gene=gene, misc=misc)
+            self.calculate_inner_product()
+            self.calculate_digitized_ip(n_bins=n_bins)
+            self.dump_hdf5(gene=gene, misc=misc)
+            # Clear memory
+            self.del_attrs()
+
+
+    def _calculate_negative_ps_p_value(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True):
+
+        """
+        8/21/2021. This function is under development
+        Get p-values for negative PS sum score by comparing nPS to randomized GRN nPS.
+        """
+
+        self.del_attrs()
+
+        gene_lists = self.hdf5_info["gene_list"]
+
+        p_list = []
+        ps_sums = []
+        ps_sum_randoms = []
+        if verbose:
+            loop = tqdm(gene_lists)
+        else:
+            loop = gene_lists
+
+        for gene in loop:
+
+            self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
+            if "score_randomized_GRN" not in self.inner_product_df.columns:
+                raise ValueError("please update inner_product_df first")
+            p, ps_sum, ps_sum_random = self.get_negative_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)
+            p_list.append(p)
+            ps_sum_randoms.append(ps_sum_random)
+            ps_sums.append(ps_sum)
+
+        # Clear memory
+        self.del_attrs()
+
+        # p-value correction
+        p_corrected = np.clip(np.array(p_list)*len(gene_lists), 0, 1)
+
+        result = pd.DataFrame({"gene": gene_lists, "ps_sum":ps_sums, "ps_sum_random": ps_sum_randoms,
+                               "p": p_list, "p_adj": p_corrected})
+
+        result = result.sort_values("ps_sum", ascending=False).reset_index(drop=True)
+
+        return result
+
 
     def estimate_scale_for_visualization(self, return_result=True):
 
