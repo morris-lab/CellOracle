@@ -25,7 +25,7 @@ from velocyto.estimation import (colDeltaCor, colDeltaCorLog10,
 from .neighbors import (BalancedKNN, connectivity_to_weights,
                                 convolve_by_sparse_weights,
                                 knn_distance_matrix)
-from velocyto.serialization import dump_hdf5, load_hdf5
+#from velocyto.serialization import dump_hdf5, load_hdf5
 
 
 #from tqdm.notebook import tqdm
