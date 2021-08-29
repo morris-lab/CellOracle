@@ -4,22 +4,91 @@
 Changelog
 =========
 
+
+
+* `0.8.0 <2021-08-28>`
+ `-` Change requirements. From this version, numba>=0.50.1 is required.
+
+ `-` Update installation page in documentation.
+
+* `0.7.5 <2021-07-28>`
+ `-` Correct requirements.txt file name.
+
+* `0.7.4 <2021-07-27>`
+ `-` Update Arabidopsis promoter base GRN data.
+
+* `0.7.3 <2021-07-25>`
+ `-` Update Arabidopsis motif data.
+
+* `0.7.0 <2021-07-16>`
+ `-` Overhaul documentation.
+
+* `0.7.0 <2021-07-11>`
+ `-` Add pre-built promoter base GRNs.
+
+* `0.7.1 <2021-07-15>`
+ `-` Aad function for oracle transition probability calculation.
+
+* `0.7.0 <2021-07-11>`
+ `-` Add pre-built promoter base GRNs.
+
+* `0.6.17 <2021-07-08>`
+ `-` Add chcken and guinea pig motif
+ 
+ `-` Update Arabidopsis ref genome name
+
+* `0.6.12 <2021-06-11>`
+ `-` Add functions to oracle object to check current data status.
+
+* `0.6.11 <2021-06-09>`
+ `-` Add data loading function. Demo oracle data and links data can be loaded using data loadig functions.
+
+* `0.6.9 <2021-05-14>`
+ `-` Code refactoring in network visualization.
+
+* `0.6.8 <2021-05-10>`
+ `-` Update Seurat data conversion module.
+
+* `0.6.8 <2021-05-08>`
+ `-` Change requirements. From this version, numba=0.48.0  is required.
+
+* `0.6.7 <2021-05-5>`
+ `-` Add function to check status of installed dependent package version.
+
+* `0.6.5 <2021-03-25>`
+ `-` Minor bug fix in the installation process.
+
+* `0.6.4 <2021-02-18>`
+ `-` Minor change for oracle object. Metadata will be shown if you print oracle object.
+
+ `-` Add new function to oracle class.
+
+* `0.6.3 <2021-01-26>`
+ `-` Big fix to solve [this issue](https://github.com/morris-lab/CellOracle/issues/42).
+
+ `-` Bug fix. Anndata>=0.7.5 is required.
+
+* `0.6.2 <2021-12-16>`
+ `-` Big fix. h5py>=3.1.0 is required.
+
+* `0.6.0 <2021-12-14>`
+ `-` Add new modules: dev_modules and analysis_helper.
+
 * `0.5.1 <2020-08-4>`
- `-` Add new promoter-TSS reference data for several reference genomes; (1)"Xenopus": ["xenTro2", "xenTro3"],n(2)"Rat": ["rn4", "rn5", "rn6"], (3)"Drosophila": ["dm3", "dm6"], (4)"C.elegans": ["ce6", "ce10"], (5)"Arabidopsis": ["tair10"].
+ `-` Add new promoter-TSS reference data for several reference genomes; (1)"Xenopus": ["xenTro2", "xenTro3"], (2)"Rat": ["rn4", "rn5", "rn6"], (3)"Drosophila": ["dm3", "dm6"], (4)"C.elegans": ["ce6", "ce10"], (5)"Arabidopsis": ["tair10"].
 
  `-` Add new motif data for several species: "Xenopus", "Rat", "Drosophila", "C.elegans" and "Arabidopsis".
 
-
 * `0.5.0 <2020-08-3>`
- `-` Add now functions for custom motifs. You can select motifs from several options. Also, we updated our web tutorial to introduce how to load / make a different motif data.
+ `-` Add new functions for custom motifs. You can select motifs from several options. Also, we updated our web tutorial to introduce how to load / make different motif data.
 
- `-` Change default motifs for S.cerevisiae and Zebrafish.
+ `-` Change default motifs for S.cerevisiae and zebrafish.
 
  `-` Change requirements for dependent package: gimmemotifs and geomepy. Celloracle codes were updated to support new version of gimmemotifs (0.14.4) and genomepy (0.8.4).
 
 
 * `0.4.2 <2020-07-14>`
- `-` Add promoter-TSS information for Zebrafish reference genome (danRer7, danRer10 and danRer11).
+ `-` Add promoter-TSS information for zebrafish reference genome (danRer7, danRer10 and danRer11).
 
 * `0.4.1 <2020-07-02>`
  `-` Add promoter-TSS information for S.cerevisiae reference genome (sacCer2 and sacCer3).

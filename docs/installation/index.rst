@@ -44,18 +44,43 @@ Python Requirements
 - Please install all dependent libraries before installing CellOracle according to the instructions below.
 - CellOracle is still a beta version and it is not available through PyPI or anaconda distribution yet. Please install CellOracle from our GitHub repository according to the instruction below.
 
+CellOracle installation using conda and pip
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Quick CellOracle installation using pip
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-You can install CellOracle and its all dependencies by the following command.
+**1. Make a conda environment**
+  We recommend installing CellOracle in an independent conda environment to avoid dependent software conflicts.
+  Please make a new python environment for celloracle and install dependent libraries in it.
 
-::
+  ::
 
-    pip install git+https://github.com/morris-lab/CellOracle.git
+      conda create -n celloracle_env python=3.6
+      conda activate celloracle_env
+
+  Installation of some libraries requires non-default anaconda channels. Please add the channels below. Instead, you can explicitly enter the channel when you install a library.
+
+  ::
+
+      conda config --add channels defaults
+      conda config --add channels bioconda
+      conda config --add channels conda-forge
+
+**2. Install dependencies using conda**
+
+  Run the following command to install some dependencies prior to celloracle installation.
+
+  ::
+
+      conda install pybedtools numba
+
+**3. Install CellOracle and other dependencies**
+
+  ::
+
+      pip install git+https://github.com/morris-lab/CellOracle.git
 
 
 You may have an error in the installation process of CellOracle dependent libraries.
-If you have an error, please install dependent libraries stepwise.
+If you have an error, please look at the troubleshooting page.
 
 
 .. toctree::
@@ -70,6 +95,10 @@ R requirements
 CellOracle uses R libraries to calculate network graph score.
 Please install `R <https://www.r-project.org>`_ (>=3.5) and R libraries below.
 
+.. note::
+   These R libraries are needed for network analysis.
+   CellOracle gene perturbation simulation does not require the R libraries.
+   **You can skip R library installation if you do not perform network analysis.**
 
 .. code-block:: r
 

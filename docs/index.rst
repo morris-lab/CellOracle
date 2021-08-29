@@ -26,6 +26,8 @@ For more information, please read our bioarxiv preprint: `CellOracle: Dissecting
 News
 ====
 
+- 8/28/2021: We updated installation page.
+
 - 7/16/2021: We overhauled our documentation and tutorial codes. Please re-download tutorial notebooks if you have old one. Also, we are updating CellOracle frequently. Please install the latest version of CellOracle if you have an old version. The latest version is 0.7.1.
 
 
@@ -71,7 +73,7 @@ Contents
 .. toctree::
 
    contact/index
-   
+
 
 Indices and tables
 ==================
