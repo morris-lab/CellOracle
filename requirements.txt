@@ -14,6 +14,7 @@ tqdm>=4.45
 python-igraph
 louvain
 fa2
+jupyter
 anndata>=0.7.5
 scanpy>=1.6
 joblib
