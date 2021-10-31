@@ -8,7 +8,7 @@ In the previous section, we got accessible Promoter/enhancer DNA regions using A
 Next, we will obtain a base-GRN by scanning the regulatory genomic sequences for TF-binding motifs.
 In the later GRN inference process, this list will be used to define potential regulatory connections.
 
-The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks/02_motif_scan>`_ .
+The jupyter notebook files and data used in this tutorial are available `here <https://github.com/morris-lab/CellOracle/blob/master/docs/notebooks/02_motif_scan/02_atac_peaks_to_TFinfo_with_celloracle_20200801.ipynb>`_ .
 
 
 Scan DNA sequences searching for TF binding motifs

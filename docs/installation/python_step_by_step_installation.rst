@@ -53,3 +53,20 @@ After installing the dependent libraries above, please install CellOracle again.
 ::
 
     pip install git+https://github.com/morris-lab/CellOracle.git
+
+
+If you get error related to "certifi"
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you get the following error, it means the error is caused by versiom mismatch of "certifi".
+See `this page  <https://stackoverflow.com/questions/50129762/graphlab-create-2-1-installation-fails-to-uninstall-certifi-a-distutils-insta>`_. for more information.
+
+::
+
+    ERROR: Cannot uninstall 'certifi'. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.
+
+In this case, please add "--ignore-installed certifi " to the installation command.
+
+::
+
+    pip install git+https://github.com/morris-lab/CellOracle.git --ignore-installed certifi

@@ -48,9 +48,8 @@ Prerequisites
 Code and data availability
 --------------------------
 
-- All jupyter notebook files are available `here <https://github.com/morris-lab/CellOracle/tree/master/docs/notebooks>`_ .
 
-- Also, we provide link for the notebook in each section.
+- We provide link for the notebook in each section.
 
 - You can download demo input data using the notebooks.
 
