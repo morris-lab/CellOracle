@@ -699,7 +699,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                         pass
                         #print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
                     else:
-                        print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
+                        pass
+                        #print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
                         #raise ValueError(f"Variability score of Gene {i} is too low. Cannot perform simulation.")
 
                 # 5th QC
