@@ -10,7 +10,6 @@ pandas>=1.0.3
 velocyto>=0.17
 umap-learn
 pyarrow>=0.17
-jupyter
 tqdm>=4.45
 python-igraph
 louvain
