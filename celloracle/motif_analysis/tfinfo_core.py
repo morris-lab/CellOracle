@@ -248,7 +248,7 @@ class TFinfo():
 
 
 
-    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True, motifs=None, TF_evidence_level="direct_and_indirect", TF_formatting="auto"):
+    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True, motifs=None, TF_evidence_level="direct_and_indirect", TF_formatting="auto", divide=100000):
         """
         Scan DNA sequences searching for TF binding motifs.
 
@@ -391,7 +391,11 @@ class TFinfo():
         target_sequences = remove_zero_seq(fasta_object=target_sequences)
 
         print("Scanning motifs ... It may take several hours if you proccess many peaks. \n")
-        self.scanned_df = scan_dna_for_motifs(s, motifs, target_sequences, verbose)
+        self.scanned_df = scan_dna_for_motifs(scanner_object=s,
+                                              motifs_object=motifs,
+                                              sequence_object=target_sequences,
+                                              divide=divide,
+                                              verbose=verbose)
 
         self.__addLog("scanMotifs")
 

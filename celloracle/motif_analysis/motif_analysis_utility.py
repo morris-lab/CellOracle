@@ -93,7 +93,7 @@ def list2str(li):
 
 
 
-def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, verbose=True):
+def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, divide=100000, verbose=True):
     '''
     This is a wrapper function to scan DNA sequences searchig for Gene motifs.
 
@@ -136,6 +136,10 @@ def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, verbose=
 
     #save_as_pickled_object(li, "./tmp_li.pickle")
     #print("saved tmp list")
+
+    if verbose:
+        print("Motif Scan finished. Start post processing.")
+        
     if len(li)==0:
         df = pd.DataFrame(columns=["seqname",
                                "motif_id",
@@ -144,8 +148,6 @@ def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, verbose=
                                "score", "pos", "strand"])
     else:
 
-
-        divide = 100000
         remaining = 1
         LI = []
         k = 0
