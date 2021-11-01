@@ -70,7 +70,7 @@ CellOracle installation using conda and pip
 
   ::
 
-      conda install pybedtools numba
+      conda install numba cython pybedtools jupyter notebook
 
 **3. Install CellOracle and other dependencies**
 

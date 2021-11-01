@@ -43,7 +43,7 @@ Please install other python libraries below using conda prior to celloracle inst
 
 ::
 
-    conda install goatools pyarrow tqdm joblib jupyter gimmemotifs==0.14.4 genomepy==0.8.4
+    conda install pybedtools pyarrow tqdm joblib jupyter gimmemotifs==0.14.4 genomepy==0.8.4
 
 
 Install celloracle
