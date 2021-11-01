@@ -15,8 +15,8 @@ import numpy as np
 
 import sys, os
 
-from tqdm.notebook import tqdm
-
+#from tqdm.notebook import tqdm
+from tqdm import tqdm
 # 0.2. libraries for DNA and genome data wrangling and Motif analysis
 from genomepy import Genome
 
@@ -139,7 +139,7 @@ def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, divide=1
 
     if verbose:
         print("Motif Scan finished. Start post processing.")
-        
+
     if len(li)==0:
         df = pd.DataFrame(columns=["seqname",
                                "motif_id",
