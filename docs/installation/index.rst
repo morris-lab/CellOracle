@@ -14,7 +14,7 @@ Docker image
 
 ::
 
-    docker push kenjikamimoto126/celloracle_ubuntu:latest
+    docker pull kenjikamimoto126/celloracle_ubuntu
 
 
 - This docker image was built based on Ubuntu 20.04.
