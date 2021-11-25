@@ -9,6 +9,7 @@ import pickle
 import subprocess
 import sys
 import math
+from copy import deepcopy
 
 import pandas as pd
 import numpy as np
@@ -309,7 +310,7 @@ class Gradient_calculator():
 
 
     def plot_pseudotime(self, ax=None, s=CONFIG["s_scatter"],show_background=True, args=CONFIG["default_args"], cmap="rainbow"):
-        plot_pseudotime(self, ax=None, s=s, show_background=show_background, args=args)
+        plot_pseudotime(self, ax=None, s=s, show_background=show_background, cmap=cmap, args=args)
 
 
 def aggregate_Gradient_objects(gradient_object_list, base_gt=None, fill_na=True):

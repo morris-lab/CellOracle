@@ -288,7 +288,7 @@ def transfer_color_between_anndata(adata_ref, adata_que, cluster_name):
 
 def knn_data_transferer(adata_ref, adata_que,
                         n_neighbors=20, cluster_name=None, embedding_name=None, adata_true=None,
-                        transfer_color=True, n_PCA=30, use_PCA_in_adata=False):
+                        transfer_color=True, n_PCA=30, use_PCA_in_adata=False, meta_data=None):
     """
     Extract categorical information from adata.obs or embedding information from adata.obsm and transfer these information into query anndata.
     In the calculation, KNN is used after PCA.
@@ -371,3 +371,16 @@ def knn_data_transferer(adata_ref, adata_que,
                     plt.show()
         else:
             raise ValueError("embedding name format error")
+
+    if meta_data is not None:
+        if isinstance(meta_data, str):
+            meta_data = [meta_data]
+        if isinstance(meta_data, list):
+            for i in  meta_data:
+                model_knreg = KNeighborsRegressor(n_neighbors=n_neighbors)
+                model_knreg.fit(X_train_PCA, adata_ref.obs[i])
+                pred = model_knreg.predict(X_test_PCA)
+                adata_que.obs[i] = pred
+        
+        else:
+            raise ValueError("meta_data format error")

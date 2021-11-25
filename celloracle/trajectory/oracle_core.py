@@ -941,7 +941,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         return mcmc_transition_cluster
 
 
-    def plot_mc_resutls_as_sankey(self, cluster_use, start=0, end=-1, order=None, font_size=10):
+    def plot_mc_results_as_sankey(self, cluster_use, start=0, end=-1, order=None, font_size=10):
         """
         Plot the simulated cell state-transition as a Sankey-diagram after groping by the cluster.
 
@@ -979,6 +979,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                colorDict=mcmc_color_dict,
                leftLabels=order_left, rightLabels=order_right)
 
+    def plot_mc_resutls_as_sankey(self, cluster_use, start=0, end=-1, order=None, font_size=10):
+        self.plot_mc_results_as_sankey(cluster_use, start=start, end=end, order=order, font_size=font_size)
 
     def plot_mc_result_as_kde(self, n_time, args={}):
         """
