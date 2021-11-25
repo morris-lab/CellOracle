@@ -628,7 +628,7 @@ class modified_VelocytoLoom():
         diffusor = Diffusion()
         self.diffused = diffusor.diffuse(starting_p, self.tr, n_steps=n_steps, mode=mode)[0]
 
-    def plot_mc_resutls_as_density(self, args={}):
+    def plot_mc_results_as_density(self, args={}):
         """
         this function plot the results of mc chain simulation in velocyto method.
         """

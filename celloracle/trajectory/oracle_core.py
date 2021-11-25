@@ -979,10 +979,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                colorDict=mcmc_color_dict,
                leftLabels=order_left, rightLabels=order_right)
 
-    def plot_mc_resutls_as_sankey(self, cluster_use, start=0, end=-1, order=None, font_size=10):
-        self.plot_mc_results_as_sankey(cluster_use, start=start, end=end, order=order, font_size=font_size)
-
-    def plot_mc_result_as_kde(self, n_time, args={}):
+    def plot_mc_results_as_kde(self, n_time, args={}):
         """
         Pick up one timepoint in the cell state-transition simulation and plot as a kde plot.
 
@@ -1000,7 +997,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         sns.kdeplot(x, y, **args)
 
-    def plot_mc_result_as_trajectory(self, cell_name, time_range, args={}):
+    def plot_mc_results_as_trajectory(self, cell_name, time_range, args={}):
         """
         Pick up several timepoints in the cell state-transition simulation and plot as a line plot.
         This function can be used to visualize how cell-state changes after perturbation focusing on a specific cell.
