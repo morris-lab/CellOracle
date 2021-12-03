@@ -221,7 +221,7 @@ def _plot_simulation_flow_on_grid(self, ax=None, scale=CONFIG["scale_simulation"
 
     ax.axis("off")
 
-def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, args={}):
+def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, cmap=CONFIG["cmap_ps"], args={}):
 
     if ax is None:
         ax = plt
@@ -248,14 +248,14 @@ def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_back
     ax.scatter(self.gridpoints_coordinates[~self.mass_filter_simulation, 0],
                self.gridpoints_coordinates[~self.mass_filter_simulation, 1],
                c=self.inner_product[~self.mass_filter_simulation],
-               cmap="coolwarm", norm=norm,#vmin=vmin, vmax=vmax,
+               cmap=cmap, norm=norm,#vmin=vmin, vmax=vmax,
                s=s, **args)
 
     ax.axis("off")
 
 
 
-def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vmin=None, vmax=None, args={}):
+def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vmin=None, vmax=None, cmap=CONFIG["cmap_ps"], args={}):
 
     if ax is None:
         fig, ax = plt.subplots()
@@ -273,8 +273,8 @@ def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vm
     pcm = ax.scatter(self.pseudotime_on_grid[~self.mass_filter_simulation],
                      self.inner_product[~self.mass_filter_simulation],
                      c=self.inner_product[~self.mass_filter_simulation],
-                     cmap="coolwarm",
-                     norm=norm,#vmin=vmin, vmax=vmax, 
+                     cmap=cmap,
+                     norm=norm,#vmin=vmin, vmax=vmax,
                      s=s, **args)
 
     ax.set_ylim([vmin*1.1, vmax*1.1])
