@@ -221,7 +221,7 @@ def _plot_simulation_flow_on_grid(self, ax=None, scale=CONFIG["scale_simulation"
 
     ax.axis("off")
 
-def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, cmap=CONFIG["cmap_ps"], args={}):
+def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, cmap=None, args={}):
 
     if ax is None:
         ax = plt
@@ -230,6 +230,8 @@ def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_back
         vmin = -vm
     if vmax is None:
         vmax = vm
+    if cmap is None:
+        cmap = CONFIG["cmap_ps"]
 
     try:
         norm = colors.TwoSlopeNorm(vmin=vmin, vcenter=0, vmax=vmax)
@@ -255,7 +257,7 @@ def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_back
 
 
 
-def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vmin=None, vmax=None, cmap=CONFIG["cmap_ps"], args={}):
+def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vmin=None, vmax=None, cmap=None, args={}):
 
     if ax is None:
         fig, ax = plt.subplots()
@@ -264,6 +266,8 @@ def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vm
         vmin = -vm
     if vmax is None:
         vmax = vm
+    if cmap is None:
+        cmap = CONFIG["cmap_ps"]
 
     try:
         norm = colors.TwoSlopeNorm(vmin=vmin, vcenter=0, vmax=vmax)
