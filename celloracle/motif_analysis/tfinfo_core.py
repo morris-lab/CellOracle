@@ -45,18 +45,8 @@ from ..utility import save_as_pickled_object, load_pickled_object, intersect,\
 from .motif_analysis_utility import scan_dna_for_motifs, is_genome_installed
 from .process_bed_file import read_bed, peak2fasta, remove_zero_seq
 from .motif_data import load_motifs
+from .reference_genomes import SUPPORTED_REF_GENOME
 
-SUPPORTED_REF_GENOME = {"Human": ['hg38', 'hg19'],
-                        "Mouse": ['mm10', 'mm9'],
-                        "S.cerevisiae": ["sacCer2", "sacCer3"],
-                        "Zebrafish": ["danRer7", "danRer10", "danRer11"],
-                        "Xenopus": ["xenTro2", "xenTro3"],
-                        "Rat": ["rn4", "rn5", "rn6"],
-                        "Drosophila": ["dm3", "dm6"],
-                        "C.elegans": ["ce6", "ce10"],
-                        "Arabidopsis": ["TAIR10"],
-                        "Chicken": ["galGal4", "galGal5", "galGal6"],
-                        }
 
 
 def load_TFinfo(file_path):
@@ -168,11 +158,9 @@ class TFinfo():
         self.ref_genome = ref_genome
 
         # check ref_genome is supported or not
-        self.species = None
-        for species, ref_genomes in SUPPORTED_REF_GENOME.items():
-            if ref_genome in ref_genomes:
-                self.species = species
-        if self.species is None:
+        if ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:
+            self.species = SUPPORTED_REF_GENOME.species[SUPPORTED_REF_GENOME.ref_genome==ref_genome].values[0]
+        else:
             raise ValueError(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page.")
 
         # check  genome installation

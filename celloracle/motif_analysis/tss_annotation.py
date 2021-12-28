@@ -36,7 +36,7 @@ from pybedtools import BedTool
 
 from ..motif_analysis import __path__ as parent_path
 from .process_bed_file import list_peakstr_to_df
-from .tfinfo_core import SUPPORTED_REF_GENOME
+from .reference_genomes import SUPPORTED_REF_GENOME
 
 def _load_tss_ref_data(ref_genome):
 
@@ -60,12 +60,9 @@ def get_tss_info(peak_str_list, ref_genome, verbose=True):
         ref_genome (str): reference genome name.
         verbose (bool): verbosity.
     """
-    SUPPORTED_REF_GENOME_LIST = []
-    for refs in SUPPORTED_REF_GENOME.values():
-        SUPPORTED_REF_GENOME_LIST += refs
 
-    if ref_genome not in SUPPORTED_REF_GENOME_LIST:
-        raise ValueError(ref_genome, " is not supported currently. Supported refgenomes are ", SUPPORTED_REF_GENOME)
+    if ref_genome not in SUPPORTED_REF_GENOME.ref_genome.values:
+        raise ValueError(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page.")
 
     ref = _load_tss_ref_data(ref_genome=ref_genome)
 

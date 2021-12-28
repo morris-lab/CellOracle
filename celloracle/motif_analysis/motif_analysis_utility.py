@@ -28,6 +28,7 @@ from gimmemotifs.config import DIRECT_NAME, INDIRECT_NAME
 
 from .process_bed_file import peak_M1
 
+from .reference_genomes import SUPPORTED_REF_GENOME
 
 
 ####
@@ -58,10 +59,14 @@ def is_genome_installed(ref_genome):
         return True
 
     except:
+        if  ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:
+            provider = SUPPORTED_REF_GENOME["provider"][SUPPORTED_REF_GENOME.ref_genome==ref_genome].values[0]
+        else:
+            provider = "PROVIDER"
 
         print(f"genome {ref_genome} is not installed in this environment.")
         print("Please install genome using genomepy.")
-        print(f'e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome("{ref_genome}", "UCSC")')
+        print(f'e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome("{ref_genome}", "{provider}")')
 
     return False
         #raise ValueError(f"Ref_Genome: {ref_genome} is not available.")
