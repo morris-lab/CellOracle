@@ -51,7 +51,7 @@ def _load_tss_ref_data(ref_genome):
 
 
 
-def get_tss_info(peak_str_list, ref_genome, verbose=True):
+def get_tss_info(peak_str_list, ref_genome, verbose=True, custom_tss_file_path=None):
     """
     Get annotation about Transcription Starting Site (TSS).
 
@@ -59,12 +59,15 @@ def get_tss_info(peak_str_list, ref_genome, verbose=True):
         peak_str_list (list of str): list of peak_id. e.g., [“chr5_0930303_9499409”, “chr11_123445555_123445577”]
         ref_genome (str): reference genome name.
         verbose (bool): verbosity.
+        custom_tss_file_path (str): File path to the custom TSS reference bed file. If you just want to use reference genome that are supported in the CellOracle, you don't need to set this parameter.
     """
+    if custom_tss_file_path is not None:
+        ref = BedTool(fn=custom_tss_file_path)
+    else:
+        if ref_genome not in SUPPORTED_REF_GENOME.ref_genome.values:
+            raise ValueError(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page.")
 
-    if ref_genome not in SUPPORTED_REF_GENOME.ref_genome.values:
-        raise ValueError(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page.")
-
-    ref = _load_tss_ref_data(ref_genome=ref_genome)
+        ref = _load_tss_ref_data(ref_genome=ref_genome)
 
     queue = list_peakstr_to_df(peak_str_list)
     queue = BedTool.from_dataframe(queue)

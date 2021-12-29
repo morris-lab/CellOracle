@@ -161,7 +161,8 @@ class TFinfo():
         if ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:
             self.species = SUPPORTED_REF_GENOME.species[SUPPORTED_REF_GENOME.ref_genome==ref_genome].values[0]
         else:
-            raise ValueError(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page.")
+            #print(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page.")
+            self.species = "not_in_the_default_species_list"
 
         # check  genome installation
         if not is_genome_installed(ref_genome=ref_genome):
@@ -315,14 +316,14 @@ class TFinfo():
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
-            elif self.species in ["Chicken"]: #CisBP_ver2_Gallus_gallus
+            elif self.species in ["Chicken"]:
                 self.motif_db_name = 'CisBP_ver2_Gallus_gallus.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
-            elif self.species in ["Guinea_pig"]: #CisBP_ver2_Gallus_gallus
+            elif self.species in ["Guinea_Pig"]:
                 self.motif_db_name = 'CisBP_ver2_Cavia_porcellus.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
@@ -330,7 +331,7 @@ class TFinfo():
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
             else:
-                raise ValueError(f"We don't have default motifs for your species, {self.species}. Please set motifs.")
+                raise ValueError(f"We don't have default motifs for your species, Please specify motif data by yourself.")
 
         else:
             # Check format

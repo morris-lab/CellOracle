@@ -29,5 +29,6 @@ SUPPORTED_REF_GENOME = \
                   ["Chicken", "galGal4", "UCSC"],
                   ["Chicken", "galGal5", "UCSC"],
                   ["Chicken", "galGal6", "UCSC"],
+                  ["Guinea_Pig", "Cavpor3.0", "Ensembl"]
                   ],
                  columns=["species", "ref_genome", "provider"])
