@@ -5,6 +5,25 @@ Changelog
 =========
 
 
+* `0.8.4 <2021-12-29>`
+ `-` Code refactoring in simulation results visualization function.
+
+ `-` Code refactoring in motif analysis module.
+
+ `-` Add TSS data for Guinea Pig reference genome, Cavpor3.0.
+
+
+* `0.8.3 <2021-11-25>`
+-` Fix typo in the Markov walk function. The function is currently deplicated.
+
+* `0.8.3 <2021-11-25>`
+-` Fix typo in the Markov walk function. The function is currently deplicated.
+
+* `0.8.2 <2021-10-31>`
+ `-` Code refactoring in motif analysis module.
+
+ * `0.8.1 <2021-10-30>`
+  `-` Change requirements.
 
 * `0.8.0 <2021-08-28>`
  `-` Change requirements. From this version, numba>=0.50.1 is required.
@@ -34,7 +53,7 @@ Changelog
 
 * `0.6.17 <2021-07-08>`
  `-` Add chcken and guinea pig motif
- 
+
  `-` Update Arabidopsis ref genome name
 
 * `0.6.12 <2021-06-11>`
