@@ -28,7 +28,9 @@ News
 
 Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
-- 12/29/2021: Add Guinea Pig TSS data for scATAC-seq data analysis.
+- 01/05/2021: We updated R library installation page. 
+
+- 12/29/2021: Guinea Pig TSS data was added for scATAC-seq data analysis.
 
 - 8/28/2021: We updated installation page.
 
