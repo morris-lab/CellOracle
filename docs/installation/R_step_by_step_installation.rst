@@ -33,19 +33,28 @@ In R console,
 `rnetcarto <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Please install ``rnetcarto`` with the following r-script or `the author's instruction <https://github.com/cran/rnetcarto/blob/master/src/rgraph/README.md>`_ .
-``rnetcarto`` requires  `the GNU scientific libraries <https://www.gnu.org/software/gsl/>`_ .
+1. ``rnetcarto`` requires  `the GNU scientific libraries <https://www.gnu.org/software/gsl/>`_ .
+ Please make sure your computational environment has GNU scientific libraries.
+ In short, you can quickly install GNU scientific libraries as follows.
 
-If you use ubuntu, you can install the GNU scientific libraries as follows.
+ For Linux users, please run the code below in the terminal.
+ ::
+
+     sudo apt-get install libgsl-dev
+ For MacOS users, please run the code below in the terminal.
+ ::
+
+    brew install gsl
+
+ For more infoamation about GNU scientific library installation, please look at `here <https://gist.github.com/TysonRayJones/af7bedcdb8dc59868c7966232b4da903>`_ .
 
 
-::
+2. ``rnetcarto`` is temporaliry unavailable through CRAN (at Jan 5 2021).
+ But you can install ``rnetcarto`` with `source file  <https://cran.r-project.org/src/contrib/Archive/rnetcarto/>`_ .
 
-    sudo apt-get install libgsl-dev
+ In short, please run the code below in R console.
 
+ .. code-block:: r
 
-In R console,
-
-.. code-block:: r
-
-   install.packages("rnetcarto")
+    install.packages("https://cran.r-project.org/src/contrib/Archive/rnetcarto/rnetcarto_0.2.4.tar.gz",
+                     repos = NULL, type = "source", configure.args = '--host=host')

@@ -103,8 +103,9 @@ Please install `R <https://www.r-project.org>`_ (>=3.5) and R libraries below.
 .. code-block:: r
 
    install.packages("igraph")
-   install.packages("rnetcarto")
    install.packages("linkcomm")
+   install.packages("https://cran.r-project.org/src/contrib/Archive/rnetcarto/rnetcarto_0.2.4.tar.gz",
+                    repos = NULL, type = "source", configure.args = '--host=host')
 
 If you have an error when installing these R libraries above, please look at the troubleshooting tips below.
 

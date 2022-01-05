@@ -1,0 +1,6 @@
+2022-01-05 16:46:04,537 [11200] DEBUG    root:75: [JupyterRequire] Loading Jupyter Require extension.
+2022-01-05 16:46:04,537 [11200] DEBUG    root:93: [JupyterRequire] Initializing comms.
+2022-01-05 16:46:04,537 [11200] INFO     root:247: [JupyterRequire] Initializing comms.
+2022-01-05 16:46:04,540 [11200] DEBUG    root:197: [JupyterRequire] Configuration requested: {'paths': {}, 'shim': None}
+2022-01-05 16:46:04,540 [11200] INFO     root:271: [JupyterRequire] Comms have been successfully initialized.
+2022-01-05 16:46:04,540 [11200] DEBUG    root:97: [JupyterRequire] Registering comm targets.
