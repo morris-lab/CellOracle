@@ -60,7 +60,7 @@ def plot_degree_distributions(links, plot_model=False, save=None):
 
         if not save is None:
             os.makedirs(save, exist_ok=True)
-            path = os.path.join(save, f"degree_dist_{links.name}_{links.thread_number}_{i}.{settings['save_figure_as']}")
+            path = os.path.join(save, f"degree_dist_{links.name}_{links.threshold_number}_{i}.{settings['save_figure_as']}")
         else:
             path = None
 
@@ -165,7 +165,7 @@ def plot_score_discributions(links, values=None, method="boxplot", save=None):
             plt.xticks(rotation=90)
             if not save is None:
                 os.makedirs(save, exist_ok=True)
-                path = os.path.join(save, f"boxplot_{i}_in_{links.name}_{links.thread_number}.{settings['save_figure_as']}")
+                path = os.path.join(save, f"boxplot_{i}_in_{links.name}_{links.threshold_number}.{settings['save_figure_as']}")
                 #plt.ylabel("{}\nentropy")
                 plt.savefig(path, transparent=True)
             plt.show()
@@ -178,7 +178,7 @@ def plot_score_discributions(links, values=None, method="boxplot", save=None):
             plt.xticks(rotation=90)
             if not save is None:
                 os.makedirs(save, exist_ok=True)
-                path = os.path.join(save, f"barplot_{i}_in_{links.name}_{links.thread_number}.{settings['save_figure_as']}")
+                path = os.path.join(save, f"barplot_{i}_in_{links.name}_{links.threshold_number}.{settings['save_figure_as']}")
                 #plt.ylabel("{}\nentropy")
                 plt.savefig(path, transparent=True)
             plt.show()
@@ -218,7 +218,7 @@ def plot_network_entropy_distributions(links, update_network_entropy=False, save
 
     if not save is None:
         os.makedirs(save, exist_ok=True)
-        path = os.path.join(save, f"network_entropy_in_{links.name}_{links.thread_number}.{settings['save_figure_as']}")
+        path = os.path.join(save, f"network_entropy_in_{links.name}_{links.threshold_number}.{settings['save_figure_as']}")
         ax.set_ylabel("normalized\nentropy")
         plt.savefig(path, transparent=True)
     plt.show()

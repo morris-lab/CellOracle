@@ -60,7 +60,7 @@ def plot_scores_as_rank(links, cluster, n_gene=50, save=None):
 
         if not save is None:
             os.makedirs(save, exist_ok=True)
-            path = os.path.join(save, f"ranked_values_in_{links.name}_{value}_{links.thread_number}_in_{cluster}.{settings['save_figure_as']}")
+            path = os.path.join(save, f"ranked_values_in_{links.name}_{value}_{links.threshold_number}_in_{cluster}.{settings['save_figure_as']}")
             fig.savefig(path, transparent=True)
         plt.show()
 
@@ -133,7 +133,7 @@ def plot_score_comparison_2D(links, value, cluster1, cluster2, percentile=99, an
     plt.title(f"{value}")
     if not save is None:
         os.makedirs(save, exist_ok=True)
-        path = os.path.join(save, f"values_comparison_in_{links.name}_{value}_{links.thread_number}_{cluster1}_vs_{cluster2}.{settings['save_figure_as']}")
+        path = os.path.join(save, f"values_comparison_in_{links.name}_{value}_{links.threshold_number}_{cluster1}_vs_{cluster2}.{settings['save_figure_as']}")
         plt.savefig(path, transparent=True)
     if plt_show:
         plt.show()
@@ -245,7 +245,7 @@ def _test_ver_plot_score_comparison_2D(links, value, cluster1, cluster2, percent
     plt.title(f"{value}")
     if not save is None:
         os.makedirs(save, exist_ok=True)
-        path = os.path.join(save, f"values_comparison_in_{links.name}_{value}_{links.thread_number}_{cluster1}_vs_{cluster2}.{settings['save_figure_as']}")
+        path = os.path.join(save, f"values_comparison_in_{links.name}_{value}_{links.threshold_number}_{cluster1}_vs_{cluster2}.{settings['save_figure_as']}")
         plt.savefig(path, transparent=True)
     plt.show()
 
@@ -337,7 +337,7 @@ def plot_score_per_cluster(links, goi, save=None, plt_show=True):
     if not save is None:
         os.makedirs(save, exist_ok=True)
         path = os.path.join(save,
-                           f"score_dynamics_in_{links.name}_{links.thread_number}_{goi}.{settings['save_figure_as']}")
+                           f"score_dynamics_in_{links.name}_{links.threshold_number}_{goi}.{settings['save_figure_as']}")
         plt.savefig(path, transparent=True)
     if plt_show:
         plt.show()
@@ -400,7 +400,7 @@ def plot_cartography_scatter_per_cluster(links, gois=None, clusters=None,
 
         if not save is None:
             os.makedirs(save, exist_ok=True)
-            path = os.path.join(save, f"cartography_in_{links.name}_{links.thread_number}_{cluster}.{settings['save_figure_as']}")
+            path = os.path.join(save, f"cartography_in_{links.name}_{links.threshold_number}_{cluster}.{settings['save_figure_as']}")
             fig.savefig(path, transparent=True)
         plt.show()
 
@@ -430,7 +430,7 @@ def plot_cartography_term(links, goi, save=None, plt_show=True):
     if not save is None:
         os.makedirs(save, exist_ok=True)
         path = os.path.join(save,
-                           f"cartography_role_in_{links.name}_{links.thread_number}_{goi}.{settings['save_figure_as']}")
+                           f"cartography_role_in_{links.name}_{links.threshold_number}_{goi}.{settings['save_figure_as']}")
         plt.savefig(path, transparent=True)
 
     if plt_show:

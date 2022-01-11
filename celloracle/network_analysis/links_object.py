@@ -15,6 +15,7 @@ import os
 import pandas as pd
 import numpy as np
 from scipy import stats
+from copy import deepcopy
 from ..utility.hdf5_processing import dump_hdf5, load_hdf5
 
 from .use_r_scripts import _get_network_score_by_Rscripts_inparallel
@@ -40,8 +41,18 @@ def load_links(file_path):
         Links: loaded links object.
 
     """
-    return load_hdf5(filename=file_path, obj_class=Links)
+    links = load_hdf5(filename=file_path, obj_class=Links)
 
+    _update_links_object(links)
+
+    return links
+
+def _update_links_object(links):
+    if hasattr(links, "thread_number"): # if the links object has old version attribute
+        if links.thread_number is not None:
+            links.threshold_number = deepcopy(links.thread_number)
+            delattr(links, "thread_number")
+            
 class Links():
     """
     This is a class for the processing and visualization of GRNs.
