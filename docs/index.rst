@@ -28,13 +28,16 @@ News
 
 Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
-- 01/05/2021: We updated R library installation page. 
+
+- 01/11/2021: We fixed a bug in the network analysis module.
+
+- 01/05/2021: We updated R library installation page.
 
 - 12/29/2021: Guinea Pig TSS data was added for scATAC-seq data analysis.
 
-- 8/28/2021: We updated installation page.
+- 08/28/2021: We updated installation page.
 
-- 7/16/2021: We overhauled our documentation and tutorial codes. Please re-download tutorial notebooks if you have old one. Also, we are updating CellOracle frequently. Please install the latest version of CellOracle if you have an old version.
+- 07/16/2021: We overhauled our documentation and tutorial codes. Please re-download tutorial notebooks if you have old one. Also, we are updating CellOracle frequently. Please install the latest version of CellOracle if you have an old version.
 
 
 Contents
