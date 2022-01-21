@@ -9,7 +9,7 @@ Overview
 
 
 There are several options for CellOracle base-GRN construction.
-Here is the illustration of base-GRN construction workflow.
+These are outlined in the figure below.
 
 
 .. image:: ./base_GRN_workflow.png
@@ -17,26 +17,25 @@ Here is the illustration of base-GRN construction workflow.
 
 
 
-- In this documentation, we introduce details of option1 and option2.
-- Option3 uses promoter database for the input of base-GRN construction. We provide pre-built promoter base-GRN for 10 species. You can load this base GRN using celloracle data loading function.
-- In option4, any TF-target gene list can be used as a base-GRN. Here is an example notebook [link].
+- Base GRNs can be constructed from scATAC-seq data (option 1) or bulk ATAC-seq data (option 2). Example workflows for these options are introduced in this notebook.
+- Base GRNs can be assembled using data from a promoter database (option 3). Within the CellOracle package, we provide pre-built promoter base GRNs for 10 species. These can be imported using the CellOracle data loading function.
+- Base GRNs can also be constructed from a user-supplied TF-target gene list (option 4).
 
 
-Option1. Data preprocessing of scATAC-seq data
+Option1. Preprocessing scATAC-seq data
 ----------------------------------------------
 
 If you have scATAC-seq data, you can use scATAC-seq data to obtain the accessible promoter/enhancer DNA sequence.
-To prepare input data of base-GRN construction, we need to get the accessible promoter/enhancer DNA sequence from scATAC-seq data.
-
-Here, we introduce an example method to extract active promoter / enhancer peaks from scATAC-seq data using Cicero.
+The sample-specific promoter/enhancer data will be converted into base GRN in the later process.
+Here, we introduce an example method to extract active promoter/enhancer peaks from scATAC-seq data using Cicero.
 
 .. note::
-   Cicero is a R package for scATAC-seq data analysis. It can pick up distal cis-regulatory elements in scATAC-seq data.
+   Cicero is an R package for scATAC-seq data analysis. Cicero can identify distal cis-regulatory elements in scATAC-seq data.
 
 .. warning::
-   - Here, we intend to introduce an example of how to prepare input data. **This is not CellOracle analysis. We do NOT use celloracle in this step**.
-   - This is just an example of data preparation step, you can analyze your data with Cicero in a different way if you are familiar with Cicero. If you have a question about Cicero, please read `the documentation of Cicero <https://cole-trapnell-lab.github.io/cicero-release/>`_ for the detailed usage.
-   - If you have a favorite algorithm / software for scATAC-data analysis, you can use totally different software to pick up gene expression regulatory elements.
+   - Here, we introduce an example of how to prepare input data of base GRN construction. This notebook is a data preparing example, and **this is NOT CellOracle analysis itself. We do NOT use CellOracle in this step**.
+   - We provide this brief example to help new users prep their data. More advanced users may use an existing Cicero workflow if they have one available. To learn more about Cicero, please visit `Cicero's documentation page <https://cole-trapnell-lab.github.io/cicero-release/>`_ for the detailed usage.
+   - As noted above, you can use totally different software to idntify gene regulatory elements if you have a favorite algorithm / software for scATAC-data analysis.
 
 
 Step1. scATAC-seq analysis with Cicero
@@ -57,7 +56,7 @@ Or click below to see the contents.
 Step2. TSS annotation
 ^^^^^^^^^^^^^^^^^^^^^
 
-We can get active promoter / enhancer peaks in step1 above. Next, we will make gene annotations for these peaks.
+In this step, we will annotate the active/enhancer peaks from step 1 above.
 
 
 The jupyter notebook file is available `here <https://github.com/morris-lab/CellOracle/blob/master/docs/notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with_cicero/02_preprocess_peak_data.ipynb>`_ .
@@ -75,7 +74,7 @@ Once you get the input data, please go to the Motif scan section.
 
 Option2. Data preprocessing of bulk ATAC-seq data
 -------------------------------------------------
-Bulk DNA-seq data can be used to get the accessible promoter/enhancer sequences.
+Bulk ATAC-seq data can also be used to get the accessible promoter/enhancer sequences.
 
 
 The jupyter notebook file is available `here <https://github.com/morris-lab/CellOracle/blob/master/docs/notebooks/01_ATAC-seq_data_processing/option2_Bulk_ATAC-seq_data/01_preprocess_Bulk_ATAC_seq_peak_data.ipynb>`_ .

@@ -6,11 +6,11 @@
 Welcome to celloracle's documentation!
 ======================================
 
-CellOracle is a python library for the in silico gene perturbation analysis using single-cell omics data and Gene Regulatory Network models.
+CellOracle is a python library for the in silico gene perturbation analysis using single-cell omics data and gene regulatory network models.
 
-Source code is available at `celloracle  GitHub repository <https://github.com/morris-lab/CellOracle>`_
+Source code is available at `CellOracle  GitHub repository <https://github.com/morris-lab/CellOracle>`_
 
-For more information, please read our bioarxiv preprint: `CellOracle: Dissecting cell identity via network inference and in silico gene perturbation <https://www.biorxiv.org/content/10.1101/2020.02.17.947416v3>`_
+For more information, please read our bioRxiv preprint: `CellOracle: Dissecting cell identity via network inference and in silico gene perturbation <https://www.biorxiv.org/content/10.1101/2020.02.17.947416v3>`_
 
 
 .. note::
@@ -21,7 +21,7 @@ For more information, please read our bioarxiv preprint: `CellOracle: Dissecting
 
 
 .. warning::
-   CellOracle is still under development. It is a beta version. Functions in this package may change in the future release.
+   CellOracle is still under development. It is currently a beta version. Functions in this package may change in a future release.
 
 News
 ====
@@ -37,7 +37,7 @@ Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentati
 
 - 08/28/2021: We updated installation page.
 
-- 07/16/2021: We overhauled our documentation and tutorial codes. Please re-download tutorial notebooks if you have old one. Also, we are updating CellOracle frequently. Please install the latest version of CellOracle if you have an old version.
+- 07/16/2021: We have overhauled our documentation and tutorial codes. Please re-download tutorial notebooks to use the most updated version. Also, we are updating CellOracle frequently. Please make sure you install the latest version of CellOracle.
 
 
 Contents

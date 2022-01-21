@@ -13,11 +13,9 @@ library(monocle3)
 
 # 1. Download data
 
-This tutorial uses fetal brain acATAC-seq data obtained from a 10x genomics database.
-If you want to analyze your scATAC-seq data, you do not need to download these data.
+This tutorial uses fetal brain scATAC-seq data from a 10x Genomics database. If you’re using your own scATAC-seq data, you will not need to download this dataset.
+You can download the demo file with the following command. 
 
-
-You can download the demo file by running the following command:
 If the file download fails, please manually download and unzip the data.
 http://cf.10xgenomics.com/samples/cell-atac/1.1.0/atac_v1_E18_brain_fresh_5k/atac_v1_E18_brain_fresh_5k_filtered_peak_bc_matrix.tar.gz
 
@@ -33,7 +31,7 @@ system("tar -xvf data/matrix.tar.gz -C data")
 ```
 
 ```{r}
-# You can substitute the data path below with the data path of your scATAC data.
+# You can substitute the data path below to your scATAC-seq data.
 data_folder <- "data/filtered_peak_bc_matrix"
 
 # Create a folder to save results
@@ -121,12 +119,12 @@ cicero_cds <- make_cicero_cds(input_cds, reduced_coordinates = umap_coords)
 To run cicero, you need to get a genomic coordinate file that contains the length of each chromosome.
 You can download the mm10 genomic information with the following command.
 
-If your scATAC-seq data was generated with another reference genome, you need to get the genome coordinate file for the reference genome you used. See the Cicero documentation for more information.
+If your scATAC-seq data was aligned to a different reference genome, you will need the reference-specific genome coordinates. See the Cicero documentation for more information.
 
 https://cole-trapnell-lab.github.io/cicero-release/docs_m3/#installing-cicero
 
 ```{r}
-# !!Please make sure that the reference genome information below match the reference genome of your scATAC-seq data.
+# !!Please make sure that the reference genome information below matches the reference genome of your scATAC-seq data.
 
 # If your scATAC-seq uses mm10 reference genome, you can read chromosome length file with the following command.
 download.file(url = "https://raw.githubusercontent.com/morris-lab/CellOracle/master/docs/demo_data/mm10_chromosome_length.txt",
