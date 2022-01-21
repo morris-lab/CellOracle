@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to celloracle's documentation!
+Welcome to CellOracle's documentation!
 ======================================
 
 CellOracle is a python library for the in silico gene perturbation analysis using single-cell omics data and gene regulatory network models.
@@ -11,13 +11,6 @@ CellOracle is a python library for the in silico gene perturbation analysis usin
 Source code is available at `CellOracle  GitHub repository <https://github.com/morris-lab/CellOracle>`_
 
 For more information, please read our bioRxiv preprint: `CellOracle: Dissecting cell identity via network inference and in silico gene perturbation <https://www.biorxiv.org/content/10.1101/2020.02.17.947416v3>`_
-
-
-.. note::
-
-   | Documentation is also available as a pdf file.
-
-   :download:`pdf documentation <_build/latex/celloracle.pdf>`
 
 
 .. warning::
@@ -28,6 +21,7 @@ News
 
 Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
+- 01/21/2021: We have changed the default color scheme for the inner product / perturbation score visualization in the in silico gene perturbation module. Please look at the tutorial notebook for detail.
 
 - 01/11/2021: We fixed a bug in the network analysis module.
 

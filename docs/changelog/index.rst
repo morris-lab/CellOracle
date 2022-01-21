@@ -4,6 +4,8 @@
 Changelog
 =========
 
+* `0.9.0 <2022-01-21>`
+ `-` Change the default color scheme for the inner product score / perturbation score visualization in the in silico gene perturbation module.
 
 * `0.8.5 <2022-01-11>`
  `-` Bug fix on plot saving function in the Network analysis module. The previous version may generate an error when the user try to save plots in network analysis. We fixed the bug.
