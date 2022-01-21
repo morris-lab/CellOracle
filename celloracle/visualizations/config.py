@@ -6,5 +6,5 @@ CONFIG = {"default_args": {"lw": 0.3, "rasterized": True},
           "s_grid": 20,
           "scale_simulation": 30,
           "scale_dev": 30,
-          "cmap_ps": "coolwarm",
+          "cmap_ps": "PiYG",
           "default_args_quiver": {"linewidths": 0.25, "width": 0.004}}
