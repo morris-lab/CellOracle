@@ -19,10 +19,7 @@ Changelog
 
 
 * `0.8.3 <2021-11-25>`
--` Fix typo in the Markov walk function. The function is currently deplicated.
-
-* `0.8.3 <2021-11-25>`
--` Fix typo in the Markov walk function. The function is currently deplicated.
+-` Fix typo in the Markov walk function.
 
 * `0.8.2 <2021-10-31>`
  `-` Code refactoring in motif analysis module.
@@ -57,7 +54,7 @@ Changelog
  `-` Add pre-built promoter base GRNs.
 
 * `0.6.17 <2021-07-08>`
- `-` Add chcken and guinea pig motif
+ `-` Add chicken and guinea pig motif
 
  `-` Update Arabidopsis ref genome name
 
@@ -65,7 +62,7 @@ Changelog
  `-` Add functions to oracle object to check current data status.
 
 * `0.6.11 <2021-06-09>`
- `-` Add data loading function. Demo oracle data and links data can be loaded using data loadig functions.
+ `-` Add data loading function. Demo oracle data and links data can be loaded using data loading functions.
 
 * `0.6.9 <2021-05-14>`
  `-` Code refactoring in network visualization.
