@@ -293,7 +293,7 @@ class Net():
         self.failed_genes = failed_genes
 
     def fit_All_genes(self, bagging_number=200, scaling=True, model_method="bagging_ridge",
-                      command_line_mode=False, log=None, alpha=1, verbose=True):
+                      command_line_mode=False, log=None, alpha=1, verbose=True, n_jobs=-1):
         """
         Make ML models for all genes.
         The calculation will be performed in parallel using scikit-learn bagging function.
@@ -307,6 +307,7 @@ class Net():
             log (logging object): log object to output log
             alpha (int) : Strength of regularization.
             verbose (bool): Whether or not to show a progress bar.
+            n_jobs (int): Number of cpu cores for parallel calculation. -1 means using all available cores.
         """
         self.fit_genes(target_genes=self.all_genes,
                        bagging_number=bagging_number,
@@ -316,10 +317,11 @@ class Net():
                        command_line_mode=command_line_mode,
                        log=log,
                        alpha=alpha,
-                       verbose=verbose)
+                       verbose=verbose,
+                       n_jobs=n_jobs)
 
     def fit_genes(self, target_genes, bagging_number=200, scaling=True, model_method="bagging_ridge",
-                  save_coefs=False, command_line_mode=False, log=None, alpha=1, verbose=True):
+                  save_coefs=False, command_line_mode=False, log=None, alpha=1, verbose=True, n_jobs=-1):
         """
         Make ML models for genes of interest.
         This calculation will be performed in parallel using scikit-learn's bagging function.
@@ -335,6 +337,7 @@ class Net():
             log (logging object): log object to output log
             alpha (int) : Strength of regularization.
             verbose (bool): Whether or not to show a progress bar.
+            n_jobs (int): Number of cpu cores for parallel calculation.  -1 means using all available cores.
 
         """
         genes = np.array(intersect(target_genes, self.TFdict.keys()))
@@ -360,6 +363,7 @@ class Net():
                                                      cellstate=self.cellstate,
                                                      bagging_number=bagging_number,
                                                      scaling=scaling,
+                                                     n_jobs=n_jobs,
                                                      alpha=alpha,
                                                      solver=RIDGE_SOLVER)
 
@@ -422,6 +426,7 @@ class Net():
                                                      cellstate=self.cellstate,
                                                      bagging_number=bagging_number,
                                                      scaling=scaling,
+                                                     n_jobs=n_jobs,
                                                      alpha=alpha,
                                                      solver=RIDGE_SOLVER)
 

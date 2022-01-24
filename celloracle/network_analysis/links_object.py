@@ -52,7 +52,7 @@ def _update_links_object(links):
         if links.thread_number is not None:
             links.threshold_number = deepcopy(links.thread_number)
             delattr(links, "thread_number")
-            
+
 class Links():
     """
     This is a class for the processing and visualization of GRNs.
@@ -152,7 +152,7 @@ class Links():
                             genelist_source=genelist_source,
                             genelist_target=genelist_target)
 
-    def get_score(self, test_mode=False):
+    def get_score(self, test_mode=False, n_jobs=-1):
         """
         Get several network sores using R libraries.
         Make sure all dependent R libraries are installed in your environment before running this function.
@@ -171,7 +171,8 @@ class Links():
             dict_links=self.filtered_links,
             id_dict=id_dict,
             output_folder="network_analysis",
-            message=False)
+            message=False,
+            n_parallel=n_jobs)
 
         network_scores = {}
         for i in li:

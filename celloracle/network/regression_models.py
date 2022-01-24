@@ -113,7 +113,7 @@ def get_bagging_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=None
         data = gem[reg_all]
     label = gem[target_gene]
 
-
+    #print(n_jobs)
     # bagging model
     model = BaggingRegressor(base_estimator=Ridge(alpha=alpha,
                                                   solver=solver,

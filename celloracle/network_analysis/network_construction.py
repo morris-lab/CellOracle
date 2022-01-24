@@ -36,7 +36,7 @@ RIDGE_SOLVER = "auto"
 ### Construct cluster specific GRNs  ###
 ########################################
 
-def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_number=20, verbose_level=1, test_mode=False, model_method="bagging_ridge"):
+def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_number=20, verbose_level=1, test_mode=False, model_method="bagging_ridge", n_jobs=-1):
     """
     Make GRN for each cluster and returns results as a Links object.
     Several preprocessing should be done before using this function.
@@ -61,6 +61,8 @@ def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_n
 
         model_method (str): Chose modeling algorithm. "bagging_ridge" or "bayesian_ridge"
 
+        n_jobs (int): Number of cpu cores for parallel calculation.  -1 means using all available cores. Default is -1.
+
     """
     if model_method not in ["bagging_ridge", "bayesian_ridge"]:
         raise ValueError("model_mothod error. Please set 'bagging_ridge' or 'bayesian_ridge'.")
@@ -71,7 +73,7 @@ def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_n
     # calculate GRN for each cluster
     linkLists = _fit_GRN_for_network_analysis(oracle_object, cluster_name_for_GRN_unit=cluster_name_for_GRN_unit,
                                   alpha=alpha, bagging_number=bagging_number,  verbose_level=verbose_level, test_mode=test_mode,
-                                  model_method=model_method)
+                                  model_method=model_method, n_jobs=n_jobs)
 
     # initiate links object
     links = Links(name=cluster_name_for_GRN_unit,
@@ -91,7 +93,7 @@ def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_n
 
 
 def _fit_GRN_for_network_analysis(oracle_object, cluster_name_for_GRN_unit, alpha=10, bagging_number=20,
-                                  verbose_level=1, test_mode=False, model_method="bagging_ridge"):
+                                  verbose_level=1, test_mode=False, model_method="bagging_ridge", n_jobs=-1):
 
     # extract information from oracle_object
     gem_imputed = _adata_to_df(oracle_object.adata, "imputed_count")
@@ -130,7 +132,9 @@ def _fit_GRN_for_network_analysis(oracle_object, cluster_name_for_GRN_unit, alph
                          verbose=False)
             tn_.fit_All_genes(bagging_number=bagging_number,
                               model_method=model_method,
-                              alpha=alpha, verbose=verbose)
+                              alpha=alpha,
+                              verbose=verbose,
+                              n_jobs=n_jobs)
 
 
             #oracle_object.linkMat[cluster] = tn_.returnResultAs_TGxTFs("coef_abs")
