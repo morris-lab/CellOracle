@@ -20,7 +20,7 @@ with open('LICENSE') as f:
 # Start install process
 setup(
     name='celloracle',
-    version="0.9.2", ##
+    version="0.9.3", ##
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
@@ -55,7 +55,7 @@ setup(
                                  "data/anndata/*.h5ad",
                                  "data/tutorial_data/*.celloracle.oracle",
                                  "data/tutorial_data/*.celloracle.links",
-                                 "data/promoter_base_GRN/*.parquet"
+                                 "data/promoter_base_GRN/*.parquet",
                                  "network_analysis/rscripts_for_network_analysis/*.R",
                                  "utility/requrements.txt"]},
     packages=["celloracle", "celloracle.data_conversion", "celloracle.network", "celloracle.trajectory",
