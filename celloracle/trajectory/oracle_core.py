@@ -383,7 +383,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         self.colorandum = np.array([col_dict[i] for i in self.adata.obs[self.cluster_column_name]])
 
         # variable gene detection for the QC of simulation
-        n = min(data.shape[1], 1000)
+        n = min(adata.shape[1], 1000)
 
         self.score_cv_vs_mean(n, plot=False, max_expr_avg=35)
         self.high_var_genes = self.cv_mean_selected_genes.copy()
@@ -439,8 +439,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             self.colorandum = np.array([col_dict[i] for i in self.adata.obs[self.cluster_column_name]])
 
             # variable gene detection for the QC of simulation
-            n = min(data.shape[1], 1000)
-            
+            n = min(adata.shape[1], 1000)
+
             self.score_cv_vs_mean(n, plot=False, max_expr_avg=35)
             self.high_var_genes = self.cv_mean_selected_genes.copy()
             self.cv_mean_selected_genes = None
