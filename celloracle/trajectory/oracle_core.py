@@ -352,6 +352,9 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         if adata.X.min() < 0:
             raise ValueError("gene expression matrix (adata.X) does not seems to be raw_count because it contains negavive values.")
 
+        if (adata.shape[1] < 1000) | (adata.shape[1] > 3000):
+            print(f"{adata.shape[1]} genes were found in the adata. Note that Celloracle is intended to use 1000 to 3000 genes, so the behavior with this number of genes may differ from what is expected.")
+
         # store data
         self.adata = adata.copy()
 
@@ -383,7 +386,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         self.colorandum = np.array([col_dict[i] for i in self.adata.obs[self.cluster_column_name]])
 
         # variable gene detection for the QC of simulation
-        n = min(adata.shape[1], 1000)
+        n = min(adata.shape[1], 1000) - 1
 
         self.score_cv_vs_mean(n, plot=False, max_expr_avg=35)
         self.high_var_genes = self.cv_mean_selected_genes.copy()
@@ -412,8 +415,11 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             transform (str): The method for log-transformation. Chose one from "natural_log" or "log2".
         """
         if adata.X.min() < 0:
-            raise ValueError("gene expression matrix (adata.X) contains negavive values. Please use UNSCALED and UNCENTERED data.")
+            raise ValueError("Gene expression matrix (adata.X) contains negavive values. Please use UNSCALED and UNCENTERED data.")
 
+        if (adata.shape[1] < 1000) | (adata.shape[1] > 3000):
+            print(f"{adata.shape[1]} genes were found in the adata. Note that Celloracle is intended to use 1000 to 3000 genes, so the behavior with this number of genes may differ from what is expected.")
+            
         # Store data
         self.adata = adata.copy()
 
@@ -439,7 +445,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             self.colorandum = np.array([col_dict[i] for i in self.adata.obs[self.cluster_column_name]])
 
             # variable gene detection for the QC of simulation
-            n = min(adata.shape[1], 1000)
+            n = min(adata.shape[1], 1000) - 1
 
             self.score_cv_vs_mean(n, plot=False, max_expr_avg=35)
             self.high_var_genes = self.cv_mean_selected_genes.copy()
