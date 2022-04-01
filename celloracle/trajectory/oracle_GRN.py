@@ -84,7 +84,7 @@ def _getCoefMatrix(gem, TFdict, alpha=1):
 
         if len(reggenes) == 0 :
 
-            tmp[target_gene] = 1
+            tmp[target_gene] = 0
             return(tmp)
 
 
@@ -110,7 +110,7 @@ def _getCoefMatrix(gem, TFdict, alpha=1):
     for i in tqdm(genes):
         if not i in all_genes_in_dict:
             tmp = zero_.copy()
-            tmp[i] = 1
+            tmp[i] = 0
 
         else:
             tmp = get_coef(i)
