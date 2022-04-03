@@ -152,11 +152,13 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         if hasattr(self, "all_target_genes_in_TFdict"):
             pass
         else:
-            self._process_TFdict_metadata(verbose=False)
-        info["n_target_genes_in_TFdict"] = f"{len(self.all_target_genes_in_TFdict)} genes"
-        info["n_regulatory_in_TFdict"] = f"{len(self.all_regulatory_genes_in_TFdict)} genes"
-        info["n_regulatory_in_both_TFdict_and_scRNA-seq"] = f"{self.adata.var['isin_TFdict_regulators'].sum()} genes"
-        info["n_target_genes_both_TFdict_and_scRNA-seq"] = f"{self.adata.var['isin_TFdict_targets'].sum()} genes"
+            if self.adata is not None:
+                self._process_TFdict_metadata(verbose=False)
+        if self.adata is not None:
+            info["n_target_genes_in_TFdict"] = f"{len(self.all_target_genes_in_TFdict)} genes"
+            info["n_regulatory_in_TFdict"] = f"{len(self.all_regulatory_genes_in_TFdict)} genes"
+            info["n_regulatory_in_both_TFdict_and_scRNA-seq"] = f"{self.adata.var['isin_TFdict_regulators'].sum()} genes"
+            info["n_target_genes_both_TFdict_and_scRNA-seq"] = f"{self.adata.var['isin_TFdict_targets'].sum()} genes"
 
 
         if len(self.TFdict.keys()) > 0:
@@ -419,7 +421,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         if (adata.shape[1] < 1000) | (adata.shape[1] > 3000):
             print(f"{adata.shape[1]} genes were found in the adata. Note that Celloracle is intended to use 1000 to 3000 genes, so the behavior with this number of genes may differ from what is expected.")
-            
+
         # Store data
         self.adata = adata.copy()
 
