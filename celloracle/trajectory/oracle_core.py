@@ -23,11 +23,15 @@ from .oracle_utility import (_adata_to_matrix, _adata_to_df,
                              _adata_to_color_dict, _get_clustercolor_from_anndata,
                              _numba_random_seed, _linklist2dict,
                              _decompose_TFdict, _is_perturb_condition_valid)
-from .oracle_GRN import _do_simulation, _getCoefMatrix, _coef_to_active_gene_list
+from .oracle_GRN import _do_simulation, _getCoefMatrix, _coef_to_active_gene_list, _shuffle_celloracle_GRN_coef_table, _correct_coef_table
 from .modified_VelocytoLoom_class import modified_VelocytoLoom
 from ..network_analysis.network_construction import get_links
 from ..visualizations.oracle_object_visualization import Oracle_visualization
 from ..version import __version__
+
+CONFIG = {"N_PROP_MIN": 1,
+          "N_PROP_MAX": 5}
+
 
 def update_adata(adata):
     # Update Anndata
@@ -619,7 +623,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
     #######################################################
 
     def simulate_shift(self, perturb_condition=None, GRN_unit=None,
-                       n_propagation=3, ignore_warning=False):
+                       n_propagation=3, ignore_warning=False, use_randomized_GRN=False):
         """
         Simulate signal propagation with GRNs. Please see the CellOracle paper for details.
         This function simulates a gene expression pattern in the near future.
@@ -646,11 +650,12 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         """
 
         # 0. Reset previous simulation results if it exist
-        self.ixs_mcmc = None
-        self.mcmc_transition_id = None
-        self.corrcoef = None
-        self.transition_prob = None
-        self.tr = None
+        #self.ixs_mcmc = None
+        #self.mcmc_transition_id = None
+        #self.corrcoef = None
+        #self.transition_prob = None
+        #self.tr = None
+        self._clear_simulation_results()
 
         if GRN_unit is not None:
             self.GRN_unit = GRN_unit
@@ -666,6 +671,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         else:
             raise ValueError("GRN is not ready. Please run 'fit_GRN_for_simulation' first.")
 
+        if use_randomized_GRN:
+            print("Attention: Using randomized GRN for the perturbation simulation.")
 
         # 1. prepare perturb information
         if not perturb_condition is None:
@@ -715,8 +722,11 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                         pass
                     else:
                         raise ValueError(f"Input perturbation condition is far from actural gene expression value. Please follow the recommended usage. ")
-
-
+                # 7th QC
+                if CONFIG["N_PROP_MIN"] <= n_propagation <= CONFIG["N_PROP_MAX"]:
+                    pass
+                else:
+                    raise ValueError(f'n_propagation value error. It should be in [{CONFIG["N_PROP_MIN"]}, {CONFIG["N_PROP_MAX"]}]')
 
             # reset simulation initiation point
             self.adata.layers["simulation_input"] = self.adata.layers["imputed_count"].copy()
@@ -725,6 +735,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                 simulation_input[i] = perturb_condition[i]
 
         else:
+            print("perturb_condition=None means you are using custom simulation mode. This is not recommended.")
             simulation_input = _adata_to_df(self.adata, "simulation_input")
 
         # 2. load gene expression matrix (initiation information for the simulation)
@@ -732,25 +743,40 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         # 3. do simulation for signal propagation within GRNs
         if GRN_unit == "whole":
-            gem_simulated = _do_simulation(self.coef_matrix,
-                                           simulation_input,
-                                           gem_imputed,
-                                           n_propagation)
+            if use_randomized_GRN == False:
+                coef_matrix = self.coef_matrix.copy()
+            else:
+                if hasattr(self, "coef_matrix_randomized") == False:
+                    print("The random coef matrix was calculated.")
+                    self.calculate_randomized_coef_table()
+                coef_matrix = self.coef_matrix_randomized.copy()
+            gem_simulated = _do_simulation(coef_matrix=coef_matrix,
+                                           simulation_input=simulation_input,
+                                           gem=gem_imputed,
+                                           n_propagation=n_propagation)
 
         elif GRN_unit == "cluster":
             simulated = []
             cluster_info = self.adata.obs[self.cluster_column_name]
             for cluster in np.unique(cluster_info):
-                cells_in_the_cluster_bool = (cluster_info == cluster)
 
+                if use_randomized_GRN == False:
+                    coef_matrix = self.coef_matrix_per_cluster[cluster].copy()
+                else:
+                    if hasattr(self, "coef_matrix_per_cluster_randomized") == False:
+                        print("The random coef matrix was calculated.")
+                        self.calculate_randomized_coef_table()
+                    coef_matrix = self.coef_matrix_per_cluster_randomized[cluster].copy()
+                cells_in_the_cluster_bool = (cluster_info == cluster)
                 simulation_input_ = simulation_input[cells_in_the_cluster_bool]
                 gem_ = gem_imputed[cells_in_the_cluster_bool]
 
                 simulated_in_the_cluster = _do_simulation(
-                                             self.coef_matrix_per_cluster[cluster],
-                                             simulation_input_,
-                                             gem_,
-                                             n_propagation)
+                                             coef_matrix=coef_matrix,
+                                             simulation_input=simulation_input_,
+                                             gem=gem_,
+                                             n_propagation=n_propagation)
+
                 simulated.append(simulated_in_the_cluster)
             gem_simulated = pd.concat(simulated, axis=0)
             gem_simulated = gem_simulated.reindex(gem_imputed.index)
@@ -764,6 +790,20 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         #  difference between simulated values and original values
         self.adata.layers["delta_X"] = self.adata.layers["simulated_count"] - self.adata.layers["imputed_count"]
+
+    def _clear_simulation_results(self):
+        att_list = ["flow_embedding", "flow_grid", "flow", "flow_norm_magnitude",
+                    "flow_rndm", "flow_norm_rndm", "flow_norm_magnitude_rndm",
+                    "corrcoef", "transition_prob", "transition_prob_random",
+                    "delta_embedding", "delta_embedding_random",
+                    "ixs_mcmc", "mcmc_transition_id", "tr"]
+
+        for i in att_list:
+            if hasattr(self, i):
+                setattr(self, i, None)
+
+
+
 
 
     def calculate_p_mass(self, smooth=0.8, n_grid=40, n_neighbors=200, n_jobs=-1):
@@ -820,6 +860,22 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                        c="black", s=0.5)
             ax.set_title("Grid points selected")
             ax.axis("off")
+
+    ## Get randomized GRN coef to do randomized perturbation simulation
+    def calculate_randomized_coef_table(self, random_seed=123):
+        "Calculate randomized GRN coef table."
+
+        if hasattr(self, "coef_matrix_per_cluster"):
+            coef_matrix_per_cluster_randomized = {}
+            for key, val in self.coef_matrix_per_cluster.items():
+                coef_matrix_per_cluster_randomized[key] = _shuffle_celloracle_GRN_coef_table(coef_dataframe=val, random_seed=random_seed)
+            self.coef_matrix_per_cluster_randomized = coef_matrix_per_cluster_randomized
+
+        if hasattr(self, "coef_matrix"):
+            self.coef_matrix_randomized = _shuffle_celloracle_GRN_coef_table(coef_dataframe=self.coef_matrix, random_seed=random_seed)
+
+        if (hasattr(self, "coef_matrix_per_cluster") == False) and (hasattr(self, "coef_matrix") == False):
+            print("GRN calculation for simulation is not finished. Run fit_GRN_for_simulation() first.")
 
     ########################################
     ### 4. Methods for Markov simulation ###

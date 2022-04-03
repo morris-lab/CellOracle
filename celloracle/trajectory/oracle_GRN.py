@@ -129,6 +129,32 @@ def _getCoefMatrix(gem, TFdict, alpha=1):
 
     return coef_matrix #, li_calculated
 
+def _shuffle_celloracle_GRN_coef_table(coef_dataframe, random_seed=123):
+    """
+    Shuffle grn coef table. Target genes were shuffled.
+    """
+
+    if coef_dataframe.values.max() == 1:
+        _correct_coef_table(coef_dataframe=coef_dataframe)
+    values = coef_dataframe.values.copy()
+
+    np.random.seed(random_seed)
+    random_index = np.arange(values.shape[1])
+    np.random.shuffle(random_index)
+    random_df = pd.DataFrame(values[:, random_index],
+                            index=coef_dataframe.index,
+                            columns=coef_dataframe.columns)
+    return random_df
+
+def _correct_coef_table(coef_dataframe):
+    """
+    Delete self regulating edge from coef table.
+    """
+    for i in range(coef_dataframe.shape[0]):
+        coef_dataframe.iloc[i, i] = 0
+
+
+
 def _coef_to_active_gene_list(coef_matrix):
     """
     Args:

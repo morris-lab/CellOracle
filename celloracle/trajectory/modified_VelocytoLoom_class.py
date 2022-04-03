@@ -651,6 +651,9 @@ class modified_VelocytoLoom():
 
     def plot_grid_arrows(self, quiver_scale: Union[str, float]="auto", scale_type: str= "relative", min_mass: float=1, min_magnitude: float=None,
                          scatter_kwargs_dict: Dict= None, plot_dots: bool=False, plot_random: bool=False, **quiver_kwargs: Any) -> None:
+        print("This function is deprecated after celloracle ver 0.9.4. Please see our newest tutorial for the alternative functions. \nhttps://morris-lab.github.io/CellOracle.documentation/tutorials/index.html")
+
+        '''
         """Plots vector field averaging velocity vectors on a grid
 
         Arguments
@@ -756,10 +759,14 @@ class modified_VelocytoLoom():
         plt.quiver(XY[:, 0], XY[:, 1], UV[:, 0], UV[:, 1],
                    scale=quiver_scale, zorder=20000, **_quiver_kwargs)
         plt.axis("off")
+        '''
 
     def plot_arrows_embedding(self, choice: Union[str, int]="auto", quiver_scale: Union[str, float]="auto", scale_type: str="relative",
                               plot_scatter: bool=False, scatter_kwargs: Dict={}, color_arrow: str="cluster",
                               new_fig: bool=False, plot_random: bool=True, **quiver_kwargs: Any) -> None:
+        print("This function is deprecated after celloracle ver 0.9.4. Please see our newest tutorial for the alternative functions. \nhttps://morris-lab.github.io/CellOracle.documentation/tutorials/index.html")
+
+        '''
         """Plots velocity on the embedding cell-wise
 
         Arguments
@@ -859,10 +866,16 @@ class modified_VelocytoLoom():
                    self.delta_embedding[ix_choice, 0], self.delta_embedding[ix_choice, 1],
                    scale=quiver_scale, **_quiver_kwargs)
         plt.axis("off")
+        '''
 
     def plot_cell_transitions(self, cell_ix: int=0, alpha: float=0.1, alpha_neigh: float=0.2,
                               cmap_name: str="RdBu_r", plot_arrow: bool=True,
                               mark_cell: bool=True, head_width: int=3) -> None:
+
+        print("This function is deprecated after celloracle ver 0.9.4. Please see our newest tutorial for the alternative functions. \nhttps://morris-lab.github.io/CellOracle.documentation/tutorials/index.html")
+
+        '''
+
         """Plot the probability of a cell to transition to any other cell
 
         This function is untested
@@ -881,7 +894,7 @@ class modified_VelocytoLoom():
             plt.arrow(self.embedding[cell_ix, 0], self.embedding[cell_ix, 1],
                       self.delta_embedding[cell_ix, 0], self.delta_embedding[cell_ix, 1],
                       head_width=head_width, length_includes_head=True)
-
+        '''
 
 
 
