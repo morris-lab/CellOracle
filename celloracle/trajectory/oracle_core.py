@@ -22,7 +22,8 @@ from .markov_simulation import _walk
 from .oracle_utility import (_adata_to_matrix, _adata_to_df,
                              _adata_to_color_dict, _get_clustercolor_from_anndata,
                              _numba_random_seed, _linklist2dict,
-                             _decompose_TFdict, _is_perturb_condition_valid)
+                             _decompose_TFdict, _is_perturb_condition_valid,
+                             _check_color_information_and_create_if_not_found)
 from .oracle_GRN import _do_simulation, _getCoefMatrix, _coef_to_active_gene_list, _shuffle_celloracle_GRN_coef_table, _correct_coef_table
 from .modified_VelocytoLoom_class import modified_VelocytoLoom
 from ..network_analysis.network_construction import get_links
@@ -386,6 +387,9 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         self.adata.layers["normalized_count"] = self.adata.X.copy()
 
         # update color information
+        _check_color_information_and_create_if_not_found(adata=self.adata,
+                                                         cluster_column_name=cluster_column_name,
+                                                         embedding_name=embedding_name)
         col_dict = _get_clustercolor_from_anndata(adata=self.adata,
                                                   cluster_name=self.cluster_column_name,
                                                   return_as="dict")
@@ -444,7 +448,9 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         # update color information
         if not test_mode:
-
+            _check_color_information_and_create_if_not_found(adata=self.adata,
+                                                             cluster_column_name=cluster_column_name,
+                                                             embedding_name=embedding_name)
             col_dict = _get_clustercolor_from_anndata(adata=self.adata,
                                                       cluster_name=self.cluster_column_name,
                                                       return_as="dict")

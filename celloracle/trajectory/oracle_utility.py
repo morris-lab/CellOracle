@@ -10,6 +10,7 @@ import scanpy as sc
 
 from ..utility import intersect
 
+import warnings
 
 #########################
 ### utility functions ###
@@ -19,6 +20,13 @@ from ..utility import intersect
 #################################################
 ### functions for data handling with anndata  ###
 #################################################
+def _check_color_information_and_create_if_not_found(adata, cluster_column_name, embedding_name):
+    if f"{cluster_column_name}_colors" in adata.uns.keys():
+        pass
+    else:
+        message = f"Color information for the {cluster_column_name} is not found in the anndata. CellOracle is plotting the clustering data, {cluster_column_name}, to create color data."
+        warnings.warn(message, UserWarning)
+        sc.pl.embedding(adata, basis=embedding_name, color=cluster_column_name)
 
 def _linklist2dict(linklist):
     dic = {}
@@ -132,8 +140,13 @@ def _get_clustercolor_from_anndata(adata, cluster_name, return_as):
         col = list(col)
         col.sort()
         """
-        col = adata.obs[cname].cat.categories
-        pal = pd.DataFrame({"palette": c}, index=col)
+        try:
+            col = adata.obs[cname].cat.categories
+            pal = pd.DataFrame({"palette": c}, index=col)
+        except:
+            col = adata.obs[cname].cat.categories
+            c = c[:len(col)]
+            pal = pd.DataFrame({"palette": c}, index=col)
         return pal
 
     pal = get_palette(adata, cluster_name)
