@@ -20,7 +20,7 @@ with open('LICENSE') as f:
 # Start install process
 setup(
     name='celloracle',
-    version="0.9.4", ##
+    version="0.10.0", ##
     description='GRN analysis with single cell data',
     long_description=readme,
     python_requires='>=3.6',
