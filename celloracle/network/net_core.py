@@ -622,13 +622,17 @@ def _get_melted_df(df):
     return melted
 
 # this function process coefs to get several statistical values
+import warnings
+
 def _get_stats_df_bagging_ridge(df):
 
     if isinstance(df, np.int):
         return 0
 
     mean = df.mean()
-    p = df.apply(lambda x: ttest_1samp(x.dropna(), 0)[1])
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        p = df.apply(lambda x: ttest_1samp(x.dropna(), 0)[1])
     neg_log_p = -np.log10(p.fillna(1))
 
     result = pd.concat([mean, mean.abs(),

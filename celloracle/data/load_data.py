@@ -24,7 +24,7 @@ import sys, os
 from ..data import __path__ as parent_path
 from ..utility import load_hdf5
 
-def load_mouse_scATAC_atlas_base_GRN():
+def load_mouse_scATAC_atlas_base_GRN(version="0.10.0"):
     """
     Load Transcription factor binding information made from mouse scATAC-seq atlas dataset.
     mm9 genome was used for the reference genome.
@@ -34,18 +34,22 @@ def load_mouse_scATAC_atlas_base_GRN():
     Returns:
         pandas.dataframe: TF binding info.
     """
-
-    path = os.path.join(parent_path[0], "TFinfo_data", "mm9_mouse_atac_atlas_data_TSS_and_cicero_0.9_accum_threshold_10.5_DF_peaks_by_TFs.parquet")
+    if version == "0.9.0":
+        path = os.path.join(parent_path[0], "TFinfo_data", "mm9_mouse_atac_atlas_data_TSS_and_cicero_0.9_accum_threshold_10.5_DF_peaks_by_TFs.parquet")
+    elif version == "0.10.0":
+        path = os.path.join(parent_path[0], "TFinfo_data", "mm9_mouse_atac_atlas_data_TSS_and_cicero_0.9_accum_threshold_10.5_DF_peaks_by_TFs_v202204.parquet")
     return pd.read_parquet(path)
 
 load_TFinfo_df_mm9_mouse_atac_atlas = load_mouse_scATAC_atlas_base_GRN # Old function name
 
-def load_Paul2015_data():
+def load_Paul2015_data(version="0.10.0"):
     """
     Load mouse hematopoiesis scRNA-seq data. The data was processed according to the standard CellOracle preprocessing method described in the tutorial.
     """
-
-    path = os.path.join(parent_path[0], "anndata", "Paul_etal_v201212.h5ad")
+    if version == "0.9.0":
+        path = os.path.join(parent_path[0], "anndata", "Paul_etal_v201212.h5ad")
+    elif version == "0.10.0":
+        path = os.path.join(parent_path[0], "anndata", "Paul_etal_v202204.h5ad")
 
     return sc.read_h5ad(path)
 
