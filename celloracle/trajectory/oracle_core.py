@@ -944,7 +944,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         """
         np.random.seed(seed)
-        _numba_random_seed(seed)
+        #_numba_random_seed(seed)
 
         self.prepare_markov_simulation()
 
