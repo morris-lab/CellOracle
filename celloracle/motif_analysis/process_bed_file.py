@@ -75,8 +75,8 @@ def list_peakstr_to_df(x):
     """
     df = np.array([decompose_chrstr(i) for i in x])
     df = pd.DataFrame(df, columns=["chr", "start", "end"])
-    df["start"] = df["start"].astype(np.int)
-    df["end"] = df["end"].astype(np.int)
+    df["start"] = df["start"].astype(int)
+    df["end"] = df["end"].astype(int)
     return df
 
 def df_to_list_peakstr(x):
