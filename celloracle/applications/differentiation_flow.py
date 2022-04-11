@@ -10,6 +10,7 @@ import subprocess
 import sys
 import math
 from copy import deepcopy
+import warnings
 
 import pandas as pd
 import numpy as np
@@ -122,8 +123,8 @@ class Gradient_calculator():
     def load_adata(self, adata, obsm_key, cell_idx_use=None, name=None, pseudotime_key="Pseudotime"):
 
         self.name = name
-        self.embedding = adata.obsm[obsm_key]
-        self.pseudotime = adata.obs[pseudotime_key].values
+        self.embedding = adata.obsm[obsm_key].copy()
+        self.pseudotime = adata.obs[pseudotime_key].values.copy()
 
         if cell_idx_use is not None:
             self.cell_idx_use = np.array(cell_idx_use)
@@ -221,16 +222,27 @@ class Gradient_calculator():
             args = {"method": "knn",
                     "n_knn": 30}
 
+        # Prepare input data_new
         if self.cell_idx_use is None:
-            self.pseudotime_on_grid = scatter_value_to_grid_value(embedding=self.embedding,
-                                                                  grid=self.gridpoints_coordinates,
-                                                                  value=self.pseudotime,
-                                                                  **args)
+            embedding = self.embedding
+            grid = self.gridpoints_coordinates
+            value = self.pseudotime
         else:
-            self.pseudotime_on_grid = scatter_value_to_grid_value(embedding=self.embedding[self.cell_idx_use, :],
-                                                                  grid=self.gridpoints_coordinates,
-                                                                  value=self.pseudotime[self.cell_idx_use],
-                                                                  **args)
+            embedding = self.embedding[self.cell_idx_use, :]
+            grid = self.gridpoints_coordinates
+            value = self.pseudotime[self.cell_idx_use]
+
+        # Remove inf
+        if np.inf in value:
+            # Clip inf
+            warnings.warn("Inf value found in the pseudotime data. The inf value is replaced with non-inf max value.", UserWarning)
+            _clip_inf_value(data=value)
+
+        # Data calculation for each grid point
+        self.pseudotime_on_grid = scatter_value_to_grid_value(embedding=embedding,
+                                                              grid=grid,
+                                                              value=value,
+                                                              **args)
 
         if plot:
             fig, ax = plt.subplots(1, 2, figsize=[10,5])
@@ -312,25 +324,32 @@ class Gradient_calculator():
     def plot_pseudotime(self, ax=None, s=CONFIG["s_scatter"],show_background=True, args=CONFIG["default_args"], cmap="rainbow"):
         plot_pseudotime(self, ax=None, s=s, show_background=show_background, cmap=cmap, args=args)
 
-
 def aggregate_Gradient_objects(gradient_object_list, base_gt=None, fill_na=True):
 
-    pseudotime_stack = [i.pseudotime_on_grid for i in gradient_object_list]
-    gradient_stack = [i.ref_flow for i in gradient_object_list]
+    # Aggregate pseudotime
+    pseudotime_stack = [i.pseudotime for i in gradient_object_list]
+    new_pseudotime, _ = _aggregate_array(value_stack=pseudotime_stack,
+                                         filter_stack=[np.isnan(i) for i in pseudotime_stack])
+
+    # Aggregate "pseudotime on grid" and "gradient"
     mass_filter_stack = [i.mass_filter for i in gradient_object_list]
 
-    new_pseudotime, new_gradient, new_mass_filter = _aggregate_gradients(pseudotime_stack=pseudotime_stack,
-                                                    gradient_stack=gradient_stack,
-                                                    mass_filter_stack=mass_filter_stack)
+    pseudotime_grid_stack = [i.pseudotime_on_grid for i in gradient_object_list]
+    new_pseudotime_grid, _ = _aggregate_array(value_stack=pseudotime_grid_stack,
+                                              filter_stack=mass_filter_stack)
+
+    gradient_stack = [i.ref_flow for i in gradient_object_list]
+    new_gradient, new_mass_filter  = _aggregate_array(value_stack=gradient_stack,
+                                                      filter_stack=mass_filter_stack )
 
     if base_gt is None:
         gt = Gradient_calculator(gt=gradient_object_list[0])
-        gt.pseudotime_on_grid = new_pseudotime
+        gt.pseudotime_on_grid = new_pseudotime_grid
         gt.ref_flow = new_gradient
 
     else:
         gt = base_gt
-        gt.pseudotime_on_grid[~new_mass_filter] = new_pseudotime[~new_mass_filter]
+        gt.pseudotime_on_grid[~new_mass_filter] = new_pseudotime_grid[~new_mass_filter]
         gt.ref_flow[~new_mass_filter, :] = new_gradient[~new_mass_filter, :]
 
     if fill_na:
@@ -343,28 +362,29 @@ def aggregate_Gradient_objects(gradient_object_list, base_gt=None, fill_na=True)
 
         gt.pseudotime_on_grid[~gt.mass_filter] = y_filled
 
-    gt.pseudotime = gradient_object_list[0].pseudotime.copy()
+    gt.pseudotime = new_pseudotime
 
     return gt
 
-def _aggregate_gradients(pseudotime_stack, gradient_stack, mass_filter_stack):
 
-    new_pseudotime = np.zeros_like(pseudotime_stack[0])
-    new_pseudotime_count = np.zeros_like(pseudotime_stack[0])
-    new_gradient = np.zeros_like(gradient_stack[0])
-    gradient_count = np.zeros_like(gradient_stack[0])
-    for fil, pt, gra in zip(mass_filter_stack, pseudotime_stack, gradient_stack):
-        new_pseudotime[~fil] += pt[~fil]
-        new_pseudotime_count[~fil] +=1
-        new_gradient[~fil, :] += gra[~fil, :]
-        gradient_count[~fil, :] += 1
 
-    new_pseudotime[new_pseudotime_count != 0] /= new_pseudotime_count[new_pseudotime_count != 0]
-    new_gradient[gradient_count != 0] /= gradient_count[gradient_count != 0]
-    new_mass_filter = (gradient_count.sum(axis=1) == 0)
+def _aggregate_array(value_stack, filter_stack):
 
-    return new_pseudotime, new_gradient, new_mass_filter
+    new_value = np.zeros_like(value_stack[0])
+    counts = np.zeros_like(value_stack[0])
+    for fil, val in zip(filter_stack, value_stack):
+        if len(val.shape) == 1:
+            new_value[~fil] += val[~fil]
+            counts[~fil] +=1
+        elif len(val.shape) == 2:
+            new_value[~fil, :] += val[~fil, :]
+            counts[~fil, :] +=1
 
+    new_value[counts != 0] /= counts[counts != 0]
+
+    new_filter = (counts.sum(axis=-1) == 0)
+
+    return new_value, new_filter
 
 def normalize_gradient(gradient, method="sqrt"):
     """
@@ -469,3 +489,12 @@ def _fill_inf_and_na(X, y_with_inf):
     assert(y_filled.replace(np.inf, np.nan).isna().sum() == 0)
 
     return y_filled
+
+def _clip_inf_value(data):
+    """
+    This function replace inf with non-inf max value
+    """
+    max_without_inf = data[data != np.inf].max()
+    data[data == np.inf] = max_without_inf
+
+    #print(max_without_inf)

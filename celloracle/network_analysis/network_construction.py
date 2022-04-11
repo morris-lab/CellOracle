@@ -26,7 +26,7 @@ from tqdm.notebook import tqdm
 from ..network.net_core import Net
 from ..utility import standard
 from .links_object import Links
-from ..trajectory.oracle_utility import _adata_to_df, _get_clustercolor_from_anndata
+from ..trajectory.oracle_utility import _adata_to_df, _get_clustercolor_from_anndata, _check_color_information_and_create_if_not_found
 
 
 RIDGE_SOLVER = "auto"
@@ -80,6 +80,11 @@ def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_n
                  links_dict=linkLists)
 
     # extract color infomation
+    # update color information
+    _check_color_information_and_create_if_not_found(adata=oracle_object.adata,
+                                                     cluster_column_name=cluster_name_for_GRN_unit,
+                                                     embedding_name=oracle_object.embedding_name)
+
     links.palette = _get_clustercolor_from_anndata(adata=oracle_object.adata,
                                                    cluster_name=cluster_name_for_GRN_unit,
                                                    return_as="palette")

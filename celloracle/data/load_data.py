@@ -38,6 +38,9 @@ def load_mouse_scATAC_atlas_base_GRN(version="0.10.0"):
         path = os.path.join(parent_path[0], "TFinfo_data", "mm9_mouse_atac_atlas_data_TSS_and_cicero_0.9_accum_threshold_10.5_DF_peaks_by_TFs.parquet")
     elif version == "0.10.0":
         path = os.path.join(parent_path[0], "TFinfo_data", "mm9_mouse_atac_atlas_data_TSS_and_cicero_0.9_accum_threshold_10.5_DF_peaks_by_TFs_v202204.parquet")
+    else:
+        raise ValueError("This version is not found.")
+
     return pd.read_parquet(path)
 
 load_TFinfo_df_mm9_mouse_atac_atlas = load_mouse_scATAC_atlas_base_GRN # Old function name
@@ -50,15 +53,27 @@ def load_Paul2015_data(version="0.10.0"):
         path = os.path.join(parent_path[0], "anndata", "Paul_etal_v201212.h5ad")
     elif version == "0.10.0":
         path = os.path.join(parent_path[0], "anndata", "Paul_etal_v202204.h5ad")
-
+    else:
+        raise ValueError("This version is not found.")
     return sc.read_h5ad(path)
 
-def load_tutorial_links_object():
+def load_tutorial_links_object(version="0.10.0"):
     """
     """
-    path = os.path.join(parent_path[0], "tutorial_data", "links_louvain_190829.celloracle.links")
+    if version == "0.9.0":
+        path = os.path.join(parent_path[0], "tutorial_data", "links_louvain_190829.celloracle.links")
+    elif version == "0.10.0":
+        path = os.path.join(parent_path[0], "tutorial_data", "links_louvain_v20220406.celloracle.links")
+    else:
+        raise ValueError("This version is not found.")
     return load_hdf5.load_hdf5(path)
 
-def load_tutorial_oracle_object():
-    path = os.path.join(parent_path[0], "tutorial_data", "Paul_etal_v20210704.celloracle.oracle")
+def load_tutorial_oracle_object(version="0.10.0"):
+    if version == "0.9.0":
+        path = os.path.join(parent_path[0], "tutorial_data", "Paul_etal_v20210704.celloracle.oracle")
+    elif version == "0.10.0":
+        path = os.path.join(parent_path[0], "tutorial_data", "Paul_etal_v20220406.celloracle.oracle")
+    else:
+        raise ValueError("This version is not found.")
+
     return load_hdf5.load_hdf5(path)
