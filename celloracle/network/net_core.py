@@ -268,7 +268,7 @@ class Net():
                                              scaling=scaling,
                                              n_jobs=1,
                                              alpha=alpha)
-            if type(coefs) is np.int:
+            if type(coefs) is int:
                 fitted_gene = "na"
                 failed_gene = target_gene
             else:
@@ -367,7 +367,7 @@ class Net():
                                                      alpha=alpha,
                                                      solver=RIDGE_SOLVER)
 
-                    if isinstance(coefs, np.int):
+                    if isinstance(coefs, int):
                         self.failed_genes.append(target_gene)
 
                     else:
@@ -392,7 +392,7 @@ class Net():
                                                   cellstate=self.cellstate,
                                                   scaling=True)
 
-                    if isinstance(coef_mean, np.int):
+                    if isinstance(coef_mean, int):
                         self.failed_genes.append(target_gene)
 
                     else:
@@ -430,7 +430,7 @@ class Net():
                                                      alpha=alpha,
                                                      solver=RIDGE_SOLVER)
 
-                    if isinstance(coefs, np.int):
+                    if isinstance(coefs, int):
                         self.failed_genes.append(target_gene)
 
                     else:
@@ -448,7 +448,7 @@ class Net():
                                                   cellstate=self.cellstate,
                                                   scaling=True)
 
-                    if isinstance(coef_mean, np.int):
+                    if isinstance(coef_mean, int):
                         self.failed_genes.append(target_gene)
 
                     else:
@@ -626,7 +626,7 @@ import warnings
 
 def _get_stats_df_bagging_ridge(df):
 
-    if isinstance(df, np.int):
+    if isinstance(df, int):
         return 0
 
     mean = df.mean()

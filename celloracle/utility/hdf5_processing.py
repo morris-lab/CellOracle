@@ -72,7 +72,7 @@ def dump_hdf5(obj: object, filename: str,
         for k in obj.__dict__.keys():
             attribute = getattr(obj, k)
             if type(attribute) is np.ndarray:
-                if attribute.dtype is not np.dtype(np.object):
+                if attribute.dtype is not np.dtype(object):
                     try:
                         chunk_size = tuple((min(chunks[i], attribute.shape[i]) for i in range(len(attribute.shape))))
                         _file.create_dataset(k, data=attribute, chunks=chunk_size,

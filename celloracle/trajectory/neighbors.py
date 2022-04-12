@@ -390,16 +390,16 @@ def knn_distance_matrix(data: np.ndarray, metric: str=None, k: int=40, mode: str
         return nn.kneighbors_graph(X=None, mode=mode)
 
 
-def make_mutual(knn: sparse.csr.csr_matrix) -> sparse.coo_matrix:
+def make_mutual(knn: sparse.csr_matrix) -> sparse.coo_matrix:
     """Removes edges between neighbours that are not mutual
     """
     return knn.minimum(knn.T)
 
 
-def connectivity_to_weights(mknn: sparse.csr.csr_matrix, axis: int=1) -> sparse.lil_matrix:
+def connectivity_to_weights(mknn: sparse.csr_matrix, axis: int=1) -> sparse.lil_matrix:
     """Convert a binary connectivity matrix to weights ready to be multiplied to smooth a data matrix
     """
-    if type(mknn) is not sparse.csr.csr_matrix:
+    if type(mknn) is not sparse.csr_matrix:
         mknn = mknn.tocsr()
     return mknn.multiply(1. / sparse.csr_matrix.sum(mknn, axis=axis))
 

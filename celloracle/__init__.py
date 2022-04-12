@@ -16,7 +16,6 @@ from .network_analysis import test_R_libraries_installation
 
 #from . import motif_analysis
 
-
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.INFO)
