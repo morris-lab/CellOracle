@@ -476,24 +476,25 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         # 1. Check new cluster information exists in anndata.
         if new_cluster_column_name in self.adata.obs.columns:
-            if not f"{new_cluster_column_name}_colors" in self.adata.uns.keys():
-                sc.pl.scatter(self.adata,
-                              color=new_cluster_column_name,
-                              basis=self.embedding_name[2:])
+            _check_color_information_and_create_if_not_found(adata=self.adata,
+                                                             cluster_column_name=new_cluster_column_name,
+                                                             embedding_name=self.embedding_name)
         else:
             raise ValueError(f"{new_cluster_column_name} was not found in anndata")
 
 
         # 2. Reset previous GRN data and simoulation data
-        attributes_remained = ['TFdict', 'adata',  'cv_mean_selected_genes',
-                               'embedding_name', 'high_var_genes', 'knn',
-                               'knn_smoothing_w', 'pca', 'cv_mean_score',
-                               'cv_mean_selected', 'pcs', #'GRN_unit',
-                               'active_regulatory_genes']
+        attributes_delete = ['ixs_mcmc', 'colorandum' ,"alpha_for_trajectory_GRN",
+                             'GRN_unit', 'coef_matrix_per_cluster',"perturb_condition",
+                             'corr_calc', 'embedding_knn', 'sampling_ixs', 'corrcoef', 'corrcoef_random',
+                             'transition_prob', 'transition_prob_random', 'delta_embedding', 'delta_embedding_random',
+                             'total_p_mass', 'flow_embedding', 'flow_grid', 'flow',
+                             'flow_norm', 'flow_norm_magnitude', 'flow_rndm', 'flow_norm_rndm',
+                             'flow_norm_magnitude_rndm']
 
         attributes = list(self.__dict__.keys())
         for i in attributes:
-            if i not in attributes_remained:
+            if i in attributes_delete:
                 delattr(self, i)
 
         # 4. Update cluster info
