@@ -2,9 +2,9 @@
 
 
 
-import logging
 import os
 import sys
+import warnings
 
 import pandas as pd
 import numpy as np
@@ -56,9 +56,10 @@ def _polynomial_regression_sklearn(x, y, x_new, y_new, value, n_degree=3):
     data = pol.fit_transform(data)
     data_new = pol.transform(data_new)
 
-
-    model = Ridge(random_state=123)
-    model.fit(data, value)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        model = Ridge(random_state=123)
+        model.fit(data, value)
 
     return model.predict(data_new)
 
@@ -73,8 +74,10 @@ def _polynomial_regression_old_ver(x, y, x_new, y_new, value, n_degree=3):
 
     data = __conv(x=x, y=y, n_degree=n_degree)
 
-    model = Ridge()
-    model.fit(data, value)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        model = Ridge()
+        model.fit(data, value)
 
     data_new = __conv(x=x_new, y=y_new, n_degree=n_degree)
 
