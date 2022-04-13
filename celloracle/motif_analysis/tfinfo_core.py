@@ -42,7 +42,7 @@ from ..utility.hdf5_processing import dump_hdf5, load_hdf5
 from ..utility import save_as_pickled_object, load_pickled_object, intersect,\
                       makelog, inverse_dictionary
 #
-from .motif_analysis_utility import scan_dna_for_motifs, is_genome_installed
+from .motif_analysis_utility import scan_dna_for_motifs, is_genome_installed, scan_dna_for_motifs_by_batch
 from .process_bed_file import read_bed, peak2fasta, remove_zero_seq
 from .motif_data import load_motifs
 from .reference_genomes import SUPPORTED_REF_GENOME
@@ -237,7 +237,8 @@ class TFinfo():
 
 
 
-    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True, motifs=None, TF_evidence_level="direct_and_indirect", TF_formatting="auto", divide=100000):
+    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True, motifs=None, TF_evidence_level="direct_and_indirect", TF_formatting="auto", mini_batch_mode=True,
+        divide=100000):
         """
         Scan DNA sequences searching for TF binding motifs.
 
@@ -380,11 +381,22 @@ class TFinfo():
         target_sequences = remove_zero_seq(fasta_object=target_sequences)
 
         print("Scanning motifs ... It may take several hours if you proccess many peaks. \n")
-        self.scanned_df = scan_dna_for_motifs(scanner_object=s,
-                                              motifs_object=motifs,
-                                              sequence_object=target_sequences,
-                                              divide=divide,
-                                              verbose=verbose)
+
+        if mini_batch_mode:
+            # In some computational environments, gimmemotifs can be unstable and cause kernel death.
+            # We can avoid such unstability by processing sequence object little by little. The results is same.
+            self.scanned_df = scan_dna_for_motifs_by_batch(scanner_object=s,
+                                                           motifs_object=motifs,
+                                                           sequence_object=target_sequences,
+                                                           batch_size=100,
+                                                           divide=divide,
+                                                           verbose=verbose)
+        else:
+            self.scanned_df = scan_dna_for_motifs(scanner_object=s,
+                                                  motifs_object=motifs,
+                                                  sequence_object=target_sequences,
+                                                  divide=divide,
+                                                  verbose=verbose)
 
         self.__addLog("scanMotifs")
 
