@@ -359,8 +359,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         if adata.X.min() < 0:
             raise ValueError("gene expression matrix (adata.X) does not seems to be raw_count because it contains negavive values.")
 
-        if (adata.shape[1] < 1000) | (adata.shape[1] > 3000):
-            print(f"{adata.shape[1]} genes were found in the adata. Note that Celloracle is intended to use 1000 to 3000 genes, so the behavior with this number of genes may differ from what is expected.")
+        if (adata.shape[1] < 1000) | (adata.shape[1] > 4000):
+            print(f"{adata.shape[1]} genes were found in the adata. Note that Celloracle is intended to use around 1000-3000 genes, so the behavior with this number of genes may differ from what is expected.")
 
         # store data
         self.adata = adata.copy()
@@ -427,8 +427,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         if adata.X.min() < 0:
             raise ValueError("Gene expression matrix (adata.X) contains negavive values. Please use UNSCALED and UNCENTERED data.")
 
-        if (adata.shape[1] < 1000) | (adata.shape[1] > 3000):
-            print(f"{adata.shape[1]} genes were found in the adata. Note that Celloracle is intended to use 1000 to 3000 genes, so the behavior with this number of genes may differ from what is expected.")
+        if (adata.shape[1] < 1000) | (adata.shape[1] > 4000):
+            print(f"{adata.shape[1]} genes were found in the adata. Note that Celloracle is intended to use around 1000-3000 genes, so the behavior with this number of genes may differ from what is expected.")
 
         # Store data
         self.adata = adata.copy()
