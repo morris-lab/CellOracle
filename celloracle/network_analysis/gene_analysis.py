@@ -42,7 +42,7 @@ def plot_scores_as_rank(links, cluster, n_gene=50, save=None):
     """
     values = ['degree_centrality_all',
                   'degree_centrality_in', 'degree_centrality_out',
-                  'betweenness_centrality',  'eigenvector_centrality', "participation"]
+                  'betweenness_centrality',  'eigenvector_centrality']
     for value in values:
 
         res = links.merged_score[links.merged_score.cluster == cluster]

@@ -168,12 +168,33 @@ class Links():
        'betweenness_centrality', 'eigenvector_centrality']
 
         """
+        if hasattr(self, "filtered_links"):
+            if isinstance(self.filtered_links, dict):
+                pass
+            else:
+                raise ValueError("Filtered network was not found. Prease run 'filter_links' first.")
+        else:
+            raise ValueError("Filtered network was not found. Prease run 'filter_links' first.")
+
         network_scores = []
         for key, val in self.filtered_links.items():
             df = _get_network_score(filtered_linklist_df=val)
             df["cluster"] = key
             network_scores.append(df)
         self.merged_score = pd.concat(network_scores, axis=0)
+
+    def _get_network_score_if_not_exist(self):
+        if hasattr(self, "merged_score"):
+            if isinstance(self.merged_score, pd.core.frame.DataFrame):
+                pass
+            else:
+                warnings.warn("\nNetwork score was not found. Celloracle will try to calculate network score first.",
+                              UserWarning)
+                self.get_network_score()
+        else:
+            warnings.warn("\nNetwork score was not found. Celloracle will try to calculate network score first.",
+                          UserWarning)
+            self.get_network_score()
 
     def get_score(self, test_mode=False, n_jobs=-1):
         """
@@ -249,6 +270,14 @@ class Links():
                Plots will not be saved if [save=None]. Default is None.
 
         """
+        if hasattr(self, "filtered_links"):
+            if isinstance(self.filtered_links, dict):
+                pass
+            else:
+                raise ValueError("Filtered network was not found. Prease run 'filter_links' first.")
+        else:
+            raise ValueError("Filtered network was not found. Prease run 'filter_links' first.")
+            
         plot_degree_distributions(links=self, plot_model=plot_model, save=save)
 
 
@@ -264,6 +293,7 @@ class Links():
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
+        self._get_network_score_if_not_exist()
         plot_score_discributions(links=self, values=values, method=method, save=save)
 
     def plot_network_entropy_distributions(self, update_network_entropy=False, save=None):
@@ -295,6 +325,8 @@ class Links():
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
+        self._get_network_score_if_not_exist()
+
         plot_scores_as_rank(links=self, cluster=cluster, n_gene=n_gene, save=save)
 
     def plot_score_comparison_2D(self, value, cluster1, cluster2, percentile=99, annot_shifts=None, save=None, plt_show=True, interactive=False):
@@ -311,6 +343,8 @@ class Links():
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
+        self._get_network_score_if_not_exist()
+
         if interactive:
             return plot_score_comparison_2D_with_plotly(links=self, value=value, cluster1=cluster1, cluster2=cluster2, fillna_with_zero=True)
         else:
@@ -328,6 +362,8 @@ class Links():
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
+        self._get_network_score_if_not_exist()
+
         plot_score_per_cluster(links=self, goi=goi, save=save, plt_show=plt_show)
 
     def plot_cartography_scatter_per_cluster(self, gois=None, clusters=None,
