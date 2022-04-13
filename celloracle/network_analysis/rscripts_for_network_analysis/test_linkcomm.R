@@ -1,3 +1,1 @@
-
-library(linkcomm)
-
+suppressWarnings(library(linkcomm))

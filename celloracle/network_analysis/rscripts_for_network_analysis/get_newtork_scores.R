@@ -1,4 +1,4 @@
-
+options(warn=-1)
 
 
 library(igraph)
@@ -155,6 +155,6 @@ d <- read.csv(paste0(folder, "/linkList.csv"))
 g <- graph.data.frame(d[1:2], directed = T)
 E(g)$weight <- d[[3]]
 
-calculateNetworkScores(g, folder)
+suppressWarnings(calculateNetworkScores(g, folder))
 
 message("finished")

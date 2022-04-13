@@ -1,3 +1,1 @@
-
-library(rnetcarto)
-
+suppressWarnings(library(rnetcarto))

@@ -10,15 +10,19 @@
 
 # 0.1. libraries for fundamental data science and data processing
 
-
+import warnings
 import os
 import pandas as pd
 import numpy as np
 from scipy import stats
 from copy import deepcopy
+
+from igraph import Graph
+
 from ..utility.hdf5_processing import dump_hdf5, load_hdf5
 
-from .use_r_scripts import _get_network_score_by_Rscripts_inparallel
+from .use_r_scripts import (_get_network_score_by_Rscripts_inparallel,
+                            _check_R_libraries_installation)
 from .network_structure_analysis import (plot_degree_distributions,
                                          plot_score_discributions,
                                          plot_network_entropy_distributions)
@@ -152,12 +156,40 @@ class Links():
                             genelist_source=genelist_source,
                             genelist_target=genelist_target)
 
+
+
+
+    def get_network_score(self):
+
+        """
+        Get several network sores using igraph library.
+        The following scores are calculated: ['degree_all', 'degree_centrality_all', 'degree_in',
+       'degree_centrality_in', 'degree_out', 'degree_centrality_out',
+       'betweenness_centrality', 'eigenvector_centrality']
+
+        """
+        network_scores = []
+        for key, val in self.filtered_links.items():
+            df = _get_network_score(filtered_linklist_df=val)
+            df["cluster"] = key
+            network_scores.append(df)
+        self.merged_score = pd.concat(network_scores, axis=0)
+
     def get_score(self, test_mode=False, n_jobs=-1):
         """
-        Get several network sores using R libraries.
-        Make sure all dependent R libraries are installed in your environment before running this function.
-        You can check the installation for the R libraries by running test_installation() in network_analysis module.
+        Get several network sores using R-igraph, linkcomm, and rnetcarto.
+        This require R packages.
         """
+        warnings.warn(
+            "This is the deprecated function. Please use 'get_network_score' instead. This function will be removed in the future version.",
+            DeprecationWarning
+        )
+
+        if _check_R_libraries_installation():
+            pass
+        else:
+            raise ValueError("This function is deprecated. Please use 'get_network_score' instead. If you still use this function, you need to install R packages. Please make sure these R packages are installed: 'igraph', 'linkcomm', 'rnetcarto'.")
+
 
         li = list(self.filtered_links.keys()) # make list of cluster name
 
@@ -303,6 +335,7 @@ class Links():
                                              auto_gene_annot=False, percentile=98,
                                              args_dot={"n_levels": 105}, args_line={"c":"gray"},
                                              args_annot={}, save=None):
+
         """
         Make a gene network cartography plot.
         Please read the original paper describing gene network cartography for more information.
@@ -322,6 +355,15 @@ class Links():
                Plots will not be saved if [save=None]. Default is None.
 
         """
+        warnings.warn(
+            "This is the deprecated function. This function will be removed in the future version.",
+            DeprecationWarning
+        )
+
+        if "role" not in self.merged_score.columns:
+            print("Cartography is not calculated yet. Please run 'get_score' first. This function require several R libraries.")
+            return None
+
         plot_cartography_scatter_per_cluster(links=self, gois=gois, clusters=clusters,
                                              scatter=scatter, kde=kde,
                                              auto_gene_annot=auto_gene_annot, percentile=percentile,
@@ -329,6 +371,8 @@ class Links():
                                              args_annot=args_annot, save=save)
 
     def plot_cartography_term(self, goi, save=None, plt_show=True):
+
+
         """
         Plot the gene network cartography term like a heatmap.
         Please read the original paper of gene network cartography for the principle of gene network cartography.
@@ -340,6 +384,17 @@ class Links():
             save (str): Folder path to save plots. If the folder does not exist in the path, the function creates the folder.
                Plots will not be saved if [save=None]. Default is None.
         """
+        warnings.warn(
+            "This is the deprecated function. This function will be removed in the future version.",
+            DeprecationWarning
+        )
+
+        if "role" not in self.merged_score.columns:
+            print("Cartography is not calculated yet. Please run 'get_score' first. This function require several R libraries.")
+            return None
+
+
+
         plot_cartography_term(links=self, goi=goi, save=save, plt_show=plt_show)
 
 
@@ -417,3 +472,29 @@ def _merge_df(link_dict):
     merged = pd.concat(merged, axis=0)
 
     return merged
+
+def _get_network_score(filtered_linklist_df):
+    """
+    This is the function to get network score for each node.
+    This function is made to reproduce previous functions made with R-igraph.
+    """
+    # Make igraph object
+    g = Graph.DataFrame(filtered_linklist_df[["source", "target"]],
+                        directed=True)
+    g.es["weight"] = filtered_linklist_df["coef_abs"].values.copy()
+
+    # Make placeholder
+    df = g.get_vertex_dataframe()
+
+    # Calculate scores
+    for i in ["all", "in", "out"]:
+        df[f"degree_{i}"] = g.degree(mode=i)
+        df[f"degree_centrality_{i}"] = df[f"degree_{i}"] / (df.shape[0]-1)
+    df["betweenness_centrality"] = g.betweenness(directed=True, weights="weight")
+    df["eigenvector_centrality"] = g.eigenvector_centrality(directed=False, weights="weight")
+
+    # Use gene name for index
+    df = df.set_index("name")
+    df.index.name = None
+
+    return df

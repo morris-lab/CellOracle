@@ -85,7 +85,7 @@ def _plotDegreedist(degree_df, plot_model=False, path=None):
     df = degree_df.copy()
 
     dist = df.degree.value_counts()/df.degree.value_counts().sum()
-    dist.index = dist.index.astype(np.int)
+    dist.index = dist.index.astype(int)
 
     fig, ax = plt.subplots(1,2)
 
