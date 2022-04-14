@@ -17,4 +17,5 @@ docs/notebooks/01_ATAC-seq_data_processing/option1_scATAC-seq_data_analysis_with
 */matrix.tar.gz
 docs/no_share.py
 docs/conf.py
-
+build
+build/*
