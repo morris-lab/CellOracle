@@ -1,0 +1,1 @@
+suppressWarnings(library(rnetcarto))

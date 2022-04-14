@@ -21,7 +21,7 @@ News
 
 Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
-- 04/13/2022: We refactored the code to simplify the installation process and calculation speed. The new version, celloracle 0.10.0, does not require any R packages anymore. Also, codes were updated to comply with the recent numpy updates.
+- 04/13/2022: We refactored the code to simplify the installation process and calculation speed. The new version, celloracle 0.10.0, no longer requires any R package. Also, codes were updated to comply with the recent numpy updates.
 
 - 01/29/2022: Docker image was updated.
 

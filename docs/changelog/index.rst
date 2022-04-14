@@ -4,6 +4,16 @@
 Changelog
 =========
 
+* `0.10.1 <2022-04-13>`
+ `-` We refactored the code to simplify the installation process and calculation speed.
+
+ `-` Links.get_score() function was deprecated. Please use Links.get_network_score() instead. Because the new network score calculation is implemented solely in Python code, celloracle no longer requires the R package.
+
+ `-` Codes were updated to comply with the recent numpy updates. e.g. np.int was replaced with int.
+
+* `0.10.0 <2022-04-13>`
+ `-` Tutorial data was updated.
+
 * `0.9.0 <2022-01-21>`
  `-` Change the default color scheme for the inner product score / perturbation score visualization in the in silico gene perturbation module.
 
@@ -19,7 +29,7 @@ Changelog
 
 
 * `0.8.3 <2021-11-25>`
--` Fix typo in the Markov walk function.
+ `-` Fix typo in the Markov walk function.
 
 * `0.8.2 <2021-10-31>`
  `-` Code refactoring in motif analysis module.
