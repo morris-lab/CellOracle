@@ -40,47 +40,29 @@ System Requirements
 Python Requirements
 ^^^^^^^^^^^^^^^^^^^
 
-- CellOracle was developed using python 3.6. We do not support python 2.7x or python <=3.5.
-- Please install all dependent libraries before installing CellOracle using the instructions below.
+- CellOracle was developed using python 3.6. It is also tested with python 3.8. We do not support python 2.7x or python <=3.5.
 - CellOracle is currently a beta version and it is not available through PyPI or anaconda distribution yet. Please install CellOracle from our GitHub repository according to the instruction below.
 
 CellOracle installation using conda and pip
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**1. Make a conda environment**
   We recommend installing CellOracle in an independent conda environment to avoid dependent software conflicts.
   Please make a new python environment for celloracle and install dependent libraries in it.
 
   ::
 
-      conda create -n celloracle_env python=3.6
+      conda create -n celloracle_env python=3.8
       conda activate celloracle_env
 
-  Installation of some libraries requires non-default anaconda channels. Please add the channels below. Instead, you can explicitly enter the channel when you install a library.
 
-  ::
-
-      conda config --add channels defaults
-      conda config --add channels bioconda
-      conda config --add channels conda-forge
-
-**2. Install dependencies using conda**
-
-  Run the following command to install some dependencies prior to celloracle installation.
-
-  ::
-
-      conda install numba cython pybedtools jupyter notebook pysam
-
-**3. Install CellOracle and other dependencies**
+  You can install CellOracle and all dependencies with the following command.
 
   ::
 
       pip install git+https://github.com/morris-lab/CellOracle.git
 
 
-You may have an error in the installation process of CellOracle dependent libraries.
-If you have an error, please look at the troubleshooting page.
+If you get an error, please look at the troubleshooting page below.
 We also recommend using our pre-built docker image if you have program conflicts between CellOracle's dependent libraries and your pre-existing software.
 
 .. toctree::
@@ -89,52 +71,31 @@ We also recommend using our pre-built docker image if you have program conflicts
    python_step_by_step_installation
 
 
-R requirements
-^^^^^^^^^^^^^^
-
-The following R packages are required for the network structure analysis, but not required to run CellOracle perturbation simulation.
-If you are only interested in trying CellOracle’s simulation functions, you DO NOT need to install the libraries below.
-CellOracle uses R libraries to calculate network graph metrics (e.g. network cartography scores).
-Please install `R <https://www.r-project.org>`_ (>=3.5) and R libraries below.
-
-.. note::
-   These R libraries are needed for network analysis.
-   CellOracle gene perturbation simulation does not require the R libraries.
-   **You can skip R library installation if you do not perform network analysis.**
-
-.. code-block:: r
-
-   install.packages("igraph")
-   install.packages("linkcomm")
-   install.packages("https://cran.r-project.org/src/contrib/Archive/rnetcarto/rnetcarto_0.2.4.tar.gz",
-                    repos = NULL, type = "source", configure.args = '--host=host')
-
-If you encounter an error when installing these R libraries above, please look at the troubleshooting tips below.
-
-
-.. toctree::
-   :maxdepth: 1
-
-   R_step_by_step_installation
-
+.. warning::
+  Previous version of CellOracle required some R packages. But after celloracle 0.10.0, the R functions were replaced with python codes, and **celloracle does NOT require R packages after version 0.10.0.**
 
 
 Check installation
 ^^^^^^^^^^^^^^^^^^
 
-.. toctree::
-   check_installation
+You can check the installed library version as follows. Please make sure that all dependencies are appropriately installed.
+
+In python console,
+
+.. code-block:: Python
+
+   import celloracle as co
+   co.check_python_requirements()
 
 
 
-Optional R libraries for input data preparation
+Other optional softwares for input data preparation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We provide many working examples for input data preparation.
-These R packages below are not in the part of the CellOracle library itself and not necessary.
+These softwares below are not in the part of the CellOracle library itself and not necessary.
 However, some users may like to use these R libraries to preprocess the input data before beginning a CellOracle analysis.
 If this applies to you, please install these R libraries yourself and follow the related tutorials.
 If you just want to try CellOracle main tutorials, :doc:`networkanalysis` and :doc:`simulation`, you DO NOT need to install the libraries below.
 
-- `Seurat <https://satijalab.org/seurat/install.html>`_
 - `Cicero <https://cole-trapnell-lab.github.io/cicero-release/docs/#installing-cicero>`_

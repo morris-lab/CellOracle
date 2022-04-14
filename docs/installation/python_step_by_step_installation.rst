@@ -4,7 +4,7 @@ Python dependent library installation troubleshooting
 =====================================================
 
 
-Install `velocyto <http://velocyto.org/velocyto.py/install/index.html>`_
+`velocyto <http://velocyto.org/velocyto.py/install/index.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you failed CellOracle installation because of velocyto installation error, please try to install velocyto using the following commands or please follow `the author's instruction <http://velocyto.org/velocyto.py/install/index.html>`_ .
 
@@ -27,7 +27,7 @@ You may find the solution for each of these in the links below.
 - `Solution 3 <https://github.com/morris-lab/CellOracle/issues/3>`_. This is the solution reported by a CellOracle user. Thank you very much!
 - `Other solutions on Velocyto GitHub issue page <https://github.com/velocyto-team/velocyto.py/issues?q=>`_
 
-Install `scanpy <https://scanpy.readthedocs.io/en/stable/installation.html>`_
+`scanpy <https://scanpy.readthedocs.io/en/stable/installation.html>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you failed CellOracle installation because of Scanpy installation error, please try to install Scanpy using the following commands or `the author's instruction <https://scanpy.readthedocs.io/en/stable/installation.html>`_ .
 
@@ -36,23 +36,17 @@ If you failed CellOracle installation because of Scanpy installation error, plea
     conda install scanpy
 
 
-
-Install other python libraries
+Install gimmemotifs with conda
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please also install these python libraries using using the command below.
+If you failed installation in the gimmemotifs installation step, please install gimmemotifs solely first.
+Also, if your jupyter notebook kernel keep dying during TF motif scan, it means your gimmemotifs installation has a problem.
+In that case, please re-install gimmemotifs using conda.
 
 ::
 
-    conda install pybedtools pyarrow tqdm joblib jupyter gimmemotifs==0.14.4 genomepy==0.8.4
+    conda install -c bioconda gimmemotifs
 
 
-Install CellOracle
-^^^^^^^^^^^^^^^^^^
-After installing the dependent libraries above, please install CellOracle again.
-
-::
-
-    pip install git+https://github.com/morris-lab/CellOracle.git
 
 
 If you encounter an error related to "certifi"

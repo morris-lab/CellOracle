@@ -41,7 +41,7 @@ Prerequisites
 
 - This tutorial assumes that you have adequate **Python programming experience**. In particular, we assume you are familiar with the following python data science libraries: **jupyter, pandas, and matplotlib**.
 
-- Also, this tutorial assume that you are familiar with basic scRNA-seq data analysis. In particular, we assume you basic understanding of scRNA-seq analysis using `Scanpy and Anndata <https://scanpy.readthedocs.io/en/stable/>`_ , which is a python toolkit for single-cell analysis. You can use scRNA-seq data processed with `Seurat <https://satijalab.org/seurat/>`_ . But the Seurat data need to be converted into the anndata format prior to CellOracle analysis. See this  `page  <https://morris-lab.github.io/CellOracle.documentation/modules/index.html#command-line-api>`_ for detail.
+- Also, this tutorial assume that you are familiar with basic scRNA-seq data analysis. In particular, we assume you basic understanding of scRNA-seq analysis using `Scanpy and Anndata <https://scanpy.readthedocs.io/en/stable/>`_ , which is a python toolkit for single-cell analysis.
 
 - CellOracle provides pre-build base-GRNs, and it is not necessary to construct a custom base-GRN. However, if you would like to use a custom base-GRN constructed using your scATAC-seq data, we recommend doing basic scATAC-seq data analysis using `Cicero <https://cole-trapnell-lab.github.io/cicero-release/>`_.　In this case, please learn the basic usage Cicero prior to start constructing your base-GRN.
 

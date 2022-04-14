@@ -21,19 +21,12 @@ News
 
 Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
+- 04/13/2022: We refactored the code to simplify the installation process and calculation speed. The new version, celloracle 0.10.0, does not require any R packages anymore. Also, codes were updated to comply with the recent numpy updates.
+
 - 01/29/2022: Docker image was updated.
 
 - 01/21/2022: We have changed the default color scheme for the inner product / perturbation score visualization in the in silico gene perturbation module. Please look at the tutorial notebook for detail.
 
-- 01/11/2022: We fixed a bug in the network analysis module.
-
-- 01/05/2022: We updated R library installation page.
-
-- 12/29/2021: Guinea Pig TSS data was added for scATAC-seq data analysis.
-
-- 08/28/2021: We updated installation page.
-
-- 07/16/2021: We have overhauled our documentation and tutorial codes. Please re-download tutorial notebooks to use the most updated version. Also, we are updating CellOracle frequently. Please make sure you install the latest version of CellOracle.
 
 
 Contents
