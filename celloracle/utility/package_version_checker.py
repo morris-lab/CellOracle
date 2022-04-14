@@ -13,7 +13,7 @@ from ..utility import __path__ as PATH
 
 def _load_requirements():
     path = os.path.abspath(PATH[0])
-    REQUIREMENTS_PATH = os.path.join(path, "requrements.txt")
+    REQUIREMENTS_PATH = os.path.join(path, "requirements.txt")
 
     with open(REQUIREMENTS_PATH) as f:
         requirements = f.read().splitlines()
