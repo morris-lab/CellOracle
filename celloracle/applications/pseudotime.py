@@ -76,7 +76,7 @@ class Pseudotime_calculator():
         # check if the format is correct
         for lineage, root_cell in root_cells.items():
             if lineage not in self.adata.obs.columns:
-                print(f"The key, {lineaeg} is not in the lineage data. Make sure the root_cells has correct format.")
+                print(f"The key, {lineage} is not in the lineage data. Make sure the root_cells has correct format.")
             if root_cell not in self.adata.obs.index[self.adata.obs[lineage] == "True"]:
                 print(f"The cell, {root_cell} in the {lineage} was not found in your adata. Please make sure the format is correct.")
 

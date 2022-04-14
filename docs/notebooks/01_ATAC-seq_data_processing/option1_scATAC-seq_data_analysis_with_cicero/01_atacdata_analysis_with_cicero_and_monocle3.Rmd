@@ -4,6 +4,7 @@ output: html_notebook
 ---
 # 0.Import library
 ```{r}
+# The R library, cicero and monocle3 is NOT the part of celloracle package. Please install them yourself if you use this notebook.
 # Please make sure that you installed cicero before running this script
 rm(list=ls())
 library(cicero)

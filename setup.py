@@ -57,7 +57,7 @@ setup(
                                  "data/tutorial_data/*.celloracle.links",
                                  "data/promoter_base_GRN/*.parquet",
                                  "network_analysis/rscripts_for_network_analysis/*.R",
-                                 "utility/requrements.txt"]},
+                                 "utility/requirements.txt"]},
     packages=["celloracle", "celloracle.data_conversion", "celloracle.network", "celloracle.trajectory",
               "celloracle.data", "celloracle.go_analysis", "celloracle.oracle_utility",
               "celloracle.motif_analysis", "celloracle.network_analysis", "celloracle.utility", "celloracle.applications", "celloracle.visualizations"],
