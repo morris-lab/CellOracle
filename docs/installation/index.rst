@@ -15,12 +15,29 @@ Docker image
 ::
 
     docker pull kenjikamimoto126/celloracle_ubuntu
+    docker run -dit kenjikamimoto126/celloracle_ubuntu:latest
+
+- Check the container ID of the running celloracle container:
+
+::
+
+    docker ps -a
+    
+- Login to the running container:
+
+::
+
+    docker exec -it <container-ID> sh
 
 
 - This docker image was built based on Ubuntu 20.04.
 - Python dependent packages and celloracle are installed in an anaconda environment, celloracle_env. This environment will be activated automatically when you log in.
 - R dependent libraries for network analysis are installed. Also, Seurat V3, Monocle3, and Cicero are installed.
 - After logging in, the user switches from the root user to the following user. Username: user. Password: pass.
+
+::
+
+    su user
 
 
 Install CellOracle
