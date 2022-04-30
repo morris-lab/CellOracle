@@ -10,7 +10,7 @@ before_install:
   # Useful for debugging any issues with conda
   - conda info -a
   # Create env
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
+  - conda create -q -n test-environment python=3.8
   - conda activate test-environment
 
 # command to install dependencies
