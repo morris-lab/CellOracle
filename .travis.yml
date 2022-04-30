@@ -7,4 +7,4 @@ install:
   - pip install git+https://github.com/morris-lab/CellOracle.git
 # command to run tests
 script:
-  - ls # Test function will be added later.
+  - pytest
