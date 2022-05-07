@@ -20,3 +20,11 @@ docs/no_share.py
 docs/conf.py
 build
 build/*
+build/*/*
+build/*/*/*
+dist
+dist/*
+.pytest_cache
+.pytest_cache/*
+.pytest_cache/*/*
+README.rst
