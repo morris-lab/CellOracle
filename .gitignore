@@ -27,7 +27,6 @@ dist/*
 .pytest_cache
 .pytest_cache/*
 .pytest_cache/*/*
-README.rst
 .cache/
 .cache/*
 .cache/*/*
