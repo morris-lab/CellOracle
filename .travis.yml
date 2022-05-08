@@ -19,4 +19,4 @@ install:
   - pip install git+https://github.com/morris-lab/CellOracle.git
 # command to run tests
 script:
-  - pytest
+  - pytest celloracle/tests/test_min.py
