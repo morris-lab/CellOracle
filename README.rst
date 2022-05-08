@@ -1,7 +1,7 @@
 CellOracle
 ==========
 
-|Build Status|
+|Build Status| |PyPI| |PyPI - Python Version| |PyPI - Wheel|
 
 CellOracle is a python library for in silico gene perturbation analyses
 using single-cell omics data and Gene Regulatory Network models.
@@ -51,3 +51,6 @@ page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html
 
 .. |Build Status| image:: https://app.travis-ci.com/morris-lab/CellOracle.svg?branch=master
    :target: https://app.travis-ci.com/morris-lab/CellOracle
+.. |PyPI| image:: https://img.shields.io/pypi/v/celloracle?color=g
+.. |PyPI - Python Version| image:: https://img.shields.io/pypi/pyversions/celloracle
+.. |PyPI - Wheel| image:: https://img.shields.io/pypi/wheel/celloracle
