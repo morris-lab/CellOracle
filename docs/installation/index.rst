@@ -32,7 +32,7 @@ Docker image
 
 - This docker image was built based on Ubuntu 20.04.
 - Python dependent packages and celloracle are installed in an anaconda environment, celloracle_env. This environment will be activated automatically when you log in.
-- R dependent libraries for network analysis are installed. Also, Seurat V3, Monocle3, and Cicero are installed.
+- Seurat V3, Monocle3, and Cicero are installed. Although they are not the part of CellOracle software, they are useful for the input data preparation prior to CellOracle analysis.
 - After logging in, the user switches from the root user to the following user. Username: user. Password: pass.
 
 ::
