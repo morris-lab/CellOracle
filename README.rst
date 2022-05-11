@@ -51,6 +51,9 @@ page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html
 
 .. |Build Status| image:: https://app.travis-ci.com/morris-lab/CellOracle.svg?branch=master
    :target: https://app.travis-ci.com/morris-lab/CellOracle
-.. |PyPI| image:: https://img.shields.io/pypi/v/celloracle?color=g
+.. |PyPI| image:: https://img.shields.io/pypi/v/celloracle?color=blue
+   :target: https://pypi.org/project/celloracle/
 .. |PyPI - Python Version| image:: https://img.shields.io/pypi/pyversions/celloracle
+   :target: https://pypi.org/project/celloracle/
 .. |PyPI - Wheel| image:: https://img.shields.io/pypi/wheel/celloracle
+   :target: https://pypi.org/project/celloracle/

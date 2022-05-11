@@ -63,4 +63,4 @@ In this case, please add "--ignore-installed certifi " to the installation comma
 
 ::
 
-    pip install git+https://github.com/morris-lab/CellOracle.git --ignore-installed certifi
+    pip install celloracle --ignore-installed certifi

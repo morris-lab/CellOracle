@@ -22,7 +22,7 @@ Docker image
 ::
 
     docker ps -a
-    
+
 - Login to the running container:
 
 ::
@@ -58,7 +58,7 @@ Python Requirements
 ^^^^^^^^^^^^^^^^^^^
 
 - CellOracle was developed using python 3.6. It is also tested with python 3.8. We do not support python 2.7x or python <=3.5.
-- CellOracle is currently a beta version and it is not available through PyPI or anaconda distribution yet. Please install CellOracle from our GitHub repository according to the instruction below.
+- CellOracle is available through `PyPI <https://pypi.org/project/celloracle/>`_. You can also download and install celloracle from our `CellOracle  GitHub repository <https://github.com/morris-lab/CellOracle>`_ .
 
 CellOracle installation using conda and pip
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -76,7 +76,7 @@ CellOracle installation using conda and pip
 
   ::
 
-      pip install git+https://github.com/morris-lab/CellOracle.git
+      pip install celloracle
 
 
 If you get an error, please look at the troubleshooting page below.

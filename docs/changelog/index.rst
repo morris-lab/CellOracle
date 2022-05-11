@@ -4,6 +4,13 @@
 Changelog
 =========
 
+* `0.10.5 <2022-05-8>`
+ `-` We refactored the data loading function. In the version with 0.10.5 or higher, the data can be automatically downloaded from GitHub if the data is not found in the local celloracle library directory.
+
+ `-` We added `Travis CI page <https://app.travis-ci.com/github/morris-lab/CellOracle>`_ to automatically check celloracle build status.
+
+ `-` We updated CellOracle GitHub repository README file to add celloracle package status quality check badges.
+
 * `0.10.1 <2022-04-13>`
  `-` We refactored the code to simplify the installation process and calculation speed.
 
