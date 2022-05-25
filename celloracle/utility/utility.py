@@ -11,7 +11,7 @@ import sys
 
 import pandas as pd
 import numpy as np
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 import matplotlib.pyplot as plt
 
 from sklearn.preprocessing import StandardScaler
@@ -381,6 +381,6 @@ def knn_data_transferer(adata_ref, adata_que,
                 model_knreg.fit(X_train_PCA, adata_ref.obs[i])
                 pred = model_knreg.predict(X_test_PCA)
                 adata_que.obs[i] = pred
-        
+
         else:
             raise ValueError("meta_data format error")

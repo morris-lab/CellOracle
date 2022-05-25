@@ -16,7 +16,7 @@ import numpy as np
 import sys, os
 import functools
 
-#from tqdm.notebook import tqdm
+#from tqdm.auto import tqdm
 from tqdm.auto import tqdm
 # 0.2. libraries for DNA and genome data wrangling and Motif analysis
 from genomepy import Genome

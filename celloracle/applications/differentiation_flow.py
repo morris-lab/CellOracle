@@ -14,7 +14,7 @@ import warnings
 
 import pandas as pd
 import numpy as np
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 import matplotlib.pyplot as plt
 #import h5py
 from sklearn.neighbors import KNeighborsRegressor

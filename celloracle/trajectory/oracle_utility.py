@@ -209,3 +209,31 @@ def _is_perturb_condition_valid(adata, goi, value, safe_range_fold=2):
         return True
     else:
         return False
+
+
+
+#############################################################################
+### Sanity check function to evaluate the distribution of simulated value ###
+#############################################################################
+
+def __percentage_LH_range_calculation(x, percentage_margin=10):
+    """
+    Calculate lower_range and upper_range given the gene expression vector.
+    """
+    min_ = np.min(x)
+    max_ = np.max(x)
+
+    lower_range = min_ - (max_ - min_) * percentage_margin
+    upper_range = max_ + (max_ - min_) * percentage_margin
+    return lower_range, upper_range
+
+def _is_simulated_value_in_wt_distribution(reference, query,  percentage_margin=1):
+    #lower_range, upper_range = quantile_LH_range_calculation(x=reference_expressions,
+    #                                                         k_quantile_outlier=k_quantile_outlier)
+    lower_range, upper_range = __percentage_LH_range_calculation(x=reference,
+                                                               percentage_margin=percentage_margin)
+
+    #print(lower_range,upper_range)
+    is_data_in_range = (lower_range <= query) & (query <= upper_range)
+
+    return is_data_in_range

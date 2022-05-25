@@ -15,7 +15,7 @@ import numpy as np
 
 import sys, os
 
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 from glob import glob
 
 # 0.2. libraries for DNA and genome data wrangling and Motif analysis

@@ -21,7 +21,7 @@ import pandas as pd
 
 from scipy import stats
 
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 
 from ..network.net_core import Net
 from ..utility import standard
@@ -54,7 +54,7 @@ def get_links(oracle_object, cluster_name_for_GRN_unit=None, alpha=10, bagging_n
 
 
         verbose_level (int): if [verbose_level>1], most detailed progress information will be shown.
-            if [verbose_level > 0], one progress bar will be shown.
+            if [1 >= verbose_level > 0], one progress bar will be shown.
             if [verbose_level == 0], no progress bar will be shown.
 
         test_mode (bool): If test_mode is True, GRN calculation will be done for only one cluster rather than all clusters.
@@ -124,7 +124,7 @@ def _fit_GRN_for_network_analysis(oracle_object, cluster_name_for_GRN_unit, alph
         if (not test_mode) | First:
             First = False
             if verbose:
-                print(f"inferring GRN for {cluster}...")
+                print(f"Inferring GRN for {cluster}...")
 
             cells_in_the_cluster_bool = (cluster_info == cluster)
             gem_ = gem_imputed[cells_in_the_cluster_bool]

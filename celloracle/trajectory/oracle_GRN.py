@@ -12,7 +12,7 @@ import pandas as pd
 import os
 
 from sklearn.linear_model import Ridge
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 
 from ..utility import intersect
 #from network_fitting import TransNet as tn
@@ -52,7 +52,7 @@ def _do_simulation(coef_matrix, simulation_input, gem, n_propagation):
     return gem_simulated
 
 
-def _getCoefMatrix(gem, TFdict, alpha=1):
+def _getCoefMatrix(gem, TFdict, alpha=1, verbose=True):
     """
     Calculate GRN and return CoefMatrix (network weights)
 
@@ -81,51 +81,36 @@ def _getCoefMatrix(gem, TFdict, alpha=1):
 
         if target_gene in reggenes:
             reggenes.remove(target_gene)
-
         if len(reggenes) == 0 :
-
             tmp[target_gene] = 0
             return(tmp)
-
-
         # prepare learning data
         Data = gem[reggenes]
         Label = gem[target_gene]
-
-
         # model fitting
         model = Ridge(alpha=alpha, random_state=123)
         model.fit(Data, Label)
-
         tmp[reggenes] = model.coef_
 
         return tmp
 
-
-
-
     li = []
     li_calculated = []
-
-    for i in tqdm(genes):
-        if not i in all_genes_in_dict:
-            tmp = zero_.copy()
-            tmp[i] = 0
-
-        else:
-            tmp = get_coef(i)
-            li_calculated.append(i)
-
-        li.append(tmp)
-
-
+    with tqdm(genes, disable=(verbose==False)) as pbar:
+        for i in pbar:
+            if not i in all_genes_in_dict:
+                tmp = zero_.copy()
+                tmp[i] = 0
+            else:
+                tmp = get_coef(i)
+                li_calculated.append(i)
+            li.append(tmp)
     coef_matrix = pd.concat(li, axis=1)
-
     coef_matrix.columns = genes
 
-    print(f"genes_in_gem: {gem.shape[1]}")
-    print(f"models made for {len(li_calculated)} genes")
-
+    if verbose:
+        print(f"genes_in_gem: {gem.shape[1]}")
+        print(f"models made for {len(li_calculated)} genes")
 
     return coef_matrix #, li_calculated
 

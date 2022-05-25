@@ -28,7 +28,7 @@ from .neighbors import (BalancedKNN, connectivity_to_weights,
 #from velocyto.serialization import dump_hdf5, load_hdf5
 
 
-#from tqdm.notebook import tqdm
+#from tqdm.auto import tqdm
 from .oracle_utility import _adata_to_matrix, _adata_to_df, _get_clustercolor_from_anndata
 
 

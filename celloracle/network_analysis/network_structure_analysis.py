@@ -23,7 +23,7 @@ import seaborn as sns
 
 from scipy import stats
 
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 from .network_analysis_utility import linkList_to_networkgraph
 
 #import seaborn as sns
@@ -120,6 +120,7 @@ def _plotDegreedist(degree_df, plot_model=False, path=None):
     if path is not None:
         fig.savefig(path, transparent=True)
     plt.show()
+    
 
 def _get_degree_info_from_NG(network_x_graph):
 

@@ -1,7 +1,7 @@
 
 import numpy as np
 
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 
 #from network_fitting import TransNet as tn
 from numba import jit, f8, i8, void

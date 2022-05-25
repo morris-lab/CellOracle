@@ -11,7 +11,7 @@ from typing import Dict, Any, List, Union, Tuple
 import pandas as pd
 import scanpy as sc
 import seaborn as sns
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 
 from ..utility.hdf5_processing import dump_hdf5, load_hdf5
 
@@ -23,6 +23,7 @@ from .oracle_utility import (_adata_to_matrix, _adata_to_df,
                              _adata_to_color_dict, _get_clustercolor_from_anndata,
                              _numba_random_seed, _linklist2dict,
                              _decompose_TFdict, _is_perturb_condition_valid,
+                             _is_simulated_value_in_wt_distribution,
                              _check_color_information_and_create_if_not_found)
 from .oracle_GRN import _do_simulation, _getCoefMatrix, _coef_to_active_gene_list, _shuffle_celloracle_GRN_coef_table, _correct_coef_table
 from .modified_VelocytoLoom_class import modified_VelocytoLoom
@@ -509,7 +510,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
     ####################################
     ### 2. Methods for GRN inference ###
     ####################################
-    def fit_GRN_for_simulation(self, GRN_unit="cluster", alpha=1, use_cluster_specific_TFdict=False):
+    def fit_GRN_for_simulation(self, GRN_unit="cluster", alpha=1, use_cluster_specific_TFdict=False, verbose_level=1):
         """
         Do GRN inference.
         Please see the paper of CellOracle paper for details.
@@ -526,10 +527,25 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             alpha (float or int): The strength of regularization.
                 If you set a lower value, the sensitivity increases, and you can detect weaker network connections. However, there may be more noise.
                 If you select a higher value, it will reduce the chance of overfitting.
+
+            verbose_level (int): if [verbose_level>1], most detailed progress information will be shown.
+                if [1 >= verbose_level > 0], one progress bar will be shown.
+                if [verbose_level == 0], no progress bar will be shown.
+
         """
+
+        if verbose_level > 1:
+            verbose_cluster = True
+            verbose_gene = True
+        elif 0 < verbose_level <= 1:
+            verbose_cluster = True
+            verbose_gene = False
+        else:
+            verbose_cluster = False
+            verbose_gene = False
+
         # prepare data for GRN calculation
         gem_imputed = _adata_to_df(self.adata, "imputed_count")
-
         self.adata.layers["simulation_input"] = self.adata.layers["imputed_count"].copy()
         self.alpha_for_trajectory_GRN = alpha
         self.GRN_unit = GRN_unit
@@ -537,30 +553,30 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         if use_cluster_specific_TFdict & (self.cluster_specific_TFdict is not None):
             self.coef_matrix_per_cluster = {}
             cluster_info = self.adata.obs[self.cluster_column_name]
-
-            print(f"fitting GRN again...")
-            for cluster in np.unique(cluster_info):
-                print(f"calculating GRN in {cluster}")
-                cells_in_the_cluster_bool = (cluster_info == cluster)
-                gem_ = gem_imputed[cells_in_the_cluster_bool]
-                self.coef_matrix_per_cluster[cluster] = _getCoefMatrix(gem=gem_,
-                                                                       TFdict=self.cluster_specific_TFdict[cluster],
-                                                                       alpha=alpha)
-
-
-        else:
-            if GRN_unit == "whole":
-                self.coef_matrix = _getCoefMatrix(gem=gem_imputed, TFdict=self.TFdict, alpha=alpha)
-            if GRN_unit == "cluster":
-                self.coef_matrix_per_cluster = {}
-                cluster_info = self.adata.obs[self.cluster_column_name]
-                for cluster in np.unique(cluster_info):
-                    print(f"calculating GRN in {cluster}")
+            with tqdm(np.unique(cluster_info), disable=(verbose_cluster==False)) as pbar:
+                for cluster in pbar:
+                    pbar.set_postfix(cluster=f"{cluster}")
                     cells_in_the_cluster_bool = (cluster_info == cluster)
                     gem_ = gem_imputed[cells_in_the_cluster_bool]
                     self.coef_matrix_per_cluster[cluster] = _getCoefMatrix(gem=gem_,
-                                                                           TFdict=self.TFdict,
-                                                                           alpha=alpha)
+                                                                           TFdict=self.cluster_specific_TFdict[cluster],
+                                                                           alpha=alpha,
+                                                                           verbose=verbose_gene)
+        else:
+            if GRN_unit == "whole":
+                self.coef_matrix = _getCoefMatrix(gem=gem_imputed, TFdict=self.TFdict, alpha=alpha, verbose=verbose_gene)
+            if GRN_unit == "cluster":
+                self.coef_matrix_per_cluster = {}
+                cluster_info = self.adata.obs[self.cluster_column_name]
+                with tqdm(np.unique(cluster_info), disable=(verbose_cluster==False)) as pbar:
+                    for cluster in pbar:
+                        pbar.set_postfix(cluster=f"{cluster}")
+                        cells_in_the_cluster_bool = (cluster_info == cluster)
+                        gem_ = gem_imputed[cells_in_the_cluster_bool]
+                        self.coef_matrix_per_cluster[cluster] = _getCoefMatrix(gem=gem_,
+                                                                               TFdict=self.TFdict,
+                                                                               alpha=alpha,
+                                                                               verbose=verbose_gene)
 
         self.extract_active_gene_lists(verbose=False)
 
@@ -695,19 +711,19 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                 self._process_TFdict_metadata()
 
             for i, value in perturb_condition.items():
-                # 1st QC
+                # 1st Sanity check
                 if not i in self.adata.var.index:
                     raise ValueError(f"{i} is not included in the Gene expression matrix.")
 
-                # 2nd QC
+                # 2nd Sanity check
                 if i not in self.all_regulatory_genes_in_TFdict:
                     raise ValueError(f"Gene {i} is not included in the base GRN; It is not TF or TF motif information is not available. Cannot perform simulation.")
 
-                # 3rd QC
+                # 3rd Sanity check
                 if i not in self.active_regulatory_genes:
                     raise ValueError(f"Gene {i} does not have enough regulatory connection in the GRNs. Cannot perform simulation.")
 
-                # 4th QC
+                # 4th Sanity check
                 if i not in self.high_var_genes:
                     if ignore_warning:
                         pass
@@ -717,11 +733,11 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                         #print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
                         #raise ValueError(f"Variability score of Gene {i} is too low. Cannot perform simulation.")
 
-                # 5th QC
+                # 5th Sanity check
                 if value < 0:
                     raise ValueError(f"Negative gene expression value is not allowed.")
 
-                # 6th QC
+                # 6th Sanity check
                 safe = _is_perturb_condition_valid(adata=self.adata,
                                             goi=i, value=value, safe_range_fold=2)
                 if not safe:
@@ -733,7 +749,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                 if CONFIG["N_PROP_MIN"] <= n_propagation <= CONFIG["N_PROP_MAX"]:
                     pass
                 else:
-                    raise ValueError(f'n_propagation value error. It should be in [{CONFIG["N_PROP_MIN"]}, {CONFIG["N_PROP_MAX"]}]')
+                    raise ValueError(f'n_propagation value error. It should be an integer from {CONFIG["N_PROP_MIN"]} to {CONFIG["N_PROP_MAX"]}.')
 
             # reset simulation initiation point
             self.adata.layers["simulation_input"] = self.adata.layers["imputed_count"].copy()
@@ -801,7 +817,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
     def _clear_simulation_results(self):
         att_list = ["flow_embedding", "flow_grid", "flow", "flow_norm_magnitude",
                     "flow_rndm", "flow_norm_rndm", "flow_norm_magnitude_rndm",
-                    "corrcoef", "transition_prob", "transition_prob_random",
+                    "corrcoef","corrcoef_random", "transition_prob", "transition_prob_random",
                     "delta_embedding", "delta_embedding_random",
                     "ixs_mcmc", "mcmc_transition_id", "tr"]
 
@@ -809,6 +825,39 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             if hasattr(self, i):
                 setattr(self, i, None)
 
+    def evaluate_simulated_distribution_range(self, percentage_margin=3.0):
+
+        """
+        CellOracle does not inted to simulate out-of-distribution simulation.
+        This function checks the simulated value to make sure the gene expression value is not too far from natural range.
+
+        Args:
+            percentage_margin (float): Percentage value of allowed margin. For example if percent_margin = 3, the function will check simulated gene expression is in the range of +- 3% of WT gene expression range.
+        Returns:
+            pandas.DataFrame of bool: The True in the dataframe means the gene is within the allowed range.
+        """
+
+        # Sanity check
+        if "simulated_count" in self.adata.layers.keys():
+            pass
+        else:
+            raise ValueError("Simulation results not found. Run simulation first.")
+
+        simulated_count = self.adata.to_df(layer="simulated_count")
+        imputed_count = self.adata.to_df(layer="imputed_count")
+
+        results = []
+        for gene in imputed_count.columns:
+            is_data_in_range = _is_simulated_value_in_wt_distribution(
+                reference=imputed_count[gene],
+                query=simulated_count[gene],
+                percentage_margin=percentage_margin)
+            results.append(is_data_in_range)
+
+        is_simulated_value_in_the_WT_distribution = pd.concat(results, axis=1)
+        is_simulated_value_in_the_WT_distribution.columns = imputed_count.columns
+
+        return is_simulated_value_in_the_WT_distribution
 
 
 
