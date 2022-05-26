@@ -23,7 +23,7 @@ from .oracle_utility import (_adata_to_matrix, _adata_to_df,
                              _adata_to_color_dict, _get_clustercolor_from_anndata,
                              _numba_random_seed, _linklist2dict,
                              _decompose_TFdict, _is_perturb_condition_valid,
-                             _is_simulated_value_in_wt_distribution,
+                             _calculate_relative_ratio_of_simulated_value,
                              _check_color_information_and_create_if_not_found)
 from .oracle_GRN import _do_simulation, _getCoefMatrix, _coef_to_active_gene_list, _shuffle_celloracle_GRN_coef_table, _correct_coef_table
 from .modified_VelocytoLoom_class import modified_VelocytoLoom
@@ -32,7 +32,8 @@ from ..visualizations.oracle_object_visualization import Oracle_visualization
 from ..version import __version__
 
 CONFIG = {"N_PROP_MIN": 1,
-          "N_PROP_MAX": 5}
+          "N_PROP_MAX": 5,
+          "OOD_WARNING_EXCEEDING_PERCENTAGE": 50}
 
 
 def update_adata(adata):
@@ -646,7 +647,43 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
     #######################################################
 
     def simulate_shift(self, perturb_condition=None, GRN_unit=None,
-                       n_propagation=3, ignore_warning=False, use_randomized_GRN=False):
+                       n_propagation=3, ignore_warning=False, use_randomized_GRN=False, clip_delta_X=False):
+        """
+        Simulate signal propagation with GRNs. Please see the CellOracle paper for details.
+        This function simulates a gene expression pattern in the near future.
+        Simulated values will be stored in anndata.layers: ["simulated_count"]
+
+
+        The simulation use three types of data.
+        (1) GRN inference results (coef_matrix).
+        (2) Perturb_condition: You can set arbitrary perturbation condition.
+        (3) Gene expression matrix: The simulation starts from imputed gene expression data.
+
+        Args:
+            perturb_condition (dictionary): condition for perturbation.
+               if you want to simulate knockout for GeneX, please set [perturb_condition={"GeneX": 0.0}]
+               Although you can set any non-negative values for the gene condition, avoid setting biologically infeasible values for the perturb condition.
+               It is strongly recommended to check gene expression values in your data before selecting the perturb condition.
+
+            GRN_unit (str): GRN type. Please select either "whole" or "cluster". See the documentation of "fit_GRN_for_simulation" for the detailed explanation.
+
+            n_propagation (int): Calculation will be performed iteratively to simulate signal propagation in GRN.
+                You can set the number of steps for this calculation.
+                With a higher number, the results may recapitulate signal propagation for many genes.
+                However, a higher number of propagation may cause more error/noise.
+
+            clip_delta_X (bool): If simulated gene expression shift can lead to gene expression value that is outside of WT distribution, such gene expression is clipped to WT range.
+        """
+        self.__simulate_shift(perturb_condition=perturb_condition,
+                                      GRN_unit=GRN_unit,
+                                      n_propagation=n_propagation,
+                                      ignore_warning=ignore_warning,
+                                      use_randomized_GRN=use_randomized_GRN,
+                                      clip_delta_X=clip_delta_X)
+
+
+    def __simulate_shift(self, perturb_condition=None, GRN_unit=None,
+                       n_propagation=3, ignore_warning=False, use_randomized_GRN=False, n_min=None, n_max=None, clip_delta_X=False):
         """
         Simulate signal propagation with GRNs. Please see the CellOracle paper for details.
         This function simulates a gene expression pattern in the near future.
@@ -678,6 +715,10 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         #self.corrcoef = None
         #self.transition_prob = None
         #self.tr = None
+        if n_min is None:
+            n_min = CONFIG["N_PROP_MIN"]
+        if n_max is None:
+            n_max = CONFIG["N_PROP_MAX"]
         self._clear_simulation_results()
 
         if GRN_unit is not None:
@@ -698,68 +739,65 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             print("Attention: Using randomized GRN for the perturbation simulation.")
 
         # 1. prepare perturb information
-        if not perturb_condition is None:
-
-            self.perturb_condition = perturb_condition.copy()
 
 
-            # Do Quality check before simulation.
-            if not hasattr(self, "active_regulatory_genes"):
-                self.extract_active_gene_lists(verbose=False)
+        self.perturb_condition = perturb_condition.copy()
 
-            if not hasattr(self, "all_regulatory_genes_in_TFdict"):
-                self._process_TFdict_metadata()
 
-            for i, value in perturb_condition.items():
-                # 1st Sanity check
-                if not i in self.adata.var.index:
-                    raise ValueError(f"{i} is not included in the Gene expression matrix.")
+        # Prepare metadata before simulation
+        if not hasattr(self, "active_regulatory_genes"):
+            self.extract_active_gene_lists(verbose=False)
 
-                # 2nd Sanity check
-                if i not in self.all_regulatory_genes_in_TFdict:
-                    raise ValueError(f"Gene {i} is not included in the base GRN; It is not TF or TF motif information is not available. Cannot perform simulation.")
+        if not hasattr(self, "all_regulatory_genes_in_TFdict"):
+            self._process_TFdict_metadata()
 
-                # 3rd Sanity check
-                if i not in self.active_regulatory_genes:
-                    raise ValueError(f"Gene {i} does not have enough regulatory connection in the GRNs. Cannot perform simulation.")
+        for i, value in perturb_condition.items():
+            # 1st Sanity check
+            if not i in self.adata.var.index:
+                raise ValueError(f"Gene {i} is not included in the Gene expression matrix.")
 
-                # 4th Sanity check
-                if i not in self.high_var_genes:
-                    if ignore_warning:
-                        pass
-                        #print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
-                    else:
-                        pass
-                        #print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
-                        #raise ValueError(f"Variability score of Gene {i} is too low. Cannot perform simulation.")
+            # 2nd Sanity check
+            if i not in self.all_regulatory_genes_in_TFdict:
+                raise ValueError(f"Gene {i} is not included in the base GRN; It is not TF or TF motif information is not available. Cannot perform simulation.")
 
-                # 5th Sanity check
-                if value < 0:
-                    raise ValueError(f"Negative gene expression value is not allowed.")
+            # 3rd Sanity check
+            if i not in self.active_regulatory_genes:
+                raise ValueError(f"Gene {i} does not have enough regulatory connection in the GRNs. Cannot perform simulation.")
 
-                # 6th Sanity check
-                safe = _is_perturb_condition_valid(adata=self.adata,
-                                            goi=i, value=value, safe_range_fold=2)
-                if not safe:
-                    if ignore_warning:
-                        pass
-                    else:
-                        raise ValueError(f"Input perturbation condition is far from actural gene expression value. Please follow the recommended usage. ")
-                # 7th QC
-                if CONFIG["N_PROP_MIN"] <= n_propagation <= CONFIG["N_PROP_MAX"]:
+            # 4th Sanity check
+            if i not in self.high_var_genes:
+                if ignore_warning:
+                    pass
+                    #print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
+                else:
+                    pass
+                    #print(f"Variability score of Gene {i} is too low. Simulation accuracy may be poor with this gene.")
+                    #raise ValueError(f"Variability score of Gene {i} is too low. Cannot perform simulation.")
+
+            # 5th Sanity check
+            if value < 0:
+                raise ValueError(f"Negative gene expression value is not allowed.")
+
+            # 6th Sanity check
+            safe = _is_perturb_condition_valid(adata=self.adata,
+                                        goi=i, value=value, safe_range_fold=2)
+            if not safe:
+                if ignore_warning:
                     pass
                 else:
-                    raise ValueError(f'n_propagation value error. It should be an integer from {CONFIG["N_PROP_MIN"]} to {CONFIG["N_PROP_MAX"]}.')
+                    raise ValueError(f"Input perturbation condition is far from actural gene expression value. Please follow the recommended usage. ")
+            # 7th QC
+            if n_min <= n_propagation <= n_max:
+                pass
+            else:
+                raise ValueError(f'n_propagation value error. It should be an integer from {n_min} to {n_max}.')
 
-            # reset simulation initiation point
-            self.adata.layers["simulation_input"] = self.adata.layers["imputed_count"].copy()
-            simulation_input = _adata_to_df(self.adata, "simulation_input")
-            for i in perturb_condition.keys():
-                simulation_input[i] = perturb_condition[i]
+        # reset simulation initiation point
+        self.adata.layers["simulation_input"] = self.adata.layers["imputed_count"].copy()
+        simulation_input = _adata_to_df(self.adata, "simulation_input")
+        for i in perturb_condition.keys():
+            simulation_input[i] = perturb_condition[i]
 
-        else:
-            print("perturb_condition=None means you are using custom simulation mode. This is not recommended.")
-            simulation_input = _adata_to_df(self.adata, "simulation_input")
 
         # 2. load gene expression matrix (initiation information for the simulation)
         gem_imputed = _adata_to_df(self.adata, "imputed_count")
@@ -814,6 +852,21 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         #  difference between simulated values and original values
         self.adata.layers["delta_X"] = self.adata.layers["simulated_count"] - self.adata.layers["imputed_count"]
 
+        # Clip simulated gene expression to avoid out of distribution prediction.
+        if clip_delta_X:
+            self.clip_delta_X()
+
+        # Sanity check; check distribution of simulated values. If the value is far from original gene expression range, it will give warning.
+        if ignore_warning:
+            pass
+        else:
+            ood_stat = self.evaluate_simulated_gene_distribution_range()
+            ood_stat = ood_stat[ood_stat.Max_exceeding_ratio > CONFIG["OOD_WARNING_EXCEEDING_PERCENTAGE"]/100]
+            if len(ood_stat)> 0:
+                message = f"There may be out of distribution prediction in {len(ood_stat)} genes. It is recommended to set `clip_delta_X=True` to avoid the out of distribution prediction."
+                message += "\n To see the detail, please run `oracle.evaluate_simulated_gene_distribution_range()`"
+                warnings.warn(message, UserWarning, stacklevel=2)
+
     def _clear_simulation_results(self):
         att_list = ["flow_embedding", "flow_grid", "flow", "flow_norm_magnitude",
                     "flow_rndm", "flow_norm_rndm", "flow_norm_magnitude_rndm",
@@ -825,18 +878,31 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             if hasattr(self, i):
                 setattr(self, i, None)
 
-    def evaluate_simulated_distribution_range(self, percentage_margin=3.0):
+    def evaluate_simulated_gene_distribution_range(self):
+        """
+        CellOracle does not intend to simulate out-of-distribution simulation.
+        This function evaluates how the simulated gene expression values differ from the undisturbed gene expression distribution range.
+        """
+
+        exceedance = self._calculate_potential_OOD_exceedance_ratio()
+        statistics = pd.concat([exceedance.max(),
+                                (exceedance != 0).mean(axis=0)], axis=1)
+        statistics.columns = ["Max_exceeding_ratio", "OOD_cell_ratio"]
+
+        statistics = statistics.sort_values(by="Max_exceeding_ratio", ascending=False)
+
+        return statistics
+
+    def _calculate_potential_OOD_exceedance_ratio(self):
 
         """
-        CellOracle does not inted to simulate out-of-distribution simulation.
-        This function checks the simulated value to make sure the gene expression value is not too far from natural range.
+        CellOracle does not intend to simulate out-of-distribution simulation.
+        This function evaluates how the simulated gene expression values differ from the undisturbed gene expression distribution range.
 
         Args:
-            percentage_margin (float): Percentage value of allowed margin. For example if percent_margin = 3, the function will check simulated gene expression is in the range of +- 3% of WT gene expression range.
-        Returns:
-            pandas.DataFrame of bool: The True in the dataframe means the gene is within the allowed range.
-        """
 
+            pandas.DataFrame: The value is exceeding ratio.
+        """
         # Sanity check
         if "simulated_count" in self.adata.layers.keys():
             pass
@@ -846,20 +912,83 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         simulated_count = self.adata.to_df(layer="simulated_count")
         imputed_count = self.adata.to_df(layer="imputed_count")
 
-        results = []
-        for gene in imputed_count.columns:
-            is_data_in_range = _is_simulated_value_in_wt_distribution(
-                reference=imputed_count[gene],
-                query=simulated_count[gene],
-                percentage_margin=percentage_margin)
-            results.append(is_data_in_range)
 
-        is_simulated_value_in_the_WT_distribution = pd.concat(results, axis=1)
-        is_simulated_value_in_the_WT_distribution.columns = imputed_count.columns
+        relative_ratio = _calculate_relative_ratio_of_simulated_value(simulated_count=simulated_count,
+                                                                      reference_count=imputed_count)
 
-        return is_simulated_value_in_the_WT_distribution
+        lower_exceedance = np.clip(relative_ratio, -np.inf, 0).abs()
+        higer_exceedance = np.clip(relative_ratio-1, 0, np.inf)
+        exceedance = pd.DataFrame(np.maximum(lower_exceedance.values, higer_exceedance.values),
+                                index=relative_ratio.index,
+                                columns=relative_ratio.columns)
+        return exceedance
+
+    def clip_delta_X(self):
+        """
+        To avoid issue caused by out-of-distribution prediction, this function clip simulated gene expression value to the unperturbed gene expression range.
+        """
+        # Sanity check
+        if "simulated_count" in self.adata.layers.keys():
+            pass
+        else:
+            raise ValueError("Simulation results not found. Run simulation first.")
+
+        simulated_count = self.adata.to_df(layer="simulated_count").copy()
+        imputed_count = self.adata.to_df(layer="imputed_count").copy()
+
+        min_ = imputed_count.min(axis=0)
+        max_ = imputed_count.max(axis=0)
+
+        for goi in simulated_count.columns:
+            simulated_count[goi] = np.clip(simulated_count[goi], min_[goi], max_[goi])
+
+        self.adata.layers["simulated_count"] = simulated_count.values
+        self.adata.layers["delta_X"] = self.adata.layers["simulated_count"] - self.adata.layers["imputed_count"]
 
 
+
+    def estimate_impact_of_perturbations_under_various_ns(self, perturb_condition, order=1, n_prop_max=5, GRN_unit=None, figsize=[7, 3]):
+        """
+        This function is designed to help user to estimate appropriate n for signal propagation.
+        The function will do the following calculation for each n and plot results as line plot.
+        1. Calculate signal propagation.
+        2. Calculate the vector length of delta_X, which represents the simulated shift vector for each cell in the multi dimensional gene expression space.
+        3. Calculate mean of delta_X for each cluster.
+        Repeat step 1~3 for each n and plot results as a line plot.
+
+        Args:
+            perturb_condition (dictionary): Please refer to the function 'simulate_shift' for detail of this.
+            order (int): If order=1, this function calculate l1 norm. If order=2, it calculate l2 norm.
+            n_prop_max (int): Max of n to try.
+        Return
+            matplotlib figure
+        """
+        lengths = []
+        for i in tqdm(range(0, n_prop_max+1)):
+            self.__simulate_shift(perturb_condition=perturb_condition,
+                                  GRN_unit=None,
+                                  n_propagation=i,
+                                  ignore_warning=False,
+                                  use_randomized_GRN=False,
+                                  n_min=0, n_max=n_prop_max+1)
+
+            delta = self.adata.to_df(layer="delta_X")
+            length = np.linalg.norm(delta, ord=order, axis=1)
+            lengths.append(length)
+
+        lengths = pd.DataFrame(lengths).transpose()
+        lengths.columns = [f"{i}" for i in range(0, n_prop_max+1)]
+        lengths["group"] = self.adata.obs[self.cluster_column_name].values
+
+        # Plot results
+        fig, ax = plt.subplots(figsize=figsize)
+        lengths.groupby("group").mean().transpose().plot(ax=ax)
+        plt.xlabel("n_propagation")
+        plt.ylabel(f"Mean delta_X length")
+        plt.legend(bbox_to_anchor=(1.05, 0), loc='lower left', borderaxespad=0, fontsize=13)
+        plt.subplots_adjust(right=0.5, bottom=0.15)
+
+        return fig
 
 
     def calculate_p_mass(self, smooth=0.8, n_grid=40, n_neighbors=200, n_jobs=-1):

@@ -216,24 +216,39 @@ def _is_perturb_condition_valid(adata, goi, value, safe_range_fold=2):
 ### Sanity check function to evaluate the distribution of simulated value ###
 #############################################################################
 
-def __percentage_LH_range_calculation(x, percentage_margin=10):
+
+def _calculate_relative_ratio_of_simulated_value(simulated_count, reference_count):
+
     """
-    Calculate lower_range and upper_range given the gene expression vector.
+    CellOracle does not intend to simulate out-of-distribution simulation.
+    This function calculate relative value scaled by the reference gene distribution value.
+
+
+    Args:
+        simulated_count (np.nddarray): simulated gene expression matrix.
+
+        reference_count (np.nddarray): unperturbed gene expression matrix.
+
+        pandas.DataFrame: If the value is between 0 to 1, this means the gene value is whitin the reference distribution range.
     """
-    min_ = np.min(x)
-    max_ = np.max(x)
 
-    lower_range = min_ - (max_ - min_) * percentage_margin
-    upper_range = max_ + (max_ - min_) * percentage_margin
-    return lower_range, upper_range
 
-def _is_simulated_value_in_wt_distribution(reference, query,  percentage_margin=1):
-    #lower_range, upper_range = quantile_LH_range_calculation(x=reference_expressions,
-    #                                                         k_quantile_outlier=k_quantile_outlier)
-    lower_range, upper_range = __percentage_LH_range_calculation(x=reference,
-                                                               percentage_margin=percentage_margin)
+    results = []
+    for gene in reference_count.columns:
+        simulated_count[gene]
 
-    #print(lower_range,upper_range)
-    is_data_in_range = (lower_range <= query) & (query <= upper_range)
+        relative_ratio = __get_relative_ratio_to_reference_array(
+            reference=reference_count[gene],
+            query=simulated_count[gene])
+        results.append(relative_ratio)
 
-    return is_data_in_range
+    relative_ratio = pd.concat(results, axis=1)
+    relative_ratio.columns = reference_count.columns
+
+    return relative_ratio
+
+def __get_relative_ratio_to_reference_array(reference, query):
+    min_ref = np.min(reference)
+    max_ref = np.max(reference)
+    range_ = max_ref - min_ref
+    return (query - min_ref)/range_
