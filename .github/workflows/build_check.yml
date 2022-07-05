@@ -10,7 +10,8 @@ jobs:
   build_and_test:
     runs-on: ubuntu-20.04
     steps:
-      - name: execute build command
+      - uses: actions/checkout@v2
+      - name: Setup conda
         run: |
             wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
             bash miniconda.sh -b -p $HOME/miniconda
@@ -23,7 +24,7 @@ jobs:
             # Create env
             conda create -q -n test-environment python=3.8
             conda activate test-environment
-      - name: install
+      - name: Install packages
         run: |
             # command to install dependencies
             conda install cython numpy pytest
