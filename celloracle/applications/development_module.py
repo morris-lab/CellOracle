@@ -236,7 +236,7 @@ class Oracle_development_module(Data_strage):
         s, p = wilcoxon(x, y, alternative="greater")
 
         if return_ps_sum:
-            return p, -x.sum(), -y.sum()
+            return p, x.sum(), y.sum()
 
         return p
 

@@ -121,6 +121,27 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
         return df
 
+    def sort_TFs_by_positive_ip(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9"):
+        if self.positive_ip_sum is None:
+            self.get_positive_ip_sum_for_all_data(return_result=False, verbose=False)
+
+        positive_ip_sum = self.positive_ip_sum
+
+        # Focus on a misc
+        df = positive_ip_sum[positive_ip_sum.misc == misc]
+
+        # Focus on a specific pseudotime
+        pseudotime = [i for i in pseudotime if i in list("0123456789")]
+        df = df[df.pseudotime_id.isin(pseudotime)]
+
+        # Get sum of negative ip values
+        df = df[["gene", "score"]].groupby(["gene"]).sum()
+
+        # Sore by sum score
+        df = df.sort_values("score", ascending=False).reset_index(drop=False)
+
+        return df
+
     def interactive_sort_TFs_by_neagative_ip(self):
 
         if self.hdf5_info is None:
@@ -128,6 +149,25 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
         def wrapper(misc, pseudotime, n_TFs=20):
             df = self.sort_TFs_by_neagative_ip(misc=misc, pseudotime=pseudotime)
+
+            print(f"Top {n_TFs} in {misc}")
+            display(HTML(df.iloc[:min(n_TFs, df.shape[0])].to_html()))
+
+        interactive_table = interactive(wrapper,
+                               #{'manual': True},
+                               misc=self.hdf5_info["misc_list"],
+                               pseudotime="0,1,2,3,4,5,6,7,8,9",
+                               n_TFs=(5, 50, 1))
+
+        return interactive_table
+
+    def interactive_sort_TFs_by_positive_ip(self):
+
+        if self.hdf5_info is None:
+            self.get_hdf5_info()
+
+        def wrapper(misc, pseudotime, n_TFs=20):
+            df = self.sort_TFs_by_positive_ip(misc=misc, pseudotime=pseudotime)
 
             print(f"Top {n_TFs} in {misc}")
             display(HTML(df.iloc[:min(n_TFs, df.shape[0])].to_html()))
@@ -163,6 +203,31 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
                                n_TFs=(5, 50, 1))
 
         return interactive_table
+
+    def _interactive_calculate_positive_ps_p_value(self):
+        """
+        8/21/2021. This function is under development
+        Get p-values for negative PS sum score by comparing nPS to randomized GRN nPS.
+        """
+
+        if self.hdf5_info is None:
+            self.get_hdf5_info()
+
+        def wrapper(misc, pseudotime, n_TFs=20):
+            df = self._calculate_positive_ps_p_value(misc=misc, pseudotime=pseudotime)
+
+
+            print(f"Top {n_TFs} in {misc}")
+            display(HTML(df.iloc[:min(n_TFs, df.shape[0])].to_html()))
+
+        interactive_table = interactive(wrapper,
+                               #{'manual': True},
+                               misc=self.hdf5_info["misc_list"],
+                               pseudotime="0,1,2,3,4,5,6,7,8,9",
+                               n_TFs=(5, 50, 1))
+
+        return interactive_table
+
 
     def _update_inner_product_df(self, n_bins=10, verbose=True):
         self.del_attrs()
@@ -211,6 +276,48 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             if "score_randomized_GRN" not in self.inner_product_df.columns:
                 raise ValueError("please update inner_product_df first")
             p, ps_sum, ps_sum_random = self.get_negative_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)
+            p_list.append(p)
+            ps_sum_randoms.append(ps_sum_random)
+            ps_sums.append(ps_sum)
+
+        # Clear memory
+        self.del_attrs()
+
+        # p-value correction
+        p_corrected = np.clip(np.array(p_list)*len(gene_lists), 0, 1)
+
+        result = pd.DataFrame({"gene": gene_lists, "ps_sum":ps_sums, "ps_sum_random": ps_sum_randoms,
+                               "p": p_list, "p_adj": p_corrected})
+
+        result = result.sort_values("ps_sum", ascending=False).reset_index(drop=True)
+
+        return result
+
+    def _calculate_positive_ps_p_value(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True):
+
+        """
+        8/21/2021. This function is under development
+        Get p-values for negative PS sum score by comparing nPS to randomized GRN nPS.
+        """
+
+        self.del_attrs()
+
+        gene_lists = self.hdf5_info["gene_list"]
+
+        p_list = []
+        ps_sums = []
+        ps_sum_randoms = []
+        if verbose:
+            loop = tqdm(gene_lists)
+        else:
+            loop = gene_lists
+
+        for gene in loop:
+
+            self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
+            if "score_randomized_GRN" not in self.inner_product_df.columns:
+                raise ValueError("please update inner_product_df first")
+            p, ps_sum, ps_sum_random = self.get_positive_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)
             p_list.append(p)
             ps_sum_randoms.append(ps_sum_random)
             ps_sums.append(ps_sum)
