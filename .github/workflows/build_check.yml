@@ -23,3 +23,8 @@ jobs:
             # Create env
             conda create -q -n test-environment python=3.8
             conda activate test-environment
+            # command to install dependencies
+            conda install cython numpy pytest
+            pip install .
+            # command to run tests
+            pytest
