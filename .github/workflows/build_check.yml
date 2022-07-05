@@ -17,15 +17,12 @@ jobs:
             bash miniconda.sh -b -p $HOME/miniconda
             source "$HOME/miniconda/etc/profile.d/conda.sh"
             hash -r
-            conda init bash
             conda config --set always_yes yes --set changeps1 no
             conda update -q conda
             # Useful for debugging any issues with conda
             conda info -a
             # Create env
             conda create -q -n test-environment python=3.8
-      - name: Install packages
-        run: |
             # command to install dependencies
             conda activate test-environment
             conda install cython numpy pytest
