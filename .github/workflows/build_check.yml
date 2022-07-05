@@ -30,6 +30,8 @@ jobs:
             conda install cython numpy pytest
             pwd
             ls
-            pip install .
+            conda list
+            pip list
+            #pip install .
             # command to run tests
             pytest
