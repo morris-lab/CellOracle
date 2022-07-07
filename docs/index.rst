@@ -82,8 +82,8 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-.. |Build Status| image:: https://app.travis-ci.com/morris-lab/CellOracle.svg?branch=master
-   :target: https://app.travis-ci.com/morris-lab/CellOracle
+.. |Build Status| image:: https://img.shields.io/github/workflow/status/morris-lab/CellOracle/build_and_test
+   :target: https://github.com/morris-lab/CellOracle/actions/workflows/build_check.yml
 .. |PyPI| image:: https://img.shields.io/pypi/v/celloracle?color=blue
    :target: https://pypi.org/project/celloracle/
 .. |PyPI - Python Version| image:: https://img.shields.io/pypi/pyversions/celloracle
