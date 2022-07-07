@@ -33,7 +33,7 @@ from .modified_gimmemotif_function import custom_scan
 from .process_bed_file import peak_M1
 
 from .reference_genomes import SUPPORTED_REF_GENOME
-
+from ..utility.package_version_checker import _is_version_OK
 
 ####
 ###
@@ -117,9 +117,9 @@ def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, divide=1
     '''
 
     li  = []
-    if gmotif_version == '0.17.0':
-        # gimmemotifs version 0.17.0 will return progress bar in the scanner object.
-        # So we don't need to make tqdm qbar here.
+    # If the gimmemotifs version is larger than 0.17.0, it will automatically return the progress bar,
+    # So we don't need to make tqdm qbar here.
+    if _is_version_OK(que=gmotif_version, ref='0.17.0'): 
         verbose=False
 
     pbar = tqdm(
