@@ -39,14 +39,32 @@ If you failed CellOracle installation because of Scanpy installation error, plea
 Install gimmemotifs with conda
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you failed installation in the gimmemotifs installation step, please install gimmemotifs solely first.
-Also, if your jupyter notebook kernel keep dying during TF motif scan, it means your gimmemotifs installation has a problem.
-In that case, please re-install gimmemotifs using conda.
+We recommend installing gimmemotifs using conda prior to celloracle installation.
 
 ::
 
     conda install -c bioconda gimmemotifs
 
 
+.. note::
+   If your jupyter notebook kernel keep dying during TF motif scan, there are mainly two possibilities below.
+
+   1. Your kernel might be killed because of memory shortage. Please make sure you have enough memory.
+
+   2. If you have enough memory, there is most likely a problem with the gimmemotifs installation in your environment.
+   Please uninstall gimmemotifs and re-install gimmemotifs using conda.
+
+   ::
+
+       pip uninstall gimmemotifs -y
+       conda install -c bioconda gimmemotifs
+
+
+
+.. warning::
+   We found gimmemotifs might have installation issue with anaconda bioconda channel (at 7/7/2022).
+   If you fail to install gimmemotifs with anaconda, we recommend installing it using anaconda's offline mode.
+   More information can be found `here <https://github.com/vanheeringen-lab/gimmemotifs/issues/271>`_.
 
 
 If you encounter an error related to "certifi"
