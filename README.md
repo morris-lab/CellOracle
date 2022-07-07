@@ -1,5 +1,5 @@
 # CellOracle
-[![Build Status](https://app.travis-ci.com/morris-lab/CellOracle.svg?branch=master)](https://app.travis-ci.com/morris-lab/CellOracle)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/morris-lab/CellOracle/build_and_test)](https://github.com/morris-lab/CellOracle/actions/workflows/build_check.yml)
 [![PyPI](https://img.shields.io/pypi/v/celloracle?color=blue)](https://pypi.org/project/celloracle/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/celloracle)](https://pypi.org/project/celloracle/)
 [![PyPI - Wheel](https://img.shields.io/pypi/wheel/celloracle)](https://pypi.org/project/celloracle/)
