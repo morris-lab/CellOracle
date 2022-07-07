@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup conda, install packages, and test celloracle
         run: |
+            apt-get update
+            apt-get install -y bedtools
             wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
             bash miniconda.sh -b -p $HOME/miniconda
             source "$HOME/miniconda/etc/profile.d/conda.sh"

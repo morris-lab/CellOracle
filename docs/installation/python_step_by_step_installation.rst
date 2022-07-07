@@ -36,6 +36,23 @@ If you failed CellOracle installation because of Scanpy installation error, plea
     conda install scanpy
 
 
+`pybedtools <https://daler.github.io/pybedtools/>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you have an error related to the pybedtools installation, please install pybedtools using anaconda.
+
+::
+
+    conda install -c bioconda pybedtools
+
+.. note::
+   Pybedtools is python wrapper of bedtools. If you get "NotImplementedError" during ATAC-seq peak processing step, please try to install bedtools.
+
+   ::
+
+       sudo apt-get install bedtools
+
+
+
 Install gimmemotifs with conda
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you failed installation in the gimmemotifs installation step, please install gimmemotifs solely first.
