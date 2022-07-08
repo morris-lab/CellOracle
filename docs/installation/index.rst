@@ -3,7 +3,7 @@
 Installation
 ============
 
-CellOracle uses several python libraries and R libraries. Please follow the guide below to install CellOracle and its dependent software.
+Please follow the guide below to install CellOracle and its dependent software.
 
 .. _require:
 
@@ -14,30 +14,17 @@ Docker image
 
 ::
 
-    docker pull kenjikamimoto126/celloracle_ubuntu
-    docker run -dit kenjikamimoto126/celloracle_ubuntu:latest
-
-- Check the container ID of the running celloracle container:
-
-::
-
-    docker ps -a
-
-- Login to the running container:
-
-::
-
-    docker exec -it <container-ID> sh
+    docker pull kenjikamimoto126/celloracle_ubuntu:latest
 
 
 - This docker image was built based on Ubuntu 20.04.
 - Python dependent packages and celloracle are installed in an anaconda environment, celloracle_env. This environment will be activated automatically when you log in.
-- Seurat V3, Monocle3, and Cicero are installed. Although they are not the part of CellOracle software, they are useful for the input data preparation prior to CellOracle analysis.
-- After logging in, the user switches from the root user to the following user. Username: user. Password: pass.
 
-::
+.. toctree::
+   :maxdepth: 1
 
-    su user
+   docker_additional_information
+
 
 
 Install CellOracle
@@ -50,7 +37,7 @@ System Requirements
 - We found that the CellOracle calculations may be EXTREMELY SLOW in a Windows Subsystem for Linux (WSL). We do not recommend using WSL.
 - While you can install CellOracle using the Windows OS, please do so at your own risk and responsibility. We DO NOT provide any support for the use with the Windows OS.
 
-- Memory: 16 G byte or more.  Memory usage also depends on the size of your scRNA-seq dataset. Please note that in silico perturbation requires large amount of memory.
+- Memory: 16 G byte or more.  Memory usage also depends on the size of your scRNA-seq dataset. Please note that in silico perturbation, may require large amount of memory.
 - CPU: Core i5 or better processor. CellOracle's GRN inference function supports multicore calculation. Utilizing more CPU cores enables faster calculations.
 
 

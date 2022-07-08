@@ -1,7 +1,8 @@
 CellOracle
 ==========
 
-|Build Status| |PyPI| |PyPI - Python Version| |PyPI - Wheel|
+|GitHub Workflow Status| |PyPI| |PyPI - Python Version| |PyPI - Wheel|
+|Downloads| |Docker Pulls|
 
 CellOracle is a python library for in silico gene perturbation analyses
 using single-cell omics data and Gene Regulatory Network models.
@@ -49,11 +50,15 @@ Changelog
 Please go to `this
 page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`__.
 
-.. |Build Status| image:: https://app.travis-ci.com/morris-lab/CellOracle.svg?branch=master
-   :target: https://app.travis-ci.com/morris-lab/CellOracle
+.. |GitHub Workflow Status| image:: https://img.shields.io/github/workflow/status/morris-lab/CellOracle/build_and_test
+   :target: https://github.com/morris-lab/CellOracle/actions/workflows/build_check.yml
 .. |PyPI| image:: https://img.shields.io/pypi/v/celloracle?color=blue
    :target: https://pypi.org/project/celloracle/
 .. |PyPI - Python Version| image:: https://img.shields.io/pypi/pyversions/celloracle
    :target: https://pypi.org/project/celloracle/
 .. |PyPI - Wheel| image:: https://img.shields.io/pypi/wheel/celloracle
    :target: https://pypi.org/project/celloracle/
+.. |Downloads| image:: https://static.pepy.tech/personalized-badge/celloracle?period=total&units=international_system&left_color=grey&right_color=orange&left_text=Downloads
+   :target: https://pepy.tech/project/celloracle
+.. |Docker Pulls| image:: https://img.shields.io/docker/pulls/kenjikamimoto126/celloracle_ubuntu?color=orange
+   :target: https://hub.docker.com/r/kenjikamimoto126/celloracle_ubuntu
