@@ -16,7 +16,7 @@ Quick start
     docker pull kenjikamimoto126/celloracle_ubuntu:latest
 
 
-2. Make and start running docker container.
+2. Make docker container and start running it.
 
 - As we recommend using jupyter notebook (or jupyter lab), we need to set up port. Here, we connect docker container port 8888 with local host port 8888.
 
@@ -42,7 +42,7 @@ Quick start
 
 
 
-3. In the docker container environment, start jupyter notebook as follows.
+4. In the docker container environment, start jupyter notebook as follows.
 
 ::
 
