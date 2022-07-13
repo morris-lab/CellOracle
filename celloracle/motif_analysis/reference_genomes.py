@@ -9,7 +9,7 @@ import pandas as pd
 SUPPORTED_REF_GENOME = \
     pd.DataFrame([["Human", "hg38", "UCSC"],
                   ["Human", "hg19", "UCSC"],
-                  ["Mouse", 'mm39', "UCSC"]
+                  ["Mouse", 'mm39', "UCSC"],
                   ["Mouse", 'mm10', "UCSC"],
                   ["Mouse", 'mm9', "UCSC"],
                   ["S.cerevisiae", "sacCer2", "UCSC"],
