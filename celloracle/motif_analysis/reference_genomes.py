@@ -30,6 +30,7 @@ SUPPORTED_REF_GENOME = \
                   ["Chicken", "galGal4", "UCSC"],
                   ["Chicken", "galGal5", "UCSC"],
                   ["Chicken", "galGal6", "UCSC"],
-                  ["Guinea_Pig", "Cavpor3.0", "Ensembl"]
+                  ["Guinea_Pig", "Cavpor3.0", "Ensembl"],
+                  ["Axolotl", "AmexG_v6.0-DD", "Axolotl-omics.org"]
                   ],
                  columns=["species", "ref_genome", "provider"])

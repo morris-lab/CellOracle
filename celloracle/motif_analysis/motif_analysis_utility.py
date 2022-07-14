@@ -63,14 +63,21 @@ def is_genome_installed(ref_genome):
         return True
 
     except:
-        if  ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:
-            provider = SUPPORTED_REF_GENOME["provider"][SUPPORTED_REF_GENOME.ref_genome==ref_genome].values[0]
-        else:
-            provider = "PROVIDER"
+        if ref_genome == "AmexG_v6.0-DD":
+            print(f"genome {ref_genome} is not installed in this environment.")
+            print(f"Please install {ref_genome} data with genomepy using the following command in command line (terminal).")
+            print(f"Please make sure to use recent version of genomepy and have enough space on your PC. Otherwise you may get an error.")
+            print(f'genomepy install -p url https://www.axolotl-omics.org/dl/AmexG_v6.0-DD.fa.gz')
 
-        print(f"genome {ref_genome} is not installed in this environment.")
-        print("Please install genome using genomepy.")
-        print(f'e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome("{ref_genome}", "{provider}")')
+        else:
+            if  ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:    
+                provider = SUPPORTED_REF_GENOME["provider"][SUPPORTED_REF_GENOME.ref_genome==ref_genome].values[0]
+            else:
+                provider = "PROVIDER"
+
+            print(f"genome {ref_genome} is not installed in this environment.")
+            print("Please install genome using genomepy.")
+            print(f'e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome(name="{ref_genome}", provider="{provider}")')
 
     return False
         #raise ValueError(f"Ref_Genome: {ref_genome} is not available.")
@@ -119,7 +126,7 @@ def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, divide=1
     li  = []
     # If the gimmemotifs version is larger than 0.17.0, it will automatically return the progress bar,
     # So we don't need to make tqdm qbar here.
-    if _is_version_OK(que=gmotif_version, ref='0.17.0'): 
+    if _is_version_OK(que=gmotif_version, ref='0.17.0'):
         verbose=False
 
     pbar = tqdm(
