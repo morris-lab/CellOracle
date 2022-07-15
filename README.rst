@@ -29,7 +29,7 @@ Supported Species and reference genomes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  Human: [‘hg38’, ‘hg19’]
--  Mouse: [‘mm10’, ‘mm9’]
+-  Mouse: [‘mm39’, ‘mm10’, ‘mm9’]
 -  S.cerevisiae: [“sacCer2”, “sacCer3”]
 -  Zebrafish: [“danRer7”, “danRer10”, “danRer11”]
 -  Xenopus: [“xenTro2”, “xenTro3”]
