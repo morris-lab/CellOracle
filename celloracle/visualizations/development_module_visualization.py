@@ -255,6 +255,39 @@ def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_back
 
     ax.axis("off")
 
+def plot_inner_product_random_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, cmap=None, args={}):
+
+    if ax is None:
+        ax = plt
+
+    if vmin is None:
+        vmin = -vm
+    if vmax is None:
+        vmax = vm
+    if cmap is None:
+        cmap = CONFIG["cmap_ps"]
+
+    try:
+        norm = colors.TwoSlopeNorm(vmin=vmin, vcenter=0, vmax=vmax)
+    except:
+        norm = colors.DivergingNorm(vmin=vmin, vcenter=0, vmax=vmax)
+
+    if show_background:
+        plot_background_on_grid(self=self, ax=ax, s=s,
+                                args={"facecolor": "None",
+                                      "c": "None",
+                                      "edgecolors":'black',
+                                      "linewidths": 0.05})
+    else:
+        plot_cluster_cells_use(self=self, ax=ax, s=0, color=None, show_background=False, args={})
+
+    ax.scatter(self.gridpoints_coordinates[~self.mass_filter_simulation, 0],
+               self.gridpoints_coordinates[~self.mass_filter_simulation, 1],
+               c=self.inner_product_random[~self.mass_filter_simulation],
+               cmap=cmap, norm=norm,#vmin=vmin, vmax=vmax,
+               s=s, **args)
+
+    ax.axis("off")
 
 
 def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vmin=None, vmax=None, cmap=None, args={}):

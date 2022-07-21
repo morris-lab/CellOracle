@@ -35,6 +35,7 @@ from ..visualizations.development_module_visualization import (\
                             plot_simulation_flow_on_grid,
                             plot_simulation_flow_random_on_grid,
                             plot_inner_product_on_grid,
+                            plot_inner_product_random_on_grid,
                             plot_inner_product_on_pseudotime,
                             plot_inner_product_as_box,
                             plot_quiver,
@@ -178,7 +179,7 @@ class Oracle_development_module(Data_strage):
     def calculate_digitized_ip(self, n_bins=10):
 
         inner_product_df = pd.DataFrame({"score": self.inner_product[~self.mass_filter_simulation],
-                                         "score_randomized_GRN": self.inner_product_random[~self.mass_filter_simulation],
+                                         "score_randomized": self.inner_product_random[~self.mass_filter_simulation],
                                          "pseudotime": self.pseudotime_on_grid[~self.mass_filter_simulation]})
 
 
@@ -196,7 +197,7 @@ class Oracle_development_module(Data_strage):
             df = df[df.pseudotime_id.isin(pseudotime)]
 
         x = df["score"]
-        y = df["score_randomized_GRN"]
+        y = df["score_randomized"]
 
         # Clipping positive value to focus on negative IP
         x = np.clip(x, -np.inf, 0)
@@ -222,7 +223,7 @@ class Oracle_development_module(Data_strage):
             df = df[df.pseudotime_id.isin(pseudotime)]
 
         x = df["score"]
-        y = df["score_randomized_GRN"]
+        y = df["score_randomized"]
 
         # Clipping negative value to focus on positive IP
         x = np.clip(x, 0, np.inf)
@@ -279,6 +280,9 @@ class Oracle_development_module(Data_strage):
 
     def plot_inner_product_on_grid(self, ax=None, vm=1, s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, cmap=None, args={}):
         plot_inner_product_on_grid(self=self, ax=ax, vm=vm, s=s, show_background=show_background, vmin=vmin, vmax=vmax, cmap=cmap, args=args)
+
+    def plot_inner_product_random_on_grid(self, ax=None, vm=1, s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, cmap=None, args={}):
+        plot_inner_product_random_on_grid(self=self, ax=ax, vm=vm, s=s, show_background=show_background, vmin=vmin, vmax=vmax, cmap=cmap, args=args)
 
     def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vmin=None, vmax=None, cmap=None, args={}):
         plot_inner_product_on_pseudotime(self=self, ax=ax, vm=vm, s=s, vmin=vmin, vmax=vmax, cmap=cmap, args=args)

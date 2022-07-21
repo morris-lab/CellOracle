@@ -273,7 +273,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         for gene in loop:
 
             self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
-            if "score_randomized_GRN" not in self.inner_product_df.columns:
+            if "score_randomized" not in self.inner_product_df.columns:
                 raise ValueError("please update inner_product_df first")
             p, ps_sum, ps_sum_random = self.get_negative_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)
             p_list.append(p)
@@ -315,7 +315,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         for gene in loop:
 
             self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
-            if "score_randomized_GRN" not in self.inner_product_df.columns:
+            if "score_randomized" not in self.inner_product_df.columns:
                 raise ValueError("please update inner_product_df first")
             p, ps_sum, ps_sum_random = self.get_positive_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)
             p_list.append(p)
