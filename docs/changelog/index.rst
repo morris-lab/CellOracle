@@ -4,7 +4,13 @@
 Changelog
 =========
 
-* `0.10.5 <2022-05-8>`
+
+* `0.10.10 <2022-09-09>`
+ `-` Due to a change in the latest the python-igraph package (version 0.10.0), it has been reported that the get_network_score function is failing. This bug has been fixed. As a result, the latest version 0.10.0 of python-igraph has been temporarily made unsupported, since errors are expected to occur in the louvain function of scanpy.
+
+ `-` Bug fix in the network score visualization plot to deal with recent update in seaborn package.
+
+* `0.10.5 <2022-05-08>`
  `-` We refactored the data loading function. In the version with 0.10.5 or higher, the data can be automatically downloaded from GitHub if the data is not found in the local celloracle library directory.
 
  `-` We added `Travis CI page <https://app.travis-ci.com/github/morris-lab/CellOracle>`_ to automatically check celloracle build status.
