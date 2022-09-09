@@ -277,7 +277,7 @@ class Links():
                 raise ValueError("Filtered network was not found. Prease run 'filter_links' first.")
         else:
             raise ValueError("Filtered network was not found. Prease run 'filter_links' first.")
-            
+
         plot_degree_distributions(links=self, plot_model=plot_model, save=save)
 
 
@@ -516,7 +516,8 @@ def _get_network_score(filtered_linklist_df):
     """
     # Make igraph object
     g = Graph.DataFrame(filtered_linklist_df[["source", "target"]],
-                        directed=True)
+                        directed=True,
+                        use_vids=False)
     g.es["weight"] = filtered_linklist_df["coef_abs"].values.copy()
 
     # Make placeholder
