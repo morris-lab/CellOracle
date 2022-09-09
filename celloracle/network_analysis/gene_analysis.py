@@ -320,7 +320,7 @@ def plot_score_per_cluster(links, goi, save=None, plt_show=True):
         ax = sns.stripplot(data=res, y="cluster", x=value,
                       size=10, orient="h",linewidth=1, edgecolor="w",
                       order=links.palette.index.values,
-                      palette=links.palette.palette.values)
+                      palette=dict(links.palette.palette))
         ax.spines['right'].set_visible(False)
         ax.spines['top'].set_visible(False)
         ax.spines['bottom'].set_visible(False)
