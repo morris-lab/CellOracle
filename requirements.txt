@@ -11,7 +11,7 @@ velocyto>=0.17
 umap-learn
 pyarrow>=0.17
 tqdm>=4.45
-python-igraph
+python-igraph<=0.9.9
 louvain
 fa2
 jupyter
