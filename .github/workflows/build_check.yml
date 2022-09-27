@@ -21,7 +21,7 @@ jobs:
             source "$HOME/miniconda/etc/profile.d/conda.sh"
             hash -r
             conda config --set always_yes yes --set changeps1 no
-            conda update -q conda
+            #conda update -q conda
             # Useful for debugging any issues with conda
             conda info -a
             # Create env
@@ -30,8 +30,8 @@ jobs:
             conda activate test-environment
             conda install cython numpy pytest
             
-            ls /home/runner/miniconda
-            ls /home/runner/miniconda/bin
+            # Check pip
+            echo pip_path
             which pip
             
             pip install .
