@@ -29,6 +29,11 @@ jobs:
             # command to install dependencies
             conda activate test-environment
             conda install cython numpy pytest
+            
+            ls /home/runner/miniconda
+            ls /home/runner/miniconda/bin
+            which pip
+            
             pip install .
             # command to run tests
             pytest -v
