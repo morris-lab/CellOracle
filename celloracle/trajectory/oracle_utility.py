@@ -132,23 +132,6 @@ def _get_clustercolor_from_anndata(adata, cluster_name, return_as):
     def hex2rgb(c):
         return (int(c[1:3],16),int(c[3:5],16),int(c[5:7],16), 255)
 
-    def get_palette(adata, cname):
-        c = [i.upper() for i in adata.uns[f"{cname}_colors"]]
-        #c = sns.cubehelix_palette(24)
-        """
-        col = adata.obs[cname].unique()
-        col = list(col)
-        col.sort()
-        """
-        try:
-            col = adata.obs[cname].cat.categories
-            pal = pd.DataFrame({"palette": c}, index=col)
-        except:
-            col = adata.obs[cname].cat.categories
-            c = c[:len(col)]
-            pal = pd.DataFrame({"palette": c}, index=col)
-        return pal
-
     pal = get_palette(adata, cluster_name)
     if return_as=="palette":
         return pal
@@ -160,6 +143,57 @@ def _get_clustercolor_from_anndata(adata, cluster_name, return_as):
     else:
         raise ValueErroe("return_as")
     return 0
+
+def get_palette(adata, cname):
+    c = [i.upper() for i in adata.uns[f"{cname}_colors"]]
+    #c = sns.cubehelix_palette(24)
+    """
+    col = adata.obs[cname].unique()
+    col = list(col)
+    col.sort()
+    """
+    try:
+        col = adata.obs[cname].cat.categories
+        pal = pd.DataFrame({"palette": c}, index=col)
+    except:
+        col = adata.obs[cname].cat.categories
+        c = c[:len(col)]
+        pal = pd.DataFrame({"palette": c}, index=col)
+    return pal
+
+import warnings
+import matplotlib
+
+def update_color_in_anndata(adata, clustering_name, new_palette):
+    """
+    Update color information stored in anndata.
+
+    Args:
+        adata (anndata._core.anndata.AnnData): anndata object
+
+    """
+    if clustering_name not in adata.obs.columns.values:
+        raise ValueError(f"{clustering_name} is not found in your anndata.obs")
+    if clustering_name not in adata.obs.columns.values:
+        raise ValueError(f"{clustering_name}_colors is not found in your anndata.uns \n please make sure you have pre-existing color information for {clusteing_name}")
+
+    old_palette = get_palette(adata=adata, cname=clustering_name)
+
+    new_colors = []
+    for cluster in old_palette.index:
+        if cluster in new_palette.index.values:
+            new_color = new_palette.loc[cluster, "palette"]
+        else:
+            raise warnings.warn(f"{cluster} not found in the new palette. \nThe color information of {cluster} is not updated.")
+            new_color = old_palette.loc[cluster, "palette"]
+        new_color = matplotlib.colors.to_hex(new_color)
+        new_colors.append(new_color)
+
+    # Update color information
+    adata.uns[f"{clustering_name}_colors"] = np.array(new_colors)
+
+
+
 
 @jit(nopython=True)
 def _numba_random_seed(value: int) -> None:

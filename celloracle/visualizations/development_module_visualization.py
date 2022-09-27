@@ -12,12 +12,14 @@ import seaborn as sns
 
 from .config import CONFIG
 
+
 def plot_cluster_whole(self, ax=None, s=CONFIG["s_scatter"], args=CONFIG["default_args"]):
 
     if ax is None:
         ax = plt
 
-    ax.scatter(self.embedding[:, 0], self.embedding[:, 1], c=self.colorandum, s=s, **args)
+    c = self.colorandum
+    ax.scatter(self.embedding[:, 0], self.embedding[:, 1], c=c, s=s, **args)
     ax.axis("off")
 
 def plot_cluster_cells_use(self, ax=None, s=CONFIG["s_scatter"], color=None, show_background=True, args=CONFIG["default_args"]):

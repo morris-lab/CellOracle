@@ -508,6 +508,23 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                                                   return_as="dict")
         self.colorandum = np.array([col_dict[i] for i in self.adata.obs[new_cluster_column_name]])
 
+    def update_cluster_colors(self, palette):
+
+        """
+        Update color information stored in the oracle object.
+        The color information is overwritten.
+        """
+
+        sc.pl.embedding(self.adata,
+                        basis=self.embedding_name,
+                        color=self.cluster_column_name,
+                        palette=palette)
+
+        col_dict = _get_clustercolor_from_anndata(adata=self.adata,
+                                                  cluster_name=self.cluster_column_name,
+                                                  return_as="dict")
+        self.colorandum = np.array([col_dict[i] for i in self.adata.obs[self.cluster_column_name]])
+
     ####################################
     ### 2. Methods for GRN inference ###
     ####################################
