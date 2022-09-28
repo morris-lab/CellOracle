@@ -4,6 +4,8 @@
 Changelog
 =========
 
+* `0.10.11 <2022-09-27>`
+ `-` We added a function to update cluster color information. See `celloracle GitHub issue #91 <https://github.com/morris-lab/CellOracle/issues/91>`_ for details.
 
 * `0.10.10 <2022-09-09>`
  `-` Due to a change in the latest the python-igraph package (version 0.10.0), it has been reported that the get_network_score function is failing. This bug has been fixed. As a result, the latest version 0.10.0 of python-igraph has been temporarily made unsupported, since errors are expected to occur in the louvain function of scanpy.

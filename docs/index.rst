@@ -24,6 +24,8 @@ News
 
 Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
+- 09/27/2022: We released celloracle version 0.10.11. We added a new function to change cluster color.
+
 - 09/09/2022: We released celloracle version 0.10.10. We updated some functions in the network score calculation and visualization.
 
 - 07/21/2022: We released celloracle version 0.10.8. Simulation tutorial notebook is updated; We added a guidance to find best vm parameter for the simulation result visualization.
@@ -31,8 +33,6 @@ Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentati
 - 07/15/2022: We released celloracle version 0.10.7. Docker image was updated. This version supports mm39 reference genome.
 
 - 07/08/2022: Docker image was updated. We made quick start page to guide user how to start celloracle analysis with our docker image.
-
-- 05/08/2022: We released celloracle version 0.10.5 on `PyPI <https://pypi.org/project/celloracle/>`_.
 
 
 
