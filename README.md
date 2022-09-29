@@ -4,7 +4,7 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/celloracle)](https://pypi.org/project/celloracle/)
 [![PyPI - Wheel](https://img.shields.io/pypi/wheel/celloracle)](https://pypi.org/project/celloracle/)
 [![Downloads](https://static.pepy.tech/personalized-badge/celloracle?period=total&units=international_system&left_color=grey&right_color=orange&left_text=Downloads)](https://pepy.tech/project/celloracle)
-[![Docker Pulls](https://img.shields.io/docker/pulls/kenjikamimoto126/celloracle_ubuntu?color=orange)](https://hub.docker.com/r/kenjikamimoto126/celloracle_ubuntu)
+[![Docker Pulls](https://img.shields.io/docker/pulls/kenjikamimoto126/celloracle_ubuntu?color=red)](https://hub.docker.com/r/kenjikamimoto126/celloracle_ubuntu)
 
 CellOracle is a python library for in silico gene perturbation analyses using single-cell omics data and Gene Regulatory Network models.
 
