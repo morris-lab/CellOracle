@@ -940,6 +940,48 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                                 columns=relative_ratio.columns)
         return exceedance
 
+    def evaluate_and_plot_simulation_value_distribution(self, n_genes=4, n_bins=10, alpha=0.5, figsize=[5, 3], save=None):
+
+        """
+        This function will visualize distribution of original gene expression value and simulated values.
+        This cunction is built to confirm there is no significant out-of-distribution in the simulation results.
+
+        Args:
+            n_genes (int): Number of genes to show. This functin will show the results of top n_genes with large difference between original and simulation values.
+            n_bins (int): Number of bins.
+            alpha (float): Transparency.
+            figsize ([float, float]): Figure size.
+            save (str): Folder path to save your plots. If it is not specified, no figure is saved.
+        Return:
+            None
+        """
+
+        simulated_count = self.adata.to_df(layer="simulated_count")
+        imputed_count = self.adata.to_df(layer="imputed_count")
+
+        ood_stats = self.evaluate_simulated_gene_distribution_range()
+
+        if save is not None:
+            os.makedirs(save, exist_ok=True)
+
+        for goi, val in ood_stats[:4].iterrows():
+            fig, ax = plt.subplots(figsize=figsize)
+            in_range_cell_ratio = 1 - val["OOD_cell_ratio"]
+            ax.hist(imputed_count[goi], label="Original value", alpha=alpha, bins=n_bins)
+            ax.hist(simulated_count[goi], label="Simulation value", alpha=alpha,  bins=n_bins)
+            message = f"Gene: ${goi}$, "
+            message += f"Cells in original gene range: {in_range_cell_ratio*100:.5g}%, "
+            message += f"\nMax exceedance: {val['Max_exceeding_ratio']*100:.3g}%"
+            plt.title(message)
+            plt.legend()
+            plt.xlabel("Gene expression")
+            plt.ylabel("Count")
+            plt.subplots_adjust(left=0.2, right=0.8, top=0.8, bottom=0.15)
+            if save is not None:
+                fig.savefig(os.path.join(save, f"gene_expression_histogram_Spi1_KO_{goi}.png"), transparent=True)
+            plt.show()
+
+
     def clip_delta_X(self):
         """
         To avoid issue caused by out-of-distribution prediction, this function clip simulated gene expression value to the unperturbed gene expression range.
