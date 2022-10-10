@@ -4,6 +4,10 @@
 Changelog
 =========
 
+
+* `0.10.12 <2022-10-10>`
+ `-` We added a function to check distribution range of simulated value.
+
 * `0.10.11 <2022-09-27>`
  `-` We added a function to update cluster color information. See `celloracle GitHub issue #91 <https://github.com/morris-lab/CellOracle/issues/91>`_ for details.
 
