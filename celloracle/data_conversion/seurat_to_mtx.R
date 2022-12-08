@@ -63,10 +63,16 @@ export_SeuratObjectV3 <- function(SO){
   meta$active_ident <- factor(SO@active.ident)
   write.csv(meta, file = "tmp/meta_data.csv")
 
-  # write data type of meta.data
+   # write data type of meta.data
   meta_data_dtype <- data.frame(row.names = colnames(meta))
   for (i in colnames(meta)){
-    meta_data_dtype[i, "dtype"] = class(meta[,i])
+    if (length(class(meta[,i])) == 1){
+      class_ = class(meta[,i])
+    } else {
+      n_class <- length(class(meta[,i]))
+      class_ <- class(meta[,i])[n_class]
+    }
+          meta_data_dtype[i, "dtype"] <- class_
   }
   write.csv(meta_data_dtype, "tmp/meta_data_dtype.csv")
 

@@ -19,6 +19,10 @@ For more information, please read our bioRxiv preprint: `CellOracle: Dissecting 
 .. warning::
    CellOracle is still under development. It is currently a beta version. Functions in this package may change in a future release.
 
+.. raw:: html
+   :file: test2.html
+
+
 News
 ====
 
