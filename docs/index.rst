@@ -90,7 +90,7 @@ Indices and tables
 * :ref:`search`
 
 
-.. |GitHub Workflow Status| image:: https://img.shields.io/github/workflow/status/morris-lab/CellOracle/build_and_test
+.. |GitHub Workflow Status| image:: https://img.shields.io/github/actions/workflow/status/morris-lab/CellOracle/build_check.yml?branch=master
    :target: https://github.com/morris-lab/CellOracle/actions/workflows/build_check.yml
 .. |PyPI| image:: https://img.shields.io/pypi/v/celloracle?color=blue
    :target: https://pypi.org/project/celloracle/
