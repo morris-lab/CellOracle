@@ -1,0 +1,46 @@
+name: celloracle_weekly_build_and_test
+
+on:
+  schedule:
+    - cron: '0 9 * * 0'
+  workflow_dispatch:
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 60    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup conda, install packages, and test celloracle
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y bedtools
+            wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+            bash miniconda.sh -b -p $HOME/miniconda
+            source "$HOME/miniconda/etc/profile.d/conda.sh"
+            hash -r
+            conda config --set always_yes yes --set changeps1 no
+            #conda update -q conda
+            # Useful for debugging any issues with conda
+            conda info -a
+            # Create env
+            conda create -q -n test-environment python=3.8
+            # command to install dependencies
+            conda activate test-environment
+            conda install cython numpy pytest
+            
+            conda list
+            ls /home/runner/miniconda
+            ls /home/runner/miniconda/bin
+            
+            python --version
+            
+            which pip
+            
+            git clone https://github.com/morris-lab/CellOracle.git
+            cd CellOracle
+            pip install .
+            # command to run tests
+            pytest -v
+
+
