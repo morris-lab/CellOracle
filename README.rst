@@ -50,7 +50,7 @@ Changelog
 Please go to `this
 page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`__.
 
-.. |GitHub Workflow Status| image:: https://img.shields.io/github/workflow/status/morris-lab/CellOracle/build_and_test
+.. |GitHub Workflow Status| image:: https://img.shields.io/github/actions/workflow/status/morris-lab/CellOracle/build_check.yml?branch=master
    :target: https://github.com/morris-lab/CellOracle/actions/workflows/build_check.yml
 .. |PyPI| image:: https://img.shields.io/pypi/v/celloracle?color=blue
    :target: https://pypi.org/project/celloracle/
@@ -60,5 +60,5 @@ page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html
    :target: https://pypi.org/project/celloracle/
 .. |Downloads| image:: https://static.pepy.tech/personalized-badge/celloracle?period=total&units=international_system&left_color=grey&right_color=orange&left_text=Downloads
    :target: https://pepy.tech/project/celloracle
-.. |Docker Pulls| image:: https://img.shields.io/docker/pulls/kenjikamimoto126/celloracle_ubuntu?color=orange
+.. |Docker Pulls| image:: https://img.shields.io/docker/pulls/kenjikamimoto126/celloracle_ubuntu?color=red
    :target: https://hub.docker.com/r/kenjikamimoto126/celloracle_ubuntu
