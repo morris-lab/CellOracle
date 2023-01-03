@@ -151,7 +151,6 @@ class TFinfo():
         self.peak_df = self.peak_df.groupby(["peak_id","gene_short_name"]).sum()
         self.peak_df = self.peak_df.reset_index(drop=False)
 
-
         self.all_target_gene = self.peak_df.gene_short_name.unique()
         self.all_peaks = self.peak_df.peak_id.unique()
 
@@ -167,7 +166,6 @@ class TFinfo():
         # check  genome installation
         if not is_genome_installed(ref_genome=ref_genome):
             raise ValueError(f"ref_genome: {ref_genome} is not installed. TFinfo initiation failed.")
-
 
         self.scanned_df = None
         self.TF_onehot = None
@@ -288,8 +286,17 @@ class TFinfo():
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
 
-            elif self.species in ["Xenopus"]:
-                self.motif_db_name = 'CisBP_ver2_Xenopus_tropicalis_and_Xenopus_laevis.pfm'
+            elif self.species in ["Xenopus tropicalis"]:
+                #self.motif_db_name = 'CisBP_ver2_Xenopus_tropicalis_and_Xenopus_laevis.pfm' # V0.10.13 or earlier.
+                self.motif_db_name = 'CisBP_ver2_Xenopus_tropicalis.pfm' # V0.10.14 or later.
+                motifs = load_motifs(self.motif_db_name)
+                self.TF_formatting = False
+                if verbose:
+                    print(f" Default motif for {self.species}: {self.motif_db_name}.")
+                    print(f" Default motif for {self.species} was changed at celloracle 0.10.14. \n For more information, please see celloracle documentation Changelog page. \n")
+
+            elif self.species in ["Xenopus laevis"]:
+                self.motif_db_name = 'CisBP_ver2_Xenopus_laevis.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
@@ -435,21 +442,21 @@ class TFinfo():
         self.thresholding_comment.append(f"threshold peaks")
         self.__addLog("setThresholding_byBindScore")
 
-    def filter_motifs_by_score(self, threshold, method="cumlative_score"):
+    def filter_motifs_by_score(self, threshold, method="cumulative_score"):
         """
         Remove motifs with low binding scores.
 
         Args:
-            method (str): thresholding method. Select either of ["indivisual_score", "cumlative_score"]
+            method (str): thresholding method. Select either of ["indivisual_score", "cumulative_score"]
         """
-        if method == "cumlative_score":
-            self._thresholding_by_cumlative_bind_score(threshold_score=threshold)
+        if method == "cumulative_score":
+            self._thresholding_by_cumulative_bind_score(threshold_score=threshold)
 
         elif method == "indivisual_score":
             self._thresholding_by_bind_score(threshold_score=threshold)
 
         else:
-            raise ValueError("Method is wrong. Select from ['indivisual_score', 'cumlative_score'] ")
+            raise ValueError("Method is wrong. Select from ['indivisual_score', 'cumulative_score'] ")
 
 
     def _thresholding_by_bind_score(self, threshold_score):
@@ -470,7 +477,7 @@ class TFinfo():
         self.__addLog("thresholdingByBindScore")
 
 
-    def _thresholding_by_cumlative_bind_score(self, threshold_score):
+    def _thresholding_by_cumulative_bind_score(self, threshold_score):
         if self.scanned_df is None:
             raise ValueError("Motif Scan is not done.")
 

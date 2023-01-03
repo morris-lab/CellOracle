@@ -16,7 +16,7 @@ Codes were written by Kenji Kamimoto.
 
 
 # 0.1. libraries for fundamental data science and data processing
-
+import warnings
 import pandas as pd
 import numpy as np
 import scanpy as sc
@@ -243,12 +243,19 @@ def load_xenopus_tropicalis_promoter_base_GRN(version="xenTro3_CisBPv2_fpr2", fo
     Returns:
         pandas.dataframe: Base GRN as a matrix.
     """
+    warnings.warn("Promoter base GRN for Xenopus tropicalis has been updated since celloracle v0.10.14 duet to the change of default motif data base for Xenopus tropicalis. If you want to use previous version, please select old version by specifying version argument.",
+                  UserWarning)
 
-    options = {"xenTro2_CisBPv2_fpr1": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr1_threshold_10_20210630.parquet",
-               "xenTro2_CisBPv2_fpr2": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr2_threshold_10_20210630.parquet",
-               "xenTro3_CisBPv2_fpr1": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr1_threshold_10_20210630.parquet",
-               "xenTro3_CisBPv2_fpr2": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr2_threshold_10_20210630.parquet",
+    options = {"xenTro2_CisBPv2_fpr1_v20210630": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr1_threshold_10_20210630.parquet",
+               "xenTro2_CisBPv2_fpr2_v20210630": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr2_threshold_10_20210630.parquet",
+               "xenTro3_CisBPv2_fpr1_v20210630": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr1_threshold_10_20210630.parquet",
+               "xenTro3_CisBPv2_fpr2_v20210630": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr2_threshold_10_20210630.parquet",
+               "xenTro2_CisBPv2_fpr1": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr1_threshold_10_20221231.parquet",
+               "xenTro2_CisBPv2_fpr2": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr2_threshold_10_20221231.parquet",
+               "xenTro3_CisBPv2_fpr1": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr1_threshold_10_20221231.parquet",
+               "xenTro3_CisBPv2_fpr2": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr2_threshold_10_20221231.parquet",
                }
+
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]
@@ -267,6 +274,38 @@ def load_xenopus_tropicalis_promoter_base_GRN(version="xenTro3_CisBPv2_fpr2", fo
 
     return pd.read_parquet(path)
 
+def load_xenopus_laevis_promoter_base_GRN(version="Xenopus_laevis_v10.1_CisBPv2_fpr2", force_download=False):
+    """
+    Load Base GRN made from promoter DNA sequence and motif scan.
+
+    Args:
+
+    Returns:
+        pandas.dataframe: Base GRN as a matrix.
+    """
+    
+    options = {"Xenopus_laevis_v10.1_CisBPv2_fpr2": "promoter_base_GRN/Xenopus_laevis_v10.1_TFinfo_dataframe_CisBPv2_Xenopus_laevis_fpr2_threshold_10_20221228.parquet",
+               "Xenopus_laevis_v10.1_CisBPv2_fpr1": "promoter_base_GRN/Xenopus_laevis_v10.1_TFinfo_dataframe_CisBPv2_Xenopus_laevis_fpr1_threshold_10_20221228.parquet",
+
+               }
+
+    if version in options.keys():
+        print(f"Loading prebuilt promoter base-GRN. Version: {version}")
+        filename = options[version]
+    else:
+        print(f"Version error. {version} is not in the list.")
+        print("Available option: ", list(options.keys()))
+
+    # Load data from local directory if file exits.
+    path = os.path.join(parent_path[0], filename)
+    if (force_download == False) & os.path.isfile(path):
+        pass
+    else:
+        path = os.path.join(CELLORACLE_DATA_DIR, filename)
+        backup_url = os.path.join(WEB_PAR_DIR, filename)
+        download_data_if_data_not_exist(path=path, backup_url=backup_url)
+
+    return pd.read_parquet(path)
 
 def load_arabidopsis_promoter_base_GRN(version="TAIR10_CisBPv2_fpr2", force_download=False):
     """

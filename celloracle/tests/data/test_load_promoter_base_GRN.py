@@ -57,6 +57,14 @@ def test_load_xenopus_tropicalis_promoter_base_GRN():
 def test_load_xenopus_tropicalis_promoter_base_GRN_dl():
     df = co.data.load_xenopus_tropicalis_promoter_base_GRN(force_download=True)
     assert isinstance(df, pd.core.frame.DataFrame)
+#
+def test_load_xenopus_laevis_promoter_base_GRN():
+    df = co.data.load_xenopus_laevis_promoter_base_GRN(force_download=False)
+    assert isinstance(df, pd.core.frame.DataFrame)
+
+def test_load_xenopus_laevis_promoter_base_GRN_dl():
+    df = co.data.load_xenopus_laevis_promoter_base_GRN(force_download=True)
+    assert isinstance(df, pd.core.frame.DataFrame)
 
 #
 def test_load_arabidopsis_promoter_base_GRN():
