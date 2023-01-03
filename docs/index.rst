@@ -28,14 +28,13 @@ News
 
 Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
+- 01/03/2023: We released celloracle version 0.10.14. We added a Xenopus Laevis data.
 
 - 10/10/2022: We released celloracle version 0.10.12. We added a new function to check distribution range of simulated value. Tutorial is also updated.
 
 - 09/27/2022: We released celloracle version 0.10.11. We added a new function to change cluster color.
 
 - 09/09/2022: We released celloracle version 0.10.10. We updated some functions in the network score calculation and visualization.
-
-- 07/21/2022: We released celloracle version 0.10.8. Simulation tutorial notebook is updated; We added a guidance to find best vm parameter for the simulation result visualization.
 
 
 
