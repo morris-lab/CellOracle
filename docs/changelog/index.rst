@@ -5,7 +5,7 @@ Changelog
 =========
 
 * `0.10.14 <2023-01-03>`
- `-` We added a TSS information and promoter base GRN data for Xenopus Laevis reference genome: Xenopus laevis 10.1., to answer `user request #93 <https://github.com/morris-lab/CellOracle/issues/93>`_ .
+ `-` We added a TSS information and promoter base GRN data for Xenopus Laevis reference genome: "Xenopus_laevis_v10.1"., to answer `user request #93 <https://github.com/morris-lab/CellOracle/issues/93>`_ .
 
  `-` Default Motif for Xenopus tropicalis was updated from "CisBP_ver2_Xenopus_tropicalis_and_Xenopus_laevis.pfm" to "CisBP_ver2_Xenopus_tropicalis.pfm". Because of this motif data update, default promoter base GRN for Xenopus tropicalis is also updated.
 
