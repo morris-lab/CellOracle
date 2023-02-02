@@ -74,12 +74,18 @@ def load_motifs(motifs_name, force_download=False):
 
     # Load data from local directory if file exits.
     path = os.path.join(parent_path[0], "motif_data", motifs_name)
-    if (force_download == False) & os.path.isfile(path):
+    path_factor_data = os.path.join(parent_path[0], "motif_data", motifs_name.replace(".pfm", ".motif2factors.txt"))
+    if (force_download == False) & os.path.isfile(path) & os.path.isfile(path_factor_data):
         pass
     else:
+        # Download pfm file
         path = os.path.join(CELLORACLE_DATA_DIR, "motif_data", motifs_name)
         backup_url = os.path.join(WEB_PAR_DIR, "motif_data", motifs_name)
         download_data_if_data_not_exist(path=path, backup_url=backup_url)
+        # Download motif2factors.txt file
+        path_factor_data = os.path.join(CELLORACLE_DATA_DIR, "motif_data", motifs_name.replace(".pfm", ".motif2factors.txt"))
+        backup_url = os.path.join(WEB_PAR_DIR, "motif_data", motifs_name.replace(".pfm", ".motif2factors.txt"))
+        download_data_if_data_not_exist(path=path_factor_data, backup_url=backup_url)
 
     motifs = read_motifs(path)
 
