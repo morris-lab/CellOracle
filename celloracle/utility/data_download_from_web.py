@@ -49,12 +49,12 @@ def _download(path: Path, url: str):
         try:
             open_url = urlopen(req)
         except URLError:
-            warn('Failed to open the url with default certificates, trying with certifi.')
+            warnings.warn('Failed to open the url with default certificates, trying with certifi.')
 
             from certifi import where
             from ssl import create_default_context
             open_url = urlopen(req, context=create_default_context(cafile=where()))
-            
+
 
         with open_url as resp:
             total = resp.info().get("content-length", None)
