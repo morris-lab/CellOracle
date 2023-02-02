@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-LABEL version=""
+LABEL version="0.10.15"
 LABEL description="celloracle docker installation"
 LABEL maintainer="kamimoto@wustl.edu"
 
@@ -24,7 +24,6 @@ RUN . "$HOME/miniconda/etc/profile.d/conda.sh" \
  && hash -r \
  && export PATH="$HOME/miniconda/bin:${PATH}" \
  && conda config --set always_yes yes --set changeps1 no \
- && conda update -q conda \
  && conda create -q -n celloracle_env python=3.8 \
  && conda activate celloracle_env \
  && conda install cython numpy pytest \
