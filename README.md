@@ -35,7 +35,6 @@ If you have a question, error, bug, or problem, please use the [Github issue pag
 - Chicken: ["galGal4", "galGal5", "galGal6"]
 - Guinea Pig: ["Cavpor3.0"]
 
-Please let us know through [Github issue page](https://github.com/morris-lab/CellOracle/issues) if you have a request for another reference genome.
 
 ### Changelog
 
