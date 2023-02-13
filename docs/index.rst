@@ -13,11 +13,8 @@ CellOracle is a python library for the in silico gene perturbation analysis usin
 
 Source code is available at `CellOracle  GitHub repository <https://github.com/morris-lab/CellOracle>`_ and `PyPI <https://pypi.org/project/celloracle/>`_.
 
-For more information, please read our bioRxiv preprint: `CellOracle: Dissecting cell identity via network inference and in silico gene perturbation <https://www.biorxiv.org/content/10.1101/2020.02.17.947416v3>`_
+For more information, please read our paper: `Dissecting cell identity via network inference and in silico gene perturbation <https://www.nature.com/articles/s41586-022-05688-9>`_
 
-
-.. warning::
-   CellOracle is still under development. It is currently a beta version. Functions in this package may change in a future release.
 
 .. raw:: html
    :file: test2.html
@@ -28,13 +25,16 @@ News
 
 Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
+
+- 02/08/2023: CellOracle paper has been published in `Nature article <https://www.nature.com/articles/s41586-022-05688-9>`_ ! It is also highlighted in `News and Views <https://www.nature.com/articles/d41586-023-00251-6>`_ . Thank you very much to all contributors and users for your help!!!
+
+- 02/02/2023: We released celloracle version 0.10.15. We fixed a bug in Motif data loading function.
+
 - 01/03/2023: We released celloracle version 0.10.14. We added a Xenopus Laevis data.
 
 - 10/10/2022: We released celloracle version 0.10.12. We added a new function to check distribution range of simulated value. Tutorial is also updated.
 
-- 09/27/2022: We released celloracle version 0.10.11. We added a new function to change cluster color.
 
-- 09/09/2022: We released celloracle version 0.10.10. We updated some functions in the network score calculation and visualization.
 
 
 

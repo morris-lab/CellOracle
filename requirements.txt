@@ -13,7 +13,6 @@ pyarrow>=0.17
 tqdm>=4.45
 python-igraph<=0.9.9
 louvain
-fa2
 jupyter
 anndata>=0.7.5
 scanpy>=1.6

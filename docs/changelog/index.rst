@@ -4,6 +4,9 @@
 Changelog
 =========
 
+* `0.10.15 <2023-02-02>`
+ `-` We fixed a bug in motif data loading function.
+
 * `0.10.14 <2023-01-03>`
  `-` We added a TSS information and promoter base GRN data for Xenopus Laevis reference genome: "Xenopus_laevis_v10.1"., to answer `user request #93 <https://github.com/morris-lab/CellOracle/issues/93>`_ .
 
