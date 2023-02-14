@@ -2,7 +2,7 @@ numpy
 scipy
 cython
 numba>=0.50.1
-matplotlib<3.7
+matplotlib<=3.6.3
 seaborn
 scikit-learn
 h5py>=3.1.0
