@@ -37,5 +37,7 @@ jobs:
             pip install fa2
             # Install CellOracle
             pip install .
+            # Show installed package
+            conda list
             # command to run tests
             pytest -v
