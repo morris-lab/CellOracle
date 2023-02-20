@@ -12,7 +12,7 @@ For more information, please read our paper: [Dissecting cell identity via netwo
 
 
 ### Documentation, Codes, and Tutorials
-CellOracle documentation is available through the links below.
+CellOracle documentation is available through the link below.
 
 [Web documentation](https://morris-lab.github.io/CellOracle.documentation/)
 
@@ -34,7 +34,7 @@ If you have a question, error, bug, or problem, please use the [Github issue pag
 - Arabidopsis: ["TAIR10"]
 - Chicken: ["galGal4", "galGal5", "galGal6"]
 - Guinea Pig: ["Cavpor3.0"]
-
+- Pig: ["Sscrofa11.1"]
 
 ### Changelog
 
