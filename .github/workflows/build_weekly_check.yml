@@ -36,7 +36,9 @@ jobs:
             python --version
             
             which pip
-            
+            #Install fa2 for tutorial
+            pip install fa2
+            # Install CellOracle
             git clone https://github.com/morris-lab/CellOracle.git
             cd CellOracle
             pip install .
