@@ -51,6 +51,7 @@ MOTIFS_LIST = ['CisBP_ver2_Arabidopsis_thaliana.pfm',
                'CisBP_ver2_Mus_musculus.pfm',
                'CisBP_ver2_Rattus_norvegicus.pfm',
                'CisBP_ver2_Saccharomyces_cerevisiae.pfm',
+               'CisBP_ver2_Sus_scrofa.pfm',
                'CisBP_ver2_Xenopus_laevis.pfm',
                'CisBP_ver2_Xenopus_tropicalis.pfm',
                'CisBP_ver2_Xenopus_tropicalis_and_Xenopus_laevis.pfm']

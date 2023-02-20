@@ -283,7 +283,7 @@ def load_xenopus_laevis_promoter_base_GRN(version="Xenopus_laevis_v10.1_CisBPv2_
     Returns:
         pandas.dataframe: Base GRN as a matrix.
     """
-    
+
     options = {"Xenopus_laevis_v10.1_CisBPv2_fpr2": "promoter_base_GRN/Xenopus_laevis_v10.1_TFinfo_dataframe_CisBPv2_Xenopus_laevis_fpr2_threshold_10_20221228.parquet",
                "Xenopus_laevis_v10.1_CisBPv2_fpr1": "promoter_base_GRN/Xenopus_laevis_v10.1_TFinfo_dataframe_CisBPv2_Xenopus_laevis_fpr1_threshold_10_20221228.parquet",
 
@@ -387,6 +387,37 @@ def load_Celegans_promoter_base_GRN(version="ce10_CisBPv2_fpr2", force_download=
                "ce6_CisBPv2_fpr2": "promoter_base_GRN/ce6_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
                "ce10_CisBPv2_fpr1": "promoter_base_GRN/ce10_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
                "ce10_CisBPv2_fpr2": "promoter_base_GRN/ce10_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+               }
+    if version in options.keys():
+        print(f"Loading prebuilt promoter base-GRN. Version: {version}")
+        filename = options[version]
+    else:
+        print(f"Version error. {version} is not in the list.")
+        print("Available option: ", list(options.keys()))
+
+    # Load data from local directory if file exits.
+    path = os.path.join(parent_path[0], filename)
+    if (force_download == False) & os.path.isfile(path):
+        pass
+    else:
+        path = os.path.join(CELLORACLE_DATA_DIR, filename)
+        backup_url = os.path.join(WEB_PAR_DIR, filename)
+        download_data_if_data_not_exist(path=path, backup_url=backup_url)
+
+    return pd.read_parquet(path)
+
+def load_Pig_promoter_base_GRN(version="Sscrofa11.1_CisBPv2_fpr2", force_download=False):
+    """
+    Load Base GRN made from promoter DNA sequence and motif scan.
+
+    Args:
+
+    Returns:
+        pandas.dataframe: Base GRN as a matrix.
+    """
+
+    options = {"Sscrofa11.1_CisBPv2_fpr1": "promoter_base_GRN/Sscrofa11.1_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20230218.parquet",
+               "Sscrofa11.1_CisBPv2_fpr2": "promoter_base_GRN/Sscrofa11.1_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20230218.parquet",
                }
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
