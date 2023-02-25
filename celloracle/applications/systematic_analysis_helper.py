@@ -182,8 +182,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
     def _interactive_calculate_negative_ps_p_value(self):
         """
-        8/21/2021. This function is under development
-        Get p-values for negative PS sum score by comparing nPS to randomized GRN nPS.
+
         """
 
         if self.hdf5_info is None:
@@ -206,8 +205,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
     def _interactive_calculate_positive_ps_p_value(self):
         """
-        8/21/2021. This function is under development
-        Get p-values for negative PS sum score by comparing nPS to randomized GRN nPS.
+
         """
 
         if self.hdf5_info is None:
@@ -250,12 +248,33 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             # Clear memory
             self.del_attrs()
 
+    def calculate_negative_ps_p_value(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True):
+
+        """
+        """
+
+        self.del_attrs()
+        gene_lists = self.hdf5_info["gene_list"]
+
+        ps_sums = []
+        if verbose:
+            loop = tqdm(gene_lists)
+        else:
+            loop = gene_lists
+        for gene in loop:
+            self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
+            ps_sum = self.get_negative_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)[1]
+            ps_sums.append(ps_sum)
+        # Clear memory
+        self.del_attrs()
+
+        result = pd.DataFrame({"gene": gene_lists, "ps_sum":ps_sums})
+        result = result.sort_values("ps_sum", ascending=False).reset_index(drop=True)
+        return result
 
     def _calculate_negative_ps_p_value(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True):
 
         """
-        8/21/2021. This function is under development
-        Get p-values for negative PS sum score by comparing nPS to randomized GRN nPS.
         """
 
         self.del_attrs()
@@ -293,11 +312,34 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
         return result
 
+    def calculate_positive_ps_p_value(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True):
+
+        """
+        """
+
+        self.del_attrs()
+
+        gene_lists = self.hdf5_info["gene_list"]
+        ps_sums = []
+        if verbose:
+            loop = tqdm(gene_lists)
+        else:
+            loop = gene_lists
+        for gene in loop:
+            self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
+            ps_sum = self.get_positive_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)[1]
+            ps_sums.append(ps_sum)
+
+        # Clear memory
+        self.del_attrs()
+
+        result = pd.DataFrame({"gene": gene_lists, "ps_sum":ps_sums})
+        result = result.sort_values("ps_sum", ascending=False).reset_index(drop=True)
+        return result
+
     def _calculate_positive_ps_p_value(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True):
 
         """
-        8/21/2021. This function is under development
-        Get p-values for negative PS sum score by comparing nPS to randomized GRN nPS.
         """
 
         self.del_attrs()
