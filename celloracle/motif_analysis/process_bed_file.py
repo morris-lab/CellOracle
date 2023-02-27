@@ -11,7 +11,7 @@ Codes were written by Kenji Kamimoto.
 '''
 
 ###########################
-### 0. Import libralies ###
+### 0. Import libraries ###
 ###########################
 
 
