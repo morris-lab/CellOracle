@@ -5,6 +5,7 @@ import celloracle as co
 import pandas as pd
 import igraph
 
+
 def test_get_network_score():
     """
     Several version of the igraph package has incompatibility with Celloracle.

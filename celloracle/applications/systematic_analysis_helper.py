@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-
 import io
 import logging
 import os
@@ -14,7 +13,8 @@ import pandas as pd
 import numpy as np
 from tqdm.auto import tqdm
 import matplotlib.pyplot as plt
-#import h5py
+
+# import h5py
 
 
 from IPython.display import display, HTML
@@ -25,7 +25,6 @@ from ..visualizations.config import CONFIG
 
 
 class Oracle_systematic_analysis_helper(Oracle_development_module):
-
     def __init__(self, hdf5_file_path, memory_save_mode=False):
         super().__init__()
 
@@ -35,11 +34,14 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         self.negative_ip_sum = None
         self.positive_ip_sum = None
         self.memory_save_mode = memory_save_mode
-        self._exemptions_when_del_attrs = \
-            ["hdf5_info", "negative_ip_sum", "positive_ip_sum", "estimated_scales_for_visulization"]
+        self._exemptions_when_del_attrs = [
+            "hdf5_info",
+            "negative_ip_sum",
+            "positive_ip_sum",
+            "estimated_scales_for_visulization",
+        ]
 
     def get_negative_ip_sum_for_all_data(self, verbose=True, return_result=True):
-
         self.del_attrs()
 
         gene_misc_lists = self.hdf5_info["gene_misc_lists"]
@@ -51,8 +53,9 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             loop = gene_misc_lists
 
         for gene, misc in loop:
-
-            self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
+            self.load_hdf5(
+                gene=gene, misc=misc, specify_attributes=["inner_product_df"]
+            )
             df = self.get_sum_of_negative_ips()
             df["gene"] = gene
             df["misc"] = misc
@@ -68,9 +71,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         if return_result:
             return self.negative_ip_sum
 
-
     def get_positive_ip_sum_for_all_data(self, verbose=True, return_result=True):
-
         self.del_attrs()
 
         gene_misc_lists = self.hdf5_info["gene_misc_lists"]
@@ -84,7 +85,9 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         self.del_attrs()
 
         for gene, misc in loop:
-            self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
+            self.load_hdf5(
+                gene=gene, misc=misc, specify_attributes=["inner_product_df"]
+            )
             df = self.get_sum_of_positive_ips()
             df["gene"] = gene
             df["misc"] = misc
@@ -143,7 +146,6 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         return df
 
     def interactive_sort_TFs_by_neagative_ip(self):
-
         if self.hdf5_info is None:
             self.get_hdf5_info()
 
@@ -151,18 +153,19 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             df = self.sort_TFs_by_neagative_ip(misc=misc, pseudotime=pseudotime)
 
             print(f"Top {n_TFs} in {misc}")
-            display(HTML(df.iloc[:min(n_TFs, df.shape[0])].to_html()))
+            display(HTML(df.iloc[: min(n_TFs, df.shape[0])].to_html()))
 
-        interactive_table = interactive(wrapper,
-                               #{'manual': True},
-                               misc=self.hdf5_info["misc_list"],
-                               pseudotime="0,1,2,3,4,5,6,7,8,9",
-                               n_TFs=(5, 50, 1))
+        interactive_table = interactive(
+            wrapper,
+            # {'manual': True},
+            misc=self.hdf5_info["misc_list"],
+            pseudotime="0,1,2,3,4,5,6,7,8,9",
+            n_TFs=(5, 50, 1),
+        )
 
         return interactive_table
 
     def interactive_sort_TFs_by_positive_ip(self):
-
         if self.hdf5_info is None:
             self.get_hdf5_info()
 
@@ -170,20 +173,20 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             df = self.sort_TFs_by_positive_ip(misc=misc, pseudotime=pseudotime)
 
             print(f"Top {n_TFs} in {misc}")
-            display(HTML(df.iloc[:min(n_TFs, df.shape[0])].to_html()))
+            display(HTML(df.iloc[: min(n_TFs, df.shape[0])].to_html()))
 
-        interactive_table = interactive(wrapper,
-                               #{'manual': True},
-                               misc=self.hdf5_info["misc_list"],
-                               pseudotime="0,1,2,3,4,5,6,7,8,9",
-                               n_TFs=(5, 50, 1))
+        interactive_table = interactive(
+            wrapper,
+            # {'manual': True},
+            misc=self.hdf5_info["misc_list"],
+            pseudotime="0,1,2,3,4,5,6,7,8,9",
+            n_TFs=(5, 50, 1),
+        )
 
         return interactive_table
 
     def _interactive_calculate_negative_ps_p_value(self):
-        """
-
-        """
+        """ """
 
         if self.hdf5_info is None:
             self.get_hdf5_info()
@@ -191,22 +194,21 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         def wrapper(misc, pseudotime, n_TFs=20):
             df = self._calculate_negative_ps_p_value(misc=misc, pseudotime=pseudotime)
 
-
             print(f"Top {n_TFs} in {misc}")
-            display(HTML(df.iloc[:min(n_TFs, df.shape[0])].to_html()))
+            display(HTML(df.iloc[: min(n_TFs, df.shape[0])].to_html()))
 
-        interactive_table = interactive(wrapper,
-                               #{'manual': True},
-                               misc=self.hdf5_info["misc_list"],
-                               pseudotime="0,1,2,3,4,5,6,7,8,9",
-                               n_TFs=(5, 50, 1))
+        interactive_table = interactive(
+            wrapper,
+            # {'manual': True},
+            misc=self.hdf5_info["misc_list"],
+            pseudotime="0,1,2,3,4,5,6,7,8,9",
+            n_TFs=(5, 50, 1),
+        )
 
         return interactive_table
 
     def _interactive_calculate_positive_ps_p_value(self):
-        """
-
-        """
+        """ """
 
         if self.hdf5_info is None:
             self.get_hdf5_info()
@@ -214,18 +216,18 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         def wrapper(misc, pseudotime, n_TFs=20):
             df = self._calculate_positive_ps_p_value(misc=misc, pseudotime=pseudotime)
 
-
             print(f"Top {n_TFs} in {misc}")
-            display(HTML(df.iloc[:min(n_TFs, df.shape[0])].to_html()))
+            display(HTML(df.iloc[: min(n_TFs, df.shape[0])].to_html()))
 
-        interactive_table = interactive(wrapper,
-                               #{'manual': True},
-                               misc=self.hdf5_info["misc_list"],
-                               pseudotime="0,1,2,3,4,5,6,7,8,9",
-                               n_TFs=(5, 50, 1))
+        interactive_table = interactive(
+            wrapper,
+            # {'manual': True},
+            misc=self.hdf5_info["misc_list"],
+            pseudotime="0,1,2,3,4,5,6,7,8,9",
+            n_TFs=(5, 50, 1),
+        )
 
         return interactive_table
-
 
     def _update_inner_product_df(self, n_bins=10, verbose=True):
         self.del_attrs()
@@ -248,10 +250,10 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             # Clear memory
             self.del_attrs()
 
-    def calculate_negative_ps_p_value(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True):
-
-        """
-        """
+    def calculate_negative_ps_p_value(
+        self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True
+    ):
+        """ """
 
         self.del_attrs()
         gene_lists = self.hdf5_info["gene_list"]
@@ -262,85 +264,24 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         else:
             loop = gene_lists
         for gene in loop:
-            self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
-            ps_sum = self.get_negative_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)[1]
+            self.load_hdf5(
+                gene=gene, misc=misc, specify_attributes=["inner_product_df"]
+            )
+            ps_sum = self.get_negative_PS_p_value(
+                pseudotime=pseudotime, return_ps_sum=True, plot=False
+            )[1]
             ps_sums.append(ps_sum)
         # Clear memory
         self.del_attrs()
 
-        result = pd.DataFrame({"gene": gene_lists, "ps_sum":ps_sums})
+        result = pd.DataFrame({"gene": gene_lists, "ps_sum": ps_sums})
         result = result.sort_values("ps_sum", ascending=False).reset_index(drop=True)
         return result
 
-    def _calculate_negative_ps_p_value(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True):
-
-        """
-        """
-
-        self.del_attrs()
-
-        gene_lists = self.hdf5_info["gene_list"]
-
-        p_list = []
-        ps_sums = []
-        ps_sum_randoms = []
-        if verbose:
-            loop = tqdm(gene_lists)
-        else:
-            loop = gene_lists
-
-        for gene in loop:
-
-            self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
-            if "score_randomized" not in self.inner_product_df.columns:
-                raise ValueError("please update inner_product_df first")
-            p, ps_sum, ps_sum_random = self.get_negative_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)
-            p_list.append(p)
-            ps_sum_randoms.append(ps_sum_random)
-            ps_sums.append(ps_sum)
-
-        # Clear memory
-        self.del_attrs()
-
-        # p-value correction
-        p_corrected = np.clip(np.array(p_list)*len(gene_lists), 0, 1)
-
-        result = pd.DataFrame({"gene": gene_lists, "ps_sum":ps_sums, "ps_sum_random": ps_sum_randoms,
-                               "p": p_list, "p_adj": p_corrected})
-
-        result = result.sort_values("ps_sum", ascending=False).reset_index(drop=True)
-
-        return result
-
-    def calculate_positive_ps_p_value(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True):
-
-        """
-        """
-
-        self.del_attrs()
-
-        gene_lists = self.hdf5_info["gene_list"]
-        ps_sums = []
-        if verbose:
-            loop = tqdm(gene_lists)
-        else:
-            loop = gene_lists
-        for gene in loop:
-            self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
-            ps_sum = self.get_positive_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)[1]
-            ps_sums.append(ps_sum)
-
-        # Clear memory
-        self.del_attrs()
-
-        result = pd.DataFrame({"gene": gene_lists, "ps_sum":ps_sums})
-        result = result.sort_values("ps_sum", ascending=False).reset_index(drop=True)
-        return result
-
-    def _calculate_positive_ps_p_value(self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True):
-
-        """
-        """
+    def _calculate_negative_ps_p_value(
+        self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True
+    ):
+        """ """
 
         self.del_attrs()
 
@@ -355,11 +296,14 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             loop = gene_lists
 
         for gene in loop:
-
-            self.load_hdf5(gene=gene, misc=misc, specify_attributes=["inner_product_df"])
+            self.load_hdf5(
+                gene=gene, misc=misc, specify_attributes=["inner_product_df"]
+            )
             if "score_randomized" not in self.inner_product_df.columns:
                 raise ValueError("please update inner_product_df first")
-            p, ps_sum, ps_sum_random = self.get_positive_PS_p_value(pseudotime=pseudotime, return_ps_sum=True, plot=False)
+            p, ps_sum, ps_sum_random = self.get_negative_PS_p_value(
+                pseudotime=pseudotime, return_ps_sum=True, plot=False
+            )
             p_list.append(p)
             ps_sum_randoms.append(ps_sum_random)
             ps_sums.append(ps_sum)
@@ -368,39 +312,121 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         self.del_attrs()
 
         # p-value correction
-        p_corrected = np.clip(np.array(p_list)*len(gene_lists), 0, 1)
+        p_corrected = np.clip(np.array(p_list) * len(gene_lists), 0, 1)
 
-        result = pd.DataFrame({"gene": gene_lists, "ps_sum":ps_sums, "ps_sum_random": ps_sum_randoms,
-                               "p": p_list, "p_adj": p_corrected})
+        result = pd.DataFrame(
+            {
+                "gene": gene_lists,
+                "ps_sum": ps_sums,
+                "ps_sum_random": ps_sum_randoms,
+                "p": p_list,
+                "p_adj": p_corrected,
+            }
+        )
 
         result = result.sort_values("ps_sum", ascending=False).reset_index(drop=True)
 
         return result
 
+    def calculate_positive_ps_p_value(
+        self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True
+    ):
+        """ """
+
+        self.del_attrs()
+
+        gene_lists = self.hdf5_info["gene_list"]
+        ps_sums = []
+        if verbose:
+            loop = tqdm(gene_lists)
+        else:
+            loop = gene_lists
+        for gene in loop:
+            self.load_hdf5(
+                gene=gene, misc=misc, specify_attributes=["inner_product_df"]
+            )
+            ps_sum = self.get_positive_PS_p_value(
+                pseudotime=pseudotime, return_ps_sum=True, plot=False
+            )[1]
+            ps_sums.append(ps_sum)
+
+        # Clear memory
+        self.del_attrs()
+
+        result = pd.DataFrame({"gene": gene_lists, "ps_sum": ps_sums})
+        result = result.sort_values("ps_sum", ascending=False).reset_index(drop=True)
+        return result
+
+    def _calculate_positive_ps_p_value(
+        self, misc, pseudotime="0,1,2,3,4,5,6,7,8,9", verbose=True
+    ):
+        """ """
+
+        self.del_attrs()
+
+        gene_lists = self.hdf5_info["gene_list"]
+
+        p_list = []
+        ps_sums = []
+        ps_sum_randoms = []
+        if verbose:
+            loop = tqdm(gene_lists)
+        else:
+            loop = gene_lists
+
+        for gene in loop:
+            self.load_hdf5(
+                gene=gene, misc=misc, specify_attributes=["inner_product_df"]
+            )
+            if "score_randomized" not in self.inner_product_df.columns:
+                raise ValueError("please update inner_product_df first")
+            p, ps_sum, ps_sum_random = self.get_positive_PS_p_value(
+                pseudotime=pseudotime, return_ps_sum=True, plot=False
+            )
+            p_list.append(p)
+            ps_sum_randoms.append(ps_sum_random)
+            ps_sums.append(ps_sum)
+
+        # Clear memory
+        self.del_attrs()
+
+        # p-value correction
+        p_corrected = np.clip(np.array(p_list) * len(gene_lists), 0, 1)
+
+        result = pd.DataFrame(
+            {
+                "gene": gene_lists,
+                "ps_sum": ps_sums,
+                "ps_sum_random": ps_sum_randoms,
+                "p": p_list,
+                "p_adj": p_corrected,
+            }
+        )
+
+        result = result.sort_values("ps_sum", ascending=False).reset_index(drop=True)
+
+        return result
 
     def estimate_scale_for_visualization(self, return_result=True):
-
         if self.hdf5_info is None:
             self.get_hdf5_info()
 
         misc_list = self.hdf5_info["misc_list"]
 
         scales = np.array([self._estimate_scale(misc=misc) for misc in misc_list])
-        scales = pd.DataFrame(scales, index=misc_list, columns=["vm", "simulation", "pseudotime"])
+        scales = pd.DataFrame(
+            scales, index=misc_list, columns=["vm", "simulation", "pseudotime"]
+        )
 
         self.estimated_scales_for_visulization = scales
 
         if return_result:
             return scales
 
-
     def _estimate_scale(self, misc):
-
         self.del_attrs()
 
-        reference_scaling_dictionary = {"inner_product": 0.5,
-                                        "flow": 5,
-                                        "ref_flow": 18}
+        reference_scaling_dictionary = {"inner_product": 0.5, "flow": 5, "ref_flow": 18}
 
         scales = []
         for i in ["inner_product", "flow", "ref_flow"]:
@@ -414,7 +440,6 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         return scales
 
     def __check_max_of_max_norm_attr(self, misc, attr_name):
-
         """
         (1) Load attr and check max norm value.
         (2) Repeat step (1) for all genes in the misc.
@@ -429,14 +454,19 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
         gene_list = self.hdf5_info["misc_gene_dictionary"][misc]
 
-
-        if attr_name == "ref_flow": # Don't need to check all gene because ref_flow is unique to misc.
-            max_ = self.__check_max_norm_attr(misc=misc, gene=gene_list[0], attr_name=attr_name)
+        if (
+            attr_name == "ref_flow"
+        ):  # Don't need to check all gene because ref_flow is unique to misc.
+            max_ = self.__check_max_norm_attr(
+                misc=misc, gene=gene_list[0], attr_name=attr_name
+            )
 
         else:
             maxs = []
             for gene in gene_list:
-                abs_max = self.__check_max_norm_attr(misc=misc, gene=gene, attr_name=attr_name)
+                abs_max = self.__check_max_norm_attr(
+                    misc=misc, gene=gene, attr_name=attr_name
+                )
                 maxs.append(abs_max)
             max_ = max(maxs)
 
@@ -444,7 +474,6 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
     ### For interactive systematic visualization
     def __check_max_norm_attr(self, misc, gene, attr_name):
-
         """
         Load attr and check max norm value.
         if attr is 2D value, calculate max of l2 norm.
@@ -460,25 +489,27 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
 
         return abs_max
 
-    def interactive_visualize_layout_0(self, scale_simulation=None, scale_pseudotime=None, vm=None, s=5, s_grid=30):
-
+    def interactive_visualize_layout_0(
+        self, scale_simulation=None, scale_pseudotime=None, vm=None, s=5, s_grid=30
+    ):
         # 1. Define a custom function
         def wrapper(gene, misc, scale_simulation, scale_pseudotime, vm, background):
             # Load data
-            #self.del_attrs()
+            # self.del_attrs()
 
             self.load_hdf5(gene=gene, misc=misc)
             # Visualize
-            self.visualize_development_module_layout_0(s=s,
-                                                       scale_for_simulation=scale_simulation,
-                                                       s_grid=s_grid,
-                                                       scale_for_pseudotime=scale_pseudotime,
-                                                       vm=vm,
-                                                       show_background=background)
+            self.visualize_development_module_layout_0(
+                s=s,
+                scale_for_simulation=scale_simulation,
+                s_grid=s_grid,
+                scale_for_pseudotime=scale_pseudotime,
+                vm=vm,
+                show_background=background,
+            )
             print("Gene: ", gene)
             # Delete loaded data
-            #self.del_attrs(exemptions=self._exemptions_when_del_attrs)
-
+            # self.del_attrs(exemptions=self._exemptions_when_del_attrs)
 
         # 2. Parameter setting
         # Use automatically estimated value for default scale parameters if it is not specified.
@@ -487,27 +518,31 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
             if self.estimated_scales_for_visulization is None:
                 self.estimate_scale_for_visualization(return_result=False)
             scale = self.estimated_scales_for_visulization.max(axis=0)
-            scale_simulation, scale_pseudotime, vm = scale[["simulation", "pseudotime", "vm"]]
-            #scale_simulation, vm = [i * 0.5 for i in [scale_simulation, vm]]
-            scale_simulation, scale_pseudotime, vm = [np.round(i, 2) for i in [scale_simulation, scale_pseudotime, vm]]
+            scale_simulation, scale_pseudotime, vm = scale[
+                ["simulation", "pseudotime", "vm"]
+            ]
+            # scale_simulation, vm = [i * 0.5 for i in [scale_simulation, vm]]
+            scale_simulation, scale_pseudotime, vm = [
+                np.round(i, 2) for i in [scale_simulation, scale_pseudotime, vm]
+            ]
 
         ui_gene_list = self.hdf5_info["gene_list"]
         ui_misc_list = self.hdf5_info["misc_list"]
 
-        interactive_viz = interactive(wrapper,
-                                       #{'manual': True},
-                                  scale_simulation=FloatText(value=scale_simulation),
-                                  scale_pseudotime=FloatText(value=scale_pseudotime),
-                                  vm=FloatText(value=vm),
-                                  gene=ui_gene_list,
-                                  misc=ui_misc_list,
-                                  background=[True, False])
+        interactive_viz = interactive(
+            wrapper,
+            # {'manual': True},
+            scale_simulation=FloatText(value=scale_simulation),
+            scale_pseudotime=FloatText(value=scale_pseudotime),
+            vm=FloatText(value=vm),
+            gene=ui_gene_list,
+            misc=ui_misc_list,
+            background=[True, False],
+        )
 
         return interactive_viz
 
-
     def get_all_ips(self, misc):
-
         misc = "Whole_cells"
         genes = self.hdf5_info["misc_gene_dictionary"][misc]
 
@@ -525,7 +560,6 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         return ips
 
     def get_corrcoef_ip(self, misc):
-
         ips = self.get_all_ips(misc=misc)
 
         # Calculate correlation

@@ -11,22 +11,24 @@ from tqdm.notebook import tqdm
 import celloracle as co
 from celloracle import motif_analysis as ma
 from celloracle.utility import save_as_pickled_object
+
 print("celloracle version: ", co.__version__)
 
-plt.rcParams['figure.figsize'] = (15,7)
+plt.rcParams["figure.figsize"] = (15, 7)
 plt.rcParams["savefig.dpi"] = 600
+
 
 def main():
     test_tutorial_motif_scan()
-    
-def test_tutorial_motif_scan():
 
+
+def test_tutorial_motif_scan():
     use_small_data = True
 
     # Start analysis
     import time
-    start = time.time()
 
+    start = time.time()
 
     # 1. Reference genome data preparation
     print("\n1. Reference genome data preparation")
@@ -37,15 +39,16 @@ def test_tutorial_motif_scan():
     ## 1.2. Install reference genome (if refgenome is not installed)
     if not genome_installation:
         import genomepy
+
         genomepy.install_genome(ref_genome, "UCSC")
     else:
         print(ref_genome, "is installed.")
-
 
     # 2. Load data
     # 2.0 Download demo data
     print("\n2. Load data")
     from celloracle.utility.data_download_from_web import download_demo_data
+
     for i in ["processed_peak_file.csv"]:
         download_demo_data(file=i)
 
@@ -53,7 +56,6 @@ def test_tutorial_motif_scan():
     # Load annotated peak data.
     peaks = pd.read_csv("processed_peak_file.csv", index_col=0)
     peaks.head()
-
 
     ## 2.2. Check data
     def decompose_chrstr(peak_str):
@@ -94,10 +96,8 @@ def test_tutorial_motif_scan():
         genome_data = Genome(ref_genome)
         all_chr_list = list(genome_data.keys())
 
-
         # DNA length check
         lengths = np.abs(df_decomposed["end"] - df_decomposed["start"])
-
 
         # Filter peaks with invalid chromosome name
         n_threshold = 5
@@ -108,9 +108,10 @@ def test_tutorial_motif_scan():
 
         # Data counting
         n_invalid_length = len(lengths[lengths < n_threshold])
-        n_peaks_invalid_chr = n_peaks_before - df_decomposed.chr.isin(all_chr_list).sum()
+        n_peaks_invalid_chr = (
+            n_peaks_before - df_decomposed.chr.isin(all_chr_list).sum()
+        )
         n_peaks_after = df.shape[0]
-
 
         #
         print("Peaks before filtering: ", n_peaks_before)
@@ -120,9 +121,7 @@ def test_tutorial_motif_scan():
 
         return df
 
-
     peaks = check_peak_format(peaks, ref_genome)
-
 
     # 3. Instantiate TFinfo object and search for TF binding motifs
     print("\n3. Instantiate TFinfo object and search for TF binding motifs")
@@ -130,18 +129,18 @@ def test_tutorial_motif_scan():
 
     if use_small_data:
         peaks = peaks[:100]
-    tfi = ma.TFinfo(peak_data_frame=peaks,
-                    ref_genome=ref_genome)
+    tfi = ma.TFinfo(peak_data_frame=peaks, ref_genome=ref_genome)
     ## 3.2. Motif scan
-    tfi.scan(fpr=0.02,
-             motifs=None,  # If you enter None, default motifs will be loaded.
-             verbose=True)
+    tfi.scan(
+        fpr=0.02,
+        motifs=None,  # If you enter None, default motifs will be loaded.
+        verbose=True,
+    )
 
     # Save tfinfo object
     tfi.to_hdf5(file_path="test1.celloracle.tfinfo")
     # Check motif scan results
     tfi.scanned_df.head()
-
 
     # 4. Filtering motifs
     print("\n4. Filtering motifs")
@@ -151,7 +150,6 @@ def test_tutorial_motif_scan():
     tfi.filter_motifs_by_score(threshold=10)
     # Format post-filtering results.
     tfi.make_TFinfo_dataframe_and_dictionary(verbose=True)
-
 
     # 5. Get final base GRN
     print("\n5. Get final base GRN")
@@ -163,12 +161,11 @@ def test_tutorial_motif_scan():
     df = tfi.to_dataframe()
     df.to_parquet("base_GRN_dataframe.parquet")
 
-
     # Remove files
     print("Remove files")
     for i in ["processed_peak_file.csv", "test1.celloracle.tfinfo"]:
         os.remove(i)
-        #pass
+        # pass
     elapsed = time.time() - start
 
     print("Success")

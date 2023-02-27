@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 
-'''
+"""
 
 ###########################
 ### 0. Import libraries ###
@@ -16,12 +16,13 @@ import numpy as np
 import sys, os
 import functools
 
-#from tqdm.auto import tqdm
+# from tqdm.auto import tqdm
 from tqdm.auto import tqdm
+
 # 0.2. libraries for DNA and genome data wrangling and Motif analysis
 from genomepy import Genome
 
-#from gimmemotifs.motif import Motif
+# from gimmemotifs.motif import Motif
 from gimmemotifs.scanner import Scanner
 from gimmemotifs.fasta import Fasta
 from gimmemotifs.config import DIRECT_NAME, INDIRECT_NAME
@@ -38,13 +39,12 @@ from ..utility.package_version_checker import _is_version_OK
 ####
 ###
 
-def get_available_ref_genome_info(species, provider="UCSC"):
 
+def get_available_ref_genome_info(species, provider="UCSC"):
     df = pd.DataFrame(np.array(list(genomepy.list_available_genomes(provider))))
     species_ = df[2].apply(lambda x: x.split(" ")[0])
 
     return df[species_.isin([species])]
-
 
 
 def is_genome_installed(ref_genome):
@@ -65,22 +65,32 @@ def is_genome_installed(ref_genome):
     except:
         if ref_genome == "AmexG_v6.0-DD":
             print(f"genome {ref_genome} is not installed in this environment.")
-            print(f"Please install {ref_genome} data with genomepy using the following command in command line (terminal).")
-            print(f"Please make sure to use recent version of genomepy and have enough space on your PC. Otherwise you may get an error.")
-            print(f'genomepy install -p url https://www.axolotl-omics.org/dl/AmexG_v6.0-DD.fa.gz')
+            print(
+                f"Please install {ref_genome} data with genomepy using the following command in command line (terminal)."
+            )
+            print(
+                f"Please make sure to use recent version of genomepy and have enough space on your PC. Otherwise you may get an error."
+            )
+            print(
+                f"genomepy install -p url https://www.axolotl-omics.org/dl/AmexG_v6.0-DD.fa.gz"
+            )
 
         else:
-            if  ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:    
-                provider = SUPPORTED_REF_GENOME["provider"][SUPPORTED_REF_GENOME.ref_genome==ref_genome].values[0]
+            if ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:
+                provider = SUPPORTED_REF_GENOME["provider"][
+                    SUPPORTED_REF_GENOME.ref_genome == ref_genome
+                ].values[0]
             else:
                 provider = "PROVIDER"
 
             print(f"genome {ref_genome} is not installed in this environment.")
             print("Please install genome using genomepy.")
-            print(f'e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome(name="{ref_genome}", provider="{provider}")')
+            print(
+                f'e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome(name="{ref_genome}", provider="{provider}")'
+            )
 
     return False
-        #raise ValueError(f"Ref_Genome: {ref_genome} is not available.")
+    # raise ValueError(f"Ref_Genome: {ref_genome} is not available.")
 
 
 def list2str(li):
@@ -102,12 +112,10 @@ def list2str(li):
     return ", ".join(li)
 
 
-
-
-
-
-def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, divide=100000, verbose=True):
-    '''
+def scan_dna_for_motifs(
+    scanner_object, motifs_object, sequence_object, divide=100000, verbose=True
+):
+    """
     This is a wrapper function to scan DNA sequences searchig for Gene motifs.
 
     Args:
@@ -121,61 +129,79 @@ def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, divide=1
     Returns:
         pandas.dataframe: scan results is stored in data frame.
 
-    '''
+    """
 
-    li  = []
+    li = []
     # If the gimmemotifs version is larger than 0.17.0, it will automatically return the progress bar,
     # So we don't need to make tqdm qbar here.
-    if _is_version_OK(que=gmotif_version, ref='0.17.0'):
-        verbose=False
+    if _is_version_OK(que=gmotif_version, ref="0.17.0"):
+        verbose = False
 
     pbar = tqdm(
         desc="scanning",
         unit=" sequences",
         total=len(sequence_object),
-        disable=(verbose==False),  # can be silenced
+        disable=(verbose == False),  # can be silenced
     )
     iter = scanner_object.scan(sequence_object)
 
     for i, result in enumerate(iter):
         seqname = sequence_object.ids[i]
-        for m,matches in enumerate(result):
+        for m, matches in enumerate(result):
             motif = motifs_object[m]
             for score, pos, strand in matches:
-                li.append(np.array([seqname,
-                                    motif.id,
-                                    list2str(motif.factors[DIRECT_NAME]),
-                                    list2str(motif.factors[INDIRECT_NAME]),
-                                    score, pos, strand]))
+                li.append(
+                    np.array(
+                        [
+                            seqname,
+                            motif.id,
+                            list2str(motif.factors[DIRECT_NAME]),
+                            list2str(motif.factors[INDIRECT_NAME]),
+                            score,
+                            pos,
+                            strand,
+                        ]
+                    )
+                )
         pbar.update(1)
     pbar.close()
 
-    #save_as_pickled_object(li, "./tmp_li.pickle")
-    #print("saved tmp list")
+    # save_as_pickled_object(li, "./tmp_li.pickle")
+    # print("saved tmp list")
 
-
-    if len(li)==0:
-        df = pd.DataFrame(columns=["seqname",
-                               "motif_id",
-                               "factors_direct",
-                               "factors_indirect",
-                               "score", "pos", "strand"])
+    if len(li) == 0:
+        df = pd.DataFrame(
+            columns=[
+                "seqname",
+                "motif_id",
+                "factors_direct",
+                "factors_indirect",
+                "score",
+                "pos",
+                "strand",
+            ]
+        )
     else:
-
         remaining = 1
         LI = []
         k = 0
         while remaining == 1:
-            #print(k)
-            tmp_li = li[divide*k:min(len(li), divide*(k+1))]
+            # print(k)
+            tmp_li = li[divide * k : min(len(li), divide * (k + 1))]
 
             tmp_li = np.stack(tmp_li)
-            df = pd.DataFrame(tmp_li,
-                              columns=["seqname",
-                                       "motif_id",
-                                       "factors_direct",
-                                       "factors_indirect",
-                                       "score", "pos", "strand"])
+            df = pd.DataFrame(
+                tmp_li,
+                columns=[
+                    "seqname",
+                    "motif_id",
+                    "factors_direct",
+                    "factors_indirect",
+                    "score",
+                    "pos",
+                    "strand",
+                ],
+            )
             df.score = df.score.astype(float)
             df.pos = df.pos.astype(int)
             df.strand = df.strand.astype(int)
@@ -185,8 +211,7 @@ def scan_dna_for_motifs(scanner_object, motifs_object, sequence_object, divide=1
 
             LI.append(df)
 
-
-            if divide*(k+1) >= len(li):
+            if divide * (k + 1) >= len(li):
                 remaining = 0
             k += 1
 

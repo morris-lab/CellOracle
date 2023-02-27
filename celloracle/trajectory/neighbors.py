@@ -8,34 +8,43 @@ from typing import *
 # Mutual KNN functions
 
 
-@jit(signature_or_function="Tuple((float64[:,:], int64[:,:], int64[:]))(int64[:,:], float64[:, :], int64[:], int64, int64, boolean)",
-     nopython=True)
-def balance_knn_loop(dsi: np.ndarray, dist: np.ndarray, lsi: np.ndarray, maxl: int, k: int, return_distance: bool) -> Tuple:
+@jit(
+    signature_or_function="Tuple((float64[:,:], int64[:,:], int64[:]))(int64[:,:], float64[:, :], int64[:], int64, int64, boolean)",
+    nopython=True,
+)
+def balance_knn_loop(
+    dsi: np.ndarray,
+    dist: np.ndarray,
+    lsi: np.ndarray,
+    maxl: int,
+    k: int,
+    return_distance: bool,
+) -> Tuple:
     """Fast and greedy algorythm to balance a K-NN graph so that no node is the NN to more than maxl other nodes
 
-        Arguments
-        ---------
-        dsi : np.ndarray  (samples, K)
-            distance sorted indexes (as returned by sklearn NN)
-        dist : np.ndarray  (samples, K)
-            the actual distance corresponding to the sorted indexes
-        lsi : np.ndarray (samples,)
-            degree of connectivity (l) sorted indexes
-        maxl : int
-            max degree of connectivity (from others to self) allowed
-        k : int
-            number of neighbours in the final graph
-        return_distance : bool
-            whether to return distance
+    Arguments
+    ---------
+    dsi : np.ndarray  (samples, K)
+        distance sorted indexes (as returned by sklearn NN)
+    dist : np.ndarray  (samples, K)
+        the actual distance corresponding to the sorted indexes
+    lsi : np.ndarray (samples,)
+        degree of connectivity (l) sorted indexes
+    maxl : int
+        max degree of connectivity (from others to self) allowed
+    k : int
+        number of neighbours in the final graph
+    return_distance : bool
+        whether to return distance
 
-        Returns
-        -------
-        dsi_new : np.ndarray (samples, k+1)
-            indexes of the NN, first column is the sample itself
-        dist_new : np.ndarray (samples, k+1)
-            distances to the NN
-        l: np.ndarray (samples)
-            l[i] is the number of connections from other samples to the sample i
+    Returns
+    -------
+    dsi_new : np.ndarray (samples, k+1)
+        indexes of the NN, first column is the sample itself
+    dist_new : np.ndarray (samples, k+1)
+        distances to the NN
+    l: np.ndarray (samples)
+        l[i] is the number of connections from other samples to the sample i
 
     """
     assert dsi.shape[1] >= k, "sight needs to be bigger than k"
@@ -72,36 +81,46 @@ def balance_knn_loop(dsi: np.ndarray, dist: np.ndarray, lsi: np.ndarray, maxl: i
     return dist_new, dsi_new, l
 
 
-@jit(signature_or_function="Tuple((float64[:,:], int64[:,:], int64[:]))(int64[:,:], float64[:, :], int64[:], int64[:], int64, int64, boolean)",
-     nopython=True)
-def balance_knn_loop_constrained(dsi: np.ndarray, dist: np.ndarray, lsi: np.ndarray, groups: np.ndarray, maxl: int, k: int, return_distance: bool) -> Tuple:
+@jit(
+    signature_or_function="Tuple((float64[:,:], int64[:,:], int64[:]))(int64[:,:], float64[:, :], int64[:], int64[:], int64, int64, boolean)",
+    nopython=True,
+)
+def balance_knn_loop_constrained(
+    dsi: np.ndarray,
+    dist: np.ndarray,
+    lsi: np.ndarray,
+    groups: np.ndarray,
+    maxl: int,
+    k: int,
+    return_distance: bool,
+) -> Tuple:
     """Fast and greedy algorythm to balance a K-NN graph so that no node is the NN to more than maxl other nodes
 
-        Arguments
-        ---------
-        dsi : np.ndarray  (samples, K)
-            distance sorted indexes (as returned by sklearn NN)
-        dist : np.ndarray  (samples, K)
-            the actual distance corresponding to the sorted indexes
-        lsi : np.ndarray (samples,)
-            degree of connectivity (l) sorted indexes
-        groups: np.ndarray (samples,)
-            labels of the samples that constrain the connectivity
-        maxl : int
-            max degree of connectivity (from others to self) allowed
-        k : int
-            number of neighbours in the final graph
-        return_distance : bool
-            whether to return distance
+    Arguments
+    ---------
+    dsi : np.ndarray  (samples, K)
+        distance sorted indexes (as returned by sklearn NN)
+    dist : np.ndarray  (samples, K)
+        the actual distance corresponding to the sorted indexes
+    lsi : np.ndarray (samples,)
+        degree of connectivity (l) sorted indexes
+    groups: np.ndarray (samples,)
+        labels of the samples that constrain the connectivity
+    maxl : int
+        max degree of connectivity (from others to self) allowed
+    k : int
+        number of neighbours in the final graph
+    return_distance : bool
+        whether to return distance
 
-        Returns
-        -------
-        dsi_new : np.ndarray (samples, k+1)
-            indexes of the NN, first column is the sample itself
-        dist_new : np.ndarray (samples, k+1)
-            distances to the NN
-        l: np.ndarray (samples)
-            l[i] is the number of connections from other samples to the sample i
+    Returns
+    -------
+    dsi_new : np.ndarray (samples, k+1)
+        indexes of the NN, first column is the sample itself
+    dist_new : np.ndarray (samples, k+1)
+        distances to the NN
+    l: np.ndarray (samples)
+        l[i] is the number of connections from other samples to the sample i
 
     """
     assert dsi.shape[1] >= k, "sight needs to be bigger than k"
@@ -140,30 +159,36 @@ def balance_knn_loop_constrained(dsi: np.ndarray, dist: np.ndarray, lsi: np.ndar
     return dist_new, dsi_new, l
 
 
-def knn_balance(dsi: np.ndarray, dist: np.ndarray=None, maxl: int=200, k: int=60, constraint: np.ndarray=None) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+def knn_balance(
+    dsi: np.ndarray,
+    dist: np.ndarray = None,
+    maxl: int = 200,
+    k: int = 60,
+    constraint: np.ndarray = None,
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Balance a K-NN graph so that no node is the NN to more than maxl other nodes
 
-        Arguments
-        ---------
-        dsi : np.ndarray  (samples, K)
-            distance sorted indexes (as returned by sklearn NN)
-        dist : np.ndarray  (samples, K)
-            the actual distance corresponding to the sorted indexes
-        maxl : int
-            max degree of connectivity allowed
-        k : int
-            number of neighbours in the final graph
-        constraint: np.ndarray (samples,)
-            labels of the samples that constrain the connectivity
+    Arguments
+    ---------
+    dsi : np.ndarray  (samples, K)
+        distance sorted indexes (as returned by sklearn NN)
+    dist : np.ndarray  (samples, K)
+        the actual distance corresponding to the sorted indexes
+    maxl : int
+        max degree of connectivity allowed
+    k : int
+        number of neighbours in the final graph
+    constraint: np.ndarray (samples,)
+        labels of the samples that constrain the connectivity
 
-        Returns
-        -------
-        dist_new : np.ndarray (samples, k+1)
-            distances to the NN
-        dsi_new : np.ndarray (samples, k+1)
-            indexes of the NN, first column is the sample itself
-        l: np.ndarray (samples)
-            l[i] is the number of connections from other samples to the sample i
+    Returns
+    -------
+    dist_new : np.ndarray (samples, k+1)
+        distances to the NN
+    dsi_new : np.ndarray (samples, k+1)
+        indexes of the NN, first column is the sample itself
+    l: np.ndarray (samples)
+        l[i] is the number of connections from other samples to the sample i
 
 
     """
@@ -182,7 +207,15 @@ def knn_balance(dsi: np.ndarray, dist: np.ndarray=None, maxl: int=200, k: int=60
         lsi = lsi.astype("int64").copy(order="C")
 
         if constraint is not None:
-            return balance_knn_loop_constrained(dsi, dist, lsi, constraint.astype("int64"), maxl, k, return_distance=False)
+            return balance_knn_loop_constrained(
+                dsi,
+                dist,
+                lsi,
+                constraint.astype("int64"),
+                maxl,
+                k,
+                return_distance=False,
+            )
         else:
             return balance_knn_loop(dsi, dist, lsi, maxl, k, return_distance=False)
     else:
@@ -192,7 +225,15 @@ def knn_balance(dsi: np.ndarray, dist: np.ndarray=None, maxl: int=200, k: int=60
         lsi = lsi.astype("int64").copy(order="C")
 
         if constraint is not None:
-            return balance_knn_loop_constrained(dsi, dist, lsi, constraint.astype("int64"), maxl, k, return_distance=True)
+            return balance_knn_loop_constrained(
+                dsi,
+                dist,
+                lsi,
+                constraint.astype("int64"),
+                maxl,
+                k,
+                return_distance=True,
+            )
         else:
             return balance_knn_loop(dsi, dist, lsi, maxl, k, return_distance=True)
 
@@ -222,7 +263,17 @@ class BalancedKNN:
     n_jobs : int  (default=4)
         parallelization of the standard KNN search preformed at initialization
     """
-    def __init__(self, k: int=50, sight_k: int=100, maxl: int=200, constraint: np.ndarray=None, mode: str="distance", metric: str="euclidean", n_jobs: int=4) -> None:
+
+    def __init__(
+        self,
+        k: int = 50,
+        sight_k: int = 100,
+        maxl: int = 200,
+        constraint: np.ndarray = None,
+        mode: str = "distance",
+        metric: str = "euclidean",
+        n_jobs: int = 4,
+    ) -> None:
         self.k = k
         self.sight_k = sight_k
         self.maxl = maxl
@@ -237,7 +288,7 @@ class BalancedKNN:
     def n_samples(self) -> int:
         return self.data.shape[0]
 
-    def fit(self, data: np.ndarray, sight_k: int=None) -> Any:
+    def fit(self, data: np.ndarray, sight_k: int = None) -> Any:
         """Fits the model
 
         data: np.ndarray (samples, features)
@@ -249,43 +300,57 @@ class BalancedKNN:
         self.fitdata = data
         if sight_k is not None:
             self.sight_k = sight_k
-        logging.debug(f"First search the {self.sight_k} nearest neighbours for {self.n_samples}")
+        logging.debug(
+            f"First search the {self.sight_k} nearest neighbours for {self.n_samples}"
+        )
         if self.metric == "correlation":
-            self.nn = NearestNeighbors(n_neighbors=self.sight_k + 1, metric=self.metric, n_jobs=self.n_jobs, algorithm="brute")
+            self.nn = NearestNeighbors(
+                n_neighbors=self.sight_k + 1,
+                metric=self.metric,
+                n_jobs=self.n_jobs,
+                algorithm="brute",
+            )
         else:
-            self.nn = NearestNeighbors(n_neighbors=self.sight_k + 1, metric=self.metric, n_jobs=self.n_jobs, leaf_size=30)
+            self.nn = NearestNeighbors(
+                n_neighbors=self.sight_k + 1,
+                metric=self.metric,
+                n_jobs=self.n_jobs,
+                leaf_size=30,
+            )
         self.nn.fit(self.fitdata)
         return self
 
-    def kneighbors(self, X: np.ndarray=None, maxl: int=None, mode: str="distance") -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    def kneighbors(
+        self, X: np.ndarray = None, maxl: int = None, mode: str = "distance"
+    ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """Finds the K-neighbors of a point.
 
-            Returns indices of and distances to the neighbors of each point.
+        Returns indices of and distances to the neighbors of each point.
 
-            Parameters
-            ----------
-            X : array-like, shape (n_query, n_features),
-                The query point or points.
-                If not provided, neighbors of each indexed point are returned.
-                In this case, the query point is not considered its own neighbor.
+        Parameters
+        ----------
+        X : array-like, shape (n_query, n_features),
+            The query point or points.
+            If not provided, neighbors of each indexed point are returned.
+            In this case, the query point is not considered its own neighbor.
 
-            maxl: int
-                max degree of connectivity allowed
+        maxl: int
+            max degree of connectivity allowed
 
-            mode : "distance" or "connectivity"
-                Decides the kind of output
+        mode : "distance" or "connectivity"
+            Decides the kind of output
 
-            Returns
-            -------
-            dist_new : np.ndarray (samples, k+1)
-                distances to the NN
-            dsi_new : np.ndarray (samples, k+1)
-                indexes of the NN, first column is the sample itself
-            l: np.ndarray (samples)
-                l[i] is the number of connections from other samples to the sample i
+        Returns
+        -------
+        dist_new : np.ndarray (samples, k+1)
+            distances to the NN
+        dsi_new : np.ndarray (samples, k+1)
+            indexes of the NN, first column is the sample itself
+        l: np.ndarray (samples)
+            l[i] is the number of connections from other samples to the sample i
 
-            NOTE:
-            First column (0) correspond to the sample itself, the nearest nenigbour is at the second column (1)
+        NOTE:
+        First column (0) correspond to the sample itself, the nearest nenigbour is at the second column (1)
 
         """
         if X is not None:
@@ -294,49 +359,66 @@ class BalancedKNN:
             self.maxl = maxl
 
         self.dist, self.dsi = self.nn.kneighbors(self.data, return_distance=True)
-        logging.debug(f"Using the initialization network to find a {self.k}-NN graph with maximum connectivity of {self.maxl}")
-        self.dist_new, self.dsi_new, self.l = knn_balance(self.dsi, self.dist, maxl=self.maxl, k=self.k, constraint=self.constraint)
+        logging.debug(
+            f"Using the initialization network to find a {self.k}-NN graph with maximum connectivity of {self.maxl}"
+        )
+        self.dist_new, self.dsi_new, self.l = knn_balance(
+            self.dsi, self.dist, maxl=self.maxl, k=self.k, constraint=self.constraint
+        )
 
         if mode == "connectivity":
             self.dist = np.ones_like(self.dsi)
             self.dist[:, 0] = 0
         return self.dist_new, self.dsi_new, self.l
 
-    def kneighbors_graph(self, X: np.ndarray=None, maxl: int=None, mode: str="distance") -> sparse.csr_matrix:
+    def kneighbors_graph(
+        self, X: np.ndarray = None, maxl: int = None, mode: str = "distance"
+    ) -> sparse.csr_matrix:
         """Retrun the K-neighbors graph as a sparse csr matrix
 
-            Parameters
-            ----------
-            X : array-like, shape (n_query, n_features),
-                The query point or points.
-                If not provided, neighbors of each indexed point are returned.
-                In this case, the query point is not considered its own neighbor.
+        Parameters
+        ----------
+        X : array-like, shape (n_query, n_features),
+            The query point or points.
+            If not provided, neighbors of each indexed point are returned.
+            In this case, the query point is not considered its own neighbor.
 
-            maxl: int
-                max degree of connectivity allowed
+        maxl: int
+            max degree of connectivity allowed
 
-            mode : "distance" or "connectivity"
-                Decides the kind of output
+        mode : "distance" or "connectivity"
+            Decides the kind of output
 
-            Returns
-            -------
-            neighbor_graph : scipy.sparse.csr_matrix
-                The values are either distances or connectivity dependig of the mode parameter
+        Returns
+        -------
+        neighbor_graph : scipy.sparse.csr_matrix
+            The values are either distances or connectivity dependig of the mode parameter
 
-            NOTE: The diagonal will be zero even though the value 0 is actually stored
+        NOTE: The diagonal will be zero even though the value 0 is actually stored
 
         """
         dist_new, dsi_new, l = self.kneighbors(X=X, maxl=maxl, mode=mode)
         logging.debug("Returning sparse matrix")
-        self.bknn = sparse.csr_matrix((np.ravel(dist_new),
-                                       np.ravel(dsi_new),
-                                       np.arange(0, dist_new.shape[0] * dist_new.shape[1] + 1, dist_new.shape[1])),
-                                      (self.n_samples,
-                                       self.n_samples))
+        self.bknn = sparse.csr_matrix(
+            (
+                np.ravel(dist_new),
+                np.ravel(dsi_new),
+                np.arange(
+                    0, dist_new.shape[0] * dist_new.shape[1] + 1, dist_new.shape[1]
+                ),
+            ),
+            (self.n_samples, self.n_samples),
+        )
         return self.bknn
 
-    def smooth_data(self, data_to_smooth: np.ndarray, X: np.ndarray=None, maxl: int=None,
-                    mutual: bool=False, only_increase: bool=True) -> np.ndarray:
+    def smooth_data(
+        self,
+        data_to_smooth: np.ndarray,
+        X: np.ndarray = None,
+        maxl: int = None,
+        mutual: bool = False,
+        only_increase: bool = True,
+    ) -> np.ndarray:
         """Use the wights learned from knn to smooth any data matrix
 
         Arguments
@@ -348,7 +430,9 @@ class BalancedKNN:
 
         """
         if self.bknn is None:
-            assert (X is None) and (maxl is None), "graph was already fit with different parameters"
+            assert (X is None) and (
+                maxl is None
+            ), "graph was already fit with different parameters"
             self.kneighbors_graph(X=X, maxl=maxl, mode=self.mode)
         if mutual:
             connectivity = make_mutual(self.bknn > 0)
@@ -357,13 +441,17 @@ class BalancedKNN:
         connectivity = connectivity.tolil()
         connectivity.setdiag(1)
         w = connectivity_to_weights(connectivity).T
-        assert np.allclose(w.sum(0), 1), "weight matrix need to sum to one over the columns"
+        assert np.allclose(
+            w.sum(0), 1
+        ), "weight matrix need to sum to one over the columns"
         if data_to_smooth.shape[1] == w.shape[0]:
             result = sparse.csr_matrix.dot(data_to_smooth, w)
         elif data_to_smooth.shape[0] == w.shape[0]:
             result = sparse.csr_matrix.dot(data_to_smooth.T, w).T
         else:
-            raise ValueError(f"Incorrect size of matrix, none of the axis correspond to the one of graph. {w.shape}")
+            raise ValueError(
+                f"Incorrect size of matrix, none of the axis correspond to the one of graph. {w.shape}"
+            )
 
         if only_increase:
             return np.maximum(result, data_to_smooth)
@@ -374,39 +462,51 @@ class BalancedKNN:
 # Mutual KNN version
 
 
-def knn_distance_matrix(data: np.ndarray, metric: str=None, k: int=40, mode: str='connectivity', n_jobs: int=4) -> sparse.csr_matrix:
+def knn_distance_matrix(
+    data: np.ndarray,
+    metric: str = None,
+    k: int = 40,
+    mode: str = "connectivity",
+    n_jobs: int = 4,
+) -> sparse.csr_matrix:
     """Calculate a nearest neighbour distance matrix
 
     Notice that k is meant as the actual number of neighbors NOT INCLUDING itself
     To achieve that we call kneighbors_graph with X = None
     """
     if metric == "correlation":
-        nn = NearestNeighbors(n_neighbors=k, metric="correlation", algorithm="brute", n_jobs=n_jobs)
+        nn = NearestNeighbors(
+            n_neighbors=k, metric="correlation", algorithm="brute", n_jobs=n_jobs
+        )
         nn.fit(data)
         return nn.kneighbors_graph(X=None, mode=mode)
     else:
-        nn = NearestNeighbors(n_neighbors=k, n_jobs=n_jobs, )
+        nn = NearestNeighbors(
+            n_neighbors=k,
+            n_jobs=n_jobs,
+        )
         nn.fit(data)
         return nn.kneighbors_graph(X=None, mode=mode)
 
 
 def make_mutual(knn: sparse.csr_matrix) -> sparse.coo_matrix:
-    """Removes edges between neighbours that are not mutual
-    """
+    """Removes edges between neighbours that are not mutual"""
     return knn.minimum(knn.T)
 
 
-def connectivity_to_weights(mknn: sparse.csr_matrix, axis: int=1) -> sparse.lil_matrix:
-    """Convert a binary connectivity matrix to weights ready to be multiplied to smooth a data matrix
-    """
+def connectivity_to_weights(
+    mknn: sparse.csr_matrix, axis: int = 1
+) -> sparse.lil_matrix:
+    """Convert a binary connectivity matrix to weights ready to be multiplied to smooth a data matrix"""
     if type(mknn) is not sparse.csr_matrix:
         mknn = mknn.tocsr()
-    return mknn.multiply(1. / sparse.csr_matrix.sum(mknn, axis=axis))
+    return mknn.multiply(1.0 / sparse.csr_matrix.sum(mknn, axis=axis))
 
 
-def min_n(row_data: np.ndarray, row_indices: np.ndarray, n: int) -> Tuple[np.ndarray, np.ndarray]:
-    """Find the smallest entry and smallest indices of a row
-    """
+def min_n(
+    row_data: np.ndarray, row_indices: np.ndarray, n: int
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Find the smallest entry and smallest indices of a row"""
     i = row_data.argsort()[:n]
     # i = row_data.argpartition(-n)[-n:]
     top_values = row_data[i]
@@ -415,8 +515,7 @@ def min_n(row_data: np.ndarray, row_indices: np.ndarray, n: int) -> Tuple[np.nda
 
 
 def take_top(matrix: sparse.spmatrix, n: int) -> sparse.lil_matrix:
-    """Filter the top nearest neighbours from a sprse distance matrix
-    """
+    """Filter the top nearest neighbours from a sprse distance matrix"""
     arr_ll = matrix.tolil(copy=True)
     for i in range(arr_ll.shape[0]):
         d, r = min_n(np.array(arr_ll.data[i]), np.array(arr_ll.rows[i]), n)
@@ -427,18 +526,26 @@ def take_top(matrix: sparse.spmatrix, n: int) -> sparse.lil_matrix:
 
 # Common functions
 
+
 def convolve_by_sparse_weights(data: np.ndarray, w: sparse.csr_matrix) -> np.ndarray:
     """Use the wights learned from knn to convolve any data matrix
 
     NOTE: A improved implementation could detect wich one is sparse and wich kind of sparse and perform faster computation
     """
     w_ = w.T
-    assert np.allclose(w_.sum(0), 1), "weight matrix need to sum to one over the columns"
+    assert np.allclose(
+        w_.sum(0), 1
+    ), "weight matrix need to sum to one over the columns"
     return sparse.csr_matrix.dot(data, w_)
 
 
-def knn_smooth_weights(matrix: np.ndarray, metric: str="euclidean", k_search: int=20,
-                       k_mutual: int=10, n_jobs: int=10) -> Tuple[sparse.spmatrix, sparse.csr_matrix]:
+def knn_smooth_weights(
+    matrix: np.ndarray,
+    metric: str = "euclidean",
+    k_search: int = 20,
+    k_mutual: int = 10,
+    n_jobs: int = 10,
+) -> Tuple[sparse.spmatrix, sparse.csr_matrix]:
     """Find the weights to smooth the dataset using efficient sparse matrix operations
 
     Arguments:
@@ -456,7 +563,9 @@ def knn_smooth_weights(matrix: np.ndarray, metric: str="euclidean", k_search: in
         weights (, knn)
     """
     assert k_search >= k_mutual, "k_search needs to be bigger than k_mutual"
-    knn = knn_distance_matrix(matrix.T, metric=metric, k=k_search, mode="distance", n_jobs=n_jobs)
+    knn = knn_distance_matrix(
+        matrix.T, metric=metric, k=k_search, mode="distance", n_jobs=n_jobs
+    )
     mknn = make_mutual(knn)
     top_mknn = take_top(mknn, k_mutual)
     top_mknn.setdiag(1)

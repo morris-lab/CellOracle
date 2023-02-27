@@ -14,17 +14,21 @@ from tqdm.auto import tqdm
 
 import celloracle as co
 from celloracle.applications import Pseudotime_calculator
+
 print("co version: ", co.__version__)
 
-plt.rcParams['figure.figsize'] = [5, 5]
+plt.rcParams["figure.figsize"] = [5, 5]
 plt.rcParams["savefig.dpi"] = 300
+
 
 def main():
     test_tutorial_pseudotime()
-    
+
+
 def test_tutorial_pseudotime():
     # Start analysis
     import time
+
     start = time.time()
 
     # 1.0 Load data
@@ -34,9 +38,9 @@ def test_tutorial_pseudotime():
     pt = Pseudotime_calculator(oracle_object=oracle)
     # Option2. Load anndata and make pt from anndata
     adata = co.data.load_Paul2015_data()
-    pt = Pseudotime_calculator(adata=adata,
-                               obsm_key="X_draw_graph_fa",
-                               cluster_column_name="louvain_annot")
+    pt = Pseudotime_calculator(
+        adata=adata, obsm_key="X_draw_graph_fa", cluster_column_name="louvain_annot"
+    )
 
     # 2. Pseudotime calculation
     print("\n2. Pseudotime calculation")
@@ -45,13 +49,39 @@ def test_tutorial_pseudotime():
     # Check data
     pt.plot_cluster(fontsize=8)
     # Here, clusters can be classified into either MEP lineage or GMP lineage
-    clusters_in_ME_lineage = ['Ery_0', 'Ery_1', 'Ery_2', 'Ery_3', 'Ery_4', 'Ery_5',
-                              'Ery_6', 'Ery_7', 'Ery_8', 'Ery_9', 'MEP_0', 'Mk_0']
-    clusters_in_GM_lineage = ['GMP_0', 'GMP_1', 'GMP_2', 'GMPl_0', 'GMPl_1', 'Gran_0',
-                              'Gran_1', 'Gran_2', 'Gran_3', 'Mo_0', 'Mo_1', 'Mo_2']
+    clusters_in_ME_lineage = [
+        "Ery_0",
+        "Ery_1",
+        "Ery_2",
+        "Ery_3",
+        "Ery_4",
+        "Ery_5",
+        "Ery_6",
+        "Ery_7",
+        "Ery_8",
+        "Ery_9",
+        "MEP_0",
+        "Mk_0",
+    ]
+    clusters_in_GM_lineage = [
+        "GMP_0",
+        "GMP_1",
+        "GMP_2",
+        "GMPl_0",
+        "GMPl_1",
+        "Gran_0",
+        "Gran_1",
+        "Gran_2",
+        "Gran_3",
+        "Mo_0",
+        "Mo_1",
+        "Mo_2",
+    ]
     # Make a dictionary
-    lineage_dictionary = {"Lineage_ME": clusters_in_ME_lineage,
-               "Lineage_GM": clusters_in_GM_lineage}
+    lineage_dictionary = {
+        "Lineage_ME": clusters_in_ME_lineage,
+        "Lineage_GM": clusters_in_GM_lineage,
+    }
     # Input lineage information into pseudotime object
     pt.set_lineage(lineage_dictionary=lineage_dictionary)
     # Visualize lineage information

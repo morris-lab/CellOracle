@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-
 import io
 import logging
 import os
@@ -16,7 +15,8 @@ import pandas as pd
 import numpy as np
 from tqdm.auto import tqdm
 import matplotlib.pyplot as plt
-#import h5py
+
+# import h5py
 from sklearn.neighbors import KNeighborsRegressor
 
 
@@ -27,33 +27,41 @@ from .scatter_to_grid import scatter_value_to_grid_value
 from ..utility.hdf5_processing import dump_hdf5, load_hdf5
 
 from ..visualizations.config import CONFIG
-from ..visualizations.development_module_visualization import (\
-                            plot_cluster_whole,
-                            plot_cluster_cells_use,
-                            plot_background,
-                            plot_pseudotime,
-                            plot_reference_flow_on_grid,
-                            plot_pseudotime_on_grid)
+from ..visualizations.development_module_visualization import (
+    plot_cluster_whole,
+    plot_cluster_cells_use,
+    plot_background,
+    plot_pseudotime,
+    plot_reference_flow_on_grid,
+    plot_pseudotime_on_grid,
+)
+
 
 def load_gradient(file_path):
-
     """
     Load gradient object saved as hdf5 file.
 
     Args:
         file_path (str): File path to the hdf5 file.
     """
-    obj = load_hdf5(filename=file_path, obj_class=Gradient_calculator, ignore_attrs_if_err=[])
-
+    obj = load_hdf5(
+        filename=file_path, obj_class=Gradient_calculator, ignore_attrs_if_err=[]
+    )
 
     return obj
 
 
-
-
-
-class Gradient_calculator():
-    def __init__(self, oracle_object=None, adata=None, obsm_key=None, pseudotime_key="Pseudotime", cell_idx_use=None, name=None, gt=None):
+class Gradient_calculator:
+    def __init__(
+        self,
+        oracle_object=None,
+        adata=None,
+        obsm_key=None,
+        pseudotime_key="Pseudotime",
+        cell_idx_use=None,
+        name=None,
+        gt=None,
+    ):
         """
         Estimate the direction of differentiation by calculation gradient of pseudotime on the embedding space.
         Please look at web tutorial for example scripts.
@@ -74,16 +82,21 @@ class Gradient_calculator():
         self.n_grid = None
 
         if oracle_object is not None:
-            self.load_oracle_object(oracle_object=oracle_object,
-                                    cell_idx_use=cell_idx_use,
-                                    name=name,
-                                    pseudotime_key=pseudotime_key)
+            self.load_oracle_object(
+                oracle_object=oracle_object,
+                cell_idx_use=cell_idx_use,
+                name=name,
+                pseudotime_key=pseudotime_key,
+            )
 
         elif adata is not None:
-            self.load_adata(adata=adata, obsm_key=obsm_key,
-                            pseudotime_key=pseudotime_key,
-                            cell_idx_use=cell_idx_use,
-                            name=name)
+            self.load_adata(
+                adata=adata,
+                obsm_key=obsm_key,
+                pseudotime_key=pseudotime_key,
+                cell_idx_use=cell_idx_use,
+                name=name,
+            )
 
         elif gt is not None:
             self.embedding = gt.embedding.copy()
@@ -95,7 +108,6 @@ class Gradient_calculator():
             self.min_mass = gt.min_mass
             self.smooth = gt.smooth
             self.n_grid = gt.n_grid
-
 
     def copy(self):
         """
@@ -116,12 +128,18 @@ class Gradient_calculator():
             raise ValueError("Filename needs to end with '.celloracle.gradient'")
 
         compression_opts = 5
-        dump_hdf5(obj=self, filename=file_path,
-                  data_compression=compression_opts,  chunks=(2048, 2048),
-                  noarray_compression=compression_opts, pickle_protocol=4)
+        dump_hdf5(
+            obj=self,
+            filename=file_path,
+            data_compression=compression_opts,
+            chunks=(2048, 2048),
+            noarray_compression=compression_opts,
+            pickle_protocol=4,
+        )
 
-    def load_adata(self, adata, obsm_key, cell_idx_use=None, name=None, pseudotime_key="Pseudotime"):
-
+    def load_adata(
+        self, adata, obsm_key, cell_idx_use=None, name=None, pseudotime_key="Pseudotime"
+    ):
         self.name = name
         self.embedding = adata.obsm[obsm_key].copy()
         self.pseudotime = adata.obs[pseudotime_key].values.copy()
@@ -129,32 +147,52 @@ class Gradient_calculator():
         if cell_idx_use is not None:
             self.cell_idx_use = np.array(cell_idx_use)
 
-    def load_oracle_object(self, oracle_object, cell_idx_use=None, name=None, pseudotime_key="Pseudotime"):
-        self.load_adata(adata=oracle_object.adata,
-                        obsm_key=oracle_object.embedding_name,
-                        cell_idx_use=cell_idx_use,
-                        name=name,
-                        pseudotime_key=pseudotime_key)
+    def load_oracle_object(
+        self, oracle_object, cell_idx_use=None, name=None, pseudotime_key="Pseudotime"
+    ):
+        self.load_adata(
+            adata=oracle_object.adata,
+            obsm_key=oracle_object.embedding_name,
+            cell_idx_use=cell_idx_use,
+            name=name,
+            pseudotime_key=pseudotime_key,
+        )
 
     def calculate_p_mass(self, smooth=0.8, n_grid=40, n_neighbors=200, n_jobs=-1):
-
         x_min, y_min = self.embedding.min(axis=0)
         x_max, y_max = self.embedding.max(axis=0)
         xylim = ((x_min, x_max), (y_min, y_max))
         steps = (n_grid, n_grid)
 
         if self.cell_idx_use is None:
-
-            total_p_mass, gridpoints_coordinates = calculate_p_mass(self.embedding, smooth=smooth, steps=steps,
-                                  n_neighbors=n_neighbors, n_jobs=n_jobs, xylim=xylim)
+            total_p_mass, gridpoints_coordinates = calculate_p_mass(
+                self.embedding,
+                smooth=smooth,
+                steps=steps,
+                n_neighbors=n_neighbors,
+                n_jobs=n_jobs,
+                xylim=xylim,
+            )
             total_p_mass_whole = total_p_mass.copy()
 
         else:
-            total_p_mass, gridpoints_coordinates = calculate_p_mass(self.embedding[self.cell_idx_use, :], smooth=smooth, steps=steps,
-                                  n_neighbors=n_neighbors, n_jobs=n_jobs, xylim=xylim)
+            total_p_mass, gridpoints_coordinates = calculate_p_mass(
+                self.embedding[self.cell_idx_use, :],
+                smooth=smooth,
+                steps=steps,
+                n_neighbors=n_neighbors,
+                n_jobs=n_jobs,
+                xylim=xylim,
+            )
 
-            total_p_mass_whole, _ = calculate_p_mass(self.embedding, smooth=smooth, steps=steps,
-                                  n_neighbors=n_neighbors, n_jobs=n_jobs, xylim=xylim)
+            total_p_mass_whole, _ = calculate_p_mass(
+                self.embedding,
+                smooth=smooth,
+                steps=steps,
+                n_neighbors=n_neighbors,
+                n_jobs=n_jobs,
+                xylim=xylim,
+            )
 
         self.n_neighbors = n_neighbors
         self.smooth = smooth
@@ -164,23 +202,20 @@ class Gradient_calculator():
         self.total_p_mass_whole = total_p_mass_whole
         self.gridpoints_coordinates = gridpoints_coordinates
 
-
     def suggest_mass_thresholds(self, n_suggestion=12, s=1, n_col=4):
-
         min_ = self.total_p_mass.min()
         max_ = self.total_p_mass.max()
-        suggestions = np.linspace(min_, max_/2, n_suggestion)
+        suggestions = np.linspace(min_, max_ / 2, n_suggestion)
 
         n_rows = math.ceil(n_suggestion / n_col)
 
-        fig, ax = plt.subplots(n_rows, n_col, figsize=[5*n_col, 5*n_rows])
+        fig, ax = plt.subplots(n_rows, n_col, figsize=[5 * n_col, 5 * n_rows])
         if n_rows == 1:
             ax = ax.reshape(1, -1)
 
         row = 0
         col = 0
         for i in range(n_suggestion):
-
             ax_ = ax[row, col]
 
             col += 1
@@ -190,37 +225,39 @@ class Gradient_calculator():
 
             idx = self.total_p_mass > suggestions[i]
 
-                #ax_.scatter(gridpoints_coordinates[mass_filter, 0], gridpoints_coordinates[mass_filter, 1], s=0)
+            # ax_.scatter(gridpoints_coordinates[mass_filter, 0], gridpoints_coordinates[mass_filter, 1], s=0)
             ax_.scatter(self.embedding[:, 0], self.embedding[:, 1], c="lightgray", s=s)
-            ax_.scatter(self.gridpoints_coordinates[idx, 0],
-                       self.gridpoints_coordinates[idx, 1],
-                       c="black", s=s)
+            ax_.scatter(
+                self.gridpoints_coordinates[idx, 0],
+                self.gridpoints_coordinates[idx, 1],
+                c="black",
+                s=s,
+            )
             ax_.set_title(f"min_mass: {suggestions[i]: .2g}")
             ax_.axis("off")
 
-
     def calculate_mass_filter(self, min_mass=0.01, plot=False):
-
         self.min_mass = min_mass
-        self.mass_filter = (self.total_p_mass < min_mass)
-        self.mass_filter_whole = (self.total_p_mass_whole < min_mass)
+        self.mass_filter = self.total_p_mass < min_mass
+        self.mass_filter_whole = self.total_p_mass_whole < min_mass
 
         if plot:
-            fig, ax = plt.subplots(figsize=[5,5])
+            fig, ax = plt.subplots(figsize=[5, 5])
 
-            #ax_.scatter(gridpoints_coordinates[mass_filter, 0], gridpoints_coordinates[mass_filter, 1], s=0)
+            # ax_.scatter(gridpoints_coordinates[mass_filter, 0], gridpoints_coordinates[mass_filter, 1], s=0)
             ax.scatter(self.embedding[:, 0], self.embedding[:, 1], c="lightgray", s=10)
-            ax.scatter(self.gridpoints_coordinates[~self.mass_filter, 0],
-                       self.gridpoints_coordinates[~self.mass_filter, 1],
-                       c="black", s=0.5)
+            ax.scatter(
+                self.gridpoints_coordinates[~self.mass_filter, 0],
+                self.gridpoints_coordinates[~self.mass_filter, 1],
+                c="black",
+                s=0.5,
+            )
             ax.set_title("Grid points selected")
             ax.axis("off")
 
     def transfer_data_into_grid(self, args={}, plot=False):
-
         if not args:
-            args = {"method": "knn",
-                    "n_knn": 30}
+            args = {"method": "knn", "n_knn": 30}
 
         # Prepare input data_new
         if self.cell_idx_use is None:
@@ -235,17 +272,19 @@ class Gradient_calculator():
         # Remove inf
         if np.inf in value:
             # Clip inf
-            warnings.warn("Inf value found in the pseudotime data. The inf value is replaced with non-inf max value.", UserWarning)
+            warnings.warn(
+                "Inf value found in the pseudotime data. The inf value is replaced with non-inf max value.",
+                UserWarning,
+            )
             _clip_inf_value(data=value)
 
         # Data calculation for each grid point
-        self.pseudotime_on_grid = scatter_value_to_grid_value(embedding=embedding,
-                                                              grid=grid,
-                                                              value=value,
-                                                              **args)
+        self.pseudotime_on_grid = scatter_value_to_grid_value(
+            embedding=embedding, grid=grid, value=value, **args
+        )
 
         if plot:
-            fig, ax = plt.subplots(1, 2, figsize=[10,5])
+            fig, ax = plt.subplots(1, 2, figsize=[10, 5])
 
             s = 10
             s_grid = 20
@@ -255,17 +294,14 @@ class Gradient_calculator():
             plot_pseudotime(self, ax=ax_, s=s, show_background=show_background)
             ax_.set_title("Pseudotime")
 
-
             ####
             ax_ = ax[1]
-            plot_pseudotime_on_grid(self, ax=ax_, s=s_grid, show_background=show_background)
+            plot_pseudotime_on_grid(
+                self, ax=ax_, s=s_grid, show_background=show_background
+            )
             ax_.set_title("Pseudotime on grid")
 
-
-
-
     def calculate_gradient(self, scale_factor="l2_norm_mean", normalization="sqrt"):
-
         # Gradient calculation
         gradient = get_gradient(value_on_grid=self.pseudotime_on_grid.copy())
 
@@ -279,17 +315,32 @@ class Gradient_calculator():
 
         self.ref_flow = gradient * scale_factor
 
+    def plot_dev_flow_on_grid(
+        self,
+        ax=None,
+        scale=CONFIG["scale_dev"],
+        show_background=True,
+        s=CONFIG["s_scatter"],
+        args={},
+    ):
+        plot_reference_flow_on_grid(
+            self, ax=ax, scale=scale, show_background=show_background, s=s, args=args
+        )
 
-    def plot_dev_flow_on_grid(self, ax=None, scale=CONFIG["scale_dev"], show_background=True, s=CONFIG["s_scatter"], args={}):
-        plot_reference_flow_on_grid(self, ax=ax, scale=scale, show_background=show_background, s=s, args=args)
-
-    def plot_reference_flow_on_grid(self, ax=None, scale=CONFIG["scale_dev"], show_background=True, s=CONFIG["s_scatter"], args={}):
-        plot_reference_flow_on_grid(self, ax=ax, scale=scale, show_background=show_background, s=s, args=args)
+    def plot_reference_flow_on_grid(
+        self,
+        ax=None,
+        scale=CONFIG["scale_dev"],
+        show_background=True,
+        s=CONFIG["s_scatter"],
+        args={},
+    ):
+        plot_reference_flow_on_grid(
+            self, ax=ax, scale=scale, show_background=show_background, s=s, args=args
+        )
 
     def visualize_results(self, scale=30, s=1, s_grid=30, show_background=True):
-
-
-        fig, ax = plt.subplots(1, 5, figsize=[25,5])
+        fig, ax = plt.subplots(1, 5, figsize=[25, 5])
 
         ##
         ax_ = ax[0]
@@ -304,43 +355,59 @@ class Gradient_calculator():
         ###
         ax_ = ax[2]
         plot_pseudotime_on_grid(self, ax=ax_, s=s_grid, show_background=show_background)
-        plot_reference_flow_on_grid(self, ax=ax_, scale=scale, show_background=False, s=s)
+        plot_reference_flow_on_grid(
+            self, ax=ax_, scale=scale, show_background=False, s=s
+        )
         ax_.set_title("Gradient of pseudotime \n(Development flow)")
 
         ###
         ax_ = ax[3]
-        plot_reference_flow_on_grid(self, ax=ax_, scale=scale, show_background=show_background, s=s)
+        plot_reference_flow_on_grid(
+            self, ax=ax_, scale=scale, show_background=show_background, s=s
+        )
         ax_.set_title("Gradient of pseudotime \n(=Development flow)")
 
         ####
         ax_ = ax[4]
         plot_pseudotime(self, ax=ax_, s=s, show_background=show_background)
-        plot_reference_flow_on_grid(self, ax=ax_, scale=scale, show_background=False, s=s)
+        plot_reference_flow_on_grid(
+            self, ax=ax_, scale=scale, show_background=False, s=s
+        )
         ax_.set_title("Pseudotime + \nDevelopment flow")
 
+    def plot_pseudotime(
+        self,
+        ax=None,
+        s=CONFIG["s_scatter"],
+        show_background=True,
+        args=CONFIG["default_args"],
+        cmap="rainbow",
+    ):
+        plot_pseudotime(
+            self, ax=None, s=s, show_background=show_background, cmap=cmap, args=args
+        )
 
-
-
-    def plot_pseudotime(self, ax=None, s=CONFIG["s_scatter"],show_background=True, args=CONFIG["default_args"], cmap="rainbow"):
-        plot_pseudotime(self, ax=None, s=s, show_background=show_background, cmap=cmap, args=args)
 
 def aggregate_Gradient_objects(gradient_object_list, base_gt=None, fill_na=True):
-
     # Aggregate pseudotime
     pseudotime_stack = [i.pseudotime for i in gradient_object_list]
-    new_pseudotime, _ = _aggregate_array(value_stack=pseudotime_stack,
-                                         filter_stack=[np.isnan(i) for i in pseudotime_stack])
+    new_pseudotime, _ = _aggregate_array(
+        value_stack=pseudotime_stack,
+        filter_stack=[np.isnan(i) for i in pseudotime_stack],
+    )
 
     # Aggregate "pseudotime on grid" and "gradient"
     mass_filter_stack = [i.mass_filter for i in gradient_object_list]
 
     pseudotime_grid_stack = [i.pseudotime_on_grid for i in gradient_object_list]
-    new_pseudotime_grid, _ = _aggregate_array(value_stack=pseudotime_grid_stack,
-                                              filter_stack=mass_filter_stack)
+    new_pseudotime_grid, _ = _aggregate_array(
+        value_stack=pseudotime_grid_stack, filter_stack=mass_filter_stack
+    )
 
     gradient_stack = [i.ref_flow for i in gradient_object_list]
-    new_gradient, new_mass_filter  = _aggregate_array(value_stack=gradient_stack,
-                                                      filter_stack=mass_filter_stack )
+    new_gradient, new_mass_filter = _aggregate_array(
+        value_stack=gradient_stack, filter_stack=mass_filter_stack
+    )
 
     if base_gt is None:
         gt = Gradient_calculator(gt=gradient_object_list[0])
@@ -353,12 +420,14 @@ def aggregate_Gradient_objects(gradient_object_list, base_gt=None, fill_na=True)
         gt.ref_flow[~new_mass_filter, :] = new_gradient[~new_mass_filter, :]
 
     if fill_na:
-        y_with_nan= gt.pseudotime_on_grid.copy()
+        y_with_nan = gt.pseudotime_on_grid.copy()
         y_with_nan[(new_mass_filter & (~gt.mass_filter))] = np.nan
         y_with_nan = pd.Series(y_with_nan)
         # Replace na and inf with NN's value
-        y_filled =  _fill_inf_and_na(X=gt.gridpoints_coordinates[~gt.mass_filter, :],
-                            y_with_inf=y_with_nan[~gt.mass_filter])
+        y_filled = _fill_inf_and_na(
+            X=gt.gridpoints_coordinates[~gt.mass_filter, :],
+            y_with_inf=y_with_nan[~gt.mass_filter],
+        )
 
         gt.pseudotime_on_grid[~gt.mass_filter] = y_filled
 
@@ -367,24 +436,23 @@ def aggregate_Gradient_objects(gradient_object_list, base_gt=None, fill_na=True)
     return gt
 
 
-
 def _aggregate_array(value_stack, filter_stack):
-
     new_value = np.zeros_like(value_stack[0])
     counts = np.zeros_like(value_stack[0])
     for fil, val in zip(filter_stack, value_stack):
         if len(val.shape) == 1:
             new_value[~fil] += val[~fil]
-            counts[~fil] +=1
+            counts[~fil] += 1
         elif len(val.shape) == 2:
             new_value[~fil, :] += val[~fil, :]
-            counts[~fil, :] +=1
+            counts[~fil, :] += 1
 
     new_value[counts != 0] /= counts[counts != 0]
 
-    new_filter = (counts.sum(axis=-1) == 0)
+    new_filter = counts.sum(axis=-1) == 0
 
     return new_value, new_filter
+
 
 def normalize_gradient(gradient, method="sqrt"):
     """
@@ -392,7 +460,6 @@ def normalize_gradient(gradient, method="sqrt"):
     """
 
     if method == "sqrt":
-
         size = np.sqrt(np.power(gradient, 2).sum(axis=1))
         size_sq = np.sqrt(size)
         size_sq[size_sq == 0] = 1
@@ -400,12 +467,19 @@ def normalize_gradient(gradient, method="sqrt"):
 
     return gradient / factor
 
+
 from scipy.stats import norm as normal
 from sklearn.neighbors import NearestNeighbors
 
 
-def calculate_p_mass(embedding, smooth=0.5, steps=(40, 40),
-                          n_neighbors=100, n_jobs=4, xylim=((None, None), (None, None))):
+def calculate_p_mass(
+    embedding,
+    smooth=0.5,
+    steps=(40, 40),
+    n_neighbors=100,
+    n_jobs=4,
+    xylim=((None, None), (None, None)),
+):
     """Calculate the velocity using a points on a regular grid and a gaussian kernel
 
     Note: the function should work also for n-dimensional grid
@@ -465,6 +539,7 @@ def calculate_p_mass(embedding, smooth=0.5, steps=(40, 40),
 
     return total_p_mass, gridpoints_coordinates
 
+
 def get_gradient(value_on_grid):
     # Gradient calculation
     n = int(np.sqrt(value_on_grid.shape[0]))
@@ -486,9 +561,10 @@ def _fill_inf_and_na(X, y_with_inf):
     y_filled[na_cell_bool] = knn.predict(X[na_cell_bool, :])
 
     # check
-    assert(y_filled.replace(np.inf, np.nan).isna().sum() == 0)
+    assert y_filled.replace(np.inf, np.nan).isna().sum() == 0
 
     return y_filled
+
 
 def _clip_inf_value(data):
     """
@@ -497,4 +573,4 @@ def _clip_inf_value(data):
     max_without_inf = data[data != np.inf].max()
     data[data == np.inf] = max_without_inf
 
-    #print(max_without_inf)
+    # print(max_without_inf)

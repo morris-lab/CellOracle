@@ -6,7 +6,7 @@ import os
 from typing import *
 
 
-def _obj2uint(obj: object, compression: int=9, protocol: int=4) -> np.ndarray:
+def _obj2uint(obj: object, compression: int = 9, protocol: int = 4) -> np.ndarray:
     """Transform a python object in a numpy array of uint8
 
     Arguments
@@ -41,9 +41,14 @@ def _uint2obj(uint: np.ndarray) -> object:
     return pickle.loads(zlib.decompress(uint.tobytes()))
 
 
-def dump_hdf5(obj: object, filename: str,
-              data_compression: int=7, chunks: Tuple =(2048, 2048),
-              noarray_compression: int=9, pickle_protocol: int=4) -> None:
+def dump_hdf5(
+    obj: object,
+    filename: str,
+    data_compression: int = 7,
+    chunks: Tuple = (2048, 2048),
+    noarray_compression: int = 9,
+    pickle_protocol: int = 4,
+) -> None:
     """Dump all attribute of a python object to hdf5
 
     Arguments
@@ -68,34 +73,69 @@ def dump_hdf5(obj: object, filename: str,
     if os.path.isfile(filename):
         os.remove(filename)
     with h5py.File(filename, "w") as _file:
-
         for k in obj.__dict__.keys():
             attribute = getattr(obj, k)
             if type(attribute) is np.ndarray:
                 if attribute.dtype is not np.dtype(object):
                     try:
-                        chunk_size = tuple((min(chunks[i], attribute.shape[i]) for i in range(len(attribute.shape))))
-                        _file.create_dataset(k, data=attribute, chunks=chunk_size,
-                                             compression="gzip", compression_opts=data_compression,
-                                             fletcher32=False, shuffle=False)
+                        chunk_size = tuple(
+                            (
+                                min(chunks[i], attribute.shape[i])
+                                for i in range(len(attribute.shape))
+                            )
+                        )
+                        _file.create_dataset(
+                            k,
+                            data=attribute,
+                            chunks=chunk_size,
+                            compression="gzip",
+                            compression_opts=data_compression,
+                            fletcher32=False,
+                            shuffle=False,
+                        )
                     except:
-                        serialized = _obj2uint(attribute, compression=noarray_compression, protocol=pickle_protocol)
-                        _file.create_dataset(f"&{k}", data=serialized,
-                                             chunks=tuple((min(1024, len(serialized)),)),
-                                             compression="gzip", compression_opts=data_compression,
-                                             fletcher32=False, shuffle=False)
+                        serialized = _obj2uint(
+                            attribute,
+                            compression=noarray_compression,
+                            protocol=pickle_protocol,
+                        )
+                        _file.create_dataset(
+                            f"&{k}",
+                            data=serialized,
+                            chunks=tuple((min(1024, len(serialized)),)),
+                            compression="gzip",
+                            compression_opts=data_compression,
+                            fletcher32=False,
+                            shuffle=False,
+                        )
                 else:
-                    serialized = _obj2uint(attribute, compression=noarray_compression, protocol=pickle_protocol)
-                    _file.create_dataset(f"&{k}", data=serialized,
-                                         chunks=tuple((min(1024, len(serialized)),)),
-                                         compression="gzip", compression_opts=data_compression,
-                                         fletcher32=False, shuffle=False)
+                    serialized = _obj2uint(
+                        attribute,
+                        compression=noarray_compression,
+                        protocol=pickle_protocol,
+                    )
+                    _file.create_dataset(
+                        f"&{k}",
+                        data=serialized,
+                        chunks=tuple((min(1024, len(serialized)),)),
+                        compression="gzip",
+                        compression_opts=data_compression,
+                        fletcher32=False,
+                        shuffle=False,
+                    )
             else:
-                serialized = _obj2uint(attribute, compression=noarray_compression, protocol=pickle_protocol)
-                _file.create_dataset(f"&{k}", data=serialized,
-                                     chunks=tuple((min(1024, len(serialized)),)),
-                                     compression="gzip", compression_opts=data_compression,
-                                     fletcher32=False, shuffle=False)
+                serialized = _obj2uint(
+                    attribute, compression=noarray_compression, protocol=pickle_protocol
+                )
+                _file.create_dataset(
+                    f"&{k}",
+                    data=serialized,
+                    chunks=tuple((min(1024, len(serialized)),)),
+                    compression="gzip",
+                    compression_opts=data_compression,
+                    fletcher32=False,
+                    shuffle=False,
+                )
 
 
 def load_hdf5(filename, obj_class, ignore_attrs_if_err=[]):
@@ -121,7 +161,7 @@ def load_hdf5(filename, obj_class, ignore_attrs_if_err=[]):
     obj = obj_class.__new__(obj_class)
     _file = h5py.File(filename, "r")
 
-    ignore_attrs_if_err = ["&"+ k for k in ignore_attrs_if_err]
+    ignore_attrs_if_err = ["&" + k for k in ignore_attrs_if_err]
 
     for k in _file.keys():
         if k in ignore_attrs_if_err:

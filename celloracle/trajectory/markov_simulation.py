@@ -1,9 +1,8 @@
-
 import numpy as np
 
 from tqdm.auto import tqdm
 
-#from network_fitting import TransNet as tn
+# from network_fitting import TransNet as tn
 from numba import jit, f8, i8, void
 
 
@@ -12,7 +11,7 @@ from numba import jit, f8, i8, void
 #############################################
 
 
-#@jit(i8[:,:](i8[:], f8[:,:], i8))
+# @jit(i8[:,:](i8[:], f8[:,:], i8))
 def _walk(start_cell_id_array, transition_prob, n_steps):
     """
     Do markov simulation based on given transition probability.
@@ -43,17 +42,20 @@ def _walk(start_cell_id_array, transition_prob, n_steps):
         # calculate next position for all cells
         li_ = []
         for j in ids_now:
-            choiced = ids_unique[np.searchsorted(np.cumsum(transition_prob[j,:]), np.random.random(), side="right")]
-            #choiced = np.random.choice(a=ids_unique, replace=True, p=transition_prob[j,:])
+            choiced = ids_unique[
+                np.searchsorted(
+                    np.cumsum(transition_prob[j, :]), np.random.random(), side="right"
+                )
+            ]
+            # choiced = np.random.choice(a=ids_unique, replace=True, p=transition_prob[j,:])
             li_.append(choiced)
         # update current position
         ids_now = np.array(li_)
         li.append(list(ids_now))
 
-    #li = tuple(li)
+    # li = tuple(li)
     trajectory_matrix = np.array(li).transpose()
     return trajectory_matrix
-
 
 
 @jit(nopython=True)

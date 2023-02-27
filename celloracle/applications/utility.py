@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-
 import io
 import logging
 import os
@@ -11,6 +10,7 @@ import pandas as pd
 import numpy as np
 
 import h5py
+
 
 class Data_strage:
     """
@@ -26,7 +26,6 @@ class Data_strage:
         self._exemptions_when_del_attrs = []
 
     def _set_hdf_path(self, path, key, create_if_not_exist=True):
-
         if not path.endswith(".hdf5"):
             raise ValueError("path should ends with '.hdf5'")
 
@@ -34,15 +33,14 @@ class Data_strage:
         self._key = key
         self._names = []
 
-
         try:
-            with h5py.File(self._path, mode='r') as f:
+            with h5py.File(self._path, mode="r") as f:
                 f.visit(self._names.append)
 
         except:
             if create_if_not_exist:
                 print("No hdf file found in the path. New hdf5 file was created.")
-                with h5py.File(self._path, mode='w') as f:
+                with h5py.File(self._path, mode="w") as f:
                     pass
 
     def _save_attrs(self, place, attributes):
@@ -52,7 +50,7 @@ class Data_strage:
             attributes (list of str): attributes to save.
         """
 
-        with h5py.File(self._path, mode='r+') as f:
+        with h5py.File(self._path, mode="r+") as f:
             for i, j in enumerate(attributes):
                 name_ = f"{place}/{j}"
                 if name_ in self._names:
@@ -62,18 +60,18 @@ class Data_strage:
                     f[name_] = att
                 except:
                     print(j)
-                    f[name_] = att.astype(h5py.string_dtype(encoding='utf-8'))
+                    f[name_] = att.astype(h5py.string_dtype(encoding="utf-8"))
                 self._names.append(name_)
         self._names = list(set(self._names))
 
     def _load_attrs(self, place, attributes):
-        with h5py.File(self._path, mode='r') as f:
+        with h5py.File(self._path, mode="r") as f:
             for i, j in enumerate(attributes):
                 val = f[f"{place}/{j}"][...]
                 setattr(self, j, val)
 
     def _save_attrs_list(self, place, attributes):
-        with h5py.File(self._path, mode='r+') as f:
+        with h5py.File(self._path, mode="r+") as f:
             for i, j in enumerate(attributes):
                 name_ = f"{place}/{j}"
                 if name_ in self._names:
@@ -82,7 +80,7 @@ class Data_strage:
                 if len(att) == 0:
                     f[name_] = np.array(att)
                 elif isinstance(att[0], str):
-                    f[name_] = np.array(att).astype(h5py.string_dtype(encoding='utf-8'))
+                    f[name_] = np.array(att).astype(h5py.string_dtype(encoding="utf-8"))
                     self._names.append(name_)
                 elif type(att[0]) in [int, float]:
                     f[name_] = np.array(att)
@@ -90,7 +88,7 @@ class Data_strage:
         self._names = list(set(self._names))
 
     def _load_attrs_list(self, place, attributes):
-        with h5py.File(self._path, mode='r') as f:
+        with h5py.File(self._path, mode="r") as f:
             for i, j in enumerate(attributes):
                 val = f[f"{place}/{j}"][...]
                 if len(val) > 0:
@@ -102,14 +100,16 @@ class Data_strage:
                     setattr(self, j, [])
 
     def _save_attrs_misc(self, place, attributes):
-        with h5py.File(self._path, mode='r+') as f:
+        with h5py.File(self._path, mode="r+") as f:
             for i, j in enumerate(attributes):
                 name_ = f"{place}/{j}"
                 if name_ in self._names:
                     del f[name_]
                 att = getattr(self, j)
                 if isinstance(att, str):
-                    f[name_] = np.array([att]).astype(h5py.string_dtype(encoding='utf-8'))
+                    f[name_] = np.array([att]).astype(
+                        h5py.string_dtype(encoding="utf-8")
+                    )
                     self._names.append(name_)
                 elif type(att) in [int, float]:
                     f[name_] = np.array([att])
@@ -117,7 +117,7 @@ class Data_strage:
         self._names = list(set(self._names))
 
     def _load_attrs_misc(self, place, attributes):
-        with h5py.File(self._path, mode='r') as f:
+        with h5py.File(self._path, mode="r") as f:
             for i, j in enumerate(attributes):
                 val = f[f"{place}/{j}"][...]
                 setattr(self, j, val[0])
@@ -145,7 +145,6 @@ class Data_strage:
             setattr(self, j, att)
 
     def _load_attrs_None(self, place, attributes):
-
         for i, j in enumerate(attributes):
             setattr(self, j, None)
 
@@ -159,7 +158,6 @@ class Data_strage:
         """
         if place is None:
             place = self._key
-
 
         attrs_df = []
         attrs_np = []
@@ -187,10 +185,13 @@ class Data_strage:
         self.attrs_None = attrs_None
 
         self._save_attrs_df(place, attrs_df)
-        self._save_attrs_list(place, attrs_list + ["attrs_df", "attrs_np", "attrs_list", "attrs_misc", "attrs_None"])
+        self._save_attrs_list(
+            place,
+            attrs_list
+            + ["attrs_df", "attrs_np", "attrs_list", "attrs_misc", "attrs_None"],
+        )
         self._save_attrs_misc(place, attrs_misc)
         self._save_attrs(place, attrs_np)
-
 
     def _load_hdf5(self, place=None, specify_attributes=None):
         """
@@ -208,8 +209,9 @@ class Data_strage:
         if place is None:
             place = self._key
 
-
-        self._load_attrs_list(place, ["attrs_df", "attrs_np", "attrs_list", "attrs_misc", "attrs_None"])
+        self._load_attrs_list(
+            place, ["attrs_df", "attrs_np", "attrs_list", "attrs_misc", "attrs_None"]
+        )
 
         if specify_attributes is not None:
             attrs_np = [i for i in self.attrs_np if i in specify_attributes]

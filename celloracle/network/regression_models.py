@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This is a series of custom functions for the inferring of GRN from single cell RNA-seq data.
 
 Codes were written by Kenji Kamimoto.
 
 
-'''
+"""
 
 ###########################
 ### 0. Import libraries ###
@@ -28,13 +28,14 @@ from ..utility import intersect
 ### bayesian_ridge function ###
 ###############################
 
-def get_bayesian_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=None,
-                             scaling=True):
 
-    #print(target_gene)
+def get_bayesian_ridge_coefs(
+    target_gene, gem, gem_scaled, TFdict, cellstate=None, scaling=True
+):
+    # print(target_gene)
     ## 1. Data prep
     if target_gene not in TFdict.keys():
-        #print("err")
+        # print("err")
         return 0, 0, 0
 
     # define regGenes
@@ -47,14 +48,13 @@ def get_bayesian_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=Non
 
     reg_all = reggenes.copy()
 
-    if not reggenes: # if reqgene is empty, return 0
+    if not reggenes:  # if reqgene is empty, return 0
         return 0, 0, 0
 
     # add cell state data
     if not cellstate is None:
         cellstate_name = list(cellstate.columns)
         reg_all += cellstate_name
-
 
     # prepare learning data
     if scaling:
@@ -75,16 +75,28 @@ def get_bayesian_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=Non
 
     return coef_mean, coef_variance, coef_names
 
+
 ##############################
 ### bagging_ridge function ###
 ##############################
 
-def get_bagging_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=None,
-                 bagging_number=1000, scaling=True, n_jobs=-1, alpha=1, solver="auto"):
-    #print(target_gene)
+
+def get_bagging_ridge_coefs(
+    target_gene,
+    gem,
+    gem_scaled,
+    TFdict,
+    cellstate=None,
+    bagging_number=1000,
+    scaling=True,
+    n_jobs=-1,
+    alpha=1,
+    solver="auto",
+):
+    # print(target_gene)
     ## 1. Data prep
     if target_gene not in TFdict.keys():
-        #print("err")
+        # print("err")
         return 0
 
     # define regGenes
@@ -97,14 +109,13 @@ def get_bagging_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=None
 
     reg_all = reggenes.copy()
 
-    if not reggenes: # if reqgene is empty, return 0
+    if not reggenes:  # if reqgene is empty, return 0
         return 0
 
     # add cell state data
     if not cellstate is None:
         cellstate_name = list(cellstate.columns)
         reg_all += cellstate_name
-
 
     # prepare learning data
     if scaling:
@@ -113,17 +124,17 @@ def get_bagging_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=None
         data = gem[reg_all]
     label = gem[target_gene]
 
-    #print(n_jobs)
+    # print(n_jobs)
     # bagging model
-    model = BaggingRegressor(base_estimator=Ridge(alpha=alpha,
-                                                  solver=solver,
-                                                  random_state=123),
-                             n_estimators=bagging_number,
-                             bootstrap=True,
-                             max_features=0.8,
-                             n_jobs=n_jobs,
-                             verbose=False,
-                             random_state=123)
+    model = BaggingRegressor(
+        base_estimator=Ridge(alpha=alpha, solver=solver, random_state=123),
+        n_estimators=bagging_number,
+        bootstrap=True,
+        max_features=0.8,
+        n_jobs=n_jobs,
+        verbose=False,
+        random_state=123,
+    )
     model.fit(data, label)
 
     # get results
@@ -141,10 +152,13 @@ def _get_coef_matrix(ensemble_model, feature_names):
     # feature_names: list or numpy array of feature names. e.g. feature_names=X_train.columns
     feature_names = np.array(feature_names)
     n_estimater = len(ensemble_model.estimators_features_)
-    coef_list = \
-        [pd.Series(ensemble_model.estimators_[i].coef_,
-                   index=feature_names[ensemble_model.estimators_features_[i]])\
-         for i in range(n_estimater)]
+    coef_list = [
+        pd.Series(
+            ensemble_model.estimators_[i].coef_,
+            index=feature_names[ensemble_model.estimators_features_[i]],
+        )
+        for i in range(n_estimater)
+    ]
 
     coef_df = pd.concat(coef_list, axis=1, sort=False).transpose()
 

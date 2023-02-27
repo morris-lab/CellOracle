@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This file contains custom functions for the analysis of ATAC-seq data.
 Genomic activity information (peak of ATAC-seq) will be extracted first.
 Then the peak DNA sequence will be subjected to TF motif scan.
@@ -8,7 +8,7 @@ Finally we will get list of TFs that potentially binds to a specific gene.
 Codes were written by Kenji Kamimoto.
 
 
-'''
+"""
 
 ###########################
 ### 0. Import libraries ###
@@ -19,8 +19,9 @@ Codes were written by Kenji Kamimoto.
 
 import pandas as pd
 import numpy as np
-#import matplotlib.pyplot as plt
-#import seaborn as sns
+
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 
 import sys
 import os
@@ -38,8 +39,8 @@ from ..motif_analysis import __path__ as parent_path
 from .process_bed_file import list_peakstr_to_df
 from .reference_genomes import SUPPORTED_REF_GENOME
 
-def _load_tss_ref_data(ref_genome):
 
+def _load_tss_ref_data(ref_genome):
     """
     Args:
         ref_genome (str): Reference genome name.
@@ -47,8 +48,6 @@ def _load_tss_ref_data(ref_genome):
     """
     path = os.path.join(parent_path[0], "tss_ref_data", f"{ref_genome}_tss_info.bed")
     return BedTool(fn=path)
-
-
 
 
 def get_tss_info(peak_str_list, ref_genome, verbose=True, custom_tss_file_path=None):
@@ -65,7 +64,9 @@ def get_tss_info(peak_str_list, ref_genome, verbose=True, custom_tss_file_path=N
         ref = BedTool(fn=custom_tss_file_path)
     else:
         if ref_genome not in SUPPORTED_REF_GENOME.ref_genome.values:
-            raise ValueError(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page.")
+            raise ValueError(
+                f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page."
+            )
 
         ref = _load_tss_ref_data(ref_genome=ref_genome)
 
@@ -75,6 +76,7 @@ def get_tss_info(peak_str_list, ref_genome, verbose=True, custom_tss_file_path=N
     annotated = annotate_tss(tss_ref_bed=ref, queue_bed=queue, verbose=verbose)
 
     return annotated
+
 
 def annotate_tss(tss_ref_bed, queue_bed, verbose=True):
     """
@@ -95,7 +97,10 @@ def annotate_tss(tss_ref_bed, queue_bed, verbose=True):
     """
 
     # check data structure
-    if (tss_ref_bed.to_dataframe().columns != ["chrom", "start", "end", "name", "score", "strand"]).all():
+    if (
+        tss_ref_bed.to_dataframe().columns
+        != ["chrom", "start", "end", "name", "score", "strand"]
+    ).all():
         raise ValueError("tss annotation error")
 
     if (queue_bed.to_dataframe().columns != ["chrom", "start", "end"]).all():
@@ -106,11 +111,16 @@ def annotate_tss(tss_ref_bed, queue_bed, verbose=True):
     intersected = intersected.to_dataframe()
 
     # change name
-    intersected = intersected.rename(columns={"start": "start_intersected",
-                                          "end": "end_intersected",
-                                          "name": "gene_short_name"})
-    intersected = intersected.rename(columns={"thickStart": "chr", "thickEnd": "start",
-                                          "itemRgb": "end"})
+    intersected = intersected.rename(
+        columns={
+            "start": "start_intersected",
+            "end": "end_intersected",
+            "name": "gene_short_name",
+        }
+    )
+    intersected = intersected.rename(
+        columns={"thickStart": "chr", "thickEnd": "start", "itemRgb": "end"}
+    )
 
     # select data
     intersected = intersected[["chr", "start", "end", "gene_short_name", "strand"]]

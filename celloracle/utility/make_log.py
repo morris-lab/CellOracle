@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-
 import io
 import logging
 import os
@@ -10,17 +9,17 @@ import os
 from datetime import datetime
 
 
-class makelog():
+class makelog:
     """
     This is a class for making log.
 
     """
-    def __init__(self, file_name=None, directory=None):
 
+    def __init__(self, file_name=None, directory=None):
         name = datetime.now().ctime()
 
         # ログの出力名を設定
-        logger = logging.Logger('LoggingTest1')
+        logger = logging.Logger("LoggingTest1")
 
         # ログレベルの設定
         logger.setLevel(10)
@@ -30,7 +29,7 @@ class makelog():
         if not file_name is None:
             name = file_name + " " + name
 
-        file_path = f'log {name}.log'
+        file_path = f"log {name}.log"
 
         if not directory is None:
             os.makedirs(directory, exist_ok=True)
@@ -44,7 +43,9 @@ class makelog():
         logger.addHandler(sh)
 
         # ログの出力形式の設定
-        formatter = logging.Formatter('%(asctime)s:%(lineno)d:%(levelname)s:%(message)s')
+        formatter = logging.Formatter(
+            "%(asctime)s:%(lineno)d:%(levelname)s:%(message)s"
+        )
         fh.setFormatter(formatter)
         sh.setFormatter(formatter)
 
@@ -56,6 +57,6 @@ class makelog():
 
         Args:
             comment (str): comment.
-            
+
         """
         self.logger.log(20, comment)

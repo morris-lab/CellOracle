@@ -7,6 +7,7 @@ from pathlib import Path
 import os
 import warnings
 
+
 def download_demo_data(file, git_url=None):
     """
     Download files for the tutorial.
@@ -14,8 +15,7 @@ def download_demo_data(file, git_url=None):
     """
     if git_url is None:
         git_url = "https://raw.githubusercontent.com/morris-lab/CellOracle/master/docs/demo_data"
-    download_data_if_data_not_exist(path=file,
-                                    backup_url=os.path.join(git_url, file))
+    download_data_if_data_not_exist(path=file, backup_url=os.path.join(git_url, file))
 
 
 def download_data_if_data_not_exist(path, backup_url):
@@ -27,7 +27,9 @@ def download_data_if_data_not_exist(path, backup_url):
 
 
 def _download(path: Path, url: str):
-    print(f"Data not found in the local folder. Loading data from github. Data will be saved at {path.parent}")
+    print(
+        f"Data not found in the local folder. Loading data from github. Data will be saved at {path.parent}"
+    )
 
     os.makedirs(path.parent, exist_ok=True)
 
@@ -49,12 +51,14 @@ def _download(path: Path, url: str):
         try:
             open_url = urlopen(req)
         except URLError:
-            warnings.warn('Failed to open the url with default certificates, trying with certifi.')
+            warnings.warn(
+                "Failed to open the url with default certificates, trying with certifi."
+            )
 
             from certifi import where
             from ssl import create_default_context
-            open_url = urlopen(req, context=create_default_context(cafile=where()))
 
+            open_url = urlopen(req, context=create_default_context(cafile=where()))
 
         with open_url as resp:
             total = resp.info().get("content-length", None)
