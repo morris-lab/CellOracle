@@ -52,8 +52,8 @@ def load_net_from_patquets(folder_path):
         if name == "gem.parquet":
             obj.gem = pd.read_parquet(path)
 
-        if name == "gem_standerdized.parquet":
-            obj.gem_standerdized = pd.read_parquet(path)
+        if name == "gem_standardized.parquet":
+            obj.gem_standardized = pd.read_parquet(path)
 
         if name == "TFinfo.parquet":
             obj.TFinfo = pd.read_parquet(path)

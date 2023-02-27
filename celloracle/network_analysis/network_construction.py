@@ -132,7 +132,7 @@ def _fit_GRN_for_network_analysis(oracle_object, cluster_name_for_GRN_unit, alph
 
 
             tn_ = Net(gene_expression_matrix=gem_,
-                         gem_standerdized=gem_std,
+                         gem_standardized=gem_std,
                          TFinfo_dic=oracle_object.TFdict,
                          verbose=False)
             tn_.fit_All_genes(bagging_number=bagging_number,

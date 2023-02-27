@@ -72,7 +72,7 @@ class Net():
         cellstate (pandas.DataFrame): A metadata for GRN input
         TFinfo (pandas.DataFrame): Information about potential regulatory TFs.
         gem (pandas.DataFrame): Merged matrix made with gene_expression_matrix and cellstate matrix.
-        gem_standerdized (pandas.DataFrame): Almost the same as gem, but the gene_expression_matrix was standardized.
+        gem_standardized (pandas.DataFrame): Almost the same as gem, but the gene_expression_matrix was standardized.
         library_last_update_date (str): Last update date of this code. This info is for code development. It can be deprecated in the future
         object_initiation_date (str): The date when this object was made.
 
@@ -82,7 +82,7 @@ class Net():
     #######################################
     ### 1.1. Initialize transNet object ###
     #######################################
-    def __init__(self, gene_expression_matrix, gem_standerdized=None, TFinfo_matrix=None, cellstate=None, TFinfo_dic=None, annotation=None, verbose=True):
+    def __init__(self, gene_expression_matrix, gem_standardized=None, TFinfo_matrix=None, cellstate=None, TFinfo_dic=None, annotation=None, verbose=True):
         '''
         Instantiate Net object
 
@@ -102,7 +102,7 @@ class Net():
         if verbose:
             print("initiating Net object ...")
         self.gem = None
-        self.gem_standerdized = None
+        self.gem_standardized = None
         self.cellstate = None
         self.all_genes = None
         self.TFinfo = None
@@ -124,12 +124,12 @@ class Net():
         self.gem.index.name = None
         self.gem.columns.name = None
 
-        if gem_standerdized is None:
-            self.gem_standerdized = standard(self.gem)
+        if gem_standardized is None:
+            self.gem_standardized = standard(self.gem)
         else:
-            self.gem_standerdized = gem_standerdized.copy()
-            self.gem_standerdized.index.name = None
-            self.gem_standerdized.columns.name = None
+            self.gem_standardized = gem_standardized.copy()
+            self.gem_standardized.index.name = None
+            self.gem_standardized.columns.name = None
 
         if not cellstate is None:
             self.cellstate = cellstate.copy()
@@ -141,10 +141,10 @@ class Net():
                 raise ValueError("cellnumber in GEM and cellstate shold be same.")
             else:
                 self.gem = pd.concat([self.gem, self.cellstate], axis=1)
-                self.gem_standerdized = pd.concat([self.gem_standerdized,
+                self.gem_standardized = pd.concat([self.gem_standardized,
                                                    self.cellstate], axis=1)
                 self.annotation["cellstate"] = list(self.cellstate.columns)
-        self.gem_standerdized = self.gem_standerdized.astype("float32")
+        self.gem_standardized = self.gem_standardized.astype("float32")
         self.gem = self.gem.astype("float32")
 
 
@@ -261,7 +261,7 @@ class Net():
 
             coefs = _get_bagging_ridge_coefs(target_gene=target_gene,
                                              gem=self.gem,
-                                             gem_scaled=self.gem_standerdized,
+                                             gem_scaled=self.gem_standardized,
                                              TFdict=self.TFdict,
                                              cellstate=self.cellstate,
                                              bagging_number=bagging_number,
@@ -358,7 +358,7 @@ class Net():
                 for i, target_gene in enumerate(genes):
                     coefs = _get_bagging_ridge_coefs(target_gene=target_gene,
                                                      gem=self.gem,
-                                                     gem_scaled=self.gem_standerdized,
+                                                     gem_scaled=self.gem_standardized,
                                                      TFdict=self.TFdict,
                                                      cellstate=self.cellstate,
                                                      bagging_number=bagging_number,
@@ -387,7 +387,7 @@ class Net():
                     coef_mean, coef_variance, coef_names = \
                         _get_bayesian_ridge_coefs(target_gene=target_gene,
                                                   gem=self.gem,
-                                                  gem_scaled=self.gem_standerdized,
+                                                  gem_scaled=self.gem_standardized,
                                                   TFdict=self.TFdict,
                                                   cellstate=self.cellstate,
                                                   scaling=True)
@@ -421,7 +421,7 @@ class Net():
                 for target_gene in loop:
                     coefs = _get_bagging_ridge_coefs(target_gene=target_gene,
                                                      gem=self.gem,
-                                                     gem_scaled=self.gem_standerdized,
+                                                     gem_scaled=self.gem_standardized,
                                                      TFdict=self.TFdict,
                                                      cellstate=self.cellstate,
                                                      bagging_number=bagging_number,
@@ -443,7 +443,7 @@ class Net():
                     coef_mean, coef_variance, coef_names = \
                         _get_bayesian_ridge_coefs(target_gene=target_gene,
                                                   gem=self.gem,
-                                                  gem_scaled=self.gem_standerdized,
+                                                  gem_scaled=self.gem_standardized,
                                                   TFdict=self.TFdict,
                                                   cellstate=self.cellstate,
                                                   scaling=True)
@@ -570,8 +570,8 @@ class Net():
         tmp_self.gem.to_parquet(folder + "/gem.parquet")
         tmp_self.gem = None
 
-        tmp_self.gem_standerdized.to_parquet(folder + "/gem_standerdized.parquet")
-        tmp_self.gem_standerdized = None
+        tmp_self.gem_standardized.to_parquet(folder + "/gem_standardized.parquet")
+        tmp_self.gem_standardized = None
 
         if not self.linkList is None:
             tmp_self.linkList.to_parquet(folder + "/linkList.parquet")
