@@ -33,7 +33,16 @@ def _get_package_names(requirements):
     return names
 
 def _get_installed_version(requirements):
-    return [version(i) for i in _get_package_names(requirements)]
+    names = _get_package_names(requirements)
+    installed_versions = []
+    for i in names:
+        try:
+            v = version(i)
+        except:
+            v = "not_found"
+        installed_versions.append(v)
+
+    return installed_versions
 
 def _get_required_version(requirements):
     versions = []
@@ -55,8 +64,10 @@ def _is_version_OK(que, ref):
     try:
         answer = True
         if ref == "auto":
-            pass
-
+            if que == "not_found":
+                answer = False
+            else:
+                pass
         else:
 
             que_ = que.split(".")

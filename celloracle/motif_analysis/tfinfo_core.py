@@ -277,14 +277,14 @@ class TFinfo():
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see t celloracle documentation. \n")
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
 
             elif self.species in ["S.cerevisiae"]:
                 self.motif_db_name = 'CisBP_ver2_Saccharomyces_cerevisiae.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
 
             elif self.species in ["Xenopus tropicalis"]:
                 #self.motif_db_name = 'CisBP_ver2_Xenopus_tropicalis_and_Xenopus_laevis.pfm' # V0.10.13 or earlier.
@@ -300,42 +300,49 @@ class TFinfo():
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
 
             elif self.species in ["Drosophila"]:
                 self.motif_db_name = 'CisBP_ver2_Drosophila_melanogaster.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
 
             elif self.species in ["C.elegans"]:
                 self.motif_db_name = 'CisBP_ver2_Caenorhabditis_elegans.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
 
             elif self.species in ["Arabidopsis"]:
                 self.motif_db_name = 'CisBP_ver2_Arabidopsis_thaliana_GENE_ID.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
 
             elif self.species in ["Chicken"]:
                 self.motif_db_name = 'CisBP_ver2_Gallus_gallus.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
 
             elif self.species in ["Guinea_Pig"]:
                 self.motif_db_name = 'CisBP_ver2_Cavia_porcellus.pfm'
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information, please see celloracle documentation. \n")
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
+
+            elif self.species in ["Pig"]:
+                self.motif_db_name = 'CisBP_ver2_Sus_scrofa.pfm'
+                motifs = load_motifs(self.motif_db_name)
+                self.TF_formatting = False
+                if verbose:
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
 
             else:
                 raise ValueError(f"We don't have default motifs for your species, Please specify motif data by yourself.")

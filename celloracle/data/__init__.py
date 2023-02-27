@@ -20,7 +20,8 @@ from .load_promoter_base_GRN import (load_drosophila_promoter_base_GRN,
                                      load_xenopus_laevis_promoter_base_GRN,
                                      load_arabidopsis_promoter_base_GRN,
                                      load_Scerevisiae_promoter_base_GRN,
-                                     load_Celegans_promoter_base_GRN)
+                                     load_Celegans_promoter_base_GRN,
+                                     load_Pig_promoter_base_GRN)
 
 __all__ = ["load_TFinfo_df_mm9_mouse_atac_atlas",
            "load_mouse_scATAC_atlas_base_GRN"
@@ -37,4 +38,5 @@ __all__ = ["load_TFinfo_df_mm9_mouse_atac_atlas",
            "load_xenopus_laevis_promoter_base_GRN"
            "load_arabidopsis_promoter_base_GRN",
            "load_Scerevisiae_promoter_base_GRN",
-           "load_Celegans_promoter_base_GRN"]
+           "load_Celegans_promoter_base_GRN",
+           "load_Pig_promoter_base_GRN"]
