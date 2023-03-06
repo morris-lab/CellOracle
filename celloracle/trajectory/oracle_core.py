@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import logging
 import warnings
 from copy import deepcopy
 import math
 import os
 import matplotlib.pyplot as plt
 import numpy as np
-from typing import Dict, Any, List, Union, Tuple
 import pandas as pd
 import scanpy as sc
 import seaborn as sns
@@ -20,11 +18,9 @@ from sklearn.neighbors import NearestNeighbors
 from .sankey import sankey
 from .markov_simulation import _walk
 from .oracle_utility import (
-    _adata_to_matrix,
     _adata_to_df,
     _adata_to_color_dict,
     _get_clustercolor_from_anndata,
-    _numba_random_seed,
     _linklist2dict,
     _decompose_TFdict,
     _is_perturb_condition_valid,
@@ -36,7 +32,6 @@ from .oracle_GRN import (
     _getCoefMatrix,
     _coef_to_active_gene_list,
     _shuffle_celloracle_GRN_coef_table,
-    _correct_coef_table,
 )
 from .modified_VelocytoLoom_class import modified_VelocytoLoom
 from ..network_analysis.network_construction import get_links
@@ -56,7 +51,7 @@ def update_adata(adata):
         if isinstance(lo, np.ndarray):
             lo = lo[0]
         adata.uns["draw_graph"]["params"]["layout"] = lo
-    except:
+    except KeyError:
         pass
 
 
@@ -75,24 +70,12 @@ def load_oracle(file_path):
     else:
         raise ValueError("File not found. Please check if the file_path is correct.")
 
-    try:
-        obj = load_hdf5(
-            filename=file_path,
-            obj_class=Oracle,
-            ignore_attrs_if_err=["knn", "knn_smoothing_w", "pca"],
-        )
+    obj = load_hdf5(
+        filename=file_path,
+        obj_class=Oracle,
+        ignore_attrs_if_err=["knn", "knn_smoothing_w", "pca"],
+    )
 
-    except:
-        print(
-            "Found serious error when loading data. It might be because of discrepancy of dependent library. You are trying to load an object which was generated with a library of different version."
-        )
-        obj = load_hdf5(
-            filename=file_path,
-            obj_class=Oracle,
-            ignore_attrs_if_err=["knn", "knn_smoothing_w", "pca"],
-        )
-
-        return None
     # Update Anndata
     update_adata(obj.adata)
 
@@ -278,7 +261,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                 )
 
     def import_TF_data(
-        self, TF_info_matrix=None, TF_info_matrix_path=None, TFdict=None
+        self, TF_info_matrix=None, TFdict=None, TF_info_matrix_path=None
     ):
         """
         Load data about potential-regulatory TFs.
@@ -286,12 +269,17 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         For more information on how to make these files, please see the motif analysis module within the celloracle tutorial.
 
         Args:
-            TF_info_matrix (pandas.DataFrame): TF_info_matrix.
-
-            TF_info_matrix_path (str): File path for TF_info_matrix (pandas.DataFrame).
+            TF_info_matrix (pandas.DataFrame, str): TF_info_matrix or path to a TF_info_matrix.
 
             TFdict (dictionary): Python dictionary of TF info.
         """
+        if TF_info_matrix_path is not None:
+            import warnings
+
+            warnings.warn(
+                "DeprecationWarning: In the future, please pass path to TF matrix to `TF_info_matrix`"
+            )
+            TF_info_matrix = TF_info_matrix_path
 
         if self.adata is None:
             raise ValueError("Please import scRNA-seq data first.")
@@ -299,17 +287,20 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         if len(self.TFdict) != 0:
             print("TF dict already exists. The old TF dict data was deleted. \n")
 
-        if not TF_info_matrix is None:
+        if isinstance(TF_info_matrix, pd.DataFrame):
             tmp = TF_info_matrix.copy()
             tmp = tmp.drop(["peak_id"], axis=1)
             tmp = tmp.groupby(by="gene_short_name").sum()
             self.TFdict = dict(tmp.apply(lambda x: x[x > 0].index.values, axis=1))
-
-        if not TF_info_matrix_path is None:
+        elif type(TF_info_matrix_path) == str:
             tmp = pd.read_parquet(TF_info_matrix_path)
             tmp = tmp.drop(["peak_id"], axis=1)
             tmp = tmp.groupby(by="gene_short_name").sum()
             self.TFdict = dict(tmp.apply(lambda x: x[x > 0].index.values, axis=1))
+        else:
+            raise ValueError(
+                "`TF_info_matrix` must be a pandas.DataFrame or a file path"
+            )
 
         if not TFdict is None:
             self.TFdict = TFdict.copy()

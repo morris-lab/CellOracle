@@ -5,11 +5,11 @@ entering extended mode
 **celloracle.tex --extra-mem-top=10000000
 
 ! Emergency stop.
-<*> celloracle.tex 
+<*> celloracle.tex
                    --extra-mem-top=10000000
 End of file on the terminal!
 
- 
+
 Here is how much of TeX's memory you used:
  3 strings out of 494923
  112 string characters out of 6180742

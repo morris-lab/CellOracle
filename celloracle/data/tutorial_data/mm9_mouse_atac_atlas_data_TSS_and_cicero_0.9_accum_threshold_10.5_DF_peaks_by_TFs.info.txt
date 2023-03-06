@@ -3,4 +3,4 @@ data: name
 species: mouse,
 ref_genome: mm9
 input: tss (mouse atac cell atlas supplemental data) + cicero peak (with >=0.9 co-accessibility score)
-filtering after scanning: cumulative score >= 10.5 
+filtering after scanning: cumulative score >= 10.5

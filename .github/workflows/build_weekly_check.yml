@@ -8,7 +8,7 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-20.04
-    timeout-minutes: 60    
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v2
       - name: Setup conda, install packages, and test celloracle
@@ -28,13 +28,13 @@ jobs:
             # command to install dependencies
             conda activate test-environment
             conda install cython numpy pytest
-            
+
             conda list
             ls /home/runner/miniconda
             ls /home/runner/miniconda/bin
-            
+
             python --version
-            
+
             which pip
             #Install fa2 for tutorial
             pip install fa2
@@ -44,5 +44,3 @@ jobs:
             pip install .
             # command to run tests
             pytest -v
-
-
