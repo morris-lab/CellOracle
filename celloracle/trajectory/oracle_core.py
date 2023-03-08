@@ -84,14 +84,25 @@ def load_oracle(file_path):
 
 class Oracle(modified_VelocytoLoom, Oracle_visualization):
     """
-    Oracle is the main class in CellOracle. Oracle object imports scRNA-seq data (anndata) and TF information to infer cluster-specific GRNs. It can predict the future gene expression patterns and cell state transitions in response to  the perturbation of TFs. Please see the CellOracle paper for details.
+    Oracle is the main class in CellOracle. Oracle object imports scRNA-seq data (anndata) and TF
+    information to infer cluster-specific GRNs. It can predict the future gene expression patterns
+    and cell state transitions in response to  the perturbation of TFs. Please see the CellOracle
+    paper for details.
+
     The code of the Oracle class was made of the three components below.
 
-    (1) Anndata: Gene expression matrix and metadata from single-cell RNA-seq are stored in the anndata object. Processed values, such as normalized counts and simulated values, are stored as layers of anndata. Metadata (i.e., Cluster info) are saved in anndata.obs. Refer to scanpy/anndata documentation for detail.
+    (1) Anndata: Gene expression matrix and metadata from single-cell RNA-seq are stored
+        in the anndata object. Processed values, such as normalized counts and simulated
+        values, are stored as layers of anndata. Metadata (i.e., Cluster info) are saved
+        in anndata.obs. Refer to scanpy/anndata documentation for detail.
 
-    (2) Net: Net is a custom class in celloracle. Net object processes several data to infer GRN. See the Net class documentation for details.
+    (2) Net: Net is a custom class in celloracle. Net object processes several data to
+        infer GRN. See the Net class documentation for details.
 
-    (3) VelycytoLoom: Calculation of transition probability and visualization of directed trajectory graph will be performed in the same way as velocytoloom. VelocytoLoom is class from Velocyto, a python library for RNA-velocity analysis. In celloracle, we use some functions in velocytoloom for the visualization.
+    (3) VelycytoLoom: Calculation of transition probability and visualization of directed
+        trajectory graph will be performed in the same way as velocytoloom. VelocytoLoom
+        is class from Velocyto, a python library for RNA-velocity analysis. In celloracle,
+        we use some functions in velocytoloom for the visualization.
 
 
     Attributes:

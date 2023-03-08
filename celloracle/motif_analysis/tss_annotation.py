@@ -58,7 +58,8 @@ def get_tss_info(peak_str_list, ref_genome, verbose=True, custom_tss_file_path=N
         peak_str_list (list of str): list of peak_id. e.g., [“chr5_0930303_9499409”, “chr11_123445555_123445577”]
         ref_genome (str): reference genome name.
         verbose (bool): verbosity.
-        custom_tss_file_path (str): File path to the custom TSS reference bed file. If you just want to use reference genome that are supported in the CellOracle, you don't need to set this parameter.
+        custom_tss_file_path (str): File path to the custom TSS reference bed file. If you just want to use
+            reference genome that are supported in the CellOracle, you don't need to set this parameter.
     """
     if custom_tss_file_path is not None:
         ref = BedTool(fn=custom_tss_file_path)
@@ -81,19 +82,19 @@ def get_tss_info(peak_str_list, ref_genome, verbose=True, custom_tss_file_path=N
 def annotate_tss(tss_ref_bed, queue_bed, verbose=True):
     """
     Search for peaks that exist in TSS.
-    If a peak overlap TSS peak, that peak will be annotated with gene name of the TSS.
-    If a peak does not overlap any TSS peak, the peak will be removed and will not be contained in returned bed file.
+    If a peak overlaps a TSS peak, that peak will be annotated with gene name of the TSS.
+    If a peak does not overlap any TSS peak, the peak will be removed from the returned bed file.
 
     Args:
         tss_fer_bed (Bedtool): bedtool object of tss data.
-            This bed file should be a bed file with 5 columns: ["chrom", "start", "end", "name", "score", "strand"].
+            This should be a bed file with 6 columns: ["chrom", "start", "end", "name", "score", "strand"].
             Gene name of TSS should be stored in "name" column.
 
         queue_bed (Bedtool): bedtool object.
             This bed file should be a bed file with 3 columns: ["chrom", "start", "end"].
 
     Returns:
-        dataframe: dataframe of peaks.
+        pandas.DataFrame: DataFrame of peaks.
     """
 
     # check data structure

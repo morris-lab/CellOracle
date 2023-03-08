@@ -531,17 +531,17 @@ class TFinfo:
         Remove motifs with low binding scores.
 
         Args:
-            method (str): thresholding method. Select either of ["indivisual_score", "cumulative_score"]
+            method (str): thresholding method. Select either of ["individual_score", "cumulative_score"]
         """
         if method == "cumulative_score":
             self._thresholding_by_cumulative_bind_score(threshold_score=threshold)
 
-        elif method == "indivisual_score":
+        elif method == "individual_score":
             self._thresholding_by_bind_score(threshold_score=threshold)
 
         else:
             raise ValueError(
-                "Method is wrong. Select from ['indivisual_score', 'cumulative_score'] "
+                "Method is wrong. Select from ['individual_score', 'cumulative_score'] "
             )
 
     def _thresholding_by_bind_score(self, threshold_score):
