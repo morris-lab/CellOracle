@@ -6,7 +6,7 @@ matplotlib<3.7
 seaborn
 scikit-learn
 h5py>=3.1.0
-pandas>=1.0.3
+pandas>=1.0.3, <=1.5.3
 velocyto>=0.17
 umap-learn
 pyarrow>=0.17
