@@ -13,7 +13,7 @@ RUN apt-get update \
 RUN cd \
  && git clone https://github.com/morris-lab/CellOracle.git
 
-# Install miniconda 
+# Install miniconda
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh \
  && bash miniconda.sh -b -p $HOME/miniconda \
  && rm miniconda.sh
@@ -39,4 +39,3 @@ RUN . "$HOME/miniconda/etc/profile.d/conda.sh" \
  && conda clean --all \
  && conda init bash \
  && echo "conda activate celloracle_env" >> $HOME/.bashrc
-

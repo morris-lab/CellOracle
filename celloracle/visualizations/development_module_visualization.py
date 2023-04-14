@@ -13,8 +13,9 @@ import seaborn as sns
 from .config import CONFIG
 
 
-def plot_cluster_whole(self, ax=None, s=CONFIG["s_scatter"], args=CONFIG["default_args"]):
-
+def plot_cluster_whole(
+    self, ax=None, s=CONFIG["s_scatter"], args=CONFIG["default_args"]
+):
     if ax is None:
         ax = plt
 
@@ -22,8 +23,15 @@ def plot_cluster_whole(self, ax=None, s=CONFIG["s_scatter"], args=CONFIG["defaul
     ax.scatter(self.embedding[:, 0], self.embedding[:, 1], c=c, s=s, **args)
     ax.axis("off")
 
-def plot_cluster_cells_use(self, ax=None, s=CONFIG["s_scatter"], color=None, show_background=True, args=CONFIG["default_args"]):
 
+def plot_cluster_cells_use(
+    self,
+    ax=None,
+    s=CONFIG["s_scatter"],
+    color=None,
+    show_background=True,
+    args=CONFIG["default_args"],
+):
     if ax is None:
         ax = plt
 
@@ -38,34 +46,55 @@ def plot_cluster_cells_use(self, ax=None, s=CONFIG["s_scatter"], color=None, sho
 
     if self.cell_idx_use is None:
         if color is None:
-            ax.scatter(self.embedding[:, 0], self.embedding[:, 1], c=self.colorandum, s=s, **args)
+            ax.scatter(
+                self.embedding[:, 0],
+                self.embedding[:, 1],
+                c=self.colorandum,
+                s=s,
+                **args,
+            )
         else:
             ax.scatter(self.embedding[:, 0], self.embedding[:, 1], c=color, s=s, **args)
 
     else:
         if color is None:
-            ax.scatter(self.embedding[self.cell_idx_use, 0], self.embedding[self.cell_idx_use, 1],
-                       c=self.colorandum[self.cell_idx_use, :],s=s, **args)
+            ax.scatter(
+                self.embedding[self.cell_idx_use, 0],
+                self.embedding[self.cell_idx_use, 1],
+                c=self.colorandum[self.cell_idx_use, :],
+                s=s,
+                **args,
+            )
         else:
-            ax.scatter(self.embedding[self.cell_idx_use, 0], self.embedding[self.cell_idx_use, 1],
-                       c=color, s=s, **args)
-
+            ax.scatter(
+                self.embedding[self.cell_idx_use, 0],
+                self.embedding[self.cell_idx_use, 1],
+                c=color,
+                s=s,
+                **args,
+            )
 
     ax.axis("off")
 
 
 def plot_background(self, ax=None, s=CONFIG["s_scatter"], args=CONFIG["default_args"]):
-
     if ax is None:
         ax = plt
 
     ax.scatter(self.embedding[:, 0], self.embedding[:, 1], c="lightgray", s=s, **args)
 
-    #ax.set_title("Pseudotime")
+    # ax.set_title("Pseudotime")
     ax.axis("off")
 
-def plot_pseudotime(self, ax=None, s=CONFIG["s_scatter"], show_background=True, cmap="rainbow", args=CONFIG["default_args"]):
 
+def plot_pseudotime(
+    self,
+    ax=None,
+    s=CONFIG["s_scatter"],
+    show_background=True,
+    cmap="rainbow",
+    args=CONFIG["default_args"],
+):
     if ax is None:
         ax = plt
 
@@ -73,17 +102,28 @@ def plot_pseudotime(self, ax=None, s=CONFIG["s_scatter"], show_background=True, 
         plot_background(self=self, ax=ax, s=s, args=args)
 
     if self.cell_idx_use is None:
-        ax.scatter(self.embedding[:, 0], self.embedding[:, 1], c=self.pseudotime, cmap=cmap, s=s, **args)
+        ax.scatter(
+            self.embedding[:, 0],
+            self.embedding[:, 1],
+            c=self.pseudotime,
+            cmap=cmap,
+            s=s,
+            **args,
+        )
     else:
-        ax.scatter(self.embedding[self.cell_idx_use, 0], self.embedding[self.cell_idx_use, 1],
-                    c=self.pseudotime[self.cell_idx_use], cmap=cmap, s=s, **args)
+        ax.scatter(
+            self.embedding[self.cell_idx_use, 0],
+            self.embedding[self.cell_idx_use, 1],
+            c=self.pseudotime[self.cell_idx_use],
+            cmap=cmap,
+            s=s,
+            **args,
+        )
 
     ax.axis("off")
 
 
 def plot_background_on_grid(self, ax=None, s=CONFIG["s_grid"], args={}):
-
-
     if ax is None:
         ax = plt
 
@@ -92,22 +132,31 @@ def plot_background_on_grid(self, ax=None, s=CONFIG["s_grid"], args={}):
     elif hasattr(self, "mass_filter_whole"):
         mass_filter = self.mass_filter_whole
 
-    ax.scatter(self.gridpoints_coordinates[:, 0],
-               self.gridpoints_coordinates[:, 1], s=0)
+    ax.scatter(
+        self.gridpoints_coordinates[:, 0], self.gridpoints_coordinates[:, 1], s=0
+    )
 
     if "c" not in args.keys():
-        ax.scatter(self.gridpoints_coordinates[~mass_filter, 0],
-               self.gridpoints_coordinates[~mass_filter, 1],
-               c="lightgray", s=s, **args)
+        ax.scatter(
+            self.gridpoints_coordinates[~mass_filter, 0],
+            self.gridpoints_coordinates[~mass_filter, 1],
+            c="lightgray",
+            s=s,
+            **args,
+        )
     else:
-        ax.scatter(self.gridpoints_coordinates[~mass_filter, 0],
-               self.gridpoints_coordinates[~mass_filter, 1],
-               s=s, **args)
+        ax.scatter(
+            self.gridpoints_coordinates[~mass_filter, 0],
+            self.gridpoints_coordinates[~mass_filter, 1],
+            s=s,
+            **args,
+        )
     ax.axis("off")
 
 
-def plot_pseudotime_on_grid(self, ax=None, s=CONFIG["s_grid"], show_background=True, cmap="rainbow", args={}):
-
+def plot_pseudotime_on_grid(
+    self, ax=None, s=CONFIG["s_grid"], show_background=True, cmap="rainbow", args={}
+):
     if ax is None:
         ax = plt
 
@@ -119,31 +168,51 @@ def plot_pseudotime_on_grid(self, ax=None, s=CONFIG["s_grid"], show_background=T
     if show_background:
         plot_background_on_grid(self=self, ax=ax, s=s, args=args)
     else:
-        plot_cluster_cells_use(self=self, ax=ax, s=0, color="white", show_background=False, args={})
+        plot_cluster_cells_use(
+            self=self, ax=ax, s=0, color="white", show_background=False, args={}
+        )
 
-
-    ax.scatter(self.gridpoints_coordinates[~mass_filter, 0],
-               self.gridpoints_coordinates[~mass_filter, 1],
-               c=self.pseudotime_on_grid[~mass_filter],
-               cmap=cmap, s=s, **args)
+    ax.scatter(
+        self.gridpoints_coordinates[~mass_filter, 0],
+        self.gridpoints_coordinates[~mass_filter, 1],
+        c=self.pseudotime_on_grid[~mass_filter],
+        cmap=cmap,
+        s=s,
+        **args,
+    )
 
     ax.axis("off")
 
-def plot_selected_pseudotime_on_grid(self, ax=None, pseudotime_selected=[], s=CONFIG["s_grid"], show_background=True, args={}):
 
+def plot_selected_pseudotime_on_grid(
+    self,
+    ax=None,
+    pseudotime_selected=[],
+    s=CONFIG["s_grid"],
+    show_background=True,
+    args={},
+):
     if ax is None:
         ax = plt
 
     mass_filter = self.mass_filter_simulation
 
     if show_background:
-        plot_background_on_grid(self=self, ax=ax, s=s,
-                                args={"facecolor": "None",
-                                      "c": "None",
-                                      "edgecolors":'black',
-                                      "linewidths": 0.05})
+        plot_background_on_grid(
+            self=self,
+            ax=ax,
+            s=s,
+            args={
+                "facecolor": "None",
+                "c": "None",
+                "edgecolors": "black",
+                "linewidths": 0.05,
+            },
+        )
     else:
-        plot_cluster_cells_use(self=self, ax=ax, s=0, color="white", show_background=False, args={})
+        plot_cluster_cells_use(
+            self=self, ax=ax, s=0, color="white", show_background=False, args={}
+        )
 
     x = self.gridpoints_coordinates[~mass_filter, 0]
     y = self.gridpoints_coordinates[~mass_filter, 1]
@@ -159,8 +228,14 @@ def plot_selected_pseudotime_on_grid(self, ax=None, pseudotime_selected=[], s=CO
     ax.axis("off")
 
 
-def plot_reference_flow_on_grid(self, ax=None, scale=CONFIG["scale_dev"], show_background=True, s=CONFIG["s_scatter"], args=CONFIG["default_args_quiver"]):
-
+def plot_reference_flow_on_grid(
+    self,
+    ax=None,
+    scale=CONFIG["scale_dev"],
+    show_background=True,
+    s=CONFIG["s_scatter"],
+    args=CONFIG["default_args_quiver"],
+):
     if ax is None:
         ax = plt
 
@@ -172,30 +247,78 @@ def plot_reference_flow_on_grid(self, ax=None, scale=CONFIG["scale_dev"], show_b
     if show_background:
         plot_background(self=self, ax=ax, s=s, args=CONFIG["default_args"])
     else:
-        plot_cluster_cells_use(self=self, ax=ax, s=0, color="white", show_background=False, args={})
+        plot_cluster_cells_use(
+            self=self, ax=ax, s=0, color="white", show_background=False, args={}
+        )
 
-    ax.quiver(self.gridpoints_coordinates[~mass_filter, 0],
-              self.gridpoints_coordinates[~mass_filter, 1],
-              self.ref_flow[~mass_filter, 0],
-              self.ref_flow[~mass_filter, 1],
-              scale=scale, **args)
+    ax.quiver(
+        self.gridpoints_coordinates[~mass_filter, 0],
+        self.gridpoints_coordinates[~mass_filter, 1],
+        self.ref_flow[~mass_filter, 0],
+        self.ref_flow[~mass_filter, 1],
+        scale=scale,
+        **args,
+    )
 
     ax.axis("off")
-def plot_simulation_flow_on_grid(self, ax=None, scale=CONFIG["scale_simulation"], show_background=True, s=CONFIG["s_scatter"], args=CONFIG["default_args_quiver"]):
-    _plot_simulation_flow_on_grid(self=self, ax=ax, scale=scale, show_background=show_background, s=s, data_random=False, args=args)
 
-def plot_simulation_flow_random_on_grid(self, ax=None, scale=CONFIG["scale_simulation"], show_background=True, s=CONFIG["s_scatter"], args=CONFIG["default_args_quiver"]):
-    _plot_simulation_flow_on_grid(self=self, ax=ax, scale=scale, show_background=show_background, s=s, data_random=True, args=args)
 
-def _plot_simulation_flow_on_grid(self, ax=None, scale=CONFIG["scale_simulation"], show_background=True, s=CONFIG["s_scatter"], data_random=False, args=CONFIG["default_args_quiver"]):
+def plot_simulation_flow_on_grid(
+    self,
+    ax=None,
+    scale=CONFIG["scale_simulation"],
+    show_background=True,
+    s=CONFIG["s_scatter"],
+    args=CONFIG["default_args_quiver"],
+):
+    _plot_simulation_flow_on_grid(
+        self=self,
+        ax=ax,
+        scale=scale,
+        show_background=show_background,
+        s=s,
+        data_random=False,
+        args=args,
+    )
 
+
+def plot_simulation_flow_random_on_grid(
+    self,
+    ax=None,
+    scale=CONFIG["scale_simulation"],
+    show_background=True,
+    s=CONFIG["s_scatter"],
+    args=CONFIG["default_args_quiver"],
+):
+    _plot_simulation_flow_on_grid(
+        self=self,
+        ax=ax,
+        scale=scale,
+        show_background=show_background,
+        s=s,
+        data_random=True,
+        args=args,
+    )
+
+
+def _plot_simulation_flow_on_grid(
+    self,
+    ax=None,
+    scale=CONFIG["scale_simulation"],
+    show_background=True,
+    s=CONFIG["s_scatter"],
+    data_random=False,
+    args=CONFIG["default_args_quiver"],
+):
     if ax is None:
         ax = plt
 
     if show_background:
         plot_background(self=self, ax=ax, s=s, args=CONFIG["default_args"])
     else:
-        plot_cluster_cells_use(self=self, ax=ax, s=0, color=None, show_background=False, args={})
+        plot_cluster_cells_use(
+            self=self, ax=ax, s=0, color=None, show_background=False, args={}
+        )
 
     # mass filter selection
     if hasattr(self, "mass_filter_simulation"):
@@ -215,16 +338,29 @@ def _plot_simulation_flow_on_grid(self, ax=None, scale=CONFIG["scale_simulation"
     else:
         flow = self.flow
 
-    ax.quiver(gridpoints_coordinates[~mass_filter, 0],
-              gridpoints_coordinates[~mass_filter, 1],
-              flow[~mass_filter, 0],
-              flow[~mass_filter, 1], #zorder=20000,
-              scale=scale, **args)
+    ax.quiver(
+        gridpoints_coordinates[~mass_filter, 0],
+        gridpoints_coordinates[~mass_filter, 1],
+        flow[~mass_filter, 0],
+        flow[~mass_filter, 1],  # zorder=20000,
+        scale=scale,
+        **args,
+    )
 
     ax.axis("off")
 
-def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, cmap=None, args={}):
 
+def plot_inner_product_on_grid(
+    self,
+    ax=None,
+    vm=1,
+    s=CONFIG["s_grid"],
+    show_background=True,
+    vmin=None,
+    vmax=None,
+    cmap=None,
+    args={},
+):
     if ax is None:
         ax = plt
 
@@ -241,24 +377,46 @@ def plot_inner_product_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_back
         norm = colors.DivergingNorm(vmin=vmin, vcenter=0, vmax=vmax)
 
     if show_background:
-        plot_background_on_grid(self=self, ax=ax, s=s,
-                                args={"facecolor": "None",
-                                      "c": "None",
-                                      "edgecolors":'black',
-                                      "linewidths": 0.05})
+        plot_background_on_grid(
+            self=self,
+            ax=ax,
+            s=s,
+            args={
+                "facecolor": "None",
+                "c": "None",
+                "edgecolors": "black",
+                "linewidths": 0.05,
+            },
+        )
     else:
-        plot_cluster_cells_use(self=self, ax=ax, s=0, color=None, show_background=False, args={})
+        plot_cluster_cells_use(
+            self=self, ax=ax, s=0, color=None, show_background=False, args={}
+        )
 
-    ax.scatter(self.gridpoints_coordinates[~self.mass_filter_simulation, 0],
-               self.gridpoints_coordinates[~self.mass_filter_simulation, 1],
-               c=self.inner_product[~self.mass_filter_simulation],
-               cmap=cmap, norm=norm,#vmin=vmin, vmax=vmax,
-               s=s, **args)
+    ax.scatter(
+        self.gridpoints_coordinates[~self.mass_filter_simulation, 0],
+        self.gridpoints_coordinates[~self.mass_filter_simulation, 1],
+        c=self.inner_product[~self.mass_filter_simulation],
+        cmap=cmap,
+        norm=norm,  # vmin=vmin, vmax=vmax,
+        s=s,
+        **args,
+    )
 
     ax.axis("off")
 
-def plot_inner_product_random_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], show_background=True, vmin=None, vmax=None, cmap=None, args={}):
 
+def plot_inner_product_random_on_grid(
+    self,
+    ax=None,
+    vm=1,
+    s=CONFIG["s_grid"],
+    show_background=True,
+    vmin=None,
+    vmax=None,
+    cmap=None,
+    args={},
+):
     if ax is None:
         ax = plt
 
@@ -275,25 +433,38 @@ def plot_inner_product_random_on_grid(self, ax=None, vm=1,s=CONFIG["s_grid"], sh
         norm = colors.DivergingNorm(vmin=vmin, vcenter=0, vmax=vmax)
 
     if show_background:
-        plot_background_on_grid(self=self, ax=ax, s=s,
-                                args={"facecolor": "None",
-                                      "c": "None",
-                                      "edgecolors":'black',
-                                      "linewidths": 0.05})
+        plot_background_on_grid(
+            self=self,
+            ax=ax,
+            s=s,
+            args={
+                "facecolor": "None",
+                "c": "None",
+                "edgecolors": "black",
+                "linewidths": 0.05,
+            },
+        )
     else:
-        plot_cluster_cells_use(self=self, ax=ax, s=0, color=None, show_background=False, args={})
+        plot_cluster_cells_use(
+            self=self, ax=ax, s=0, color=None, show_background=False, args={}
+        )
 
-    ax.scatter(self.gridpoints_coordinates[~self.mass_filter_simulation, 0],
-               self.gridpoints_coordinates[~self.mass_filter_simulation, 1],
-               c=self.inner_product_random[~self.mass_filter_simulation],
-               cmap=cmap, norm=norm,#vmin=vmin, vmax=vmax,
-               s=s, **args)
+    ax.scatter(
+        self.gridpoints_coordinates[~self.mass_filter_simulation, 0],
+        self.gridpoints_coordinates[~self.mass_filter_simulation, 1],
+        c=self.inner_product_random[~self.mass_filter_simulation],
+        cmap=cmap,
+        norm=norm,  # vmin=vmin, vmax=vmax,
+        s=s,
+        **args,
+    )
 
     ax.axis("off")
 
 
-def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vmin=None, vmax=None, cmap=None, args={}):
-
+def plot_inner_product_on_pseudotime(
+    self, ax=None, vm=1, s=CONFIG["s_grid"], vmin=None, vmax=None, cmap=None, args={}
+):
     if ax is None:
         fig, ax = plt.subplots()
 
@@ -309,22 +480,25 @@ def plot_inner_product_on_pseudotime(self, ax=None, vm=1, s=CONFIG["s_grid"], vm
     except:
         norm = colors.DivergingNorm(vmin=vmin, vcenter=0, vmax=vmax)
 
-    pcm = ax.scatter(self.pseudotime_on_grid[~self.mass_filter_simulation],
-                     self.inner_product[~self.mass_filter_simulation],
-                     c=self.inner_product[~self.mass_filter_simulation],
-                     cmap=cmap,
-                     norm=norm,#vmin=vmin, vmax=vmax,
-                     s=s, **args)
+    pcm = ax.scatter(
+        self.pseudotime_on_grid[~self.mass_filter_simulation],
+        self.inner_product[~self.mass_filter_simulation],
+        c=self.inner_product[~self.mass_filter_simulation],
+        cmap=cmap,
+        norm=norm,  # vmin=vmin, vmax=vmax,
+        s=s,
+        **args,
+    )
 
-    ax.set_ylim([vmin*1.1, vmax*1.1])
+    ax.set_ylim([vmin * 1.1, vmax * 1.1])
     ax.axhline(0, color="lightgray")
     pp = plt.colorbar(pcm, ax=ax, orientation="vertical")
     sns.despine()
     ax.set_xlabel("pseudotime")
     ax.set_ylabel("inner product score")
 
-def plot_inner_product_as_box(self, ax=None, vm=1, vmin=None, vmax=None, args={}):
 
+def plot_inner_product_as_box(self, ax=None, vm=1, vmin=None, vmax=None, args={}):
     if ax is None:
         fig, ax = plt.subplots()
 
@@ -333,23 +507,69 @@ def plot_inner_product_as_box(self, ax=None, vm=1, vmin=None, vmax=None, args={}
     if vmax is None:
         vmax = vm
 
-    sns.boxplot(data=self.inner_product_df, x="pseudotime_id", y="score", color="white", ax=ax)
+    sns.boxplot(
+        data=self.inner_product_df, x="pseudotime_id", y="score", color="white", ax=ax
+    )
     ax.set_xlabel("Digitized_pseudotime")
     ax.set_ylabel("inner product score")
     ax.axhline(0, color="gray")
-    ax.set_ylim([vmin*1.1, vmax*1.1])
-    ax.tick_params(
-                labelleft=False)
+    ax.set_ylim([vmin * 1.1, vmax * 1.1])
+    ax.tick_params(labelleft=False)
     sns.despine()
 
-def plot_quiver(self, ax=None, scale=CONFIG["scale_simulation"], color=None, s=CONFIG["s_scatter"], show_background=True, args=CONFIG["default_args"]):
-    _plot_quiver(self=self, ax=ax, scale=scale, color=color, s=s, show_background=show_background, args=args, data_random=False)
 
-def plot_quiver_random(self, ax=None, scale=CONFIG["scale_simulation"], color=None, s=CONFIG["s_scatter"], show_background=True, args=CONFIG["default_args"]):
-    _plot_quiver(self=self, ax=ax, scale=scale, color=color, s=s, show_background=show_background, args=args, data_random=True)
+def plot_quiver(
+    self,
+    ax=None,
+    scale=CONFIG["scale_simulation"],
+    color=None,
+    s=CONFIG["s_scatter"],
+    show_background=True,
+    args=CONFIG["default_args"],
+):
+    _plot_quiver(
+        self=self,
+        ax=ax,
+        scale=scale,
+        color=color,
+        s=s,
+        show_background=show_background,
+        args=args,
+        data_random=False,
+    )
 
-def _plot_quiver(self, ax=None, scale=CONFIG["scale_simulation"], color=None, s=CONFIG["s_scatter"], show_background=True, args=CONFIG["default_args"], data_random=False):
 
+def plot_quiver_random(
+    self,
+    ax=None,
+    scale=CONFIG["scale_simulation"],
+    color=None,
+    s=CONFIG["s_scatter"],
+    show_background=True,
+    args=CONFIG["default_args"],
+):
+    _plot_quiver(
+        self=self,
+        ax=ax,
+        scale=scale,
+        color=color,
+        s=s,
+        show_background=show_background,
+        args=args,
+        data_random=True,
+    )
+
+
+def _plot_quiver(
+    self,
+    ax=None,
+    scale=CONFIG["scale_simulation"],
+    color=None,
+    s=CONFIG["s_scatter"],
+    show_background=True,
+    args=CONFIG["default_args"],
+    data_random=False,
+):
     if ax is None:
         ax = plt
 
@@ -363,55 +583,81 @@ def _plot_quiver(self, ax=None, scale=CONFIG["scale_simulation"], color=None, s=
 
     # Plot whole cell with lightgray
     if show_background:
-        ax.scatter(self.embedding[:, 0], self.embedding[:, 1],
-                   c="lightgray", alpha=1, s=s, **args)
+        ax.scatter(
+            self.embedding[:, 0],
+            self.embedding[:, 1],
+            c="lightgray",
+            alpha=1,
+            s=s,
+            **args,
+        )
 
-
-    ax.scatter(self.embedding[ix_choice, 0], self.embedding[ix_choice, 1],
-               c="lightgray", alpha=0.2, edgecolor=(0,0,0,1), s=s, **args)
-
-
+    ax.scatter(
+        self.embedding[ix_choice, 0],
+        self.embedding[ix_choice, 1],
+        c="lightgray",
+        alpha=0.2,
+        edgecolor=(0, 0, 0, 1),
+        s=s,
+        **args,
+    )
 
     if color is None:
-        color=self.colorandum[ix_choice]
+        color = self.colorandum[ix_choice]
 
-    quiver_kwargs=dict(headaxislength=7, headlength=11, headwidth=8,
-                       linewidths=0.25, width=0.0045,edgecolors="k",
-                       color=color, alpha=1)
+    quiver_kwargs = dict(
+        headaxislength=7,
+        headlength=11,
+        headwidth=8,
+        linewidths=0.25,
+        width=0.0045,
+        edgecolors="k",
+        color=color,
+        alpha=1,
+    )
 
     if data_random:
         quiver = self.delta_embedding_random
     else:
         quiver = self.delta_embedding
 
-    ax.quiver(self.embedding[ix_choice, 0], self.embedding[ix_choice, 1],
-              quiver[ix_choice, 0],
-              quiver[ix_choice, 1],
-              scale=scale, **quiver_kwargs)
+    ax.quiver(
+        self.embedding[ix_choice, 0],
+        self.embedding[ix_choice, 1],
+        quiver[ix_choice, 0],
+        quiver[ix_choice, 1],
+        scale=scale,
+        **quiver_kwargs,
+    )
 
     ax.axis("off")
 
 
-
-
-def visualize_development_module_layout_2(self, scale_for_pseudotime=CONFIG["scale_dev"],
-    scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True):
-
+def visualize_development_module_layout_2(
+    self,
+    scale_for_pseudotime=CONFIG["scale_dev"],
+    scale_for_simulation=CONFIG["scale_simulation"],
+    s=CONFIG["s_scatter"],
+    s_grid=CONFIG["s_grid"],
+    vm=1,
+    show_background=True,
+):
     if self.name is None:
         name = "Selected lineage"
     else:
         name = self.name
 
-    fig, ax = plt.subplots(3, 4, figsize=[20,15])
+    fig, ax = plt.subplots(3, 4, figsize=[20, 15])
 
     ax_ = ax[0, 0]
     plot_cluster_whole(self, ax=ax_, s=s)
     ax_.set_title("Whole population")
 
-
     ##
     ax_ = ax[0, 1]
-    plot_cluster_cells_use(self, ax=ax_, s=s, color="#EC7063", show_background=show_background)
+    plot_cluster_cells_use(
+        self, ax=ax_, s=s, color="#EC7063", show_background=show_background
+    )
     ax_.set_title(f"{name}")
 
     ####
@@ -421,41 +667,65 @@ def visualize_development_module_layout_2(self, scale_for_pseudotime=CONFIG["sca
 
     ###
     ax_ = ax[0, 3]
-    plot_reference_flow_on_grid(self, ax=ax_, scale=scale_for_pseudotime, show_background=show_background, s=s)
+    plot_reference_flow_on_grid(
+        self, ax=ax_, scale=scale_for_pseudotime, show_background=show_background, s=s
+    )
     ax_.set_title("Development flow")
 
     ####
     ax_ = ax[1, 0]
-    plot_quiver(self, ax=ax_, scale=scale_for_simulation, color="#EC7063", s=s, show_background=show_background)
+    plot_quiver(
+        self,
+        ax=ax_,
+        scale=scale_for_simulation,
+        color="#EC7063",
+        s=s,
+        show_background=show_background,
+    )
     ax_.set_title(f"Perturb simulation \n color: {name}")
 
     ####
     ax_ = ax[1, 1]
-    plot_quiver(self, ax=ax_, scale=scale_for_simulation, color=None, s=s, show_background=show_background)
+    plot_quiver(
+        self,
+        ax=ax_,
+        scale=scale_for_simulation,
+        color=None,
+        s=s,
+        show_background=show_background,
+    )
     ax_.set_title("Perturb simulation \n color: cluster")
 
-
     ax_ = ax[1, 2]
-    plot_simulation_flow_on_grid(self, ax=ax_, scale=scale_for_simulation, show_background=show_background, s=s)
+    plot_simulation_flow_on_grid(
+        self, ax=ax_, scale=scale_for_simulation, show_background=show_background, s=s
+    )
     ax_.set_title("Perturb simulation")
-
 
     #####
     ax_ = ax[1, 3]
-    plot_cluster_cells_use(self, ax=ax_, s=s, color="#EC7063", show_background=show_background)
-    plot_simulation_flow_on_grid(self, ax=ax_, scale=scale_for_simulation, show_background=False, s=s)
+    plot_cluster_cells_use(
+        self, ax=ax_, s=s, color="#EC7063", show_background=show_background
+    )
+    plot_simulation_flow_on_grid(
+        self, ax=ax_, scale=scale_for_simulation, show_background=False, s=s
+    )
     ax_.set_title("Perturb simulation")
 
-
     ax_ = ax[2, 0]
-    plot_inner_product_on_grid(self, ax=ax_, vm=vm,s=s_grid, show_background=show_background)
+    plot_inner_product_on_grid(
+        self, ax=ax_, vm=vm, s=s_grid, show_background=show_background
+    )
     ax_.set_title("Inner product of \n Perturb simulation * Development flow")
 
     ax_ = ax[2, 1]
-    plot_inner_product_on_grid(self, ax=ax_, vm=vm,s=s_grid, show_background=show_background)
-    plot_simulation_flow_on_grid(self, ax=ax_, scale=scale_for_simulation, show_background=False, s=s)
+    plot_inner_product_on_grid(
+        self, ax=ax_, vm=vm, s=s_grid, show_background=show_background
+    )
+    plot_simulation_flow_on_grid(
+        self, ax=ax_, scale=scale_for_simulation, show_background=False, s=s
+    )
     ax_.set_title("Inner product of \n Perturb simulation * Development flow")
-
 
     ax_ = ax[2, 2]
     plot_inner_product_on_pseudotime(self, ax=ax_, vm=vm, s=s_grid)
@@ -466,11 +736,16 @@ def visualize_development_module_layout_2(self, scale_for_pseudotime=CONFIG["sca
     return fig
 
 
-def visualize_development_module_layout_1(self, scale_for_pseudotime=CONFIG["scale_dev"],
-    scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True):
-
-
-    fig, ax = plt.subplots(2, 4, figsize=[20,10])
+def visualize_development_module_layout_1(
+    self,
+    scale_for_pseudotime=CONFIG["scale_dev"],
+    scale_for_simulation=CONFIG["scale_simulation"],
+    s=CONFIG["s_scatter"],
+    s_grid=CONFIG["s_grid"],
+    vm=1,
+    show_background=True,
+):
+    fig, ax = plt.subplots(2, 4, figsize=[20, 10])
 
     ax_ = ax[0, 0]
     plot_cluster_cells_use(self, ax=ax_, s=s, show_background=show_background)
@@ -486,20 +761,24 @@ def visualize_development_module_layout_1(self, scale_for_pseudotime=CONFIG["sca
 
     ###
     ax_ = ax[0, 3]
-    plot_reference_flow_on_grid(self, ax=ax_, scale=scale_for_pseudotime, show_background=show_background, s=s)
+    plot_reference_flow_on_grid(
+        self, ax=ax_, scale=scale_for_pseudotime, show_background=show_background, s=s
+    )
     ax_.set_title("Development flow")
-
 
     ####
     ax_ = ax[1, 0]
-    plot_simulation_flow_on_grid(self, ax=ax_, scale=scale_for_simulation, show_background=show_background, s=s)
+    plot_simulation_flow_on_grid(
+        self, ax=ax_, scale=scale_for_simulation, show_background=show_background, s=s
+    )
     ax_.set_title("Perturb simulation")
 
     ####
     ax_ = ax[1, 1]
-    plot_inner_product_on_grid(self, ax=ax_, vm=vm,s=s_grid, show_background=show_background)
+    plot_inner_product_on_grid(
+        self, ax=ax_, vm=vm, s=s_grid, show_background=show_background
+    )
     ax_.set_title("Inner product of \n Perturb simulation * Development flow")
-
 
     ax_ = ax[1, 2]
     plot_inner_product_on_pseudotime(self, ax=ax_, vm=vm, s=s_grid)
@@ -510,10 +789,16 @@ def visualize_development_module_layout_1(self, scale_for_pseudotime=CONFIG["sca
 
     return fig
 
-def visualize_development_module_layout_0(self, scale_for_pseudotime=CONFIG["scale_dev"],
-    scale_for_simulation=CONFIG["scale_simulation"], s=CONFIG["s_scatter"], s_grid=CONFIG["s_grid"], vm=1, show_background=True):
 
-
+def visualize_development_module_layout_0(
+    self,
+    scale_for_pseudotime=CONFIG["scale_dev"],
+    scale_for_simulation=CONFIG["scale_simulation"],
+    s=CONFIG["s_scatter"],
+    s_grid=CONFIG["s_grid"],
+    vm=1,
+    show_background=True,
+):
     fig, ax = plt.subplots(2, 3, figsize=[20, 13.5])
 
     ax_ = ax[0, 0]
@@ -521,19 +806,24 @@ def visualize_development_module_layout_0(self, scale_for_pseudotime=CONFIG["sca
     ax_.set_title("Cluster")
 
     ax_ = ax[0, 1]
-    plot_reference_flow_on_grid(self, ax=ax_, scale=scale_for_pseudotime, show_background=show_background, s=s)
+    plot_reference_flow_on_grid(
+        self, ax=ax_, scale=scale_for_pseudotime, show_background=show_background, s=s
+    )
     ax_.set_title("Development flow")
 
     ##
     ax_ = ax[0, 2]
-    plot_simulation_flow_on_grid(self, ax=ax_, scale=scale_for_simulation, show_background=show_background, s=s)
+    plot_simulation_flow_on_grid(
+        self, ax=ax_, scale=scale_for_simulation, show_background=show_background, s=s
+    )
     ax_.set_title("Perturb simulation")
 
     ####
     ax_ = ax[1, 0]
-    plot_inner_product_on_grid(self, ax=ax_, vm=vm,s=s_grid, show_background=show_background)
+    plot_inner_product_on_grid(
+        self, ax=ax_, vm=vm, s=s_grid, show_background=show_background
+    )
     ax_.set_title("Inner product of \n Perturb simulation * Development flow")
-
 
     ax_ = ax[1, 1]
     plot_inner_product_on_pseudotime(self, ax=ax_, vm=vm, s=s_grid)
@@ -545,12 +835,9 @@ def visualize_development_module_layout_0(self, scale_for_pseudotime=CONFIG["sca
     return fig
 
 
-
-
-
 #####
 
-'''
+"""
 
 def plot_legend(labels, palette, ax_):
 
@@ -586,4 +873,4 @@ def plot_stackedvar(df, ax, palette=None):
     #plt.legend()
     ax.set_xticks(df.columns)
 
-'''
+"""

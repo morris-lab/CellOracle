@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This file contains custom functions for the analysis of ATAC-seq data.
 Genomic activity information (peak of ATAC-seq) will be extracted first.
 Then the peak DNA sequence will be subjected to TF motif scan.
@@ -8,10 +8,10 @@ Finally we will get list of TFs that potentially binds to a specific gene.
 Codes were written by Kenji Kamimoto.
 
 
-'''
+"""
 
 ###########################
-### 0. Import libralies ###
+### 0. Import libraries ###
 ###########################
 
 
@@ -37,11 +37,12 @@ def load_drosophila_promoter_base_GRN(version="dm6_CisBPv2_fpr2", force_download
         pandas.dataframe: Base GRN as a matrix.
     """
 
-    options = {"dm3_CisBPv2_fpr1": "promoter_base_GRN/dm3_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "dm3_CisBPv2_fpr2": "promoter_base_GRN/dm3_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               "dm6_CisBPv2_fpr1": "promoter_base_GRN/dm6_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "dm6_CisBPv2_fpr2": "promoter_base_GRN/dm6_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               }
+    options = {
+        "dm3_CisBPv2_fpr1": "promoter_base_GRN/dm3_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "dm3_CisBPv2_fpr2": "promoter_base_GRN/dm3_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+        "dm6_CisBPv2_fpr1": "promoter_base_GRN/dm6_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "dm6_CisBPv2_fpr2": "promoter_base_GRN/dm6_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+    }
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]
@@ -59,6 +60,7 @@ def load_drosophila_promoter_base_GRN(version="dm6_CisBPv2_fpr2", force_download
         download_data_if_data_not_exist(path=path, backup_url=backup_url)
 
     return pd.read_parquet(path)
+
 
 def load_rat_promoter_base_GRN(version="rn6_gimmemotifsv5_fpr2", force_download=False):
     """
@@ -70,13 +72,14 @@ def load_rat_promoter_base_GRN(version="rn6_gimmemotifsv5_fpr2", force_download=
         pandas.dataframe: Base GRN as a matrix.
     """
 
-    options = {"rn4_gimmemotifsv5_fpr1": "promoter_base_GRN/rn4_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
-               "rn4_gimmemotifsv5_fpr2": "promoter_base_GRN/rn4_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
-               "rn5_gimmemotifsv5_fpr1": "promoter_base_GRN/rn5_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
-               "rn5_gimmemotifsv5_fpr2": "promoter_base_GRN/rn5_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
-               "rn6_gimmemotifsv5_fpr1": "promoter_base_GRN/rn6_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
-               "rn6_gimmemotifsv5_fpr2": "promoter_base_GRN/rn6_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
-               }
+    options = {
+        "rn4_gimmemotifsv5_fpr1": "promoter_base_GRN/rn4_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
+        "rn4_gimmemotifsv5_fpr2": "promoter_base_GRN/rn4_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
+        "rn5_gimmemotifsv5_fpr1": "promoter_base_GRN/rn5_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
+        "rn5_gimmemotifsv5_fpr2": "promoter_base_GRN/rn5_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
+        "rn6_gimmemotifsv5_fpr1": "promoter_base_GRN/rn6_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
+        "rn6_gimmemotifsv5_fpr2": "promoter_base_GRN/rn6_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
+    }
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]
@@ -96,7 +99,9 @@ def load_rat_promoter_base_GRN(version="rn6_gimmemotifsv5_fpr2", force_download=
     return pd.read_parquet(path)
 
 
-def load_mouse_promoter_base_GRN(version="mm10_gimmemotifsv5_fpr2", force_download=False):
+def load_mouse_promoter_base_GRN(
+    version="mm10_gimmemotifsv5_fpr2", force_download=False
+):
     """
     Load Base GRN made from promoter DNA sequence and motif scan.
 
@@ -106,11 +111,12 @@ def load_mouse_promoter_base_GRN(version="mm10_gimmemotifsv5_fpr2", force_downlo
         pandas.dataframe: Base GRN as a matrix.
     """
 
-    options = {"mm9_gimmemotifsv5_fpr1": "promoter_base_GRN/mm9_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
-               "mm9_gimmemotifsv5_fpr2": "promoter_base_GRN/mm9_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
-               "mm10_gimmemotifsv5_fpr1": "promoter_base_GRN/mm10_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
-               "mm10_gimmemotifsv5_fpr2": "promoter_base_GRN/mm10_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
-               }
+    options = {
+        "mm9_gimmemotifsv5_fpr1": "promoter_base_GRN/mm9_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
+        "mm9_gimmemotifsv5_fpr2": "promoter_base_GRN/mm9_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
+        "mm10_gimmemotifsv5_fpr1": "promoter_base_GRN/mm10_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
+        "mm10_gimmemotifsv5_fpr2": "promoter_base_GRN/mm10_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
+    }
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]
@@ -129,7 +135,10 @@ def load_mouse_promoter_base_GRN(version="mm10_gimmemotifsv5_fpr2", force_downlo
 
     return pd.read_parquet(path)
 
-def load_human_promoter_base_GRN(version="hg19_gimmemotifsv5_fpr2", force_download=False):
+
+def load_human_promoter_base_GRN(
+    version="hg19_gimmemotifsv5_fpr2", force_download=False
+):
     """
     Load Base GRN made from promoter DNA sequence and motif scan.
 
@@ -139,11 +148,12 @@ def load_human_promoter_base_GRN(version="hg19_gimmemotifsv5_fpr2", force_downlo
         pandas.dataframe: Base GRN as a matrix.
     """
 
-    options = {"hg19_gimmemotifsv5_fpr1": "promoter_base_GRN/hg19_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
-               "hg19_gimmemotifsv5_fpr2": "promoter_base_GRN/hg19_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
-               "hg38_gimmemotifsv5_fpr1": "promoter_base_GRN/hg38_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
-               "hg38_gimmemotifsv5_fpr2": "promoter_base_GRN/hg38_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
-               }
+    options = {
+        "hg19_gimmemotifsv5_fpr1": "promoter_base_GRN/hg19_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
+        "hg19_gimmemotifsv5_fpr2": "promoter_base_GRN/hg19_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
+        "hg38_gimmemotifsv5_fpr1": "promoter_base_GRN/hg38_TFinfo_dataframe_gimmemotifsv5_fpr1_threshold_10_20210630.parquet",
+        "hg38_gimmemotifsv5_fpr2": "promoter_base_GRN/hg38_TFinfo_dataframe_gimmemotifsv5_fpr2_threshold_10_20210630.parquet",
+    }
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]
@@ -163,7 +173,9 @@ def load_human_promoter_base_GRN(version="hg19_gimmemotifsv5_fpr2", force_downlo
     return pd.read_parquet(path)
 
 
-def load_chicken_promoter_base_GRN(version="galGal6_CisBPv2_fpr2", force_download=False):
+def load_chicken_promoter_base_GRN(
+    version="galGal6_CisBPv2_fpr2", force_download=False
+):
     """
     Load Base GRN made from promoter DNA sequence and motif scan.
 
@@ -173,13 +185,14 @@ def load_chicken_promoter_base_GRN(version="galGal6_CisBPv2_fpr2", force_downloa
         pandas.dataframe: Base GRN as a matrix.
     """
 
-    options = {"galGal4_CisBPv2_fpr1": "promoter_base_GRN/galGal4_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "galGal4_CisBPv2_fpr2": "promoter_base_GRN/galGal4_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               "galGal5_CisBPv2_fpr1": "promoter_base_GRN/galGal5_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "galGal5_CisBPv2_fpr2": "promoter_base_GRN/galGal5_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               "galGal6_CisBPv2_fpr1": "promoter_base_GRN/galGal6_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "galGal6_CisBPv2_fpr2": "promoter_base_GRN/galGal6_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               }
+    options = {
+        "galGal4_CisBPv2_fpr1": "promoter_base_GRN/galGal4_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "galGal4_CisBPv2_fpr2": "promoter_base_GRN/galGal4_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+        "galGal5_CisBPv2_fpr1": "promoter_base_GRN/galGal5_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "galGal5_CisBPv2_fpr2": "promoter_base_GRN/galGal5_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+        "galGal6_CisBPv2_fpr1": "promoter_base_GRN/galGal6_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "galGal6_CisBPv2_fpr2": "promoter_base_GRN/galGal6_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+    }
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]
@@ -199,7 +212,9 @@ def load_chicken_promoter_base_GRN(version="galGal6_CisBPv2_fpr2", force_downloa
     return pd.read_parquet(path)
 
 
-def load_zebrafish_promoter_base_GRN(version="danRer11_CisBPv2_fpr2", force_download=False):
+def load_zebrafish_promoter_base_GRN(
+    version="danRer11_CisBPv2_fpr2", force_download=False
+):
     """
     Load Base GRN made from promoter DNA sequence and motif scan.
 
@@ -209,13 +224,14 @@ def load_zebrafish_promoter_base_GRN(version="danRer11_CisBPv2_fpr2", force_down
         pandas.dataframe: Base GRN as a matrix.
     """
 
-    options = {"danRer7_CisBPv2_fpr1": "promoter_base_GRN/danRer7_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "danRer7_CisBPv2_fpr2": "promoter_base_GRN/danRer7_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               "danRer10_CisBPv2_fpr1": "promoter_base_GRN/danRer10_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "danRer10_CisBPv2_fpr2": "promoter_base_GRN/danRer10_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               "danRer11_CisBPv2_fpr1": "promoter_base_GRN/danRer11_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "danRer11_CisBPv2_fpr2": "promoter_base_GRN/danRer11_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               }
+    options = {
+        "danRer7_CisBPv2_fpr1": "promoter_base_GRN/danRer7_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "danRer7_CisBPv2_fpr2": "promoter_base_GRN/danRer7_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+        "danRer10_CisBPv2_fpr1": "promoter_base_GRN/danRer10_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "danRer10_CisBPv2_fpr2": "promoter_base_GRN/danRer10_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+        "danRer11_CisBPv2_fpr1": "promoter_base_GRN/danRer11_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "danRer11_CisBPv2_fpr2": "promoter_base_GRN/danRer11_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+    }
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]
@@ -234,7 +250,10 @@ def load_zebrafish_promoter_base_GRN(version="danRer11_CisBPv2_fpr2", force_down
 
     return pd.read_parquet(path)
 
-def load_xenopus_tropicalis_promoter_base_GRN(version="xenTro3_CisBPv2_fpr2", force_download=False):
+
+def load_xenopus_tropicalis_promoter_base_GRN(
+    version="xenTro3_CisBPv2_fpr2", force_download=False
+):
     """
     Load Base GRN made from promoter DNA sequence and motif scan.
 
@@ -243,51 +262,21 @@ def load_xenopus_tropicalis_promoter_base_GRN(version="xenTro3_CisBPv2_fpr2", fo
     Returns:
         pandas.dataframe: Base GRN as a matrix.
     """
-    warnings.warn("Promoter base GRN for Xenopus tropicalis has been updated since celloracle v0.10.14 duet to the change of default motif data base for Xenopus tropicalis. If you want to use previous version, please select old version by specifying version argument.",
-                  UserWarning)
+    warnings.warn(
+        "Promoter base GRN for Xenopus tropicalis has been updated since celloracle v0.10.14 duet to the change of default motif data base for Xenopus tropicalis. If you want to use previous version, please select old version by specifying version argument.",
+        UserWarning,
+    )
 
-    options = {"xenTro2_CisBPv2_fpr1_v20210630": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr1_threshold_10_20210630.parquet",
-               "xenTro2_CisBPv2_fpr2_v20210630": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr2_threshold_10_20210630.parquet",
-               "xenTro3_CisBPv2_fpr1_v20210630": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr1_threshold_10_20210630.parquet",
-               "xenTro3_CisBPv2_fpr2_v20210630": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr2_threshold_10_20210630.parquet",
-               "xenTro2_CisBPv2_fpr1": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr1_threshold_10_20221231.parquet",
-               "xenTro2_CisBPv2_fpr2": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr2_threshold_10_20221231.parquet",
-               "xenTro3_CisBPv2_fpr1": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr1_threshold_10_20221231.parquet",
-               "xenTro3_CisBPv2_fpr2": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr2_threshold_10_20221231.parquet",
-               }
-
-    if version in options.keys():
-        print(f"Loading prebuilt promoter base-GRN. Version: {version}")
-        filename = options[version]
-    else:
-        print(f"Version error. {version} is not in the list.")
-        print("Available option: ", list(options.keys()))
-
-    # Load data from local directory if file exits.
-    path = os.path.join(parent_path[0], filename)
-    if (force_download == False) & os.path.isfile(path):
-        pass
-    else:
-        path = os.path.join(CELLORACLE_DATA_DIR, filename)
-        backup_url = os.path.join(WEB_PAR_DIR, filename)
-        download_data_if_data_not_exist(path=path, backup_url=backup_url)
-
-    return pd.read_parquet(path)
-
-def load_xenopus_laevis_promoter_base_GRN(version="Xenopus_laevis_v10.1_CisBPv2_fpr2", force_download=False):
-    """
-    Load Base GRN made from promoter DNA sequence and motif scan.
-
-    Args:
-
-    Returns:
-        pandas.dataframe: Base GRN as a matrix.
-    """
-
-    options = {"Xenopus_laevis_v10.1_CisBPv2_fpr2": "promoter_base_GRN/Xenopus_laevis_v10.1_TFinfo_dataframe_CisBPv2_Xenopus_laevis_fpr2_threshold_10_20221228.parquet",
-               "Xenopus_laevis_v10.1_CisBPv2_fpr1": "promoter_base_GRN/Xenopus_laevis_v10.1_TFinfo_dataframe_CisBPv2_Xenopus_laevis_fpr1_threshold_10_20221228.parquet",
-
-               }
+    options = {
+        "xenTro2_CisBPv2_fpr1_v20210630": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr1_threshold_10_20210630.parquet",
+        "xenTro2_CisBPv2_fpr2_v20210630": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr2_threshold_10_20210630.parquet",
+        "xenTro3_CisBPv2_fpr1_v20210630": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr1_threshold_10_20210630.parquet",
+        "xenTro3_CisBPv2_fpr2_v20210630": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_and_Xenopus_laevis_fpr2_threshold_10_20210630.parquet",
+        "xenTro2_CisBPv2_fpr1": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr1_threshold_10_20221231.parquet",
+        "xenTro2_CisBPv2_fpr2": "promoter_base_GRN/xenTro2_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr2_threshold_10_20221231.parquet",
+        "xenTro3_CisBPv2_fpr1": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr1_threshold_10_20221231.parquet",
+        "xenTro3_CisBPv2_fpr2": "promoter_base_GRN/xenTro3_TFinfo_dataframe_CisBPv2_Xenopus_tropicalis_fpr2_threshold_10_20221231.parquet",
+    }
 
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
@@ -307,7 +296,10 @@ def load_xenopus_laevis_promoter_base_GRN(version="Xenopus_laevis_v10.1_CisBPv2_
 
     return pd.read_parquet(path)
 
-def load_arabidopsis_promoter_base_GRN(version="TAIR10_CisBPv2_fpr2", force_download=False):
+
+def load_xenopus_laevis_promoter_base_GRN(
+    version="Xenopus_laevis_v10.1_CisBPv2_fpr2", force_download=False
+):
     """
     Load Base GRN made from promoter DNA sequence and motif scan.
 
@@ -317,9 +309,11 @@ def load_arabidopsis_promoter_base_GRN(version="TAIR10_CisBPv2_fpr2", force_down
         pandas.dataframe: Base GRN as a matrix.
     """
 
-    options = {"TAIR10_CisBPv2_fpr1": "promoter_base_GRN/TAIR10_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "TAIR10_CisBPv2_fpr2": "promoter_base_GRN/TAIR10_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               }
+    options = {
+        "Xenopus_laevis_v10.1_CisBPv2_fpr2": "promoter_base_GRN/Xenopus_laevis_v10.1_TFinfo_dataframe_CisBPv2_Xenopus_laevis_fpr2_threshold_10_20221228.parquet",
+        "Xenopus_laevis_v10.1_CisBPv2_fpr1": "promoter_base_GRN/Xenopus_laevis_v10.1_TFinfo_dataframe_CisBPv2_Xenopus_laevis_fpr1_threshold_10_20221228.parquet",
+    }
+
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]
@@ -339,8 +333,9 @@ def load_arabidopsis_promoter_base_GRN(version="TAIR10_CisBPv2_fpr2", force_down
     return pd.read_parquet(path)
 
 
-
-def load_Scerevisiae_promoter_base_GRN(version="sacCer3_CisBPv2_fpr2", force_download=False):
+def load_arabidopsis_promoter_base_GRN(
+    version="TAIR10_CisBPv2_fpr2", force_download=False
+):
     """
     Load Base GRN made from promoter DNA sequence and motif scan.
 
@@ -350,11 +345,10 @@ def load_Scerevisiae_promoter_base_GRN(version="sacCer3_CisBPv2_fpr2", force_dow
         pandas.dataframe: Base GRN as a matrix.
     """
 
-    options = {"sacCer2_CisBPv2_fpr1": "promoter_base_GRN/sacCer2_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "sacCer2_CisBPv2_fpr2": "promoter_base_GRN/sacCer2_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               "sacCer3_CisBPv2_fpr1": "promoter_base_GRN/sacCer3_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "sacCer3_CisBPv2_fpr2": "promoter_base_GRN/sacCer3_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               }
+    options = {
+        "TAIR10_CisBPv2_fpr1": "promoter_base_GRN/TAIR10_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "TAIR10_CisBPv2_fpr2": "promoter_base_GRN/TAIR10_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+    }
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]
@@ -372,6 +366,44 @@ def load_Scerevisiae_promoter_base_GRN(version="sacCer3_CisBPv2_fpr2", force_dow
         download_data_if_data_not_exist(path=path, backup_url=backup_url)
 
     return pd.read_parquet(path)
+
+
+def load_Scerevisiae_promoter_base_GRN(
+    version="sacCer3_CisBPv2_fpr2", force_download=False
+):
+    """
+    Load Base GRN made from promoter DNA sequence and motif scan.
+
+    Args:
+
+    Returns:
+        pandas.dataframe: Base GRN as a matrix.
+    """
+
+    options = {
+        "sacCer2_CisBPv2_fpr1": "promoter_base_GRN/sacCer2_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "sacCer2_CisBPv2_fpr2": "promoter_base_GRN/sacCer2_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+        "sacCer3_CisBPv2_fpr1": "promoter_base_GRN/sacCer3_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "sacCer3_CisBPv2_fpr2": "promoter_base_GRN/sacCer3_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+    }
+    if version in options.keys():
+        print(f"Loading prebuilt promoter base-GRN. Version: {version}")
+        filename = options[version]
+    else:
+        print(f"Version error. {version} is not in the list.")
+        print("Available option: ", list(options.keys()))
+
+    # Load data from local directory if file exits.
+    path = os.path.join(parent_path[0], filename)
+    if (force_download == False) & os.path.isfile(path):
+        pass
+    else:
+        path = os.path.join(CELLORACLE_DATA_DIR, filename)
+        backup_url = os.path.join(WEB_PAR_DIR, filename)
+        download_data_if_data_not_exist(path=path, backup_url=backup_url)
+
+    return pd.read_parquet(path)
+
 
 def load_Celegans_promoter_base_GRN(version="ce10_CisBPv2_fpr2", force_download=False):
     """
@@ -383,11 +415,12 @@ def load_Celegans_promoter_base_GRN(version="ce10_CisBPv2_fpr2", force_download=
         pandas.dataframe: Base GRN as a matrix.
     """
 
-    options = {"ce6_CisBPv2_fpr1": "promoter_base_GRN/ce6_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "ce6_CisBPv2_fpr2": "promoter_base_GRN/ce6_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               "ce10_CisBPv2_fpr1": "promoter_base_GRN/ce10_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
-               "ce10_CisBPv2_fpr2": "promoter_base_GRN/ce10_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
-               }
+    options = {
+        "ce6_CisBPv2_fpr1": "promoter_base_GRN/ce6_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "ce6_CisBPv2_fpr2": "promoter_base_GRN/ce6_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+        "ce10_CisBPv2_fpr1": "promoter_base_GRN/ce10_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20210630.parquet",
+        "ce10_CisBPv2_fpr2": "promoter_base_GRN/ce10_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20210630.parquet",
+    }
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]
@@ -406,7 +439,10 @@ def load_Celegans_promoter_base_GRN(version="ce10_CisBPv2_fpr2", force_download=
 
     return pd.read_parquet(path)
 
-def load_Pig_promoter_base_GRN(version="Sscrofa11.1_CisBPv2_fpr2", force_download=False):
+
+def load_Pig_promoter_base_GRN(
+    version="Sscrofa11.1_CisBPv2_fpr2", force_download=False
+):
     """
     Load Base GRN made from promoter DNA sequence and motif scan.
 
@@ -416,9 +452,10 @@ def load_Pig_promoter_base_GRN(version="Sscrofa11.1_CisBPv2_fpr2", force_downloa
         pandas.dataframe: Base GRN as a matrix.
     """
 
-    options = {"Sscrofa11.1_CisBPv2_fpr1": "promoter_base_GRN/Sscrofa11.1_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20230218.parquet",
-               "Sscrofa11.1_CisBPv2_fpr2": "promoter_base_GRN/Sscrofa11.1_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20230218.parquet",
-               }
+    options = {
+        "Sscrofa11.1_CisBPv2_fpr1": "promoter_base_GRN/Sscrofa11.1_TFinfo_dataframe_CisBPv2_fpr1_threshold_10_20230218.parquet",
+        "Sscrofa11.1_CisBPv2_fpr2": "promoter_base_GRN/Sscrofa11.1_TFinfo_dataframe_CisBPv2_fpr2_threshold_10_20230218.parquet",
+    }
     if version in options.keys():
         print(f"Loading prebuilt promoter base-GRN. Version: {version}")
         filename = options[version]

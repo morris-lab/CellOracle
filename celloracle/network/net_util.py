@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This is a series of custom functions for the inferring of GRN from single cell RNA-seq data.
 
 Codes were written by Kenji Kamimoto.
 
 
-'''
+"""
 
 ###########################
-### 0. Import libralies ###
+### 0. Import libraries ###
 ###########################
 
 
@@ -42,18 +42,17 @@ def load_net_from_patquets(folder_path):
         folder_path (str): Folder path
     """
 
-
     obj = load_pickled_object(os.path.join(folder_path, "transNet.pickle"))
 
     compressed_files_path = glob.glob(os.path.join(folder_path, "*.parquet"))
-    compressed_file_name = [i.split("/")[-1] for i in  compressed_files_path]
+    compressed_file_name = [i.split("/")[-1] for i in compressed_files_path]
 
     for name, path in zip(compressed_file_name, compressed_files_path):
         if name == "gem.parquet":
             obj.gem = pd.read_parquet(path)
 
-        if name == "gem_standerdized.parquet":
-            obj.gem_standerdized = pd.read_parquet(path)
+        if name == "gem_standardized.parquet":
+            obj.gem_standardized = pd.read_parquet(path)
 
         if name == "TFinfo.parquet":
             obj.TFinfo = pd.read_parquet(path)
@@ -64,7 +63,6 @@ def load_net_from_patquets(folder_path):
         if name == "linkList.parquet":
             obj.linkList = pd.read_parquet(path)
     return obj
-
 
 
 def getDF_TGxTF(net_object, value_of_interest):
@@ -92,6 +90,7 @@ def getDF_TGxTF(net_object, value_of_interest):
     df = df.transpose().fillna(0)
 
     return df
+
 
 def getDF_peakxTF(net_object, stat_value_of_interest):
     """

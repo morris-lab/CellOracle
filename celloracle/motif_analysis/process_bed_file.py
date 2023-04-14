@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This file contains custom functions for the analysis of ATAC-seq data.
 Genomic activity information (peak of ATAC-seq) will be extracted first.
 Then the peak DNA sequence will be subjected to TF motif scan.
@@ -8,10 +8,10 @@ Finally we will get list of TFs that potentially binds to a specific gene.
 Codes were written by Kenji Kamimoto.
 
 
-'''
+"""
 
 ###########################
-### 0. Import libralies ###
+### 0. Import libraries ###
 ###########################
 
 
@@ -27,7 +27,7 @@ from tqdm.auto import tqdm
 # 0.2. libraries for DNA and genome data wrangling and Motif analysis
 from genomepy import Genome
 
-#from gimmemotifs.motif import Motif
+# from gimmemotifs.motif import Motif
 from gimmemotifs.scanner import Scanner
 from gimmemotifs.fasta import Fasta
 
@@ -55,6 +55,7 @@ def decompose_chrstr(peak_str):
 
     return chr_, start, end
 
+
 def list_peakstr_to_df(x):
     """
     Convert list of peaks(str) into data frame.
@@ -79,18 +80,18 @@ def list_peakstr_to_df(x):
     df["end"] = df["end"].astype(int)
     return df
 
-def df_to_list_peakstr(x):
 
-    x = x.rename(columns={"chrom":"chr"})
+def df_to_list_peakstr(x):
+    x = x.rename(columns={"chrom": "chr"})
 
     peak_str = x.chr + "_" + x.start.astype(str) + "_" + x.end.astype(str)
     peak_str = peak_str.values
 
     return peak_str
 
+
 ####
 ###
-
 
 
 def peak_M1(peak_id):
@@ -110,12 +111,11 @@ def peak_M1(peak_id):
         "chr11_123445554_123445577"
     """
     chr_, start, end = decompose_chrstr(peak_id)
-    return chr_ + "_" + str(int(start)-1) + "_" + end
+    return chr_ + "_" + str(int(start) - 1) + "_" + end
 
 
 def peak2fasta(peak_ids, ref_genome):
-
-    '''
+    """
     Convert peak_id into fasta object.
 
     Args:
@@ -127,18 +127,17 @@ def peak2fasta(peak_ids, ref_genome):
     Returns:
         gimmemotifs fasta object: DNA sequence in fasta format
 
-    '''
+    """
     genome_data = Genome(ref_genome)
 
     def peak2seq(peak_id):
         chromosome_name, start, end = decompose_chrstr(peak_id)
-        locus = (int(start),int(end))
+        locus = (int(start), int(end))
 
-        tmp = genome_data[chromosome_name][locus[0]:locus[1]]
+        tmp = genome_data[chromosome_name][locus[0] : locus[1]]
         name = f"{tmp.name}_{tmp.start}_{tmp.end}"
         seq = tmp.seq
         return (name, seq)
-
 
     if type(peak_ids) is str:
         peak_ids = [peak_ids]
@@ -149,6 +148,7 @@ def peak2fasta(peak_ids, ref_genome):
         fasta.add(name, seq)
 
     return fasta
+
 
 def remove_zero_seq(fasta_object):
     """
@@ -174,5 +174,11 @@ def read_bed(bed_path):
 
     """
     tt = BedTool(bed_path).to_dataframe().dropna(axis=0)
-    tt["seqname"] = tt.chrom + "_" + tt.start.astype("int").astype("str") + "_" + tt.end.astype("int").astype("str")
+    tt["seqname"] = (
+        tt.chrom
+        + "_"
+        + tt.start.astype("int").astype("str")
+        + "_"
+        + tt.end.astype("int").astype("str")
+    )
     return tt

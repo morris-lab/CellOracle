@@ -1,7 +1,7 @@
-
 import os
 import pandas as pd
-#from warnings import warn
+
+# from warnings import warn
 
 try:
     from importlib.metadata import version
@@ -32,6 +32,7 @@ def _get_package_names(requirements):
 
     return names
 
+
 def _get_installed_version(requirements):
     names = _get_package_names(requirements)
     installed_versions = []
@@ -43,6 +44,7 @@ def _get_installed_version(requirements):
         installed_versions.append(v)
 
     return installed_versions
+
 
 def _get_required_version(requirements):
     versions = []
@@ -59,8 +61,8 @@ def _get_required_version(requirements):
 
     return versions
 
-def _is_version_OK(que, ref):
 
+def _is_version_OK(que, ref):
     try:
         answer = True
         if ref == "auto":
@@ -69,13 +71,11 @@ def _is_version_OK(que, ref):
             else:
                 pass
         else:
-
             que_ = que.split(".")
             ref_ = ref.split(".")
 
-
             for q, r in zip(que_, ref_):
-                #print(q, r)
+                # print(q, r)
                 if int(q) < int(r):
                     answer = False
                     break
@@ -87,6 +87,7 @@ def _is_version_OK(que, ref):
         return answer
     except:
         return "unknown"
+
 
 def check_python_requirements(return_detail=True, print_warning=True):
     """
@@ -100,12 +101,17 @@ def check_python_requirements(return_detail=True, print_warning=True):
             print("Could not check requirements.")
         return None
 
-    status = pd.DataFrame({"package_name": _get_package_names(REQUIREMENTS),
-                           "installed_version": _get_installed_version(REQUIREMENTS),
-                            "required_version": _get_required_version(REQUIREMENTS)})
-    status["requirement_satisfied"] = \
-    [_is_version_OK(ref, que) for ref, que in zip(status["installed_version"],
-                                                 status["required_version"])]
+    status = pd.DataFrame(
+        {
+            "package_name": _get_package_names(REQUIREMENTS),
+            "installed_version": _get_installed_version(REQUIREMENTS),
+            "required_version": _get_required_version(REQUIREMENTS),
+        }
+    )
+    status["requirement_satisfied"] = [
+        _is_version_OK(ref, que)
+        for ref, que in zip(status["installed_version"], status["required_version"])
+    ]
 
     if print_warning:
         n_not_ok = (status["requirement_satisfied"] == False).sum()
@@ -116,6 +122,8 @@ def check_python_requirements(return_detail=True, print_warning=True):
 
         for i, (name, installed, required, isok) in status.iterrows():
             if isok is False:
-                print(f" Your {name} version is {installed}. Please install {REQUIREMENTS[i]}")
+                print(
+                    f" Your {name} version is {installed}. Please install {REQUIREMENTS[i]}"
+                )
     if return_detail:
         return status

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This file contains custom functions for the analysis of ATAC-seq data.
 Genomic activity information (peak of ATAC-seq) will be extracted first.
 Then the peak DNA sequence will be subjected to TF motif scan.
@@ -8,10 +8,10 @@ Finally we will get list of TFs that potentially binds to a specific gene.
 Codes were written by Kenji Kamimoto.
 
 
-'''
+"""
 
 ###########################
-### 0. Import libralies ###
+### 0. Import libraries ###
 ###########################
 
 
@@ -19,8 +19,9 @@ Codes were written by Kenji Kamimoto.
 
 import pandas as pd
 import numpy as np
-#import matplotlib.pyplot as plt
-#import seaborn as sns
+
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 
 import sys
 import os
@@ -39,14 +40,19 @@ from gimmemotifs.motif import default_motifs
 from gimmemotifs.scanner import Scanner
 
 from ..utility.hdf5_processing import dump_hdf5, load_hdf5
-from ..utility import save_as_pickled_object, load_pickled_object, intersect,\
-                      makelog, inverse_dictionary
+from ..utility import (
+    save_as_pickled_object,
+    load_pickled_object,
+    intersect,
+    makelog,
+    inverse_dictionary,
+)
+
 #
 from .motif_analysis_utility import scan_dna_for_motifs, is_genome_installed
 from .process_bed_file import read_bed, peak2fasta, remove_zero_seq
 from .motif_data import load_motifs
 from .reference_genomes import SUPPORTED_REF_GENOME
-
 
 
 def load_TFinfo(file_path):
@@ -61,6 +67,7 @@ def load_TFinfo(file_path):
 
     """
     return load_hdf5(filename=file_path, obj_class=TFinfo)
+
 
 def load_TFinfo_from_parquets(folder_path):
     """
@@ -77,7 +84,7 @@ def load_TFinfo_from_parquets(folder_path):
     tfi = load_pickled_object(os.path.join(folder_path_, "tfi.pickle"))
 
     compressed_files_path = glob.glob(os.path.join(folder_path_, "*.parquet"))
-    compressed_file_name = [i.split("/")[-1] for i in  compressed_files_path]
+    compressed_file_name = [i.split("/")[-1] for i in compressed_files_path]
 
     for name, path in zip(compressed_file_name, compressed_files_path):
         if name == "scanned_df.parquet":
@@ -88,32 +95,32 @@ def load_TFinfo_from_parquets(folder_path):
             tfi.TF_onehot = pd.read_parquet(path)
     return tfi
 
-def make_TFinfo_from_scanned_file(path_to_raw_bed, path_to_scanned_result_bed, ref_genome):
+
+def make_TFinfo_from_scanned_file(
+    path_to_raw_bed, path_to_scanned_result_bed, ref_genome
+):
     """
     This function is currently an available.
 
     """
 
-
     peak_df = read_bed(path_to_raw_bed)
-    peak_df = peak_df.drop(columns=["chrom", "start", "end"],axis=1)
-    peak_df = peak_df.rename(columns={"name":"gene_short_name",
-                                      "seqname":"peak_id"})
+    peak_df = peak_df.drop(columns=["chrom", "start", "end"], axis=1)
+    peak_df = peak_df.rename(columns={"name": "gene_short_name", "seqname": "peak_id"})
 
     tfinfo = TFinfo(peak_data_frame=peak_df, ref_genome=ref_genome)
-
 
     tfinfo.all_target_gene = tfinfo.peak_df.gene_short_name.unique()
     tfinfo.all_peaks = tfinfo.peak_df.peak_id.unique()
 
-    tfinfo.scanned_df = read_bed(path_to_scanned_result_bed).rename(columns={"name": "motif_id"})
-
+    tfinfo.scanned_df = read_bed(path_to_scanned_result_bed).rename(
+        columns={"name": "motif_id"}
+    )
 
     return tfinfo
 
 
-
-class TFinfo():
+class TFinfo:
     """
     This is a custom class for motif analysis in celloracle.
     TFinfo object performs motif scan using the TF motif database in gimmemotifs and several functions of genomepy.
@@ -142,13 +149,12 @@ class TFinfo():
 
         """
 
-
         self.easy_log = pd.DataFrame()
         self.__addLog("initiation")
 
         self.peak_df = peak_data_frame.copy()
         # remove redundant information and check column name
-        self.peak_df = self.peak_df.groupby(["peak_id","gene_short_name"]).sum()
+        self.peak_df = self.peak_df.groupby(["peak_id", "gene_short_name"]).sum()
         self.peak_df = self.peak_df.reset_index(drop=False)
 
         self.all_target_gene = self.peak_df.gene_short_name.unique()
@@ -158,14 +164,18 @@ class TFinfo():
 
         # check ref_genome is supported or not
         if ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:
-            self.species = SUPPORTED_REF_GENOME.species[SUPPORTED_REF_GENOME.ref_genome==ref_genome].values[0]
+            self.species = SUPPORTED_REF_GENOME.species[
+                SUPPORTED_REF_GENOME.ref_genome == ref_genome
+            ].values[0]
         else:
-            #print(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page.")
+            # print(f"ref_genome: {ref_genome} is not supported in celloracle. See celloracle.motif_analysis.SUPPORTED_REF_GENOME to get supported ref genome list. If you have a request for a new referencce genome, please post an issue in github issue page.")
             self.species = "not_in_the_default_species_list"
 
         # check  genome installation
         if not is_genome_installed(ref_genome=ref_genome):
-            raise ValueError(f"ref_genome: {ref_genome} is not installed. TFinfo initiation failed.")
+            raise ValueError(
+                f"ref_genome: {ref_genome} is not installed. TFinfo initiation failed."
+            )
 
         self.scanned_df = None
         self.TF_onehot = None
@@ -173,18 +183,17 @@ class TFinfo():
         self.index_to_be_used = None
         self.thresholding_comment = []
 
-
     def __addLog(self, info):
-
         new_df = pd.DataFrame({"time": [datetime.now().ctime()], "info": [info]})
-        self.easy_log = pd.concat([self.easy_log, new_df], axis=0).reset_index(drop=True)
+        self.easy_log = pd.concat([self.easy_log, new_df], axis=0).reset_index(
+            drop=True
+        )
 
     def copy(self):
         """
         Deepcoty itself.
         """
         return deepcopy(self)
-
 
     def save_as_parquet(self, folder_path=None):
         """
@@ -202,11 +211,15 @@ class TFinfo():
         tmp_self.peak_df = None
 
         if not self.scanned_df is None:
-            tmp_self.scanned_df.to_parquet(os.path.join(folder_path, "scanned_df.parquet"))
+            tmp_self.scanned_df.to_parquet(
+                os.path.join(folder_path, "scanned_df.parquet")
+            )
             tmp_self.scanned_df = None
 
         if not self.TF_onehot is None:
-            tmp_self.TF_onehot.to_parquet(os.path.join(folder_path, "TF_onehot.parquet"))
+            tmp_self.TF_onehot.to_parquet(
+                os.path.join(folder_path, "TF_onehot.parquet")
+            )
             tmp_self.TF_onehot = None
 
         self.__addLog("save_as_compressed")
@@ -214,7 +227,6 @@ class TFinfo():
         save_as_pickled_object(tmp_self, os.path.join(folder_path, "tfi.pickle"))
 
         print(f"file saved in: {folder_path}")
-
 
     def to_hdf5(self, file_path):
         """
@@ -229,13 +241,26 @@ class TFinfo():
             raise ValueError("Filename needs to end with '.celloracle.tfinfo'")
 
         compression_opts = 7
-        dump_hdf5(obj=self, filename=file_path,
-                  data_compression=compression_opts,  chunks=(2048, 2048),
-                  noarray_compression=compression_opts, pickle_protocol=4)
+        dump_hdf5(
+            obj=self,
+            filename=file_path,
+            data_compression=compression_opts,
+            chunks=(2048, 2048),
+            noarray_compression=compression_opts,
+            pickle_protocol=4,
+        )
 
-
-
-    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True, motifs=None, TF_evidence_level="direct_and_indirect", TF_formatting="auto", divide=100000):
+    def scan(
+        self,
+        background_length=200,
+        fpr=0.02,
+        n_cpus=-1,
+        verbose=True,
+        motifs=None,
+        TF_evidence_level="direct_and_indirect",
+        TF_formatting="auto",
+        divide=100000,
+    ):
         """
         Scan DNA sequences searching for TF binding motifs.
 
@@ -263,89 +288,123 @@ class TFinfo():
         # load motif
         if motifs is None:
             if verbose:
-                print("No motif data entered. Loading default motifs for your species ...")
+                print(
+                    "No motif data entered. Loading default motifs for your species ..."
+                )
 
-            if self.species in ["Mouse", "Human", "Rat"]: # If species is vertebrate, we use gimmemotif default motifs as a default.
+            if self.species in [
+                "Mouse",
+                "Human",
+                "Rat",
+            ]:  # If species is vertebrate, we use gimmemotif default motifs as a default.
                 motifs = default_motifs()
                 self.motif_db_name = "gimme.vertebrate.v5.0"
                 self.TF_formatting = True
                 if verbose:
-                    print(" Default motif for vertebrate: gimme.vertebrate.v5.0. \n For more information, please see https://gimmemotifs.readthedocs.io/en/master/overview.html \n")
+                    print(
+                        " Default motif for vertebrate: gimme.vertebrate.v5.0. \n For more information, please see https://gimmemotifs.readthedocs.io/en/master/overview.html \n"
+                    )
 
-            elif self.species in ["Zebrafish"]: # If species is Zebrafish, we use CisBP database.
-                self.motif_db_name = 'CisBP_ver2_Danio_rerio.pfm'
+            elif self.species in [
+                "Zebrafish"
+            ]:  # If species is Zebrafish, we use CisBP database.
+                self.motif_db_name = "CisBP_ver2_Danio_rerio.pfm"
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
+                    print(
+                        f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n"
+                    )
 
             elif self.species in ["S.cerevisiae"]:
-                self.motif_db_name = 'CisBP_ver2_Saccharomyces_cerevisiae.pfm'
+                self.motif_db_name = "CisBP_ver2_Saccharomyces_cerevisiae.pfm"
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
+                    print(
+                        f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n"
+                    )
 
             elif self.species in ["Xenopus tropicalis"]:
-                #self.motif_db_name = 'CisBP_ver2_Xenopus_tropicalis_and_Xenopus_laevis.pfm' # V0.10.13 or earlier.
-                self.motif_db_name = 'CisBP_ver2_Xenopus_tropicalis.pfm' # V0.10.14 or later.
+                # self.motif_db_name = 'CisBP_ver2_Xenopus_tropicalis_and_Xenopus_laevis.pfm' # V0.10.13 or earlier.
+                self.motif_db_name = (
+                    "CisBP_ver2_Xenopus_tropicalis.pfm"  # V0.10.14 or later.
+                )
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}.")
-                    print(f" Default motif for {self.species} was changed at celloracle 0.10.14. \n For more information, please see celloracle documentation Changelog page. \n")
+                    print(
+                        f" Default motif for {self.species} was changed at celloracle 0.10.14. \n For more information, please see celloracle documentation Changelog page. \n"
+                    )
 
             elif self.species in ["Xenopus laevis"]:
-                self.motif_db_name = 'CisBP_ver2_Xenopus_laevis.pfm'
+                self.motif_db_name = "CisBP_ver2_Xenopus_laevis.pfm"
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
+                    print(
+                        f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n"
+                    )
 
             elif self.species in ["Drosophila"]:
-                self.motif_db_name = 'CisBP_ver2_Drosophila_melanogaster.pfm'
+                self.motif_db_name = "CisBP_ver2_Drosophila_melanogaster.pfm"
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
+                    print(
+                        f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n"
+                    )
 
             elif self.species in ["C.elegans"]:
-                self.motif_db_name = 'CisBP_ver2_Caenorhabditis_elegans.pfm'
+                self.motif_db_name = "CisBP_ver2_Caenorhabditis_elegans.pfm"
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
+                    print(
+                        f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n"
+                    )
 
             elif self.species in ["Arabidopsis"]:
-                self.motif_db_name = 'CisBP_ver2_Arabidopsis_thaliana_GENE_ID.pfm'
+                self.motif_db_name = "CisBP_ver2_Arabidopsis_thaliana_GENE_ID.pfm"
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
+                    print(
+                        f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n"
+                    )
 
             elif self.species in ["Chicken"]:
-                self.motif_db_name = 'CisBP_ver2_Gallus_gallus.pfm'
+                self.motif_db_name = "CisBP_ver2_Gallus_gallus.pfm"
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
+                    print(
+                        f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n"
+                    )
 
             elif self.species in ["Guinea_Pig"]:
-                self.motif_db_name = 'CisBP_ver2_Cavia_porcellus.pfm'
+                self.motif_db_name = "CisBP_ver2_Cavia_porcellus.pfm"
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
+                    print(
+                        f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n"
+                    )
 
             elif self.species in ["Pig"]:
-                self.motif_db_name = 'CisBP_ver2_Sus_scrofa.pfm'
+                self.motif_db_name = "CisBP_ver2_Sus_scrofa.pfm"
                 motifs = load_motifs(self.motif_db_name)
                 self.TF_formatting = False
                 if verbose:
-                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
+                    print(
+                        f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n"
+                    )
 
             else:
-                raise ValueError(f"We don't have default motifs for your species, Please specify motif data by yourself.")
+                raise ValueError(
+                    f"We don't have default motifs for your species, Please specify motif data by yourself."
+                )
 
         else:
             # Check format
@@ -356,7 +415,9 @@ class TFinfo():
                 else:
                     raise ValueError(f"Motif data type was invalid.")
             else:
-                raise ValueError(f"motifs should be a list of Motif object in gimmemotifs.")
+                raise ValueError(
+                    f"motifs should be a list of Motif object in gimmemotifs."
+                )
 
             self.motif_db_name = "custom_motifs"
             if TF_formatting == "auto":
@@ -366,7 +427,12 @@ class TFinfo():
 
         self.motifs = motifs
 
-        self.dic_motif2TFs = _get_dic_motif2TFs(species=self.species, motifs=motifs, TF_evidence_level=TF_evidence_level, formatting=self.TF_formatting)
+        self.dic_motif2TFs = _get_dic_motif2TFs(
+            species=self.species,
+            motifs=motifs,
+            TF_evidence_level=TF_evidence_level,
+            formatting=self.TF_formatting,
+        )
         self.TF_evidence_level = TF_evidence_level
 
         # initialize scanner
@@ -377,17 +443,22 @@ class TFinfo():
         # set parameters
         s.set_motifs(motifs)
         try:
-            s.set_background(genome=self.ref_genome, size=background_length) # For gimmemotifs ver 14.4
+            s.set_background(
+                genome=self.ref_genome, size=background_length
+            )  # For gimmemotifs ver 14.4
         except:
-            s.set_background(genome=self.ref_genome, length=background_length)# For old gimmemotifs ver 13
+            s.set_background(
+                genome=self.ref_genome, length=background_length
+            )  # For old gimmemotifs ver 13
 
-        #s.set_background(genome="mm9", length=400)
+        # s.set_background(genome="mm9", length=400)
         if verbose:
-            print("Calculating FPR-based threshold. This step may take substantial time when you load a new ref-genome. It will be done quicker on the second time. \n")
+            print(
+                "Calculating FPR-based threshold. This step may take substantial time when you load a new ref-genome. It will be done quicker on the second time. \n"
+            )
         s.set_threshold(fpr=fpr)
 
         ## 2. motif scan ##
-
 
         # Get DNA sequences
         target_sequences = peak2fasta(self.all_peaks, self.ref_genome)
@@ -396,11 +467,13 @@ class TFinfo():
 
         if verbose:
             print("Motif scan started .. It may take long time.\n")
-        self.scanned_df = scan_dna_for_motifs(scanner_object=s,
-                                              motifs_object=motifs,
-                                              sequence_object=target_sequences,
-                                              divide=divide,
-                                              verbose=verbose)
+        self.scanned_df = scan_dna_for_motifs(
+            scanner_object=s,
+            motifs_object=motifs,
+            sequence_object=target_sequences,
+            divide=divide,
+            verbose=verbose,
+        )
 
         self.__addLog("scanMotifs")
 
@@ -437,10 +510,14 @@ class TFinfo():
             raise ValueError("Motif Scan is not done.")
 
         if self.scanned_filtered is None:
-            self.scanned_filtered = self.scanned_df[["seqname", "motif_id", "score"]].copy()
+            self.scanned_filtered = self.scanned_df[
+                ["seqname", "motif_id", "score"]
+            ].copy()
 
         before = len(self.scanned_filtered)
-        self.scanned_filtered = self.scanned_filtered[self.scanned_filtered.seqname.isin(peaks_to_be_remained)]
+        self.scanned_filtered = self.scanned_filtered[
+            self.scanned_filtered.seqname.isin(peaks_to_be_remained)
+        ]
         after = len(self.scanned_filtered)
         print(f"peaks were filtered: {before} -> {after}")
 
@@ -454,27 +531,32 @@ class TFinfo():
         Remove motifs with low binding scores.
 
         Args:
-            method (str): thresholding method. Select either of ["indivisual_score", "cumulative_score"]
+            method (str): thresholding method. Select either of ["individual_score", "cumulative_score"]
         """
         if method == "cumulative_score":
             self._thresholding_by_cumulative_bind_score(threshold_score=threshold)
 
-        elif method == "indivisual_score":
+        elif method == "individual_score":
             self._thresholding_by_bind_score(threshold_score=threshold)
 
         else:
-            raise ValueError("Method is wrong. Select from ['indivisual_score', 'cumulative_score'] ")
-
+            raise ValueError(
+                "Method is wrong. Select from ['individual_score', 'cumulative_score'] "
+            )
 
     def _thresholding_by_bind_score(self, threshold_score):
         if self.scanned_df is None:
             raise ValueError("Motif Scan is not done.")
 
         if self.scanned_filtered is None:
-            self.scanned_filtered = self.scanned_df[["seqname", "motif_id", "score"]].copy()
+            self.scanned_filtered = self.scanned_df[
+                ["seqname", "motif_id", "score"]
+            ].copy()
 
         before = len(self.scanned_filtered)
-        self.scanned_filtered = self.scanned_filtered[self.scanned_filtered.score>=threshold_score]
+        self.scanned_filtered = self.scanned_filtered[
+            self.scanned_filtered.score >= threshold_score
+        ]
         after = len(self.scanned_filtered)
         print(f"Filtering finished: {before} -> {after}")
 
@@ -483,13 +565,14 @@ class TFinfo():
         self.thresholding_comment.append(f"score_threshold:_{threshold_score}")
         self.__addLog("thresholdingByBindScore")
 
-
     def _thresholding_by_cumulative_bind_score(self, threshold_score):
         if self.scanned_df is None:
             raise ValueError("Motif Scan is not done.")
 
         if self.scanned_filtered is None:
-            self.scanned_filtered = self.scanned_df[["seqname", "motif_id", "score"]].copy()
+            self.scanned_filtered = self.scanned_df[
+                ["seqname", "motif_id", "score"]
+            ].copy()
 
         before = len(self.scanned_filtered)
 
@@ -513,7 +596,9 @@ class TFinfo():
             verbose (bool): Whether to show a progress bar.
         """
         if self.scanned_filtered is None:
-            self.scanned_filtered = self.scanned_df[["seqname", "motif_id", "score"]].copy()
+            self.scanned_filtered = self.scanned_df[
+                ["seqname", "motif_id", "score"]
+            ].copy()
 
         if verbose:
             print("1. Converting scanned results into one-hot encoded dataframe.")
@@ -536,7 +621,6 @@ class TFinfo():
         """
 
         def _motifs_to_TFs_as_onehot_series(motifs):
-
             tfs = []
             for motif in motifs:
                 tfs += self.dic_motif2TFs[motif]
@@ -545,7 +629,6 @@ class TFinfo():
 
             series = pd.Series(np.repeat(1, len(tfs)), index=tfs)
             return series
-
 
         # preprocess
         peak_list = self.scanned_filtered.seqname.unique()
@@ -586,7 +669,7 @@ class TFinfo():
         if self.TF_onehot is None:
             raise ValueError("Process has not complete yet.")
 
-        dic_targetgene2TFs ={}
+        dic_targetgene2TFs = {}
         dic_peak2Targetgene = {}
 
         if verbose:
@@ -594,28 +677,25 @@ class TFinfo():
         else:
             loop = self.all_target_gene
         for tg in loop:
-            peaks = self.peak_df[self.peak_df.gene_short_name==tg].peak_id.values
+            peaks = self.peak_df[self.peak_df.gene_short_name == tg].peak_id.values
             peaks = np.array(intersect(peaks, self.TF_onehot.index))
-            #print(peaks)
+            # print(peaks)
 
             tmp_series = self.TF_onehot.loc[peaks].max(axis=0)
-            tfs = tmp_series[tmp_series==1].index.values
+            tfs = tmp_series[tmp_series == 1].index.values
             dic_targetgene2TFs[tg] = tfs
 
             for peak in peaks:
                 dic_peak2Targetgene[peak] = tg
 
-
-
         self.dic_targetgene2TFs = dic_targetgene2TFs
         self.dic_peak2Targetgene = dic_peak2Targetgene
 
-        self.dic_TF2targetgenes = inverse_dictionary(dictionary=dic_targetgene2TFs,
-                                                     verbose=verbose,
-                                                     return_value_as_numpy=True)
+        self.dic_TF2targetgenes = inverse_dictionary(
+            dictionary=dic_targetgene2TFs, verbose=verbose, return_value_as_numpy=True
+        )
 
         self.__addLog("make_dictionaries")
-
 
     def to_dataframe(self, verbose=True):
         """
@@ -638,10 +718,7 @@ class TFinfo():
 
         tmp = pd.concat([self.peak_df, tmp_peak_df], axis=1)
 
-
         return tmp
-
-
 
     def to_dictionary(self, dictionary_type="targetgene2TFs", verbose=True):
         """
@@ -669,9 +746,9 @@ class TFinfo():
             return self.dic_TF2targetgenes
 
         else:
-            raise ValueError(f'{dictionary_type} is not available for dictionary_type.\nSelect from ["targetgene2TFs", "TF2targetgenes"]')
-
-
+            raise ValueError(
+                f'{dictionary_type} is not available for dictionary_type.\nSelect from ["targetgene2TFs", "TF2targetgenes"]'
+            )
 
 
 ######################################################
@@ -681,7 +758,9 @@ class TFinfo():
 from gimmemotifs.config import DIRECT_NAME, INDIRECT_NAME
 
 
-def _get_dic_motif2TFs(species, motifs, TF_evidence_level="direct_and_indirect", formatting=True):
+def _get_dic_motif2TFs(
+    species, motifs, TF_evidence_level="direct_and_indirect", formatting=True
+):
     """
 
     Args:
@@ -724,18 +803,14 @@ def _get_dic_motif2TFs(species, motifs, TF_evidence_level="direct_and_indirect",
     return dic_motif2TFs
 
 
-
 #########################################################
 ### 4.2. Calculate P-values; Multi processing version ###
 #########################################################
 
 
-
 #########################
 ### 5.1 Visualization ###
 #########################
-
-
 
 
 ######################

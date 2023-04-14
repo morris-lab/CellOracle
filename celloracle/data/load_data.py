@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This file contains custom functions for the analysis of ATAC-seq data.
 Genomic activity information (peak of ATAC-seq) will be extracted first.
 Then the peak DNA sequence will be subjected to TF motif scan.
@@ -8,10 +8,10 @@ Finally we will get list of TFs that potentially binds to a specific gene.
 Codes were written by Kenji Kamimoto.
 
 
-'''
+"""
 
 ###########################
-### 0. Import libralies ###
+### 0. Import libraries ###
 ###########################
 
 
@@ -55,7 +55,11 @@ def load_mouse_scATAC_atlas_base_GRN(version="0.10.0", force_download=False):
 
     return pd.read_parquet(path)
 
-load_TFinfo_df_mm9_mouse_atac_atlas = load_mouse_scATAC_atlas_base_GRN # Old function name
+
+load_TFinfo_df_mm9_mouse_atac_atlas = (
+    load_mouse_scATAC_atlas_base_GRN  # Old function name
+)
+
 
 def load_Paul2015_data(version="0.10.0", force_download=False):
     """
@@ -79,9 +83,9 @@ def load_Paul2015_data(version="0.10.0", force_download=False):
 
     return sc.read_h5ad(path)
 
+
 def load_tutorial_links_object(version="0.10.0", force_download=False):
-    """
-    """
+    """ """
     if version == "0.9.0":
         filename = "tutorial_data/links_louvain_190829.celloracle.links"
     elif version == "0.10.0":
@@ -98,6 +102,7 @@ def load_tutorial_links_object(version="0.10.0", force_download=False):
         download_data_if_data_not_exist(path=path, backup_url=backup_url)
 
     return load_hdf5.load_hdf5(path)
+
 
 def load_tutorial_oracle_object(version="0.10.0", force_download=False):
     if version == "0.9.0":

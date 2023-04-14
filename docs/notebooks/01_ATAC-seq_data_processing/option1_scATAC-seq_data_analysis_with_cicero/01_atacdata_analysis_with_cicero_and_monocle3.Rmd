@@ -15,7 +15,7 @@ library(monocle3)
 # 1. Download data
 
 This tutorial uses fetal brain scATAC-seq data from a 10x Genomics database. If you’re using your own scATAC-seq data, you will not need to download this dataset.
-You can download the demo file with the following command. 
+You can download the demo file with the following command.
 
 If the file download fails, please manually download and unzip the data.
 http://cf.10xgenomics.com/samples/cell-atac/1.1.0/atac_v1_E18_brain_fresh_5k/atac_v1_E18_brain_fresh_5k_filtered_peak_bc_matrix.tar.gz
@@ -24,7 +24,7 @@ http://cf.10xgenomics.com/samples/cell-atac/1.1.0/atac_v1_E18_brain_fresh_5k/ata
 # Create folder to store data
 dir.create("data")
 
-# Download demo dataset from 10x genomics 
+# Download demo dataset from 10x genomics
 download.file(url = "http://cf.10xgenomics.com/samples/cell-atac/1.1.0/atac_v1_E18_brain_fresh_5k/atac_v1_E18_brain_fresh_5k_filtered_peak_bc_matrix.tar.gz",
               destfile = "data/matrix.tar.gz")
 # Unzip data
@@ -41,12 +41,12 @@ dir.create(output_folder)
 ```
 
 
-# 2. Load data and make Cell Data Set (CDS) object 
+# 2. Load data and make Cell Data Set (CDS) object
 ## 2.1. Process data to make CDS object
 
 ```{r}
 # Read in matrix data using the Matrix package
-indata <- Matrix::readMM(paste0(data_folder, "/matrix.mtx")) 
+indata <- Matrix::readMM(paste0(data_folder, "/matrix.mtx"))
 # Binarize the matrix
 indata@x[indata@x > 0] <- 1
 
@@ -72,7 +72,7 @@ gene_metadata = peakinfo))
 input_cds <- monocle3::detect_genes(input_cds)
 
 #Ensure there are no peaks included with zero reads
-input_cds <- input_cds[Matrix::rowSums(exprs(input_cds)) != 0,] 
+input_cds <- input_cds[Matrix::rowSums(exprs(input_cds)) != 0,]
 ```
 
 # 3. Qauality check and Filtering
@@ -83,11 +83,11 @@ hist(Matrix::colSums(exprs(input_cds)))
 
 ```{r}
 # Filter cells by peak_count
-# Please set an appropriate threshold values according to your data 
+# Please set an appropriate threshold values according to your data
 max_count <-  15000
 min_count <- 2000
-input_cds <- input_cds[,Matrix::colSums(exprs(input_cds)) >= min_count] 
-input_cds <- input_cds[,Matrix::colSums(exprs(input_cds)) <= max_count] 
+input_cds <- input_cds[,Matrix::colSums(exprs(input_cds)) >= min_count]
+input_cds <- input_cds[,Matrix::colSums(exprs(input_cds)) <= max_count]
 
 ```
 
@@ -103,7 +103,7 @@ input_cds <- estimate_size_factors(input_cds)
 input_cds <- preprocess_cds(input_cds, method = "LSI")
 
 # Dimensional reduction with umap
-input_cds <- reduce_dimension(input_cds, reduction_method = 'UMAP', 
+input_cds <- reduce_dimension(input_cds, reduction_method = 'UMAP',
                               preprocess_method = "LSI")
 umap_coords <- reducedDims(input_cds)$UMAP
 
@@ -164,5 +164,3 @@ write.csv(x = all_peaks, file = paste0(output_folder, "/all_peaks.csv"))
 write.csv(x = conns, file = paste0(output_folder, "/cicero_connections.csv"))
 
 ```
-
-

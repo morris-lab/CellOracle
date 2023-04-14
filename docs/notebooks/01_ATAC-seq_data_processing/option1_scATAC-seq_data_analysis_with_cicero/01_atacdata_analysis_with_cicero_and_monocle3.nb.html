@@ -1773,7 +1773,7 @@ library(monocle3)
 <pre class="r"><code># Create folder to store data
 dir.create(&quot;data&quot;)
 
-# Download demo dataset from 10x genomics 
+# Download demo dataset from 10x genomics
 download.file(url = &quot;http://cf.10xgenomics.com/samples/cell-atac/1.1.0/atac_v1_E18_brain_fresh_5k/atac_v1_E18_brain_fresh_5k_filtered_peak_bc_matrix.tar.gz&quot;,
               destfile = &quot;data/matrix.tar.gz&quot;)
 # Unzip data
@@ -1802,7 +1802,7 @@ dir.create(output_folder)</code></pre>
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBSZWFkIGluIG1hdHJpeCBkYXRhIHVzaW5nIHRoZSBNYXRyaXggcGFja2FnZVxuaW5kYXRhIDwtIE1hdHJpeDo6cmVhZE1NKHBhc3RlMChkYXRhX2ZvbGRlciwgXCIvbWF0cml4Lm10eFwiKSkgXG4jIEJpbmFyaXplIHRoZSBtYXRyaXhcbmluZGF0YUB4W2luZGF0YUB4ID4gMF0gPC0gMVxuXG4jIEZvcm1hdCBjZWxsIGluZm9cbmNlbGxpbmZvIDwtIHJlYWQudGFibGUocGFzdGUwKGRhdGFfZm9sZGVyLCBcIi9iYXJjb2Rlcy50c3ZcIikpXG5yb3cubmFtZXMoY2VsbGluZm8pIDwtIGNlbGxpbmZvJFYxXG5uYW1lcyhjZWxsaW5mbykgPC0gXCJjZWxsc1wiXG5cbiMgRm9ybWF0IHBlYWsgaW5mb1xucGVha2luZm8gPC0gcmVhZC50YWJsZShwYXN0ZTAoZGF0YV9mb2xkZXIsIFwiL3BlYWtzLmJlZFwiKSlcbm5hbWVzKHBlYWtpbmZvKSA8LSBjKFwiY2hyXCIsIFwiYnAxXCIsIFwiYnAyXCIpXG5wZWFraW5mbyRzaXRlX25hbWUgPC0gcGFzdGUocGVha2luZm8kY2hyLCBwZWFraW5mbyRicDEsIHBlYWtpbmZvJGJwMiwgc2VwPVwiX1wiKVxucm93Lm5hbWVzKHBlYWtpbmZvKSA8LSBwZWFraW5mbyRzaXRlX25hbWVcblxucm93Lm5hbWVzKGluZGF0YSkgPC0gcm93Lm5hbWVzKHBlYWtpbmZvKVxuY29sbmFtZXMoaW5kYXRhKSA8LSByb3cubmFtZXMoY2VsbGluZm8pXG5cbiMgTWFrZSBDRFNcbmlucHV0X2NkcyA8LSAgc3VwcHJlc3NXYXJuaW5ncyhuZXdfY2VsbF9kYXRhX3NldChpbmRhdGEsXG5jZWxsX21ldGFkYXRhID0gY2VsbGluZm8sXG5nZW5lX21ldGFkYXRhID0gcGVha2luZm8pKVxuXG5pbnB1dF9jZHMgPC0gbW9ub2NsZTM6OmRldGVjdF9nZW5lcyhpbnB1dF9jZHMpXG5cbiNFbnN1cmUgdGhlcmUgYXJlIG5vIHBlYWtzIGluY2x1ZGVkIHdpdGggemVybyByZWFkc1xuaW5wdXRfY2RzIDwtIGlucHV0X2Nkc1tNYXRyaXg6OnJvd1N1bXMoZXhwcnMoaW5wdXRfY2RzKSkgIT0gMCxdIFxuYGBgIn0= -->
 <pre class="r"><code># Read in matrix data using the Matrix package
-indata &lt;- Matrix::readMM(paste0(data_folder, &quot;/matrix.mtx&quot;)) 
+indata &lt;- Matrix::readMM(paste0(data_folder, &quot;/matrix.mtx&quot;))
 # Binarize the matrix
 indata@x[indata@x &gt; 0] &lt;- 1
 
@@ -1848,11 +1848,11 @@ hist(Matrix::colSums(exprs(input_cds)))</code></pre>
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaWx0ZXIgY2VsbHMgYnkgcGVha19jb3VudFxuIyBQbGVhc2Ugc2V0IGFuIGFwcHJvcHJpYXRlIHRocmVzaG9sZCB2YWx1ZXMgYWNjb3JkaW5nIHRvIHlvdXIgZGF0YSBcbm1heF9jb3VudCA8LSAgMTUwMDBcbm1pbl9jb3VudCA8LSAyMDAwXG5pbnB1dF9jZHMgPC0gaW5wdXRfY2RzWyxNYXRyaXg6OmNvbFN1bXMoZXhwcnMoaW5wdXRfY2RzKSkgPj0gbWluX2NvdW50XSBcbmlucHV0X2NkcyA8LSBpbnB1dF9jZHNbLE1hdHJpeDo6Y29sU3VtcyhleHBycyhpbnB1dF9jZHMpKSA8PSBtYXhfY291bnRdIFxuXG5gYGAifQ== -->
 <pre class="r"><code># Filter cells by peak_count
-# Please set an appropriate threshold values according to your data 
+# Please set an appropriate threshold values according to your data
 max_count &lt;-  15000
 min_count &lt;- 2000
-input_cds &lt;- input_cds[,Matrix::colSums(exprs(input_cds)) &gt;= min_count] 
-input_cds &lt;- input_cds[,Matrix::colSums(exprs(input_cds)) &lt;= max_count] 
+input_cds &lt;- input_cds[,Matrix::colSums(exprs(input_cds)) &gt;= min_count]
+input_cds &lt;- input_cds[,Matrix::colSums(exprs(input_cds)) &lt;= max_count]
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1871,7 +1871,7 @@ input_cds &lt;- estimate_size_factors(input_cds)
 input_cds &lt;- preprocess_cds(input_cds, method = &quot;LSI&quot;)
 
 # Dimensional reduction with umap
-input_cds &lt;- reduce_dimension(input_cds, reduction_method = 'UMAP', 
+input_cds &lt;- reduce_dimension(input_cds, reduction_method = 'UMAP',
                               preprocess_method = &quot;LSI&quot;)
 umap_coords &lt;- reducedDims(input_cds)$UMAP
 

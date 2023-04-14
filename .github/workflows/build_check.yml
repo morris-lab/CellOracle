@@ -2,14 +2,14 @@ name: build_and_test
 
 on:
   push:
-    branches: 
+    branches:
       - master
   workflow_dispatch:
 
 jobs:
   build_and_test:
     runs-on: ubuntu-20.04
-    timeout-minutes: 60    
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v2
       - name: Setup conda, install packages, and test celloracle
@@ -29,7 +29,7 @@ jobs:
             # command to install dependencies
             conda activate test-environment
             conda install cython numpy pytest
-            
+
             # Check pip
             echo pip_path
             which pip

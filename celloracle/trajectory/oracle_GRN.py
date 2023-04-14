@@ -15,8 +15,8 @@ from sklearn.linear_model import Ridge
 from tqdm.auto import tqdm
 
 from ..utility import intersect
-#from network_fitting import TransNet as tn
 
+# from network_fitting import TransNet as tn
 
 
 def _do_simulation(coef_matrix, simulation_input, gem, n_propagation):
@@ -44,7 +44,7 @@ def _do_simulation(coef_matrix, simulation_input, gem, n_propagation):
 
         # gene expression cannot be negative. adjust delta values to make sure that gene expression are not netavive values.
         gem_tmp = gem + delta_simulated
-        gem_tmp[gem_tmp<0] = 0
+        gem_tmp[gem_tmp < 0] = 0
         delta_simulated = gem_tmp - gem
 
     gem_simulated = gem + delta_simulated
@@ -81,9 +81,9 @@ def _getCoefMatrix(gem, TFdict, alpha=1, verbose=True):
 
         if target_gene in reggenes:
             reggenes.remove(target_gene)
-        if len(reggenes) == 0 :
+        if len(reggenes) == 0:
             tmp[target_gene] = 0
-            return(tmp)
+            return tmp
         # prepare learning data
         Data = gem[reggenes]
         Label = gem[target_gene]
@@ -96,7 +96,7 @@ def _getCoefMatrix(gem, TFdict, alpha=1, verbose=True):
 
     li = []
     li_calculated = []
-    with tqdm(genes, disable=(verbose==False)) as pbar:
+    with tqdm(genes, disable=(verbose == False)) as pbar:
         for i in pbar:
             if not i in all_genes_in_dict:
                 tmp = zero_.copy()
@@ -112,7 +112,8 @@ def _getCoefMatrix(gem, TFdict, alpha=1, verbose=True):
         print(f"genes_in_gem: {gem.shape[1]}")
         print(f"models made for {len(li_calculated)} genes")
 
-    return coef_matrix #, li_calculated
+    return coef_matrix  # , li_calculated
+
 
 def _shuffle_celloracle_GRN_coef_table(coef_dataframe, random_seed=123):
     """
@@ -126,10 +127,13 @@ def _shuffle_celloracle_GRN_coef_table(coef_dataframe, random_seed=123):
     np.random.seed(random_seed)
     random_index = np.arange(values.shape[1])
     np.random.shuffle(random_index)
-    random_df = pd.DataFrame(values[:, random_index],
-                            index=coef_dataframe.index,
-                            columns=coef_dataframe.columns)
+    random_df = pd.DataFrame(
+        values[:, random_index],
+        index=coef_dataframe.index,
+        columns=coef_dataframe.columns,
+    )
     return random_df
+
 
 def _correct_coef_table(coef_dataframe):
     """
@@ -137,7 +141,6 @@ def _correct_coef_table(coef_dataframe):
     """
     for i in range(coef_dataframe.shape[0]):
         coef_dataframe.iloc[i, i] = 0
-
 
 
 def _coef_to_active_gene_list(coef_matrix):

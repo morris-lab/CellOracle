@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-
 import io
 import logging
 import os
@@ -14,13 +13,14 @@ import numpy as np
 from tqdm.auto import tqdm
 import matplotlib.pyplot as plt
 
-#import scanpy as sc
-#import seaborn as sns
+# import scanpy as sc
+# import seaborn as sns
 import h5py
 
-#ATTRS = ["delta_embedding", "delta_embedding_random"]
+# ATTRS = ["delta_embedding", "delta_embedding_random"]
 
-class Oracle_data_strage():
+
+class Oracle_data_strage:
     def __init__(self):
         pass
 
@@ -31,7 +31,7 @@ class Oracle_data_strage():
         self.path_df = self.path.replace(".hdf5", "_df.hdf5")
 
         self.names = []
-        with h5py.File(self.path, mode='w') as f:
+        with h5py.File(self.path, mode="w") as f:
             pass
 
     def set_hdf_path(self, path, create_if_not_exist=True):
@@ -41,12 +41,12 @@ class Oracle_data_strage():
         self.path_df = self.path.replace(".hdf5", "_df.hdf5")
 
         try:
-            with h5py.File(self.path, mode='r') as f:
+            with h5py.File(self.path, mode="r") as f:
                 self.names = []
                 f.visit(self.names.append)
 
             unique_genes = np.unique([i.split("/")[0] for i in self.names])
-            #print(f"hdf file with {len(unique_genes)} data was found.")
+            # print(f"hdf file with {len(unique_genes)} data was found.")
         except:
             print("No hdf file found in the path. New hdf5 file was created.")
             self.create_hdf_path(path=path)
@@ -58,7 +58,7 @@ class Oracle_data_strage():
             attributes (list of str): attributes to save.
         """
 
-        with h5py.File(self.path, mode='r+') as f:
+        with h5py.File(self.path, mode="r+") as f:
             for i, j in enumerate(attributes):
                 name_ = f"{place}/{j}"
                 if name_ in self.names:
@@ -67,12 +67,12 @@ class Oracle_data_strage():
                 try:
                     f[name_] = att
                 except:
-                    f[name_] = att.astype(h5py.string_dtype(encoding='utf-8'))
+                    f[name_] = att.astype(h5py.string_dtype(encoding="utf-8"))
                 self.names.append(name_)
         self.names = list(set(self.names))
 
     def load_data(self, oracle, place, attributes):
-        with h5py.File(self.path, mode='r') as f:
+        with h5py.File(self.path, mode="r") as f:
             for i, j in enumerate(attributes):
                 val = f[f"{place}/{j}"][...]
                 setattr(oracle, j, val)

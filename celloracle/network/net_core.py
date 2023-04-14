@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 This is a series of custom functions for the inferring of GRN from single cell RNA-seq data.
 
 Codes were written by Kenji Kamimoto.
 
 
-'''
+"""
 
 ###########################
-### 0. Import libralies ###
+### 0. Import libraries ###
 ###########################
 
 
@@ -32,7 +32,7 @@ from scipy.stats import ttest_1samp, norm
 from ..utility.hdf5_processing import dump_hdf5, load_hdf5
 
 # 0.2. custom libraries
-from ..utility import  save_as_pickled_object, standard, intersect
+from ..utility import save_as_pickled_object, standard, intersect
 from .regression_models import get_bagging_ridge_coefs as _get_bagging_ridge_coefs
 from .regression_models import get_bayesian_ridge_coefs as _get_bayesian_ridge_coefs
 
@@ -43,8 +43,9 @@ RIDGE_SOLVER = "auto"
 ### 1.  define main class  ###
 ##############################
 
-class Net():
-    '''
+
+class Net:
+    """
     Net is a custom class for inferring sample-specific GRN from scRNA-seq data.
     This class is used inside the Oracle class for GRN inference.
     This class requires two types of information below.
@@ -72,18 +73,26 @@ class Net():
         cellstate (pandas.DataFrame): A metadata for GRN input
         TFinfo (pandas.DataFrame): Information about potential regulatory TFs.
         gem (pandas.DataFrame): Merged matrix made with gene_expression_matrix and cellstate matrix.
-        gem_standerdized (pandas.DataFrame): Almost the same as gem, but the gene_expression_matrix was standardized.
+        gem_standardized (pandas.DataFrame): Almost the same as gem, but the gene_expression_matrix was standardized.
         library_last_update_date (str): Last update date of this code. This info is for code development. It can be deprecated in the future
         object_initiation_date (str): The date when this object was made.
 
-    '''
-
+    """
 
     #######################################
     ### 1.1. Initialize transNet object ###
     #######################################
-    def __init__(self, gene_expression_matrix, gem_standerdized=None, TFinfo_matrix=None, cellstate=None, TFinfo_dic=None, annotation=None, verbose=True):
-        '''
+    def __init__(
+        self,
+        gene_expression_matrix,
+        gem_standardized=None,
+        TFinfo_matrix=None,
+        cellstate=None,
+        TFinfo_dic=None,
+        annotation=None,
+        verbose=True,
+    ):
+        """
         Instantiate Net object
 
         Args:
@@ -97,12 +106,12 @@ class Net():
             cellstate (pandas.DataFrame): optional input data.
                 Metadata that was acquired during data preprocessing phase can be used for GRN inference.
 
-        '''
+        """
         ## 1. Initiate attributes
         if verbose:
             print("initiating Net object ...")
         self.gem = None
-        self.gem_standerdized = None
+        self.gem_standardized = None
         self.cellstate = None
         self.all_genes = None
         self.TFinfo = None
@@ -124,12 +133,12 @@ class Net():
         self.gem.index.name = None
         self.gem.columns.name = None
 
-        if gem_standerdized is None:
-            self.gem_standerdized = standard(self.gem)
+        if gem_standardized is None:
+            self.gem_standardized = standard(self.gem)
         else:
-            self.gem_standerdized = gem_standerdized.copy()
-            self.gem_standerdized.index.name = None
-            self.gem_standerdized.columns.name = None
+            self.gem_standardized = gem_standardized.copy()
+            self.gem_standardized.index.name = None
+            self.gem_standardized.columns.name = None
 
         if not cellstate is None:
             self.cellstate = cellstate.copy()
@@ -141,12 +150,12 @@ class Net():
                 raise ValueError("cellnumber in GEM and cellstate shold be same.")
             else:
                 self.gem = pd.concat([self.gem, self.cellstate], axis=1)
-                self.gem_standerdized = pd.concat([self.gem_standerdized,
-                                                   self.cellstate], axis=1)
+                self.gem_standardized = pd.concat(
+                    [self.gem_standardized, self.cellstate], axis=1
+                )
                 self.annotation["cellstate"] = list(self.cellstate.columns)
-        self.gem_standerdized = self.gem_standerdized.astype("float32")
+        self.gem_standardized = self.gem_standardized.astype("float32")
         self.gem = self.gem.astype("float32")
-
 
         if verbose:
             print(f"gem_shape: {self.gem.shape}")
@@ -161,14 +170,12 @@ class Net():
             self.TFinfo.columns.name = None
             self.TFinfo = self.TFinfo.reset_index(drop=True)
 
-
             tmp = self.TFinfo.copy()
             tmp = tmp.drop(["peak_id"], axis=1)
             tmp = tmp.groupby(by="gene_short_name").sum()
             self.TFdict = dict(tmp.apply(lambda x: x[x > 0].index.values, axis=1))
             if verbose:
                 print(f"TF info shape: {self.TFinfo.shape}")
-
 
         if not TFinfo_dic is None:
             self.TFdict.update(TFinfo_dic)
@@ -183,13 +190,13 @@ class Net():
         return deepcopy(self)
 
     def addTFinfo_matrix(self, TFinfo_matrix):
-        '''
+        """
         Load TF info dataframe.
 
         Args:
             TFinfo (pandas.DataFrame): information about potential regulatory TFs.
 
-        '''
+        """
         self.TFinfo = TFinfo_matrix.copy()
         tmp = TFinfo_matrix.copy()
         tmp = tmp.drop(["peak_id"], axis=1)
@@ -197,13 +204,13 @@ class Net():
         self.TFdict = dict(tmp.apply(lambda x: x[x > 0].index.values, axis=1))
 
     def updateTFinfo_dictionary(self, TFdict):
-        '''
+        """
         Update TF info matrix
 
         Args:
             TFdict (dictionary): A python dictionary in which a key is Target gene, value are potential regulatory genes for the target gene.
 
-        '''
+        """
         self.TFdict.update(TFdict)
 
     def addTFinfo_dictionary(self, TFdict):
@@ -223,26 +230,23 @@ class Net():
             else:
                 self.TFdict.update({tf: TFdict[tf]})
 
-
-
     def addAnnotation(self, annotation_dictionary):
-        '''
+        """
         Add a new annotation.
 
         Args:
             annotation_dictionary (dictionary): e.g. {"sample_name": "NIH 3T3 cell"}
-        '''
+        """
 
         self.annotation.update(annotation_dictionary)
-
-
 
     ##############################################################
     ## 2.1. Make and fit Regularized Linear model to get Coefs  ##
     ##############################################################
 
-
-    def fit_All_genes_parallel(self, bagging_number=200, scaling=True, log=None, verbose=10):
+    def fit_All_genes_parallel(
+        self, bagging_number=200, scaling=True, log=None, verbose=10
+    ):
         """
         IMPORTANT: this function being debugged and is currently unavailable.
 
@@ -258,16 +262,17 @@ class Net():
 
         # prepare for parallel calculation
         def process(target_gene):
-
-            coefs = _get_bagging_ridge_coefs(target_gene=target_gene,
-                                             gem=self.gem,
-                                             gem_scaled=self.gem_standerdized,
-                                             TFdict=self.TFdict,
-                                             cellstate=self.cellstate,
-                                             bagging_number=bagging_number,
-                                             scaling=scaling,
-                                             n_jobs=1,
-                                             alpha=alpha)
+            coefs = _get_bagging_ridge_coefs(
+                target_gene=target_gene,
+                gem=self.gem,
+                gem_scaled=self.gem_standardized,
+                TFdict=self.TFdict,
+                cellstate=self.cellstate,
+                bagging_number=bagging_number,
+                scaling=scaling,
+                n_jobs=1,
+                alpha=alpha,
+            )
             if type(coefs) is int:
                 fitted_gene = "na"
                 failed_gene = target_gene
@@ -278,9 +283,9 @@ class Net():
 
         # do parallel calculation with joblib
         genes = np.array(intersect(self.all_genes, self.TFdict.keys()))
-        results = Parallel(n_jobs=-1,
-                           backend="threading",
-                           verbose=verbose)([delayed(process)(i) for i in genes])
+        results = Parallel(n_jobs=-1, backend="threading", verbose=verbose)(
+            [delayed(process)(i) for i in genes]
+        )
 
         # order and save results
         results = np.array(results)
@@ -292,8 +297,17 @@ class Net():
         self.fitted_genes = fitted_genes
         self.failed_genes = failed_genes
 
-    def fit_All_genes(self, bagging_number=200, scaling=True, model_method="bagging_ridge",
-                      command_line_mode=False, log=None, alpha=1, verbose=True, n_jobs=-1):
+    def fit_All_genes(
+        self,
+        bagging_number=200,
+        scaling=True,
+        model_method="bagging_ridge",
+        command_line_mode=False,
+        log=None,
+        alpha=1,
+        verbose=True,
+        n_jobs=-1,
+    ):
         """
         Make ML models for all genes.
         The calculation will be performed in parallel using scikit-learn bagging function.
@@ -309,19 +323,32 @@ class Net():
             verbose (bool): Whether or not to show a progress bar.
             n_jobs (int): Number of cpu cores for parallel calculation. -1 means using all available cores.
         """
-        self.fit_genes(target_genes=self.all_genes,
-                       bagging_number=bagging_number,
-                       scaling=scaling,
-                       model_method=model_method,
-                       save_coefs=False,
-                       command_line_mode=command_line_mode,
-                       log=log,
-                       alpha=alpha,
-                       verbose=verbose,
-                       n_jobs=n_jobs)
+        self.fit_genes(
+            target_genes=self.all_genes,
+            bagging_number=bagging_number,
+            scaling=scaling,
+            model_method=model_method,
+            save_coefs=False,
+            command_line_mode=command_line_mode,
+            log=log,
+            alpha=alpha,
+            verbose=verbose,
+            n_jobs=n_jobs,
+        )
 
-    def fit_genes(self, target_genes, bagging_number=200, scaling=True, model_method="bagging_ridge",
-                  save_coefs=False, command_line_mode=False, log=None, alpha=1, verbose=True, n_jobs=-1):
+    def fit_genes(
+        self,
+        target_genes,
+        bagging_number=200,
+        scaling=True,
+        model_method="bagging_ridge",
+        save_coefs=False,
+        command_line_mode=False,
+        log=None,
+        alpha=1,
+        verbose=True,
+        n_jobs=-1,
+    ):
         """
         Make ML models for genes of interest.
         This calculation will be performed in parallel using scikit-learn's bagging function.
@@ -343,75 +370,78 @@ class Net():
         genes = np.array(intersect(target_genes, self.TFdict.keys()))
         genes = np.array(intersect(genes, self.all_genes))
         if verbose:
-            #print(f"method: {model_method}")
+            # print(f"method: {model_method}")
             if model_method == "bagging_ridge":
-                #print(f"alpha: {alpha}")
+                # print(f"alpha: {alpha}")
                 pass
 
         if command_line_mode:
-
             N = len(genes)
             log_step = 10
 
             if model_method == "bagging_ridge":
-
                 for i, target_gene in enumerate(genes):
-                    coefs = _get_bagging_ridge_coefs(target_gene=target_gene,
-                                                     gem=self.gem,
-                                                     gem_scaled=self.gem_standerdized,
-                                                     TFdict=self.TFdict,
-                                                     cellstate=self.cellstate,
-                                                     bagging_number=bagging_number,
-                                                     scaling=scaling,
-                                                     n_jobs=n_jobs,
-                                                     alpha=alpha,
-                                                     solver=RIDGE_SOLVER)
+                    coefs = _get_bagging_ridge_coefs(
+                        target_gene=target_gene,
+                        gem=self.gem,
+                        gem_scaled=self.gem_standardized,
+                        TFdict=self.TFdict,
+                        cellstate=self.cellstate,
+                        bagging_number=bagging_number,
+                        scaling=scaling,
+                        n_jobs=n_jobs,
+                        alpha=alpha,
+                        solver=RIDGE_SOLVER,
+                    )
 
                     if isinstance(coefs, int):
                         self.failed_genes.append(target_gene)
 
                     else:
                         self.fitted_genes.append(target_gene)
-                        self.stats_dict[target_gene] = _get_stats_df_bagging_ridge(coefs)
+                        self.stats_dict[target_gene] = _get_stats_df_bagging_ridge(
+                            coefs
+                        )
                         if save_coefs:
                             self.coefs_dict[target_gene] = coefs
 
-                    if i/N*100 >= log_step:
-                        #print(f"{datetime.now().ctime()}: {log_step}% processed..")
+                    if i / N * 100 >= log_step:
+                        # print(f"{datetime.now().ctime()}: {log_step}% processed..")
                         log.info(f"{log_step}% processed..")
                         log_step += 10
 
             elif model_method == "bayesian_ridge":
-
                 for i, target_gene in enumerate(genes):
-                    coef_mean, coef_variance, coef_names = \
-                        _get_bayesian_ridge_coefs(target_gene=target_gene,
-                                                  gem=self.gem,
-                                                  gem_scaled=self.gem_standerdized,
-                                                  TFdict=self.TFdict,
-                                                  cellstate=self.cellstate,
-                                                  scaling=True)
+                    coef_mean, coef_variance, coef_names = _get_bayesian_ridge_coefs(
+                        target_gene=target_gene,
+                        gem=self.gem,
+                        gem_scaled=self.gem_standardized,
+                        TFdict=self.TFdict,
+                        cellstate=self.cellstate,
+                        scaling=True,
+                    )
 
                     if isinstance(coef_mean, int):
                         self.failed_genes.append(target_gene)
 
                     else:
                         self.fitted_genes.append(target_gene)
-                        stats_df = _get_stats_df_from_bayesian_ridge(coef_mean=coef_mean,
-                                                                     coef_variance=coef_variance,
-                                                                     coef_names=coef_names)
+                        stats_df = _get_stats_df_from_bayesian_ridge(
+                            coef_mean=coef_mean,
+                            coef_variance=coef_variance,
+                            coef_names=coef_names,
+                        )
                         self.stats_dict[target_gene] = stats_df
 
-                    if i/N*100 >= log_step:
-                        #print(f"{datetime.now().ctime()}: {log_step}% processed..")
+                    if i / N * 100 >= log_step:
+                        # print(f"{datetime.now().ctime()}: {log_step}% processed..")
                         log.info(f"{log_step}% processed..")
                         log_step += 10
 
             log.info("100% processed..")
-            #print(f"{datetime.now().ctime()}: 100% processed..")
+            # print(f"{datetime.now().ctime()}: 100% processed..")
 
         else:
-
             if model_method == "bagging_ridge":
                 if verbose:
                     loop = tqdm(genes)
@@ -419,43 +449,49 @@ class Net():
                     loop = genes
 
                 for target_gene in loop:
-                    coefs = _get_bagging_ridge_coefs(target_gene=target_gene,
-                                                     gem=self.gem,
-                                                     gem_scaled=self.gem_standerdized,
-                                                     TFdict=self.TFdict,
-                                                     cellstate=self.cellstate,
-                                                     bagging_number=bagging_number,
-                                                     scaling=scaling,
-                                                     n_jobs=n_jobs,
-                                                     alpha=alpha,
-                                                     solver=RIDGE_SOLVER)
+                    coefs = _get_bagging_ridge_coefs(
+                        target_gene=target_gene,
+                        gem=self.gem,
+                        gem_scaled=self.gem_standardized,
+                        TFdict=self.TFdict,
+                        cellstate=self.cellstate,
+                        bagging_number=bagging_number,
+                        scaling=scaling,
+                        n_jobs=n_jobs,
+                        alpha=alpha,
+                        solver=RIDGE_SOLVER,
+                    )
 
                     if isinstance(coefs, int):
                         self.failed_genes.append(target_gene)
 
                     else:
                         self.fitted_genes.append(target_gene)
-                        self.stats_dict[target_gene] = _get_stats_df_bagging_ridge(coefs)
+                        self.stats_dict[target_gene] = _get_stats_df_bagging_ridge(
+                            coefs
+                        )
 
             elif model_method == "bayesian_ridge":
-
                 for target_gene in tqdm(genes):
-                    coef_mean, coef_variance, coef_names = \
-                        _get_bayesian_ridge_coefs(target_gene=target_gene,
-                                                  gem=self.gem,
-                                                  gem_scaled=self.gem_standerdized,
-                                                  TFdict=self.TFdict,
-                                                  cellstate=self.cellstate,
-                                                  scaling=True)
+                    coef_mean, coef_variance, coef_names = _get_bayesian_ridge_coefs(
+                        target_gene=target_gene,
+                        gem=self.gem,
+                        gem_scaled=self.gem_standardized,
+                        TFdict=self.TFdict,
+                        cellstate=self.cellstate,
+                        scaling=True,
+                    )
 
                     if isinstance(coef_mean, int):
                         self.failed_genes.append(target_gene)
 
                     else:
                         self.fitted_genes.append(target_gene)
-                        stats_df = _get_stats_df_from_bayesian_ridge(coef_mean=coef_mean,
-                                                                     coef_variance=coef_variance,
-                                                                     coef_names=coef_names)
+                        stats_df = _get_stats_df_from_bayesian_ridge(
+                            coef_mean=coef_mean,
+                            coef_variance=coef_variance,
+                            coef_names=coef_names,
+                        )
                         self.stats_dict[target_gene] = stats_df
 
     #########################
@@ -477,15 +513,17 @@ class Net():
         stat = self.stats_dict[target_gene].copy()
 
         if not threshold_p is None:
-            sig_TFs = (stat.percentile_of_zero > (100-threshold_p*100)) |\
-                (stat.percentile_of_zero < (threshold_p*100))
+            sig_TFs = (stat.percentile_of_zero > (100 - threshold_p * 100)) | (
+                stat.percentile_of_zero < (threshold_p * 100)
+            )
             sig_TFs = stat.index.values[sig_TFs]
             coefs = coefs[sig_TFs]
             stat = stat.loc[sig_TFs]
 
         if sort:
-            sorted_columns = stat.sort_values(by="positive_score",
-                                              ascending=False).index.values
+            sorted_columns = stat.sort_values(
+                by="positive_score", ascending=False
+            ).index.values
             coefs = coefs[sorted_columns]
 
         melted = _get_melted_df(coefs)
@@ -493,6 +531,7 @@ class Net():
         plt.title(target_gene)
         plt.axhline(0)
         plt.xticks(range(len(coefs.columns)), coefs.columns, rotation="vertical")
+
     #############################
     ### 4.1. Process results  ###
     #############################
@@ -507,7 +546,7 @@ class Net():
             verbose (bool): Whether or not to show a progress bar
 
         """
-        if not self.fitted_genes: # if the sequence is empty
+        if not self.fitted_genes:  # if the sequence is empty
             print("No model found. Do fit first.")
 
         linkList = []
@@ -524,17 +563,11 @@ class Net():
 
         self.linkList = linkList
 
-
-
-
-
     ####################################
     ### 5.1 Save and Output results  ###
     ####################################
 
-
     def _save_as_pickle(self, folder):
-
         """
         Save itself as a pickled data.
         The pickled data may be large.
@@ -550,7 +583,6 @@ class Net():
         save_as_pickled_object(self, os.path.join(folder, "transNet.pickle"))
 
         print(f"file saved at: {folder}")
-
 
     def _save_as_parquet(self, folder=None):
         """
@@ -570,8 +602,8 @@ class Net():
         tmp_self.gem.to_parquet(folder + "/gem.parquet")
         tmp_self.gem = None
 
-        tmp_self.gem_standerdized.to_parquet(folder + "/gem_standerdized.parquet")
-        tmp_self.gem_standerdized = None
+        tmp_self.gem_standardized.to_parquet(folder + "/gem_standardized.parquet")
+        tmp_self.gem_standardized = None
 
         if not self.linkList is None:
             tmp_self.linkList.to_parquet(folder + "/linkList.parquet")
@@ -585,11 +617,9 @@ class Net():
             tmp_self.cellstate.to_parquet(folder + "/cellstate.parquet")
             tmp_self.cellstate = None
 
-
         save_as_pickled_object(tmp_self, folder + "/transNet.pickle")
 
         print(f"file saved at: {folder}")
-
 
     def to_hdf5(self, file_path):
         """
@@ -604,28 +634,36 @@ class Net():
             raise ValueError("Filename needs to end with '.celloracle.net'")
 
         compression_opts = 7
-        dump_hdf5(obj=self, filename=file_path,
-                  data_compression=compression_opts,  chunks=(2048, 2048),
-                  noarray_compression=compression_opts, pickle_protocol=4)
+        dump_hdf5(
+            obj=self,
+            filename=file_path,
+            data_compression=compression_opts,
+            chunks=(2048, 2048),
+            noarray_compression=compression_opts,
+            pickle_protocol=4,
+        )
+
 
 ####################################################
 ### 2. Define functions for transNet calculation ###
 ####################################################
 
 
-
 # this is a function to convert DataFrame to visualize itself by seaborn plot function.
 def _get_melted_df(df):
     d_ = df.copy()
     d_["index_name"] = df.index
-    melted = pd.melt(d_, id_vars=['index_name'], var_name='variable', value_name='value')
+    melted = pd.melt(
+        d_, id_vars=["index_name"], var_name="variable", value_name="value"
+    )
     return melted
+
 
 # this function process coefs to get several statistical values
 import warnings
 
-def _get_stats_df_bagging_ridge(df):
 
+def _get_stats_df_bagging_ridge(df):
     if isinstance(df, int):
         return 0
 
@@ -635,33 +673,49 @@ def _get_stats_df_bagging_ridge(df):
         p = df.apply(lambda x: ttest_1samp(x.dropna(), 0)[1])
     neg_log_p = -np.log10(p.fillna(1))
 
-    result = pd.concat([mean, mean.abs(),
-                        p, neg_log_p, #positive_score, negative_score
-                        ], axis=1, sort=False)
-    result.columns = ["coef_mean", "coef_abs", "p", "-logp",
-                      #"positive_score", "negative_score"
-                      ]
+    result = pd.concat(
+        [
+            mean,
+            mean.abs(),
+            p,
+            neg_log_p,  # positive_score, negative_score
+        ],
+        axis=1,
+        sort=False,
+    )
+    result.columns = [
+        "coef_mean",
+        "coef_abs",
+        "p",
+        "-logp",
+        # "positive_score", "negative_score"
+    ]
 
     return result
 
-def _get_stats_df_from_bayesian_ridge(coef_mean, coef_variance, coef_names):
 
+def _get_stats_df_from_bayesian_ridge(coef_mean, coef_variance, coef_names):
     coef_abs = np.abs(coef_mean)
-    p = norm.cdf(x=0, loc=coef_abs, scale=np.sqrt(coef_variance))*2
+    p = norm.cdf(x=0, loc=coef_abs, scale=np.sqrt(coef_variance)) * 2
     neg_log_p = -np.log(p)
 
-    stats_df = pd.DataFrame({"coef_mean": coef_mean,
-                             "coef_abs": coef_abs,
-                             "coef_variance": coef_variance,
-                             "p": p,
-                             "-logp": neg_log_p},
-                             index = coef_names)
+    stats_df = pd.DataFrame(
+        {
+            "coef_mean": coef_mean,
+            "coef_abs": coef_abs,
+            "coef_variance": coef_variance,
+            "p": p,
+            "-logp": neg_log_p,
+        },
+        index=coef_names,
+    )
     return stats_df
 
-def _stats2LinkList(tg, stat_df):
 
-    links = pd.DataFrame({"source": stat_df.index.values,
-                          "target": np.repeat(tg, len(stat_df))})
+def _stats2LinkList(tg, stat_df):
+    links = pd.DataFrame(
+        {"source": stat_df.index.values, "target": np.repeat(tg, len(stat_df))}
+    )
     linkList = pd.concat([links, stat_df.reset_index(drop=True)], axis=1)
 
     return linkList

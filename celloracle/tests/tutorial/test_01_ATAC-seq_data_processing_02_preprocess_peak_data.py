@@ -11,24 +11,29 @@ from tqdm.notebook import tqdm
 
 from celloracle import motif_analysis as ma
 import celloracle as co
+
 print("co version: ", co.__version__)
 
-plt.rcParams['figure.figsize'] = [6, 4.5]
+plt.rcParams["figure.figsize"] = [6, 4.5]
 plt.rcParams["savefig.dpi"] = 300
+
 
 def main():
     test_tutorial_process_peak_data()
 
+
 def test_tutorial_process_peak_data():
     # Start analysis
     import time
+
     start = time.time()
-    
+
     # 1. Load data
     print("1. Load data")
     # 1.0 Download demo data
     print()
     from celloracle.utility.data_download_from_web import download_demo_data
+
     download_demo_data(file="all_peaks.csv")
     download_demo_data(file="cicero_connections.csv")
 
@@ -53,8 +58,9 @@ def test_tutorial_process_peak_data():
 
     # 3. Integrate TSS info and cicero connections
     print("3. Integrate TSS info and cicero connections")
-    integrated = ma.integrate_tss_peak_with_cicero(tss_peak=tss_annotated,
-                                               cicero_connections=cicero_connections)
+    integrated = ma.integrate_tss_peak_with_cicero(
+        tss_peak=tss_annotated, cicero_connections=cicero_connections
+    )
     print(integrated.shape)
     print(integrated.head())
 
@@ -74,7 +80,7 @@ def test_tutorial_process_peak_data():
     print("6. Remove files")
     for i in ["all_peaks.csv", "cicero_connections.csv", "processed_peak_file.csv"]:
         os.remove(i)
-        #pass
+        # pass
     elapsed = time.time() - start
 
     print("Success")
