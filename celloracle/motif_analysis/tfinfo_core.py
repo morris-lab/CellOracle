@@ -344,6 +344,21 @@ class TFinfo():
                 if verbose:
                     print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see http://cisbp.ccbr.utoronto.ca. \n")
 
+            elif self.species in ["Axolotl"]:
+                self.motif_db_name = 'JASPAR2020_vertebrates.pfm'
+
+                # Load JASPAR motif from gimmemotifs data
+                from gimmemotifs.motif import read_motifs
+                from gimmemotifs.motif import MotifConfig
+                config = MotifConfig()
+                motif_dir = config.get_motif_dir()
+                path = os.path.join(motif_dir, "JASPAR2020_vertebrates.pfm")
+                motifs = read_motifs(path)
+
+                self.TF_formatting = True
+                if verbose:
+                    print(f" Default motif for {self.species}: {self.motif_db_name}. \n For more information about the motif data, please see https://gimmemotifs.readthedocs.io/en/master/overview.html \n")
+
             else:
                 raise ValueError(f"We don't have default motifs for your species, Please specify motif data by yourself.")
 
@@ -710,7 +725,7 @@ def _get_dic_motif2TFs(species, motifs, TF_evidence_level="direct_and_indirect",
             for key in dic_motif2TFs.keys():
                 dic_motif2TFs[key] = [tf.capitalize() for tf in dic_motif2TFs[key]]
 
-        elif species in ["Human", "S.cerevisiae", "Arabidopsis"]:
+        elif species in ["Human", "S.cerevisiae", "Arabidopsis", "Axolotl"]:
             for key in dic_motif2TFs.keys():
                 dic_motif2TFs[key] = [tf.upper() for tf in dic_motif2TFs[key]]
 

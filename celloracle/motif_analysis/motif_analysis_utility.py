@@ -67,10 +67,10 @@ def is_genome_installed(ref_genome):
             print(f"genome {ref_genome} is not installed in this environment.")
             print(f"Please install {ref_genome} data with genomepy using the following command in command line (terminal).")
             print(f"Please make sure to use recent version of genomepy and have enough space on your PC. Otherwise you may get an error.")
-            print(f'genomepy install -p url https://www.axolotl-omics.org/dl/AmexG_v6.0-DD.fa.gz')
+            print(f'genomepy install https://www.axolotl-omics.org/dl/AmexG_v6.0-DD.fa.gz url')
 
         else:
-            if  ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:    
+            if  ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:
                 provider = SUPPORTED_REF_GENOME["provider"][SUPPORTED_REF_GENOME.ref_genome==ref_genome].values[0]
             else:
                 provider = "PROVIDER"
