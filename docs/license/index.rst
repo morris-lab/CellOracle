@@ -4,16 +4,14 @@ License
 =======
 
 The software is provided under a modified Apache License Version 2.0.
-The software may be used for non-commercial academic purposes only.
+The software may be used under the Apache License below for non-commercial academic purposes only.
 For any other use of the Work, including commercial use, please contact Morris lab.
 
 Copyright 2020 Kenji Kamimoto, Christy Hoffmann, Samantha Morris
 
 ::
 
-Apache License
-Version 2.0, January 2004
-http://www.apache.org/licenses/
+
 
 TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
