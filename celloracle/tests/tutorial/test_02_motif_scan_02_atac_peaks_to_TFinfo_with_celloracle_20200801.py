@@ -18,7 +18,7 @@ plt.rcParams["savefig.dpi"] = 600
 
 def main():
     test_tutorial_motif_scan()
-    
+
 def test_tutorial_motif_scan():
 
     use_small_data = True
@@ -32,12 +32,12 @@ def test_tutorial_motif_scan():
     print("\n1. Reference genome data preparation")
     # 1.1 Check referenoce genome installation
     ref_genome = "mm10"
-    genome_installation = ma.is_genome_installed(ref_genome=ref_genome)
+    genome_installation = ma.is_genome_installed(ref_genome=ref_genome, genomes_dir=None)
     print(ref_genome, "installation: ", genome_installation)
     ## 1.2. Install reference genome (if refgenome is not installed)
     if not genome_installation:
         import genomepy
-        genomepy.install_genome(ref_genome, "UCSC")
+        genomepy.install_genome(ref_genome, "UCSC", genomes_dir=None)
     else:
         print(ref_genome, "is installed.")
 
@@ -55,73 +55,7 @@ def test_tutorial_motif_scan():
     peaks.head()
 
 
-    ## 2.2. Check data
-    def decompose_chrstr(peak_str):
-        """
-        Args:
-            peak_str (str): peak_str. e.g. 'chr1_3094484_3095479'
-
-        Returns:
-            tuple: chromosome name, start position, end position
-        """
-
-        *chr_, start, end = peak_str.split("_")
-        chr_ = "_".join(chr_)
-        return chr_, start, end
-
-    from genomepy import Genome
-
-    def check_peak_format(peaks_df, ref_genome):
-        """
-        Check peak format.
-         (1) Check chromosome name.
-         (2) Check peak size (length) and remove sort DNA sequences (<5bp)
-
-        """
-
-        df = peaks_df.copy()
-
-        n_peaks_before = df.shape[0]
-
-        # Decompose peaks and make df
-        decomposed = [decompose_chrstr(peak_str) for peak_str in df["peak_id"]]
-        df_decomposed = pd.DataFrame(np.array(decomposed), index=peaks_df.index)
-        df_decomposed.columns = ["chr", "start", "end"]
-        df_decomposed["start"] = df_decomposed["start"].astype(int)
-        df_decomposed["end"] = df_decomposed["end"].astype(int)
-
-        # Load genome data
-        genome_data = Genome(ref_genome)
-        all_chr_list = list(genome_data.keys())
-
-
-        # DNA length check
-        lengths = np.abs(df_decomposed["end"] - df_decomposed["start"])
-
-
-        # Filter peaks with invalid chromosome name
-        n_threshold = 5
-        df = df[(lengths >= n_threshold) & df_decomposed.chr.isin(all_chr_list)]
-
-        # DNA length check
-        lengths = np.abs(df_decomposed["end"] - df_decomposed["start"])
-
-        # Data counting
-        n_invalid_length = len(lengths[lengths < n_threshold])
-        n_peaks_invalid_chr = n_peaks_before - df_decomposed.chr.isin(all_chr_list).sum()
-        n_peaks_after = df.shape[0]
-
-
-        #
-        print("Peaks before filtering: ", n_peaks_before)
-        print("Peaks with invalid chr_name: ", n_peaks_invalid_chr)
-        print("Peaks with invalid length: ", n_invalid_length)
-        print("Peaks after filtering: ", n_peaks_after)
-
-        return df
-
-
-    peaks = check_peak_format(peaks, ref_genome)
+    peaks = ma.check_peak_format(peaks=peaks, ref_genome=ref_genome, genomes_dir=genomes_dir)
 
 
     # 3. Instantiate TFinfo object and search for TF binding motifs
@@ -131,7 +65,8 @@ def test_tutorial_motif_scan():
     if use_small_data:
         peaks = peaks[:100]
     tfi = ma.TFinfo(peak_data_frame=peaks,
-                    ref_genome=ref_genome)
+                    ref_genome=ref_genome,
+                    genomes_dir=None)
     ## 3.2. Motif scan
     tfi.scan(fpr=0.02,
              motifs=None,  # If you enter None, default motifs will be loaded.
