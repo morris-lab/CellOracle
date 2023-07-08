@@ -37,9 +37,9 @@ from pybedtools import BedTool
 ####
 ### bed f
 
-def check_peak_foamat(peaks_df, ref_genome, genomes_dir=None):
+def check_peak_format(peaks_df, ref_genome, genomes_dir=None):
     """
-    Check peak fomat.
+    Check peak format.
      (1) Check chromosome name.
      (2) Check peak size (length) and remove sort DNAs (<5bp)
 
