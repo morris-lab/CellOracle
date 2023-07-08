@@ -167,7 +167,7 @@ class TFinfo():
             self.species = "not_in_the_default_species_list"
 
         # check  genome installation
-        if not is_genome_installed(ref_genome=ref_genome):
+        if not is_genome_installed(ref_genome=ref_genome, genomes_dir=self.genomes_dir):
             raise ValueError(f"ref_genome: {ref_genome} is not installed. TFinfo initiation failed.")
 
         self.scanned_df = None

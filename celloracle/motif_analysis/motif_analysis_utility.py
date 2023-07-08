@@ -47,7 +47,7 @@ def get_available_ref_genome_info(species, provider="UCSC"):
 
 
 
-def is_genome_installed(ref_genome):
+def is_genome_installed(ref_genome, genomes_dir=None):
     """
     Celloracle motif_analysis module uses gimmemotifs and genomepy internally.
     Reference genome files should be installed in the PC to use gimmemotifs and genomepy.
@@ -55,10 +55,11 @@ def is_genome_installed(ref_genome):
 
     Args:
         ref_genome (str): names of reference genome. i.e., "mm10", "hg19"
+        genomes_dir (str): Installation directory of Genomepy reference genome data.
 
     """
     try:
-        genome_data = Genome(ref_genome)
+        genome_data = Genome(name=ref_genome, genomes_dir=genomes_dir)
 
         return True
 
@@ -77,7 +78,10 @@ def is_genome_installed(ref_genome):
 
             print(f"genome {ref_genome} is not installed in this environment.")
             print("Please install genome using genomepy.")
-            print(f'e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome(name="{ref_genome}", provider="{provider}")')
+            if genomes_dir is None:
+                print(f'e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome(name="{ref_genome}", provider="{provider}")')
+            else:
+                print(f'e.g.\n    >>> import genomepy\n    >>> genomepy.install_genome(name="{ref_genome}", provider="{provider}", genomes_dir={genomes_dir})')
 
     return False
         #raise ValueError(f"Ref_Genome: {ref_genome} is not available.")
