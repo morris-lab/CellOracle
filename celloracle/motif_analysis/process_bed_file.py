@@ -113,7 +113,7 @@ def peak_M1(peak_id):
     return chr_ + "_" + str(int(start)-1) + "_" + end
 
 
-def peak2fasta(peak_ids, ref_genome):
+def peak2fasta(peak_ids, ref_genome, genomes_dir):
 
     '''
     Convert peak_id into fasta object.
@@ -123,6 +123,8 @@ def peak2fasta(peak_ids, ref_genome):
             or it can be a list of peak_id.  e.g. ["chr5_0930303_9499409", "chr11_123445555_123445577"]
 
         ref_genome (str): Reference genome name.   e.g. "mm9", "mm10", "hg19" etc
+
+        genomes_dir (str): Installation directory of Genomepy reference genome data.
 
     Returns:
         gimmemotifs fasta object: DNA sequence in fasta format

@@ -131,7 +131,7 @@ class TFinfo():
 
     """
 
-    def __init__(self, peak_data_frame, ref_genome):
+    def __init__(self, peak_data_frame, ref_genome, genomes_dir=None):
         """
         Instantiate TFinfo object.
 
@@ -140,8 +140,9 @@ class TFinfo():
 
            ref_genome (str): reference genome name that was used in DNA peak generation.
 
-        """
+           genomes_dir (str): Installation directory of Genomepy reference genome data. If None, use default Genomepy installation directory.
 
+        """
 
         self.easy_log = pd.DataFrame()
         self.__addLog("initiation")
@@ -155,6 +156,8 @@ class TFinfo():
         self.all_peaks = self.peak_df.peak_id.unique()
 
         self.ref_genome = ref_genome
+
+        self.genomes_dir = genomes_dir
 
         # check ref_genome is supported or not
         if ref_genome in SUPPORTED_REF_GENOME.ref_genome.values:
@@ -405,7 +408,7 @@ class TFinfo():
 
 
         # Get DNA sequences
-        target_sequences = peak2fasta(self.all_peaks, self.ref_genome)
+        target_sequences = peak2fasta(peak_ids=self.all_peaks, ref_genome=self.ref_genome, genomes_dir=self.genomes_dir)
         # Remove DNA sequence with zero length
         target_sequences = remove_zero_seq(fasta_object=target_sequences)
 

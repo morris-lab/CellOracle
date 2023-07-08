@@ -110,7 +110,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         df = negative_ip_sum[negative_ip_sum.misc == misc]
 
         # Focus on a specific pseudotime
-        pseudotime = [i for i in pseudotime if i in list("0123456789")]
+        pseudotime = [int(i) for i in pseudotime if i in list("0123456789")]
         df = df[df.pseudotime_id.isin(pseudotime)]
 
         # Get sum of negative ip values
@@ -131,7 +131,7 @@ class Oracle_systematic_analysis_helper(Oracle_development_module):
         df = positive_ip_sum[positive_ip_sum.misc == misc]
 
         # Focus on a specific pseudotime
-        pseudotime = [i for i in pseudotime if i in list("0123456789")]
+        pseudotime = [int(i) for i in pseudotime if i in list("0123456789")]
         df = df[df.pseudotime_id.isin(pseudotime)]
 
         # Get sum of negative ip values

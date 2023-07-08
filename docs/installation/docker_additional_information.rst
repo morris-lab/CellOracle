@@ -13,7 +13,7 @@ Quick start
 
 ::
 
-    docker pull kenjikamimoto126/celloracle_ubuntu:latest
+    docker pull kenjikamimoto126/celloracle_ubuntu:0.12.0
 
 
 2. Make docker container and start running it.
@@ -30,7 +30,7 @@ Quick start
       --name celloracle_container \
       -p 8888:8888 \
       -v $(pwd)/data_folder:/root/data_folder \
-      celloracle_ubuntu:latest
+      celloracle_ubuntu:0.12.0
 
 
 
