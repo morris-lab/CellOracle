@@ -55,7 +55,7 @@ def test_tutorial_motif_scan():
     peaks.head()
 
 
-    peaks = ma.check_peak_format(peaks=peaks, ref_genome=ref_genome, genomes_dir=genomes_dir)
+    peaks = ma.check_peak_format(peaks_df=peaks, ref_genome=ref_genome, genomes_dir=None)
 
 
     # 3. Instantiate TFinfo object and search for TF binding motifs
