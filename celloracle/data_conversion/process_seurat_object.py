@@ -76,7 +76,7 @@ def make_anndata_from_files(assay_name, folder="./tmp"):
     categorical_in_meta = meta_dtype[meta_dtype["dtype"] == "factor"].index.values
     for i in meta_data.columns:
         if i in categorical_in_meta:
-            meta_data[i] = meta_data[i].astype(np.object) # change dtype
+            meta_data[i] = meta_data[i].astype(object) # change dtype
 
     # Make anndata
     adata = sc.AnnData(mm.X,
