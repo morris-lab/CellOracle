@@ -61,8 +61,8 @@ def check_peak_format(peaks_df, ref_genome, genomes_dir=None):
     decomposed = [decompose_chrstr(peak_str) for peak_str in df["peak_id"]]
     df_decomposed = pd.DataFrame(np.array(decomposed))
     df_decomposed.columns = ["chr", "start", "end"]
-    df_decomposed["start"] = df_decomposed["start"].astype(np.int)
-    df_decomposed["end"] = df_decomposed["end"].astype(np.int)
+    df_decomposed["start"] = df_decomposed["start"].astype(int)
+    df_decomposed["end"] = df_decomposed["end"].astype(int)
 
     # Load genome data
     genome_data = Genome(name=ref_genome, genomes_dir=genomes_dir)

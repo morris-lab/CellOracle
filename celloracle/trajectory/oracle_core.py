@@ -1365,7 +1365,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         df = df.reset_index(drop=False)
 
         df = df.rename(columns={"value": "cluster", "variable": "data"})
-        df["simulation_batch"] = df["simulation_batch"].astype(np.object)
+        df["simulation_batch"] = df["simulation_batch"].astype(object)
 
 
         return df
