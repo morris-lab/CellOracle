@@ -105,7 +105,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         self.adata = None
         self.cluster_column_name = None
         self.embedding_name = None
-        self.ixs_mcmc = None
+        self.ixs_markvov_simulation = None
         self.cluster_specific_TFdict = None
         self.cv_mean_selected_genes = None
         self.TFdict = {}
@@ -486,7 +486,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
 
         # 2. Reset previous GRN data and simoulation data
-        attributes_delete = ['ixs_mcmc', 'colorandum' ,"alpha_for_trajectory_GRN",
+        attributes_delete = ['ixs_markvov_simulation', 'colorandum' ,"alpha_for_trajectory_GRN",
                              'GRN_unit', 'coef_matrix_per_cluster',"perturb_condition",
                              'corr_calc', 'embedding_knn', 'sampling_ixs', 'corrcoef', 'corrcoef_random',
                              'transition_prob', 'transition_prob_random', 'delta_embedding', 'delta_embedding_random',
@@ -727,8 +727,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         """
 
         # 0. Reset previous simulation results if it exist
-        #self.ixs_mcmc = None
-        #self.mcmc_transition_id = None
+        #self.ixs_markvov_simulation = None
+        #self.markvov_transition_id = None
         #self.corrcoef = None
         #self.transition_prob = None
         #self.tr = None
@@ -889,7 +889,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                     "flow_rndm", "flow_norm_rndm", "flow_norm_magnitude_rndm",
                     "corrcoef","corrcoef_random", "transition_prob", "transition_prob_random",
                     "delta_embedding", "delta_embedding_random",
-                    "ixs_mcmc", "mcmc_transition_id", "tr"]
+                    "ixs_markvov_simulation", "markvov_transition_id", "tr"]
 
         for i in att_list:
             if hasattr(self, i):
@@ -1156,7 +1156,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         dist = dist[dist < min_dist]
 
         ixs = np.unique(ixs)
-        self.ixs_mcmc = ixs
+        self.ixs_markvov_simulation = ixs
 
         if verbose:
             plt.scatter(self.embedding[ixs, 0], self.embedding[ixs, 1],
@@ -1181,6 +1181,11 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             n_duplication (int): the number for multiple calculations.
 
         """
+        warnings.warn(
+            "Functions for Markov simulation are deprecated. They may be retired in the future version. Use Perturbation score analysis instead.",
+            DeprecationWarning,
+            stacklevel=2)
+
         np.random.seed(seed)
         #_numba_random_seed(seed)
 
@@ -1196,12 +1201,12 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         start_cell_id_array = np.repeat(np.arange(n_cells), n_duplication)
 
         transition = _walk(start_cell_id_array, transition_prob, n_steps)
-        transition = self.ixs_mcmc[transition]
+        transition = self.ixs_markvov_simulation[transition]
 
         li = None
 
-        ind = np.repeat(self.ixs_mcmc, n_duplication)
-        self.mcmc_transition_id = pd.DataFrame(transition, ind)
+        ind = np.repeat(self.ixs_markvov_simulation, n_duplication)
+        self.markvov_transition_id = pd.DataFrame(transition, ind)
 
         if calculate_randomized:
             transition_prob_random = self.tr_random.toarray()
@@ -1213,12 +1218,12 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             start_cell_id_array = np.repeat(np.arange(n_cells), n_duplication)
 
             transition_random = _walk(start_cell_id_array, transition_prob_random, n_steps)
-            transition_random = self.ixs_mcmc[transition_random]
+            transition_random = self.ixs_markvov_simulation[transition_random]
 
             li = None
 
-            ind = np.repeat(self.ixs_mcmc, n_duplication)
-            self.mcmc_transition_random_id = pd.DataFrame(transition_random, ind)
+            ind = np.repeat(self.ixs_markvov_simulation, n_duplication)
+            self.markvov_transition_random_id = pd.DataFrame(transition_random, ind)
 
 
     def summarize_mc_results_by_cluster(self, cluster_use, random=False):
@@ -1231,14 +1236,14 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                You can use any arbitrary cluster information in anndata.obs.
         """
         if random:
-            transition = self.mcmc_transition_random_id.values
+            transition = self.markvov_transition_random_id.values
         else:
-            transition = self.mcmc_transition_id.values
+            transition = self.markvov_transition_id.values
 
-        mcmc_transition_cluster = np.array(self.adata.obs[cluster_use])[transition]
-        mcmc_transition_cluster = pd.DataFrame(mcmc_transition_cluster,
-                                               index=self.mcmc_transition_id.index)
-        return mcmc_transition_cluster
+        markvov_transition_cluster = np.array(self.adata.obs[cluster_use])[transition]
+        markvov_transition_cluster = pd.DataFrame(markvov_transition_cluster,
+                                               index=self.markvov_transition_id.index)
+        return markvov_transition_cluster
 
 
     def plot_mc_results_as_sankey(self, cluster_use, start=0, end=-1, order=None, font_size=10):
@@ -1259,10 +1264,15 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             font_size (int): Font size for cluster name label in the Sankey diagram.
 
         """
-        mcmc_transition_cluster = self.summarize_mc_results_by_cluster(cluster_use)
-        mcmc_color_dict =  _adata_to_color_dict(self.adata, cluster_use)
+        warnings.warn(
+            "Functions for Markov simulation are deprecated. They may be retired in the future version. Use Perturbation score analysis instead.",
+            DeprecationWarning,
+            stacklevel=2)
 
-        df = mcmc_transition_cluster.iloc[:, [start, end]]
+        markvov_transition_cluster = self.summarize_mc_results_by_cluster(cluster_use)
+        markvov_simulation_color_dict =  _adata_to_color_dict(self.adata, cluster_use)
+
+        df = markvov_transition_cluster.iloc[:, [start, end]]
         df.columns = ["start", "end"]
 
         if not order is None:
@@ -1276,7 +1286,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         sankey(left=df['start'], right=df['end'],
                aspect=2, fontsize=font_size,
-               colorDict=mcmc_color_dict,
+               colorDict=markvov_simulation_color_dict,
                leftLabels=order_left, rightLabels=order_right)
 
     def plot_mc_results_as_kde(self, n_time, args={}):
@@ -1290,12 +1300,20 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                 See seaborn documentation for details (https://seaborn.pydata.org/generated/seaborn.kdeplot.html#seaborn.kdeplot).
 
         """
-        cell_ix = self.mcmc_transition_id.iloc[:, n_time].values
+        warnings.warn(
+            "Functions for Markov simulation are deprecated. They may be retired in the future version. Use Perturbation score analysis instead.",
+            DeprecationWarning,
+            stacklevel=2)
+
+        cell_ix = self.markvov_transition_id.iloc[:, n_time].values
 
         x = self.embedding[cell_ix, 0]
         y = self.embedding[cell_ix, 1]
 
-        sns.kdeplot(x, y, **args)
+        try:
+            sns.kdeplot(x=x, y=y, **args)
+        except:
+            sns.kdeplot(x, y, **args)
 
     def plot_mc_results_as_trajectory(self, cell_name, time_range, args={}):
         """
@@ -1311,21 +1329,26 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                 See matplotlib documentation for details (https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot).
 
         """
+        warnings.warn(
+            "Functions for Markov simulation are deprecated. They may be retired in the future version. Use Perturbation score analysis instead.",
+            DeprecationWarning,
+            stacklevel=2)
+
         cell_ix = np.where(self.adata.obs.index == cell_name)[0][0]
-        cell_ix_in_mcmctid = np.where(self.mcmc_transition_id.index == cell_ix)[0]
+        cell_ix_in_markvov_simulation_tid = np.where(self.markvov_transition_id.index == cell_ix)[0]
 
         # plot all cells in gray color
         plt.scatter(self.embedding[:,0], self.embedding[:,1], s=1, c="lightgray")
 
 
-        for i in cell_ix_in_mcmctid:
+        for i in cell_ix_in_markvov_simulation_tid:
             self._plot_one_trajectory(i, time_range, args)
 
         # plot cell of interest (initiation point of simulation) in red color
         plt.scatter(self.embedding[cell_ix,0], self.embedding[cell_ix,1], s=50, c="red")
 
-    def _plot_one_trajectory(self, cell_ix_in_mcmctid, time_range, args={}):
-        tt = self.mcmc_transition_id.iloc[cell_ix_in_mcmctid,:].values[time_range]
+    def _plot_one_trajectory(self, cell_ix_in_markvov_simulation_tid, time_range, args={}):
+        tt = self.markvov_transition_id.iloc[cell_ix_in_markvov_simulation_tid,:].values[time_range]
         plt.plot(self.embedding[:,0][tt], self.embedding[:,1][tt], **args)
 
 
@@ -1343,17 +1366,22 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
             pandas.DataFrame : Number of cells before / after simulation
 
         """
-        mcmc_transition_cluster = self.summarize_mc_results_by_cluster(cluster_use, random=False)
+        warnings.warn(
+            "Functions for Markov simulation are deprecated. They may be retired in the future version. Use Perturbation score analysis instead.",
+            DeprecationWarning,
+            stacklevel=2)
 
-        if hasattr(self, "mcmc_transition_random_id"):
-            mcmc_transition_cluster_random = self.summarize_mc_results_by_cluster(cluster_use, random=True)
+        markvov_transition_cluster = self.summarize_mc_results_by_cluster(cluster_use, random=False)
 
-            df = pd.DataFrame({"original": mcmc_transition_cluster.iloc[:, 0],
-                               "simulated": mcmc_transition_cluster.iloc[:, end],
-                               "randomized": mcmc_transition_cluster_random.iloc[:, end]})
+        if hasattr(self, "markvov_transition_random_id"):
+            markvov_transition_cluster_random = self.summarize_mc_results_by_cluster(cluster_use, random=True)
+
+            df = pd.DataFrame({"original": markvov_transition_cluster.iloc[:, 0],
+                               "simulated": markvov_transition_cluster.iloc[:, end],
+                               "randomized": markvov_transition_cluster_random.iloc[:, end]})
         else:
-            df = pd.DataFrame({"original": mcmc_transition_cluster.iloc[:, 0],
-                               "simulated": mcmc_transition_cluster.iloc[:, end]})
+            df = pd.DataFrame({"original": markvov_transition_cluster.iloc[:, 0],
+                               "simulated": markvov_transition_cluster.iloc[:, end]})
 
         # Post processing
         n_duplicated = df.index.value_counts().values[0]
@@ -1367,15 +1395,14 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         df = df.rename(columns={"value": "cluster", "variable": "data"})
         df["simulation_batch"] = df["simulation_batch"].astype(object)
 
-
         return df
 
-    def get_mcmc_cell_transition_table(self, cluster_column_name=None, end=-1):
+    def get_markov_simulation_cell_transition_table(self, cluster_column_name=None, end=-1, return_df=True):
 
         """
-        Return cell count in the initial state and final state after mcmc.
+        Calculate cell count in the initial state and final state after Markov simulation.
         Cell counts are grouped by the cluster of interest.
-        Result will be returned as 2D matrix.
+        Result will be stored as 2D matrix.
         """
 
         if cluster_column_name is None:
@@ -1383,29 +1410,37 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
 
         start = 0
 
-        mcmc_transition = self.summarize_mc_results_by_cluster(cluster_column_name, random=False)
-        mcmc_transition = mcmc_transition.iloc[:, [start, end]]
-        mcmc_transition.columns = ["start", "end"]
-        mcmc_transition["count"] = 1
-        mcmc_transition = pd.pivot_table(mcmc_transition, values='count', index=['start'],
+        markvov_transition = self.summarize_mc_results_by_cluster(cluster_column_name, random=False)
+        markvov_transition = markvov_transition.iloc[:, [start, end]]
+        markvov_transition.columns = ["start", "end"]
+        markvov_transition["count"] = 1
+        markvov_transition = pd.pivot_table(markvov_transition, values='count', index=['start'],
                                columns=['end'], aggfunc=np.sum, fill_value=0)
 
 
-        mcmc_transition_random = self.summarize_mc_results_by_cluster(cluster_column_name, random=True)
-        mcmc_transition_random = mcmc_transition_random.iloc[:, [start, end]]
-        mcmc_transition_random.columns = ["start", "end"]
-        mcmc_transition_random["count"] = 1
-        mcmc_transition_random = pd.pivot_table(mcmc_transition_random, values='count', index=['start'],
+        markvov_transition_random = self.summarize_mc_results_by_cluster(cluster_column_name, random=True)
+        markvov_transition_random = markvov_transition_random.iloc[:, [start, end]]
+        markvov_transition_random.columns = ["start", "end"]
+        markvov_transition_random["count"] = 1
+        markvov_transition_random = pd.pivot_table(markvov_transition_random, values='count', index=['start'],
                                columns=['end'], aggfunc=np.sum, fill_value=0)
 
         # store data
-        mcmc_transition_random.index.name = None
-        mcmc_transition_random.columns.name = None
-        mcmc_transition.index.name = None
-        mcmc_transition.columns.name = None
+        markvov_transition_random.index.name = None
+        markvov_transition_random.columns.name = None
+        markvov_transition.index.name = None
+        markvov_transition.columns.name = None
 
-        self.mcmc_transition = mcmc_transition
-        self.mcmc_transition_random = mcmc_transition_random
+        self.markvov_transition = markvov_transition
+        self.markvov_transition_random = markvov_transition_random
+
+        if return_df:
+            return self.markov_transition, self.markov_transition_random
+
+    def get_markvov_simulation_cell_transition_table(self, cluster_column_name=None, end=-1, return_df=True):
+        self.get_markov_simulation_cell_transition_table(cluster_column_name=cluster_column_name, end=end, return_df=False)
+
+
 
 
     ###################################################
@@ -1471,6 +1506,8 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
                           model_method=model_method,
                           n_jobs=n_jobs)
         return links
+
+
 
 
 def _deal_with_na(transition_prob):
