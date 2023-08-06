@@ -27,7 +27,7 @@ jobs:
             conda create -q -n test-environment python=3.8
             # command to install dependencies
             conda activate test-environment
-            conda install cython numpy pytest
+            conda install cython==0.29.35 numpy pytest
             
             conda list
             ls /home/runner/miniconda
