@@ -15,14 +15,14 @@ RUN cd \
 
 # Install miniconda 
 RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh \
- && bash miniconda.sh -b -p $HOME/miniconda \
+ && bash miniconda.sh -b -p /opt/miniconda \
  && rm miniconda.sh
 
 # Configure miniconda and install packages
-RUN . "$HOME/miniconda/etc/profile.d/conda.sh" \
+RUN . "/opt/miniconda/etc/profile.d/conda.sh" \
  && cd \
  && hash -r \
- && export PATH="$HOME/miniconda/bin:${PATH}" \
+ && export PATH="/opt/miniconda/bin:${PATH}" \
  && conda config --set always_yes yes --set changeps1 no \
  && conda create -q -n celloracle_env python=3.8 \
  && conda activate celloracle_env \
@@ -40,3 +40,6 @@ RUN . "$HOME/miniconda/etc/profile.d/conda.sh" \
  && conda init bash \
  && echo "conda activate celloracle_env" >> $HOME/.bashrc
 
+
+ENV PATH /opt/miniconda/envs/celloracle_env/bin:$PATH
+ENV CONDA_DEFAULT_ENV celloracle_env
