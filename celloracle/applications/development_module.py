@@ -193,7 +193,7 @@ class Oracle_development_module(Data_strage):
         df = self.inner_product_df.copy()
 
         if pseudotime is not None:
-            pseudotime = [i for i in pseudotime if i in list("0123456789")]
+            pseudotime = [int(i) for i in pseudotime.split(",")]
             df = df[df.pseudotime_id.isin(pseudotime)]
 
         x = df["score"]
@@ -207,8 +207,11 @@ class Oracle_development_module(Data_strage):
             sns.distplot(x)
             sns.distplot(y)
 
-        # Paired non-parametric test with Wilcoxon's runk sum test
-        s, p = wilcoxon(x, y, alternative="less")
+        try:
+            # Paired non-parametric test with Wilcoxon's runk sum test
+            s, p = wilcoxon(x, y, alternative="less")
+        except:
+            p = np.nan
 
         if return_ps_sum:
             return p, -x.sum(), -y.sum()
@@ -219,7 +222,7 @@ class Oracle_development_module(Data_strage):
         df = self.inner_product_df.copy()
 
         if pseudotime is not None:
-            pseudotime = [i for i in pseudotime if i in list("0123456789")]
+            pseudotime = [int(i) for i in pseudotime.split(",")]
             df = df[df.pseudotime_id.isin(pseudotime)]
 
         x = df["score"]
@@ -233,8 +236,13 @@ class Oracle_development_module(Data_strage):
             sns.distplot(x)
             sns.distplot(y)
 
-        # Paired non-parametric test with Wilcoxon's runk sum test
-        s, p = wilcoxon(x, y, alternative="greater")
+        
+        try:
+            # Paired non-parametric test with Wilcoxon's runk sum test
+            s, p = wilcoxon(x, y, alternative="greater")
+        except:
+            p = np.nan
+
 
         if return_ps_sum:
             return p, x.sum(), y.sum()
