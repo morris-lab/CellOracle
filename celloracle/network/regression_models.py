@@ -115,15 +115,26 @@ def get_bagging_ridge_coefs(target_gene, gem, gem_scaled, TFdict, cellstate=None
 
     #print(n_jobs)
     # bagging model
-    model = BaggingRegressor(base_estimator=Ridge(alpha=alpha,
+    try: # For sklearn version 1.2 or later
+        model = BaggingRegressor(estimator=Ridge(alpha=alpha,
+                                                 solver=solver,
+                                                 random_state=123),
+                                n_estimators=bagging_number,
+                                bootstrap=True,
+                                max_features=0.8,
+                                n_jobs=n_jobs,
+                                verbose=False,
+                                random_state=123)
+    except: # For old version of sklearn
+        model = BaggingRegressor(base_estimator=Ridge(alpha=alpha,
                                                   solver=solver,
                                                   random_state=123),
-                             n_estimators=bagging_number,
-                             bootstrap=True,
-                             max_features=0.8,
-                             n_jobs=n_jobs,
-                             verbose=False,
-                             random_state=123)
+                                n_estimators=bagging_number,
+                                bootstrap=True,
+                                max_features=0.8,
+                                n_jobs=n_jobs,
+                                verbose=False,
+                                random_state=123)
     model.fit(data, label)
 
     # get results
