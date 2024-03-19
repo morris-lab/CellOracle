@@ -141,7 +141,7 @@ class Oracle_development_module(Data_strage):
         if cell_idx_use is None:
             oracle_object_ = oracle_object
         else:
-            oracle_object_ = subset_oracle_for_development_analysiis(oracle_object=oracle_object,
+            oracle_object_ = subset_oracle(oracle_object=oracle_object,
                                                           cell_idx_use=cell_idx_use)
 
         # 2. Grid calculation
@@ -332,7 +332,7 @@ class Oracle_development_module(Data_strage):
             return fig
 
 
-def subset_oracle_for_development_analysiis(oracle_object, cell_idx_use):
+def subset_oracle(oracle_object, cell_idx_use):
     """
     Make a subset of oracle object by specifying of cluster.
     This function pick up some of attributes that needed for development analysis rather than whole attributes.
