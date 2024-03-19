@@ -25,16 +25,16 @@ jobs:
             # Useful for debugging any issues with conda
             conda info -a
             # Create env
-            conda create -q -n test-environment python=3.8
+            conda create -q -n test-environment python=3.10
             # command to install dependencies
             conda activate test-environment
-            conda install cython==0.29.35 numpy pytest
+            conda install cython numpy pytest
             
             # Check pip
             echo pip_path
             which pip
             #Install fa2 for tutorial
-            pip install fa2
+            #pip install fa2
             # Install CellOracle
             pip install .
             # Show installed package
