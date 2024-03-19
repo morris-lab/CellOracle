@@ -23,7 +23,7 @@ For more information, please read our paper: `Dissecting cell identity via netwo
 News
 ====
 
-Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
+Please look at `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
 - 03/19/2024: We released celloracle version 0.17.1. This update includes a bug fix, refactoring, and new test functions. Now we support Python 3.10. 
 
