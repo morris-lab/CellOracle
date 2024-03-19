@@ -4,6 +4,26 @@
 Changelog
 =========
 
+* `0.17.1 <2024-03-19>`
+ `-` We updated the network function to support scikit-learn>=1.2. 
+
+ `-` CellOracle build test pipeline has been updated to check for Python 3.10. We now support Python 3.10.
+
+* `0.16.0 <2024-02-01>`
+ `-` We fixed a bug in the systematic simulation function to support the latest update in pandas.
+
+* `0.15.0 <2023-07-25>`
+ `-` Refactoring in the Markov simulation function. 
+
+* `0.14.0 <2023-07-08>`
+ `-` Refactoring in some functions related to numpy. 
+
+ `-` Bugfix and update in test functions.
+
+* `0.13.0 <2023-07-08>`
+ `-` We updated motif analysis function. We can now select the location of the reference genome.
+
+
 * `0.10.15 <2023-02-02>`
  `-` We fixed a bug in motif data loading function.
 

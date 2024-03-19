@@ -25,15 +25,15 @@ News
 
 Please look `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
+- 03/19/2024: We released celloracle version 0.17.1. This update includes a bug fix, refactoring, and new test functions. Now we support Python 3.10. 
+
+- 02/01/2024: We released celloracle version 0.16.0. Fixed a bug in the Systematic Simulation function to comply with the latest update of pandas.
+
+- 07/25/2023: We released celloracle version 0.15.0. This update includes refactoring in the Markov simulation function. 
 
 - 02/08/2023: CellOracle paper has been published in `Nature article <https://www.nature.com/articles/s41586-022-05688-9>`_ ! It is also highlighted in `News and Views <https://www.nature.com/articles/d41586-023-00251-6>`_ . Thank you very much to all contributors and users for your help!!!
 
 - 02/02/2023: We released celloracle version 0.10.15. We fixed a bug in Motif data loading function.
-
-- 01/03/2023: We released celloracle version 0.10.14. We added a Xenopus Laevis data.
-
-- 10/10/2022: We released celloracle version 0.10.12. We added a new function to check distribution range of simulated value. Tutorial is also updated.
-
 
 
 
