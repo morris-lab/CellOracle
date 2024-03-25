@@ -964,7 +964,7 @@ class Oracle(modified_VelocytoLoom, Oracle_visualization):
         if save is not None:
             os.makedirs(save, exist_ok=True)
 
-        for goi, val in ood_stats[:4].iterrows():
+        for goi, val in ood_stats[:n_genes].iterrows():
             fig, ax = plt.subplots(figsize=figsize)
             in_range_cell_ratio = 1 - val["OOD_cell_ratio"]
             ax.hist(imputed_count[goi], label="Original value", alpha=alpha, bins=n_bins)
