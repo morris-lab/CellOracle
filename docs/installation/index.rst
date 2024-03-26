@@ -34,8 +34,9 @@ System Requirements
 ^^^^^^^^^^^^^^^^^^^
 
 - Operating system: macOS or Linux are highly recommended. CellOracle was developed and tested in Linux and macOS.
-- We found that the CellOracle calculations may be EXTREMELY SLOW in a Windows Subsystem for Linux (WSL). We do not recommend using WSL.
-- While you can install CellOracle using the Windows OS, please do so at your own risk and responsibility. We DO NOT provide any support for the use with the Windows OS.
+- CellOracle cannot be installed in Windows OS because some of the dependencies cannot be built on Windows OS.
+- It is possible to install CellOracle on a Windows Subsystem for Linux (WSL), but we found that the CellOracle calculations may be extremely slow on a WSL. We do not recommend using WSL.
+- While you can install CellOracle using the WSL, please do so at your own risk and responsibility. We DO NOT provide any support for the use with the Windows OS.
 
 - Memory: 16 G byte or more.  Memory usage also depends on the size of your scRNA-seq dataset. Please note that in silico perturbation, may require large amount of memory.
 - CPU: Core i5 or better processor. CellOracle's GRN inference function supports multicore calculation. Utilizing more CPU cores enables faster calculations.
