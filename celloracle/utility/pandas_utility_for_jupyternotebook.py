@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-from IPython.core.display import display, Javascript
-
+from IPython.core.display import  Javascript
+from IPython import display
 
 def init_datatable_mode(pd):
     """Initialize DataTable mode for pandas DataFrame represenation."""
