@@ -18,7 +18,8 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -
  && bash miniconda.sh -b -p /opt/miniconda \
  && rm miniconda.sh
 
-# Configure miniconda and install packages
+# Configure miniconda and install packages.
+# Here, re-installing gimmemotifs using conda for safety.
 RUN . "/opt/miniconda/etc/profile.d/conda.sh" \
  && cd \
  && hash -r \
@@ -27,9 +28,10 @@ RUN . "/opt/miniconda/etc/profile.d/conda.sh" \
  && conda create -q -n celloracle_env python=3.10 \
  && conda activate celloracle_env \
  && conda install cython numpy pytest icu -c conda-forge \
- && conda install gimmemotifs==0.17.2 -c bioconda \
  && cd $HOME/CellOracle \
  && pip install . --default-timeout=100 \
+ && pip uninstall gimmemotifs \
+ && conda install gimmemotifs==0.17.2 -c bioconda \
  && pytest \
  && cd  \
  && rm -r CellOracle \

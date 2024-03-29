@@ -24,9 +24,7 @@ import numpy as np
 
 import sys
 import os
-import pickle
 import glob
-import logging
 from copy import deepcopy
 from datetime import datetime
 
@@ -235,35 +233,9 @@ class TFinfo():
         dump_hdf5(obj=self, filename=file_path,
                   data_compression=compression_opts,  chunks=(2048, 2048),
                   noarray_compression=compression_opts, pickle_protocol=4)
+        
+    def set_motifs(self, motifs=None, TF_formatting="auto", verbose=True):
 
-
-
-    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True, motifs=None, TF_evidence_level="direct_and_indirect", TF_formatting="auto", divide=100000):
-        """
-        Scan DNA sequences searching for TF binding motifs.
-
-        Args:
-           background_length (int): background length. This is used for the calculation of the binding score.
-
-           fpr (float): False positive rate for motif identification.
-
-           n_cpus (int): number of CPUs for parallel calculation.
-
-           verbose (bool): Whether to show a progress bar.
-
-           motifs (list): a list of gimmemotifs motifs, will revert to default_motifs() if None
-
-           TF_evidence_level (str): Please select one from ["direct", "direct_and_indirect"]. If "direct" is selected, TFs that have a binding evidence were used.
-               If "direct_and_indirect" is selected, TFs with binding evidence and inferred TFs are used.
-               For more information, please read explanation of Motif class in gimmemotifs documentation (https://gimmemotifs.readthedocs.io/en/master/index.html)
-
-        """
-
-        self.fpr = fpr
-        self.background_length = background_length
-
-        ## 1. initialilze scanner  ##
-        # load motif
         if motifs is None:
             if verbose:
                 print("No motif data entered. Loading default motifs for your species ...")
@@ -384,16 +356,46 @@ class TFinfo():
 
         self.motifs = motifs
 
-        self.dic_motif2TFs = _get_dic_motif2TFs(species=self.species, motifs=motifs, TF_evidence_level=TF_evidence_level, formatting=self.TF_formatting)
+
+    def scan(self, background_length=200, fpr=0.02, n_cpus=-1, verbose=True, motifs=None, TF_evidence_level="direct_and_indirect", TF_formatting="auto", batch_size=None, divide=100000):
+        """
+        Scan DNA sequences searching for TF binding motifs.
+
+        Args:
+           background_length (int): background length. This is used for the calculation of the binding score.
+
+           fpr (float): False positive rate for motif identification.
+
+           n_cpus (int): number of CPUs for parallel calculation.
+
+           verbose (bool): Whether to show a progress bar.
+
+           motifs (list): a list of gimmemotifs motifs, will revert to default_motifs() if None
+
+           TF_evidence_level (str): Please select one from ["direct", "direct_and_indirect"]. If "direct" is selected, TFs that have a binding evidence were used.
+               If "direct_and_indirect" is selected, TFs with binding evidence and inferred TFs are used.
+               For more information, please read explanation of Motif class in gimmemotifs documentation (https://gimmemotifs.readthedocs.io/en/master/index.html)
+
+        """
+        
+        self.fpr = fpr
+        self.background_length = background_length
+
+        ## 1. initialilze scanner  ##
+        # set motif
+        self.set_motifs(motifs=motifs, TF_formatting=TF_formatting, verbose=verbose)
+
+        self.dic_motif2TFs = _get_dic_motif2TFs(species=self.species, motifs=self.motifs, TF_evidence_level=TF_evidence_level, formatting=self.TF_formatting)
         self.TF_evidence_level = TF_evidence_level
 
         # initialize scanner
         if verbose:
             print("Initiating scanner... \n")
+        
         s = Scanner(ncpus=n_cpus)
-
+        
         # set parameters
-        s.set_motifs(motifs)
+        s.set_motifs(self.motifs)
         try:
             s.set_background(genome=self.ref_genome, size=background_length) # For gimmemotifs ver 14.4
         except:
@@ -405,8 +407,6 @@ class TFinfo():
         s.set_threshold(fpr=fpr)
 
         ## 2. motif scan ##
-
-
         # Get DNA sequences
         target_sequences = peak2fasta(peak_ids=self.all_peaks, ref_genome=self.ref_genome, genomes_dir=self.genomes_dir)
         # Remove DNA sequence with zero length
@@ -414,13 +414,26 @@ class TFinfo():
 
         if verbose:
             print("Motif scan started .. It may take long time.\n")
-        self.scanned_df = scan_dna_for_motifs(scanner_object=s,
-                                              motifs_object=motifs,
-                                              sequence_object=target_sequences,
-                                              divide=divide,
-                                              verbose=verbose)
 
-        self.__addLog("scanMotifs")
+        #if n_mini_batch is None:
+        self.scanned_df = scan_dna_for_motifs(scanner_object=s,
+                                                motifs_object=self.motifs,
+                                                sequence_object=target_sequences,
+                                                divide=divide,
+                                                verbose=verbose,
+                                                batch_size=batch_size)
+        
+        #    self.__addLog("scanMotifs")
+
+        #else:
+        #    self.scanned_df = scan_dna_for_motifs_by_mini_batch(scanner_object=s,
+        #                                                        motifs_object=self.motifs,
+        #                                                        sequence_object=target_sequences,
+        #                                                        n_batch=n_mini_batch,
+        #                                                        verbose=verbose)
+        #    self.__addLog("scanMotifs using mini batch mode")
+
+    
 
     def reset_dictionary_and_df(self):
         """
@@ -742,25 +755,3 @@ def _get_dic_motif2TFs(species, motifs, TF_evidence_level="direct_and_indirect",
     return dic_motif2TFs
 
 
-
-#########################################################
-### 4.2. Calculate P-values; Multi processing version ###
-#########################################################
-
-
-
-#########################
-### 5.1 Visualization ###
-#########################
-
-
-
-
-######################
-### 6. GO analysis ###
-######################
-
-
-#############################
-### Scoring with ML model ###
-#############################
