@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-LABEL version="0.17.2"
+LABEL version="0.18.0"
 LABEL description="celloracle docker installation"
 LABEL maintainer="kamimoto@wustl.edu"
 
@@ -27,11 +27,10 @@ RUN . "/opt/miniconda/etc/profile.d/conda.sh" \
  && conda config --set always_yes yes --set changeps1 no \
  && conda create -q -n celloracle_env python=3.10 \
  && conda activate celloracle_env \
- && conda install cython numpy pytest icu -c conda-forge \
+ && conda install cython numpy pytest -c conda-forge \
+ && conda install gimmemotifs==0.17.2 -c bioconda \
  && cd $HOME/CellOracle \
  && pip install . --default-timeout=100 \
- && pip uninstall gimmemotifs \
- && conda install gimmemotifs==0.17.2 -c bioconda \
  && pytest \
  && cd  \
  && rm -r CellOracle \
