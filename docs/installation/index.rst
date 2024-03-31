@@ -45,7 +45,7 @@ System Requirements
 Python Requirements
 ^^^^^^^^^^^^^^^^^^^
 
-- CellOracle was developed using python 3.6. It is also tested with python 3.8. We do not support python 2.7x or python <=3.5.
+- CellOracle was developed using python 3.8. It is also tested with python 3.10. We do not support python 2.7x or python <=3.5.
 - CellOracle is available through `PyPI <https://pypi.org/project/celloracle/>`_. You can also download and install celloracle from our `CellOracle  GitHub repository <https://github.com/morris-lab/CellOracle>`_ .
 
 CellOracle installation using conda and pip
@@ -56,7 +56,7 @@ CellOracle installation using conda and pip
 
   ::
 
-      conda create -n celloracle_env python=3.8
+      conda create -n celloracle_env python=3.10
       conda activate celloracle_env
 
 

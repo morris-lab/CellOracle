@@ -4,6 +4,13 @@
 Changelog
 =========
 
+* `0.18.0 <2024-03-31>`
+ `-` We released celloracle version 0.18.0. Refactoring was done in the motif analysis to improve the stability of the function. 
+ 
+ `-` Docker image was updated to the latest version of celloracle. From this version, we use python 3.10 in the docker image.
+
+ `-` Bug fix in the unit test function. 
+
 * `0.17.1 <2024-03-19>`
  `-` We updated the network function to support scikit-learn>=1.2. 
 

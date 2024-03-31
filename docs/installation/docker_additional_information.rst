@@ -13,7 +13,7 @@ Quick start
 
 ::
 
-    docker pull kenjikamimoto126/celloracle_ubuntu:0.12.0
+    docker pull kenjikamimoto126/celloracle_ubuntu:0.18.0
 
 
 2. Make docker container and start running it.
@@ -30,7 +30,7 @@ Quick start
       --name celloracle_container \
       -p 8888:8888 \
       -v $(pwd)/data_folder:/root/data_folder \
-      celloracle_ubuntu:0.12.0
+      kenjikamimoto126/celloracle_ubuntu:0.18.0
 
 
 
@@ -64,6 +64,6 @@ Docker image build information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We built our docker image using Dockerfile automatic build function.
-The Dockerfile is available `here <https://github.com/morris-lab/CellOracle/blob/master/docs/dockerfile>`_.
+The Dockerfile is available `here <https://github.com/morris-lab/CellOracle/blob/master/other_files/Dockerfile>`_.
 You can modify it to create custom docker image by yourself.
 If you make custom environment, please do so on your responsibility.

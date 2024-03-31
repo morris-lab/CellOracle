@@ -25,6 +25,8 @@ News
 
 Please look at `Changelog page <https://morris-lab.github.io/CellOracle.documentation/changelog/index.html>`_ for all updates history of CellOracle package.
 
+- 03/31/2024: We released celloracle version 0.18.0. Refactoring was done in the motif analysis to improve the stability of the function. Docker image was updated to the latest version of celloracle. From this version, we use python 3.10 in the docker image.
+
 - 03/19/2024: We released celloracle version 0.17.1. This update includes a bug fix, refactoring, and new test functions. Now we support Python 3.10. 
 
 - 02/01/2024: We released celloracle version 0.16.0. Fixed a bug in the Systematic Simulation function to comply with the latest update of pandas.
