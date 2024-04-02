@@ -14,10 +14,10 @@ Docker image
 
 ::
 
-    docker pull kenjikamimoto126/celloracle_ubuntu:0.12.0
+    docker pull kenjikamimoto126/celloracle_ubuntu:0.18.0
 
 
-- This docker image was built based on Ubuntu 20.04.
+- This docker image was built based on Ubuntu 20.04 and python 3.10.
 - Python dependent packages and celloracle are installed in an anaconda environment, celloracle_env. This environment will be activated automatically when you log in.
 
 .. toctree::
