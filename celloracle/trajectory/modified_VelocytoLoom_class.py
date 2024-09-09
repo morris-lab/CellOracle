@@ -421,11 +421,11 @@ class modified_VelocytoLoom():
 
         # NOTE maybe sparse matrix here are slower than dense
         # NOTE if knn_random this could be made much faster either using sparse matrix or neigh_ixs
-        self.transition_prob = np.exp(self.corrcoef / sigma_corr) * self.embedding_knn.A  # naive
+        self.transition_prob = np.exp(self.corrcoef / sigma_corr) * self.embedding_knn.toarray()  # naive
         self.transition_prob /= self.transition_prob.sum(1)[:, None]
         if hasattr(self, "corrcoef_random"):
             logging.debug("Calculate transition probability for negative control")
-            self.transition_prob_random = np.exp(self.corrcoef_random / sigma_corr) * self.embedding_knn.A  # naive
+            self.transition_prob_random = np.exp(self.corrcoef_random / sigma_corr) * self.embedding_knn.toarray()  # naive
             self.transition_prob_random /= self.transition_prob_random.sum(1)[:, None]
 
         unitary_vectors = self.embedding.T[:, None, :] - self.embedding.T[:, :, None]  # shape (2,ncells,ncells)
@@ -435,13 +435,13 @@ class modified_VelocytoLoom():
             np.fill_diagonal(unitary_vectors[1, ...], 0)
 
         self.delta_embedding = (self.transition_prob * unitary_vectors).sum(2)
-        self.delta_embedding -= (self.embedding_knn.A * unitary_vectors).sum(2) / self.embedding_knn.sum(1).A.T
+        self.delta_embedding -= (self.embedding_knn.toarray() * unitary_vectors).sum(2) / self.embedding_knn.sum(1).A.T
         self.delta_embedding = self.delta_embedding.T
 
 
         if hasattr(self, "corrcoef_random"):
             self.delta_embedding_random = (self.transition_prob_random * unitary_vectors).sum(2)
-            self.delta_embedding_random -= (self.embedding_knn.A * unitary_vectors).sum(2) / self.embedding_knn.sum(1).A.T
+            self.delta_embedding_random -= (self.embedding_knn.toarray() * unitary_vectors).sum(2) / self.embedding_knn.sum(1).A.T
             self.delta_embedding_random = self.delta_embedding_random.T
 
 
