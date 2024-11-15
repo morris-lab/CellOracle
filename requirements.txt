@@ -1,4 +1,4 @@
-numpy==1.26.4＃To avoid the numpy bug in numpy 2.x.x. This will be removed in the future when the bug is fixed.
+numpy==1.26.4
 scipy
 cython
 numba>=0.50.1
