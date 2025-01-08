@@ -424,7 +424,7 @@ def plot_cartography_term(links, goi, save=None, plt_show=True):
 
     order = ["Ultra peripheral", "Peripheral", "Connector","Kinless","Provincical Hub","Connector Hub", "Kinless Hub"]
 
-    tt = tt.reindex(index=links.palette.index.values, columns=order).fillna(0)
+    tt = tt.reindex(index=links.palette.index.values, columns=order).astype("float").fillna(0)
 
     sns.heatmap(data=tt, cmap="Blues", cbar=False)
     if not save is None:
