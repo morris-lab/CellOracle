@@ -15,6 +15,8 @@ pyarrow>=0.17
 tqdm>=4.45
 igraph>=0.10.1
 louvain
+# louvain<=0.8.2 imports pkg_resources at module load, which setuptools >=81 stopped shipping by default.
+setuptools<81
 jupyter
 anndata>=0.7.5
 scanpy>=1.6
