@@ -2,12 +2,13 @@ numpy==1.26.4
 scipy
 cython
 numba>=0.50.1
-matplotlib<3.7
+matplotlib
 matplotlib-inline<=0.1.7
 seaborn
 scikit-learn
 h5py>=3.1.0
-pandas>=1.0.3, <=1.5.3
+#pandas>=1.0.3, <=1.5.3
+pandas
 velocyto>=0.17
 umap-learn
 pyarrow>=0.17
@@ -21,4 +22,3 @@ joblib
 goatools
 genomepy>=0.8.4
 gimmemotifs>=0.14.4, <=0.17.2
-anndata<=0.10.8

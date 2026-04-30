@@ -32,9 +32,29 @@ from tqdm.auto import tqdm
 
 from genomepy import Genome
 
-from gimmemotifs.motif import Motif
-from gimmemotifs.motif import default_motifs
+from gimmemotifs.motif import Motif, read_motifs as _read_motifs
 from gimmemotifs.scanner import Scanner
+
+# `default_motifs` was removed from gimmemotifs.motif in v0.18.
+# Reproduce the v0.17 implementation when running against newer gimmemotifs.
+try:
+    from gimmemotifs.motif import default_motifs
+except ImportError:
+    from gimmemotifs.config import MotifConfig as _MotifConfig
+
+    def default_motifs():
+        """Return list of Motif instances from the gimmemotifs default motif database.
+
+        Compatibility shim for gimmemotifs >=0.18, which removed the original
+        `gimmemotifs.motif.default_motifs`.
+        """
+        config = _MotifConfig()
+        motif_dir = config.get_motif_dir()
+        motif_db = config.get_default_params()["motif_db"]
+        if not motif_dir or not motif_db:
+            raise ValueError("default motif database not configured")
+        with open(os.path.join(motif_dir, motif_db)) as f:
+            return _read_motifs(f)
 
 from ..utility.hdf5_processing import dump_hdf5, load_hdf5
 from ..utility import save_as_pickled_object, load_pickled_object, intersect,\
@@ -324,7 +344,11 @@ class TFinfo():
 
                 # Load JASPAR motif from gimmemotifs data
                 from gimmemotifs.motif import read_motifs
-                from gimmemotifs.motif import MotifConfig
+                try:
+                    from gimmemotifs.motif import MotifConfig
+                except ImportError:
+                    # gimmemotifs >=0.18 moved MotifConfig to gimmemotifs.config
+                    from gimmemotifs.config import MotifConfig
                 config = MotifConfig()
                 motif_dir = config.get_motif_dir()
                 path = os.path.join(motif_dir, "JASPAR2020_vertebrates.pfm")

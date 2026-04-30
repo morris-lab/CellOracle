@@ -27,6 +27,18 @@ from ..utility import load_hdf5
 from ..utility.data_download_from_web import download_data_if_data_not_exist
 
 
+def _default_tutorial_version():
+    """Pick the default tutorial-artifact version that matches the runtime pandas.
+
+    The legacy v0.10.0 artifacts were pickled under pandas <2.0 and reference
+    `pandas.core.indexes.numeric`, which was removed in pandas 2.0. v0.20.0
+    artifacts were re-saved under pandas >=2.0 / anndata >=0.12 and load on
+    both modern and legacy stacks.
+    """
+    pandas_major = int(pd.__version__.split(".")[0])
+    return "0.20.0" if pandas_major >= 2 else "0.10.0"
+
+
 def load_mouse_scATAC_atlas_base_GRN(version="0.10.0", force_download=False):
     """
     Load Transcription factor binding information made from mouse scATAC-seq atlas dataset.
@@ -79,13 +91,17 @@ def load_Paul2015_data(version="0.10.0", force_download=False):
 
     return sc.read_h5ad(path)
 
-def load_tutorial_links_object(version="0.10.0", force_download=False):
+def load_tutorial_links_object(version=None, force_download=False):
     """
     """
+    if version is None:
+        version = _default_tutorial_version()
     if version == "0.9.0":
         filename = "tutorial_data/links_louvain_190829.celloracle.links"
     elif version == "0.10.0":
         filename = "tutorial_data/links_louvain_v20220406.celloracle.links"
+    elif version == "0.20.0":
+        filename = "tutorial_data/links_louvain_v20260430.celloracle.links"
     else:
         raise ValueError("This version is not found.")
     # Load data from local directory if file exits.
@@ -99,11 +115,15 @@ def load_tutorial_links_object(version="0.10.0", force_download=False):
 
     return load_hdf5.load_hdf5(path)
 
-def load_tutorial_oracle_object(version="0.10.0", force_download=False):
+def load_tutorial_oracle_object(version=None, force_download=False):
+    if version is None:
+        version = _default_tutorial_version()
     if version == "0.9.0":
         filename = "tutorial_data/Paul_etal_v20210704.celloracle.oracle"
     elif version == "0.10.0":
         filename = "tutorial_data/Paul_etal_v20220406.celloracle.oracle"
+    elif version == "0.20.0":
+        filename = "tutorial_data/Paul_etal_v20260430.celloracle.oracle"
     else:
         raise ValueError("This version is not found.")
 
