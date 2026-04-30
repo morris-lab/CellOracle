@@ -34,7 +34,10 @@ jobs:
             #   uses configparser.SafeConfigParser, removed in 3.12).
             # louvain: C extension needs CMake to build libigraph from source via pip;
             #   conda-forge ships a prebuilt binary.
-            conda install -c bioconda -c conda-forge gimmemotifs louvain
+            # velocyto.py: setup.py imports numpy at module load but does not
+            #   declare numpy in pyproject.toml build-system.requires, so the
+            #   PEP 517 isolated build env fails on a fresh sdist install.
+            conda install -c bioconda -c conda-forge gimmemotifs louvain velocyto.py
             conda install cython numpy pytest
 
             # Check pip
