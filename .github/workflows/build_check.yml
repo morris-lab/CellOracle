@@ -44,8 +44,11 @@ jobs:
             which pip
             #Install fa2 for tutorial
             #pip install fa2
-            # Install CellOracle
-            pip install .
+            # Install CellOracle.
+            # --no-build-isolation lets velocyto's sdist build see numpy/cython
+            # from the conda env. Modern pip's PEP 517 isolated build env does
+            # not include them, and velocyto's setup.py imports numpy at the top.
+            pip install --no-build-isolation .
             # Show installed package
             conda list
             # command to run tests
